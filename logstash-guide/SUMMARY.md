@@ -4,6 +4,7 @@
   * [第1章 简介](01-Logstash-Introduction/README.md)
   * [第2章 快速入门](02-Getting-Started-with-Logstash/README.md)
   * [第3章 工作原理](03-How-Logstash-Works/README.md)
+    * [运行模型](03-How-Logstash-Works/Execution-Model.md)
   * [第4章 配置和运行](04-Setting-Up-and-Running-Logstash/README.md)
   * [第5章 升级](05-Uprading-Logstash/README.md)
   * [第6章 配置项](06-Configuring-Logstash/README.md)
