@@ -27,7 +27,7 @@
     "github-buttons": {
       "buttons": [{
         "user": "Tyrival",
-        "repo": "logstash-guide",
+        "repo": "gitbook",
         "type": "star",
         "size": "small",
         "count": false
