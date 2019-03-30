@@ -1,4 +1,4 @@
-# Logstash 6.7 用户指南
+# Logstash 6.7 用户指南中文版
 
 此文档基于 [Logstash Reference](https://www.elastic.co/guide/en/logstash/6.7/index.html) 进行翻译。
 
@@ -19,11 +19,12 @@
 * [第14章 监控](14-Monitoring-Logstash/README.md)
 * [第15章 API](15-Monitoring-APIs/README.md)
 * [第16章 插件](16-Working-with-plugins/README.md)
-* [第17章 输入插件Input plugins](17-Input-plugins/README.md)
-* [第18章 输出插件Output plugins](18-Output-plugins/README.md)
+* [第17章 输入插件Input](17-Input-plugins/README.md)
+* [第18章 输出插件Output](18-Output-plugins/README.md)
 * [第19章 过滤器Filter](19-Filter-plugins/README.md)
 * [第20章 编解码器Codec](20-Coder-plugins/README.md)
 * [第21章 技巧和最佳实践](21-Tips-and-Best-Pracitices/README.md)
 * [第22章 常见问题](22-Troubleshooting-Common-Problems/README.md)
 * [第23章 插件开发](23-Contributing-to-Logstash/README.md)
 * [第24章 Java插件开发](24-Contributing-a-java-Plugin/README.md)
+* [第25章-术语](25-Glossary-of-Terms/README.md)

@@ -1,6 +1,6 @@
 # Table of contents
 
-* [Logstash 6.7 用户指南](README.md)
+* [Logstash 6.7 用户指南中文版](README.md)
   * [第1章 简介](01-Logstash-Introduction/README.md)
   * [第2章 快速入门](02-Getting-Started-with-Logstash/README.md)
   * [第3章 工作原理](03-How-Logstash-Works/README.md)
