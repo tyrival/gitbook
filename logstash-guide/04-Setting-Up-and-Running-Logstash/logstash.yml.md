@@ -50,10 +50,10 @@ modules:
 | `pipeline.id`                 | 管道ID。                                                     | `main`                                                       |
 | `pipeline.java_execution`     | 管道的Java执行引擎。                                         | `false`                                                      |
 | `pipeline.workers`            | 管道的工作者数量，即执行过滤器和输出阶段的并发数，如果你发现事件正在备份，或者CPU运行不饱和，可以考虑提高此参数的值，以实现对服务器性能的利用率。 | 服务器的CPU核心数                                            |
-| `pipeline.batch.size`         | 管道的最大批容量，当单个管道工作者接收到的事件达到此数量时，则立刻将这些事件打包为一个批，进行过滤和输出处理。如果给此参数赋予较大的数值，可以提高效率，但会导致更高的内存开销，从而需要在 `jvm.options` 配置文件中配置更高的堆内存空间，更多信息请查看 [jvm.options配置文件](04-Setting-Up-and-Running-Logstash/Logstash-Configuration-Files.md)。 | `125`                                                        |
+| `pipeline.batch.size`         | 管道的最大批容量，当单个管道工作者接收到的事件达到此数量时，则立刻将这些事件打包为一个批，进行过滤和输出处理。如果给此参数赋予较大的数值，可以提高效率，但会导致更高的内存开销，从而需要在 `jvm.options` 配置文件中配置更高的堆内存空间，更多信息请查看 [jvm.options配置文件](../04-Setting-Up-and-Running-Logstash/Logstash-Configuration-Files.md)。 | `125`                                                        |
 | `pipeline.batch.delay`        | 为管道声明一个时间延迟的值，当创建管道在接收到一个事件后，接下来未接受到事件的空闲时间达到这个值，则将管道内缓存的事件打包为一个批，传递给管道工作者进行处理，即使这个批还未达到最大批容量。 | `50`                                                         |
 | `pipeline.unsafe_shutdown`    | 默认情况下，当Logstash接收到关闭命令时，如果还有未处理的事件，会拒绝执行关闭操作，直到所有事件都进行了输出。当此选项设置为`true`时，当Logstash接收到关闭命令后，会无视内存中存在的未处理事件而强行关闭，从而会导致数据丢失。 | `false`                                                      |
-| `path.config`                 | Logstash的主管道配置文件位置，当你指定一个目录或含通配符的路径时，Logstash会按照字母顺序读取该目录下的配置文件。 | 视平台而定，查看 [目录结构](04-Setting-Up-and-Running-Logstash/Logstash-Directory-Layout.md) |
+| `path.config`                 | Logstash的主管道配置文件位置，当你指定一个目录或含通配符的路径时，Logstash会按照字母顺序读取该目录下的配置文件。 | 视平台而定，查看 [目录结构](../04-Setting-Up-and-Running-Logstash/Logstash-Directory-Layout.md) |
 | `config.string`               | 主管道配置字符串，语法与配置文件语法相同。                   | None                                                         |
 | `config.test_and_exit`        | 当设置为`true`时，会校验配置文件内容的合法性并退出（需要注意的是，此设置不会检查grok正则匹配的正确性）。Logstash可以从目录中读取多个配置文件，如果将此设置与`log.level：debug`结合使用，Logstash将记录组合的配置文件，使用它来自的源文件注释每个配置块。 | `false`                                                      |
 | `config.reload.automatic`     | 当设置为`true`时，会定期检查配置项，无论配置项是否变更，都会重新加载。可以手工执行SIGHUP命令触发此操作。 | `false`                                                      |
@@ -61,7 +61,7 @@ modules:
 | `config.debug`                | 当设置为 `true`时，将完整的配置编译信息打印到日志消息中。你必须同时设置 `log.level: debug`。警告：日志消息将包含以纯文本传递给插件的配置信息，这可能导致明文密码出现在您的日志中！ | `false`                                                      |
 | `config.support_escapes`      | 当设置为`true`时，带引号的字符串将处理以下转义序列：`\n`转为文字换行符（ASCII 10）。 `\r`成为文字回车（ASCII 13）。`\t`转为文字标签（ASCII 9）。`\\`转为字面反斜杠`\`。 `\"`转为文字双引号。`\'`转为文字引号。 | `false`                                                      |
 | `modules`                     | 配置时，`modules`必须位于此表上面所述的嵌套YAML结构中。      | None                                                         |
-| `queue.type`                  | 用于事件缓冲的内部队列模型。`memory`表示基于内存存储的队列，`persistent`表示基于磁盘存储的ACKed队列（[持久化队列](10-Data-Resiliency/Persistent-Queues.md)）。 | `memory`                                                     |
+| `queue.type`                  | 用于事件缓冲的内部队列模型。`memory`表示基于内存存储的队列，`persistent`表示基于磁盘存储的ACKed队列（[持久化队列](../10-Data-Resiliency/Persistent-Queues.md)）。 | `memory`                                                     |
 | `path.queue`                  | 当启用持久化队列时(`queue.type: persisted`)，此配置项声明队列的持久哈 u存储路径。 | `path.data/queue`                                            |
 | `queue.page_capacity`         | 当启用持久化队列时(`queue.type: persisted`)，声明页数据文件的容量，队列数据（只能向尾部附加新数据）会按照页文件的最大容量，被分割存储到一个或多个页文件中。 | 64mb                                                         |
 | `queue.max_events`            | 启用持久队列时(`queue.type: persisted`)，队列中未读事件的最大数量。 | 0 (不限制)                                                   |
@@ -78,5 +78,5 @@ modules:
 | `log.level`                   | 日志级别，可选项包括:`fatal`、`error`、`warn`、`info`、`debug`、`trace` | `info`                                                       |
 | `log.format`                  | 日志格式。`json` 表示JSON格式， `plain` 表示采用 `Object#.inspect`. | `plain`                                                      |
 | `path.logs`                   | The directory where Logstash will write its log to.          | `LOGSTASH_HOME/logs`                                         |
-| `path.plugins`                | 插件的存储位置，可以指定多个路径。建议按照如下规则储存插件：`PATH/logstash/TYPE/NAME.rb`，其中 `TYPE`包括 `inputs`、`filters`、`outputs`、或`codecs`，`NAME` 表示插件名称 | 视平台而定，查看 [目录结构](04-Setting-Up-and-Running-Logstash/Logstash-Directory-Layout.md) |
+| `path.plugins`                | 插件的存储位置，可以指定多个路径。建议按照如下规则储存插件：`PATH/logstash/TYPE/NAME.rb`，其中 `TYPE`包括 `inputs`、`filters`、`outputs`、或`codecs`，`NAME` 表示插件名称 | 视平台而定，查看 [目录结构](../04-Setting-Up-and-Running-Logstash/Logstash-Directory-Layout.md) |
 
