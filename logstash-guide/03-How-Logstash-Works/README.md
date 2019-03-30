@@ -13,7 +13,7 @@ Logstash事件处理管道有三个阶段：输入→过滤器→输出。输入
 
 - **beats**：处理Beats发送的事件。
 
-有关输入插件的详细信息，请参阅 [第17章 输入插件](https://github.com/tyrival/logstash-guide/blob/master/chapters/17-Input-plugins.md)。
+有关输入插件的详细信息，请参阅 [第17章-输入插件Input](../17-Input-plugins/README.md)。
 
 ### 过滤器
 过滤器是Logstash管道中的中间处理设备。您可以按需组合过滤器，以便在事件满足特定条件时对其执行操作。常见过滤器包括：
@@ -24,7 +24,7 @@ Logstash事件处理管道有三个阶段：输入→过滤器→输出。输入
 - **clone**：制作事件的副本，可能添加或删除字段。
 - **geoip**：添加有关IP地址的地理位置的信息（在Kibana中可以显示惊艳的图表效果！）
 
-有关过滤器的详细信息，请参阅 [第19章 过滤器Filter](https://github.com/tyrival/logstash-guide/blob/master/chapters/19-FIlter-plugins.md)。
+有关过滤器的详细信息，请参阅 [第19章-过滤器Filter](../19-Filter-plugins/README.md)。
 
 ### 输出插件
 输出插件是Logstash管道的最后阶段。同一事件可以走多个输出插件，但是当所有输出插件处理完成，事件就会彻底结束执行过程。常用的输出插件包括：
@@ -34,7 +34,7 @@ Logstash事件处理管道有三个阶段：输入→过滤器→输出。输入
 - **graphite**：将事件数据发送到graphite——一种流行的用于存储和绘制指标的开源工具。 http://graphite.readthedocs.io/en/latest/
 - **statsd**：将事件数据发送到statsd，这是一种“监听统计信息，例如计数器和定时器，通过UDP将聚合发送给一个或多个可插入后端服务”的服务。如果您已经在使用statsd，这可能对您有用！
 
-有关输出插件的更多信息，请参阅 [第18章 输出插件Output plugins](https://github.com/tyrival/logstash-guide/blob/master/chapters/18-Output-plugins.md)。
+有关输出插件的更多信息，请参阅 [第18章-输出插件Output](../18-Output-plugins/README.md)。
 
 ### 编解码器
 
@@ -43,4 +43,4 @@ Logstash事件处理管道有三个阶段：输入→过滤器→输出。输入
 - **json**：以JSON格式编码或解码数据。
 - **multiline**：将多行文本事件（如java异常和堆栈跟踪消息）合并到一个事件中。
 
-有关编解码器的更多信息，请参阅 [第20章 编解码器Codec](https://github.com/tyrival/logstash-guide/blob/master/chapters/20-Coder-plugins.md)。
+有关编解码器的更多信息，请参阅 [第20章-编解码器Codec](../20-Coder-plugins/README.md)。
