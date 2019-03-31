@@ -8,7 +8,7 @@
 * [第3章 工作原理](03-How-Logstash-Works/README.md)
 * [第4章 配置和运行](04-Setting-Up-and-Running-Logstash/README.md)
 * [第5章 升级](05-Uprading-Logstash/README.md)
-* [第6章 配置项](06-Configuring-Logstash/README.md)
+* [第6章 配置](06-Configuring-Logstash/README.md)
 * [第7章 运维](07-Managing-Logstash/README.md)
 * [第8章 模块](08-Working-with-Logstash-Modules/README.md)
 * [第9章 Filebeat](09-Working-with-Filebeat-Modules/README.md)
