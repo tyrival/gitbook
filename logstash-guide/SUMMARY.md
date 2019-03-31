@@ -11,7 +11,7 @@
     * [logstash.yml](04-Setting-Up-and-Running-Logstash/logstash.yml.md)
     * [密钥库和安全设置](04-Setting-Up-and-Running-Logstash/Secrets-keystore-for-secure-settings.md)
     * [命令行运行](04-Setting-Up-and-Running-Logstash/Running-Logstash-from-the-Command-Line.md)
-    * [Debian和RPM作为系统服务运行](04-Setting-Up-and-Running-Logstash/Running-Logstash-as-a-Service-on-Debian-or-RPM.md)
+    * [作为Debian或RPM系统服务运行](04-Setting-Up-and-Running-Logstash/Running-Logstash-as-a-Service-on-Debian-or-RPM.md)
     * [Docker运行](04-Setting-Up-and-Running-Logstash/Running-Logstash-on-Docker.md)
     * [Docker配置](04-Setting-Up-and-Running-Logstash/Configuring-Logstash-on-Docker.md)
     * [日志](04-Setting-Up-and-Running-Logstash/Logging.md)
