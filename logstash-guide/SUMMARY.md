@@ -32,7 +32,7 @@
     * [](06-Configuring-Logstash/Pipeline-to-Pipeline-Communication-(Beta).md)
     * [](06-Configuring-Logstash/Reloading-the-Config-File.md)
     * [](06-Configuring-Logstash/Managing-Multiline-Events.md)
-    * [](06-Configuring-Logstash/Glob-Pattern-Support.md)
+    * [通配符支持](06-Configuring-Logstash/Glob-Pattern-Support.md)
     * [](06-Configuring-Logstash/Converting-Ingest-Node-Pipelines.md)
     * [](06-Configuring-Logstash/Logstash-to-Logstash-Communication.md)
     * [](06-Configuring-Logstash/Centralized-Pipeline-Management.md)
