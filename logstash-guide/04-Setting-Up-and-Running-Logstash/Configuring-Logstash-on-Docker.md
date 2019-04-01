@@ -28,7 +28,7 @@ Sending Logstash logs to /usr/share/logstash/logs which is now configured via lo
 
 ### Settings
 
-镜像提供了几种修改设置的方法。传统方法是提供自定义 `logstash.yml` 文件，但也可以使用环境变量来定义设置。
+镜像提供了几种修改设置的方法。传统方法是提供自定义 `logstash.yml` 文件，但也可以配置中引用环境变量来定义设置。
 
 #### 从宿主机挂载
 

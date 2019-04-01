@@ -4,7 +4,7 @@
 
 将密钥的键值添加到密钥库后，可以在配置敏感信息时，使用密钥键代替密钥值。
 
-引用密钥的语法与 [使用环境变量](../06-Configuring-Logstash/Using-Environment-Variables-in-the-Configuration.md) 的语法相同：
+引用密钥的语法与 [配置中引用环境变量](../06-Configuring-Logstash/Using-Environment-Variables-in-the-Configuration.md) 的语法相同：
 ```yaml
 ${KEY}
 ```
