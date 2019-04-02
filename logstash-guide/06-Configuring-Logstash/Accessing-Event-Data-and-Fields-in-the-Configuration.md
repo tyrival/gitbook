@@ -162,7 +162,7 @@ output {
 - `[foo]` 存在于事件中，但为 `false`
 - `[foo]` 存在于事件中，但为null
 
-有关更复杂的示例，请参阅 [使用条件表达式](06-Configuring-Logstash/Logstash-Configuration-Examples.md#使用条件表达式)。
+有关更复杂的示例，请参阅 [使用条件表达式](../06-Configuring-Logstash/Logstash-Configuration-Examples.md#使用条件表达式)。
 
 ### @metadata 字段
 
