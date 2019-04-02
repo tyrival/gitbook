@@ -1,8 +1,8 @@
-## 管道间通讯（测试功能）
+## 管道间通信（测试功能）
 
 使用Logstash的多管道功能时，您可能希望在一个Logstash实例连接多个管道，并通过配置使这些管道的运行和逻辑相互隔离。管道的输入/输出支持本文档后面讨论的许多高级模式。
 
-如果需要在Logstash实例之间设置通信，请使用 [实例间通讯](../06-Configuring-Logstash/Logstash-to-Logstash-Communication.md) 或队列中间件（如Kafka或Redis）。
+如果需要在Logstash实例之间设置通信，请使用 [实例间通信](../06-Configuring-Logstash/Logstash-to-Logstash-Communication.md) 或队列中间件（如Kafka或Redis）。
 
 ### 配置概述
 
@@ -21,7 +21,7 @@
   config.string: input { pipeline { address => myVirtualAddress } }
 ```
 
-#### 它如何工作
+#### 工作原理
 管道输入作为虚拟服务器，侦听本地进程中一个虚拟地址。只有在本地同一个Logstash实例上运行的管道输出，才能将事件发送到此地址。管道输出可以将事件发送到虚拟地址列表。如果下游管道被阻塞或不可用，则将阻止管道输出。
 
 通过管道发送事件时，将完全复制其数据。对下游管道中的事件的修改，不会影响任何上游管道中的该事件。

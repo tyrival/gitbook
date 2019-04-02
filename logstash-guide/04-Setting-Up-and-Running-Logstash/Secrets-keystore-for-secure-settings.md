@@ -21,7 +21,7 @@ ${KEY}
 > 目前不支持从 `pipelines.yml` 或命令行 (-e) 引用密钥库数据。
 
 > **注意：**
-> 如需在 [管道集中管理](../07-Managing-Logstash/Centralized-Pipeline-Management.md) 引用密钥库数据，要求每个Logstash部署都具有密钥库的本地副本。
+> 如需在 [集中管道管理](../07-Managing-Logstash/Centralized-Pipeline-Management.md) 引用密钥库数据，要求每个Logstash部署都具有密钥库的本地副本。
 
 当Logstash解析设置（`logstash.yml`）或配置（`/etc/logstash/conf.d/*.conf`）时，它会在解析环境变量之前解析密钥库中的密钥。
 
