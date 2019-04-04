@@ -4,7 +4,7 @@
 >
 > Logstash ArcSight模块是基本许可证下的 [X-Pack](https://www.elastic.co/cn/products/stack) 功能，因此可以免费使用。如有任何疑问或更多信息，请联系 arcsight@elastic.co。
 
-Logstash ArcSight模块使您可以轻松地将ArcSight数据与Elastic Stack集成。只需一个命令，模块就可以直接利用ArcSight Smart Connector或Event Broker，将安全事件解析并索引到Elasticsearch，并安装一套Kibana看板，让您立即进行数据探索。
+Logstash ArcSight模块使您可以轻松地将ArcSight数据与Elastic Stack集成。只需一个命令，模块就可以直接利用ArcSight Smart Connector或Event Broker，将安全事件解析并索引到Elasticsearch，并安装一套Kibana仪表板，让您立即进行数据探索。
 
 ### 准备工作
 
@@ -35,14 +35,14 @@ bin/logstash --modules arcsight --setup \
   -M "arcsight.var.kibana.host=localhost:5601"
 ```
 
-`--modules arcsight` 选项可以旋转一个支持ArcSight CEF的Logstash管道进行摄取。`--setup` 选项在Elasticsearch中创建 `arcsight- *` 索引匹配，并导入Kibana看板和可视化。在后续模块运行或扩展Logstash部署时，应省略 `--setup` 选项以避免覆盖现有Kibana仪表板。
+`--modules arcsight` 选项可以旋转一个支持ArcSight CEF的Logstash管道进行摄取。`--setup` 选项在Elasticsearch中创建 `arcsight- *` 索引匹配，并导入Kibana仪表板和可视化。在后续模块运行或扩展Logstash部署时，应省略 `--setup` 选项以避免覆盖现有Kibana仪表板。
 
 有关详细信息，请参阅 [Logstash ArcSight模块配置项](#Logstash ArcSight模块配置项)。
 
 2. Kibana探索数据：
 
    a. 打开浏览器@ [http://localhost:5601](http://localhost:5601/) （用户名："elastic"；密码："YOUR_PASSWORD"）
-   b. 打开 **[ArcSight] 网络概述看板**
+   b. 打开 **[ArcSight] 网络概述仪表板**
    c. 有关数据探索的其他详细信息，请参阅 [探索安全数据](#探索安全数据)。
 
 如果要指定ArcSight模块其他选项，请参阅 [配置模块](#配置模块)。
@@ -66,37 +66,37 @@ bin/logstash --modules arcsight --setup \
  -M "arcsight.var.kibana.host=localhost:5601"
 ```
 
-`--modules arcsight` 选项可以旋转一个支持ArcSight CEF的Logstash管道进行摄取。`--setup` 选项在Elasticsearch中创建 `arcsight- *` 索引匹配，并导入Kibana看板和可视化。在后续模块运行或扩展Logstash部署时，应省略 `--setup` 选项以避免覆盖现有Kibana仪表板。
+`--modules arcsight` 选项可以旋转一个支持ArcSight CEF的Logstash管道进行摄取。`--setup` 选项在Elasticsearch中创建 `arcsight- *` 索引匹配，并导入Kibana仪表板和可视化。在后续模块运行或扩展Logstash部署时，应省略 `--setup` 选项以避免覆盖现有Kibana仪表板。
 
 有关详细信息，请参阅 [Logstash ArcSight模块配置项](#Logstash ArcSight模块配置项)。
 
 2. Kibana探索数据：
 
    a. 打开浏览器@ [http://localhost:5601](http://localhost:5601/) （用户名："elastic"；密码："YOUR_PASSWORD"）
-   b. 打开 **[ArcSight] 网络概述看板**
+   b. 打开 **[ArcSight] 网络概述仪表板**
    c. 有关数据探索的其他详细信息，请参阅 [探索安全数据](#探索安全数据)。
 
 如果要指定ArcSight模块其他选项，请参阅 [配置模块](#配置模块)。
 
 ### 探索安全数据
 
-一旦Logstash ArcSight模块开始接收事件，您可立即使用打Kibana仪表板来探索和可视化安全数据。 看板可以提升安全分析师和操作员所需的时间和精力，以获得网络环境、端点和DNS的相关事件。 您可以按原有样式使用看板，也可以根据现有用例和业务需求对其进行定制。
+一旦Logstash ArcSight模块开始接收事件，您可立即使用打Kibana仪表板来探索和可视化安全数据。 仪表板可以提升安全分析师和操作员所需的时间和精力，以获得网络环境、端点和DNS的相关事件。 您可以按原有样式使用仪表板，也可以根据现有用例和业务需求对其进行定制。
 
-看板有一个导航窗格，用于跨三个核心用例进行上下文切换和深入分析：
+仪表板有一个导航窗格，用于跨三个核心用例进行上下文切换和深入分析：
 
 - **网络数据**
-  - 看板：网络概述，网络可疑活动
+  - 仪表板：网络概述，网络可疑活动
   - 数据类型：网络防火墙，入侵系统，VPN设备
 
 - 端点数据
-  - 看板：端点概述，端点OS活动
+  - 仪表板：端点概述，端点OS活动
   - 数据类型：操作系统，应用程序，主机入侵系统
 
 - DNS数据
-  - 看板：Microsoft DNS概述
+  - 仪表板：Microsoft DNS概述
   - 数据类型：Microsoft DNS设备
 
-#### 网络看板示例
+#### 网络仪表板示例
 
 ![arcsight-network-overview](../source/images/ch-08/arcsight-network-overview.png)
 

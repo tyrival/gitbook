@@ -9,13 +9,13 @@ Logstash模块提供了一个快速的端到端解决方案，用于采集数据
 - [Netflow 模块](https://www.elastic.co/guide/en/logstash/6.7/netflow-module.html)
 - [Microsoft Azure 模块](https://www.elastic.co/guide/en/logstash/6.7/azure-module.html)
 
-以上每个模块都内置了Logstash配置、Kibana看板和其他元文件，使您可以更轻松地安装Elastic应用栈，并指定用例或数据源。
+以上每个模块都内置了Logstash配置、Kibana仪表板和其他元文件，使您可以更轻松地安装Elastic应用栈，并指定用例或数据源。
 
 您可以将模块视为提供三个基本功能，使您更容易入门。运行模块时，它将：
 
 1. 创建Elasticsearch索引。
 
-2. 设置Kibana看板，包括在Kibana中可视化数据所需的索引匹配、搜索和可视化。
+2. 设置Kibana仪表板，包括在Kibana中可视化数据所需的索引匹配、搜索和可视化。
 
 3. 使用读取和解析数据所需的配置，运行Logstash管道。
 
@@ -23,7 +23,7 @@ Logstash模块提供了一个快速的端到端解决方案，用于采集数据
 
 ### 运行模块
 
-要运行模块并设置看板，请指定以下选项：
+要运行模块并设置仪表板，请指定以下选项：
 
 ```shell
 bin/logstash --modules MODULE_NAME --setup [-M "CONFIG_SETTING=VALUE"]
@@ -33,9 +33,9 @@ bin/logstash --modules MODULE_NAME --setup [-M "CONFIG_SETTING=VALUE"]
 
 - `--modules` 运行 `MODULE_NAME` 指定的Logstash模块。
 - `-M "CONFIG_SETTING = VALUE"`是可选的，会覆盖默认的配置。您可以使用多次。每个覆盖必须以 `-M` 开头。有关详细信息，请参阅 [命令行指定模块设置](#命令行指定模块设置)。
-- `--setup` 在Elasticsearch中创建索引匹配，并导入Kibana看板和可视化。运行 `--setup` 是一次性设置步骤。以后运行模块需省略此选项，以避免覆盖现有的Kibana看板。
+- `--setup` 在Elasticsearch中创建索引匹配，并导入Kibana仪表板和可视化。运行 `--setup` 是一次性设置步骤。以后运行模块需省略此选项，以避免覆盖现有的Kibana仪表板。
 
-例如，以下命令使用默认设置运行Netflow模块，并设置netflow索引匹配和看板：
+例如，以下命令使用默认设置运行Netflow模块，并设置netflow索引匹配和仪表板：
 
 ```shell
 bin/logstash --modules netflow --setup
