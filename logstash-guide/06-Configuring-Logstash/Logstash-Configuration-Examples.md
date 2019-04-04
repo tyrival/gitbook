@@ -61,9 +61,9 @@ bin/logstash -f logstash-filter.conf
 }
 ```
 
-正如您所看到的，Logstash（在 `grok` 过滤器的帮助下）能够解析日志行（恰好采用Apache“组合日志”格式）并将其分解为许多不同的离散信息码。这对查询和分析我们的日志数据非常有用。例如，您将能够轻松地运行HTTP响应代码，IP地址，引用等报告。 Logstash包含了很多grok模式，因此当您需要解析常见的日志格式，很可能已经有人为您完成了工作。有关更多信息，请参阅GitHub上的 [Logstash grok模式](https://github.com/logstash-plugins/logstash-patterns-core/tree/master/patterns) 列表。
+正如您所看到的，Logstash（在 `grok` 过滤器的帮助下）能够解析日志行（恰好采用Apache"组合日志"格式）并将其分解为许多不同的离散信息码。这对查询和分析我们的日志数据非常有用。例如，您将能够轻松地运行HTTP响应代码，IP地址，引用等报告。 Logstash包含了很多grok模式，因此当您需要解析常见的日志格式，很可能已经有人为您完成了工作。有关更多信息，请参阅GitHub上的 [Logstash grok模式](https://github.com/logstash-plugins/logstash-patterns-core/tree/master/patterns) 列表。
 
-此示例中使用的另一个过滤器是 `data` 过滤器。此过滤器解析时间戳并将其用作事件的时间戳（无论您何时摄取日志数据）。您可看到即使Logstash之后在某个时间点摄取事件，此示例中的 `@timestamp` 字段仍旧为2013年12月11日。这在回填日志时这很方便，它使您能够告诉Logstash“将此值用作此事件的时间戳”。
+此示例中使用的另一个过滤器是 `data` 过滤器。此过滤器解析时间戳并将其用作事件的时间戳（无论您何时摄取日志数据）。您可看到即使Logstash之后在某个时间点摄取事件，此示例中的 `@timestamp` 字段仍旧为2013年12月11日。这在回填日志时这很方便，它使您能够告诉Logstash"将此值用作此事件的时间戳"。
 
 #### 处理 Apache 日志
 
@@ -97,7 +97,7 @@ output {
 }
 ```
 
-然后，使用以下日志条目（示例中为“/ tmp / access_log”）创建您在上面配置的输入文件（或使用您自己的Web服务器中的一些）：
+然后，使用以下日志条目（示例中为"/ tmp / access_log"）创建您在上面配置的输入文件（或使用您自己的Web服务器中的一些）：
 
 ```shell
 71.141.244.242 - kurt [18/May/2011:01:48:10 -0700] "GET /admin HTTP/1.1" 301 566 "-" "Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.9.2.3) Gecko/20100401 Firefox/3.6.3"
@@ -111,7 +111,7 @@ output {
 bin/logstash -f logstash-apache.conf
 ```
 
-现在您应该在Elasticsearch中看到您的apache日志数据！ Logstash打开并读取指定的输入文件，处理它遇到的每个事件。 记录到此文件的任何日志行都将被捕获，由Logstash作为事件处理，并存储在Elasticsearch中。 另外还有一个额外的好处，它们被设置为 “apache_access” 的字段 “type” 并被隐藏（这是由输入配置中的类型 ⇒ “apache_access” 行完成的）。
+现在您应该在Elasticsearch中看到您的apache日志数据！ Logstash打开并读取指定的输入文件，处理它遇到的每个事件。 记录到此文件的任何日志行都将被捕获，由Logstash作为事件处理，并存储在Elasticsearch中。 另外还有一个额外的好处，它们被设置为 "apache_access" 的字段 "type" 并被隐藏（这是由输入配置中的类型 ⇒ "apache_access" 行完成的）。
 
 在此配置中，Logstash仅监控apache access_log，但通过更改上述配置中的一行，可以轻松地同时查看access_log和error_log（实际上，任何匹配* log的文件）：
 

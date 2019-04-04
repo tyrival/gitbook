@@ -102,7 +102,7 @@ my_bytes => "180 mb" # 180000000 bytes
 例：
 
 ```yaml
-codec =>“json”
+codec =>"json"
 ```
 
 #### Hash
@@ -136,7 +136,7 @@ port => 33
 例：
 
 ```yaml
-my_password =>“密码”
+my_password =>"密码"
 ```
 
 #### URI

@@ -9,7 +9,7 @@ Logstash事件处理管道有三个阶段：输入→过滤器→输出。输入
 
 - **syslog**：在514端口上侦听syslog消息，并根据RFC3164格式进行解析
 
-- **redis**：使用redis通道和redis列表，从redis服务器读取数据。 Redis通常用作集中式Logstash中的“代理”，使Logstash事件在远程Logstash“发运者”中形成队列。
+- **redis**：使用redis通道和redis列表，从redis服务器读取数据。 Redis通常用作集中式Logstash中的"代理"，使Logstash事件在远程Logstash"发运者"中形成队列。
 
 - **beats**：处理Beats发送的事件。
 
@@ -32,7 +32,7 @@ Logstash事件处理管道有三个阶段：输入→过滤器→输出。输入
 - **elasticsearch**：将事件数据发送到Elasticsearch。当你打算以高效、方便且易于查询的格式保存数据， Elasticsearch是您的最佳选择……对，我们护犊子 :)
 - **file**：将事件数据写入磁盘上的文件。
 - **graphite**：将事件数据发送到graphite——一种流行的用于存储和绘制指标的开源工具。 http://graphite.readthedocs.io/en/latest/
-- **statsd**：将事件数据发送到statsd，这是一种“监听统计信息，例如计数器和定时器，通过UDP将聚合发送给一个或多个可插入后端服务”的服务。如果您已经在使用statsd，这可能对您有用！
+- **statsd**：将事件数据发送到statsd，这是一种"监听统计信息，例如计数器和定时器，通过UDP将聚合发送给一个或多个可插入后端服务"的服务。如果您已经在使用statsd，这可能对您有用！
 
 有关输出插件的更多信息，请参阅 [第18章-输出插件Output](../18-Output-plugins/README.md)。
 

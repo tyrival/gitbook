@@ -11,51 +11,80 @@
 3. 配置Logstash节点，在 `logstash.yml中` 设置 `xpack.monitoring.elasticsearch.hosts` 使其发送性能指标。如果启用了X-Pack安全性，则还需要指定 [内置 `logstash_system` 用户](https://www.elastic.co/guide/en/elastic-stack-overview/6.7/built-in-users.html) 的凭据。有关这些设置的详细信息，请参阅 [监控设置](#监控设置)。
 
 ```yaml
-xpack.monitoring.elasticsearch.hosts: ["http://es-prod-node-1:9200", "http://es-prod-node-2:9200"]	#1
-xpack.monitoring.elasticsearch.username: "logstash_system"	#2
+xpack.monitoring.elasticsearch.hosts: ["http://es-prod-node-1:9200", "http://es-prod-node-2:9200"]  ①
+xpack.monitoring.elasticsearch.username: "logstash_system"  ②
 xpack.monitoring.elasticsearch.password: "changeme"
 ```
 
-​	![img](https://www.elastic.co/guide/en/logstash/6.7/images/icons/callouts/1.png) 如果在生产群集上启用了SSL/TLS，则必须通过HTTPS进行连接。从v5.2.1开始，您可以以数组形式指定多个Elasticsearch主机，或以字符串形式指定单个主机。如果指定了多个URL，则Logstash可以将请求在这些生产节点上进行负载均衡。
+​	![1](../source/images/common/1.png) 如果在生产群集上启用了SSL/TLS，则必须通过HTTPS进行连接。从v5.2.1开始，您可以以数组形式指定多个Elasticsearch主机，或以字符串形式指定单个主机。如果指定了多个URL，则Logstash可以将请求在这些生产节点上进行负载均衡。
 
-​	[![img](https://www.elastic.co/guide/en/logstash/6.7/images/icons/callouts/2.png)](https://www.elastic.co/guide/en/logstash/6.7/configuring-logstash.html#CO3-2) 如果在生产群集上禁用了X-Pack安全性，则可以省略这些 `username` 和 `password` 设置。
+​	![2](../source/images/common/2.png) 如果在生产群集上禁用了X-Pack安全性，则可以省略这些 `username` 和 `password` 设置。
 
-4. 如果在生产Elasticsearch集群上启用了SSL / TLS，请指定将用于验证集群中节点标识的可信CA证书。
+4. 如果在生产Elasticsearch集群上启用了SSL/TLS，请指定验证集群中节点标识的可信CA证书。
 
-要将CA证书添加到Logstash节点的可信证书，您可以使用certificate_authority设置指定PEM编码证书的位置：
+要将CA证书添加为Logstash节点的可信证书，您可以使用 `certificate_authority` 设置PEM编码证书的位置：
 
-xpack.monitoring.elasticsearch.ssl.certificate_authority：/path/to/ca.crt
+```yaml
+xpack.monitoring.elasticsearch.ssl.certificate_authority: /path/to/ca.crt
+```
+
 或者，您可以使用信任库（包含证书的Java密钥库文件）配置受信任证书：
 
-xpack.monitoring.elasticsearch.ssl.truststore.path：/ path / to / file
-xpack.monitoring.elasticsearch.ssl.truststore.password：密码
+```yaml
+xpack.monitoring.elasticsearch.ssl.truststore.path: /path/to/file
+xpack.monitoring.elasticsearch.ssl.truststore.password: password
+```
+
 此外，您可以选择使用密钥库（包含证书的Java密钥库文件）设置客户端证书：
 
-xpack.monitoring.elasticsearch.ssl.keystore.path：/ path / to / file
-xpack.monitoring.elasticsearch.ssl.keystore.password：密码
-将sniffing设置为true以启用elasticsearch群集的其他节点的发现。默认为false。
+```yaml
+xpack.monitoring.elasticsearch.ssl.keystore.path: /path/to/file
+xpack.monitoring.elasticsearch.ssl.keystore.password: password
+```
 
-xpack.monitoring.elasticsearch.sniffing：false
-重新启动Logstash节点。
-要验证X-Pack监视配置，请将Web浏览器指向Kibana主机，然后从侧面导航中选择“监视”。 Logstash部分中应显示Logstash节点报告的度量标准。启用安全性后，要查看监视仪表板，您必须以具有kibana_user和monitoring_user角色的用户身份登录Kibana。
+将sniffing设置为 `true` 以启用elasticsearch群集的节点发现功能。默认为 `false`。
+
+```yaml
+xpack.monitoring.elasticsearch.sniffing: false
+```
+
+5. 重新启动Logstash节点。
+6. 要验证X-Pack监视配置，请使用浏览器访问Kibana地址，然后从侧边菜单选择 "Monitoring"。 Logstash区域显示Logstash节点的性能指标。启用安全性后，要查看监视仪表板，您必须以具有 `kibana_user` 和 `monitoring_user` 角色的用户身份登录Kibana。
+
+![monitoring-ui](../source/images/ch-06/monitoring-ui.png)
+
+#### 升级后重新启用监控
+
+从旧版本的X-Pack升级时，出于安全原因，会禁用内置的 `logstash_system` 用户。如需要恢复监控，请 [更改密码并重新启用logstash_system用户](../14-Monitoring-Logstash/Troubleshooting.md#升级后监控失效)。
 
 ### 监控设置
 
-Upgradingedit后重新启用Logstash监控
-从旧版本的X-Pack升级时，出于安全原因，会禁用内置的logstash_system用户。要恢复监视，请更改密码并重新启用logstash_system用户。
+您可以在 `logstash.yml` 中设置 `xpack.monitoring` 选项，以从Logstash节点收集监视数据。默认配置在大多数情况下能达到最佳效果。有关配置Logstash的更多信息，请参阅 [logstash.yml](../04-Setting-Up-and-Running-Logstash/logstash.yml.md)
 
-监控Logstashedit中的设置
-您可以在logstash.yml中设置以下xpack.monitoring设置，以控制如何从Logstash节点收集监视数据。但是，默认情况下在大多数情况下效果最佳。有关配置Logstash的更多信息，请参阅logstash.yml。
+#### 常用监控设置
 
-一般监测设定
-xpack.monitoring.enabled
-默认情况下禁用监控。设置为true以启用X-Pack监视。
-xpack.monitoring.elasticsearch.hosts
-要将Logstash指标发送到的Elasticsearch实例。这可能与Logstash配置的输出部分中指定的Elasticsearch实例相同，也可能是其他实例。这不是专用监控集群的URL。即使您使用的是专用监控集群，也必须通过生产集群路由Logstash指标。您可以将单个主机指定为字符串，也可以将多个主机指定为数组。默认为http：// localhost：9200。
-xpack.monitoring.elasticsearch.username和xpack.monitoring.elasticsearch.password
-如果您的Elasticsearch受基本身份验证保护，则这些设置会提供Logstash实例用于对传送监视数据进行身份验证的用户名和密码。
-监控收集设置
-xpack.monitoring.collection.interval
-控制在Logstash端收集和发送数据样本的频率。默认为10秒。如果修改收集时间间隔，请将kibana.yml中的xpack.monitoring.min_interval_seconds选项设置为相同的值。
-X-Pack监控TLS / SSL Settingsedit
-您可以配置以下传输层安全性（TLS）或安全套接字层（SSL）设置
+`xpack.monitoring.enabled`
+	默认情况下禁用监控。设置为 `true` 以启用X-Pack监控。
+`xpack.monitoring.elasticsearch.hosts`
+	将Logstash性能指标发送到的Elasticsearch实例。这可能与Logstash配置的 `outputs` 中指定的Elasticsearch实例相同，也可能使用其他实例。这不是专用于监控的集群URL。即使您使用的是专用监控集群，也必须通过生产集群路由Logstash指标。您可以使用字符串的形式指定单个主机，也可以用数组的形式指定多个主机。默认为`http://localhost:9200`。
+`xpack.monitoring.elasticsearch.username` 和 `xpack.monitoring.elasticsearch.password`
+	如果您的Elasticsearch受基本身份验证保护，则这些设置会提供Logstash实例进行身份验证的用户名和密码，用于传送监控数据。
+
+#### 采集监控设置
+`xpack.monitoring.collection.interval`
+	控制在Logstash端收集和发送数据样本的频率。默认为10秒。如果修改采集时间间隔，请将 `kibana.yml` 中的 `xpack.monitoring.min_interval_seconds` 选项设置为相同的值。
+
+#### X-Pack监控TLS/SSL设置
+
+您可以配置以下传输层安全性（TLS）或安全套接字层（SSL）设置。 有关更多信息，请参阅为 [配置监控凭据](../06-Configuring-Logstash/X-Pack-security.md#配置监控凭据)。
+
+`xpack.monitoring.elasticsearch.ssl.certificate_authority`
+	可选设置，使您可以为Elasticsearch实例的证书颁发机构指定 `.pem` 文件的路径。
+`xpack.monitoring.elasticsearch.ssl.truststore.path`
+	可选设置，提供Java密钥库（JKS）的路径以验证服务器的证书。
+`xpack.monitoring.elasticsearch.ssl.truststore.password`
+	可选设置，为信任库提供密码。
+`xpack.monitoring.elasticsearch.ssl.keystore.path`
+	可选设置，提供Java密钥库（JKS）的路径以验证客户端的证书。
+`xpack.monitoring.elasticsearch.ssl.keystore.password`
+	可选设置，为密钥库设置密码。
