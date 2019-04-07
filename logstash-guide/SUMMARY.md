@@ -52,7 +52,7 @@
     * [示例：安装Filebeat并连接Kafka和Logstash](09-Working-with-Filebeat-Modules/Example:-Set-up-Filebeat-modules-to-work-with-Kafka-and-Logstash.md)
   * [第10章-数据弹性](10-Data-Resiliency/README.md)
     * [持久化队列](10-Data-Resiliency/Persistent-Queues.md)
-    * [](10-Data-Resiliency/Dead-Letter-Queues.md)
+    * [死信队列](10-Data-Resiliency/Dead-Letter-Queues.md)
   * [第11章-数据传输](11-Transforming-Data/README.md)
     * [](11-Transforming-Data/Performing-Core-Operations.md)
     * [](11-Transforming-Data/Deserializing-Data.md)

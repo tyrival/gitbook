@@ -93,7 +93,7 @@ output {
 
 将 `pipeline` 选项设置为 `％{[@ metadata] [pipeline]}`。此设置将Logstash配置为根据事件中传递的元数据选择正确的摄取管道。
 
-如果要使用Logstash管道而不是接收节点来解析数据，请参阅 [使用Logstash管道解析](09-Working-with-Filebeat-Modules/Use-Logstash-pipelines-for-parsing.md) 下的示例中的 `filter` 和 `output` 设置进行解析。
+如果要使用Logstash管道而不是接收节点来解析数据，请参阅 [使用Logstash管道解析](../09-Working-with-Filebeat-Modules/Use-Logstash-pipelines-for-parsing.md) 下的示例中的 `filter` 和 `output` 设置进行解析。
 
 2. 启动Logstash，传入刚刚定义的管道配置文件。例如：
 
