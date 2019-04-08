@@ -14,7 +14,7 @@
 * [第9章 Filebeat](09-Working-with-Filebeat-Modules/README.md)
 * [第10章 数据弹性](10-Data-Resiliency/README.md)
 * [第11章 数据传输](11-Transforming-Data/README.md)
-* [第12章 部署和伸缩](12-Deploying-and-Scaling-Logstash/README.md)
+* [第12章 部署和集群扩展](12-Deploying-and-Scaling-Logstash/README.md)
 * [第13章 性能调优](13-Performance-Tuning/README.md)
 * [第14章 监控](14-Monitoring-Logstash/README.md)
 * [第15章 API](15-Monitoring-APIs/README.md)
