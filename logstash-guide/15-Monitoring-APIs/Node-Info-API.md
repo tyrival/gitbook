@@ -26,7 +26,7 @@ curl -XGET 'localhost:9600/_node/<types>'
 curl -XGET 'localhost:9600/_node/pipelines?pretty'
 ```
 
-如果要查看有关管道的其他信息，例如每个已配置输入、过滤器或输出阶段的统计信息，请参阅 [节点状态API](../15-Monitoring-APIs/Node-Stats-API.md) 下的 [管道统计信息](../15-Monitoring-APIs/Node-Stats-API.md#管道统计信息) 部分。
+如果要查看有关管道的其他信息，例如每个已配置输入、过滤器或输出阶段的统计信息，请参阅 [节点状态API](../15-Monitoring-APIs/Node-Stats-API.md) 下的 [管道状态](../15-Monitoring-APIs/Node-Stats-API.md#管道状态) 部分。
 
 响应示例：
 
