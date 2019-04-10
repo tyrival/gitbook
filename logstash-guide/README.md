@@ -28,3 +28,4 @@
 * [第23章 插件开发](23-Contributing-to-Logstash/README.md)
 * [第24章 Java插件开发](24-Contributing-a-java-Plugin/README.md)
 * [第25章-术语](25-Glossary-of-Terms/README.md)
+* [第26章-重大变更](26-Breaking-Changes/README.md)
