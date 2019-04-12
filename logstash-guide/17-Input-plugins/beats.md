@@ -230,7 +230,7 @@ ssl握手超时时间（以毫秒为单位）
 | [`tags`](#tags) | [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Array) | 否   |
 | [`type`](#type) | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String) | 否   |
 
-### 详情
+#### 详情
 
 ##### add_field
 
