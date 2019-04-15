@@ -54,6 +54,8 @@ filter {
 | [`target`](#target)                                     | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String) | 是       |
 | [`use_cache`](#use_cache)                               | [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Boolean) | 否       |
 
+另请参阅 [通用配置项](#通用配置项) 以获取所有输入插件支持的选项列表。
+
 ##### cache_expiration
 
 - 值类型是 [number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Number)
