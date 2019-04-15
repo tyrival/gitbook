@@ -1,7 +1,7 @@
 ## kafka
 
-- 插件版本：v5.1.8
-- 发布于：2018-11-30
+- 插件版本：v8.3.1
+- 发布于：2018-12-19
 - [更新日志](https://github.com/logstash-plugins/logstash-input-kafka/blob/v8.3.1/CHANGELOG.md)
 
 对于其他版本，请参阅 [插件版本文档](https://www.elastic.co/guide/en/logstash-versioned-plugins/current/input-kafka-index.html)。

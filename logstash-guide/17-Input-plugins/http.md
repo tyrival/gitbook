@@ -1,7 +1,7 @@
 ## http
 
-- 插件版本：v5.1.8
-- 发布于：2018-11-30
+- 插件版本：v3.3.0
+- 发布于：2019-02-04
 - [更新日志](https://github.com/logstash-plugins/logstash-input-http/blob/v3.3.0/CHANGELOG.md)
 
 对于其他版本，请参阅 [插件版本文档](https://www.elastic.co/guide/en/logstash-versioned-plugins/current/input-http-index.html)。
