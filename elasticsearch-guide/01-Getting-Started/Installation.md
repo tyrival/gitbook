@@ -15,7 +15,7 @@ echo $JAVA_HOME
 
 ### tar安装示例
 
-为简单起见，我们使用 [tar]([.zip或.tar.gz安装](../02-Set-up-Elasticsearch/Installing-Elasticsearch/Install-Elasticsearch-with-.zip-or-.tar.gz.md)) 文件。
+为简单起见，我们使用 [tar](../02-Set-up-Elasticsearch/Installing-Elasticsearch/Install-Elasticsearch-with-.zip-or-.tar.gz.md) 文件。
 
 我们按如下方式下载Elasticsearch 6.7.1 tar：
 

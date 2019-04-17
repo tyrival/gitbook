@@ -6,7 +6,7 @@ Elasticsearch近实时地提供数据操作和搜索功能。默认情况下，�
 
 我们之前已经看到了如何索引单个文档。让我们再次回忆一下这个命令：
 
-```js
+```sh
 PUT /customer/_doc/1?pretty
 {
   "name": "John Doe"
@@ -15,7 +15,7 @@ PUT /customer/_doc/1?pretty
 
 同样，上面将指定的文档创建到customer索引中，ID为1。如果我们再使用不同（或相同）的文档执行上述命令，Elasticsearch将替换（即重新索引）为新文档：
 
-```js
+```sh
 PUT /customer/_doc/1?pretty
 {
   "name": "Jane Doe"
@@ -24,7 +24,7 @@ PUT /customer/_doc/1?pretty
 
 以上内容将ID为1的文档name从“John Doe”更改为“Jane Doe”。另一方面，如果我们使用不同的ID，则将索引新文档，并且索引中已有的文档保持不变。
 
-```js
+```sh
 PUT /customer/_doc/2?pretty
 {
   "name": "Jane Doe"
@@ -37,7 +37,7 @@ PUT /customer/_doc/2?pretty
 
 此示例显示如何在没有显式ID的情况下索引文档：
 
-```js
+```sh
 POST /customer/_doc?pretty
 {
   "name": "Jane Doe"

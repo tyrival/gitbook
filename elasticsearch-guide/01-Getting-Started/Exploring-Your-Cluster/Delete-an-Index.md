@@ -2,7 +2,7 @@
 
 现在让我们删除刚刚创建的索引，然后再次列出所有索引：
 
-```js
+```sh
 DELETE /customer?pretty
 GET /_cat/indices?v
 ```
@@ -17,7 +17,7 @@ health status index uuid pri rep docs.count docs.deleted store.size pri.store.si
 
 在我们继续之前，让我们再仔细看看到目前为止我们学到的一些API命令：
 
-```js
+```sh
 PUT /customer
 PUT /customer/_doc/1
 {
@@ -29,7 +29,7 @@ DELETE /customer
 
 如果我们仔细研究上述命令，我们实际上可以看到在Elasticsearch中访问数据的模式。 该模式可归纳如下：
 
-```js
+```sh
 <HTTP Verb> /<Index>/<Type>/<ID>
 ```
 

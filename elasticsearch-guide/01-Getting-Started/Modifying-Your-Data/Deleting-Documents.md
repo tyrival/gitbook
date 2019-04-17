@@ -2,7 +2,7 @@
 
 删除文档非常简单。 此示例显示如何删除ID为2的以前的客户：
 
-```js
+```sh
 DELETE /customer/_doc/2?pretty
 ```
 

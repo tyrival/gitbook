@@ -4,7 +4,7 @@
 
 可以从`_search`端点访问用于搜索的REST API。此示例返回银行索引中的所有文档：
 
-```js
+```sh
 GET /bank/_search?q=*&sort=account_number:asc&pretty
 ```
 
@@ -13,7 +13,7 @@ GET /bank/_search?q=*&sort=account_number:asc&pretty
 
 响应（部分显示）：
 
-```js
+```json
 {
   "took" : 63,
   "timed_out" : false,
@@ -59,7 +59,7 @@ GET /bank/_search?q=*&sort=account_number:asc&pretty
 
 以下是使用请求体的方法，功能上述完全相同：
 
-```js
+```sh
 GET /bank/_search
 {
   "query": { "match_all": {} },

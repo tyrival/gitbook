@@ -4,7 +4,7 @@
 
 作为一个简单的示例，以下调用在一个批量操作中索引两个文档（ID 1  -  John Doe和ID 2  -  Jane Doe）：
 
-```js
+```sh
 POST /customer/_doc/_bulk?pretty
 {"index":{"_id":"1"}}
 {"name": "John Doe" }

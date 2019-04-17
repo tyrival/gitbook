@@ -2,7 +2,7 @@
 
 现在让我们创建一个名为“customer”的索引，然后再次列出所有索引：
 
-```js
+```sh
 PUT /customer?pretty
 GET /_cat/indices?v
 ```

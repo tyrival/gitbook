@@ -4,7 +4,7 @@
 
 要检查群集健康度，我们将使用 [_cat API](../../09-cat-APIs/README.md)。您可以在 [Kibana控制台](https://www.elastic.co/guide/en/kibana/6.7/console-kibana.html) 中单击"VIEW IN CONSOLE"后运行命令，或单击下面的"COPY AS CURL"链接，并将命令其粘贴到终端中通过`curl`运行。命令如下：
 
-```js
+```sh
 GET /_cat/health?v
 ```
 
@@ -29,7 +29,7 @@ epoch      timestamp cluster       status node.total node.data shards pri relo i
 
 我们还可以获得群集中的节点列表，如下所示：
 
-```js
+```sh
 GET /_cat/nodes?v
 ```
 

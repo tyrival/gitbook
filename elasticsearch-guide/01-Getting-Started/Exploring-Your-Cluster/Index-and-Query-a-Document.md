@@ -2,7 +2,7 @@
 
 现在让我们在客户索引中加入一些内容。我们将一个简单的customer文档编入customer索引中，ID为1，如下所示：
 
-```js
+```sh
 PUT /customer/_doc/1?pretty
 {
   "name": "John Doe"
@@ -11,7 +11,7 @@ PUT /customer/_doc/1?pretty
 
 响应：
 
-```js
+```json
 {
   "_index" : "customer",
   "_type" : "_doc",
@@ -32,13 +32,13 @@ PUT /customer/_doc/1?pretty
 
 我们现在检索刚刚编入索引的文档：
 
-```js
+```sh
 GET /customer/_doc/1?pretty
 ```
 
 响应：
 
-```js
+```json
 {
   "_index" : "customer",
   "_type" : "_doc",

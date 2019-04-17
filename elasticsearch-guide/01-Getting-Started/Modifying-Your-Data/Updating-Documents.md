@@ -4,7 +4,7 @@
 
 此示例显示如何通过将name字段更改为“Jane Doe”，来更新以前的文档（ID为1）：
 
-```js
+```sh
 POST /customer/_doc/1/_update?pretty
 {
   "doc": { "name": "Jane Doe" }
@@ -13,7 +13,7 @@ POST /customer/_doc/1/_update?pretty
 
 此示例显示如何通过将name字段更改为“Jane Doe”来更新我们以前的文档（ID为1），同时为其添加age字段：
 
-```js
+```sh
 POST /customer/_doc/1/_update?pretty
 {
   "doc": { "name": "Jane Doe", "age": 20 }
@@ -22,7 +22,7 @@ POST /customer/_doc/1/_update?pretty
 
 也可以使用简单脚本执行更新。此示例使用脚本将age增加5：
 
-```js
+```sh
 POST /customer/_doc/1/_update?pretty
 {
   "script" : "ctx._source.age += 5"
