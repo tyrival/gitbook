@@ -163,7 +163,7 @@ The service 'elasticsearch-service-x64' has been installed.
 
 > **注意**
 >
-> 在Windows上，当从命令行运行Elasticsearch时，或者首次将Elasticsearch作为服务安装时，都可以配置 [堆容量](../../02-Set-up-Elasticsearch/Important-Elasticsearch-configuration/Setting-the-heap-size.md)。要调整已安装服务的堆容量，请使用服务管理器：`bin\elasticsearch-service.bat manager`。
+> 在Windows上，当从命令行运行Elasticsearch时，或者首次将Elasticsearch作为服务安装时，都可以配置 [堆大小](../../02-Set-up-Elasticsearch/Important-Elasticsearch-configuration/Setting-the-heap-size.md)。要调整已安装服务的堆大小，请使用服务管理器：`bin\elasticsearch-service.bat manager`。
 
 > **注意**
 >

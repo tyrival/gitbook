@@ -235,7 +235,7 @@ Debian软件包将配置文件，日志和数据目录放在基于Debian的系�
 | **home**    | Elasticsearch根目录或`$ES_HOME`                              | `/usr/share/elasticsearch`         |                                                              |
 | **bin**     | 二进制脚本，包含启动节点的`elasticsearch`和安装插件的`elasticsearch-plugin`命令 | `/usr/share/elasticsearch/bin`     |                                                              |
 | **conf**    | 配置文件，包括`elasticsearch.yml`                            | `/etc/elasticsearch`               | [`ES_PATH_CONF`](../../02-Set-up-Elasticsearch/Configuring-Elasticsearch.md#配置文件路径) |
-| **conf**    | 环境变量，包含堆容量，文件描述符等                           | `/etc/default/elasticsearch`       |                                                              |
+| **conf**    | 环境变量，包含堆大小，文件描述符等                           | `/etc/default/elasticsearch`       |                                                              |
 | **data**    | 此节点的数据文件，包含索引、分片，可以容纳多个位置           | `/var/lib/elasticsearch`           | `path.data`                                                  |
 | **logs**    | 日志文件夹                                                   | `/var/log/elasticsearch`           | `path.logs`                                                  |
 | **plugins** | 插件文件夹，每个插件都包含在其中的子文件夹中                 | `/usr/share/elasticsearch/plugins` |                                                              |
