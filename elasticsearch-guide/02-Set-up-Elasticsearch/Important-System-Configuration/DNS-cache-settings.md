@@ -1,0 +1,3 @@
+## DNS缓存设置
+
+Elasticsearch运行着一个安全管理器。 有了安全管理器，JVM将默认永久缓存主机名正向解析，而主机名反向解析缓存10秒。 Elasticsearch的默认值将覆盖此参数，从而将正向解析缓存60秒，将反向解析缓存10秒。 这些值应适用于大多数环境，包括DNS解析随时间变化的环境。 如果没有，您可以在[JVM选项](../../02-Set-up-Elasticsearch/Configuring-Elasticsearch/Setting-JVM-options.md) 中编辑值`es.networkaddress.cache.ttl`和`es.networkaddress.cache.negative.ttl`。 请注意，除非删除es.networkaddress.cache.ttl`和``es.networkaddress.cache.negative.ttl`的设置，否则Elasticsearch会忽略 [Java安全策略](https://docs.oracle.com/javase/8/docs/technotes/guides/security/PolicyFiles.html) 中的 [networkaddress.cache.ttl=\<timeout\>](https://docs.oracle.com/javase/8/docs/technotes/guides/net/properties.html) 和 [networkaddress.cache.negative.ttl=\<timeout\>](https://docs.oracle.com/javase/8/docs/technotes/guides/net/properties.html)。

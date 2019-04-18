@@ -17,7 +17,7 @@
 * [第12章 映射](12-Mapping/README.md)
 * [第13章 分析](13-Analysis/README.md)
 * [第14章 模块](14-Modules/README.md)
-* [第15章 索引抹开](15-Index-Modules/README.md)
+* [第15章 索引模块](15-Index-Modules/README.md)
 * [第16章 摄取节点](16-Ingest-Node/README.md)
 * [第17章 管理索引生命周期](17-Managing-the-index-lifecycle/README.md)
 * [第18章 SQL访问](18-SQL-Access/README.md)
