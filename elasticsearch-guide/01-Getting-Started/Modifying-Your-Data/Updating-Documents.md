@@ -31,4 +31,4 @@ POST /customer/_doc/1/_update?pretty
 
 在上面的示例中，`ctx._source`指的是即将更新的当前源文档。
 
-Elasticsearch提供了在给定查询条件（如SQL UPDATE-WHERE语句）的情况下，更新多个文档的功能。请参阅 [查询并更新API](../../05-Document-APIs/Update-By-Query-API.md)。
+Elasticsearch提供了在给定查询条件（如SQL UPDATE-WHERE语句）的情况下，更新多个文档的功能。请参阅 [Update By Query API](../../05-Document-APIs/Update-By-Query-API.md)。

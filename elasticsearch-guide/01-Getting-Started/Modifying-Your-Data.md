@@ -33,7 +33,7 @@ PUT /customer/_doc/2?pretty
 
 以上索引ID为2的新文档。
 
-索引时，ID部分是可选的。如果未指定，Elasticsearch将生成随机ID，然后使用它来索引文档。 Elasticsearch生成的实际ID（或前面示例中显式指定的内容）将作为索引API的部分响应信息。
+索引时，ID部分是可选的。如果未指定，Elasticsearch将生成随机ID，然后使用它来索引文档。 Elasticsearch生成的实际ID（或前面示例中显式指定的内容）将作为Index API的部分响应信息。
 
 此示例显示如何在没有显式ID的情况下索引文档：
 
