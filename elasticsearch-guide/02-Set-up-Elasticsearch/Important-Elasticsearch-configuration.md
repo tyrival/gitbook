@@ -5,7 +5,7 @@
 在投入生产之前，必须考虑以下设置：
 
 - [路径设置](../02-Set-up-Elasticsearch/Important-Elasticsearch-configuration/path.data-and-path.logs.md)
-- [群集名称](../02-Set-up-Elasticsearch/Important-Elasticsearch-configuration/cluster.name.md)
+- [集群名称](../02-Set-up-Elasticsearch/Important-Elasticsearch-configuration/cluster.name.md)
 - [节点名称](../02-Set-up-Elasticsearch/Important-Elasticsearch-configuration/node.name.md)
 - [网络主机](../02-Set-up-Elasticsearch/Important-Elasticsearch-configuration/network.host.md)
 - [发现设置](../02-Set-up-Elasticsearch/Important-Elasticsearch-configuration/Discovery-settings.md)

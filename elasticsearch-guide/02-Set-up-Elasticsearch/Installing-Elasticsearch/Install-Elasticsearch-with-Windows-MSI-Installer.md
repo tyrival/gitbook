@@ -40,7 +40,7 @@
 >
 > 选择要运行服务的Windows帐户时，请确保所选帐户具有足够的权限来访问所选的安装和其他部署目录。还要确保帐户能够运行Windows服务。
 
-常见配置项在“配置”章节中，除了内存和网络设置外，还允许设置群集名称，节点名称和角色：
+常见配置项在“配置”章节中，除了内存和网络设置外，还允许设置集群名称，节点名称和角色：
 
 ![](../../source/images/ch-02/msi_installer_configuration.png)
 
@@ -123,7 +123,7 @@ GUI中公开的所有设置也可以作为命令行参数（在Windows Installer
 | `LOCKMEMORY`                       | 是否应该使用`bootstrap.memory_lock`来尝试将进程地址空间锁定到RAM中。默认为`false` |
 | `UNICASTNODES`                     | 表单`host:port`或`host`中以逗号分隔的主机列表，用于单播发现。默认为 `""` |
 | `MINIMUMMASTERNODES`               | 为了形成集群而必须可见的符合主节点的最小节点数。默认为`""` |
-| `NETWORKHOST`                      | 用于将节点绑定到该节点并将其发布（通告）到群集中其他节点的主机名或IP地址。默认为`""` |
+| `NETWORKHOST`                      | 用于将节点绑定到该节点并将其发布（通告）到集群中其他节点的主机名或IP地址。默认为`""` |
 | `HTTPPORT`                         | 用于通过HTTP公开Elasticsearch API的端口。默认为`9200` |
 | `TRANSPORTPORT`                    | 用于集群内节点之间内部通信的端口。默认为`9300` |
 | `PLUGINS`                          | 以逗号分隔的插件列表，作为安装的一部分进行下载和安装。默认为`""` |
@@ -133,7 +133,7 @@ GUI中公开的所有设置也可以作为命令行参数（在Windows Installer
 | `HTTPPROXYPORT`                    | 用于通过HTTP下载插件的代理端口。默认为`80` |
 | `XPACKLICENSE`                     | 要安装的许可证类型，`Basic`或`Trial`。默认为`Basic` |
 | `XPACKSECURITYENABLED`             | 使用`Trial`许可证进行安装时，是否启用了安全功能。默认为`true` |
-| `BOOTSTRAPPASSWORD`                | 使用`Trial`许可证进行安装并启用安全功能时，将使用用于引导群集的密码作为密钥库中的`bootstrap.password`设置保留。默认为随机值。 |
+| `BOOTSTRAPPASSWORD`                | 使用`Trial`许可证进行安装并启用安全功能时，将使用用于引导集群的密码作为密钥库中的`bootstrap.password`设置保留。默认为随机值。 |
 | `SKIPSETTINGPASSWORDS`             | 安装`Trial`许可证并启用安全功能时，安装是否应跳过设置内置用户。默认为`false` |
 | `ELASTICUSERPASSWORD`              | 使用`Trial`许可证安装并启用安全功能时，用于内置用户`elastic`的密码。默认为`""` |
 | `KIBANAUSERPASSWORD`               | 使用`Trial`许可证进行安装并启用安全功能时，将使用用于内置用户`kibana`的密码。默认为`""` |
@@ -189,7 +189,7 @@ action.auto_create_index: .monitoring*,.watches,.triggered_watches,.watcher-hist
 
 > **提醒**
 >
-> 通常，应将任何群集通用的设置（如`cluster.name`）添加到`elasticsearch.yml`配置文件中，而可以在命令行上指定任何特定于节点的设置（如`node.name`）。
+> 通常，应将任何集群通用的设置（如`cluster.name`）添加到`elasticsearch.yml`配置文件中，而可以在命令行上指定任何特定于节点的设置（如`node.name`）。
 
 ### 检查运行情况
 

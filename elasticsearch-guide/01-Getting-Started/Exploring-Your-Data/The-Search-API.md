@@ -8,7 +8,6 @@
 GET /bank/_search?q=*&sort=account_number:asc&pretty
 ```
 
-作为CURLVIEW在CONSOLE中复制
 让我们首先剖析搜索电话。我们在银行索引中搜索（`_search`端点），`q=*`参数表示Elasticsearch匹配索引中的所有文档。`sort=account_number:asc`参数表示使用文档的`account_number`字段对结果进行升序排序。`pretty`参数告诉Elasticsearch返回格式化的JSON结果。
 
 响应（部分显示）：

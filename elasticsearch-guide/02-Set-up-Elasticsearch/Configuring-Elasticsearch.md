@@ -1,6 +1,6 @@
 ## 配置
 
-Elasticsearch具有良好的默认值，只需要很少的配置。可以使用 [集群更新设置API](../10-Cluster-APIs/Cluster-Update-Settings.md) 在正在运行的群集上更改大多数设置。
+Elasticsearch具有良好的默认值，只需要很少的配置。可以使用 [更新集群设置API](../10-Cluster-APIs/Cluster-Update-Settings.md) 在正在运行的集群上更改大多数设置。
 
 配置文件应包含指定节点的设置（例如`node.name`和路径），或为了加入集群而需要的节点设置，例如`cluster.name`和`network.host`。
 

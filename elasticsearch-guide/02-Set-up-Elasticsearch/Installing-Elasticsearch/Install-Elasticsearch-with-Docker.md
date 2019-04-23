@@ -66,7 +66,7 @@ docker run -p 9200:9200 -p 9300:9300 -e "discovery.type=single-node" docker.elas
 >   sudo sysctl -w vm.max_map_count=262144
 >   ```
 
-以下示例显示包含两个Elasticsearch节点的集群。要打开群集，请使用 [docker-compose.yml](#`docker-compose.yml`：) 并输入：
+以下示例显示包含两个Elasticsearch节点的集群。要打开集群，请使用 [docker-compose.yml](#`docker-compose.yml`：) 并输入：
 
 ```sh
 docker-compose up
@@ -129,7 +129,7 @@ networks:
   esnet:
 ```
 
-要停止群集，请键入`docker-compose down`。数据卷将持久化存在，因此可以使用`docker-compose up`使用相同的数据再次启动集群。要销毁群集和数据卷，只需键入`docker-compose down -v`即可。
+要停止集群，请键入`docker-compose down`。数据卷将持久化存在，因此可以使用`docker-compose up`使用相同的数据再次启动集群。要销毁集群和数据卷，只需键入`docker-compose down -v`即可。
 
 #### 检查集群的状态
 
@@ -232,7 +232,7 @@ chgrp 1000 esdatadir
 -e "bootstrap.memory_lock=true" --ulimit memlock=-1:-1
 ```
 
-4. 该镜像 [暴露](https://docs.docker.com/engine/reference/builder/#/expose) TCP端口9200和9300。对于群集，建议使用`--publish-all`随机化已发布的端口，除非您为每个主机固定一个容器。
+4. 该镜像 [暴露](https://docs.docker.com/engine/reference/builder/#/expose) TCP端口9200和9300。对于集群，建议使用`--publish-all`随机化已发布的端口，除非您为每个主机固定一个容器。
 
 5. 使用`ES_JAVA_OPTS`环境变量来设置堆大小。例如，`docker run`使用`-e ES_JAVA_OPTS="-Xms16g -Xmx16g"`来配置为16G。
 

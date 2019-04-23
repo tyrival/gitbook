@@ -68,7 +68,7 @@ action.auto_create_index: .monitoring*,.watches,.triggered_watches,.watcher-hist
 
 > **提醒**
 >
-> 通常，应将所有群集通用的设置（如 `cluster.name`）添加到`elasticsearch.yml`配置文件中，而可以在命令行上指定任何特定于节点的设置（如 `node.name`）。
+> 通常，应将所有集群通用的设置（如 `cluster.name`）添加到`elasticsearch.yml`配置文件中，而可以在命令行上指定任何特定于节点的设置（如 `node.name`）。
 
 ### 检查运行情况
 

@@ -1,6 +1,6 @@
 ## 日志配置
 
-Elasticsearch使用 [Log4j 2](https://logging.apache.org/log4j/2.x/) 进行日志记录。 可以使用log4j2.properties文件配置Log4j 2。Elasticsearch暴露三个属性`${sys:es.logs.base_path}`，`${sys:es.logs.cluster_name}`和 `${sys:es.logs.node_name}`（如果通过`node.name`显式设置节点名称） ），可以在配置文件中引用以确定日志文件的位置。 属性`${sys:es.logs.base_path}`将解析为日志目录，`${sys:es.logs.cluster_name}`将解析为群集名称（在默认配置中用作日志文件名的前缀），以及 `${sys:es.logs.node_name}`将解析为节点名称（如果明确设置了节点名称）。
+Elasticsearch使用 [Log4j 2](https://logging.apache.org/log4j/2.x/) 进行日志记录。 可以使用log4j2.properties文件配置Log4j 2。Elasticsearch暴露三个属性`${sys:es.logs.base_path}`，`${sys:es.logs.cluster_name}`和 `${sys:es.logs.node_name}`（如果通过`node.name`显式设置节点名称） ），可以在配置文件中引用以确定日志文件的位置。 属性`${sys:es.logs.base_path}`将解析为日志目录，`${sys:es.logs.cluster_name}`将解析为集群名称（在默认配置中用作日志文件名的前缀），以及 `${sys:es.logs.node_name}`将解析为节点名称（如果明确设置了节点名称）。
 
 例如，如果您的日志目录（`path.logs`）是`/var/log/elasticsearch`并且您的集群名`为production`，那么`${sys:es.logs.base_path}`将解析为`/var/log/elasticsearch`和`$ {${sys:es.logs.base_path}${sys:file.separator}${sys:es.logs.cluster_name}.log`将解析为`/var/log/elasticsearch/production.log`。
 
@@ -94,7 +94,7 @@ appender.rolling.strategy.action.condition.nested_condition.age = 7D ⑦
 
 1. 通过命令行：`-E <name of logging hierarchy>=<level>`（例如，`-E logger.org.elasticsearch.transport=trace`）。当您临时调试单个节点上的问题时（例如，启动问题或开发期间），这是最合适的。
 2. 通过`elasticsearch.yml`: `<name of logging hierarchy>: <level>`（例如，`logger.org.elasticsearch.transport: trace`）。当您临时调试问题但未通过命令行启动Elasticsearch（例如，通过服务），或者您希望更长期地调整日志记录级别时，这是最合适的。
-3. 通过 [群集设置](../../14-Modules/Cluster/Miscellaneous-cluster-settings.md#Logger)：
+3. 通过 [集群设置](../../14-Modules/Cluster/Miscellaneous-cluster-settings.md#Logger)：
 
 ```sh
 PUT /_cluster/settings
@@ -116,7 +116,7 @@ PUT /_cluster/settings
 }
 ```
 
-当您需要动态调整正在运行的群集上的日志记录级别时，这是最合适的。
+当您需要动态调整正在运行的集群上的日志记录级别时，这是最合适的。
 
 4. 通过`log4j2.properties`：
 

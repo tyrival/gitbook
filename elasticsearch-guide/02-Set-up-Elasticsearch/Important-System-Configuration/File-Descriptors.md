@@ -12,7 +12,7 @@ Elasticsearch使用大量文件描述符或文件句柄。文件描述符被用�
 
 RPM和Debian软件包已将文件描述符的最大数量默认为65535，无需进一步配置。
 
-您可以使用 [节点状态API](../../10-Cluster-APIs/Nodes-Stats.md) 检查为每个节点配置的`max_file_descriptor`，其中包括：
+您可以使用 [节点统计信息API](../../10-Cluster-APIs/Nodes-Stats.md) 检查为每个节点配置的`max_file_descriptor`，其中包括：
 
 ```js
 GET _nodes/stats/process?filter_path=**.max_file_descriptors
