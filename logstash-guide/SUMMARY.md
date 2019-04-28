@@ -265,4 +265,6 @@
     * [](24-Contributing-a-java-Plugin/How-to-write-a-Java-output-plugin.md)
   * [第25章-术语](25-Glossary-of-Terms/README.md)
   * [第26章-重大变更](26-Breaking-Changes/README.md)
+  * [相关资料](00-Others/README.md)
+    * [引用事件字段详解](00-Others/Field-References-Deep-Dive.md)
 
