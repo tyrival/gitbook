@@ -69,22 +69,22 @@ index => "%{[@metadata][beat]}-%{[@metadata][version]}-%{+YYYY.MM.dd}"
 
 | 设置                                                         | 输入类型                                                     | 必须 |
 | ------------------------------------------------------------ | ------------------------------------------------------------ | ---- |
-| [`add_hostname`](#add_hostname)                              | [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Boolean) | 否   |
-| [`cipher_suites`](#cipher_suites) | [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Array) | 否   |
-| [`client_inactivity_timeout`](#client_inactivity_timeout) | [number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Number) | 否   |
+| [`add_hostname`](#addhostname)                              | [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Boolean) | 否   |
+| [`cipher_suites`](#ciphersuites) | [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Array) | 否   |
+| [`client_inactivity_timeout`](#clientinactivitytimeout) | [number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Number) | 否   |
 | [`host`](#host) | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String) | 否   |
-| [`include_codec_tag`](#include_codec_tag) | [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Boolean) | 否   |
+| [`include_codec_tag`](#includecodectag) | [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Boolean) | 否   |
 | [`port`](#port) | [number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Number) | 是   |
 | [`ssl`](#ssl) | [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Boolean) | 否   |
-| [`ssl_certificate`](#ssl_certificate) | 有效的文件系统路径                                           | 否   |
-| [`ssl_certificate_authorities`](#ssl_certificate_authorities) | [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Array) | 否   |
-| [`ssl_handshake_timeout`](#ssl_handshake_timeout) | [number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Number) | 否   |
-| [`ssl_key`](#ssl_key) | 有效的文件系统路径                                           | 否   |
-| [`ssl_key_passphrase`](#ssl_key_passphrase) | [password](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Password) | 否   |
-| [`ssl_verify_mode`](#ssl_verify_mode) | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String)，可选值为`["none", "peer", "force_peer"]` | 否   |
-| [`ssl_peer_metadata`](#ssl_peer_metadata) | [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Boolean) | 否   |
-| [`tls_max_version`](#tls_max_version) | [number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Number) | 否   |
-| [`tls_min_version`](#tls_min_version) | [number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Number) | 否   |
+| [`ssl_certificate`](#sslcertificate) | 有效的文件系统路径                                           | 否   |
+| [`ssl_certificate_authorities`](#sslcertificateauthorities) | [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Array) | 否   |
+| [`ssl_handshake_timeout`](#sslhandshaketimeout) | [number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Number) | 否   |
+| [`ssl_key`](#sslkey) | 有效的文件系统路径                                           | 否   |
+| [`ssl_key_passphrase`](#sslkeypassphrase) | [password](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Password) | 否   |
+| [`ssl_verify_mode`](#sslverifymode) | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String)，可选值为`["none", "peer", "force_peer"]` | 否   |
+| [`ssl_peer_metadata`](#sslpeermetadata) | [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Boolean) | 否   |
+| [`tls_max_version`](#tlsmaxversion) | [number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Number) | 否   |
+| [`tls_min_version`](#tlsminversion) | [number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Number) | 否   |
 
 另请参阅 [通用配置项](#通用配置项) 以获取所有输入插件支持的选项列表。
 
@@ -223,9 +223,9 @@ ssl握手超时时间（以毫秒为单位）
 
 | 设置                                                         | 输入类型                                                     | 必须 |
 | ------------------------------------------------------------ | ------------------------------------------------------------ | ---- |
-| [`add_field`](#add_field) | [hash](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Hash) | 否   |
+| [`add_field`](#addfield) | [hash](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Hash) | 否   |
 | [`codec`](#codec) | [codec](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Codec) | 否   |
-| [`enable_metric`](#enable_metric) | [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Boolean) | 否   |
+| [`enable_metric`](#enablemetric) | [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Boolean) | 否   |
 | [`id`](#id) | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String) | 否   |
 | [`tags`](#tags) | [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Array) | 否   |
 | [`type`](#type) | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String) | 否   |

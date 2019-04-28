@@ -42,27 +42,27 @@ HTTP协议不能很好地处理长时间运行的请求。当Logstash积压时�
 
 | 设置                                                         | 输入类型                                                     | 必须 |
 | ------------------------------------------------------------ | ------------------------------------------------------------ | ---- |
-| [`additional_codecs`](#additional_codecs)                    | [hash](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Hash) | 否   |
-| [`cipher_suites`](#cipher_suites)                            | [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Array) | 否   |
+| [`additional_codecs`](#additionalcodecs)                    | [hash](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Hash) | 否   |
+| [`cipher_suites`](#ciphersuites)                            | [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Array) | 否   |
 | [`host`](#host)                                              | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String) | 否   |
 | [`keystore`](#keystore)                                      | [path](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Path) | 否   |
-| [`keystore_password`](#keystore_password)                    | [password](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Password) | 否   |
+| [`keystore_password`](#keystorepassword)                    | [password](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Password) | 否   |
 | [`password`](#password)                                      | [password](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Password) | 否   |
 | [`port`](#port)                                              | [number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Number) | 否   |
-| [`max_pending_requests`](#max_pending_requests)              | [number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Number) | 否   |
-| [`response_headers`](#response_headers)                      | [hash](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Hash) | 否   |
+| [`max_pending_requests`](#maxpendingrequests)              | [number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Number) | 否   |
+| [`response_headers`](#responseheaders)                      | [hash](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Hash) | 否   |
 | [`ssl`](#ssl)                                                | [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Boolean) | 否   |
-| [`ssl_certificate`](#ssl_certificate)                        | [path](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Path) | 否   |
-| [`ssl_certificate_authorities`](#ssl_certificate_authorities) | [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Array) | 否   |
-| [`ssl_handshake_timeout`](#ssl_handshake_timeout)            | [number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Number) | 否   |
-| [`ssl_key`](#ssl_key)                                        | [path](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Path) | 否   |
-| [`ssl_key_passphrase`](#ssl_key_passphrase)                  | [password](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Password) | 否   |
-| [`ssl_verify_mode`](#ssl_verify_mode)                        | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String)，可选项有`["none", "peer", "force_peer"]` | 否   |
+| [`ssl_certificate`](#sslcertificate)                        | [path](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Path) | 否   |
+| [`ssl_certificate_authorities`](#sslcertificateauthorities) | [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Array) | 否   |
+| [`ssl_handshake_timeout`](#sslhandshaketimeout)            | [number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Number) | 否   |
+| [`ssl_key`](#sslkey)                                        | [path](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Path) | 否   |
+| [`ssl_key_passphrase`](#sslkeypassphrase)                  | [password](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Password) | 否   |
+| [`ssl_verify_mode`](#sslverifymode)                        | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String)，可选项有`["none", "peer", "force_peer"]` | 否   |
 | [`threads`](#threads)                                        | [number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Number) | 否   |
-| [`tls_max_version`](#tls_max_version)                        | [number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Number) | 否   |
-| [`tls_min_version`](#tls_min_version)                        | [number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Number) | 否   |
+| [`tls_max_version`](#tlsmaxversion)                        | [number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Number) | 否   |
+| [`tls_min_version`](#tlsminversion)                        | [number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Number) | 否   |
 | [`user`](#user)                                              | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String) | 否   |
-| [`verify_mode`](#verify_mode)                                | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String)，可选项有`["none", "peer", "force_peer"]` | 否   |
+| [`verify_mode`](#verifymode)                                | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String)，可选项有`["none", "peer", "force_peer"]` | 否   |
 
 另请参阅 [通用配置项](#通用配置项) 以获取所有输入插件支持的选项列表。
 
@@ -255,9 +255,9 @@ HTTP请求的最大内容（以字节为单位）。默认为100mb。
 
 | 设置                              | 输入类型                                                     | 必须 |
 | --------------------------------- | ------------------------------------------------------------ | ---- |
-| [`add_field`](#add_field)         | [hash](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Hash) | 否   |
+| [`add_field`](#addfield)         | [hash](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Hash) | 否   |
 | [`codec`](#codec)                 | [codec](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Codec) | 否   |
-| [`enable_metric`](#enable_metric) | [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Boolean) | 否   |
+| [`enable_metric`](#enablemetric) | [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Boolean) | 否   |
 | [`id`](#id)                       | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String) | 否   |
 | [`tags`](#tags)                   | [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Array) | 否   |
 | [`type`](#type)                   | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String) | 否   |

@@ -52,7 +52,7 @@ Elastic产品 [在此下载](https://www.elastic.co/cn/downloads/) 并安装。
 
 #### Azure准备工作
 
-应配置Azure监视器将日志流式传输到一个或多个Event Hub。 Logstash将访问这些Event Hubs实例以使用Azure日志和指标。有关Microsoft Azure文档的链接，请参阅本主题末尾的 [Microsoft Azure资源](#Microsoft Azure资源)。
+应配置Azure监视器将日志流式传输到一个或多个Event Hub。 Logstash将访问这些Event Hubs实例以使用Azure日志和指标。有关Microsoft Azure文档的链接，请参阅本主题末尾的 [Microsoft Azure资源](#Microsoft_Azure资源)。
 
 ### 配置模块
 
@@ -88,7 +88,7 @@ modules:
 
 ![1](../source/images/common/1.png) 强烈建议使用 `consumer_group`（可选）。 请参阅 [最佳实践](#最佳实践)。
 
-![2](../source/images/common/2.png) 当扩展具有多个Logstash实例的部署时，`storage_connection`（可选）设置Azure Blob存储连接以跟踪Event Hub的处理状态。 有关其他详细信息，请参阅 [扩展Event Hub](#扩展Event Hub)。
+![2](../source/images/common/2.png) 当扩展具有多个Logstash实例的部署时，`storage_connection`（可选）设置Azure Blob存储连接以跟踪Event Hub的处理状态。 有关其他详细信息，请参阅 [扩展Event Hub](#扩展Event_Hub消费)。
 
 ![3](../source/images/common/3.png) 有关选择适当线程数，请参阅 [最佳实践](#最佳实践)。
 

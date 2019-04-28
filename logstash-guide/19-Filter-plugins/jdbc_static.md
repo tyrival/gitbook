@@ -100,7 +100,7 @@ filter {
 
 ![1](../source/images/common/1.png) 查询外部数据库以获取将在本地缓存的数据集。
 
-![2](../source/images/common/2.png) 定义用于构建本地数据库结构的列，类型和索引。 列名和类型应与外部数据库匹配。 表定义的顺序应与加载器查询的顺序相匹配。 请参阅  [加载列和local_db_object顺序依赖项](#加载列和local_db_object顺序依赖项)。
+![2](../source/images/common/2.png) 定义用于构建本地数据库结构的列，类型和索引。 列名和类型应与外部数据库匹配。 表定义的顺序应与加载器查询的顺序相匹配。 请参阅  [加载列和local_db_object顺序依赖项](#加载列和localdbobject顺序依赖项)。
 
 ![3](../source/images/common/3.png) 在本地数据库上执行查询查询以丰富事件数据。
 
@@ -220,18 +220,18 @@ select * from ref.local_ips order by ip;
 
 | 设置                                                | 输入类型                                                     | 必须 |
 | --------------------------------------------------- | ------------------------------------------------------------ | ---- |
-| [`jdbc_connection_string`](#jdbc_connection_string) | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String) | 是   |
-| [`jdbc_driver_class`](#jdbc_driver_class)           | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String) | 是   |
-| [`jdbc_driver_library`](#jdbc_driver_library)       | [path](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Path) | 否   |
-| [`jdbc_password`](#jdbc_password)                   | [password](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Password) | 否   |
-| [`jdbc_user`](#jdbc_user)                           | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String) | 否   |
-| [`tag_on_failure`](#tag_on_failure)                 | [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Array) | 否   |
-| [`tag_on_default_use`](#tag_on_default_use)         | [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Array) | 否   |
-| [`staging_directory`](#staging_directory)           | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String) | 否   |
-| [`loader_schedule`](#loader_schedule)               | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String) | 否   |
+| [`jdbc_connection_string`](#jdbcconnectionstring) | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String) | 是   |
+| [`jdbc_driver_class`](#jdbcdriverclass)           | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String) | 是   |
+| [`jdbc_driver_library`](#jdbcdriverlibrary)       | [path](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Path) | 否   |
+| [`jdbc_password`](#jdbcpassword)                   | [password](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Password) | 否   |
+| [`jdbc_user`](#jdbcuser)                           | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String) | 否   |
+| [`tag_on_failure`](#tagonfailure)                 | [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Array) | 否   |
+| [`tag_on_default_use`](#tagondefaultuse)         | [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Array) | 否   |
+| [`staging_directory`](#stagingdirectory)           | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String) | 否   |
+| [`loader_schedule`](#loaderschedule)               | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String) | 否   |
 | [`loaders`](#loaders)                               | [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Array) | 否   |
-| [`local_db_objects`](#local_db_objects)             | [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Array) | 否   |
-| [`local_lookups`](#local_lookups)                   | [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Array) | 否   |
+| [`local_db_objects`](#localdbobjects)             | [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Array) | 否   |
+| [`local_lookups`](#locallookups)                   | [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Array) | 否   |
 
 另请参阅 [通用配置项](#通用配置项) 以获取所有输入插件支持的选项列表。
 
@@ -466,13 +466,13 @@ irb(main):003:0> exit
 
 | 设置                                | 输入类型                                                     | 必须 |
 | ----------------------------------- | ------------------------------------------------------------ | ---- |
-| [`add_field`](#add_field)           | [hash](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Hash) | 否   |
-| [`add_tag`](#add_tag)               | [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Array) | 否   |
-| [`enable_metric`](#enable_metric)   | [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Boolean) | 否   |
+| [`add_field`](#addfield)           | [hash](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Hash) | 否   |
+| [`add_tag`](#addtag)               | [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Array) | 否   |
+| [`enable_metric`](#enablemetric)   | [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Boolean) | 否   |
 | [`id`](#id)                         | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String) | 否   |
-| [`periodic_flush`](#periodic_flush) | [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Boolean) | 否   |
-| [`remove_field`](#remove_field)     | [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Array) | 否   |
-| [`remove_tag`](#remove_tag)         | [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Array) | 否   |
+| [`periodic_flush`](#periodicflush) | [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Boolean) | 否   |
+| [`remove_field`](#removefield)     | [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Array) | 否   |
+| [`remove_tag`](#removetag)         | [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Array) | 否   |
 
 ##### add_field
 

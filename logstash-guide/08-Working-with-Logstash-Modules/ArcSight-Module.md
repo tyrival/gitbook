@@ -37,7 +37,7 @@ bin/logstash --modules arcsight --setup \
 
 `--modules arcsight` 选项可以旋转一个支持ArcSight CEF的Logstash管道进行摄取。`--setup` 选项在Elasticsearch中创建 `arcsight- *` 索引匹配，并导入Kibana仪表板和可视化。在后续模块运行或扩展Logstash部署时，应省略 `--setup` 选项以避免覆盖现有Kibana仪表板。
 
-有关详细信息，请参阅 [Logstash ArcSight模块配置项](#Logstash ArcSight模块配置项)。
+有关详细信息，请参阅 [Logstash ArcSight模块配置项](#Logstash_ArcSight模块配置项)。
 
 2. Kibana探索数据：
 
@@ -51,7 +51,7 @@ bin/logstash --modules arcsight --setup \
 首先，您可以使用基本Elastic Stack设置，从Event Broker事件流中读取事件的。
 
 ![arcsight-diagram-adp](../source/images/ch-08/arcsight-diagram-adp.svg)
-默认情况下，Logstash ArcSight模块使用Event Broker 的 "eb-cef"主题。有关其他设置，请参阅 [Logstash ArcSight模块配置项](#Logstash ArcSight模块配置项)。还可以从安全的事件代理端口进行使用，请参阅 [Logstash ArcSight模块配置项](#Logstash ArcSight模块配置项)。
+默认情况下，Logstash ArcSight模块使用Event Broker 的 "eb-cef"主题。有关其他设置，请参阅 [Logstash ArcSight模块配置项](#Logstash_ArcSight模块配置项)。还可以从安全的事件代理端口进行使用，请参阅 [Logstash ArcSight模块配置项](#Logstash_ArcSight模块配置项)。
 
 > 注意
 > Logstash，Elasticsearch和Kibana必须在本地运行。请注意，您还可以在单独的主机上运行Elasticsearch，Kibana和Logstash以使用ArcSight中的数据。
@@ -68,7 +68,7 @@ bin/logstash --modules arcsight --setup \
 
 `--modules arcsight` 选项可以旋转一个支持ArcSight CEF的Logstash管道进行摄取。`--setup` 选项在Elasticsearch中创建 `arcsight- *` 索引匹配，并导入Kibana仪表板和可视化。在后续模块运行或扩展Logstash部署时，应省略 `--setup` 选项以避免覆盖现有Kibana仪表板。
 
-有关详细信息，请参阅 [Logstash ArcSight模块配置项](#Logstash ArcSight模块配置项)。
+有关详细信息，请参阅 [Logstash ArcSight模块配置项](#Logstash_ArcSight模块配置项)。
 
 2. Kibana探索数据：
 
@@ -127,7 +127,7 @@ modules:
     var.kibana.username: "elastic"
     var.kibana.password: "YOUR_PASSWORD"
 ```
-#### Logstash ArcSight模块配置
+#### Logstash ArcSight模块配置项
 
 ArcSight模块提供以下配置项，这些配置项包括ArcSight特有的配置项，以及所有Logstash模块支持的通用选项。
 

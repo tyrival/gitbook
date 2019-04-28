@@ -149,17 +149,17 @@ filter {
 
 | Setting                                       | Input type                                                   | Required |
 | --------------------------------------------- | ------------------------------------------------------------ | -------- |
-| [`break_on_match`](#break_on_match)           | [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Boolean) | No       |
-| [`keep_empty_captures`](#keep_empty_captures) | [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Boolean) | No       |
+| [`break_on_match`](#breakonmatch)           | [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Boolean) | No       |
+| [`keep_empty_captures`](#keepemptycaptures) | [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Boolean) | No       |
 | [`match`](#match)                             | [hash](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Hash) | No       |
-| [`named_captures_only`](#named_captures_only) | [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Boolean) | No       |
+| [`named_captures_only`](#namedcapturesonly) | [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Boolean) | No       |
 | [`overwrite`](#overwrite)                     | [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Array) | No       |
-| [`pattern_definitions`](#pattern_definitions) | [hash](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Hash) | No       |
-| [`patterns_dir`](#patterns_dir)               | [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Array) | No       |
-| [`patterns_files_glob`](#patterns_files_glob) | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String) | No       |
-| [`tag_on_failure`](#tag_on_failure)           | [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Array) | No       |
-| [`tag_on_timeout`](#tag_on_timeout)           | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String) | No       |
-| [`timeout_millis`](#timeout_millis)           | [number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Number) | No       |
+| [`pattern_definitions`](#patterndefinitions) | [hash](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Hash) | No       |
+| [`patterns_dir`](#patternsdir)               | [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Array) | No       |
+| [`patterns_files_glob`](#patternsfilesglob) | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String) | No       |
+| [`tag_on_failure`](#tagonfailure)           | [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Array) | No       |
+| [`tag_on_timeout`](#tagontimeout)           | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String) | No       |
+| [`timeout_millis`](#timeoutmillis)           | [number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Number) | No       |
 
 另请参阅 [通用配置项](#通用配置项) 以获取所有输入插件支持的选项列表。
 
@@ -306,13 +306,13 @@ Glob模式，用于选择patterns_dir指定的目录中的模式文件
 
 | 设置                                | 输入类型                                                     | 必须 |
 | ----------------------------------- | ------------------------------------------------------------ | ---- |
-| [`add_field`](#add_field)           | [hash](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Hash) | 否   |
-| [`add_tag`](#add_tag)               | [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Array) | 否   |
-| [`enable_metric`](#enable_metric)   | [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Boolean) | 否   |
+| [`add_field`](#addfield)           | [hash](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Hash) | 否   |
+| [`add_tag`](#addtag)               | [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Array) | 否   |
+| [`enable_metric`](#enablemetric)   | [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Boolean) | 否   |
 | [`id`](#id)                         | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String) | 否   |
-| [`periodic_flush`](#periodic_flush) | [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Boolean) | 否   |
-| [`remove_field`](#remove_field)     | [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Array) | 否   |
-| [`remove_tag`](#remove_tag)         | [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Array) | 否   |
+| [`periodic_flush`](#periodicflush) | [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Boolean) | 否   |
+| [`remove_field`](#removefield)     | [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Array) | 否   |
+| [`remove_tag`](#removetag)         | [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Array) | 否   |
 
 ##### add_field
 

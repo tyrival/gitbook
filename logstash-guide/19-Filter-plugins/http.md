@@ -33,29 +33,29 @@ HTTP筛选器提供与外部Web服务/ REST API的集成。
 
 | 设置                                                      | 输入类型                                                     | 必须 |
 | --------------------------------------------------------- | ------------------------------------------------------------ | ---- |
-| [`automatic_retries`](#automatic_retries)                 | [number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Number) | 否   |
+| [`automatic_retries`](#automaticretries)                 | [number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Number) | 否   |
 | [`cacert`](#cacert)                                       | [path](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Path) | 否   |
-| [`client_cert`](#client_cert)                             | [path](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Path) | 否   |
-| [`client_key`](#client_key)                               | [path](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Path) | 否   |
-| [`connect_timeout`](#connect_timeout)                     | [number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Number) | 否   |
+| [`client_cert`](#clientcert)                             | [path](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Path) | 否   |
+| [`client_key`](#clientkey)                               | [path](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Path) | 否   |
+| [`connect_timeout`](#connecttimeout)                     | [number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Number) | 否   |
 | [`cookies`](#cookies)                                     | [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Boolean) | 否   |
-| [`follow_redirects`](#follow_redirects)                   | [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Boolean) | 否   |
+| [`follow_redirects`](#followredirects)                   | [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Boolean) | 否   |
 | [`keepalive`](#keepalive)                                 | [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Boolean) | 否   |
 | [`keystore`](#keystore)                                   | [path](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Path) | 否   |
-| [`keystore_password`](#keystore_password)                 | [password](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Password) | 否   |
-| [`keystore_type`](#keystore_type)                         | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String) | 否   |
+| [`keystore_password`](#keystorepassword)                 | [password](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Password) | 否   |
+| [`keystore_type`](#keystoretype)                         | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String) | 否   |
 | [`password`](#password)                                   | [password](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Password) | 否   |
-| [`pool_max`](#pool_max)                                   | [number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Number) | 否   |
-| [`pool_max_per_route`](#pool_max_per_route)               | [number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Number) | 否   |
+| [`pool_max`](#poolmax)                                   | [number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Number) | 否   |
+| [`pool_max_per_route`](#poolmaxperroute)               | [number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Number) | 否   |
 | [`proxy`](#proxy)                                         | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String) | 否   |
-| [`request_timeout`](#request_timeout)                     | [number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Number) | 否   |
-| [`retry_non_idempotent`](#retry_non_idempotent)           | [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Boolean) | 否   |
-| [`socket_timeout`](#socket_timeout)                       | [number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Number) | 否   |
+| [`request_timeout`](#requesttimeout)                     | [number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Number) | 否   |
+| [`retry_non_idempotent`](#retrynonidempotent)           | [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Boolean) | 否   |
+| [`socket_timeout`](#sockettimeout)                       | [number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Number) | 否   |
 | [`truststore`](#truststore)                               | [path](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Path) | 否   |
-| [`truststore_password`](#truststore_password)             | [password](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Password) | 否   |
-| [`truststore_type`](#truststore_type)                     | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String) | 否   |
+| [`truststore_password`](#truststorepassword)             | [password](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Password) | 否   |
+| [`truststore_type`](#truststoretype)                     | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String) | 否   |
 | [`user`](#user)                                           | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String) | 否   |
-| [`validate_after_inactivity`](#validate_after_inactivity) | [number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Number) | 否   |
+| [`validate_after_inactivity`](#validateafterinactivity) | [number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Number) | 否   |
 
 另请参阅 [通用配置项](#通用配置项) 以获取所有输入插件支持的选项列表。
 
@@ -258,13 +258,13 @@ HTTP筛选器提供与外部Web服务/ REST API的集成。
 
 | 设置                                | 输入类型                                                     | 必须 |
 | ----------------------------------- | ------------------------------------------------------------ | ---- |
-| [`add_field`](#add_field)           | [hash](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Hash) | 否   |
-| [`add_tag`](#add_tag)               | [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Array) | 否   |
-| [`enable_metric`](#enable_metric)   | [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Boolean) | 否   |
+| [`add_field`](#addfield)           | [hash](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Hash) | 否   |
+| [`add_tag`](#addtag)               | [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Array) | 否   |
+| [`enable_metric`](#enablemetric)   | [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Boolean) | 否   |
 | [`id`](#id)                         | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String) | 否   |
-| [`periodic_flush`](#periodic_flush) | [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Boolean) | 否   |
-| [`remove_field`](#remove_field)     | [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Array) | 否   |
-| [`remove_tag`](#remove_tag)         | [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Array) | 否   |
+| [`periodic_flush`](#periodicflush) | [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Boolean) | 否   |
+| [`remove_field`](#removefield)     | [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Array) | 否   |
+| [`remove_tag`](#removetag)         | [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Array) | 否   |
 
 ##### add_field
 - 值类型是 [hash](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Hash)

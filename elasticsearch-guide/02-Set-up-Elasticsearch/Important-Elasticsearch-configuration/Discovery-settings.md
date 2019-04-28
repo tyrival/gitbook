@@ -24,7 +24,7 @@ discovery.zen.ping.unicast.hosts:
 
 为防止数据丢失，必须配置`discovery.zen.minimum_master_nodes`设置，以便每个合格主节点都知道为了形成集群必须的最小主节点数。
 
-如果没有此设置，集群遭受网络故障时，可能会拆分为两个独立的集群——脑裂，这将导致数据丢失。在 [使用`minium_master_nodes`避免脑裂](../../14-Modules/Node.md#使用`minium_master_nodes`避免脑裂) 提供了更详细的解释。
+如果没有此设置，集群遭受网络故障时，可能会拆分为两个独立的集群——脑裂，这将导致数据丢失。在 [使用`minium_master_nodes`避免脑裂](../../14-Modules/Node.md#使用miniummasternodes避免脑裂) 提供了更详细的解释。
 
 为避免脑裂，应将此设置为合法数量的合格节点：
 

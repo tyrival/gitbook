@@ -63,10 +63,10 @@ curl 'http://localhost:9200/logstash-*/_search?&scroll=1m&size=1000' -d '{
 
 | 设置                                | 输入类型                                                     | 必须 |
 | ----------------------------------- | ------------------------------------------------------------ | ---- |
-| [`ca_file`](#ca_file)               | 有效的文件系统路径                                           | 否   |
+| [`ca_file`](#cafile)               | 有效的文件系统路径                                           | 否   |
 | [`docinfo`](#docinfo)               | [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Boolean) | 否   |
-| [`docinfo_fields`](#docinfo_fields) | [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Array) | 否   |
-| [`docinfo_target`](#docinfo_target) | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String) | 否   |
+| [`docinfo_fields`](#docinfofields) | [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Array) | 否   |
+| [`docinfo_target`](#docinfotarget) | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String) | 否   |
 | [`hosts`](#hosts)                   | [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Array) | 否   |
 | [`index`](#index)                   | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String) | 否   |
 | [`password`](#password)             | [password](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Password) | 否   |
@@ -221,9 +221,9 @@ output {
 
 | 设置                              | 输入类型                                                     | 必须 |
 | --------------------------------- | ------------------------------------------------------------ | ---- |
-| [`add_field`](#add_field)         | [hash](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Hash) | 否   |
+| [`add_field`](#addfield)         | [hash](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Hash) | 否   |
 | [`codec`](#codec)                 | [codec](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Codec) | 否   |
-| [`enable_metric`](#enable_metric) | [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Boolean) | 否   |
+| [`enable_metric`](#enablemetric) | [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Boolean) | 否   |
 | [`id`](#id)                       | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String) | 否   |
 | [`tags`](#tags)                   | [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Array) | 否   |
 | [`type`](#type)                   | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String) | 否   |

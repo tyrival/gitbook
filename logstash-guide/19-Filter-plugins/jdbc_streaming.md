@@ -37,22 +37,22 @@ filter {
 
 | Setting                                                 | Input type                                                   | Required |
 | ------------------------------------------------------- | ------------------------------------------------------------ | -------- |
-| [`cache_expiration`](#cache_expiration)                 | [number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Number) | 否       |
-| [`cache_size`](#cache_size)                             | [number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Number) | 否       |
-| [`default_hash`](#default_hash)                         | [hash](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Hash) | 否       |
-| [`jdbc_connection_string`](#jdbc_connection_string)     | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String) | Yes      |
-| [`jdbc_driver_class`](#jdbc_driver_class)               | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String) | 是       |
-| [`jdbc_driver_library`](#jdbc_driver_library)           | [path](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Path) | 否       |
-| [`jdbc_password`](#jdbc_password)                       | [password](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Password) | 否       |
-| [`jdbc_user`](#jdbc_user)                               | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String) | 否       |
-| [`jdbc_validate_connection`](#jdbc_validate_connection) | [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Boolean) | 否       |
-| [`jdbc_validation_timeout`](#jdbc_validation_timeout)   | [number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Number) | 否       |
-| [`parameters`](#jdbc_streaming-parameters)              | [hash](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Hash) | 否       |
+| [`cache_expiration`](#cacheexpiration)                 | [number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Number) | 否       |
+| [`cache_size`](#cachesize)                             | [number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Number) | 否       |
+| [`default_hash`](#defaulthash)                         | [hash](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Hash) | 否       |
+| [`jdbc_connection_string`](#jdbcconnectionstring)     | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String) | Yes      |
+| [`jdbc_driver_class`](#jdbcdriverclass)               | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String) | 是       |
+| [`jdbc_driver_library`](#jdbcdriverlibrary)           | [path](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Path) | 否       |
+| [`jdbc_password`](#jdbcpassword)                       | [password](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Password) | 否       |
+| [`jdbc_user`](#jdbcuser)                               | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String) | 否       |
+| [`jdbc_validate_connection`](#jdbcvalidateconnection) | [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Boolean) | 否       |
+| [`jdbc_validation_timeout`](#jdbcvalidationtimeout)   | [number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Number) | 否       |
+| [`parameters`](#jdbcstreaming-parameters)              | [hash](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Hash) | 否       |
 | [`statement`](#statement)                               | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String) | 是       |
-| [`tag_on_default_use`](#tag_on_default_use)             | [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Array) | 否       |
-| [`tag_on_failure`](#tag_on_failure)                     | [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Array) | 否       |
+| [`tag_on_default_use`](#tagondefaultuse)             | [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Array) | 否       |
+| [`tag_on_failure`](#tagonfailure)                     | [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Array) | 否       |
 | [`target`](#target)                                     | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String) | 是       |
-| [`use_cache`](#use_cache)                               | [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Boolean) | 否       |
+| [`use_cache`](#usecache)                               | [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Boolean) | 否       |
 
 另请参阅 [通用配置项](#通用配置项) 以获取所有输入插件支持的选项列表。
 
@@ -178,13 +178,13 @@ JDBC用户
 
 | 设置                                | 输入类型                                                     | 必须 |
 | ----------------------------------- | ------------------------------------------------------------ | ---- |
-| [`add_field`](#add_field)           | [hash](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Hash) | 否   |
-| [`add_tag`](#add_tag)               | [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Array) | 否   |
-| [`enable_metric`](#enable_metric)   | [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Boolean) | 否   |
+| [`add_field`](#addfield)           | [hash](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Hash) | 否   |
+| [`add_tag`](#addtag)               | [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Array) | 否   |
+| [`enable_metric`](#enablemetric)   | [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Boolean) | 否   |
 | [`id`](#id)                         | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String) | 否   |
-| [`periodic_flush`](#periodic_flush) | [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Boolean) | 否   |
-| [`remove_field`](#remove_field)     | [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Array) | 否   |
-| [`remove_tag`](#remove_tag)         | [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Array) | 否   |
+| [`periodic_flush`](#periodicflush) | [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Boolean) | 否   |
+| [`remove_field`](#removefield)     | [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Array) | 否   |
+| [`remove_tag`](#removetag)         | [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Array) | 否   |
 
 ##### add_field
 

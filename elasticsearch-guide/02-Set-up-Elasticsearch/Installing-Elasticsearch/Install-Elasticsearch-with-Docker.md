@@ -66,7 +66,7 @@ docker run -p 9200:9200 -p 9300:9300 -e "discovery.type=single-node" docker.elas
 >   sudo sysctl -w vm.max_map_count=262144
 >   ```
 
-以下示例显示包含两个Elasticsearch节点的集群。要打开集群，请使用 [docker-compose.yml](#`docker-compose.yml`：) 并输入：
+以下示例显示包含两个Elasticsearch节点的集群。要打开集群，请使用 [docker-compose.yml](#docker-composeyml) 并输入：
 
 ```sh
 docker-compose up
@@ -80,7 +80,7 @@ docker-compose up
 
 此示例还使用名为`esdata1`和`esdata2`的Docker命名卷，如果尚未存在，将创建它们。
 
-##### `docker-compose.yml`：
+##### `docker-compose.yml`
 
 ```yaml
 version: '2.2'
@@ -226,7 +226,7 @@ chgrp 1000 esdatadir
 > docker run --rm centos:7 /bin/bash -c 'ulimit -Hn && ulimit -Sn && ulimit -Hu && ulimit -Su'
 > ```
 
-3. 需要禁用swapping以提高性能和节点稳定性。这可以通过 [Elasticsearch文档](../../02-Set-up-Elasticsearch/Important-System-Configuration/Disable-swapping.md) 中提到的方法来实现。如果你选择`bootstrap.memory_lock: true`方法，除了通过 [配置方法](#Docker配置Elasticsearch) 定义它之外，你还需要`memlock: true` 进行控制，在 [Docker守护进程](https://docs.docker.com/engine/reference/commandline/dockerd/#default-ulimits) 中定义或为容器指定设置。这在上面的 [docker-compose.yml](#`docker-compose.yml`：) 进行了展示。如果使用`docker run`：
+3. 需要禁用swapping以提高性能和节点稳定性。这可以通过 [Elasticsearch文档](../../02-Set-up-Elasticsearch/Important-System-Configuration/Disable-swapping.md) 中提到的方法来实现。如果你选择`bootstrap.memory_lock: true`方法，除了通过 [配置方法](#Docker配置Elasticsearch) 定义它之外，你还需要`memlock: true` 进行控制，在 [Docker守护进程](https://docs.docker.com/engine/reference/commandline/dockerd/#default-ulimits) 中定义或为容器指定设置。这在上面的 [docker-compose.yml](#docker-composeyml) 进行了展示。如果使用`docker run`：
 
 ```
 -e "bootstrap.memory_lock=true" --ulimit memlock=-1:-1

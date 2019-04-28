@@ -6,7 +6,7 @@
 
 Elasticsearch使用大量文件描述符或文件句柄。文件描述符被用尽可能导致灾难性的结果，最有可能导致数据丢失。确保运行Elasticsearch的用户打开文件描述符数量限制增加到65,536或更高。
 
-对于`.zip`和`.tar.gz`包，在启动Elasticsearch之前将 [`ulimit -n 65535`](../../02-Set-up-Elasticsearch/Important-System-Configuration/Configuring-system-settings.md#`ulimit`) 设置为root，或者在 [`/etc/security/limits.conf`](../../02-Set-up-Elasticsearch/Important-System-Configuration/Configuring-system-settings.md#`/etc/security/limits_conf`) 中将`nofile`设置为`65535`。
+对于`.zip`和`.tar.gz`包，在启动Elasticsearch之前将 [`ulimit -n 65535`](../../02-Set-up-Elasticsearch/Important-System-Configuration/Configuring-system-settings.md#ulimit) 设置为root，或者在 [`/etc/security/limits.conf`](../../02-Set-up-Elasticsearch/Important-System-Configuration/Configuring-system-settings.md#etcsecuritylimitsconf) 中将`nofile`设置为`65535`。
 
 在macOS上，您还必须将JVM选项`-XX:-MaxFDLimit`传递给Elasticsearch，以便它使用更高的文件描述符限制。
 

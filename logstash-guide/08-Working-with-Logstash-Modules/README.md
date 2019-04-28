@@ -49,7 +49,7 @@ bin/logstash --modules netflow -M "netflow.var.elasticsearch.host=es.mycloud.com
 
 ### 配置模块
 
-要配置模块，您可以在 [logstash.yml](../04-Setting-Up-and-Running-Logstash/logstash.yml.md) 中 [设置模块](#`logstash.yml` 设置模块)，也可以使用 [命令行设置模块](#命令行设置模块)。
+要配置模块，您可以在 [logstash.yml](../04-Setting-Up-and-Running-Logstash/logstash.yml.md) 中 [设置模块](#logstashyml_设置模块)，也可以使用 [命令行设置模块](#命令行设置模块)。
 
 #### `logstash.yml` 设置模块
 

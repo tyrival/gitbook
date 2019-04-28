@@ -8,7 +8,7 @@
 
 以下是一些示例，说明如何实现Logstash配置以替换摄取管道：
 
-- [Apache 2日志](#Apache 2日志)
+- [Apache 2日志](#Apache_2日志)
 - [MySQL日志](#MySQL日志)
 - [Nginx日志](#Nginx日志)
 - [System日志](#System日志)
@@ -16,7 +16,7 @@
 > **提醒：**
 > Logstash提供了 [转换摄取节点通道](../06-Configuring-Logstash/Converting-Ingest-Node-Pipelines.md)，可帮助您将摄取管道定义迁移到Logstash配置。该工具目前不支持所有可用于摄取节点的处理器，但它是一个很好的起点。
 
-### Apache 2 Logs
+### Apache 2日志
 此示例中的Logstash管道配置，显示了如何发送和解析 [Apache2 Filebeat模块](https://www.elastic.co/guide/en/beats/filebeat/6.7/filebeat-module-apache2.html) 收集的访问和错误日志。
 
 ```json

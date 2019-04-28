@@ -22,7 +22,7 @@
 - 选择足够的"watched"文件来填充窗口中的可用空间，这些文件变为"active"。
 - 打开并读取活动文件，默认情况下，每个文件从最后的已知位置读取到当前内容（EOF）的末尾。
 
-在某些情况下，能够控制读取哪些文件、读取顺序，以及是完全读取还是带状/条带读取是非常有用的。完整读取是文件A，然后是文件B，然后是文件C，依此类推。带状或条带是读取文件A的一部分，然后是文件B然后是文件C，依此循环到文件A，直到读取所有文件。通过更改 [`file_chunk_count`](#file_chunk_count) 和 [`file_chunk_size`](#file_chunk_size) 来指定带状读取。如果您希望所有文件中的某些事件尽早出现在Kibana中，则绑定和排序可能很有用。
+在某些情况下，能够控制读取哪些文件、读取顺序，以及是完全读取还是带状/条带读取是非常有用的。完整读取是文件A，然后是文件B，然后是文件C，依此类推。带状或条带是读取文件A的一部分，然后是文件B然后是文件C，依此循环到文件A，直到读取所有文件。通过更改 [`file_chunk_count`](#filechunkcount) 和 [`file_chunk_size`](#filechunksize) 来指定带状读取。如果您希望所有文件中的某些事件尽早出现在Kibana中，则绑定和排序可能很有用。
 
 该插件有两种操作模式，Tail模式和Read模式。
 
@@ -75,25 +75,25 @@ File输入未在远程文件系统（如NFS，Samba，s3fs-fuse等）上进行�
 
 | 设置                                                  | 输入类型                                                     | 必须 |
 | ----------------------------------------------------- | ------------------------------------------------------------ | ---- |
-| [`close_older`](#close_older)                         | [number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Number) 或 [时间字符串](#时间字符串) | 否   |
+| [`close_older`](#closeolder)                         | [number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Number) 或 [时间字符串](#时间字符串) | 否   |
 | [`delimiter`](#delimiter)                             | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String) | 否   |
-| [`discover_interval`](#discover_interval)             | [number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Number) | 否   |
+| [`discover_interval`](#discoverinterval)             | [number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Number) | 否   |
 | [`exclude`](#exclude)                                 | [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Array) | 否   |
-| [`file_chunk_count`](#file_chunk_count)               | [number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Number) | 否   |
-| [`file_chunk_size`](#file_chunk_size)                 | [number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Number) | 否   |
-| [`file_completed_action`](#file_completed_action)     | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String)，可选项为`["delete", "log", "log_and_delete"]` | 否   |
-| [`file_completed_log_path`](#file_completed_log_path) | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String) | 否   |
-| [`file_sort_by`](#file_sort_by)                       | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String)，可选项为`["last_modified", "path"]` | 否   |
-| [`file_sort_direction`](#file_sort_direction)         | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String)，可选项为`["asc", "desc"]` | 否   |
-| [`ignore_older`](#ignore_older)                       | [number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Number) 或 [时间字符串](#时间字符串) | 否   |
-| [`max_open_files`](#max_open_files)                   | [number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Number) | 否   |
+| [`file_chunk_count`](#filechunkcount)               | [number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Number) | 否   |
+| [`file_chunk_size`](#filechunksize)                 | [number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Number) | 否   |
+| [`file_completed_action`](#filecompletedaction)     | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String)，可选项为`["delete", "log", "log_and_delete"]` | 否   |
+| [`file_completed_log_path`](#filecompletedlogpath) | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String) | 否   |
+| [sortby)                       | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String)，可选项为`["last_modified", "path"]` | 否   |
+| [`file_sort_direction`](#filesortdirection)         | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String)，可选项为`["asc", "desc"]` | 否   |
+| [`ignore_older`](#ignoreolder)                       | [number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Number) 或 [时间字符串](#时间字符串) | 否   |
+| [`max_open_files`](#maxopenfiles)                   | [number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Number) | 否   |
 | [`mode`](#mode)                                       | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String)，可选项为`["tail", "read"]` | 否   |
 | [`path`](#path)                                       | [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Array) | 是   |
-| [`sincedb_clean_after`](#sincedb_clean_after)         | [number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Number) 或 [时间字符串](#时间字符串) | 否   |
-| [`sincedb_path`](#sincedb_path)                       | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String) | 否   |
-| [`sincedb_write_interval`](#sincedb_write_interval)   | [number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Number) 或 [时间字符串](#时间字符串) | 否   |
-| [`start_position`](#start_position)                   | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String)，可选项为`["beginning", "end"]` | 否   |
-| [`stat_interval`](#stat_interval)                     | [number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Number) 或 [时间字符串](#时间字符串) | 否   |
+| [`sincedb_clean_after`](#sincedbcleanafter)         | [number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Number) 或 [时间字符串](#时间字符串) | 否   |
+| [`sincedb_path`](#sincedbpath)                       | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String) | 否   |
+| [`sincedb_write_interval`](#sincedbwriteinterval)   | [number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Number) 或 [时间字符串](#时间字符串) | 否   |
+| [`start_position`](#startposition)                   | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String)，可选项为`["beginning", "end"]` | 否   |
+| [`stat_interval`](#statinterval)                     | [number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Number) 或 [时间字符串](#时间字符串) | 否   |
 
 另请参阅 [通用配置项](#通用配置项) 以获取所有输入插件支持的选项列表。
 
@@ -147,7 +147,7 @@ exclude => "*.gz"
 - 值类型是 [number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Number)
 - 默认值为 `32768`（32KB）
 
-以block或chunk的形式从磁盘读取文件内容，并从中提取数据行。请参阅 [`file_chunk_count`](#file_chunk_count) 以查看默认情况下更改此设置的原因和时机。
+以block或chunk的形式从磁盘读取文件内容，并从中提取数据行。请参阅 [`file_chunk_count`](#filechunkcount) 以查看默认情况下更改此设置的原因和时机。
 
 ##### file_completed_action
 
@@ -265,9 +265,9 @@ sincedb记录最后一次活动的时间戳。如果在过去N天内未在跟踪
 
 | 设置                              | 输入类型                                                     | 必须 |
 | --------------------------------- | ------------------------------------------------------------ | ---- |
-| [`add_field`](#add_field)         | [hash](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Hash) | 否   |
+| [`add_field`](#addfield)         | [hash](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Hash) | 否   |
 | [`codec`](#codec)                 | [codec](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Codec) | 否   |
-| [`enable_metric`](#enable_metric) | [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Boolean) | 否   |
+| [`enable_metric`](#enablemetric) | [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Boolean) | 否   |
 | [`id`](#id)                       | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String) | 否   |
 | [`tags`](#tags)                   | [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Array) | 否   |
 | [`type`](#type)                   | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String) | 否   |

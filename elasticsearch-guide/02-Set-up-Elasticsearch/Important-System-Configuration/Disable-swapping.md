@@ -48,7 +48,7 @@ GET _nodes?filter_path=**.mlockall
 
 **`.zip`和`.tar.gz`**
 
-​	在启动Elasticsearch之前将root设置为 [`ulimit -l unlimited`](../../02-Set-up-Elasticsearch/Important-System-Configuration/Configuring-system-settings.md#`ulimit`)，或者在 [`/etc/security/limits.conf`](../../02-Set-up-Elasticsearch/Important-System-Configuration/Configuring-system-settings.md#`/etc/security/limits_conf`) 中将`memlock`设置为`unlimited`。
+​	在启动Elasticsearch之前将root设置为 [`ulimit -l unlimited`](../../02-Set-up-Elasticsearch/Important-System-Configuration/Configuring-system-settings.md#ulimit)，或者在 [`/etc/security/limits.conf`](../../02-Set-up-Elasticsearch/Important-System-Configuration/Configuring-system-settings.md#etcsecuritylimitsconf) 中将`memlock`设置为`unlimited`。
 
 **RPM和Debian**
 

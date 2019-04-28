@@ -4,8 +4,8 @@
 
 使用`.zip`或`.tar.gz`软件包时，可以配置系统设置：
 
-- 临时配置用 [`ulimit`](#`ulimit`)，或
-- 永久配置用 [`/etc/security/limits.conf`](#`/etc/security/limits.conf`)。
+- 临时配置用 [`ulimit`](#ulimit)，或
+- 永久配置用 [`/etc/security/limits.conf`](#etcsecuritylimitsconf)。
 
 使用RPM或Debian软件包时，大多数系统设置都在 [系统配置文件](#系统配置文件) 中。但是，使用systemd的系统在 [systemd配置](#Systemd配置)。
 
