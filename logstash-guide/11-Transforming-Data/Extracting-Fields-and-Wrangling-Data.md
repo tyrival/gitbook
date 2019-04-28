@@ -8,13 +8,13 @@
 
 例如，假设您有一个包含以下消息的日志：
 
-```json
+```sh
 Apr 26 12:20:02 localhost systemd[1]: Starting system activity accounting tool...
 ```
 
 以下配置剖析了消息：
 
-```json
+```sh
 filter {
   dissect {
     mapping => { "message" => "%{ts} %{+ts} %{+ts} %{src} %{prog}[%{pid}]: %{msg}" }
@@ -24,7 +24,7 @@ filter {
 
 应用dissect过滤器后，事件将被分解到以下字段中：
 
-```json
+```sh
 {
   "msg"        => "Starting system activity accounting tool...",
   "@timestamp" => 2017-04-26T19:33:39.257Z,
@@ -45,13 +45,13 @@ filter {
 
 例如，假设您有一条包含以下键值对的日志消息：
 
-```json
+```sh
 ip=1.2.3.4 error=REFUSED
 ```
 
 以下配置将键值对解析为字段：
 
-```json
+```sh
 filter {
   kv { }
 }
@@ -68,13 +68,13 @@ filter {
 
 例如，假设您有一个包含以下消息的HTTP请求日志：
 
-```json
+```sh
 55.3.244.1 GET /index.html 15824 0.043
 ```
 
 以下配置将消息解析为字段：
 
-```json
+```sh
 filter {
   grok {
     match => { "message" => "%{IP:client} %{WORD:method} %{URIPATHPARAM:request} %{NUMBER:bytes} %{NUMBER:duration}" }

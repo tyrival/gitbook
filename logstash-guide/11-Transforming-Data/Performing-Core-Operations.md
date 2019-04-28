@@ -8,7 +8,7 @@
 
 以下配置解析名为 `logdate` 的字段，以设置Logstash时间戳：
 
-```json
+```sh
 filter {
   date {
     match => [ "logdate", "MMM dd yyyy HH:mm:ss" ]
@@ -22,7 +22,7 @@ filter {
 
 以下配置删除调试级别日志消息：
 
-```json
+```sh
 filter {
   if [loglevel] == "debug" {
     drop { }
@@ -36,7 +36,7 @@ filter {
 
 以下配置指纹 `IP`，`@timestamp`和 `message` 字段，并将哈希值添加到名为 `generated_id` 的元数据字段中：
 
-```json
+```sh
 filter {
   fingerprint {
     source => ["IP", "@timestamp", "message"]
@@ -53,7 +53,7 @@ filter {
 
 以下配置将 `HOSTORIP` 字段重命名为 `client_ip`：
 
-```json
+```sh
 filter {
   mutate {
     rename => { "HOSTORIP" => "client_ip" }
@@ -63,7 +63,7 @@ filter {
 
 以下配置从指定字段中删除前导和尾随空格：
 
-```json
+```sh
 filter {
   mutate {
     strip => ["field1", "field2"]
@@ -77,7 +77,7 @@ filter {
 
 以下配置执行的Ruby代码取消90％事件：
 
-```json
+```sh
 filter {
   ruby {
     code => "event.cancel if rand <= 0.90"

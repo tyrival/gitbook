@@ -48,13 +48,13 @@ Logstash通用的监控API请查看 [通用选项](../16-Working-with-plugins/RE
 
 您可以使用 `?human` 参数来返回一个具有可读性格式的文档。
 
-```js
+```sh
 curl -XGET 'localhost:9600/_node/hot_threads?human=true'
 ```
 
 具有可读性的响应示例：
 
-```js
+```sh
  ::: {}
  Hot threads at 2017-06-06T18:31:17-07:00, busiestThreads=3:
  ================================================================================

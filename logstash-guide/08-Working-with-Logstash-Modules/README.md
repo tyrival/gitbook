@@ -32,7 +32,7 @@ bin/logstash --modules MODULE_NAME --setup [-M "CONFIG_SETTING=VALUE"]
 此处：
 
 - `--modules` 运行 `MODULE_NAME` 指定的Logstash模块。
-- `-M "CONFIG_SETTING = VALUE"`是可选的，会覆盖默认的配置。您可以使用多次。每个覆盖必须以 `-M` 开头。有关详细信息，请参阅 [命令行指定模块设置](#命令行指定模块设置)。
+- `-M "CONFIG_SETTING = VALUE"`是可选的，会覆盖默认的配置。您可以使用多次。每个覆盖必须以 `-M` 开头。有关详细信息，请参阅 [命令行设置模块](#命令行设置模块)。
 - `--setup` 在Elasticsearch中创建索引匹配，并导入Kibana仪表板和可视化。运行 `--setup` 是一次性设置步骤。以后运行模块需省略此选项，以避免覆盖现有的Kibana仪表板。
 
 例如，以下命令使用默认设置运行Netflow模块，并设置netflow索引匹配和仪表板：

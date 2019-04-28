@@ -70,7 +70,7 @@ Logstash中的条件表达式的语法和功能与编程语言中的条件表达
 
 条件语法如下：
 
-```js
+```
 if EXPRESSION {
   ...
 } else if EXPRESSION {

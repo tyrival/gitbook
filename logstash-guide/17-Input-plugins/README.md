@@ -22,7 +22,7 @@
 | [graphite](../17-Input-plugins/graphite.md)                  | 从 `graphite` 工具读取性能数据                          | [logstash-input-graphite](https://github.com/logstash-plugins/logstash-input-graphite) |
 | [heartbeat](../17-Input-plugins/heartbeat.md)                | 生成心跳事件用于测试                                    | [logstash-input-heartbeat](https://github.com/logstash-plugins/logstash-input-heartbeat) |
 | [**http**](../17-Input-plugins/http.md)                      | 通过HTTP或HTTPS接收事件                                 | [logstash-input-http](https://github.com/logstash-plugins/logstash-input-http) |
-| [http_poller](../17-Input-plugins/http_poller.md)            | 将一个HTTP API输出解码为事件                            | [logstash-input-http_poller](https://github.com/logstash-plugins/logstash-input-http_poller) |
+| [**http_poller**](../17-Input-plugins/http_poller.md)            | 将一个HTTP API输出解码为事件                            | [logstash-input-http_poller](https://github.com/logstash-plugins/logstash-input-http_poller) |
 | [imap](../17-Input-plugins/imap.md)                          | 从IMAP服务器读取邮件                                    | [logstash-input-imap](https://github.com/logstash-plugins/logstash-input-imap) |
 | [irc](../17-Input-plugins/irc.md)                            | 从IRC服务器读取事件                                     | [logstash-input-irc](https://github.com/logstash-plugins/logstash-input-irc) |
 | [**jdbc**](../17-Input-plugins/jdbc.md)                      | 从JDBC数据创建事件                                      | [logstash-input-jdbc](https://github.com/logstash-plugins/logstash-input-jdbc) |

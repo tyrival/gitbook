@@ -92,18 +92,18 @@ filter {
 
 例：
 
-```json
+```sh
 filter {
-  http {
+  uuid {
     add_field => { "foo_%{somefield}" => "Hello world, from %{host}" }
   }
 }
 ```
 
-```json
+```sh
 # You can also add multiple fields at once:
 filter {
-  http {
+  uuid {
     add_field => {
       "foo_%{somefield}" => "Hello world, from %{host}"
       "new_field" => "new_static_value"
@@ -123,18 +123,18 @@ filter {
 
 例：
 
-```json
+```sh
 filter {
-  http {
+  uuid {
     add_tag => [ "foo_%{somefield}" ]
   }
 }
 ```
 
-```json
+```sh
 # You can also add multiple tags at once:
 filter {
-  http {
+  uuid {
     add_tag => [ "foo_%{somefield}", "taggedy_tag"]
   }
 }
@@ -156,9 +156,9 @@ filter {
 
 为插件配置添加唯一 `ID`。如果未指定ID，Logstash将生成一个ID。强烈建议在配置中设置此ID。当您有两个或更多相同类型的插件时，这尤其有用，例如，如果您有2个http过滤器。在这种情况下添加命名ID将有助于在使用监视API时监视Logstash。
 
-```json
+```sh
 filter {
-  http {
+  uuid {
     id => "ABC"
   }
 }
@@ -178,18 +178,18 @@ filter {
 
 如果此过滤器成功，请从此事件中删除任意字段。例：
 
-```json
+```sh
 filter {
-  http {
+  uuid {
     remove_field => [ "foo_%{somefield}" ]
   }
 }
 ```
 
-```json
+```sh
 # You can also remove multiple fields at once:
 filter {
-  http {
+  uuid {
     remove_field => [ "foo_%{somefield}", "my_extraneous_field" ]
   }
 }
@@ -204,18 +204,18 @@ filter {
 
 例：
 
-```json
+```sh
 filter {
-  http {
+  uuid {
     remove_tag => [ "foo_%{somefield}" ]
   }
 }
 ```
 
-```json
+```sh
 # You can also remove multiple tags at once:
 filter {
-  http {
+  uuid {
     remove_tag => [ "foo_%{somefield}", "sad_unwanted_tag"]
   }
 }

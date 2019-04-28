@@ -22,7 +22,7 @@ curl -XGET 'localhost:9600/_node/<types>'
 
 以下请求返回显示管道信息的JSON文档，例如工作者数量，批处理大小和批处理延迟：
 
-```js
+```sh
 curl -XGET 'localhost:9600/_node/pipelines?pretty'
 ```
 
@@ -30,7 +30,7 @@ curl -XGET 'localhost:9600/_node/pipelines?pretty'
 
 响应示例：
 
-```js
+```json
 {
   "pipelines" : {
     "test" : {
@@ -48,11 +48,12 @@ curl -XGET 'localhost:9600/_node/pipelines?pretty'
       "config_reload_interval" : 3
     }
   }
+}
 ```
 
 您可以通过包含管道ID来查看特定管道的信息。在以下示例中，管道的ID是 `test`：
 
-```js
+```sh
 curl -XGET 'localhost:9600/_node/pipelines/test?pretty'
 ```
 
@@ -69,6 +70,7 @@ curl -XGET 'localhost:9600/_node/pipelines/test?pretty'
       "config_reload_interval" : 3
     }
   }
+}
 ```
 
 如果指定了无效的管道ID，则请求将返回404 Not Found错误。
@@ -77,13 +79,13 @@ curl -XGET 'localhost:9600/_node/pipelines/test?pretty'
 
 以下请求返回一个JSON文档，该文档显示操作系统名称，体系结构，版本和可用处理器：
 
-```js
+```sh
 curl -XGET 'localhost:9600/_node/os?pretty'
 ```
 
 响应示例：
 
-```js
+```json
 {
   "os": {
     "name": "Mac OS X",
@@ -91,19 +93,20 @@ curl -XGET 'localhost:9600/_node/os?pretty'
     "version": "10.12.4",
     "available_processors": 8
   }
+}
 ```
 
 ### JVM信息
 
 以下请求返回一个JSON文档，该文档显示节点级JVM统计信息，例如JVM进程ID，版本，VM信息，内存使用情况以及有关垃圾收集器的信息：
 
-```js
+```sh
 curl -XGET 'localhost:9600/_node/jvm?pretty'
 ```
 
 响应示例：
 
-```js
+```json
 {
   "jvm": {
     "pid": 59616,

@@ -20,14 +20,14 @@ HTTP筛选器提供与外部Web服务/ REST API的集成。
 
 | 设置                                                         | 输入类型                                                     | 必须 |
 | ------------------------------------------------------------ | ------------------------------------------------------------ | ---- |
-| [`body`](https://www.elastic.co/guide/en/logstash/6.7/plugins-filters-http.html#plugins-filters-http-body) | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string)，[number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#number)，[array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#array)，[hash](../06-Configuring-Logstash/Structure-of-a-Config-File.md#hash) | 否   |
-| [`body_format`](https://www.elastic.co/guide/en/logstash/6.7/plugins-filters-http.html#plugins-filters-http-body_format) | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string) | 否   |
-| [`headers`](https://www.elastic.co/guide/en/logstash/6.7/plugins-filters-http.html#plugins-filters-http-headers) | [hash](../06-Configuring-Logstash/Structure-of-a-Config-File.md#hash) | 否   |
-| [`query`](https://www.elastic.co/guide/en/logstash/6.7/plugins-filters-http.html#plugins-filters-http-query) | [hash](../06-Configuring-Logstash/Structure-of-a-Config-File.md#hash) | 否   |
-| [`target_body`](https://www.elastic.co/guide/en/logstash/6.7/plugins-filters-http.html#plugins-filters-http-target_body) | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string) | 否   |
-| [`target_headers`](https://www.elastic.co/guide/en/logstash/6.7/plugins-filters-http.html#plugins-filters-http-target_headers) | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string) | 否   |
-| [`url`](https://www.elastic.co/guide/en/logstash/6.7/plugins-filters-http.html#plugins-filters-http-url) | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string) | 是   |
-| [`verb`](https://www.elastic.co/guide/en/logstash/6.7/plugins-filters-http.html#plugins-filters-http-verb) | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string) | 否   |
+| [`body`](#body) | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string)，[number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#number)，[array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#array)，[hash](../06-Configuring-Logstash/Structure-of-a-Config-File.md#hash) | 否   |
+| [`body_format`](#bodyformat) | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string) | 否   |
+| [`headers`](#headers) | [hash](../06-Configuring-Logstash/Structure-of-a-Config-File.md#hash) | 否   |
+| [`query`](#query) | [hash](../06-Configuring-Logstash/Structure-of-a-Config-File.md#hash) | 否   |
+| [`target_body`](#targetbody) | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string) | 否   |
+| [`target_headers`](#targetheaders) | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string) | 否   |
+| [`url`](#url) | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string) | 是   |
+| [`verb`](#verb) | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string) | 否   |
 
 有多个配置项与Http连接相关：
 
@@ -274,7 +274,7 @@ HTTP筛选器提供与外部Web服务/ REST API的集成。
 
 例：
 
-```json
+```sh
 filter {
   http {
     add_field => { "foo_%{somefield}" => "Hello world, from %{host}" }
@@ -282,7 +282,7 @@ filter {
 }
 ```
 
-```json
+```sh
 # You can also add multiple fields at once:
 filter {
   http {
@@ -304,7 +304,7 @@ filter {
 
 例：
 
-```json
+```sh
 filter {
   http {
     add_tag => [ "foo_%{somefield}" ]
@@ -312,7 +312,7 @@ filter {
 }
 ```
 
-```json
+```sh
 # You can also add multiple tags at once:
 filter {
   http {
@@ -336,7 +336,7 @@ filter {
 
 为插件配置添加唯一 `ID`。如果未指定ID，Logstash将生成一个ID。强烈建议在配置中设置此ID。当您有两个或更多相同类型的插件时，这尤其有用，例如，如果您有2个http过滤器。在这种情况下添加命名ID将有助于在使用监视API时监视Logstash。
 
-```json
+```sh
 filter {
   http {
     id => "ABC"
@@ -356,7 +356,7 @@ filter {
 
 如果此过滤器成功，请从此事件中删除任意字段。例：
 
-```json
+```sh
 filter {
   http {
     remove_field => [ "foo_%{somefield}" ]
@@ -364,7 +364,7 @@ filter {
 }
 ```
 
-```json
+```sh
 # You can also remove multiple fields at once:
 filter {
   http {
@@ -382,7 +382,7 @@ filter {
 
 例：
 
-```json
+```sh
 filter {
   http {
     remove_tag => [ "foo_%{somefield}" ]
@@ -390,7 +390,7 @@ filter {
 }
 ```
 
-```json
+```sh
 # You can also remove multiple tags at once:
 filter {
   http {

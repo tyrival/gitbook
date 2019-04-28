@@ -101,7 +101,7 @@ input {
 
 索引失败，因为Logstash输出插件需要位置字段中的 `geo_point` 对象，但该值是字符串。失败的事件将写入死信队列，以及有关导致失败的错误的元数据：
 
-```json
+```sh
 {
    "@metadata" => {
     "dead_letter_queue" => {
@@ -123,7 +123,7 @@ input {
 
 要处理失败的事件，请创建以下管道，从死信队列中读取并删除映射问题：
 
-```json
+```sh
 input {
   dead_letter_queue {
     path => "/path/to/data/dead_letter_queue/" ①

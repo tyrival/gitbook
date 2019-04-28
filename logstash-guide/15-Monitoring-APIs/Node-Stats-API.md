@@ -2,7 +2,7 @@
 
 节点状态API可以获取Logstash的运行状态。
 
-```js
+```sh
 curl -XGET 'localhost:9600/_node/stats/<types>'
 ```
 
@@ -21,17 +21,17 @@ curl -XGET 'localhost:9600/_node/stats/<types>'
 
 Logstash通用的监控API请查看 [通用选项](../16-Working-with-plugins/README.md)。
 
-### 管道状态
+### JVM状态
 
 以下请求返回包含JVM统计信息的JSON文档：
 
-```js
+```sh
 curl -XGET 'localhost:9600/_node/stats/jvm?pretty'
 ```
 
 响应示例：
 
-```js
+```json
 {
   "jvm" : {
     "threads" : {
@@ -83,19 +83,20 @@ curl -XGET 'localhost:9600/_node/stats/jvm?pretty'
     },
     "uptime_in_millis" : 1809643
   }
+}
 ```
 
 ### 处理状态
 
 以下请求返回包含处理统计信息的JSON文档：
 
-```js
+```sh
 curl -XGET 'localhost:9600/_node/stats/process?pretty'
 ```
 
 响应示例：
 
-```js
+```json
 {
   "process" : {
     "open_file_descriptors" : 184,
@@ -112,19 +113,20 @@ curl -XGET 'localhost:9600/_node/stats/process?pretty'
       }
     }
   }
+}
 ```
 
 ### 事件状态
 
 以下请求返回包含Logstash实例事件相关的统计信息的JSON文档：
 
-```js
+```sh
 curl -XGET 'localhost:9600/_node/stats/events?pretty'
 ```
 
 响应示例：
 
-```js
+```json
 {
   "events" : {
     "in" : 293658,
@@ -133,6 +135,7 @@ curl -XGET 'localhost:9600/_node/stats/events?pretty'
     "duration_in_millis" : 2324391,
     "queue_push_duration_in_millis" : 343816
   }
+}
 ```
 
 ### 管道状态
@@ -144,13 +147,13 @@ curl -XGET 'localhost:9600/_node/stats/events?pretty'
 - 有关配置重新加载成功和失败的信息（启用 [重载配置文件](../06-Configuring-Logstash/Reloading-the-Config-File.md) 时）
 - 有关持久队列的信息（启用 [持久化队列](../10-Data-Resiliency/Persistent-Queues.md) 时）
 
-```js
+```sh
 curl -XGET 'localhost:9600/_node/stats/pipelines?pretty'
 ```
 
 响应示例：
 
-```js
+```json
 {
   "pipelines" : {
     "test" : {
@@ -252,17 +255,18 @@ curl -XGET 'localhost:9600/_node/stats/pipelines?pretty'
       }
     }
   }
+}
 ```
 
 您可以通过指定管道ID来查看特定管道的状态，下面的示例中，管道ID为 `test`：
 
-```js
+```sh
 curl -XGET 'localhost:9600/_node/stats/pipelines/test?pretty'
 ```
 
 响应示例：
 
-```js
+```json
 {
     "test" : {
       "events" : {
@@ -331,13 +335,13 @@ curl -XGET 'localhost:9600/_node/stats/pipelines/test?pretty'
 
 以下请求返回包含重载成败状态信息的JSON文档，包含：
 
-```js
+```sh
 curl -XGET 'localhost:9600/_node/stats/reloads?pretty'
 ```
 
 响应示例：
 
-```js
+```json
 {
   "reloads": {
     "successes": 0,
@@ -350,13 +354,13 @@ curl -XGET 'localhost:9600/_node/stats/reloads?pretty'
 
 当Logstash在容器中运行时，以下请求将返回包含cgroup信息的JSON文档，以便更准确地查看CPU负载，包括是否对容器进行了限制。
 
-```js
+```sh
 curl -XGET 'localhost:9600/_node/stats/os?pretty'
 ```
 
 响应示例：
 
-```js
+```json
 {
   "os" : {
     "cgroup" : {

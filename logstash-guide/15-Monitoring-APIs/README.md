@@ -9,13 +9,13 @@ Logstash提供以下监视API以检索有关Logstash的运行时指标：
 
 您可以使用root资源来检索有关Logstash实例的常规信息，包括主机和版本。
 
-```js
+```sh
 curl -XGET 'localhost:9600/?pretty'
 ```
 
 响应示例：
 
-```js
+```json
 {
    "host": "skywalker",
    "version": "6.7.1",

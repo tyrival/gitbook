@@ -35,7 +35,7 @@
 | [metricize](../19-Filter-plugins/metricize.md)               | 采用包含多个指标的复杂事件，并将这些指标拆分为多个事件，每个事件都包含一个指标 | [logstash-filter-metricize](https://github.com/logstash-plugins/logstash-filter-metricize) |
 | [metrics](../19-Filter-plugins/metrics.md)                   | 聚合指标                                                     | [logstash-filter-metrics](https://github.com/logstash-plugins/logstash-filter-metrics) |
 | [**mutate**](../19-Filter-plugins/mutate.md)                 | 修改字段                                                     | [logstash-filter-mutate](https://github.com/logstash-plugins/logstash-filter-mutate) |
-| [prune](../19-Filter-plugins/prune.md)                       | 基于字段的白名单或黑名单修剪事件数据                         | [logstash-filter-prune](https://github.com/logstash-plugins/logstash-filter-prune) |
+| [**prune**](../19-Filter-plugins/prune.md)                       | 基于字段的白名单或黑名单修剪事件数据                         | [logstash-filter-prune](https://github.com/logstash-plugins/logstash-filter-prune) |
 | [range](../19-Filter-plugins/range.md)                       | 根据给定的容量或长度限制校验指定字段                         | [logstash-filter-range](https://github.com/logstash-plugins/logstash-filter-range) |
 | [ruby](../19-Filter-plugins/ruby.md)                         | 执行任意ruby代码                                             | [logstash-filter-ruby](https://github.com/logstash-plugins/logstash-filter-ruby) |
 | [sleep](../19-Filter-plugins/sleep.md)                       | 休眠指定的时间                                               | [logstash-filter-sleep](https://github.com/logstash-plugins/logstash-filter-sleep) |

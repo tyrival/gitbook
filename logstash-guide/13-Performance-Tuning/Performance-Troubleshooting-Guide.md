@@ -33,7 +33,7 @@
 3. **检查JVM堆：**
    - 如果堆太小，CPU利用率通常会突破上限，导致JVM不断地收集垃圾。
    - 检查此问题的一种快速方法是将堆大小加倍，并查看性能是否有所提高。不要将堆大小配置得超过物理内存量。为操作系统和其他进程留出至少1GB的空闲空间。
-   - 您可以使用随Java分发的jmap命令行实用程序，或使用VisualVM来更准确地测量JVM堆。有关更多信息，请参阅 [堆性能分析](13-Performance-Tuning/Tuning-and-Profiling-Logstash-Performance.md#堆性能分析)。
+   - 您可以使用随Java分发的jmap命令行实用程序，或使用VisualVM来更准确地测量JVM堆。有关更多信息，请参阅 [堆性能分析](../13-Performance-Tuning/Tuning-and-Profiling-Logstash-Performance.md#堆性能分析)。
    - 始终确保将最小（Xms）和最大（Xmx）堆分配大小设置为相同的值，以防止堆在运行时调整大小，这将是一个造成极大开销的过程。
 
 4. **调整Logstash工作者设置：**

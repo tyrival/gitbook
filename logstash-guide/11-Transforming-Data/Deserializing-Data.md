@@ -8,7 +8,7 @@
 
 以下配置反序列化来自Kafka的输入：
 
-```json
+```sh
 input {
   kafka {
     codec => {
@@ -27,7 +27,7 @@ input {
 
 以下配置将CSV数据解析为 `columns` 字段中指定的字段名称：
 
-```json
+```sh
 filter {
   csv {
     separator => ","
@@ -42,7 +42,7 @@ filter {
 
 以下配置解码从 `fluent-logger-ruby` 收到的日志：
 
-```json
+```sh
 input {
   tcp {
     codec => fluent
@@ -57,7 +57,7 @@ input {
 
 以下配置解码文件中的JSON格式内容：
 
-```json
+```sh
 input {
   file {
     path => "/path/to/myfile.json"
@@ -71,7 +71,7 @@ input {
 
 以下配置解码来自Kafka流的事件：
 
-```json
+```sh
 input
   kafka {
     zk_connect => "127.0.0.1"
@@ -90,7 +90,7 @@ input
 
 以下配置解析存储在 `message` 字段中的整个XML文档：
 
-```json
+```sh
 filter {
   xml {
     source => "message"

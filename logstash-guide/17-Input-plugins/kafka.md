@@ -478,9 +478,9 @@ Java类用于反序列化记录的值
 
 为插件配置添加唯一 `ID`。如果未指定ID，Logstash将生成一个ID。强烈建议在配置中设置此ID。当您有两个或更多相同类型的插件时，这尤其有用，例如，如果您有2个beat输入，添加命名ID将有助于使用API监视Logstash。
 
-```json
+```sh
 input {
-  beats {
+  kafka {
     id => "my_plugin_id"
   }
 }

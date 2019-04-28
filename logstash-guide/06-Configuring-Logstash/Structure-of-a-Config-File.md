@@ -141,7 +141,7 @@ my_password =>"密码"
 
 #### URI
 
-URI可以是完整的URL，如 *http://elastic.co/* ，也可以是像 *[foobar](foobar)* 这样的简单标识符。如果URI包含密码，例如 *http://user:pass@example.net*，则不会记录或打印URI的密码部分。
+URI可以是完整的URL，如 *http://elastic.co/* ，也可以是像 *foobar* 这样的简单标识符。如果URI包含密码，例如 *http://user:pass@example.net*，则不会记录或打印URI的密码部分。
 
 例：
 
