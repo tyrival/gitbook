@@ -41,7 +41,7 @@
 | [sleep](../19-Filter-plugins/sleep.md)                       | 休眠指定的时间                                               | [logstash-filter-sleep](https://github.com/logstash-plugins/logstash-filter-sleep) |
 | [split](../19-Filter-plugins/split.md)                       | 分割多行消息为不同的事件                                     | [logstash-filter-split](https://github.com/logstash-plugins/logstash-filter-split) |
 | [syslog_pri](../19-Filter-plugins/syslog_pri.md)             | 解析 `syslog` 消息的 `PRI`（priority）字段                   | [logstash-filter-syslog_pri](https://github.com/logstash-plugins/logstash-filter-syslog_pri) |
-| [throttle](../19-Filter-plugins/throttle.md)                 | 限制事件的数量                                               | [logstash-filter-throttle](https://github.com/logstash-plugins/logstash-filter-throttle) |
+| [**throttle**](../19-Filter-plugins/throttle.md)                 | 限制事件的数量                                               | [logstash-filter-throttle](https://github.com/logstash-plugins/logstash-filter-throttle) |
 | [tld](../19-Filter-plugins/tld.md)                           | 替换默认消息字段为任意您在配置中指定的内容                   | [logstash-filter-tld](https://github.com/logstash-plugins/logstash-filter-tld) |
 | [translate](../19-Filter-plugins/translate.md)               | 基于一个hash或YAML文件替换字段内容                           | [logstash-filter-translate](https://github.com/logstash-plugins/logstash-filter-translate) |
 | [truncate](../19-Filter-plugins/truncate.md)                 | 当字段长度超过指定长度时，截断字段                           | [logstash-filter-truncate](https://github.com/logstash-plugins/logstash-filter-truncate) |

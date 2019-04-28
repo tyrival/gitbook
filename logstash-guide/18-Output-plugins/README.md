@@ -23,7 +23,7 @@
 | [google_pubsub](../18-Output-plugins/google_pubsub.md)       | 上传日志事件到Google Cloud PubSub                          | [logstash-output-google_pubsub](https://github.com/logstash-plugins/logstash-output-google_pubsub) |
 | [graphite](../18-Output-plugins/graphite.md)                 | 将指标写入Graphite                                         | [logstash-output-graphite](https://github.com/logstash-plugins/logstash-output-graphite) |
 | [graphtastic](../18-Output-plugins/graphtastic.md)           | 发送指标数据到窗口                                         | [logstash-output-graphtastic](https://github.com/logstash-plugins/logstash-output-graphtastic) |
-| [http](../18-Output-plugins/http.md)                         | 发送事件到通用的HTTP或HTTPS端点                            | [logstash-output-http](https://github.com/logstash-plugins/logstash-output-http) |
+| [**http**](../18-Output-plugins/http.md)                         | 发送事件到通用的HTTP或HTTPS端点                            | [logstash-output-http](https://github.com/logstash-plugins/logstash-output-http) |
 | [influxdb](../18-Output-plugins/influxdb.md)                 | 将指标写入InfluxDB                                         | [logstash-output-influxdb](https://github.com/logstash-plugins/logstash-output-influxdb) |
 | [irc](../18-Output-plugins/irc.md)                           | 将事件写入IRC                                              | [logstash-output-irc](https://github.com/logstash-plugins/logstash-output-irc) |
 | [juggernaut](../18-Output-plugins/juggernaut.md)             | 推送消息到Juggernaut websockets服务                        | [logstash-output-juggernaut](https://github.com/logstash-plugins/logstash-output-juggernaut) |
