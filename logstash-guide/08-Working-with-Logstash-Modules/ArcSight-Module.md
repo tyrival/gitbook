@@ -139,7 +139,7 @@ ArcSight模块提供以下配置项，这些配置项包括ArcSight特有的配�
 
 `var.inputs`
 
- - 值类型是 [String](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String)
+ - 值类型是 [String](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string)
 
  - 默认值为"eventbroker"
 
@@ -149,7 +149,7 @@ ArcSight模块提供以下配置项，这些配置项包括ArcSight特有的配�
 
 `var.input.eventbroker.bootstrap_servers`
 
-- 值类型是 [String](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String)
+- 值类型是 [String](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string)
 
 - 默认值为 "localhost:39092"\
 
@@ -157,7 +157,7 @@ ArcSight模块提供以下配置项，这些配置项包括ArcSight特有的配�
 
 `var.input.eventbroker.topics`
 
-- 值类型是 [Array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Array)
+- 值类型是 [Array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#array)
 
 - 默认值为 ["eb-cef"]
 
@@ -173,7 +173,7 @@ ArcSight模块提供以下配置项，这些配置项包括ArcSight特有的配�
 
 `var.input.eventbroker.ssl_key_password`
 
-- 值类型是 [Password](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Password)
+- 值类型是 [Password](../06-Configuring-Logstash/Structure-of-a-Config-File.md#password)
 
 - 此设置没有默认值。
 
@@ -181,7 +181,7 @@ ArcSight模块提供以下配置项，这些配置项包括ArcSight特有的配�
 
 `var.input.eventbroker.ssl_keystore_location`
 
-- 值类型是 [Path](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Path)
+- 值类型是 [Path](../06-Configuring-Logstash/Structure-of-a-Config-File.md#path)
 
 - 此设置没有默认值。
 
@@ -189,7 +189,7 @@ ArcSight模块提供以下配置项，这些配置项包括ArcSight特有的配�
 
 `var.input.eventbroker.ssl_keystore_password`
 
-- 值类型是 [Password](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Password)
+- 值类型是 [Password](../06-Configuring-Logstash/Structure-of-a-Config-File.md#password)
 
 - 此设置没有默认值。
 
@@ -197,7 +197,7 @@ ArcSight模块提供以下配置项，这些配置项包括ArcSight特有的配�
 
 `var.input.eventbroker.ssl_keystore_type`
 
-- 值类型是 [String](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String)
+- 值类型是 [String](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string)
 
 - 此设置没有默认值。
 
@@ -205,7 +205,7 @@ ArcSight模块提供以下配置项，这些配置项包括ArcSight特有的配�
 
 `var.input.eventbroker.ssl_truststore_location`
 
-- 值类型是 [Path](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Path)
+- 值类型是 [Path](../06-Configuring-Logstash/Structure-of-a-Config-File.md#path)
 
 - 此设置没有默认值。
 
@@ -213,7 +213,7 @@ ArcSight模块提供以下配置项，这些配置项包括ArcSight特有的配�
 
 `var.input.eventbroker.ssl_truststore_password`
 
-- 值类型是 [Password](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Password)
+- 值类型是 [Password](../06-Configuring-Logstash/Structure-of-a-Config-File.md#password)
 
 - 此设置没有默认值。
 
@@ -221,7 +221,7 @@ ArcSight模块提供以下配置项，这些配置项包括ArcSight特有的配�
 
 `var.input.eventbroker.ssl_truststore_type`
 
-- 值类型是 [String](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String)
+- 值类型是 [String](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string)
 
 - 此设置没有默认值。
 
@@ -229,7 +229,7 @@ ArcSight模块提供以下配置项，这些配置项包括ArcSight特有的配�
 
 `var.input.eventbroker.sasl_kerberos_service_name`
 
-- 值类型是 [String](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String)
+- 值类型是 [String](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string)
 
 - 此设置没有默认值。
 
@@ -237,7 +237,7 @@ ArcSight模块提供以下配置项，这些配置项包括ArcSight特有的配�
 
 `var.input.eventbroker.sasl_mechanism`
 
-- 值类型是 [String](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String)
+- 值类型是 [String](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string)
 
 - 默认值为"GSSAPI"
 
@@ -245,7 +245,7 @@ ArcSight模块提供以下配置项，这些配置项包括ArcSight特有的配�
 
 `var.input.eventbroker.jaas_path`
 
-- 值类型是 [Path](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Path)
+- 值类型是 [Path](../06-Configuring-Logstash/Structure-of-a-Config-File.md#path)
 
 - 此设置没有默认值。
 
@@ -264,7 +264,7 @@ KafkaClient {
 
 `var.input.eventbroker.kerberos_config`
 
-- 值类型是 [Path](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Path)
+- 值类型是 [Path](../06-Configuring-Logstash/Structure-of-a-Config-File.md#path)
 
 - 此设置没有默认值。
 
@@ -274,7 +274,7 @@ KafkaClient {
 
 `var.input.smartconnector.port`
 
-- 值类型是 [Number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Number)
+- 值类型是 [Number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#number)
 
 - 默认值为5000
 
@@ -282,7 +282,7 @@ KafkaClient {
 
 `var.input.smartconnector.ssl_enable`
 
-- 值类型是 [Boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Boolean)
+- 值类型是 [Boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#boolean)
 
 - 默认值为 `false`
 
@@ -290,7 +290,7 @@ KafkaClient {
 
 `var.input.smartconnector.ssl_cert`
 
-- 值类型是 [Path](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Path)
+- 值类型是 [Path](../06-Configuring-Logstash/Structure-of-a-Config-File.md#path)
 
 - 此设置没有默认值。
 
@@ -298,13 +298,13 @@ KafkaClient {
 
 `var.input.smartconnector.ssl_extra_chain_certs`
 
-- 值类型是 [Array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Array)
+- 值类型是 [Array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#array)
 - 默认值为 `[]`
   要添加到证书链的额外X509证书的路径数组。在系统存储中不需要CA链时很有用。
 
 `var.input.smartconnector.ssl_key`
 
-- 值类型是 [Path](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Path)
+- 值类型是 [Path](../06-Configuring-Logstash/Structure-of-a-Config-File.md#path)
 
 - 此设置没有默认值。
 
@@ -312,7 +312,7 @@ KafkaClient {
 
 `var.input.smartconnector.ssl_key_passphrase`
 
-- 值类型是 [Password](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Path)
+- 值类型是 [Password](../06-Configuring-Logstash/Structure-of-a-Config-File.md#path)
 
 - 默认值为 `nil`
 
@@ -320,7 +320,7 @@ KafkaClient {
 
 `var.input.smartconnector.ssl_verify`
 
-- 值类型是 [Boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Boolean)
+- 值类型是 [Boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#boolean)
 
 - 默认值为 `true`
 
@@ -332,17 +332,17 @@ KafkaClient {
 
 `var.elasticsearch.hosts`
 
-- 值类型是 [URI](../06-Configuring-Logstash/Structure-of-a-Config-File.md#URI)
+- 值类型是 [URI](../06-Configuring-Logstash/Structure-of-a-Config-File.md#uri)
 
 - 默认值为 `"localhost:9200"`
 
-  设置Elasticsearch集群的主机。对于每个主机，您必须指定主机名和端口。例如，"myhost:9200"。如果给定一个 [Array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Array)，Logstash将在hosts参数中指定的主机上加载平衡请求。从主机列表中排除 [专用主节点](https://www.elastic.co/guide/en/elasticsearch/reference/6.7/modules-node.html) 非常重要，以防止Logstash向主节点发送批量请求。因此，此参数应仅引用Elasticsearch中的数据或客户端节点
+  设置Elasticsearch集群的主机。对于每个主机，您必须指定主机名和端口。例如，"myhost:9200"。如果给定一个 [Array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#array)，Logstash将在hosts参数中指定的主机上加载平衡请求。从主机列表中排除 [专用主节点](https://www.elastic.co/guide/en/elasticsearch/reference/6.7/modules-node.html) 非常重要，以防止Logstash向主节点发送批量请求。因此，此参数应仅引用Elasticsearch中的数据或客户端节点
 
   这里的URL中出现的任何特殊字符必须是URL转义！这意味着 `＃` 应该以 `％23` 的形式输入。
 
 `var.elasticsearch.username`
 
-- 值类型是 [String](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String)
+- 值类型是 [String](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string)
 
 - 默认值是"elastic"
 
@@ -350,7 +350,7 @@ KafkaClient {
 
 `var.elasticsearch.password`
 
-- 值类型是 [String](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String)
+- 值类型是 [String](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string)
 
 - 默认值为"changeme"
 
@@ -358,7 +358,7 @@ KafkaClient {
 
 `var.elasticsearch.ssl.enabled`
 
-- 值类型是 [Boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Boolean)
+- 值类型是 [Boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#boolean)
 
 - 此设置没有默认值。
 
@@ -366,7 +366,7 @@ KafkaClient {
 
 `var.elasticsearch.ssl.verification_mode`
 
-- 值类型是 [String](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String)
+- 值类型是 [String](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string)
 
 - 默认值是"strict"
 
@@ -374,7 +374,7 @@ KafkaClient {
 
 `var.elasticsearch.ssl.certificate_authority`
 
-- 值类型是 [String](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String)
+- 值类型是 [String](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string)
 
 - 此设置没有默认值
 
@@ -382,7 +382,7 @@ KafkaClient {
 
 `var.elasticsearch.ssl.certificate`
 
-- 值类型是 [String](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String)
+- 值类型是 [String](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string)
 
 - 此设置没有默认值
 
@@ -390,7 +390,7 @@ KafkaClient {
 
 `var.elasticsearch.ssl.key`
 
-- 值类型是 [String](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String)
+- 值类型是 [String](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string)
 
 - 此设置没有默认值
 
@@ -398,7 +398,7 @@ KafkaClient {
 
 `var.kibana.host`
 
-- 值类型是 [String](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String)
+- 值类型是 [String](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string)
 
 - 默认值为 "localhost:5601"
 
@@ -406,7 +406,7 @@ KafkaClient {
 
 `var.kibana.scheme`
 
-- 值类型是 [String](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String)
+- 值类型是 [String](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string)
 
 - 默认值为"http"
 
@@ -414,7 +414,7 @@ KafkaClient {
 
 `var.kibana.username`
 
-- 值类型是 [String](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String)
+- 值类型是 [String](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string)
 
 - 默认值是"elastic"
 
@@ -422,7 +422,7 @@ KafkaClient {
 
 `var.kibana.password`
 
-- 值类型是 [String](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String)
+- 值类型是 [String](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string)
 
 - 默认值为"changeme"
 
@@ -430,7 +430,7 @@ KafkaClient {
 
 `var.kibana.ssl.enabled`
 
-- 值类型是 [Boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String)
+- 值类型是 [Boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string)
 
 - 默认值为false
 
@@ -438,7 +438,7 @@ KafkaClient {
 
 `var.kibana.ssl.verification_mode`
 
-- 值类型是 [String](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String)
+- 值类型是 [String](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string)
 
 - 默认值是"strict"
 
@@ -446,7 +446,7 @@ KafkaClient {
 
 `var.kibana.ssl.certificate_authority`
 
-- 值类型是 [String](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String)
+- 值类型是 [String](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string)
 
 - 此设置没有默认值
 
@@ -454,7 +454,7 @@ KafkaClient {
 
 `var.kibana.ssl.certificate`
 
-- 值类型是 [String](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String)
+- 值类型是 [String](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string)
 
 - 此设置没有默认值
 
@@ -462,7 +462,7 @@ KafkaClient {
 
 `var.kibana.ssl.key`
 
-- 值类型是 [String](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String)
+- 值类型是 [String](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string)
 
 - 此设置没有默认值
 

@@ -213,7 +213,7 @@ bin/logstash
 
 **`event_hubs`**
 
-- 值类型是 [Array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Array)
+- 值类型是 [Array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#array)
 
 - 没有默认值
 
@@ -227,7 +227,7 @@ bin/logstash
 
 **`event_hub_connections`**
 
-- 值类型是 [Array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Array)
+- 值类型是 [Array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#array)
 
 - 没有默认值
 
@@ -239,7 +239,7 @@ bin/logstash
 
 **`checkpoint_interval`**
 
-- 值类型是 [Number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Number)
+- 值类型是 [Number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#number)
 - 默认值为5秒
 - 设置为0以禁用。
   批处理期间写入检查点的时间间隔（以秒为单位）。检查点告诉Logstash重启后恢复处理的位置。无论此设置如何，都会在每批次结束时自动写入检查点。
@@ -248,19 +248,19 @@ bin/logstash
 
 **`consumer_group`**
 
-- 值类型是 [String](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String)
+- 值类型是 [String](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string)
 - 默认值为 `$Default`
 - 消费者组用于阅读Event Hub。专门为Logstash创建一个使用者组。然后确保Logstash的所有实例都使用该使用者组，以便它们可以正常工作。
 
 **`decorate_events`**
 
-- 值类型是 [Boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Number)
+- 值类型是 [Boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#number)
 - 默认值为false
 - 添加有关Event Hub的元数据，包括 `Event Hub name`、`consumer_group`、`processor_host`、`partition`、`offset`、`sequence`、`timestamp`和 `event_size`。
 
 **`initial_position`**
 
-- 值类型是 [String](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String)
+- 值类型是 [String](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string)
 
 - 有效参数是 `beginning`、 `end`、`look_back`
 
@@ -278,7 +278,7 @@ bin/logstash
 
 **`initial_position_look_back`**
 
-- 值类型是 [Number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Number)
+- 值类型是 [Number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#number)
 
 - 默认值为 `86400`
 
@@ -288,7 +288,7 @@ bin/logstash
 
 **`max_batch_size`**
 
-- 值类型是 [Number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Number)
+- 值类型是 [Number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#number)
 
 - 默认值为 `125`
 
@@ -296,7 +296,7 @@ bin/logstash
 
 **`storage_connectionedi`**
 
-- 值类型是 [String](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String)
+- 值类型是 [String](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string)
 
 - 没有默认值
 
@@ -306,7 +306,7 @@ bin/logstash
 
 **`storage_container`**
 
-- 值类型是 [String](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String)
+- 值类型是 [String](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string)
 
 - 如果未定义，则默认为Event Hub名称
 
@@ -316,7 +316,7 @@ bin/logstash
 
 **`threads`**
 
-- 值类型是 [Number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Number)
+- 值类型是 [Number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#number)
 
 - 最小值为 `2`
 
@@ -332,17 +332,17 @@ bin/logstash
 
 `var.elasticsearch.hosts`
 
-- 值类型是 [URI](../06-Configuring-Logstash/Structure-of-a-Config-File.md#URI)
+- 值类型是 [URI](../06-Configuring-Logstash/Structure-of-a-Config-File.md#uri)
 
 - 默认值为 `"localhost:9200"`
 
-  设置Elasticsearch集群的主机。对于每个主机，您必须指定主机名和端口。例如，"myhost:9200"。如果给定一个 [Array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Array)，Logstash将在hosts参数中指定的主机上加载平衡请求。从主机列表中排除 [专用主节点](https://www.elastic.co/guide/en/elasticsearch/reference/6.7/modules-node.html) 非常重要，以防止Logstash向主节点发送批量请求。因此，此参数应仅引用Elasticsearch中的数据或客户端节点
+  设置Elasticsearch集群的主机。对于每个主机，您必须指定主机名和端口。例如，"myhost:9200"。如果给定一个 [Array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#array)，Logstash将在hosts参数中指定的主机上加载平衡请求。从主机列表中排除 [专用主节点](https://www.elastic.co/guide/en/elasticsearch/reference/6.7/modules-node.html) 非常重要，以防止Logstash向主节点发送批量请求。因此，此参数应仅引用Elasticsearch中的数据或客户端节点
 
   这里的URL中出现的任何特殊字符必须是URL转义！这意味着 `＃` 应该以 `％23` 的形式输入。
 
 `var.elasticsearch.username`
 
-- 值类型是 [String](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String)
+- 值类型是 [String](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string)
 
 - 默认值是"elastic"
 
@@ -350,7 +350,7 @@ bin/logstash
 
 `var.elasticsearch.password`
 
-- 值类型是 [String](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String)
+- 值类型是 [String](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string)
 
 - 默认值为"changeme"
 
@@ -358,7 +358,7 @@ bin/logstash
 
 `var.elasticsearch.ssl.enabled`
 
-- 值类型是 [Boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Boolean)
+- 值类型是 [Boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#boolean)
 
 - 此设置没有默认值。
 
@@ -366,7 +366,7 @@ bin/logstash
 
 `var.elasticsearch.ssl.verification_mode`
 
-- 值类型是 [String](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String)
+- 值类型是 [String](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string)
 
 - 默认值是"strict"
 
@@ -374,7 +374,7 @@ bin/logstash
 
 `var.elasticsearch.ssl.certificate_authority`
 
-- 值类型是 [String](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String)
+- 值类型是 [String](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string)
 
 - 此设置没有默认值
 
@@ -382,7 +382,7 @@ bin/logstash
 
 `var.elasticsearch.ssl.certificate`
 
-- 值类型是 [String](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String)
+- 值类型是 [String](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string)
 
 - 此设置没有默认值
 
@@ -390,7 +390,7 @@ bin/logstash
 
 `var.elasticsearch.ssl.key`
 
-- 值类型是 [String](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String)
+- 值类型是 [String](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string)
 
 - 此设置没有默认值
 
@@ -398,7 +398,7 @@ bin/logstash
 
 `var.kibana.host`
 
-- 值类型是 [String](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String)
+- 值类型是 [String](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string)
 
 - 默认值为 "localhost:5601"
 
@@ -406,7 +406,7 @@ bin/logstash
 
 `var.kibana.scheme`
 
-- 值类型是 [String](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String)
+- 值类型是 [String](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string)
 
 - 默认值为"http"
 
@@ -414,7 +414,7 @@ bin/logstash
 
 `var.kibana.username`
 
-- 值类型是 [String](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String)
+- 值类型是 [String](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string)
 
 - 默认值是"elastic"
 
@@ -422,7 +422,7 @@ bin/logstash
 
 `var.kibana.password`
 
-- 值类型是 [String](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String)
+- 值类型是 [String](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string)
 
 - 默认值为"changeme"
 
@@ -430,7 +430,7 @@ bin/logstash
 
 `var.kibana.ssl.enabled`
 
-- 值类型是 [Boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String)
+- 值类型是 [Boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string)
 
 - 默认值为false
 
@@ -438,7 +438,7 @@ bin/logstash
 
 `var.kibana.ssl.verification_mode`
 
-- 值类型是 [String](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String)
+- 值类型是 [String](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string)
 
 - 默认值是"strict"
 
@@ -446,7 +446,7 @@ bin/logstash
 
 `var.kibana.ssl.certificate_authority`
 
-- 值类型是 [String](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String)
+- 值类型是 [String](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string)
 
 - 此设置没有默认值
 
@@ -454,7 +454,7 @@ bin/logstash
 
 `var.kibana.ssl.certificate`
 
-- 值类型是 [String](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String)
+- 值类型是 [String](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string)
 
 - 此设置没有默认值
 
@@ -462,7 +462,7 @@ bin/logstash
 
 `var.kibana.ssl.key`
 
-- 值类型是 [String](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String)
+- 值类型是 [String](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string)
 
 - 此设置没有默认值
 

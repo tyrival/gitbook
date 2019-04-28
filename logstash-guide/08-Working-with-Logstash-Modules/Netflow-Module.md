@@ -91,7 +91,7 @@ Netflow模块提供以下设置项来进行配置。这些设置包括Netflow特
 
 `var.input.udp.port`
 
-- 值类型是 [Number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Number)
+- 值类型是 [Number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#number)
 
 - 默认值为2055。
 
@@ -99,7 +99,7 @@ Netflow模块提供以下设置项来进行配置。这些设置包括Netflow特
 
 `var.input.udp.workers`
 
-- 值类型是 [Number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Number)
+- 值类型是 [Number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#number)
 
 - 默认值为2。
 
@@ -107,7 +107,7 @@ Netflow模块提供以下设置项来进行配置。这些设置包括Netflow特
 
 `var.input.udp.receive_buffer_bytes`
 
-- 值类型是 [Number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Number)
+- 值类型是 [Number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#number)
 
 - 默认值为212992。
 
@@ -115,7 +115,7 @@ Netflow模块提供以下设置项来进行配置。这些设置包括Netflow特
 
 `var.input.udp.queue_size`
 
-- 值类型是 [Number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Number)
+- 值类型是 [Number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#number)
 
 - 默认值为2000。
 
@@ -127,17 +127,17 @@ Netflow模块提供以下设置项来进行配置。这些设置包括Netflow特
 
 `var.elasticsearch.hosts`
 
-- 值类型是 [URI](../06-Configuring-Logstash/Structure-of-a-Config-File.md#URI)
+- 值类型是 [URI](../06-Configuring-Logstash/Structure-of-a-Config-File.md#uri)
 
 - 默认值为 `"localhost:9200"`
 
-  设置Elasticsearch集群的主机。对于每个主机，您必须指定主机名和端口。例如，"myhost:9200"。如果给定一个 [Array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Array)，Logstash将在hosts参数中指定的主机上加载平衡请求。从主机列表中排除 [专用主节点](https://www.elastic.co/guide/en/elasticsearch/reference/6.7/modules-node.html) 非常重要，以防止Logstash向主节点发送批量请求。因此，此参数应仅引用Elasticsearch中的数据或客户端节点
+  设置Elasticsearch集群的主机。对于每个主机，您必须指定主机名和端口。例如，"myhost:9200"。如果给定一个 [Array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#array)，Logstash将在hosts参数中指定的主机上加载平衡请求。从主机列表中排除 [专用主节点](https://www.elastic.co/guide/en/elasticsearch/reference/6.7/modules-node.html) 非常重要，以防止Logstash向主节点发送批量请求。因此，此参数应仅引用Elasticsearch中的数据或客户端节点
 
   这里的URL中出现的任何特殊字符必须是URL转义！这意味着 `＃` 应该以 `％23` 的形式输入。
 
 `var.elasticsearch.username`
 
-- 值类型是 [String](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String)
+- 值类型是 [String](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string)
 
 - 默认值是"elastic"
 
@@ -145,7 +145,7 @@ Netflow模块提供以下设置项来进行配置。这些设置包括Netflow特
 
 `var.elasticsearch.password`
 
-- 值类型是 [String](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String)
+- 值类型是 [String](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string)
 
 - 默认值为"changeme"
 
@@ -153,7 +153,7 @@ Netflow模块提供以下设置项来进行配置。这些设置包括Netflow特
 
 `var.elasticsearch.ssl.enabled`
 
-- 值类型是 [Boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Boolean)
+- 值类型是 [Boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#boolean)
 
 - 此设置没有默认值。
 
@@ -161,7 +161,7 @@ Netflow模块提供以下设置项来进行配置。这些设置包括Netflow特
 
 `var.elasticsearch.ssl.verification_mode`
 
-- 值类型是 [String](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String)
+- 值类型是 [String](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string)
 
 - 默认值是"strict"
 
@@ -169,7 +169,7 @@ Netflow模块提供以下设置项来进行配置。这些设置包括Netflow特
 
 `var.elasticsearch.ssl.certificate_authority`
 
-- 值类型是 [String](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String)
+- 值类型是 [String](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string)
 
 - 此设置没有默认值
 
@@ -177,7 +177,7 @@ Netflow模块提供以下设置项来进行配置。这些设置包括Netflow特
 
 `var.elasticsearch.ssl.certificate`
 
-- 值类型是 [String](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String)
+- 值类型是 [String](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string)
 
 - 此设置没有默认值
 
@@ -185,7 +185,7 @@ Netflow模块提供以下设置项来进行配置。这些设置包括Netflow特
 
 `var.elasticsearch.ssl.key`
 
-- 值类型是 [String](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String)
+- 值类型是 [String](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string)
 
 - 此设置没有默认值
 
@@ -193,7 +193,7 @@ Netflow模块提供以下设置项来进行配置。这些设置包括Netflow特
 
 `var.kibana.host`
 
-- 值类型是 [String](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String)
+- 值类型是 [String](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string)
 
 - 默认值为 "localhost:5601"
 
@@ -201,7 +201,7 @@ Netflow模块提供以下设置项来进行配置。这些设置包括Netflow特
 
 `var.kibana.scheme`
 
-- 值类型是 [String](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String)
+- 值类型是 [String](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string)
 
 - 默认值为"http"
 
@@ -209,7 +209,7 @@ Netflow模块提供以下设置项来进行配置。这些设置包括Netflow特
 
 `var.kibana.username`
 
-- 值类型是 [String](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String)
+- 值类型是 [String](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string)
 
 - 默认值是"elastic"
 
@@ -217,7 +217,7 @@ Netflow模块提供以下设置项来进行配置。这些设置包括Netflow特
 
 `var.kibana.password`
 
-- 值类型是 [String](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String)
+- 值类型是 [String](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string)
 
 - 默认值为"changeme"
 
@@ -225,7 +225,7 @@ Netflow模块提供以下设置项来进行配置。这些设置包括Netflow特
 
 `var.kibana.ssl.enabled`
 
-- 值类型是 [Boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String)
+- 值类型是 [Boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string)
 
 - 默认值为false
 
@@ -233,7 +233,7 @@ Netflow模块提供以下设置项来进行配置。这些设置包括Netflow特
 
 `var.kibana.ssl.verification_mode`
 
-- 值类型是 [String](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String)
+- 值类型是 [String](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string)
 
 - 默认值是"strict"
 
@@ -241,7 +241,7 @@ Netflow模块提供以下设置项来进行配置。这些设置包括Netflow特
 
 `var.kibana.ssl.certificate_authority`
 
-- 值类型是 [String](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String)
+- 值类型是 [String](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string)
 
 - 此设置没有默认值
 
@@ -249,7 +249,7 @@ Netflow模块提供以下设置项来进行配置。这些设置包括Netflow特
 
 `var.kibana.ssl.certificate`
 
-- 值类型是 [String](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String)
+- 值类型是 [String](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string)
 
 - 此设置没有默认值
 
@@ -257,7 +257,7 @@ Netflow模块提供以下设置项来进行配置。这些设置包括Netflow特
 
 `var.kibana.ssl.key`
 
-- 值类型是 [String](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String)
+- 值类型是 [String](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string)
 
 - 此设置没有默认值
 

@@ -93,48 +93,48 @@ input {
 
 | 设置                                                         | 输入类型                                                     | 必须 |
 | ------------------------------------------------------------ | ------------------------------------------------------------ | ---- |
-| [`clean_run`](#cleanrun)                                    | [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Boolean) | 否   |
-| [`columns_charset`](#columnscharset)                        | [hash](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Hash) | 否   |
-| [`connection_retry_attempts`](#connectionretryattempts)    | [number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Number) | 否   |
-| [`connection_retry_attempts_wait_time`](#connectionretryattemptswaittime) | [number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Number) | 否   |
-| [`jdbc_connection_string`](#jdbcconnectionstring)          | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String) | 是   |
-| [`jdbc_default_timezone`](#jdbcdefaulttimezone)            | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String) | 否   |
-| [`jdbc_driver_class`](#jdbcdriverclass)                    | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String) | 是   |
-| [`jdbc_driver_library`](#jdbcdriverlibrary)                | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String) | 否   |
-| [`jdbc_fetch_size`](#jdbcfetchsize)                        | [number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Number) | 否   |
-| [`jdbc_page_size`](#jdbcpagesize)                          | [number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Number) | 否   |
-| [`jdbc_paging_enabled`](#jdbcpagingenabled)                | [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Boolean) | 否   |
-| [`jdbc_password`](#jdbcpassword)                            | [password](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Password) | 否   |
-| [`jdbc_password_filepath`](#jdbcpasswordfilepath)          | [path](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Path) | 否   |
-| [`jdbc_pool_timeout`](#jdbcpooltimeout)                    | [number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Number) | 否   |
-| [`jdbc_user`](#jdbcuser)                                    | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String) | 否   |
-| [`jdbc_validate_connection`](#jdbcvalidateconnection)      | [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Boolean) | 否   |
-| [`jdbc_validation_timeout`](#jdbcvalidationtimeout)         | [number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Number) | 否   |
-| [`last_run_metadata_path`](#lastrunmetadatapath)          | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String) | 否   |
-| [`lowercase_column_names`](#lowercasecolumnnames)          | [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Boolean) | 否   |
-| [`parameters`](#parameters)                                  | [hash](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Hash) | 否   |
-| [`record_last_run`](#recordlastrun)                        | [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Boolean) | 否   |
-| [`schedule`](#schedule)                                      | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String) | 否   |
-| [`sequel_opts`](#sequelopts)                                | [hash](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Hash) | 否   |
-| [`sql_log_level`](#sqlloglevel)                            | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String)，值包含 `["fatal", "error", "warn", "info", "debug"]` | 否   |
-| [`statement`](#statement)                                    | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String) | 否   |
-| [`statement_filepath`](#statementfilepath)                  | [path](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Path) | 否   |
-| [`tracking_column`](#trackingcolumn)                        | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String) | 否   |
-| [`tracking_column_type`](#trackingcolumntype)              | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String)，值包含`["numeric", "timestamp"]` | 否   |
-| [`use_column_value`](#usecolumnvalue)                      | [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Boolean) | 否   |
+| [`clean_run`](#cleanrun)                                    | [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#boolean) | 否   |
+| [`columns_charset`](#columnscharset)                        | [hash](../06-Configuring-Logstash/Structure-of-a-Config-File.md#hash) | 否   |
+| [`connection_retry_attempts`](#connectionretryattempts)    | [number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#number) | 否   |
+| [`connection_retry_attempts_wait_time`](#connectionretryattemptswaittime) | [number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#number) | 否   |
+| [`jdbc_connection_string`](#jdbcconnectionstring)          | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string) | 是   |
+| [`jdbc_default_timezone`](#jdbcdefaulttimezone)            | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string) | 否   |
+| [`jdbc_driver_class`](#jdbcdriverclass)                    | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string) | 是   |
+| [`jdbc_driver_library`](#jdbcdriverlibrary)                | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string) | 否   |
+| [`jdbc_fetch_size`](#jdbcfetchsize)                        | [number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#number) | 否   |
+| [`jdbc_page_size`](#jdbcpagesize)                          | [number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#number) | 否   |
+| [`jdbc_paging_enabled`](#jdbcpagingenabled)                | [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#boolean) | 否   |
+| [`jdbc_password`](#jdbcpassword)                            | [password](../06-Configuring-Logstash/Structure-of-a-Config-File.md#password) | 否   |
+| [`jdbc_password_filepath`](#jdbcpasswordfilepath)          | [path](../06-Configuring-Logstash/Structure-of-a-Config-File.md#path) | 否   |
+| [`jdbc_pool_timeout`](#jdbcpooltimeout)                    | [number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#number) | 否   |
+| [`jdbc_user`](#jdbcuser)                                    | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string) | 否   |
+| [`jdbc_validate_connection`](#jdbcvalidateconnection)      | [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#boolean) | 否   |
+| [`jdbc_validation_timeout`](#jdbcvalidationtimeout)         | [number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#number) | 否   |
+| [`last_run_metadata_path`](#lastrunmetadatapath)          | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string) | 否   |
+| [`lowercase_column_names`](#lowercasecolumnnames)          | [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#boolean) | 否   |
+| [`parameters`](#parameters)                                  | [hash](../06-Configuring-Logstash/Structure-of-a-Config-File.md#hash) | 否   |
+| [`record_last_run`](#recordlastrun)                        | [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#boolean) | 否   |
+| [`schedule`](#schedule)                                      | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string) | 否   |
+| [`sequel_opts`](#sequelopts)                                | [hash](../06-Configuring-Logstash/Structure-of-a-Config-File.md#hash) | 否   |
+| [`sql_log_level`](#sqlloglevel)                            | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string)，值包含 `["fatal", "error", "warn", "info", "debug"]` | 否   |
+| [`statement`](#statement)                                    | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string) | 否   |
+| [`statement_filepath`](#statementfilepath)                  | [path](../06-Configuring-Logstash/Structure-of-a-Config-File.md#path) | 否   |
+| [`tracking_column`](#trackingcolumn)                        | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string) | 否   |
+| [`tracking_column_type`](#trackingcolumntype)              | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string)，值包含`["numeric", "timestamp"]` | 否   |
+| [`use_column_value`](#usecolumnvalue)                      | [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#boolean) | 否   |
 
 另请参阅 [通用配置项](#通用配置项) 以获取所有输入插件支持的选项列表。
 
 ##### clean_run
 
-- 值类型是 [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Boolean)
+- 值类型是 [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#boolean)
 - 默认值为false
 
 是否应保留先前的运行状态
 
 ##### columns_charset
 
-- 值类型是 [hash](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Hash)
+- 值类型是 [hash](../06-Configuring-Logstash/Structure-of-a-Config-File.md#hash)
 - 默认值为 `{}`
 
 特定列的字符编码。此选项将覆盖指定列的：`charset` 选项。
@@ -155,14 +155,14 @@ input {
 
 ##### connection_retry_attempts
 
-- 值类型是 [number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Number)
+- 值类型是 [number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#number)
 - 默认值为 `1`
 
 尝试连接数据库的最大次数
 
 ##### connection_retry_attempts_wait_time
 
-- 值类型是 [number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Number)
+- 值类型是 [number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#number)
 - 默认值为0.5
 
 连接尝试之间休眠的秒数
@@ -170,14 +170,14 @@ input {
 ##### jdbc_connection_string
 
 - 这是必需的设置。
-- 值类型是 [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String)
+- 值类型是 [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string)
 - 此设置没有默认值。
 
 JDBC连接字符串
 
 ##### jdbc_default_timezone
 
-- 值类型是 [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String)
+- 值类型是 [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string)
 - 此设置没有默认值。
 
 时区转换。SQL不允许时间戳字段中的时区数据。此插件将自动将SQL时间戳字段转换为Logstash时间戳，采用ISO8601格式的相对UTC时间。
@@ -187,14 +187,14 @@ JDBC连接字符串
 ##### jdbc_driver_class
 
 - 这是必需的设置。
-- 值类型是 [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String)
+- 值类型是 [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string)
 - 此设置没有默认值。
 
 如果您使用的是Oracle JDBC，则需要加载JDBC驱动程序类，例如"org.apache.derby.jdbc.ClientDriver" NB https://github.com/logstash-plugins/logstash-input-jdbc/issues/43 驱动（ojdbc6.jar）正确的 `jdbc_driver_class` 是 `"Java::oracle.jdbc.driver.OracleDriver"`
 
 ##### jdbc_driver_library
 
-- 值类型是 [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String)
+- 值类型是 [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string)
 - 此设置没有默认值。
 
 试图将JDBC逻辑抽象为mixin，以便在其他插件中进行重用（输入/输出）当有人包含此模块时调用此方法将这些方法添加到给定的基础。 JDBC驱动程序库到第三方驱动程序库的路径。如果需要多个库，您可以用逗号分隔它们。
@@ -203,21 +203,21 @@ JDBC连接字符串
 
 ##### jdbc_fetch_size
 
-- 值类型是 [number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Number)
+- 值类型是 [number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#number)
 - 此设置没有默认值。
 
 JDBC获取大小。如果没有提供，将使用相应的驱动程序默认值
 
 ##### jdbc_page_size
 
-- 值类型是 [number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Number)
+- 值类型是 [number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#number)
 - 默认值为 `100000`
 
 JDBC页面大小
 
 ##### jdbc_paging_enabled
 
-- 值类型是 [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Boolean)
+- 值类型是 [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#boolean)
 - 默认值为 `false`
 
 JDBC启用分页
@@ -228,21 +228,21 @@ JDBC启用分页
 
 ##### jdbc_password
 
-- 值类型是 [password](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Password)
+- 值类型是 [password](../06-Configuring-Logstash/Structure-of-a-Config-File.md#password)
 - 此设置没有默认值。
 
 JDBC密码
 
 ##### jdbc_password_filepath
 
-- 值类型是 [path](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Path)
+- 值类型是 [path](../06-Configuring-Logstash/Structure-of-a-Config-File.md#path)
 - 此设置没有默认值。
 
 JDBC密码文件名
 
 ##### jdbc_pool_timeout
 
-- 值类型是 [number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Number)
+- 值类型是 [number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#number)
 - 默认值为 `5`
 
 连接池配置。在引发PoolTimeoutError之前等待获取连接的秒数（默认值为5）
@@ -250,56 +250,56 @@ JDBC密码文件名
 ##### jdbc_user
 
 - 这是必需的设置。
-- 值类型是 [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String)
+- 值类型是 [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string)
 - 此设置没有默认值。
 
 JDBC用户
 
 ##### jdbc_validate_connection
 
-- 值类型是 [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Boolean)
+- 值类型是 [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#boolean)
 - 默认值为 `false`
 
 连接池配置。使用前验证连接。
 
 ##### jdbc_validation_timeout
 
-- 值类型是 [number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Number)
+- 值类型是 [number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#number)
 - 默认值为 `3600`
 
 连接池配置。验证连接的频率（以秒为单位）
 
 ##### last_run_metadata_path
 
-- 值类型是 [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String)
+- 值类型是 [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string)
 - 默认值为 `"$HOME/.logstash_jdbc_last_run"`
 
 上次运行时文件的路径
 
 ##### lowercase_column_names
 
-- 值类型是 [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Boolean)
+- 值类型是 [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#boolean)
 - 默认值为 `true`
 
 是否强制标识符字段的小写
 
 ##### parameters
 
-- 值类型是 [hash](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Hash)
+- 值类型是 [hash](../06-Configuring-Logstash/Structure-of-a-Config-File.md#hash)
 - 默认值为 `{}`
 
 查询参数的哈希值，例如 `{ "target_id" => "321" }`
 
 ##### record_last_run
 
-- 值类型是 [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Boolean)
+- 值类型是 [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#boolean)
 - 默认值为 `true`
 
 是否在 [`last_run_metadata_path`](#lastrunmetadatapath) 中保存状态
 
 ##### schedule
 
-- 值类型是 [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String)
+- 值类型是 [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string)
 - 此设置没有默认值。
 
 以Cron格式定期运行语句的时间表，例如："* * * * *"（每分钟执行查询）
@@ -308,7 +308,7 @@ JDBC用户
 
 ##### sequel_opts
 
-- 值类型是 [hash](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Hash)
+- 值类型是 [hash](../06-Configuring-Logstash/Structure-of-a-Config-File.md#hash)
 - 默认值为 `{}`
 
 一般/供应商特定的续集配置选项。
@@ -319,14 +319,14 @@ JDBC用户
 
 ##### sql_log_level
 
-- 值类型是 [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String)，值包含 `["fatal", "error", "warn", "info", "debug"]`
+- 值类型是 [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string)，值包含 `["fatal", "error", "warn", "info", "debug"]`
 - 默认值为 `"info"`
 
 记录SQL查询的日志级别，接受的值是常见的致命，错误，警告，信息和调试。默认值为info。
 
 ##### statement
 
-- 值类型是 [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String)
+- 值类型是 [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string)
 - 此设置没有默认值。
 
 如果未定义，即使编解码器未使用，Logstash会提醒要执行的声明。
@@ -341,28 +341,28 @@ JDBC用户
 
 ##### statement_filepath
 
-- 值类型是 [path](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Path)
+- 值类型是 [path](../06-Configuring-Logstash/Structure-of-a-Config-File.md#path)
 - 此设置没有默认值。
 
 包含要执行的语句的文件路径
 
 ##### tracking_column
 
-- 值类型是 [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String)
+- 值类型是 [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string)
 - 此设置没有默认值。
 
 如果 `use_column_value` 设置为 `true`，则要跟踪其值的列
 
 ##### tracking_column_type
 
-- 值类型是 [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String)，值包含 `numeric`, `timestamp`
+- 值类型是 [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string)，值包含 `numeric`, `timestamp`
 - 默认值为 `"numeric"`
 
 跟踪列的类型。目前只有 "numeric" 和 "timestamp"
 
 ##### use_column_value
 
-- 值类型是 [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Boolean)
+- 值类型是 [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#boolean)
 - 默认值为 `false`
 
 设置为 `true` 时，使用定义的[` tracking_column`](#trackingcolumn) 值作为 `:sql_last_value`。设置为 `false` 时，`:sql_last_value` 反映上次执行查询的时间。
@@ -373,39 +373,39 @@ JDBC用户
 
 | 设置                              | 输入类型                                                     | 必须 |
 | --------------------------------- | ------------------------------------------------------------ | ---- |
-| [`add_field`](#addfield)         | [hash](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Hash) | 否   |
-| [`codec`](#codec)                 | [codec](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Codec) | 否   |
-| [`enable_metric`](#enablemetric) | [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Boolean) | 否   |
-| [`id`](#id)                       | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String) | 否   |
-| [`tags`](#tags)                   | [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Array) | 否   |
-| [`type`](#type)                   | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String) | 否   |
+| [`add_field`](#addfield)         | [hash](../06-Configuring-Logstash/Structure-of-a-Config-File.md#hash) | 否   |
+| [`codec`](#codec)                 | [codec](../06-Configuring-Logstash/Structure-of-a-Config-File.md#codec) | 否   |
+| [`enable_metric`](#enablemetric) | [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#boolean) | 否   |
+| [`id`](#id)                       | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string) | 否   |
+| [`tags`](#tags)                   | [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#array) | 否   |
+| [`type`](#type)                   | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string) | 否   |
 
 #### 详情
 
 ##### add_field
 
-- 值类型是 [hash](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Hash)
+- 值类型是 [hash](../06-Configuring-Logstash/Structure-of-a-Config-File.md#hash)
 - 默认值为 `{}`
 
 向事件添加字段
 
 ##### codec
 
-- 值类型是 [codec](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Codec)
+- 值类型是 [codec](../06-Configuring-Logstash/Structure-of-a-Config-File.md#codec)
 - 默认值是 `"plain"`
 
 用于输入数据的编解码器。输入编解码器是一种在输入之前解码数据的便捷方法，无需在Logstash管道中使用单独的过滤器。
 
 ##### enable_metric
 
-- 值类型是 [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Boolean)
+- 值类型是 [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#boolean)
 - 默认值为 `true`
 
 默认情况下，禁用或启用此特定插件实例的指标记录，我们会记录所有的可用指标，但您可以禁用特定插件的指标收集。
 
 ##### id
 
-- 值类型是 [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String)
+- 值类型是 [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string)
 - 此设置没有默认值。
 
 为插件配置添加唯一 `ID`。如果未指定ID，Logstash将生成一个ID。强烈建议在配置中设置此ID。当您有两个或更多相同类型的插件时，这尤其有用，例如，如果您有2个beat输入，添加命名ID将有助于使用API监视Logstash。
@@ -420,7 +420,7 @@ input {
 
 ##### tags
 
-- 值类型是 [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Array)
+- 值类型是 [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#array)
 - 此设置没有默认值。
 
 为您的活动添加任意数量的任意标签。
@@ -429,7 +429,7 @@ input {
 
 ##### type
 
-- 值类型是 [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String)
+- 值类型是 [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string)
 - 此设置没有默认值。
 
 将 `type` 字段添加到此输入处理的所有事件。

@@ -133,65 +133,65 @@ output {
 
 | 设置                                                         | 输入类型                                                     | 必须 |
 | ------------------------------------------------------------ | ------------------------------------------------------------ | ---- |
-| [`action`](#action)                                          | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String) | 否   |
-| [`bulk_path`](#bulkpath)                                    | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String) | 否   |
-| [`cacert`](#cacert)                                          | [path](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Path) | 否   |
-| [`custom_headers`](#customheaders)                          | [hash](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Hash) | 否   |
-| [`doc_as_upsert`](#docasupsert)                            | [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Boolean) | 否   |
-| [`document_id`](#documentid)                                | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String) | 否   |
-| [`document_type`](#documenttype)                            | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String) | 否   |
-| [`failure_type_logging_whitelist`](#failuretypeloggingwhitelist) | [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Array) | 否   |
-| [`healthcheck_path`](#healthcheckpath)                      | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String) | 否   |
-| [`hosts`](#hosts)                                            | [uri](../06-Configuring-Logstash/Structure-of-a-Config-File.md#URI) | 否   |
-| [`http_compression`](#httpcompression)                      | [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Boolean) | 否   |
-| [`ilm_enabled`](#ilmenabled)                                | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String)，可选项为`["true", "false", "auto"]` | 否   |
-| [`ilm_pattern`](#ilmpattern)                                | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String) | 否   |
-| [`ilm_policy`](#ilmpolicy)                                  | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String) | 否   |
-| [`ilm_rollover_alias`](#ilmrolloveralias)                  | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String) | 否   |
-| [`index`](#index)                                            | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String) | 否   |
-| [`keystore`](#keystore)                                      | [path](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Path) | 否   |
-| [`keystore_password`](#keystorepassword)                    | [password](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Password) | 否   |
-| [`manage_template`](#managetemplate)                        | [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Boolean) | 否   |
-| [`parameters`](#parameters)                                  | [hash](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Hash) | 否   |
-| [`parent`](#parent)                                          | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String) | 否   |
-| [`password`](#password)                                      | [password](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Password) | 否   |
-| [`path`](#path)                                              | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String) | 否   |
-| [`pipeline`](#pipeline)                                      | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String) | 否   |
-| [`pool_max`](#poolmax)                                      | [number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Number) | 否   |
-| [`pool_max_per_route`](#poolmaxperroute)                  | [number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Number) | 否   |
-| [`proxy`](#proxy)                                            | [uri](../06-Configuring-Logstash/Structure-of-a-Config-File.md#URI) | 否   |
-| [`resurrect_delay`](#resurrectdelay)                        | [number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Number) | 否   |
-| [`retry_initial_interval`](#retryinitialinterval)          | [number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Number) | 否   |
-| [`retry_max_interval`](#retrymaxinterval)                  | [number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Number) | 否   |
-| [`retry_on_conflict`](#retryonconflict)                    | [number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Number) | 否   |
-| [`routing`](#routing)                                        | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String) | 否   |
-| [`script`](#script)                                          | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String) | 否   |
-| [`script_lang`](#scriptlang)                                | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String) | 否   |
-| [`script_type`](#scripttype)                                | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String)，可选项为`["inline", "indexed", "file"]` | 否   |
-| [`script_var_name`](#scriptvarname)                        | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String) | 否   |
-| [`scripted_upsert`](#scriptedupsert)                        | [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Boolean) | 否   |
-| [`sniffing`](#sniffing)                                      | [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Boolean) | 否   |
-| [`sniffing_delay`](#sniffingdelay)                          | [number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Number) | 否   |
-| [`sniffing_path`](#sniffingpath)                            | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String) | 否   |
-| [`ssl`](#ssl)                                                | [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Boolean) | 否   |
-| [`ssl_certificate_verification`](#sslcertificateverification) | [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Boolean) | 否   |
-| [`template`](#template)                                      | [path](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Path) | 否   |
-| [`template_name`](#templatename)                            | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String) | 否   |
-| [`template_overwrite`](#templateoverwrite)                  | [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Boolean) | 否   |
-| [`timeout`](#timeout)                                        | [number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Number) | 否   |
+| [`action`](#action)                                          | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string) | 否   |
+| [`bulk_path`](#bulkpath)                                    | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string) | 否   |
+| [`cacert`](#cacert)                                          | [path](../06-Configuring-Logstash/Structure-of-a-Config-File.md#path) | 否   |
+| [`custom_headers`](#customheaders)                          | [hash](../06-Configuring-Logstash/Structure-of-a-Config-File.md#hash) | 否   |
+| [`doc_as_upsert`](#docasupsert)                            | [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#boolean) | 否   |
+| [`document_id`](#documentid)                                | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string) | 否   |
+| [`document_type`](#documenttype)                            | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string) | 否   |
+| [`failure_type_logging_whitelist`](#failuretypeloggingwhitelist) | [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#array) | 否   |
+| [`healthcheck_path`](#healthcheckpath)                      | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string) | 否   |
+| [`hosts`](#hosts)                                            | [uri](../06-Configuring-Logstash/Structure-of-a-Config-File.md#uri) | 否   |
+| [`http_compression`](#httpcompression)                      | [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#boolean) | 否   |
+| [`ilm_enabled`](#ilmenabled)                                | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string)，可选项为`["true", "false", "auto"]` | 否   |
+| [`ilm_pattern`](#ilmpattern)                                | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string) | 否   |
+| [`ilm_policy`](#ilmpolicy)                                  | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string) | 否   |
+| [`ilm_rollover_alias`](#ilmrolloveralias)                  | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string) | 否   |
+| [`index`](#index)                                            | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string) | 否   |
+| [`keystore`](#keystore)                                      | [path](../06-Configuring-Logstash/Structure-of-a-Config-File.md#path) | 否   |
+| [`keystore_password`](#keystorepassword)                    | [password](../06-Configuring-Logstash/Structure-of-a-Config-File.md#password) | 否   |
+| [`manage_template`](#managetemplate)                        | [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#boolean) | 否   |
+| [`parameters`](#parameters)                                  | [hash](../06-Configuring-Logstash/Structure-of-a-Config-File.md#hash) | 否   |
+| [`parent`](#parent)                                          | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string) | 否   |
+| [`password`](#password)                                      | [password](../06-Configuring-Logstash/Structure-of-a-Config-File.md#password) | 否   |
+| [`path`](#path)                                              | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string) | 否   |
+| [`pipeline`](#pipeline)                                      | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string) | 否   |
+| [`pool_max`](#poolmax)                                      | [number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#number) | 否   |
+| [`pool_max_per_route`](#poolmaxperroute)                  | [number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#number) | 否   |
+| [`proxy`](#proxy)                                            | [uri](../06-Configuring-Logstash/Structure-of-a-Config-File.md#uri) | 否   |
+| [`resurrect_delay`](#resurrectdelay)                        | [number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#number) | 否   |
+| [`retry_initial_interval`](#retryinitialinterval)          | [number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#number) | 否   |
+| [`retry_max_interval`](#retrymaxinterval)                  | [number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#number) | 否   |
+| [`retry_on_conflict`](#retryonconflict)                    | [number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#number) | 否   |
+| [`routing`](#routing)                                        | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string) | 否   |
+| [`script`](#script)                                          | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string) | 否   |
+| [`script_lang`](#scriptlang)                                | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string) | 否   |
+| [`script_type`](#scripttype)                                | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string)，可选项为`["inline", "indexed", "file"]` | 否   |
+| [`script_var_name`](#scriptvarname)                        | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string) | 否   |
+| [`scripted_upsert`](#scriptedupsert)                        | [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#boolean) | 否   |
+| [`sniffing`](#sniffing)                                      | [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#boolean) | 否   |
+| [`sniffing_delay`](#sniffingdelay)                          | [number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#number) | 否   |
+| [`sniffing_path`](#sniffingpath)                            | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string) | 否   |
+| [`ssl`](#ssl)                                                | [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#boolean) | 否   |
+| [`ssl_certificate_verification`](#sslcertificateverification) | [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#boolean) | 否   |
+| [`template`](#template)                                      | [path](../06-Configuring-Logstash/Structure-of-a-Config-File.md#path) | 否   |
+| [`template_name`](#templatename)                            | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string) | 否   |
+| [`template_overwrite`](#templateoverwrite)                  | [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#boolean) | 否   |
+| [`timeout`](#timeout)                                        | [number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#number) | 否   |
 | [`truststore`](#truststore)                                  | [path](../06-Configuring-Logstash/Structure-of-a-Config-File.md#path) | 否   |
-| [`truststore_password`](#truststorepassword)                | [password](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Password) | 否   |
-| [`upsert`](#upsert)                                          | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String) | 否   |
-| [`user`](#user)                                              | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String) | 否   |
-| [`validate_after_inactivity`](#validateafterinactivity)    | [path](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Path) | 否   |
-| [`version`](#version)                                        | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String) | 否   |
-| [`version_type`](#versiontype)                              | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String)，可选项为`["internal", "external", "external_gt", "external_gte", "force"]` | 否   |
+| [`truststore_password`](#truststorepassword)                | [password](../06-Configuring-Logstash/Structure-of-a-Config-File.md#password) | 否   |
+| [`upsert`](#upsert)                                          | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string) | 否   |
+| [`user`](#user)                                              | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string) | 否   |
+| [`validate_after_inactivity`](#validateafterinactivity)    | [path](../06-Configuring-Logstash/Structure-of-a-Config-File.md#path) | 否   |
+| [`version`](#version)                                        | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string) | 否   |
+| [`version_type`](#versiontype)                              | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string)，可选项为`["internal", "external", "external_gt", "external_gte", "force"]` | 否   |
 
 另请参阅  [通用配置项](#通用配置项) 以获取所有输出插件支持的选项列表。
 
 ##### action
 
-- 值类型是 [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String)
+- 值类型是 [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string)
 - 默认值为"索引"
 
 此配置与协议无关（即非http，非java特定），表示要执行的Elasticsearch操作。方法是：
@@ -206,35 +206,35 @@ output {
 
 ##### bulk_path
 
-- 值类型是 [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String)
+- 值类型是 [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string)
 - 此设置没有默认值。
 
 用于执行\_bulk请求的HTTP路径，默认为路径参数和"_bulk"的串联
 
 ##### cacert
 
-- 值类型是 [path](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Path)
+- 值类型是 [path](../06-Configuring-Logstash/Structure-of-a-Config-File.md#path)
 - 此设置没有默认值。
 
 用于验证服务器证书的.cer或.pem文件
 
 ##### doc_as_upsert
 
-- 值类型是 [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Boolean)
+- 值类型是 [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#boolean)
 - 默认值为 `false`
 
 为更新模式启用 `doc_as_upsert`。如果Elasticsearch中不存在 `document_id`，请使用source创建新文档
 
 ##### document_id
 
-- 值类型是 [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String)
+- 值类型是 [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string)
 - 此设置没有默认值。
 
 索引的文档ID。用于覆盖Elasticsearch中具有相同ID的现有条目。
 
 ##### document_type
 
-- 值类型是 [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String)
+- 值类型是 [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string)
 - 此设置没有默认值。
 - 不推荐使用此选项
 
@@ -245,27 +245,27 @@ output {
 
 ##### failure_type_logging_whitelist
 
-- 值类型是 [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Array)
+- 值类型是 [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#array)
 - 默认值为 `[]`
 
 在白名单中设置您不想记录的Elasticsearch错误。一个比较有用的场景是您想要跳过所有409错误 —— `document_already_exists_exception` 时。
 
 ##### custom_headers
 
-- 值类型是 [hash](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Hash)
+- 值类型是 [hash](../06-Configuring-Logstash/Structure-of-a-Config-File.md#hash)
 - 此设置没有默认值。
 
 将一组键值对注入每个请求的头信息中，并发送给elasticsearch节点。头信息将用于任何类型的请求（_bulk请求，模板安装，运行状况检查和嗅探）。这些自定义标头将被 `http_compression` 等设置覆盖。
 
 ##### healthcheck_path
 
-- 值类型是 [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String)
+- 值类型是 [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string)
 - 此设置没有默认值。
 
 HTTP路径，当后端被标记为发送时发送HEAD请求，请求在后台发送，以查看它是否在再次有资格为请求提供服务之前再次返回。如果您有自定义防火墙规则，则可能需要更改此设置
 
 ##### hosts
-- 值类型是 [uri](../06-Configuring-Logstash/Structure-of-a-Config-File.md#URI)
+- 值类型是 [uri](../06-Configuring-Logstash/Structure-of-a-Config-File.md#uri)
 - 默认值为 `[//127.0.0.1]`
 
 设置远程实例的主机。如果给定一个数组，它将在 `hosts` 参数中指定的主机上进行请求的负载均衡。请记住，http协议使用 [http](https://www.elastic.co/guide/en/elasticsearch/reference/current/modules-http.html#modules-http) 地址（例如，9200，而不是9300）。 `"127.0.0.1"` `["127.0.0.1:9200","127.0.0.2:9200"]` `["http://127.0.0.1"]``["https://127.0.0.1:9200"]` `["https://127.0.0.1:9200/mypath"]` （如果在子路径上使用代理）从主机列表中排除 [专用主节点](https://www.elastic.co/guide/en/elasticsearch/reference/current/modules-node.html) 非常重要，以防止Logstash向主节点发送批量请求。因此，此参数应仅引用Elasticsearch中的数据或客户端节点。
@@ -274,14 +274,14 @@ HTTP路径，当后端被标记为发送时发送HEAD请求，请求在后台发
 
 ##### http_compression
 
-- 值类型是 [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Boolean)
+- 值类型是 [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#boolean)
 - 默认值为 `false`
 
 对请求启用gzip压缩。请注意，默认情况下，Elasticsearch v5.0及更高版本的响应压缩处于启用状态
 
 ##### ilm_enabled
 
-- 值类型是 [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String)，值包含：`true, false, auto`
+- 值类型是 [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string)，值包含：`true, false, auto`
 - 默认值为 `false`
 
 默认设置 `false` 将禁用索引生命周期管理功能。
@@ -296,7 +296,7 @@ HTTP路径，当后端被标记为发送时发送HEAD请求，请求在后台发
 
 ##### ilm_pattern
 
-- 值类型是 [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String)
+- 值类型是 [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string)
 - 默认值为 `{now/d}-000001`
 
 索引生命周期管理的生成索引的规则。规则中指定的值将在创建时附加到别名，并在ILM创建新索引时自动递增。
@@ -313,7 +313,7 @@ HTTP路径，当后端被标记为发送时发送HEAD请求，请求在后台发
 
 ##### ilm_policy
 
-- 值类型是 [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String)
+- 值类型是 [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string)
 - 默认值是 `logstash`
   修改此设置以使用自定义索引生命周期管理策略，而不是默认值。如果未设置此值，则默认策略将自动安装到Elasticsearch中
 
@@ -322,7 +322,7 @@ HTTP路径，当后端被标记为发送时发送HEAD请求，请求在后台发
 
 ##### ilm_rollover_alias
 
-- 值类型是 [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String)
+- 值类型是 [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string)
 - 默认值是 `logstash`
 
 翻转别名是将使用索引生命周期管理管理的索引将被写入的别名。
@@ -337,28 +337,28 @@ HTTP路径，当后端被标记为发送时发送HEAD请求，请求在后台发
 
 ##### index
 
-- 值类型是 [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String)
+- 值类型是 [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string)
 - 默认值为 `"logstash-%{+YYYY.MM.dd}"`
 
 写入事件的索引，可以使用 `%{foo}` 动态语法。默认值将按日对索引进行分区，以便您可以更轻松地删除旧数据或仅搜索特定日期范围。索引不能包含大写字符。对于每周索引，建议使用ISO 8601格式，例如，` logstash-%{+xxxx.ww}`。 LS使用Joda从事件时间戳格式化索引模式。 Joda格式在 [这里](https://www.joda.org/joda-time/apidocs/org/joda/time/format/DateTimeFormat.html) 定义。
 
 ##### keystore
 
-- 值类型是 [path](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Path)
+- 值类型是 [path](../06-Configuring-Logstash/Structure-of-a-Config-File.md#path)
 - 此设置没有默认值。
 
 用于向服务器提供证书的密钥库。它可以是.jks或.p12
 
 ##### keystore_password
 
-- 值类型是 [password](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Password)
+- 值类型是 [password](../06-Configuring-Logstash/Structure-of-a-Config-File.md#password)
 - 此设置没有默认值。
 
 设置密钥库密码
 
 ##### manage_template
 
-- 值类型是 [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Boolean)
+- 值类型是 [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#boolean)
 - 默认值为 `true`
 
 从Logstash 1.3开始，如果名称为 `template_name` 的模板尚不存在，则在Logstash启动期间将模板应用于Elasticsearch。默认情况下，此默认模板的内容是 `logstash-%{+YYYY.MM.dd}` ，它始终根据模式 `logstash- *` 匹配索引。如果您需要支持其他索引名称，或者想要更改模板中的映射，可以通过将 `template` 设置自定义模板的路径。
@@ -367,98 +367,98 @@ HTTP路径，当后端被标记为发送时发送HEAD请求，请求在后台发
 
 ##### parameters
 
-- 值类型是 [hash](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Hash)
+- 值类型是 [hash](../06-Configuring-Logstash/Structure-of-a-Config-File.md#hash)
 - 此设置没有默认值。
 
 传递一组键值对作为URL查询字符串。此查询字符串将添加到hosts配置中列出的每个主机。如果主机列表包含已具有查询字符串的URL，则将附加此处指定的URL。
 
 ##### parent
 
-- 值类型是 [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String)
+- 值类型是 [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string)
 - 默认值为 `nil`
 
 对于子文档，关联父项的ID。这可以使用 `%{foo}` 动态语法。
 
 ##### password
 
-- 值类型是 [password](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Password)
+- 值类型是 [password](../06-Configuring-Logstash/Structure-of-a-Config-File.md#password)
 - 此设置没有默认值。
 
 用于向安全Elasticsearch集群进行身份验证的密码
 
 ##### path
 
-- 值类型是 [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String)
+- 值类型是 [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string)
 - 此设置没有默认值。
 
 Elasticsearch服务器所在的HTTP路径。如果必须将Elasticsearch运行于代理之后，并且需要代理对Elasticsearch HTTP API进行重映射，请使用此选项。请注意，如果您在hosts字段中使用路径作为URL的组件，则可能也不会设置此字段。这会在启动时引发错误
 
 ##### pipeline
 
-- 值类型是 [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String)
+- 值类型是 [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string)
 - 默认值为 `nil`
 
 设置您希望为事件执行的摄取管道。您还可以在此处使用事件相关配置，例 `pipeline => "%{INGEST_PIPELINE}"`
 
 ##### pool_max
 
-- 值类型是 [number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Number)
+- 值类型是 [number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#number)
 - 默认值为 `1000`
 
 当输出尝试有效地重用连接时有一个最大值，此设置决定输出创建的最大打开连接数。将此设置得太低可能意味着经常关闭/打开不良的连接。
 
 ##### pool_max_per_route
 
-- 值类型是 [number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Number)
+- 值类型是 [number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#number)
 - 默认值为 `100`
 
 当输出尝试有效地重用连接时，我们每个端点都有一个最大值。此设置决定输出创建的每个端点的最大打开连接数。将此设置得太低可能意味着经常关闭/打开不良的连接。
 
 ##### proxy
 
-- 值类型是 [uri](../06-Configuring-Logstash/Structure-of-a-Config-File.md#URI)
+- 值类型是 [uri](../06-Configuring-Logstash/Structure-of-a-Config-File.md#uri)
 - 此设置没有默认值。
 
 设置转发HTTP代理的地址。这用于接受散列作为参数，但现在只接受URI类型的参数以防止泄漏凭据。
 
 ##### resurrect_delay
 
-- 值类型是 [number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Number)
+- 值类型是 [number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#number)
 - 默认值为 `5`
 
 尝试复活的频率间隔。复活是指检查标记下来的后端端点，以查看它们是否已恢复生命的过程
 
 ##### retry_initial_interval
 
-- 值类型是 [number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Number)
+- 值类型是 [number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#number)
 - 默认值为 `2`
 
 设置批量重试之间的初始间隔（秒）。每次重试时加倍，直到 `retry_max_interval`
 
 ##### retry_max_interval
 
-- 值类型是 [number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Number)
+- 值类型是 [number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#number)
 - 默认值为 `64`
 
 设置批量重试之间的最大间隔（秒）。
 
 ##### retry_on_conflict
 
-- 值类型是 [number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Number)
+- 值类型是 [number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#number)
 - 默认值为 `1`
 
 Elasticsearch应在内部重试更新/上传文档的次数有关详细信息，请参阅 [部分更新](https://www.elastic.co/guide/en/elasticsearch/guide/current/partial-updates.html)
 
 ##### routing
 
-- 值类型是 [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String)
+- 值类型是 [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string)
 - 此设置没有默认值。
 
 要应用于所有已处理事件的路由覆盖。这可以使用 `%{foo}` 语法动态化。
 
 ##### script
 
-- 值类型是 [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String)
+- 值类型是 [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string)
 - 默认值为 `""`
 
 为脚本化更新模式设置脚本名称
@@ -475,63 +475,63 @@ output {
 
 ##### script_lang
 
-- 值类型是 [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String)
+- 值类型是 [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string)
 - 默认值是 `"painless"`
 
 设置使用的脚本的语言。如果未设置，则默认为ES 5.0中的 "painless"。在Elasticsearch 6及更高版本上使用索引（存储）脚本时，必须将此参数设置为 `""`（空字符串）。
 
 ##### script_type
 
-- 值类型是 [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String)，可以是：`inline`, `indexed`, `file`
+- 值类型是 [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string)，可以是：`inline`, `indexed`, `file`
 - 默认值为 `["inline"]`
 
 定义"script"变量内联引用的脚本类型："script"包含内联脚本的索引："script"包含在elasticsearch文件中直接编入索引的脚本名称："script"包含存储在elasticsearch的config目录中的脚本名称
 
 ##### script_var_name
 
-- 值类型是 [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String)
+- 值类型是 [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string)
 - 默认值为 `"event"`
 
 设置传递给脚本的变量名称（脚本化更新）
 
 ##### scripted_upsert
 
-- 值类型是 [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Boolean)
+- 值类型是 [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#boolean)
 - 默认值为 `false`
 
 如果启用，脚本负责创建不存在的文档（脚本更新）
 
 ##### sniffing
 
-- 值类型是 [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Boolean)
+- 值类型是 [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#boolean)
 - 默认值为 `false`
 
 此设置要求Elasticsearch提供所有群集节点的列表，并将它们添加到主机列表中。对于Elasticsearch 1.x和2.x，任何具有` http.enabled`（默认情况下为on）的节点都将添加到主机列表中，仅包括主节点！对于Elasticsearch 5.x和6.x，任何具有 `http.enabled`（默认情况下为on）的节点都将添加到主机列表中，仅排除主节点。
 
 ##### sniffing_delay
 
-- 值类型是 [number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Number)
+- 值类型是 [number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#number)
 - 默认值为 `5`
 
 嗅闻尝试之间等待的时间，以秒为单位
 
 ##### sniffing_path
 
-- 值类型是 [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String)
+- 值类型是 [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string)
 - 此设置没有默认值。
 
 用于嗅探请求的HTTP路径默认值是通过连接路径值和"_nodes / http"来计算的，如果设置了`sniffing_path`，它将被用作绝对路径，这里不使用完整URL，只有路径，例如路径。"/sniff/\_nodes/http"
 
 ##### ssl
 
-- 值类型是 [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Boolean)
+- 值类型是 [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#boolean)
 - 此设置没有默认值。
 
 启用与Elasticsearch集群的SSL/TLS安全通信。保留此未指定将使用在主机中列出的URL中指定的任何方案。如果未指定显式协议，则将使用纯HTTP。如果在此处明确禁用SSL，则如果在主机中提供HTTPS URL，则插件将拒绝启动
 
 ##### ssl_certificate_verification
 
-- 值类型是 [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Boolean)
+- 值类型是 [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#boolean)
 - 默认值为 `true`
 
 用于验证服务器证书的选项。禁用此功能会严重影响安全性。有关禁用证书验证的更多信息，请阅读 https://www.cs.utexas.edu/~shmat/shmat_ccs12.pdf
@@ -545,7 +545,7 @@ output {
 
 ##### template_name
 
-- 值类型是 [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String)
+- 值类型是 [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string)
 - 默认值为 `"logstash"`
 
 此配置项定义如何在Elasticsearch中命名模板。请注意，如果您已使用模板管理功能，并随后更改此功能，则需要手动修剪旧模板，例如
@@ -558,7 +558,7 @@ curl -XDELETE <http：// localhost：9200 / _template / OldTemplateName？pretty
 
 ##### template_overwrite
 
-- 值类型是 [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Boolean)
+- 值类型是 [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#boolean)
 - 默认值为 `false`
 
 template_overwrite选项将始终使用模板指示的模板，或包含的模板覆盖Elasticsearch中指示的模板。默认情况下，此选项设置为false。如果您始终希望了解Logstash提供的模板，则此选项对您非常有用。同样，如果你有自己的模板文件由puppet管理，并且你希望能够定期更新它，这个选项也可以帮助那里。
@@ -567,56 +567,56 @@ template_overwrite选项将始终使用模板指示的模板，或包含的模�
 
 ##### timeout
 
-- 值类型是 [number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Number)
+- 值类型是 [number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#number)
 - 默认值为 `60`
 
 设置发送Elasticsearch的网络操作和请求的超时（以秒为单位）。如果发生超时，将重试该请求。
 
 ##### truststore
 
-- 值类型是 [path](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Path)
+- 值类型是 [path](../06-Configuring-Logstash/Structure-of-a-Config-File.md#path)
 - 此设置没有默认值。
 
 用于验证服务器证书的信任库。它可以是.jks或.p12。使用 `:truststore` 或 `:cacert`。
 
 ##### truststore_password
 
-- 值类型是 [password](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Password)
+- 值类型是 [password](../06-Configuring-Logstash/Structure-of-a-Config-File.md#password)
 - 此设置没有默认值。
 
 设置信任库密码
 
 ##### upsert
 
-- 值类型是 [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String)
+- 值类型是 [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string)
 - 默认值为 `""`
 
 为更新模式设置upsert内容。如果 `document_id` 不存在，则使用此参数创建一个新文档作为json字符串
 
 ##### USER
 
-- 值类型是 [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String)
+- 值类型是 [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string)
 - 此设置没有默认值。
 
 用于对安全的Elasticsearch集群进行身份验证的用户名
 
 ##### validate_after_inactivity
 
-- 值类型是 [number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Number)
+- 值类型是 [number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#number)
 - 默认值为 `10000`
 
 在使用keepalive在连接执行请求之前，检查连接是否过时之前要等待多长时间。您可能希望将此值设置得更低，如果您经常收到连接错误引用Apache commons文档（此客户端基于Apache Commmons）：定义不活动的时间段（以毫秒为单位），之后必须重新验证持久连接，然后再将其租给消费者。传递给此方法的非正值会禁用连接验证。此检查有助于检测已变为陈旧（半关闭）的连接，同时在池中保持不活动状态。有关详细信息，请参阅 [这些文档](https://hc.apache.org/httpcomponents-client-ga/httpclient/apidocs/org/apache/http/impl/conn/PoolingHttpClientConnectionManager.html#setValidateAfterInactivity(int))
 
 ##### version
 
-- 值类型是 [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String)
+- 值类型是 [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string)
 - 此设置没有默认值。
 
 用于索引的版本。使用 `%{my_version}` 等sprintf语法，在此处使用字段值。请参阅https://www.elastic.co/blog/elasticsearch-versioning-support。
 
 ##### version_type
 
-- 值类型是 [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String)，值包含： `internal`, `external`, `external_gt`, `external_gte`, `force`
+- 值类型是 [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string)，值包含： `internal`, `external`, `external_gt`, `external_gte`, `force`
 - 此设置没有默认值。
 
 用于索引的version_type。请参阅https://www.elastic.co/blog/elasticsearch-versioning-support。另见[https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-index\_.html#_version_types](https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-index_.html#_version_types)
@@ -627,19 +627,19 @@ template_overwrite选项将始终使用模板指示的模板，或包含的模�
 
 | 设置                              | 输入类型                                                     | 必须 |
 | --------------------------------- | ------------------------------------------------------------ | ---- |
-| [`enable_metric`](#enablemetric) | [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Boolean) | 否   |
-| [`id`](#id)                       | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String) | 否   |
+| [`enable_metric`](#enablemetric) | [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#boolean) | 否   |
+| [`id`](#id)                       | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string) | 否   |
 
 ##### enable_metric
 
-- 值类型是 [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Boolean)
+- 值类型是 [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#boolean)
 - 默认值为 `true`
 
 禁用或启用此特定插件实例的度量标准记录。 默认情况下，我们会记录所有可用的指标，但您可以禁用特定插件的指标收集。
 
 ##### id
 
-- 值类型是 [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String)
+- 值类型是 [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string)
 - 此设置没有默认值。
 
 为插件配置添加唯一ID。 如果未指定ID，Logstash将生成一个ID。 强烈建议在配置中设置此ID。 当您有两个或更多相同类型的插件时，这尤其有用。 例如，如果您有2个elasticsearch输出。 在这种情况下添加命名ID将有助于在使用监视API时监视Logstash。

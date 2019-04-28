@@ -57,26 +57,26 @@ filter {
 
 | Setting                     | Input type                                                   | Required |
 | --------------------------- | ------------------------------------------------------------ | -------- |
-| [`convert`](#convert)       | [hash](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Hash) | 否       |
-| [`copy`](#copy)             | [hash](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Hash) | 否       |
-| [`gsub`](#gsub)             | [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Array) | 否       |
-| [`join`](#join)             | [hash](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Hash) | 否       |
-| [`lowercase`](#lowercase)   | [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Array) | 否       |
-| [`merge`](#merge)           | [hash](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Hash) | 否       |
-| [`coerce`](#coerce)         | [hash](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Hash) | 否       |
-| [`rename`](#rename)         | [hash](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Hash) | 否       |
-| [`replace`](#replace)       | [hash](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Hash) | 否       |
-| [`split`](#split)           | [hash](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Hash) | 否       |
-| [`strip`](#strip)           | [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Array) | 否       |
-| [`update`](#update)         | [hash](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Hash) | 否       |
-| [`uppercase`](#uppercase)   | [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Array) | 否       |
-| [`capitalize`](#capitalize) | [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Array) | 否       |
+| [`convert`](#convert)       | [hash](../06-Configuring-Logstash/Structure-of-a-Config-File.md#hash) | 否       |
+| [`copy`](#copy)             | [hash](../06-Configuring-Logstash/Structure-of-a-Config-File.md#hash) | 否       |
+| [`gsub`](#gsub)             | [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#array) | 否       |
+| [`join`](#join)             | [hash](../06-Configuring-Logstash/Structure-of-a-Config-File.md#hash) | 否       |
+| [`lowercase`](#lowercase)   | [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#array) | 否       |
+| [`merge`](#merge)           | [hash](../06-Configuring-Logstash/Structure-of-a-Config-File.md#hash) | 否       |
+| [`coerce`](#coerce)         | [hash](../06-Configuring-Logstash/Structure-of-a-Config-File.md#hash) | 否       |
+| [`rename`](#rename)         | [hash](../06-Configuring-Logstash/Structure-of-a-Config-File.md#hash) | 否       |
+| [`replace`](#replace)       | [hash](../06-Configuring-Logstash/Structure-of-a-Config-File.md#hash) | 否       |
+| [`split`](#split)           | [hash](../06-Configuring-Logstash/Structure-of-a-Config-File.md#hash) | 否       |
+| [`strip`](#strip)           | [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#array) | 否       |
+| [`update`](#update)         | [hash](../06-Configuring-Logstash/Structure-of-a-Config-File.md#hash) | 否       |
+| [`uppercase`](#uppercase)   | [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#array) | 否       |
+| [`capitalize`](#capitalize) | [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#array) | 否       |
 
 另请参阅 [通用配置项](#通用配置项) 以获取所有输入插件支持的选项列表。
 
 ##### convert
 
-- 值类型是 [hash](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Hash)
+- 值类型是 [hash](../06-Configuring-Logstash/Structure-of-a-Config-File.md#hash)
 - 此设置没有默认值。
 
 将字段的值转换为其他类型，例如将字符串转换为整数。如果字段值是数组，则将转换所有元素。如果该字段是哈希，则不会采取任何操作。
@@ -129,7 +129,7 @@ filter {
 
 ##### copy
 
-- 值类型是 [hash](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Hash)
+- 值类型是 [hash](../06-Configuring-Logstash/Structure-of-a-Config-File.md#hash)
 - 此设置没有默认值。
 
 将现有字段复制到另一个字段。将覆盖现有目标字段。
@@ -146,7 +146,7 @@ filter {
 
 ##### gsub
 
-- 值类型是 [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Array)
+- 值类型是 [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#array)
 - 此设置没有默认值。
 
 将正则表达式与字段值匹配，并将所有匹配替换为替换字符串。仅支持字符串或字符串数组的字段。对于其他类型的领域，将不采取任何行动。
@@ -173,7 +173,7 @@ filter {
 
 ##### join
 
-- 值类型是 [hash](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Hash)
+- 值类型是 [hash](../06-Configuring-Logstash/Structure-of-a-Config-File.md#hash)
 - 此设置没有默认值。
 
 使用分隔符加入数组。在非数组字段上什么都不做。
@@ -190,7 +190,7 @@ filter {
 
 ##### lowercase
 
-- 值类型是 [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Array)
+- 值类型是 [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#array)
 - 此设置没有默认值。
 
 将字符串转换为其小写等效项。
@@ -207,7 +207,7 @@ filter {
 
 ##### merge
 
-- 值类型是 [hash](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Hash)
+- 值类型是 [hash](../06-Configuring-Logstash/Structure-of-a-Config-File.md#hash)
 - 此设置没有默认值。
 
 合并两个数组或散列字段。字符串字段将自动转换为数组，因此：
@@ -230,7 +230,7 @@ filter {
 
 ##### coerce
 
-- 值类型是 [hash](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Hash)
+- 值类型是 [hash](../06-Configuring-Logstash/Structure-of-a-Config-File.md#hash)
 - 此设置没有默认值。
 
 设置存在但仍为null的字段的默认值
@@ -248,7 +248,7 @@ filter {
 
 ##### rename
 
-- 值类型是 [hash](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Hash)
+- 值类型是 [hash](../06-Configuring-Logstash/Structure-of-a-Config-File.md#hash)
 - 此设置没有默认值。
 
 重命名一个或多个字段。
@@ -266,7 +266,7 @@ filter {
 
 ##### replace
 
-- 值类型是 [hash](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Hash)
+- 值类型是 [hash](../06-Configuring-Logstash/Structure-of-a-Config-File.md#hash)
 - 此设置没有默认值。
 
 用新值替换字段的值。新值可以包含 `%{foo}` 字符串，以帮助您从事件的其他部分构建新值。
@@ -283,7 +283,7 @@ filter {
 
 ##### split
 
-- 值类型是 [hash](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Hash)
+- 值类型是 [hash](../06-Configuring-Logstash/Structure-of-a-Config-File.md#hash)
 - 此设置没有默认值。
 
 使用分隔符将字段拆分为数组。仅适用于字符串字段。
@@ -300,7 +300,7 @@ filter {
 
 ##### strip
 
-- 值类型是 [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Array)
+- 值类型是 [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#array)
 - 此设置没有默认值。
 
 从字段中取出空格。注意：这仅适用于前导和尾随空格。
@@ -317,7 +317,7 @@ filter {
 
 ##### update
 
-- 值类型是 [hash](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Hash)
+- 值类型是 [hash](../06-Configuring-Logstash/Structure-of-a-Config-File.md#hash)
 - 此设置没有默认值。
 
 使用新值更新现有字段。 如果该字段不存在，则不执行任何操作。
@@ -334,7 +334,7 @@ filter {
 
 ##### uppercase
 
-- 值类型是 [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Array)
+- 值类型是 [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#array)
 - 此设置没有默认值。
 
 将字符串转换为大写的等效字符串。
@@ -351,7 +351,7 @@ filter {
 
 ##### capitalize
 
-- 值类型是 [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Array)
+- 值类型是 [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#array)
 - 此设置没有默认值。
 
 将字符串转换为大写等效字符串。
@@ -372,17 +372,17 @@ filter {
 
 | 设置                                | 输入类型                                                     | 必须 |
 | ----------------------------------- | ------------------------------------------------------------ | ---- |
-| [`add_field`](#addfield)           | [hash](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Hash) | 否   |
-| [`add_tag`](#addtag)               | [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Array) | 否   |
-| [`enable_metric`](#enablemetric)   | [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Boolean) | 否   |
-| [`id`](#id)                         | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String) | 否   |
-| [`periodic_flush`](#periodicflush) | [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Boolean) | 否   |
-| [`remove_field`](#removefield)     | [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Array) | 否   |
-| [`remove_tag`](#removetag)         | [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Array) | 否   |
+| [`add_field`](#addfield)           | [hash](../06-Configuring-Logstash/Structure-of-a-Config-File.md#hash) | 否   |
+| [`add_tag`](#addtag)               | [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#array) | 否   |
+| [`enable_metric`](#enablemetric)   | [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#boolean) | 否   |
+| [`id`](#id)                         | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string) | 否   |
+| [`periodic_flush`](#periodicflush) | [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#boolean) | 否   |
+| [`remove_field`](#removefield)     | [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#array) | 否   |
+| [`remove_tag`](#removetag)         | [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#array) | 否   |
 
 ##### add_field
 
-- 值类型是 [hash](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Hash)
+- 值类型是 [hash](../06-Configuring-Logstash/Structure-of-a-Config-File.md#hash)
 - 默认值为 `{}`
 
 如果此过滤器配置成功，则向此事件添加任意字段。字段名称可以是动态的，并使用 `％{field}` 包含事件的部分内容。
@@ -413,7 +413,7 @@ filter {
 
 ##### add_tag
 
-- 值类型是 [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Array)
+- 值类型是 [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#array)
 - 默认值为 `[]`
 
 如果此过滤器成功，则向事件添加任意标记。标签可以是动态的，并使用 `%{field}` 语法包含事件的一部分。
@@ -441,14 +441,14 @@ filter {
 
 ##### enable_metric
 
-- 值类型是 [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Boolean)
+- 值类型是 [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#boolean)
 - 默认值为 `true`
 
 默认情况下，禁用或启用此插件实例的指标记录，我们会记录所有可用的度量标准，但您可以禁用特定插件的指标收集。
 
 ##### id
 
-- 值类型是 [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String)
+- 值类型是 [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string)
 - 此设置没有默认值。
 
 为插件配置添加唯一 `ID`。如果未指定ID，Logstash将生成一个ID。强烈建议在配置中设置此ID。当您有两个或更多相同类型的插件时，这尤其有用，例如，如果您有2个http过滤器。在这种情况下添加命名ID将有助于在使用监视API时监视Logstash。
@@ -463,14 +463,14 @@ filter {
 
 ##### periodic_flush
 
-- 值类型是 [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Boolean)
+- 值类型是 [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#boolean)
 - 默认值为 `false`
 
 定期调用过滤器刷新方法。可选的。
 
 ##### remove_field
 
-- 值类型是 [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Array)
+- 值类型是 [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#array)
 - 默认值为 `[]`
 
 如果此过滤器成功，请从此事件中删除任意字段。例：
@@ -494,7 +494,7 @@ filter {
 
 ##### remove_tag
 
-- 值类型是 [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Array)
+- 值类型是 [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#array)
 - 默认值为 `[]`
 
 如果此过滤器配置成功，则从事件中删除任意tag。tag以是动态的，并使用 `%{field}` 语法包含事件的一部分。

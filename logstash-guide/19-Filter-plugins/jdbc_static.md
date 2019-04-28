@@ -220,32 +220,32 @@ select * from ref.local_ips order by ip;
 
 | 设置                                                | 输入类型                                                     | 必须 |
 | --------------------------------------------------- | ------------------------------------------------------------ | ---- |
-| [`jdbc_connection_string`](#jdbcconnectionstring) | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String) | 是   |
-| [`jdbc_driver_class`](#jdbcdriverclass)           | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String) | 是   |
-| [`jdbc_driver_library`](#jdbcdriverlibrary)       | [path](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Path) | 否   |
-| [`jdbc_password`](#jdbcpassword)                   | [password](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Password) | 否   |
-| [`jdbc_user`](#jdbcuser)                           | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String) | 否   |
-| [`tag_on_failure`](#tagonfailure)                 | [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Array) | 否   |
-| [`tag_on_default_use`](#tagondefaultuse)         | [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Array) | 否   |
-| [`staging_directory`](#stagingdirectory)           | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String) | 否   |
-| [`loader_schedule`](#loaderschedule)               | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String) | 否   |
-| [`loaders`](#loaders)                               | [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Array) | 否   |
-| [`local_db_objects`](#localdbobjects)             | [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Array) | 否   |
-| [`local_lookups`](#locallookups)                   | [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Array) | 否   |
+| [`jdbc_connection_string`](#jdbcconnectionstring) | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string) | 是   |
+| [`jdbc_driver_class`](#jdbcdriverclass)           | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string) | 是   |
+| [`jdbc_driver_library`](#jdbcdriverlibrary)       | [path](../06-Configuring-Logstash/Structure-of-a-Config-File.md#path) | 否   |
+| [`jdbc_password`](#jdbcpassword)                   | [password](../06-Configuring-Logstash/Structure-of-a-Config-File.md#password) | 否   |
+| [`jdbc_user`](#jdbcuser)                           | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string) | 否   |
+| [`tag_on_failure`](#tagonfailure)                 | [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#array) | 否   |
+| [`tag_on_default_use`](#tagondefaultuse)         | [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#array) | 否   |
+| [`staging_directory`](#stagingdirectory)           | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string) | 否   |
+| [`loader_schedule`](#loaderschedule)               | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string) | 否   |
+| [`loaders`](#loaders)                               | [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#array) | 否   |
+| [`local_db_objects`](#localdbobjects)             | [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#array) | 否   |
+| [`local_lookups`](#locallookups)                   | [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#array) | 否   |
 
 另请参阅 [通用配置项](#通用配置项) 以获取所有输入插件支持的选项列表。
 
 ##### jdbc_connection_string
 
 - 这是必需的设置。
-- 值类型是 [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String)
+- 值类型是 [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string)
 - 此设置没有默认值。
 
 JDBC连接字符串。
 
 ##### jdbc_driver_class
 - 这是必需的设置。
-- 值类型是 [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String)
+- 值类型是 [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string)
 - 此设置没有默认值。
 
 要加载的JDBC驱动程序类，例如 "org.apache.derby.jdbc.ClientDriver"。
@@ -255,7 +255,7 @@ JDBC连接字符串。
 > 根据 [issue 43](https://github.com/logstash-plugins/logstash-input-jdbc/issues/43) ，如果您使用的是Oracle JDBC驱动程序（ojdbc6.jar），则正确的 `jdbc_driver_class` 是 `"Java::oracle.jdbc.driver.OracleDriver"`。
 
 ##### jdbc_driver_library
-- 值类型是 [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String)
+- 值类型是 [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string)
 - 此设置没有默认值。
 
 JDBC驱动程序库到第三方驱动程序库的路径。如果需要多个库，请在一个字符串中使用逗号分隔的路径。
@@ -263,32 +263,32 @@ JDBC驱动程序库到第三方驱动程序库的路径。如果需要多个库�
 如果未提供驱动程序类，则插件会在Logstash Java类路径中查找它。
 
 ##### jdbc_password
-- 值类型是 [password](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Password)
+- 值类型是 [password](../06-Configuring-Logstash/Structure-of-a-Config-File.md#password)
 - 此设置没有默认值。
 
 JDBC密码。
 
 ##### jdbc_user
 - 这是必需的设置。
-- 值类型是 [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String)
+- 值类型是 [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string)
 - 此设置没有默认值。
 
 JDBC用户。
 
 ##### tag_on_default_use
-- 值类型是 [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Array)
+- 值类型是 [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#array)
 - 默认值为 `["_jdbcstaticdefaultsused"]`
 
 如果未找到记录并使用默认值，则将值附加到 `tag` 字段。
 
 ##### tag_on_failure
-- 值类型是 [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Array)
+- 值类型是 [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#array)
 - 默认值为 `["_jdbcstaticfailure"]`
 
 如果发生SQL错误，则将值附加到 `tag` 字段。
 
 ##### staging_directory
-- 值类型是 [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String)
+- 值类型是 [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string)
 - 默认值派生自 Ruby临时目录+ plugin_name +"import_data"
 - 例如 `"/tmp/logstash/jdbc_static/import_data"`
 
@@ -297,7 +297,7 @@ JDBC用户。
 如果发生SQL错误，则将值附加到标记字段。
 
 ##### loader_schedule
-- 值类型是 [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String)
+- 值类型是 [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string)
 - 此设置没有默认值。
 
 您可以根据特定计划定期运行远程加载。此调度语法由 [rufus-scheduler](https://github.com/jmettraux/rufus-scheduler) 提供支持。语法类似于cron，具有特定于Rufus的一些扩展（例如，时区支持）。有关此语法的更多信息，请参阅 [解析cronlines和时间字符串](#https://github.com/jmettraux/rufus-scheduler#parsing-cronlines-and-time-strings)。
@@ -326,7 +326,7 @@ irb(main):003:0> exit
 
 ##### loaders
 
-- 值类型是 [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Array)
+- 值类型是 [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#array)
 - 默认值为 `[]`
 
 该数组应包含一个或多个哈希。每个哈希都根据下表进行验证。
@@ -383,7 +383,7 @@ irb(main):003:0> exit
 
 ##### local_db_objects
 
-- 值类型是 [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Array)
+- 值类型是 [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#array)
 - 默认值为 `[]`
 
 该数组应包含一个或多个哈希。每个Hash代表本地查找数据库的表模式。每个哈希都根据下表进行验证。
@@ -466,17 +466,17 @@ irb(main):003:0> exit
 
 | 设置                                | 输入类型                                                     | 必须 |
 | ----------------------------------- | ------------------------------------------------------------ | ---- |
-| [`add_field`](#addfield)           | [hash](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Hash) | 否   |
-| [`add_tag`](#addtag)               | [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Array) | 否   |
-| [`enable_metric`](#enablemetric)   | [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Boolean) | 否   |
-| [`id`](#id)                         | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String) | 否   |
-| [`periodic_flush`](#periodicflush) | [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Boolean) | 否   |
-| [`remove_field`](#removefield)     | [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Array) | 否   |
-| [`remove_tag`](#removetag)         | [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Array) | 否   |
+| [`add_field`](#addfield)           | [hash](../06-Configuring-Logstash/Structure-of-a-Config-File.md#hash) | 否   |
+| [`add_tag`](#addtag)               | [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#array) | 否   |
+| [`enable_metric`](#enablemetric)   | [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#boolean) | 否   |
+| [`id`](#id)                         | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string) | 否   |
+| [`periodic_flush`](#periodicflush) | [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#boolean) | 否   |
+| [`remove_field`](#removefield)     | [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#array) | 否   |
+| [`remove_tag`](#removetag)         | [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#array) | 否   |
 
 ##### add_field
 
-- 值类型是 [hash](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Hash)
+- 值类型是 [hash](../06-Configuring-Logstash/Structure-of-a-Config-File.md#hash)
 - 默认值为 `{}`
 
 如果此过滤器配置成功，则向此事件添加任意字段。字段名称可以是动态的，并使用 `％{field}` 包含事件的部分内容。
@@ -507,7 +507,7 @@ filter {
 
 ##### add_tag
 
-- 值类型是 [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Array)
+- 值类型是 [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#array)
 - 默认值为 `[]`
 
 如果此过滤器成功，则向事件添加任意标记。标签可以是动态的，并使用 `%{field}` 语法包含事件的一部分。
@@ -535,14 +535,14 @@ filter {
 
 ##### enable_metric
 
-- 值类型是 [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Boolean)
+- 值类型是 [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#boolean)
 - 默认值为 `true`
 
 默认情况下，禁用或启用此插件实例的指标记录，我们会记录所有可用的度量标准，但您可以禁用特定插件的指标收集。
 
 ##### id
 
-- 值类型是 [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String)
+- 值类型是 [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string)
 - 此设置没有默认值。
 
 为插件配置添加唯一 `ID`。如果未指定ID，Logstash将生成一个ID。强烈建议在配置中设置此ID。当您有两个或更多相同类型的插件时，这尤其有用，例如，如果您有2个http过滤器。在这种情况下添加命名ID将有助于在使用监视API时监视Logstash。
@@ -557,14 +557,14 @@ filter {
 
 ##### periodic_flush
 
-- 值类型是 [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Boolean)
+- 值类型是 [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#boolean)
 - 默认值为 `false`
 
 定期调用过滤器刷新方法。可选的。
 
 ##### remove_field
 
-- 值类型是 [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Array)
+- 值类型是 [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#array)
 - 默认值为 `[]`
 
 如果此过滤器成功，请从此事件中删除任意字段。例：
@@ -588,7 +588,7 @@ filter {
 
 ##### remove_tag
 
-- 值类型是 [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Array)
+- 值类型是 [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#array)
 - 默认值为 `[]`
 
 如果此过滤器配置成功，则从事件中删除任意tag。tag以是动态的，并使用 `%{field}` 语法包含事件的一部分。

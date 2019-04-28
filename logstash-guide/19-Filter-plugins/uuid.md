@@ -28,14 +28,14 @@ uuid过滤器允许您生成 [UUID](https://en.wikipedia.org/wiki/Universally_un
 
 | Setting                   | Input type                                                   | Required |
 | ------------------------- | ------------------------------------------------------------ | -------- |
-| [`overwrite`](#overwrite) | [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Boolean) | No       |
-| [`target`](#target)       | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String) | 是       |
+| [`overwrite`](#overwrite) | [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#boolean) | No       |
+| [`target`](#target)       | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string) | 是       |
 
 另请参阅 [通用配置项](#通用配置项) 以获取所有输入插件支持的选项列表。
 
 ##### overwrite
 
-- 值类型是 [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Boolean)
+- 值类型是 [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#boolean)
 - 默认值为 `false`
 
 如果当前字段中的值（如果有）应由生成的UUID覆盖。默认为 `false`（即如果该字段存在，具有任何值，则不会被覆盖）
@@ -54,7 +54,7 @@ filter {
 ##### target
 
 - 这是必需的设置。
-- 值类型是 [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String)
+- 值类型是 [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string)
 - 此设置没有默认值。
 
 选择应存储生成的UUID的字段的名称。
@@ -75,17 +75,17 @@ filter {
 
 | 设置                                | 输入类型                                                     | 必须 |
 | ----------------------------------- | ------------------------------------------------------------ | ---- |
-| [`add_field`](#addfield)           | [hash](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Hash) | 否   |
-| [`add_tag`](#addtag)               | [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Array) | 否   |
-| [`enable_metric`](#enablemetric)   | [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Boolean) | 否   |
-| [`id`](#id)                         | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String) | 否   |
-| [`periodic_flush`](#periodicflush) | [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Boolean) | 否   |
-| [`remove_field`](#removefield)     | [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Array) | 否   |
-| [`remove_tag`](#removetag)         | [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Array) | 否   |
+| [`add_field`](#addfield)           | [hash](../06-Configuring-Logstash/Structure-of-a-Config-File.md#hash) | 否   |
+| [`add_tag`](#addtag)               | [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#array) | 否   |
+| [`enable_metric`](#enablemetric)   | [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#boolean) | 否   |
+| [`id`](#id)                         | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string) | 否   |
+| [`periodic_flush`](#periodicflush) | [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#boolean) | 否   |
+| [`remove_field`](#removefield)     | [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#array) | 否   |
+| [`remove_tag`](#removetag)         | [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#array) | 否   |
 
 ##### add_field
 
-- 值类型是 [hash](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Hash)
+- 值类型是 [hash](../06-Configuring-Logstash/Structure-of-a-Config-File.md#hash)
 - 默认值为 `{}`
 
 如果此过滤器配置成功，则向此事件添加任意字段。字段名称可以是动态的，并使用 `％{field}` 包含事件的部分内容。
@@ -116,7 +116,7 @@ filter {
 
 ##### add_tag
 
-- 值类型是 [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Array)
+- 值类型是 [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#array)
 - 默认值为 `[]`
 
 如果此过滤器成功，则向事件添加任意标记。标签可以是动态的，并使用 `%{field}` 语法包含事件的一部分。
@@ -144,14 +144,14 @@ filter {
 
 ##### enable_metric
 
-- 值类型是 [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Boolean)
+- 值类型是 [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#boolean)
 - 默认值为 `true`
 
 默认情况下，禁用或启用此插件实例的指标记录，我们会记录所有可用的度量标准，但您可以禁用特定插件的指标收集。
 
 ##### id
 
-- 值类型是 [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String)
+- 值类型是 [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string)
 - 此设置没有默认值。
 
 为插件配置添加唯一 `ID`。如果未指定ID，Logstash将生成一个ID。强烈建议在配置中设置此ID。当您有两个或更多相同类型的插件时，这尤其有用，例如，如果您有2个http过滤器。在这种情况下添加命名ID将有助于在使用监视API时监视Logstash。
@@ -166,14 +166,14 @@ filter {
 
 ##### periodic_flush
 
-- 值类型是 [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Boolean)
+- 值类型是 [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#boolean)
 - 默认值为 `false`
 
 定期调用过滤器刷新方法。可选的。
 
 ##### remove_field
 
-- 值类型是 [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Array)
+- 值类型是 [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#array)
 - 默认值为 `[]`
 
 如果此过滤器成功，请从此事件中删除任意字段。例：
@@ -197,7 +197,7 @@ filter {
 
 ##### remove_tag
 
-- 值类型是 [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Array)
+- 值类型是 [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#array)
 - 默认值为 `[]`
 
 如果此过滤器配置成功，则从事件中删除任意tag。tag以是动态的，并使用 `%{field}` 语法包含事件的一部分。

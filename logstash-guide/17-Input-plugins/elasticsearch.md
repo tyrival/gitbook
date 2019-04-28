@@ -64,32 +64,32 @@ curl 'http://localhost:9200/logstash-*/_search?&scroll=1m&size=1000' -d '{
 | 设置                                | 输入类型                                                     | 必须 |
 | ----------------------------------- | ------------------------------------------------------------ | ---- |
 | [`ca_file`](#cafile)               | 有效的文件系统路径                                           | 否   |
-| [`docinfo`](#docinfo)               | [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Boolean) | 否   |
-| [`docinfo_fields`](#docinfofields) | [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Array) | 否   |
-| [`docinfo_target`](#docinfotarget) | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String) | 否   |
-| [`hosts`](#hosts)                   | [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Array) | 否   |
-| [`index`](#index)                   | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String) | 否   |
-| [`password`](#password)             | [password](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Password) | 否   |
-| [`query`](#query)                   | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String) | 否   |
-| [`schedule`](#schedule)             | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String) | 否   |
-| [`scroll`](#scroll)                 | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String) | 否   |
-| [`size`](#size)                     | [number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Number) | 否   |
-| [`slices`](#slices)                 | [number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Number) | 否   |
-| [`ssl`](#ssl)                       | [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Boolean) | 否   |
-| [`user`](#user)                     | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String) | 否   |
+| [`docinfo`](#docinfo)               | [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#boolean) | 否   |
+| [`docinfo_fields`](#docinfofields) | [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#array) | 否   |
+| [`docinfo_target`](#docinfotarget) | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string) | 否   |
+| [`hosts`](#hosts)                   | [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#array) | 否   |
+| [`index`](#index)                   | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string) | 否   |
+| [`password`](#password)             | [password](../06-Configuring-Logstash/Structure-of-a-Config-File.md#password) | 否   |
+| [`query`](#query)                   | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string) | 否   |
+| [`schedule`](#schedule)             | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string) | 否   |
+| [`scroll`](#scroll)                 | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string) | 否   |
+| [`size`](#size)                     | [number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#number) | 否   |
+| [`slices`](#slices)                 | [number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#number) | 否   |
+| [`ssl`](#ssl)                       | [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#boolean) | 否   |
+| [`user`](#user)                     | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string) | 否   |
 
 另请参阅 [通用配置项](#通用配置项) 以获取所有输入插件支持的选项列表。
 
 ##### ca_file
 
-- 值类型是 [path](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Path)
+- 值类型是 [path](../06-Configuring-Logstash/Structure-of-a-Config-File.md#path)
 - 此设置没有默认值。
 
 PEM编码格式的SSL证书颁发机构文件，必要时还必须包含任何链证书。
 
 ##### docinfo
 
-- 值类型是[boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Boolean)
+- 值类型是[boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#boolean)
 - 默认值为 `false`
 
 如果设置，请在事件中包含Elasticsearch文档信息，例如索引，类型和ID。
@@ -123,49 +123,49 @@ output {
 
 ##### docinfo_fields
 
-- 值类型是 [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Array)
+- 值类型是 [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#array)
 - 默认值为 `["_index", "_type", "_id"]`
 
 如果通过启用 `docinfo` 选项请求文档元数据存储，则此选项会列出要在当前事件中保存的元数据字段。有关详细信息，请参阅 [Elasticsearch元数据文档](http://www.elasticsearch.org/guide/en/elasticsearch/guide/current/_document_metadata.html)。
 
 ##### docinfo_target
 
-- 值类型是 [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String)
+- 值类型是 [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string)
 - 默认值为 `"@metadata"`
 
 如果通过启用 `docinfo` 选项请求文档元数据存储，则此选项将用于存储元数据字段的字段命名为子字段。
 
 ##### hosts
 
-- 值类型是 [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Array)
+- 值类型是 [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#array)
 - 此设置没有默认值。
 
 用于查询的一个或多个Elasticsearch主机的列表。每个主机可以是IP，HOST，IP:PORT 或 HOST:PORT。端口默认为9200。
 
 ##### index
 
-- 值类型是 [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String)
+- 值类型是 [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string)
 - 默认值为 `"logstash- *"`
 
 要搜索的索引或别名。有关如何引用多个索引的更多信息，请参阅Elasticsearch文档中的 [多索引文档](https://www.elastic.co/guide/en/elasticsearch/reference/current/multi-index.html)。
 
 ##### password
 
-- 值类型是 [password](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Password)
+- 值类型是 [password](../06-Configuring-Logstash/Structure-of-a-Config-File.md#password)
 - 此设置没有默认值。
 
 在向Elasticsearch服务器进行身份验证时，与 `user` 选项中的用户名一起使用的密码。如果设置为空字符串，则将禁用身份验证。
 
 ##### query
 
-- 值类型是 [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String)
+- 值类型是 [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string)
 - 默认值为 `'{ "sort": [ "_doc" ] }'`
 
 要执行的查询。有关更多信息，请阅读Elasticsearch查询 [DSL文档](https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl.html)。
 
 ##### schedule
 
-- 值类型是 [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String)
+- 值类型是 [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string)
 - 此设置没有默认值。
 
 以Cron格式定期运行语句的时间表，例如："* * * * *"（每分钟执行查询，分钟）
@@ -174,21 +174,21 @@ output {
 
 ##### scroll
 
-- 值类型是 [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String)
+- 值类型是 [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string)
 - 默认值为 `"1m"`
 
 此参数控制滚动请求的保持活动时间（以秒为单位）并启动滚动过程。每次往返（即在前一个滚动请求之间，到下一个滚动请求之间）应用超时。
 
 ##### size
 
-- 值类型是 [number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Number)
+- 值类型是 [number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#number)
 - 默认值为 `1000`
 
 这允许您设置每个滚动返回的最大命中数。
 
 ##### slices
 
-- 值类型是 [number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Number)
+- 值类型是 [number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#number)
 - 没有默认值。
 - 合理的值范围从2到大约8。
 
@@ -203,14 +203,14 @@ output {
 
 ##### ssl
 
-- 值类型是 [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Boolean)
+- 值类型是 [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#boolean)
 - 默认值为false
 
 如果启用，则在与Elasticsearch服务器通信时将使用SSL（即将使用HTTPS而不是普通HTTP）。
 
 ##### user
 
-- 值类型是 [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String)
+- 值类型是 [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string)
 - 此设置没有默认值。
 
 在向Elasticsearch服务器进行身份验证时，与密码选项中的密码一起使用的用户名。如果设置为空字符串，则将禁用身份验证。
@@ -221,39 +221,39 @@ output {
 
 | 设置                              | 输入类型                                                     | 必须 |
 | --------------------------------- | ------------------------------------------------------------ | ---- |
-| [`add_field`](#addfield)         | [hash](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Hash) | 否   |
-| [`codec`](#codec)                 | [codec](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Codec) | 否   |
-| [`enable_metric`](#enablemetric) | [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Boolean) | 否   |
-| [`id`](#id)                       | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String) | 否   |
-| [`tags`](#tags)                   | [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Array) | 否   |
-| [`type`](#type)                   | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String) | 否   |
+| [`add_field`](#addfield)         | [hash](../06-Configuring-Logstash/Structure-of-a-Config-File.md#hash) | 否   |
+| [`codec`](#codec)                 | [codec](../06-Configuring-Logstash/Structure-of-a-Config-File.md#codec) | 否   |
+| [`enable_metric`](#enablemetric) | [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#boolean) | 否   |
+| [`id`](#id)                       | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string) | 否   |
+| [`tags`](#tags)                   | [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#array) | 否   |
+| [`type`](#type)                   | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string) | 否   |
 
 #### 详情
 
 ##### add_field
 
-- 值类型是 [hash](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Hash)
+- 值类型是 [hash](../06-Configuring-Logstash/Structure-of-a-Config-File.md#hash)
 - 默认值为 `{}`
 
 向事件添加字段
 
 ##### codec
 
-- 值类型是 [codec](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Codec)
+- 值类型是 [codec](../06-Configuring-Logstash/Structure-of-a-Config-File.md#codec)
 - 默认值是 `"plain"`
 
 用于输入数据的编解码器。输入编解码器是一种在输入之前解码数据的便捷方法，无需在Logstash管道中使用单独的过滤器。
 
 ##### enable_metric
 
-- 值类型是 [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Boolean)
+- 值类型是 [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#boolean)
 - 默认值为 `true`
 
 默认情况下，禁用或启用此特定插件实例的指标记录，我们会记录所有的可用指标，但您可以禁用特定插件的指标收集。
 
 ##### id
 
-- 值类型是 [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String)
+- 值类型是 [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string)
 - 此设置没有默认值。
 
 为插件配置添加唯一 `ID`。如果未指定ID，Logstash将生成一个ID。强烈建议在配置中设置此ID。当您有两个或更多相同类型的插件时，这尤其有用，例如，如果您有2个beat输入，添加命名ID将有助于使用API监视Logstash。
@@ -268,7 +268,7 @@ input {
 
 ##### tags
 
-- 值类型是 [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Array)
+- 值类型是 [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#array)
 - 此设置没有默认值。
 
 为您的活动添加任意数量的任意标签。
@@ -277,7 +277,7 @@ input {
 
 ##### type
 
-- 值类型是 [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String)
+- 值类型是 [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string)
 - 此设置没有默认值。
 
 将 `type` 字段添加到此输入处理的所有事件。

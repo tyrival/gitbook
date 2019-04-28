@@ -149,37 +149,37 @@ filter {
 
 | Setting                                       | Input type                                                   | Required |
 | --------------------------------------------- | ------------------------------------------------------------ | -------- |
-| [`break_on_match`](#breakonmatch)           | [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Boolean) | No       |
-| [`keep_empty_captures`](#keepemptycaptures) | [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Boolean) | No       |
-| [`match`](#match)                             | [hash](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Hash) | No       |
-| [`named_captures_only`](#namedcapturesonly) | [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Boolean) | No       |
-| [`overwrite`](#overwrite)                     | [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Array) | No       |
-| [`pattern_definitions`](#patterndefinitions) | [hash](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Hash) | No       |
-| [`patterns_dir`](#patternsdir)               | [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Array) | No       |
-| [`patterns_files_glob`](#patternsfilesglob) | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String) | No       |
-| [`tag_on_failure`](#tagonfailure)           | [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Array) | No       |
-| [`tag_on_timeout`](#tagontimeout)           | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String) | No       |
-| [`timeout_millis`](#timeoutmillis)           | [number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Number) | No       |
+| [`break_on_match`](#breakonmatch)           | [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#boolean) | No       |
+| [`keep_empty_captures`](#keepemptycaptures) | [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#boolean) | No       |
+| [`match`](#match)                             | [hash](../06-Configuring-Logstash/Structure-of-a-Config-File.md#hash) | No       |
+| [`named_captures_only`](#namedcapturesonly) | [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#boolean) | No       |
+| [`overwrite`](#overwrite)                     | [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#array) | No       |
+| [`pattern_definitions`](#patterndefinitions) | [hash](../06-Configuring-Logstash/Structure-of-a-Config-File.md#hash) | No       |
+| [`patterns_dir`](#patternsdir)               | [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#array) | No       |
+| [`patterns_files_glob`](#patternsfilesglob) | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string) | No       |
+| [`tag_on_failure`](#tagonfailure)           | [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#array) | No       |
+| [`tag_on_timeout`](#tagontimeout)           | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string) | No       |
+| [`timeout_millis`](#timeoutmillis)           | [number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#number) | No       |
 
 另请参阅 [通用配置项](#通用配置项) 以获取所有输入插件支持的选项列表。
 
 ##### break_on_match
 
-- 值类型是 [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Boolean)
+- 值类型是 [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#boolean)
 - 默认值为 `true`
 
 第一次匹配后中断。 grok的第一次成功匹配将导致过滤器完成。如果你想让grok尝试所有匹配（也许你正在解析不同的东西），那么将其设置为false。
 
 ##### keep_empty_captures
 
-- 值类型是 [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Boolean)
+- 值类型是 [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#boolean)
 - 默认值为 `false`
 
 如果为 `true`，则将空捕获保留为事件字段。
 
 ##### match
 
-- 值类型是 [hash](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Hash)
+- 值类型是 [hash](../06-Configuring-Logstash/Structure-of-a-Config-File.md#hash)
 - 默认值为 `{}`
 
 一个hash，用于定义查看位置的映射以及使用哪些模式。
@@ -213,14 +213,14 @@ filter {
 
 ##### named_captures_only
 
-- 值类型是 [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Boolean)
+- 值类型是 [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#boolean)
 - 默认值为 `true`
 
 如果为 `true`，则仅存储来自grok的名为capture的存储。
 
 ##### overwrite
 
-- 值类型是 [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Array)
+- 值类型是 [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#array)
 - 默认值为 `[]`
 
 要覆盖的字段。
@@ -242,14 +242,14 @@ filter {
 
 ##### pattern_definitions
 
-- 值类型是 [hash](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Hash)
+- 值类型是 [hash](../06-Configuring-Logstash/Structure-of-a-Config-File.md#hash)
 - 默认值为 `{}`
 
 匹配规则名称和匹配规则元组的散列，用于定义当前过滤器使用的自定义规则。匹配现有名称的规则将覆盖预先存在的定义。可以将其视为可用于grok定义的内联模式
 
 ##### patterns_dir
 
-- 值类型是 [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Array)
+- 值类型是 [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#array)
 - 默认值为 `[]`
 
 Logstash默认带有一堆模式，因此除非您要添加其他模式，否则您不一定需要自己定义。您可以使用此设置指向多个模式目录。请注意，Grok将读取与patterns_files_glob匹配的目录中的所有文件，并假设它是一个规则文件（包括任何代字号备份文件）。
@@ -274,28 +274,28 @@ NUMBER \d+
 
 ##### patterns_files_glob
 
-- 值类型是 [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String)
+- 值类型是 [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string)
 - 默认值为 `"*"`
 
 Glob模式，用于选择patterns_dir指定的目录中的模式文件
 
 ##### tag_on_failure
 
-- 值类型是 [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Array)
+- 值类型是 [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#array)
 - 默认值为 `["_grokparsefailure"]`
 
 如果没有成功匹配，则将值附加到标记字段
 
 ##### tag_on_timeout
 
-- 值类型是 [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String)
+- 值类型是 [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string)
 - 默认值为 `"_groktimeout"`
 
 如果grok regexp超时，则标记为应用。
 
 ##### timeout_millis
 
-- 值类型是 [number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Number)
+- 值类型是 [number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#number)
 - 默认值为30000
 
 在这段时间后尝试终止正则表达式。如果应用了多个规则，这适用于每个规则。超时永远不会提前，但可能延迟一些。实际超时是基于250ms量化的近似值。设置为0可禁用超时。
@@ -306,17 +306,17 @@ Glob模式，用于选择patterns_dir指定的目录中的模式文件
 
 | 设置                                | 输入类型                                                     | 必须 |
 | ----------------------------------- | ------------------------------------------------------------ | ---- |
-| [`add_field`](#addfield)           | [hash](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Hash) | 否   |
-| [`add_tag`](#addtag)               | [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Array) | 否   |
-| [`enable_metric`](#enablemetric)   | [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Boolean) | 否   |
-| [`id`](#id)                         | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String) | 否   |
-| [`periodic_flush`](#periodicflush) | [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Boolean) | 否   |
-| [`remove_field`](#removefield)     | [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Array) | 否   |
-| [`remove_tag`](#removetag)         | [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Array) | 否   |
+| [`add_field`](#addfield)           | [hash](../06-Configuring-Logstash/Structure-of-a-Config-File.md#hash) | 否   |
+| [`add_tag`](#addtag)               | [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#array) | 否   |
+| [`enable_metric`](#enablemetric)   | [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#boolean) | 否   |
+| [`id`](#id)                         | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string) | 否   |
+| [`periodic_flush`](#periodicflush) | [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#boolean) | 否   |
+| [`remove_field`](#removefield)     | [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#array) | 否   |
+| [`remove_tag`](#removetag)         | [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#array) | 否   |
 
 ##### add_field
 
-- 值类型是 [hash](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Hash)
+- 值类型是 [hash](../06-Configuring-Logstash/Structure-of-a-Config-File.md#hash)
 - 默认值为 `{}`
 
 如果此过滤器配置成功，则向此事件添加任意字段。字段名称可以是动态的，并使用 `％{field}` 包含事件的部分内容。
@@ -347,7 +347,7 @@ filter {
 
 ##### add_tag
 
-- 值类型是 [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Array)
+- 值类型是 [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#array)
 - 默认值为 `[]`
 
 如果此过滤器成功，则向事件添加任意标记。标签可以是动态的，并使用 `%{field}` 语法包含事件的一部分。
@@ -375,14 +375,14 @@ filter {
 
 ##### enable_metric
 
-- 值类型是 [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Boolean)
+- 值类型是 [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#boolean)
 - 默认值为 `true`
 
 默认情况下，禁用或启用此插件实例的指标记录，我们会记录所有可用的度量标准，但您可以禁用特定插件的指标收集。
 
 ##### id
 
-- 值类型是 [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String)
+- 值类型是 [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string)
 - 此设置没有默认值。
 
 为插件配置添加唯一 `ID`。如果未指定ID，Logstash将生成一个ID。强烈建议在配置中设置此ID。当您有两个或更多相同类型的插件时，这尤其有用，例如，如果您有2个http过滤器。在这种情况下添加命名ID将有助于在使用监视API时监视Logstash。
@@ -397,14 +397,14 @@ filter {
 
 ##### periodic_flush
 
-- 值类型是 [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Boolean)
+- 值类型是 [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#boolean)
 - 默认值为 `false`
 
 定期调用过滤器刷新方法。可选的。
 
 ##### remove_field
 
-- 值类型是 [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Array)
+- 值类型是 [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#array)
 - 默认值为 `[]`
 
 如果此过滤器成功，请从此事件中删除任意字段。例：
@@ -428,7 +428,7 @@ filter {
 
 ##### remove_tag
 
-- 值类型是 [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Array)
+- 值类型是 [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#array)
 - 默认值为 `[]`
 
 如果此过滤器配置成功，则从事件中删除任意tag。tag以是动态的，并使用 `%{field}` 语法包含事件的一部分。

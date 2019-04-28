@@ -69,22 +69,22 @@ index => "%{[@metadata][beat]}-%{[@metadata][version]}-%{+YYYY.MM.dd}"
 
 | 设置                                                         | 输入类型                                                     | 必须 |
 | ------------------------------------------------------------ | ------------------------------------------------------------ | ---- |
-| [`add_hostname`](#addhostname)                              | [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Boolean) | 否   |
-| [`cipher_suites`](#ciphersuites) | [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Array) | 否   |
-| [`client_inactivity_timeout`](#clientinactivitytimeout) | [number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Number) | 否   |
-| [`host`](#host) | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String) | 否   |
-| [`include_codec_tag`](#includecodectag) | [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Boolean) | 否   |
-| [`port`](#port) | [number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Number) | 是   |
-| [`ssl`](#ssl) | [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Boolean) | 否   |
+| [`add_hostname`](#addhostname)                              | [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#boolean) | 否   |
+| [`cipher_suites`](#ciphersuites) | [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#array) | 否   |
+| [`client_inactivity_timeout`](#clientinactivitytimeout) | [number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#number) | 否   |
+| [`host`](#host) | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string) | 否   |
+| [`include_codec_tag`](#includecodectag) | [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#boolean) | 否   |
+| [`port`](#port) | [number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#number) | 是   |
+| [`ssl`](#ssl) | [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#boolean) | 否   |
 | [`ssl_certificate`](#sslcertificate) | 有效的文件系统路径                                           | 否   |
-| [`ssl_certificate_authorities`](#sslcertificateauthorities) | [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Array) | 否   |
-| [`ssl_handshake_timeout`](#sslhandshaketimeout) | [number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Number) | 否   |
+| [`ssl_certificate_authorities`](#sslcertificateauthorities) | [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#array) | 否   |
+| [`ssl_handshake_timeout`](#sslhandshaketimeout) | [number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#number) | 否   |
 | [`ssl_key`](#sslkey) | 有效的文件系统路径                                           | 否   |
-| [`ssl_key_passphrase`](#sslkeypassphrase) | [password](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Password) | 否   |
-| [`ssl_verify_mode`](#sslverifymode) | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String)，可选值为`["none", "peer", "force_peer"]` | 否   |
-| [`ssl_peer_metadata`](#sslpeermetadata) | [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Boolean) | 否   |
-| [`tls_max_version`](#tlsmaxversion) | [number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Number) | 否   |
-| [`tls_min_version`](#tlsminversion) | [number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Number) | 否   |
+| [`ssl_key_passphrase`](#sslkeypassphrase) | [password](../06-Configuring-Logstash/Structure-of-a-Config-File.md#password) | 否   |
+| [`ssl_verify_mode`](#sslverifymode) | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string)，可选值为`["none", "peer", "force_peer"]` | 否   |
+| [`ssl_peer_metadata`](#sslpeermetadata) | [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#boolean) | 否   |
+| [`tls_max_version`](#tlsmaxversion) | [number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#number) | 否   |
+| [`tls_min_version`](#tlsminversion) | [number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#number) | 否   |
 
 另请参阅 [通用配置项](#通用配置项) 以获取所有输入插件支持的选项列表。
 
@@ -102,88 +102,88 @@ index => "%{[@metadata][beat]}-%{[@metadata][version]}-%{+YYYY.MM.dd}"
 >
 > 在此插件的未来版本中，将删除此设置，并且不会将hosts字段添加到事件中。
 
-- 值类型是 [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Boolean)
+- 值类型是 [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#boolean)
 - 默认值为 `true`
 
 标记以确定是否使用主机名字段中节拍提供的值将主机字段添加到事件。
 
 ##### cipher_suites
 
-- 值类型是 [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Array)
+- 值类型是 [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#array)
 - 默认值是 `java.lang.String[TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384, TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384, TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256, TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256, TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA384, TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384, TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256, TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256]@459cfcca`
 
 要使用的密码套件列表，按优先级列出。
 
 ##### client_inactivity_timeout
 
-- 值类型是 [number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Number)
+- 值类型是 [number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#number)
 - 默认值为 `60`
 
 在X秒不活动后关闭空闲客户端。
 
 ##### host
 
-- 值类型是 [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String)
+- 值类型是 [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string)
 - 默认值为 `"0.0.0.0"`
 
 要监听的IP地址。
 
 ##### include_codec_tag
 
-- 值类型是 [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Boolean)
+- 值类型是 [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#boolean)
 - 默认值为true
 
 ##### port
 
 - 这是必需的设置。
-- 值类型是 [number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Number)
+- 值类型是 [number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#number)
 - 此设置没有默认值。
 
 要监听的端口。
 
 ##### ssl
 
-- 值类型是 [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Boolean)
+- 值类型是 [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#boolean)
 - 默认值为 `false`
 - 默认情况下，事件以纯文本形式发送。您可以通过将 `ssl` 设置为true，并配置 `ssl_certificate` 和 `ssl_key` 选项来启用加密。
 
 ##### ssl_certificate
 
-- 值类型是 [path](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Path)
+- 值类型是 [path](../06-Configuring-Logstash/Structure-of-a-Config-File.md#path)
 - 此设置没有默认值。
 
 要使用的SSL证书。
 
 ##### ssl_certificate_authorities
 
-- 值类型是 [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Array)
+- 值类型是 [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#array)
 - 默认值为 `[]`
 - 根据这些权限验证客户端证书。您可以定义多个文件或路径。将读取所有证书并将其添加到信任库。您需要将 `ssl_verify_mode` 配置为 `peer` 或 `force_peer` 以启用验证。
 
 ##### ssl_handshake_timeout
 
-- 值类型是 [number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Number)
+- 值类型是 [number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#number)
 - 默认值为 `10000`
 
 ssl握手超时时间（以毫秒为单位）
 
 ##### ssl_key
 
-- 值类型是 [path](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Path)
+- 值类型是 [path](../06-Configuring-Logstash/Structure-of-a-Config-File.md#path)
 - 此设置没有默认值。
 
 要使用的SSL密钥。注意：此密钥必须采用PKCS8格式，您可以使用 [OpenSSL](https://www.openssl.org/docs/man1.1.0/man1/pkcs8.html) 进行转换以获取更多信息。
 
 ##### ssl_key_passphrase
 
-- 值类型是 [password](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Password)
+- 值类型是 [password](../06-Configuring-Logstash/Structure-of-a-Config-File.md#password)
 - 此设置没有默认值。
 
 要使用的SSL密钥密码。
 
 ##### ssl_verify_mode
 
-- 值类型是 [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String)，可选值为`["none", "peer", "force_peer"]`
+- 值类型是 [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string)，可选值为`["none", "peer", "force_peer"]`
 - 默认值为 `"none"`
 
 默认情况下，服务器不进行任何客户端验证。
@@ -196,7 +196,7 @@ ssl握手超时时间（以毫秒为单位）
 
 ##### ssl_peer_metadata
 
-- 值类型是 [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Boolean)
+- 值类型是 [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#boolean)
 - 默认值为 `false`
 
 允许在事件的元数据中存储客户端证书信息。
@@ -205,14 +205,14 @@ ssl握手超时时间（以毫秒为单位）
 
 ##### tls_max_version
 
-- 值类型是 [number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Number)
+- 值类型是 [number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#number)
 - 默认值为 `1.2`
 
 允许加密连接的最大TLS版本。必须是以下值之一：对于TLS 1.0为1.0，对于TLS 1.1为1.1，对于TLS 1.2为1.2
 
 ##### tls_min_version
 
-- 值类型是 [number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Number)
+- 值类型是 [number](../06-Configuring-Logstash/Structure-of-a-Config-File.md#number)
 - 默认值为 `1`
 
 允许加密连接的最小TLS版本。该值必须是以下值之一：对于TLS 1.0为1.0，对于TLS 1.1为1.1，对于TLS 1.2为1.2
@@ -223,39 +223,39 @@ ssl握手超时时间（以毫秒为单位）
 
 | 设置                                                         | 输入类型                                                     | 必须 |
 | ------------------------------------------------------------ | ------------------------------------------------------------ | ---- |
-| [`add_field`](#addfield) | [hash](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Hash) | 否   |
-| [`codec`](#codec) | [codec](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Codec) | 否   |
-| [`enable_metric`](#enablemetric) | [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Boolean) | 否   |
-| [`id`](#id) | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String) | 否   |
-| [`tags`](#tags) | [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Array) | 否   |
-| [`type`](#type) | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String) | 否   |
+| [`add_field`](#addfield) | [hash](../06-Configuring-Logstash/Structure-of-a-Config-File.md#hash) | 否   |
+| [`codec`](#codec) | [codec](../06-Configuring-Logstash/Structure-of-a-Config-File.md#codec) | 否   |
+| [`enable_metric`](#enablemetric) | [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#boolean) | 否   |
+| [`id`](#id) | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string) | 否   |
+| [`tags`](#tags) | [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#array) | 否   |
+| [`type`](#type) | [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string) | 否   |
 
 #### 详情
 
 ##### add_field
 
-- 值类型是 [hash](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Hash)
+- 值类型是 [hash](../06-Configuring-Logstash/Structure-of-a-Config-File.md#hash)
 - 默认值为 `{}`
 
 向事件添加字段
 
 ##### codec
 
-- 值类型是 [codec](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Codec)
+- 值类型是 [codec](../06-Configuring-Logstash/Structure-of-a-Config-File.md#codec)
 - 默认值是 `"plain"`
 
 用于输入数据的编解码器。输入编解码器是一种在输入之前解码数据的便捷方法，无需在Logstash管道中使用单独的过滤器。
 
 ##### enable_metric
 
-- 值类型是 [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Boolean)
+- 值类型是 [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#boolean)
 - 默认值为 `true`
 
 默认情况下，禁用或启用此特定插件实例的指标记录，我们会记录所有的可用指标，但您可以禁用特定插件的指标收集。
 
 ##### id
 
-- 值类型是 [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String)
+- 值类型是 [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string)
 - 此设置没有默认值。
 
 为插件配置添加唯一 `ID`。如果未指定ID，Logstash将生成一个ID。强烈建议在配置中设置此ID。当您有两个或更多相同类型的插件时，这尤其有用，例如，如果您有2个beat输入，添加命名ID将有助于使用API监视Logstash。
@@ -270,7 +270,7 @@ input {
 
 ##### tags
 
-- 值类型是 [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#Array)
+- 值类型是 [array](../06-Configuring-Logstash/Structure-of-a-Config-File.md#array)
 - 此设置没有默认值。
 
 为您的活动添加任意数量的任意标签。
@@ -279,7 +279,7 @@ input {
 
 ##### type
 
-- 值类型是 [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#String)
+- 值类型是 [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string)
 - 此设置没有默认值。
 
 将 `type` 字段添加到此输入处理的所有事件。
