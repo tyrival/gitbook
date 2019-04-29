@@ -2,7 +2,7 @@
 
 您可以通过将Lumberjack输出连接到Beats输入，来设置两个Logstash实例之间的通信。例如，如果数据路径跨越网络或防火墙边界，则可能需要使用此配置。反之，如果不是迫切需要Logstash-to-Logstash通信，那么请不要实现它。
 
-如果要在一个Logstash实例中查找多个管道的连接信息，请参阅 [管道间通信](../06-Configuring-Logstash/Pipeline-to-Pipeline-Communication-(Beta).md)。
+如果要在一个Logstash实例中查找多个管道的连接信息，请参阅 [管道间通信](../06-Configuring-Logstash/Pipeline-to-Pipeline-Communication.md)。
 
 ### 配置概述
 
