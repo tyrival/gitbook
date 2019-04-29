@@ -13,7 +13,7 @@ Logstash中的一些配置选项需要存在字段才能运行。事件在输入
 
 ### 字段引用
 
-能够通过名称引用字段通常很有用。为此，您可以使用Logstash的 [字段引用语法](../00-Others/Field-References-Deep-Dive.md)。
+能够通过名称引用字段通常很有用。为此，您可以使用Logstash的 [字段引用语法](../99-Others/Field-References-Deep-Dive.md)。
 
 访问字段的基本语法是 `[fieldname]`。如果您引用的是顶级字段，则可以省略 `[]` 并简单地使用 `fieldname`。如需引用嵌套字段，请指定该字段的完整路径：`[顶级字段][嵌套字段]`。
 
@@ -36,7 +36,7 @@ Logstash中的一些配置选项需要存在字段才能运行。事件在输入
 
 要引用 `os` 字段，请指定 `[ua][os]`。要引用顶级字段（如 `request`），只需指定字段名称即可。
 
-更多详细信息，请参阅 [字段引用详解](../00-Others/Field-References-Deep-Dive.md)。
+更多详细信息，请参阅 [字段引用详解](../99-Others/Field-References-Deep-Dive.md)。
 
 ### sprintf 格式
 

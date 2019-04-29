@@ -29,4 +29,4 @@
 * [第24章 Java插件开发](24-Contributing-a-java-Plugin/README.md)
 * [第25章-术语](25-Glossary-of-Terms/README.md)
 * [第26章-重大变更](26-Breaking-Changes/README.md)
-* [相关资料](00-Others/README.md)
+* [相关资料](99-Others/README.md)
