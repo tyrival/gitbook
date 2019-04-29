@@ -15,7 +15,7 @@ output {
 然后，运行Logstash并使用 `-f` 参数指定配置文件。
 
 ```shell
-bin / logstash -f logstash-simple.conf
+bin/logstash -f logstash-simple.conf
 ```
 
 Logstash读取到指定的配置文件，并输出到Elasticsearch和stdout。 在我们继续讨论一些更复杂的 [配置示例](../06-Configuring-Logstash/Logstash-Configuration-Examples.md) 之前，让我们仔细看看配置文件中的内容。
