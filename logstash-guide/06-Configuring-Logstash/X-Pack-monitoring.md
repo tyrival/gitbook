@@ -64,14 +64,21 @@ xpack.monitoring.elasticsearch.sniffing: false
 #### 常用监控设置
 
 `xpack.monitoring.enabled`
+
 	默认情况下禁用监控。设置为 `true` 以启用X-Pack监控。
+	
 `xpack.monitoring.elasticsearch.hosts`
+
 	将Logstash性能指标发送到的Elasticsearch实例。这可能与Logstash配置的 `outputs` 中指定的Elasticsearch实例相同，也可能使用其他实例。这不是专用于监控的集群URL。即使您使用的是专用监控集群，也必须通过生产集群路由Logstash指标。您可以使用字符串的形式指定单个主机，也可以用数组的形式指定多个主机。默认为`http://localhost:9200`。
+	
 `xpack.monitoring.elasticsearch.username` 和 `xpack.monitoring.elasticsearch.password`
+
 	如果您的Elasticsearch受基本身份验证保护，则这些设置会提供Logstash实例进行身份验证的用户名和密码，用于传送监控数据。
 
 #### 采集监控设置
+
 `xpack.monitoring.collection.interval`
+
 	控制在Logstash端收集和发送数据样本的频率。默认为10秒。如果修改采集时间间隔，请将 `kibana.yml` 中的 `xpack.monitoring.min_interval_seconds` 选项设置为相同的值。
 
 #### X-Pack监控TLS/SSL设置
@@ -79,12 +86,21 @@ xpack.monitoring.elasticsearch.sniffing: false
 您可以配置以下传输层安全性（TLS）或安全套接字层（SSL）设置。 有关更多信息，请参阅为 [配置监控凭据](../06-Configuring-Logstash/X-Pack-security.md#配置监控凭据)。
 
 `xpack.monitoring.elasticsearch.ssl.certificate_authority`
+
 	可选设置，使您可以为Elasticsearch实例的证书颁发机构指定 `.pem` 文件的路径。
+	
 `xpack.monitoring.elasticsearch.ssl.truststore.path`
+
 	可选设置，提供Java密钥库（JKS）的路径以验证服务器的证书。
+	
 `xpack.monitoring.elasticsearch.ssl.truststore.password`
+
 	可选设置，为信任库提供密码。
+	
 `xpack.monitoring.elasticsearch.ssl.keystore.path`
+
 	可选设置，提供Java密钥库（JKS）的路径以验证客户端的证书。
+	
 `xpack.monitoring.elasticsearch.ssl.keystore.password`
+
 	可选设置，为密钥库设置密码。

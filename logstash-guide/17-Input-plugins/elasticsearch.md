@@ -13,7 +13,9 @@
 ### 说明
 
 > **注意：**
+>
 > **兼容性说明**
+>
 > 从Elasticsearch 5.3开始，有个名为 `http.content_type.required` 的 [HTTP设置](https://www.elastic.co/guide/en/elasticsearch/reference/6.7/modules-http.html)。如果此选项设置为 `true`，并且您使用的是Logstash 2.4到5.2，则需要将Elasticsearch输入插件更新到4.0.2或更高版本。
 
 从Elasticsearch集群中读取检索结果。这对于重现测试日志、重建索引等非常有用。您可以使用cron语法定期计划采集（请参阅 `schedule` 设置），或运行一次查询以将数据加载到Logstash中。

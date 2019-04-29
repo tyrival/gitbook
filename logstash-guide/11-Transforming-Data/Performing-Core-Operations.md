@@ -2,7 +2,7 @@
 
 本节中描述的插件对核心操作很有用，例如变异和删除事件。
 
-[date filter](../19-Filter-plugins/date.md)
+[**date filter**](../19-Filter-plugins/date.md)
 
 解析字段中的日期，以用作事件的Logstash时间戳。
 
@@ -16,7 +16,7 @@ filter {
 }
 ```
 
-[drop filter](../19-Filter-plugins/drop.md)
+[**drop filter**](../19-Filter-plugins/drop.md)
 
 丢弃事件。该过滤器通常与条件组合使用。
 
@@ -30,7 +30,7 @@ filter {
 }
 ```
 
-[fingerprint filter](../19-Filter-plugins/fingerprint.md)
+[**fingerprint filter**](../19-Filter-plugins/fingerprint.md)
 
 通过应用一致的哈希值使用指纹字段。
 

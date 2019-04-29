@@ -24,7 +24,9 @@
 调整Logstash时，您可能需要调整堆大小。您可以使用 [VisualVM](https://visualvm.github.io) 工具来分析堆。特别是Monitor窗格对于检查堆分配是否足以满足当前工作负载非常有用。下面的屏幕截图显示了示例Monitor窗格。第一个窗格检查配置了太多机上事件的Logstash实例。第二个窗格检查配置了适当数量飞行事件的Logstash实例。请注意，此处使用的批处理大小很可能不适用于您的工作负载，因为Logstash的内存需求在很大程度上取决于您发送的消息类型。
 
 ![pipeline_overload](../source/images/ch-13/pipeline_overload.png)
+
 ![pipeline_correct_load](../source/images/ch-13/pipeline_correct_load.png)
+
 在第一个例子中，我们看到CPU没有得到非常有效的使用。实际上，JVM经常需要停止VM以获得"完全GC"。完全GC是过度记忆压力的常见症状。这在CPU图表上的尖峰图案中可见。在更有效配置的示例中，GC图形模式更平滑，并且CPU以更均匀的方式运行。您还可以看到在分配的堆大小和允许的最大值之间有足够的空间，这为JVM GC提供了很大的工作空间。
 
 使用类似于优秀 [VisualGC](https://visualvm.github.io/plugins.html) 插件的工具检查深入的GC统计数据表明，与资源密集程度较高的旧"完全GC"所花费的时间相比，过度分配的VM在高效的Eden GC中花费的时间非常少。 

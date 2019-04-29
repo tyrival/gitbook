@@ -4,7 +4,9 @@
 
 ![overviewstats](../source/images/ch-14/overviewstats.png)
 
-然后，您可以深入查看有关特定节点的统计信息：![nodestats](../source/images/ch-14/nodestats.png)
+然后，您可以深入查看有关特定节点的统计信息：
+
+![nodestats](../source/images/ch-14/nodestats.png)
 
 > **注意：**
 > Logstash节点基于其持久性UUID被视为唯一节点，该节点在节点启动时写入 [`path.data`](../04-Setting-Up-and-Running-Logstash/logstash.yml.md) 目录。
