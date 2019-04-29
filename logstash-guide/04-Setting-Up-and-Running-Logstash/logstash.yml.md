@@ -77,6 +77,6 @@ modules:
 | `http.port`                   | The bind port for the metrics REST endpoint.                 | `9600`                                                       |
 | `log.level`                   | 日志级别，可选项包括:`fatal`、`error`、`warn`、`info`、`debug`、`trace` | `info`                                                       |
 | `log.format`                  | 日志格式。`json` 表示JSON格式， `plain` 表示采用 `Object#.inspect`. | `plain`                                                      |
-| `path.logs`                   | The directory where Logstash will write its log to.          | `LOGSTASH_HOME/logs`                                         |
+| `path.logs`                   | Logstash保存其本身日志的路径          | `LOGSTASH_HOME/logs`                                         |
 | `path.plugins`                | 插件的存储位置，可以指定多个路径。建议按照如下规则储存插件：`PATH/logstash/TYPE/NAME.rb`，其中 `TYPE`包括 `inputs`、`filters`、`outputs`、或`codecs`，`NAME` 表示插件名称 | 视平台而定，查看 [目录结构](../04-Setting-Up-and-Running-Logstash/Logstash-Directory-Layout.md) |
 
