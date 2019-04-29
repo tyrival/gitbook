@@ -49,7 +49,7 @@
   * [第9章-Filebeat](09-Working-with-Filebeat-Modules/README.md)
     * [使用采集管道解析](09-Working-with-Filebeat-Modules/Use-ingest-pipelines-for-parsing.md)
     * [使用Logstash管道解析](09-Working-with-Filebeat-Modules/Use-Logstash-pipelines-for-parsing.md)
-    * [示例：安装Filebeat并连接Kafka和Logstash](09-Working-with-Filebeat-Modules/Example:-Set-up-Filebeat-modules-to-work-with-Kafka-and-Logstash.md)
+    * [示例：安装Filebeat并连接Kafka和Logstash](09-Working-with-Filebeat-Modules/Example-Set-up-Filebeat-modules-to-work-with-Kafka-and-Logstash.md)
   * [第10章-数据弹性](10-Data-Resiliency/README.md)
     * [持久化队列](10-Data-Resiliency/Persistent-Queues.md)
     * [死信队列](10-Data-Resiliency/Dead-Letter-Queues.md)

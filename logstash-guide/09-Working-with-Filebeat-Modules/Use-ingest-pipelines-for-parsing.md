@@ -51,4 +51,4 @@ output {
 
 有关设置和运行模块的更多信息，请参阅 [Filebeat模块文档](https://www.elastic.co/guide/en/beats/filebeat/6.7/filebeat-modules-overview.html)。
 
-有关完整示例，请参阅 [示例：设置Filebeat模块以使用Kafka和Logstash](../09-Working-with-Filebeat-Modules/Example:-Set-up-Filebeat-modules-to-work-with-Kafka-and-Logstash.md)。
+有关完整示例，请参阅 [示例：设置Filebeat模块以使用Kafka和Logstash](../09-Working-with-Filebeat-Modules/Example-Set-up-Filebeat-modules-to-work-with-Kafka-and-Logstash.md)。

@@ -19,15 +19,10 @@
 
 以下是通配符模式的一些常见示例：
 
-`"/path/to/*.conf"`
+`"/path/to/*.conf"` 匹配指定路径中以 `.conf` 结尾的配置文件。
 
-​	匹配指定路径中以 `.conf` 结尾的配置文件。
+`"/var/log/*.log"` 匹配指定路径中以 `.log` 结尾的日志文件。
 
-`"/var/log/*.log"`
-	匹配指定路径中以 `.log` 结尾的日志文件。
+`"/var/log/**/*.log"` 匹配在指定路径下的子目录中以 `.log` 结尾的日志文件。
 
-`"/var/log/**/*.log"`
-	匹配在指定路径下的子目录中以 `.log` 结尾的日志文件。
-
-`"/path/to/logs/{app1,app2,app3}/data.log"`
-	匹配指定路径下的 `app1`，`app2` 和 `app3` 子目录中的app日志文件。
+`"/path/to/logs/{app1,app2,app3}/data.log"` 匹配指定路径下的 `app1`，`app2` 和 `app3` 子目录中的app日志文件。
