@@ -163,7 +163,7 @@ JDBC用户
 - 值类型是 [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string)
 - 此设置没有默认值。
 
-定义目标字段以存储提取的结果如果存在，则覆盖字段
+定义目标字段以存储提取的结果。如果存在，则覆盖字段
 
 ##### use_cache
 

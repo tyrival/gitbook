@@ -110,7 +110,7 @@ Kafka消费者配置：http://kafka.apache.org/documentation.html#consumerconfig
 - 值类型是 [string](../06-Configuring-Logstash/Structure-of-a-Config-File.md#string)
 - 默认值为 `"5000"`
 
-消费者抵消提交给Kafka的频率（以毫秒为单位）。
+消费者提交给Kafka的频率间隔（以毫秒为单位）。
 
 ##### auto_offset_reset
 
