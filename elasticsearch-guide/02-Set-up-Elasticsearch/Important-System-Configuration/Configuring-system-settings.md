@@ -20,11 +20,11 @@ su elasticsearch ③
 ```
 
 
-![](../../source/images/common/1.png) 成为`root`。
+① 成为`root`。
 
-![](../../source/images/common/2.png) 更改打开文件的最大数量。
+② 更改打开文件的最大数量。
 
-![](../../source/images/common/3.png) 成为`elasticsearch`用户以启动Elasticsearch。
+③ 成为`elasticsearch`用户以启动Elasticsearch。
 
 新限制仅在当前会话期间应用。
 

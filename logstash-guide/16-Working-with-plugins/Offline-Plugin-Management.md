@@ -32,11 +32,11 @@ bin/logstash-plugin prepare-offline-pack logstash-filter-* logstash-input-beats 
 ```
 
 
-![1](../source/images/common/1.png) 打包Beats输入插件和任何依赖项。
+① 打包Beats输入插件和任何依赖项。
 
-![2](../source/images/common/2.png) 使用通配符打包所有过滤器插件和任何依赖项。
+② 使用通配符打包所有过滤器插件和任何依赖项。
 
-![3](../source/images/common/3.png) 打包所有过滤器插件，Beats输入插件和任何依赖项。
+③ 打包所有过滤器插件，Beats输入插件和任何依赖项。
 
 > **注意：**
 > 下载指定插件的所有依赖项可能需要一些时间，具体取决于列出的插件。

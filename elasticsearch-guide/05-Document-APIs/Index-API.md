@@ -84,11 +84,11 @@ PUT _cluster/settings
 ```
 
 
-![](../source/images/common/1.png)  只允许自动创建名为`twitter`，`index10`的索引，不允许匹配`index1*`的索引，允许匹配`ind*`的索引。匹配规则按照给定的顺序进行匹配。
+①  只允许自动创建名为`twitter`，`index10`的索引，不允许匹配`index1*`的索引，允许匹配`ind*`的索引。匹配规则按照给定的顺序进行匹配。
 
-![](../source/images/common/2.png)  完全禁用索引的自动创建。
+②  完全禁用索引的自动创建。
 
-![](../source/images/common/3.png)  允许使用任何名称自动创建索引。这是默认值。
+③  允许使用任何名称自动创建索引。这是默认值。
 
 ### 类型操作
 

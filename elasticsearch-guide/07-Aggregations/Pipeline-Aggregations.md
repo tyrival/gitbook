@@ -51,8 +51,9 @@ POST /_search
 }
 ```
 
-![](../../elasticsearch-guide/source/images/common/1.png) 该指标称为`"the_sum"`
-![](../../elasticsearch-guide/source/images/common/2.png) `buckets_path`通过相对路径`"the_sum"`引用指标
+① 该指标称为`"the_sum"`
+
+② `buckets_path`通过相对路径`"the_sum"`引用指标
 
 `buckets_path`也用于兄弟管道聚合，其中聚合是“一系列”桶的“下一个”，而不是嵌入它们“内部”。例如，`max_bucket`聚合使用`buckets_path`指定嵌入在兄弟聚合中的度量：
 
@@ -82,7 +83,7 @@ POST /_search
 }
 ```
 
-![](../../elasticsearch-guide/source/images/common/1.png) `buckets_path`指示我们想要`sales_per_month`日期直方图中销售聚合的最大值的`max_bucket`聚合。
+① `buckets_path`指示我们想要`sales_per_month`日期直方图中销售聚合的最大值的`max_bucket`聚合。
 
 ### 特别路径
 `buckets_path`可以使用特殊的`"_count"`路径，而不是路径到指标。这指示管道聚合使用文档计数作为其输入。例如，可以根据每个存储桶的文档计数计算移动平均值，而不是特定指标：
@@ -106,7 +107,7 @@ POST /_search
 }
 ```
 
-![](../../elasticsearch-guide/source/images/common/1.png) 通过使用`_count`而不是度量名称，我们可以计算直方图中文档计数的移动平均值
+① 通过使用`_count`而不是度量名称，我们可以计算直方图中文档计数的移动平均值
 
 `buckets_path`还可以使用`"_bucket_count"`和多桶聚合的路径来使用该聚合，在管道聚合中返回的桶数而不是指标。例如，这里可以使用`bucket_selector`来过滤掉不包含内部术语聚合的桶的桶：
 
@@ -142,7 +143,7 @@ POST /sales/_search
 }
 ```
 
-![](../../elasticsearch-guide/source/images/common/1.png) 通过使用`_bucket_count`而不是指标名称，我们可以过滤掉那些不包含用于`categories`聚合的桶的组合桶
+① 通过使用`_bucket_count`而不是指标名称，我们可以过滤掉那些不包含用于`categories`聚合的桶的组合桶
 
 ### 处理聚合名中的点
 支持替代语法，以处理名称中具有点的聚合或指标，例如第`99.9`[百分位](../07-Aggregations/Metrics-Aggregations/Percentiles-Aggregation.md)。该指标可称为：

@@ -34,6 +34,8 @@ GET _nodes/nodeId1,nodeId2/usage
 }
 ```
 
-![](../../elasticsearch-guide/source/images/common/1.png) 执行此节点使用请求的时间戳。
-![](../../elasticsearch-guide/source/images/common/2.png) 用于开始使用情况信息记录的时间戳。这相当于节点启动的时间。
-![](../../elasticsearch-guide/source/images/common/3.png) 此节点已调用搜索操作19次。
+① 执行此节点使用请求的时间戳。
+
+② 用于开始使用情况信息记录的时间戳。这相当于节点启动的时间。
+
+③ 此节点已调用搜索操作19次。

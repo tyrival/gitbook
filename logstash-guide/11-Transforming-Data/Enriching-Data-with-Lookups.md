@@ -135,15 +135,15 @@ filter {
 }
 ```
 
-![1](../source/images/common/1.png) 查询外部数据库，获取将缓存在本地的数据集。
+① 查询外部数据库，获取将缓存在本地的数据集。
 
-![2](../source/images/common/2.png) 定义用于构建本地数据库结构的列，类型和索引。列名和类型应与外部数据库匹配。
+② 定义用于构建本地数据库结构的列，类型和索引。列名和类型应与外部数据库匹配。
 
-![3](../source/images/common/3.png) 在本地数据库上执行查询查询以丰富事件。
+③ 在本地数据库上执行查询查询以丰富事件。
 
-![4](../source/images/common/4.png) 指定将存储查找数据的事件字段。如果查找返回多个列，则数据将作为JSON对象存储在字段中。
+④ 指定将存储查找数据的事件字段。如果查找返回多个列，则数据将作为JSON对象存储在字段中。
 
-![5](../source/images/common/5.png) ![6](../source/images/common/6.png) 从JSON对象获取数据并将其存储在顶级事件字段中，以便在Kibana中进行分析。
+⑤ !⑥ 从JSON对象获取数据并将其存储在顶级事件字段中，以便在Kibana中进行分析。
 
 [**jdbc_streaming filter**](../19-Filter-plugins/jdbc_streaming.md)
 

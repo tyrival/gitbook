@@ -16,9 +16,9 @@ discovery.zen.ping.unicast.hosts:
 ```
 
 
-![](../../source/images/common/1.png) 端口将默认为`transport.profiles.default.port`，如果未指定，将使用`transport.port`。
+① 端口将默认为`transport.profiles.default.port`，如果未指定，将使用`transport.port`。
 
-![](../../source/images/common/2.png) 解析为多个IP地址的主机名将尝试所有已解析的地址。
+② 解析为多个IP地址的主机名将尝试所有已解析的地址。
 
 #### `discovery.zen.minimum_master_nodes`
 

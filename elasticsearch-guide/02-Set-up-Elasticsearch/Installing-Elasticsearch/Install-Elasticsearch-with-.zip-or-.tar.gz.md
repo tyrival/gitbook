@@ -23,9 +23,9 @@ cd elasticsearch-6.7.1/ ②
 ```
 
 
-![](../../source/images/common/1.png) 比较下载的`.zip`的SHA和发布的校验码，该校验和应输出`elasticsearch-{version}.zip: OK`
+① 比较下载的`.zip`的SHA和发布的校验码，该校验和应输出`elasticsearch-{version}.zip: OK`
 
-![](../../source/images/common/2.png) 该目录称为`$ES_HOME`
+② 该目录称为`$ES_HOME`
 
 或者，您可以下载以下软件包，其中仅包含Apache 2.0许可下提供的功能：
 
@@ -44,9 +44,9 @@ cd elasticsearch-6.7.1/ ②
 ```
 
 
-![](../../source/images/common/1.png) 比较下载的`.tar.gz`的SHA和发布的校验码，该校验和应输出`elasticsearch-{version}.zip: OK`
+① 比较下载的`.tar.gz`的SHA和发布的校验码，该校验和应输出`elasticsearch-{version}.zip: OK`
 
-![](../../source/images/common/2.png) 该目录称为`$ES_HOME`
+② 该目录称为`$ES_HOME`
 
 或者，您可以下载以下软件包，其中仅包含Apache 2.0许可代码：
 

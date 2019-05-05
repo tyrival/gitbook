@@ -38,9 +38,9 @@ Elasticsearch在 [jvm.options](../../02-Set-up-Elasticsearch/Configuring-Elastic
 ```
 
 
-![](../../source/images/common/1.png) 将最小堆大小设置为2g。
+① 将最小堆大小设置为2g。
 
-![](../../source/images/common/2.png) 将最大堆大小设置为2g。
+② 将最大堆大小设置为2g。
 
 也可以通过环境变量设置堆大小。这可以通过注释 [`jvm.options`](../../02-Set-up-Elasticsearch/Configuring-Elasticsearch/Setting-JVM-options.md) 文件中的`Xms`和`Xmx`设置，并通过`ES_JAVA_OPTS`设置这些值来完成：
 
@@ -50,9 +50,9 @@ ES_JAVA_OPTS="-Xms4000m -Xmx4000m" ./bin/elasticsearch ②
 ```
 
 
-![](../../source/images/common/1.png) 将最小和最大堆大小设置为2 GB。
+① 将最小和最大堆大小设置为2 GB。
 
-![](../../source/images/common/2.png) 将最小和最大堆大小设置为4000 MB。
+② 将最小和最大堆大小设置为4000 MB。
 
 > **注意**
 >

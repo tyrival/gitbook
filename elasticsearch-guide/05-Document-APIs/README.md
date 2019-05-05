@@ -1,4 +1,4 @@
-# API文档
+# 文档API
 
 本节首先简要介绍Elasticsearch的 [数据复制模型](../05-Document-APIs/Reading-and-Writing-documents.md)，然后详细介绍以下CRUD API：
 

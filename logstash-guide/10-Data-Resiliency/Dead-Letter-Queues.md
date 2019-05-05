@@ -62,11 +62,11 @@ output {
 ```
 
 
-![1](../source/images/common/1.png) 包含死信队列的顶级目录的路径。此目录包含写入死信队列的每个管道的单独文件夹。要查找此目录的路径，请查看 [logstash.yml](../04-Setting-Up-and-Running-Logstash/logstash.yml.md)。默认情况下，Logstash在用于持久存储的位置（`path.data`）下创建 `dead_letter_queue`目录，例如 `LOGSTASH_HOME/data/dead_letter_queue`。但是，如果设置了 `path.dead_letter_queue`，则会使用该位置。
+① 包含死信队列的顶级目录的路径。此目录包含写入死信队列的每个管道的单独文件夹。要查找此目录的路径，请查看 [logstash.yml](../04-Setting-Up-and-Running-Logstash/logstash.yml.md)。默认情况下，Logstash在用于持久存储的位置（`path.data`）下创建 `dead_letter_queue`目录，例如 `LOGSTASH_HOME/data/dead_letter_queue`。但是，如果设置了 `path.dead_letter_queue`，则会使用该位置。
 
-![2](../source/images/common/2.png)如果为 `true`，则保存偏移量。当管道重新启动时，它将继续从它停止的位置读取，而不是重新处理队列中的所有项目。当您在死信队列中探索事件并希望多次迭代事件时，可以将 `commit_offsets` 设置为 `false`。
+②如果为 `true`，则保存偏移量。当管道重新启动时，它将继续从它停止的位置读取，而不是重新处理队列中的所有项目。当您在死信队列中探索事件并希望多次迭代事件时，可以将 `commit_offsets` 设置为 `false`。
 
-![3](../source/images/common/3.png)写入死信队列的管道的ID。默认为 `"main"`。
+③写入死信队列的管道的ID。默认为 `"main"`。
 
 有关另一个示例，请参阅 [示例：处理具有映射错误的数据](#示例：处理具有映射错误的数据)。
 
@@ -142,8 +142,8 @@ output {
 ```
 
 
-![1](../source/images/common/1.png) [`dead_letter_queue` 输入插件](../17-Input-plugins/dead_letter_queue.md) 从死信队列中读取。
+① [`dead_letter_queue` 输入插件](../17-Input-plugins/dead_letter_queue.md) 从死信队列中读取。
 
-![2](../source/images/common/2.png) `mutate` 过滤器删除名为 `location` 的问题字段。
+② `mutate` 过滤器删除名为 `location` 的问题字段。
 
-![3](../source/images/common/3.png) clean事件被发送到Elasticsearch，可以将其编入索引，因为映射问题已得到解决。
+③ clean事件被发送到Elasticsearch，可以将其编入索引，因为映射问题已得到解决。

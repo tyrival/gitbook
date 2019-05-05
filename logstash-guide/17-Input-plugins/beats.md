@@ -34,9 +34,9 @@ output {
 ```
 
 
-![1](../source/images/common/1.png) 指定要将事件写入的索引。有关此设置的更多信息，请参阅 [Beats版本索引](#Beats版本索引)。
+① 指定要将事件写入的索引。有关此设置的更多信息，请参阅 [Beats版本索引](#Beats版本索引)。
 
-![2](../source/images/common/2.png) 从Logstash 6.0开始，由于Logstash 6.0 [删除了类型](https://www.elastic.co/guide/en/elasticsearch/reference/6.0/removal-of-types.html)，因此不推荐使用 `document_type` 选项。它将在Logstash的下一个主要版本中彻底删除。如果您运行的是Logstash 6.0或更高版本，请不要在配置中设置 `document_type`，因为Logstash默认情况下将类型设置为 `doc`。
+② 从Logstash 6.0开始，由于Logstash 6.0 [删除了类型](https://www.elastic.co/guide/en/elasticsearch/reference/6.0/removal-of-types.html)，因此不推荐使用 `document_type` 选项。它将在Logstash的下一个主要版本中彻底删除。如果您运行的是Logstash 6.0或更高版本，请不要在配置中设置 `document_type`，因为Logstash默认情况下将类型设置为 `doc`。
 
 > **重要：**
 > 如果要发运跨多行的事件，则需要使用Filebeat中提供的选项来 [配置处理多行事件](https://www.elastic.co/guide/en/beats/filebeat/current/multiline-examples.html)，然后再将事件数据发送到Logstash。您不能使用 [Multiline编解码器插件](../20-Coder-plugins/multiline.md) 来处理多行事件。这样做会导致无法启动Logstash。

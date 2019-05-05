@@ -11,9 +11,11 @@ GET _tasks?nodes=nodeId1,nodeId2 ②
 GET _tasks?nodes=nodeId1,nodeId2&actions=cluster:* ③
 ```
 
-![](../../elasticsearch-guide/source/images/common/1.png) 检索当前在集群中的所有节点上运行的所有任务。
-![](../../elasticsearch-guide/source/images/common/2.png) 检索节点nodeId1和nodeId2上运行的所有任务。有关如何选择单个节点的详细信息，请参阅[指定节点](../10-Cluster-APIs/README.md#指定节点)。
-![](../../elasticsearch-guide/source/images/common/3.png) 检索在节点nodeId1和nodeId2上运行的所有与集群相关的任务。
+① 检索当前在集群中的所有节点上运行的所有任务。
+
+② 检索节点nodeId1和nodeId2上运行的所有任务。有关如何选择单个节点的详细信息，请参阅[指定节点](../10-Cluster-APIs/README.md#指定节点)。
+
+③ 检索在节点nodeId1和nodeId2上运行的所有与集群相关的任务。
 
 结果将类似于以下内容：
 ```json
@@ -194,6 +196,8 @@ content-length: 831
 }
 ```
 
-![](../../elasticsearch-guide/source/images/common/1.png) id作为响应头的一部分
-![](../../elasticsearch-guide/source/images/common/2.png) REST请求启动的任务的id
-![](../../elasticsearch-guide/source/images/common/3.png) REST请求启动的任务的子任务
+① id作为响应头的一部分
+
+② REST请求启动的任务的id
+
+③ REST请求启动的任务的子任务

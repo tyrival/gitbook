@@ -46,7 +46,16 @@ Elasticsearch中的读取是非常轻量级的通过ID查找，也可以是大�
 
 #### 失败处理
 
-当分片无法响应读取请求时，协调节点将从同一副本组中选择另一副本，并将分片级别搜索请求发送到该副本。重试失败可能导致没有可用的分片副本。在某些情况下，例如`\_search`，Elasticsearch更愿意用部分结果快速响应，而不是等待问题得到解决（部分结果显示在响应的`_shards`头中）。
+当分片无法响应读取请求时，协调节点将从同一副本组中选择另一副本，并将分片级别搜索请求发送到该副本。重试失败可能导致没有可用的分片副本。
+
+为确保快速响应，如果一个或多个分片失败，以下API将响应部分结果：
+
+- [Search](../06-Search-APIs/Search.md)
+- [Multi Search](../06-Search-APIs/Multi-Search-API.md)
+- [Bulk](../05-Document-APIs/Bulk-API.md)
+- [Multi Get](../05-Document-APIs/Multi-Get-API.md)
+
+包含部分结果的响应仍提供`200 OK`HTTP状态代码。 碎片失败由响应头的`timed_out`和`_shards`字段指示。
 
 ### 一些简单的含义
 

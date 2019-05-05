@@ -86,15 +86,15 @@ modules:
       - "Endpoint=sb://...EntityPath=insights-logs-timeouts"
 ```
 
-![1](../source/images/common/1.png) 强烈建议使用 `consumer_group`（可选）。 请参阅 [最佳实践](#最佳实践)。
+① 强烈建议使用 `consumer_group`（可选）。 请参阅 [最佳实践](#最佳实践)。
 
-![2](../source/images/common/2.png) 当扩展具有多个Logstash实例的部署时，`storage_connection`（可选）设置Azure Blob存储连接以跟踪Event Hub的处理状态。 有关其他详细信息，请参阅 [扩展Event Hub](#扩展Event_Hub消费)。
+② 当扩展具有多个Logstash实例的部署时，`storage_connection`（可选）设置Azure Blob存储连接以跟踪Event Hub的处理状态。 有关其他详细信息，请参阅 [扩展Event Hub](#扩展Event_Hub消费)。
 
-![3](../source/images/common/3.png) 有关选择适当线程数，请参阅 [最佳实践](#最佳实践)。
+③ 有关选择适当线程数，请参阅 [最佳实践](#最佳实践)。
 
-![4](../source/images/common/4.png) 此连接设置活动日志的消耗。 默认情况下，Azure监视器使用的Event Hub名称为 `insights-operational-logs`。 确保这与活动日志指定的Event Hub的名称相匹配。
+④ 此连接设置活动日志的消耗。 默认情况下，Azure监视器使用的Event Hub名称为 `insights-operational-logs`。 确保这与活动日志指定的Event Hub的名称相匹配。
 
-![5](../source/images/common/5.png) 这个以及下面的连接设置SQL DB诊断日志和指标的消耗。 默认情况下，Azure Monitor使用所有这些不同的Event Hub名称。
+⑤ 这个以及下面的连接设置SQL DB诊断日志和指标的消耗。 默认情况下，Azure Monitor使用所有这些不同的Event Hub名称。
 
 基本配置需要 `var.input.azure_event_hubs`。 配置选项前缀。 请注意 `threads` 选项的表达式。
 
@@ -128,13 +128,13 @@ modules:
       - ["insights-logs-timeouts", "TAIL", "dbtimeouts", "true", "Endpoint=sb://...EntityPath=insights-logs-timeouts"]
 ```
 
-![1](../source/images/common/1.png) 您可以指定全局Event Hub选项。它们将被event_hubs选项中指定的对应配置覆盖。
+① 您可以指定全局Event Hub选项。它们将被event_hubs选项中指定的对应配置覆盖。
 
-![2](../source/images/common/2.png) 有关选择适当线程数的指导，请参阅 [最佳实践](#最佳实践)。
+② 有关选择适当线程数的指导，请参阅 [最佳实践](#最佳实践)。
 
-![3](../source/images/common/3.png) 必须在最开始的位置定义 `name` 的 `header` 数组。 其他选项可以按任何顺序定义。 各Event Hub个性化的配置内容优先级较高，未配置值使用全局配置值。
+③ 必须在最开始的位置定义 `name` 的 `header` 数组。 其他选项可以按任何顺序定义。 各Event Hub个性化的配置内容优先级较高，未配置值使用全局配置值。
 
-![4](../source/images/common/4.png) 这允许从使用不同Blob存储容器的第二个活动日志Event Hub进行消费。 这是必要的，以避免第一个 insights-operational-logs 的偏移覆盖第二个 insights-operational-logs 的偏移。
+④ 这允许从使用不同Blob存储容器的第二个活动日志Event Hub进行消费。 这是必要的，以避免第一个 insights-operational-logs 的偏移覆盖第二个 insights-operational-logs 的偏移。
 
 各Event Hub配置选项中，高级配置不需要加前缀。 请注意 `initial_position` 选项的表示法。
 

@@ -27,31 +27,31 @@ appender.rolling.strategy.action.condition.nested_condition.type = IfAccumulated
 appender.rolling.strategy.action.condition.nested_condition.exceeds = 2GB ⑬
 ```
 
-![](../../source/images/common/1.png) 配置附加类型为`RollingFile`
+① 配置附加类型为`RollingFile`
 
-![](../../source/images/common/2.png) 登录`/var/log/elasticsearch/production.log`
+② 登录`/var/log/elasticsearch/production.log`
 
-![](../../source/images/common/3.png) 将日志滚动到 `/var/log/elasticsearch/production-yyyy-MM-dd-i.log`；日志将在每个卷上压缩，`i`将递增
+③ 将日志滚动到 `/var/log/elasticsearch/production-yyyy-MM-dd-i.log`；日志将在每个卷上压缩，`i`将递增
 
-![](../../source/images/common/4.png) 使用基于时间的滚动策略
+④ 使用基于时间的滚动策略
 
-![](../../source/images/common/5.png) 每天滚动日志
+⑤ 每天滚动日志
 
-![](../../source/images/common/6.png) 在每天的时间边界上对齐卷（而不是每隔二十四小时滚动）
+⑥ 在每天的时间边界上对齐卷（而不是每隔二十四小时滚动）
 
-![](../../source/images/common/7.png) 使用基于大小的滚动策略
+⑦ 使用基于大小的滚动策略
 
-![](../../source/images/common/8.png) 256 MB后滚动日志
+⑧ 256 MB后滚动日志
 
-![](../../source/images/common/9.png) 滚动日志时使用删除操作
+⑨ 滚动日志时使用删除操作
 
-![](../../source/images/common/10.png) 仅删除与文件模式匹配的日志
+⑩ 仅删除与文件模式匹配的日志
 
-![](../../source/images/common/11.png) 该模式仅删除主日志
+⑪ 该模式仅删除主日志
 
-![](../../source/images/common/12.png) 仅在我们累积了太多压缩日志时才删除
+⑫ 仅在我们累积了太多压缩日志时才删除
 
-![](../../source/images/common/13.png) 压缩日志的大小条件为2GB
+⑬ 压缩日志的大小条件为2GB
 
 > **注意**
 >
@@ -72,19 +72,19 @@ appender.rolling.strategy.action.condition.nested_condition.age = 7D ⑦
 ```
 
 
-![](../../source/images/common/1.png) 配置`DefaultRolloverStrategy`
+① 配置`DefaultRolloverStrategy`
 
-![](../../source/images/common/2.png) 配置`delete`操作以处理翻转
+② 配置`delete`操作以处理翻转
 
-![](../../source/images/common/3.png) Elasticsearch日志的基本路径
+③ Elasticsearch日志的基本路径
 
-![](../../source/images/common/4.png) 处理滚动时应用的条件
+④ 处理滚动时应用的条件
 
-![](../../source/images/common/5.png) 删除与glob `${sys:es.logs.cluster_name}-*`匹配的基本路径中的文件；这是日志文件滚动到的glob；这只需要删除已滚动的Elasticsearch日志，但也不需要删除弃用和慢速日志
+⑤ 删除与glob `${sys:es.logs.cluster_name}-*`匹配的基本路径中的文件；这是日志文件滚动到的glob；这只需要删除已滚动的Elasticsearch日志，但也不需要删除弃用和慢速日志
 
-![](../../source/images/common/6.png) 应用于与glob匹配的文件的嵌套条件
+⑥ 应用于与glob匹配的文件的嵌套条件
 
-![](../../source/images/common/7.png) 保留日志七天
+⑦ 保留日志七天
 
 可以加载多个配置文件（在这种情况下，它们将被合并），只要它们被命名为`log4j2.properties`并且将Elasticsearch配置目录作为祖先目录。这对于暴露其他记录器的插件很有用。日志记录部分包含java包及其相应的日志级别。 appender部分包含日志的目标。有关如何自定义日志记录和所有支持的appender的详细信息，请参阅 [Log4j文档](http://logging.apache.org/log4j/2.x/manual/configuration.html)。
 

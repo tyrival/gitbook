@@ -47,7 +47,7 @@ output {
 }
 ```
 
-![1](../source/images/common/1.png) 将 `pipeline` 选项设置为 `%{[@metadata][pipeline]}`。此设置将Logstash配置为根据事件中传递的元数据选择正确的采集管道。
+① 将 `pipeline` 选项设置为 `%{[@metadata][pipeline]}`。此设置将Logstash配置为根据事件中传递的元数据选择正确的采集管道。
 
 有关设置和运行模块的更多信息，请参阅 [Filebeat模块文档](https://www.elastic.co/guide/en/beats/filebeat/6.7/filebeat-modules-overview.html)。
 

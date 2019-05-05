@@ -91,7 +91,7 @@ sudo dpkg -i elasticsearch-6.7.1.deb
 ```
 
 
-![](../../source/images/common/1.png) 比较下载的Debian软件包的SHA和发布的校验码，校验应输出 `elasticsearch-{version}.deb: OK`
+① 比较下载的Debian软件包的SHA和发布的校验码，校验应输出 `elasticsearch-{version}.deb: OK`
 
 或者，您可以下载以下软件包，其中仅包含Apache 2.0许可下提供的功能：
 

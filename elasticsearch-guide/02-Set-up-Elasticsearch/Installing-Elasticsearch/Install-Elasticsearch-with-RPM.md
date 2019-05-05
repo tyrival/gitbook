@@ -52,11 +52,11 @@ sudo zypper install elasticsearch ③
 ```
 
 
-![](../../source/images/common/1.png) 在CentOS和较旧的基于Red Hat的发行版上使用`yum`。
+① 在CentOS和较旧的基于Red Hat的发行版上使用`yum`。
 
-![](../../source/images/common/2.png) 在Fedora和其他较新的Red Hat发行版上使用`dnf`。
+② 在Fedora和其他较新的Red Hat发行版上使用`dnf`。
 
-![](../../source/images/common/3.png) 在基于OpenSUSE的发行版上使用`zypper`
+③ 在基于OpenSUSE的发行版上使用`zypper`
 
 > **注意**
 >
@@ -78,7 +78,7 @@ sudo rpm --install elasticsearch-6.7.1.rpm
 ```
 
 
-![](../../source/images/common/1.png) 比较下载的Debian软件包的SHA和发布的校验码，校验应输出 `elasticsearch-{version}.deb: OK`
+① 比较下载的Debian软件包的SHA和发布的校验码，校验应输出 `elasticsearch-{version}.deb: OK`
 
 或者，您可以下载以下软件包，其中仅包含Apache 2.0许可下提供的功能：
 

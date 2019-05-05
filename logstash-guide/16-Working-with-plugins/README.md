@@ -23,13 +23,13 @@ bin/logstash-plugin list --group output ④
 ```
 
 
-![1](../source/images/common/1.png) 将列出所有已安装的插件
+① 将列出所有已安装的插件
 
-![2](../source/images/common/2.png) 将列出已安装的插件及版本信息
+② 将列出已安装的插件及版本信息
 
-![3](../source/images/common/3.png) 将列出包含namefragment的所有已安装插件
+③ 将列出包含namefragment的所有已安装插件
 
-![4](../source/images/common/4.png) 将列出特定组的所有已安装插件（输入，过滤器，编解码器，输出）
+④ 将列出特定组的所有已安装插件（输入，过滤器，编解码器，输出）
 
 ### 安装插件
 
@@ -70,9 +70,9 @@ bin/logstash-plugin update logstash-output-kafka ②
 ```
 
 
-![1](../source/images/common/1.png) 将更新所有已安装的插件
+① 将更新所有已安装的插件
 
-![2](../source/images/common/2.png) 将仅更新此插件
+② 将仅更新此插件
 
 #### 删除插件
 

@@ -33,7 +33,7 @@ GET /_cluster/allocation/explain
 }
 ```
 
-![](../../elasticsearch-guide/source/images/common/1.png) 分片0当前具有副本的节点
+① 分片0当前具有副本的节点
 
 您还可以让Elasticsearch发送body为空的请求，来解释它找到的第一个未分配的分片：
 
@@ -78,12 +78,17 @@ GET /_cluster/allocation/explain
 }
 ```
 
-![](../../elasticsearch-guide/source/images/common/1.png) 碎片的当前状态
-![](../../elasticsearch-guide/source/images/common/2.png) 碎片最初未分配的原因
-![](../../elasticsearch-guide/source/images/common/3.png) 是否分配分片
-![](../../elasticsearch-guide/source/images/common/4.png) 是否将分片分配给特定节点
-![](../../elasticsearch-guide/source/images/common/5.png) 导致无法决定节点的决策者
-![](../../elasticsearch-guide/source/images/common/6.png) 解释为什么决策者返回一个没有决定，有一个有用的提示指向导致决定的设置
+① 碎片的当前状态
+
+② 碎片最初未分配的原因
+
+③ 是否分配分片
+
+④ 是否将分片分配给特定节点
+
+⑤ 导致无法决定节点的决策者
+
+⑥ 解释为什么决策者返回一个没有决定，有一个有用的提示指向导致决定的设置
 
 通过将`include_disk_info`参数设置为`true`，可以返回集群信息服务收集的磁盘使用情况和分片大小的信息：
 
@@ -165,9 +170,11 @@ GET /_cluster/allocation/explain?include_yes_decisions=true
 }
 ```
 
-![](../../elasticsearch-guide/source/images/common/1.png) 在分配由于节点将其保留离开集群而不存在的副本分片之前配置的延迟
-![](../../elasticsearch-guide/source/images/common/2.png) 分配副本分片之前的剩余延迟
-![](../../elasticsearch-guide/source/images/common/3.png) 有关节点上找到的分片数据的信息
+① 在分配由于节点将其保留离开集群而不存在的副本分片之前配置的延迟
+
+② 分配副本分片之前的剩余延迟
+
+③ 有关节点上找到的分片数据的信息
 
 分配的分片的API响应输出，不允许保留在其当前节点上并且需要移动：
 ```json
@@ -210,9 +217,11 @@ GET /_cluster/allocation/explain?include_yes_decisions=true
 }
 ```
 
-![](../../elasticsearch-guide/source/images/common/1.png) 是否允许分片保留在其当前节点上
-![](../../elasticsearch-guide/source/images/common/2.png) 决策者决定不允许将碎片保留在其当前节点上
-![](../../elasticsearch-guide/source/images/common/3.png) 是否允许将分片分配给另一个节点
+① 是否允许分片保留在其当前节点上
+
+② 决策者决定不允许将碎片保留在其当前节点上
+
+③ 是否允许将分片分配给另一个节点
 
 以下是将分片移动到另一个节点的输出，显示其仍保留在其当前节点上，因为集群找不到更好的平衡办法：
 ```json
@@ -243,6 +252,8 @@ GET /_cluster/allocation/explain?include_yes_decisions=true
 }
 ```
 
-![](../../elasticsearch-guide/source/images/common/1.png) 是否允许在集群上进行重新平衡
-![](../../elasticsearch-guide/source/images/common/2.png) 是否可以将分片重新平衡到另一个节点
-![](../../elasticsearch-guide/source/images/common/3.png) 分片无法重新平衡到节点的原因，在这种情况下表明它没有提供比当前节点更好的平衡
+① 是否允许在集群上进行重新平衡
+
+② 是否可以将分片重新平衡到另一个节点
+
+③ 分片无法重新平衡到节点的原因，在这种情况下表明它没有提供比当前节点更好的平衡

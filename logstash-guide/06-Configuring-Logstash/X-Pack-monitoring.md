@@ -16,9 +16,9 @@ xpack.monitoring.elasticsearch.username: "logstash_system"  ②
 xpack.monitoring.elasticsearch.password: "changeme"
 ```
 
-​	![1](../source/images/common/1.png) 如果在生产群集上启用了SSL/TLS，则必须通过HTTPS进行连接。从v5.2.1开始，您可以以数组形式指定多个Elasticsearch主机，或以字符串形式指定单个主机。如果指定了多个URL，则Logstash可以将请求在这些生产节点上进行负载均衡。
+​	① 如果在生产群集上启用了SSL/TLS，则必须通过HTTPS进行连接。从v5.2.1开始，您可以以数组形式指定多个Elasticsearch主机，或以字符串形式指定单个主机。如果指定了多个URL，则Logstash可以将请求在这些生产节点上进行负载均衡。
 
-​	![2](../source/images/common/2.png) 如果在生产群集上禁用了X-Pack安全性，则可以省略这些 `username` 和 `password` 设置。
+​	② 如果在生产群集上禁用了X-Pack安全性，则可以省略这些 `username` 和 `password` 设置。
 
 4. 如果在生产Elasticsearch集群上启用了SSL/TLS，请指定验证集群中节点标识的可信CA证书。
 

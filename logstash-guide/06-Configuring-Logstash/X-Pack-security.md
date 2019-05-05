@@ -33,11 +33,11 @@ POST _xpack/security/role/logstash_writer
 }
 ```
 
-![1](../source/images/common/1.png) 如果启用了 [索引生命周期管理](https://www.elastic.co/guide/en/elasticsearch/reference/6.7/getting-started-index-lifecycle-management.html)，则群集需要 `manage_ilm` 权限。
+① 如果启用了 [索引生命周期管理](https://www.elastic.co/guide/en/elasticsearch/reference/6.7/getting-started-index-lifecycle-management.html)，则群集需要 `manage_ilm` 权限。
 
-![2](../source/images/common/2.png) 如果使用自定义Logstash索引匹配，请自定义匹配而不是默认 `logstash-*` 匹配。
+② 如果使用自定义Logstash索引匹配，请自定义匹配而不是默认 `logstash-*` 匹配。
 
-![3](../source/images/common/3.png) 如果启用了 [索引生命周期管理](https://www.elastic.co/guide/en/elasticsearch/reference/6.7/getting-started-index-lifecycle-management.html)，则该角色需要 `manage` 和 `manage_ilm` 权限才能加载索引生命周期策略，创建滚动别名以及创建和管理滚动索引。
+③ 如果启用了 [索引生命周期管理](https://www.elastic.co/guide/en/elasticsearch/reference/6.7/getting-started-index-lifecycle-management.html)，则该角色需要 `manage` 和 `manage_ilm` 权限才能加载索引生命周期策略，创建滚动别名以及创建和管理滚动索引。
 
 2. 创建 `logstash_internal` 用户并为其分配 `logstash_writer` 角色。您可以从Kibana中的 **Management > Users** 页面或通过 `user` API创建用户：
 
@@ -95,7 +95,7 @@ POST _xpack/security/role/logstash_reader
 ```
 
 
-![1](../source/images/common/1.png) 如果使用自定义Logstash索引匹配，请指定该匹配而不是默认的 `logstash- *` 匹配。
+① 如果使用自定义Logstash索引匹配，请指定该匹配而不是默认的 `logstash- *` 匹配。
 
 2. 为Logstash用户分配 `logstash_reader` 角色。如果Logstash用户需使用 [集中管道管理](../07-Managing-Logstash/Centralized-Pipeline-Management.md)，还要分配 `logstash_admin` 角色。您可以从Kibana中的 **Management > Users** 页面或通过 `user` API创建和管理用户：
 
@@ -109,7 +109,7 @@ POST _xpack/security/user/logstash_user
 ```
 
 
-![1](../source/images/common/1.png) `logstash_admin` 是一个内置角色，可以访问 `.logstash- *` 索引以管理配置。
+① `logstash_admin` 是一个内置角色，可以访问 `.logstash- *` 索引以管理配置。
 
 #### 配置Elasticsearch 输出使用PKI验证
 
@@ -128,7 +128,7 @@ output {
 ```
 
 
-![1](../source/images/common/1.png) 如果使用单独的信任库，则还需要信任库路径和密码。
+① 如果使用单独的信任库，则还需要信任库路径和密码。
 
 #### 配置Logstash使用TLS加密
 
@@ -145,7 +145,7 @@ output {
 ```
 
 
-![1](../source/images/common/1.png) 包含证书颁发机构证书的本地 `.pem` 文件的路径。
+① 包含证书颁发机构证书的本地 `.pem` 文件的路径。
 
 ### 配置监控凭据
 
@@ -187,4 +187,4 @@ xpack.management.elasticsearch.password：t0p.s3cr3t
 ```
 
 
-![1](../source/images/common/1.png) 您在此处指定的用户必须具有内置的 `logstash_admin` 角色以及您之前创建的 `logstash_writer` 角色。
+① 您在此处指定的用户必须具有内置的 `logstash_admin` 角色以及您之前创建的 `logstash_writer` 角色。
