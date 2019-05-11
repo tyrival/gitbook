@@ -46,13 +46,13 @@ Azure模块使用 [Logstash Azure Event Hub 输入插件](../17-Input-plugins/az
 
 此模块需要Elastic Stack版本6.4（或更高版本）。
 
-Azure模块使用 `azure_event_hubs` 输入插件来接收Azure环境中的日志和指标。它默认安装在Logstash 6.4（或更高版本）中。在设置Azure模块时，必须对插件和选项有基本了解。有关更多信息，请参阅 [Logstash Azure Event Hub 输入插件](../17-Input-plugins/azure_event_hubs.md) 。
+Azure模块使用 `azure_event_hubs` 输入插件来接收Azure环境中的日志和度量。它默认安装在Logstash 6.4（或更高版本）中。在设置Azure模块时，必须对插件和选项有基本了解。有关更多信息，请参阅 [Logstash Azure Event Hub 输入插件](../17-Input-plugins/azure_event_hubs.md) 。
 
 Elastic产品 [在此下载](https://www.elastic.co/cn/downloads/) 并安装。
 
 #### Azure准备工作
 
-应配置Azure监视器将日志流式传输到一个或多个Event Hub。 Logstash将访问这些Event Hubs实例以使用Azure日志和指标。有关Microsoft Azure文档的链接，请参阅本主题末尾的 [Microsoft Azure资源](#Microsoft_Azure资源)。
+应配置Azure监视器将日志流式传输到一个或多个Event Hub。 Logstash将访问这些Event Hubs实例以使用Azure日志和度量。有关Microsoft Azure文档的链接，请参阅本主题末尾的 [Microsoft Azure资源](#Microsoft_Azure资源)。
 
 ### 配置模块
 
@@ -94,7 +94,7 @@ modules:
 
 ④ 此连接设置活动日志的消耗。 默认情况下，Azure监视器使用的Event Hub名称为 `insights-operational-logs`。 确保这与活动日志指定的Event Hub的名称相匹配。
 
-⑤ 这个以及下面的连接设置SQL DB诊断日志和指标的消耗。 默认情况下，Azure Monitor使用所有这些不同的Event Hub名称。
+⑤ 这个以及下面的连接设置SQL DB诊断日志和度量的消耗。 默认情况下，Azure Monitor使用所有这些不同的Event Hub名称。
 
 基本配置需要 `var.input.azure_event_hubs`。 配置选项前缀。 请注意 `threads` 选项的表达式。
 
@@ -508,5 +508,5 @@ Microsoft在此处记录了 [活动日志架构](https://docs.microsoft.com/zh-c
 Microsoft是获取最新Azure信息的最佳来源。
 
 - [Azure监视器概述](https://docs.microsoft.com/en-us/azure/monitoring-and-diagnostics/monitoring-overview-azure-monitor)
-- [Azure SQL数据库指标和诊断日志记录](https://docs.microsoft.com/en-us/azure/sql-database/sql-database-metrics-diag-logging)
+- [Azure SQL数据库度量和诊断日志记录](https://docs.microsoft.com/en-us/azure/sql-database/sql-database-metrics-diag-logging)
 - [Azure活动日志流传输到Event Hub](https://docs.microsoft.com/en-us/azure/monitoring-and-diagnostics/monitoring-stream-activity-logs-event-hubs)

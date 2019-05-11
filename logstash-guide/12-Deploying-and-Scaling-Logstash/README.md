@@ -1,12 +1,12 @@
 # 第12章-部署和集群扩展
 
-Elastic Stack有大量应用场景，从操作日志和指标分析到企业和应用程序搜索。确保您的数据可扩展，持久且安全地传输到Elasticsearch非常重要，尤其是对于重要任务的环境。
+Elastic Stack有大量应用场景，从操作日志和度量分析到企业和应用程序搜索。确保您的数据可扩展，持久且安全地传输到Elasticsearch非常重要，尤其是对于重要任务的环境。
 
-本文档的目标是说明Logstash最常见的架构，以及如何在部署增长时进行有效扩展。重点将放在运营日志、指标和安全分析用例上，因为它们往往需要更大规模的部署。此处提供的部署和扩展建议可能会根据您自己的要求而有所不同。
+本文档的目标是说明Logstash最常见的架构，以及如何在部署增长时进行有效扩展。重点将放在运营日志、度量和安全分析用例上，因为它们往往需要更大规模的部署。此处提供的部署和扩展建议可能会根据您自己的要求而有所不同。
 
 ### 入门
 
-对于初次使用的用户，如果您只想基于日志文件来掌握Elastic Stack的强大功能，我们建议您尝试使用 [Filebeat模块](https://www.elastic.co/guide/en/beats/filebeat/6.7/filebeat-modules-overview.html)。 Filebeat模块使您能够在几分钟内快速收集，解析和索引流行的日志类型，并查看预定义的Kibana仪表板。 [Metricbeat模块](https://www.elastic.co/guide/en/beats/metricbeat/6.7/metricbeat-modules.html) 提供类似的功能，并具有指标数据。在这种情况下，Beats会将数据直接发送到Elasticsearch，其中 [Ingest Nodes](https://www.elastic.co/guide/en/elasticsearch/reference/6.7/ingest.html) 将处理和索引您的数据。
+对于初次使用的用户，如果您只想基于日志文件来掌握Elastic Stack的强大功能，我们建议您尝试使用 [Filebeat模块](https://www.elastic.co/guide/en/beats/filebeat/6.7/filebeat-modules-overview.html)。 Filebeat模块使您能够在几分钟内快速收集，解析和索引流行的日志类型，并查看预定义的Kibana仪表板。 [Metricbeat模块](https://www.elastic.co/guide/en/beats/metricbeat/6.7/metricbeat-modules.html) 提供类似的功能，并具有度量数据。在这种情况下，Beats会将数据直接发送到Elasticsearch，其中 [Ingest Nodes](https://www.elastic.co/guide/en/elasticsearch/reference/6.7/ingest.html) 将处理和索引您的数据。
 
 ![deploy1](../source/images/ch-12/deploy1.png)
 
@@ -66,7 +66,7 @@ Logstash通常会使用 [grok](../19-Filter-plugins/grok.md) 或 [dissect](../19
 
 #### 监控
 
-运行Logstash 5.2或更高版本时，[监控UI](https://www.elastic.co/products/stack/monitoring)提供对部署指标的详细展示，有助于在扩展时观察性能并缓解瓶颈。监控是基本许可下的X-Pack功能，因此可以免费使用。要开始使用，请参阅 [监控Logstash](../14-Monitoring-Logstash/README.md)。
+运行Logstash 5.2或更高版本时，[监控UI](https://www.elastic.co/products/stack/monitoring)提供对部署度量的详细展示，有助于在扩展时观察性能并缓解瓶颈。监控是基本许可下的X-Pack功能，因此可以免费使用。要开始使用，请参阅 [监控Logstash](../14-Monitoring-Logstash/README.md)。
 
 如果选择外部监控，则有[监控API](../15-Monitoring-APIs/README.md)可获取实时性能快照。
 
@@ -101,7 +101,7 @@ TCP，UDP和HTTP协议是将数据提供给Logstash的常用方法。 Logstash�
 
 #### 基础设施和应用的数据以及IoT
 
-可以使用 [Metricbeat](https://www.elastic.co/cn/products/beats/metricbeat) 收集基础设施和应用程序性能指标，但应用程序也可以将Webhooks发送到Logstash HTTP输入，或者使用 [http_poller输入插件](../17-Input-plugins/http_poller.md) 从HTTP端点轮询性能指标。
+可以使用 [Metricbeat](https://www.elastic.co/cn/products/beats/metricbeat) 收集基础设施和应用程序性能度量，但应用程序也可以将Webhooks发送到Logstash HTTP输入，或者使用 [http_poller输入插件](../17-Input-plugins/http_poller.md) 从HTTP端点轮询性能度量。
 
 对于使用log4j2进行日志记录的应用程序，建议使用SocketAppender将JSON发送到Logstash TCP输入。或者，log4j2也可以使用Filebeat监听文件以进行收集。建议不要使用log4j1 SocketAppender。
 

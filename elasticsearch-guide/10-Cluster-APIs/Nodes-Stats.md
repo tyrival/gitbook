@@ -78,7 +78,7 @@ GET /_nodes/10.0.0.1/stats/process
     指示文件存储是否由旋转存储支持。 null表示我们无法确定它，true表示设备可能旋转，false表示它不能（例如：固态磁盘）。
 
 `fs.io_stats.devices`（仅限Linux）
-    支持Elasticsearch数据路径的每个设备的磁盘指标数组。定期探测这些磁盘指标，并计算最后一个探测和当前探测之间的平均值。
+    支持Elasticsearch数据路径的每个设备的磁盘度量数组。定期探测这些磁盘度量，并计算最后一个探测和当前探测之间的平均值。
 
 `fs.io_stats.devices.device_name`（仅限Linux）
     Linux设备名称。
@@ -228,7 +228,7 @@ GET /_nodes/stats/indices/fielddata?level=shards&fields=field1,field2
 GET /_nodes/stats/indices/fielddata?fields=field*
 ```
 
-支持的指标是：
+支持的度量是：
 - `completion`
 - `docs`
 - `fielddata`

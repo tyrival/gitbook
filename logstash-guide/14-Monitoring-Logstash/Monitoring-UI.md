@@ -1,6 +1,6 @@
 ## 监控UI
 
-运行Logstash 5.2或更高版本时，您可以使用 [X-Pack监视功能](https://www.elastic.co/cn/products/stack/monitoring) 深入了解有关Logstash部署的指标。在Overview仪表板中，您可以查看Logstash接收和发送的所有事件，以及有关内存使用情况和正常运行时间的信息：
+运行Logstash 5.2或更高版本时，您可以使用 [X-Pack监视功能](https://www.elastic.co/cn/products/stack/monitoring) 深入了解有关Logstash部署的度量。在Overview仪表板中，您可以查看Logstash接收和发送的所有事件，以及有关内存使用情况和正常运行时间的信息：
 
 ![overviewstats](../source/images/ch-14/overviewstats.png)
 

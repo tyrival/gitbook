@@ -1,6 +1,6 @@
 # 第15章-API
 
-Logstash提供以下监视API以检索有关Logstash的运行时指标：
+Logstash提供以下监视API以检索有关Logstash的运行时度量：
 
 - [节点信息API](../15-Monitoring-APIs/Node-Info-API.md)
 - [插件信息API](../15-Monitoring-APIs/Plugins-Info-API.md)

@@ -12,7 +12,7 @@
 
 ### 说明
 
-这个Logstash输入插件允许您调用HTTP API，将其输出数据解码为事件，并按配置的渠道将其发送出去。 这个插件背后的想法来自于需要读取springboot指标端点，而不是配置jmx来监视我的java应用程序内存、GC等。
+这个Logstash输入插件允许您调用HTTP API，将其输出数据解码为事件，并按配置的渠道将其发送出去。 这个插件背后的想法来自于需要读取springboot度量端点，而不是配置jmx来监视我的java应用程序内存、GC等。
 
 ### 示例
 
@@ -280,7 +280,7 @@ openssl s_client -showcerts -connect MYURL:MYPORT </dev/null 2>/dev/null|openssl
 - 值类型是 [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#boolean)
 - 默认值为 `true`
 
-默认情况下，禁用或启用此特定插件实例的指标记录，我们会记录所有的可用指标，但您可以禁用特定插件的指标收集。
+默认情况下，禁用或启用此特定插件实例的度量记录，我们会记录所有的可用度量，但您可以禁用特定插件的度量收集。
 
 ##### id
 

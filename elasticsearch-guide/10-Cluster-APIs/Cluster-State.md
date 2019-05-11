@@ -47,7 +47,7 @@ GET /_cluster/state/{metrics}/{indices}
     显示响应的块部分。
     
 `_all`
-    显示所有指标。
+    显示所有度量。
 
 以下示例仅返回`foo`和`bar`索引的`metadata`和`routing_table`数据：
 ```sh

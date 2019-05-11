@@ -32,8 +32,8 @@
 | [json_encode](../19-Filter-plugins/json_encode.md)           | 序列化JSON的字段                                             | [logstash-filter-json_encode](https://github.com/logstash-plugins/logstash-filter-json_encode) |
 | [kv](../19-Filter-plugins/kv.md)                             | 解析键值对                                                   | [logstash-filter-kv](https://github.com/logstash-plugins/logstash-filter-kv) |
 | [memcached](../19-Filter-plugins/memcached.md)               | 与外部Memcache中的数据集成                                   | [logstash-filter-memcached](https://github.com/logstash-plugins/logstash-filter-memcached) |
-| [metricize](../19-Filter-plugins/metricize.md)               | 采用包含多个指标的复杂事件，并将这些指标拆分为多个事件，每个事件都包含一个指标 | [logstash-filter-metricize](https://github.com/logstash-plugins/logstash-filter-metricize) |
-| [metrics](../19-Filter-plugins/metrics.md)                   | 聚合指标                                                     | [logstash-filter-metrics](https://github.com/logstash-plugins/logstash-filter-metrics) |
+| [metricize](../19-Filter-plugins/metricize.md)               | 采用包含多个度量的复杂事件，并将这些度量拆分为多个事件，每个事件都包含一个度量 | [logstash-filter-metricize](https://github.com/logstash-plugins/logstash-filter-metricize) |
+| [metrics](../19-Filter-plugins/metrics.md)                   | 聚合度量                                                     | [logstash-filter-metrics](https://github.com/logstash-plugins/logstash-filter-metrics) |
 | [**mutate**](../19-Filter-plugins/mutate.md)                 | 修改字段                                                     | [logstash-filter-mutate](https://github.com/logstash-plugins/logstash-filter-mutate) |
 | [**prune**](../19-Filter-plugins/prune.md)                       | 基于字段的白名单或黑名单修剪事件数据                         | [logstash-filter-prune](https://github.com/logstash-plugins/logstash-filter-prune) |
 | [range](../19-Filter-plugins/range.md)                       | 根据给定的容量或长度限制校验指定字段                         | [logstash-filter-range](https://github.com/logstash-plugins/logstash-filter-range) |

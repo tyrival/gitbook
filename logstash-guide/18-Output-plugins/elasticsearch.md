@@ -635,7 +635,7 @@ template_overwrite选项将始终使用模板指示的模板，或包含的模�
 - 值类型是 [boolean](../06-Configuring-Logstash/Structure-of-a-Config-File.md#boolean)
 - 默认值为 `true`
 
-禁用或启用此特定插件实例的度量标准记录。 默认情况下，我们会记录所有可用的指标，但您可以禁用特定插件的指标收集。
+禁用或启用此特定插件实例的度量标准记录。 默认情况下，我们会记录所有可用的度量，但您可以禁用特定插件的度量收集。
 
 ##### id
 

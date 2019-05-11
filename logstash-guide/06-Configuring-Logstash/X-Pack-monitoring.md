@@ -5,10 +5,10 @@
 1. 确定监控数据的发送位置，通常是生产群集。有关典型监视架构的示例，请参阅 [监视工作原理](https://www.elastic.co/guide/en/elastic-stack-overview/6.7/how-monitoring-works.html)。
 
 > **重要：**
-> 要将Logstash可视化为Elastic Stack的一部分（如步骤6所示），请将性能指标发送到生产群集。专用监视集群接收到后，将显示监视集群下的Logstash性能。
+> 要将Logstash可视化为Elastic Stack的一部分（如步骤6所示），请将性能度量发送到生产群集。专用监视集群接收到后，将显示监视集群下的Logstash性能。
 
 2. 确定生产群集上的 `xpack.monitoring.collection.enabled` 是否设置为 `true`。如果该设置为 `false`，则性能监控数据集在Elasticsearch中不可用，并从所有来源中被忽略。
-3. 配置Logstash节点，在 `logstash.yml中` 设置 `xpack.monitoring.elasticsearch.hosts` 使其发送性能指标。如果启用了X-Pack安全性，则还需要指定 [内置 `logstash_system` 用户](https://www.elastic.co/guide/en/elastic-stack-overview/6.7/built-in-users.html) 的凭据。有关这些设置的详细信息，请参阅 [监控设置](#监控设置)。
+3. 配置Logstash节点，在 `logstash.yml中` 设置 `xpack.monitoring.elasticsearch.hosts` 使其发送性能度量。如果启用了X-Pack安全性，则还需要指定 [内置 `logstash_system` 用户](https://www.elastic.co/guide/en/elastic-stack-overview/6.7/built-in-users.html) 的凭据。有关这些设置的详细信息，请参阅 [监控设置](#监控设置)。
 
 ```yaml
 xpack.monitoring.elasticsearch.hosts: ["http://es-prod-node-1:9200", "http://es-prod-node-2:9200"]  ①
@@ -49,7 +49,7 @@ xpack.monitoring.elasticsearch.sniffing: false
 ```
 
 5. 重新启动Logstash节点。
-6. 要验证X-Pack监视配置，请使用浏览器访问Kibana地址，然后从侧边菜单选择 "Monitoring"。 Logstash区域显示Logstash节点的性能指标。启用安全性后，要查看监视仪表板，您必须以具有 `kibana_user` 和 `monitoring_user` 角色的用户身份登录Kibana。
+6. 要验证X-Pack监视配置，请使用浏览器访问Kibana地址，然后从侧边菜单选择 "Monitoring"。 Logstash区域显示Logstash节点的性能度量。启用安全性后，要查看监视仪表板，您必须以具有 `kibana_user` 和 `monitoring_user` 角色的用户身份登录Kibana。
 
 ![monitoring-ui](../source/images/ch-06/monitoring-ui.png)
 
@@ -69,7 +69,7 @@ xpack.monitoring.elasticsearch.sniffing: false
 	
 `xpack.monitoring.elasticsearch.hosts`
 
-	将Logstash性能指标发送到的Elasticsearch实例。这可能与Logstash配置的 `outputs` 中指定的Elasticsearch实例相同，也可能使用其他实例。这不是专用于监控的集群URL。即使您使用的是专用监控集群，也必须通过生产集群路由Logstash指标。您可以使用字符串的形式指定单个主机，也可以用数组的形式指定多个主机。默认为`http://localhost:9200`。
+	将Logstash性能度量发送到的Elasticsearch实例。这可能与Logstash配置的 `outputs` 中指定的Elasticsearch实例相同，也可能使用其他实例。这不是专用于监控的集群URL。即使您使用的是专用监控集群，也必须通过生产集群路由Logstash度量。您可以使用字符串的形式指定单个主机，也可以用数组的形式指定多个主机。默认为`http://localhost:9200`。
 	
 `xpack.monitoring.elasticsearch.username` 和 `xpack.monitoring.elasticsearch.password`
 

@@ -3,7 +3,7 @@
 Logstash提供了两个简化使用 [Elastic Cloud](https://cloud.elastic.co) 模块的设置。 Elastic Cloud中的Elasticsearch和Kibana主机名可能很难在Logstash配置或命令行中设置，此时可以使用Cloud ID。
 
 > **注意：**
-> Cloud ID仅在启用Logstash模块时才使用，否则指定Cloud ID无效。Cloud ID适用于通过模块发送的数据，通过X-Pack监控发送的运行时指标，以及Logstash的X-Pack集中管理功能使用的端点，除非在 `logstash.yml` 中指定了对X-Pack设置的显式覆盖。
+> Cloud ID仅在启用Logstash模块时才使用，否则指定Cloud ID无效。Cloud ID适用于通过模块发送的数据，通过X-Pack监控发送的运行时度量，以及Logstash的X-Pack集中管理功能使用的端点，除非在 `logstash.yml` 中指定了对X-Pack设置的显式覆盖。
 
 ### Cloud ID
 
