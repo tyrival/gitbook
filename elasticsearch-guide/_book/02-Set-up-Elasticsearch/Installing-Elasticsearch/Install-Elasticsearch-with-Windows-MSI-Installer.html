@@ -1,0 +1,4860 @@
+
+<!DOCTYPE HTML>
+<html lang="zh-hans" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Windows MSI安装 · Elasticsearch 6.7 用户指南中文版</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        <meta name="author" content="Tyrival">
+        
+        
+    
+    <link rel="stylesheet" href="../../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-splitter/splitter.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-anchors/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-anchor-navigation-ex/style/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+
+        
+    
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="Install-Elasticsearch-with-Docker.html" />
+    
+    
+    <link rel="prev" href="Install-Elasticsearch-with-RPM.html" />
+    
+
+    <style>
+    @media only screen and (max-width: 640px) {
+        .book-header .hidden-mobile {
+            display: none;
+        }
+    }
+    </style>
+    <script>
+        window["gitbook-plugin-github-buttons"] = {"buttons":[{"user":"Tyrival","repo":"gitbook","type":"star","size":"small","count":false}]};
+    </script>
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="输入并搜索" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../../">
+            
+                <a href="../../">
+            
+                    
+                    Elasticsearch 6.7 用户指南中文版
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.1" data-path="../../01-Getting-Started/">
+            
+                <a href="../../01-Getting-Started/">
+            
+                    
+                    第1章 入门
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.1.1" data-path="../../01-Getting-Started/Basic-Concepts.html">
+            
+                <a href="../../01-Getting-Started/Basic-Concepts.html">
+            
+                    
+                    基本概念
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.2" data-path="../../01-Getting-Started/Installation.html">
+            
+                <a href="../../01-Getting-Started/Installation.html">
+            
+                    
+                    安装
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.3" data-path="../../01-Getting-Started/Exploring-Your-Cluster.html">
+            
+                <a href="../../01-Getting-Started/Exploring-Your-Cluster.html">
+            
+                    
+                    探索集群
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.1.3.1" data-path="../../01-Getting-Started/Exploring-Your-Cluster/Cluster-Health.html">
+            
+                <a href="../../01-Getting-Started/Exploring-Your-Cluster/Cluster-Health.html">
+            
+                    
+                    集群健康度
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.3.2" data-path="../../01-Getting-Started/Exploring-Your-Cluster/List-All-Indices.html">
+            
+                <a href="../../01-Getting-Started/Exploring-Your-Cluster/List-All-Indices.html">
+            
+                    
+                    索引列表
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.3.3" data-path="../../01-Getting-Started/Exploring-Your-Cluster/Create-an-Index.html">
+            
+                <a href="../../01-Getting-Started/Exploring-Your-Cluster/Create-an-Index.html">
+            
+                    
+                    创建一个索引
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.3.4" data-path="../../01-Getting-Started/Exploring-Your-Cluster/Index-and-Query-a-Document.html">
+            
+                <a href="../../01-Getting-Started/Exploring-Your-Cluster/Index-and-Query-a-Document.html">
+            
+                    
+                    索引并查询一个文档
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.3.5" data-path="../../01-Getting-Started/Exploring-Your-Cluster/Delete-an-Index.html">
+            
+                <a href="../../01-Getting-Started/Exploring-Your-Cluster/Delete-an-Index.html">
+            
+                    
+                    删除一个索引
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.4" data-path="../../01-Getting-Started/Modifying-Your-Data.html">
+            
+                <a href="../../01-Getting-Started/Modifying-Your-Data.html">
+            
+                    
+                    修改数据
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.1.4.1" data-path="../../01-Getting-Started/Modifying-Your-Data/Updating-Documents.html">
+            
+                <a href="../../01-Getting-Started/Modifying-Your-Data/Updating-Documents.html">
+            
+                    
+                    更新文档
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.4.2" data-path="../../01-Getting-Started/Modifying-Your-Data/Deleting-Documents.html">
+            
+                <a href="../../01-Getting-Started/Modifying-Your-Data/Deleting-Documents.html">
+            
+                    
+                    删除文档
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.4.3" data-path="../../01-Getting-Started/Modifying-Your-Data/Batch-Processing.html">
+            
+                <a href="../../01-Getting-Started/Modifying-Your-Data/Batch-Processing.html">
+            
+                    
+                    批处理
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.5" data-path="../../01-Getting-Started/Exploring-Your-Data.html">
+            
+                <a href="../../01-Getting-Started/Exploring-Your-Data.html">
+            
+                    
+                    探索数据
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.1.5.1" data-path="../../01-Getting-Started/Exploring-Your-Data/The-Search-API.html">
+            
+                <a href="../../01-Getting-Started/Exploring-Your-Data/The-Search-API.html">
+            
+                    
+                    搜索API
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.5.2" data-path="../../01-Getting-Started/Exploring-Your-Data/Introducing-the-Query-Language.html">
+            
+                <a href="../../01-Getting-Started/Exploring-Your-Data/Introducing-the-Query-Language.html">
+            
+                    
+                    查询语法介绍
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.5.3" data-path="../../01-Getting-Started/Exploring-Your-Data/Executing-Searches.html">
+            
+                <a href="../../01-Getting-Started/Exploring-Your-Data/Executing-Searches.html">
+            
+                    
+                    执行查询
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.5.4" data-path="../../01-Getting-Started/Exploring-Your-Data/Executing-Filters.html">
+            
+                <a href="../../01-Getting-Started/Exploring-Your-Data/Executing-Filters.html">
+            
+                    
+                    执行过滤
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.5.5" data-path="../../01-Getting-Started/Exploring-Your-Data/Executing-Aggregations.html">
+            
+                <a href="../../01-Getting-Started/Exploring-Your-Data/Executing-Aggregations.html">
+            
+                    
+                    执行聚合
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.6" data-path="../../01-Getting-Started/Conclusion.html">
+            
+                <a href="../../01-Getting-Started/Conclusion.html">
+            
+                    
+                    小结
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.2" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    第2章 设置
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.2.1" data-path="../Installing-Elasticsearch.html">
+            
+                <a href="../Installing-Elasticsearch.html">
+            
+                    
+                    安装
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.2.1.1" data-path="Install-Elasticsearch-with-.zip-or-.tar.gz.html">
+            
+                <a href="Install-Elasticsearch-with-.zip-or-.tar.gz.html">
+            
+                    
+                    .zip或.tar.gz安装
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.2.1.2" data-path="Install-Elasticsearch-with-.zip-on-Windows.html">
+            
+                <a href="Install-Elasticsearch-with-.zip-on-Windows.html">
+            
+                    
+                    .zip在Windows安装
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.2.1.3" data-path="Install-Elasticsearch-with-Debian-Package.html">
+            
+                <a href="Install-Elasticsearch-with-Debian-Package.html">
+            
+                    
+                    Debian包安装
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.2.1.4" data-path="Install-Elasticsearch-with-RPM.html">
+            
+                <a href="Install-Elasticsearch-with-RPM.html">
+            
+                    
+                    RPM安装
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.1.2.1.5" data-path="Install-Elasticsearch-with-Windows-MSI-Installer.html">
+            
+                <a href="Install-Elasticsearch-with-Windows-MSI-Installer.html">
+            
+                    
+                    Windows MSI安装
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.2.1.6" data-path="Install-Elasticsearch-with-Docker.html">
+            
+                <a href="Install-Elasticsearch-with-Docker.html">
+            
+                    
+                    Docker安装
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.2.2" data-path="../Configuring-Elasticsearch.html">
+            
+                <a href="../Configuring-Elasticsearch.html">
+            
+                    
+                    配置
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.2.2.1" data-path="../Configuring-Elasticsearch/Setting-JVM-options.html">
+            
+                <a href="../Configuring-Elasticsearch/Setting-JVM-options.html">
+            
+                    
+                    JVM设置项
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.2.2.2" data-path="../Configuring-Elasticsearch/Secure-settings.html">
+            
+                <a href="../Configuring-Elasticsearch/Secure-settings.html">
+            
+                    
+                    安全配置
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.2.2.3" data-path="../Configuring-Elasticsearch/Logging-configuration.html">
+            
+                <a href="../Configuring-Elasticsearch/Logging-configuration.html">
+            
+                    
+                    日志配置
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.2.3" data-path="../Important-Elasticsearch-configuration.html">
+            
+                <a href="../Important-Elasticsearch-configuration.html">
+            
+                    
+                    重要配置
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.2.3.1" data-path="../Important-Elasticsearch-configuration/path.data-and-path.logs.html">
+            
+                <a href="../Important-Elasticsearch-configuration/path.data-and-path.logs.html">
+            
+                    
+                    路径设置
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.2.3.2" data-path="../Important-Elasticsearch-configuration/cluster.name.html">
+            
+                <a href="../Important-Elasticsearch-configuration/cluster.name.html">
+            
+                    
+                    集群名称
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.2.3.3" data-path="../Important-Elasticsearch-configuration/node.name.html">
+            
+                <a href="../Important-Elasticsearch-configuration/node.name.html">
+            
+                    
+                    节点名称
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.2.3.4" data-path="../Important-Elasticsearch-configuration/network.host.html">
+            
+                <a href="../Important-Elasticsearch-configuration/network.host.html">
+            
+                    
+                    网络主机
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.2.3.5" data-path="../Important-Elasticsearch-configuration/Discovery-settings.html">
+            
+                <a href="../Important-Elasticsearch-configuration/Discovery-settings.html">
+            
+                    
+                    发现设置
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.2.3.6" data-path="../Important-Elasticsearch-configuration/Setting-the-heap-size.html">
+            
+                <a href="../Important-Elasticsearch-configuration/Setting-the-heap-size.html">
+            
+                    
+                    设置堆大小
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.2.3.7" data-path="../Important-Elasticsearch-configuration/JVM-heap-dump-path.html">
+            
+                <a href="../Important-Elasticsearch-configuration/JVM-heap-dump-path.html">
+            
+                    
+                    JVM堆转存路径
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.2.3.8" data-path="../Important-Elasticsearch-configuration/GC-logging.html">
+            
+                <a href="../Important-Elasticsearch-configuration/GC-logging.html">
+            
+                    
+                    GC日志
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.2.3.9" data-path="../Important-Elasticsearch-configuration/Temp-directory.html">
+            
+                <a href="../Important-Elasticsearch-configuration/Temp-directory.html">
+            
+                    
+                    缓存目录
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.2.3.10" data-path="../Important-Elasticsearch-configuration/JVM-fatal-error-logs.html">
+            
+                <a href="../Important-Elasticsearch-configuration/JVM-fatal-error-logs.html">
+            
+                    
+                    JVM事故错误日志
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.2.4" data-path="../Important-System-Configuration.html">
+            
+                <a href="../Important-System-Configuration.html">
+            
+                    
+                    重要系统配置
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.2.4.1" data-path="../Important-System-Configuration/Configuring-system-settings.html">
+            
+                <a href="../Important-System-Configuration/Configuring-system-settings.html">
+            
+                    
+                    系统设置
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.2.4.2" data-path="../Important-System-Configuration/Disable-swapping.html">
+            
+                <a href="../Important-System-Configuration/Disable-swapping.html">
+            
+                    
+                    禁用swapping
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.2.4.3" data-path="../Important-System-Configuration/File-Descriptors.html">
+            
+                <a href="../Important-System-Configuration/File-Descriptors.html">
+            
+                    
+                    文件描述符
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.2.4.4" data-path="../Important-System-Configuration/Virtual-memory.html">
+            
+                <a href="../Important-System-Configuration/Virtual-memory.html">
+            
+                    
+                    虚拟内存
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.2.4.5" data-path="../Important-System-Configuration/Number-of-threads.html">
+            
+                <a href="../Important-System-Configuration/Number-of-threads.html">
+            
+                    
+                    线程数
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.2.4.6" data-path="../Important-System-Configuration/DNS-cache-settings.html">
+            
+                <a href="../Important-System-Configuration/DNS-cache-settings.html">
+            
+                    
+                    DNS缓存设置
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.2.4.7" data-path="../Important-System-Configuration/JNA-temporary-directory-not-mounted-with-noexec.html">
+            
+                <a href="../Important-System-Configuration/JNA-temporary-directory-not-mounted-with-noexec.html">
+            
+                    
+                    使用noexec不挂载JNA缓存目录
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.2.5" data-path="../Bootstrap-Checks.html">
+            
+                <a href="../Bootstrap-Checks.html">
+            
+                    
+                    启动检查
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.2.5.1" data-path="../Bootstrap-Checks/Heap-size-check.html">
+            
+                <a href="../Bootstrap-Checks/Heap-size-check.html">
+            
+                    
+                    堆大小检查
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.2.5.2" data-path="../Bootstrap-Checks/File-descriptor-check.html">
+            
+                <a href="../Bootstrap-Checks/File-descriptor-check.html">
+            
+                    
+                    文件描述符检查
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.2.5.3" data-path="../Bootstrap-Checks/Memory-lock-check.html">
+            
+                <a href="../Bootstrap-Checks/Memory-lock-check.html">
+            
+                    
+                    内存锁检查
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.2.5.4" data-path="../Bootstrap-Checks/Maximum-number-of-threads-checks.html">
+            
+                <a href="../Bootstrap-Checks/Maximum-number-of-threads-checks.html">
+            
+                    
+                    最大线程数检查
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.2.5.5" data-path="../Bootstrap-Checks/Max-file-size-check.html">
+            
+                <a href="../Bootstrap-Checks/Max-file-size-check.html">
+            
+                    
+                    最大文件检查
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.2.5.6" data-path="../Bootstrap-Checks/Maximum-size-virtual-memory-check.html">
+            
+                <a href="../Bootstrap-Checks/Maximum-size-virtual-memory-check.html">
+            
+                    
+                    最大虚拟内存检查
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.2.5.7" data-path="../Bootstrap-Checks/Maximum-map-count-check.html">
+            
+                <a href="../Bootstrap-Checks/Maximum-map-count-check.html">
+            
+                    
+                    最大map数检查
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.2.5.8" data-path="../Bootstrap-Checks/Client-JVM-check.html">
+            
+                <a href="../Bootstrap-Checks/Client-JVM-check.html">
+            
+                    
+                    客户端JVM检查
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.2.5.9" data-path="../Bootstrap-Checks/Use-serial-collector-check.html">
+            
+                <a href="../Bootstrap-Checks/Use-serial-collector-check.html">
+            
+                    
+                    串行收集器检查
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.2.5.10" data-path="../Bootstrap-Checks/System-call-filter-check.html">
+            
+                <a href="../Bootstrap-Checks/System-call-filter-check.html">
+            
+                    
+                    系统调用过滤器检查
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.2.5.11" data-path="../Bootstrap-Checks/OnError-and-OnOutOfMemoryError-checks.html">
+            
+                <a href="../Bootstrap-Checks/OnError-and-OnOutOfMemoryError-checks.html">
+            
+                    
+                    错误和内存不足错误检查
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.2.5.12" data-path="../Bootstrap-Checks/Early-access-chech.html">
+            
+                <a href="../Bootstrap-Checks/Early-access-chech.html">
+            
+                    
+                    Early-access检查
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.2.5.13" data-path="../Bootstrap-Checks/G1GC-check.html">
+            
+                <a href="../Bootstrap-Checks/G1GC-check.html">
+            
+                    
+                    G1GC检查
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.2.5.14" data-path="../Bootstrap-Checks/All-permission-check.html">
+            
+                <a href="../Bootstrap-Checks/All-permission-check.html">
+            
+                    
+                    权限检查
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.2.6" data-path="../Starting-Elasticsearch.html">
+            
+                <a href="../Starting-Elasticsearch.html">
+            
+                    
+                    启动
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.2.7" data-path="../Stopping-Elasticsearch.html">
+            
+                <a href="../Stopping-Elasticsearch.html">
+            
+                    
+                    停止
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.2.8" data-path="../Adding-notes-to-your-cluster.html">
+            
+                <a href="../Adding-notes-to-your-cluster.html">
+            
+                    
+                    增加注释到集群
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.2.9" data-path="../Installing-X-Pack.html">
+            
+                <a href="../Installing-X-Pack.html">
+            
+                    
+                    安装X-Pack
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.2.10" data-path="../Set-up-X-Pack.html">
+            
+                <a href="../Set-up-X-Pack.html">
+            
+                    
+                    设置X-Pack
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.2.11" data-path="../Configuring-monitoring.html">
+            
+                <a href="../Configuring-monitoring.html">
+            
+                    
+                    配置监控
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.2.11.1" data-path="../Configuring-monitoring/Collecting-monitoring-data.html">
+            
+                <a href="../Configuring-monitoring/Collecting-monitoring-data.html">
+            
+                    
+                    收集监控数据
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.2.11.2" data-path="../Configuring-monitoring/Collecting-monitoring-data-with-Metricbeat.html">
+            
+                <a href="../Configuring-monitoring/Collecting-monitoring-data-with-Metricbeat.html">
+            
+                    
+                    使用Metricbeat收集监控数据
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.2.11.3" data-path="../Configuring-monitoring/Configuring-indices-for-monitoring.html">
+            
+                <a href="../Configuring-monitoring/Configuring-indices-for-monitoring.html">
+            
+                    
+                    配置监控索引
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.2.11.4" data-path="../Configuring-monitoring/Configuring-a-Tribe-Node-to-Work-with-Monitoring.html">
+            
+                <a href="../Configuring-monitoring/Configuring-a-Tribe-Node-to-Work-with-Monitoring.html">
+            
+                    
+                    配置Tribe节点用于监控
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.2.11.5" data-path="../Configuring-monitoring/Monitoring-settings.html">
+            
+                <a href="../Configuring-monitoring/Monitoring-settings.html">
+            
+                    
+                    监控设置
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.2.12" data-path="../Configuring-security.html">
+            
+                <a href="../Configuring-security.html">
+            
+                    
+                    安全配置
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.2.12.1" data-path="../Configuring-security/Encrypting-communications-in-Elasticsearch.html">
+            
+                <a href="../Configuring-security/Encrypting-communications-in-Elasticsearch.html">
+            
+                    
+                    通讯加密
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.2.12.2" data-path="../Configuring-security/Encrypting-communications-in-an-Elasticsearch-Docker-Container.html">
+            
+                <a href="../Configuring-security/Encrypting-communications-in-an-Elasticsearch-Docker-Container.html">
+            
+                    
+                    Docker容器间通讯加密
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.2.12.3" data-path="../Configuring-security/Enabling-Cipher-Suites-for-Stronger-Encryption.html">
+            
+                <a href="../Configuring-security/Enabling-Cipher-Suites-for-Stronger-Encryption.html">
+            
+                    
+                    启用密码套件强化加密
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.2.12.4" data-path="../Configuring-security/Separating-node-to-node-and-client-traffic.html">
+            
+                <a href="../Configuring-security/Separating-node-to-node-and-client-traffic.html">
+            
+                    
+                    隔离客户端的点对点通讯
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.2.12.5" data-path="../Configuring-security/Configuring-an-Active-Directory-realm.html">
+            
+                <a href="../Configuring-security/Configuring-an-Active-Directory-realm.html">
+            
+                    
+                    配置活跃目录realm
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.2.12.6" data-path="../Configuring-security/Configuring-a-file-realm.html">
+            
+                <a href="../Configuring-security/Configuring-a-file-realm.html">
+            
+                    
+                    配置文件realm
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.2.12.7" data-path="../Configuring-security/Configuring-a-LDAP-realm.html">
+            
+                <a href="../Configuring-security/Configuring-a-LDAP-realm.html">
+            
+                    
+                    配置LDAP-realm
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.2.12.8" data-path="../Configuring-security/Configuring-a-native-realm.html">
+            
+                <a href="../Configuring-security/Configuring-a-native-realm.html">
+            
+                    
+                    配置原生realm
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.2.12.9" data-path="../Configuring-security/Configuring-a-PKI-realm.html">
+            
+                <a href="../Configuring-security/Configuring-a-PKI-realm.html">
+            
+                    
+                    配置PKI-realm
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.2.12.10" data-path="../Configuring-security/Configuring-a-SAML-realm.html">
+            
+                <a href="../Configuring-security/Configuring-a-SAML-realm.html">
+            
+                    
+                    配置SAML-realm
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.2.12.11" data-path="../Configuring-security/Configuring-a-Kerberos-realm.html">
+            
+                <a href="../Configuring-security/Configuring-a-Kerberos-realm.html">
+            
+                    
+                    配置Kerberos-realm
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.2.12.12" data-path="../Configuring-security/FIPS-140-2.html">
+            
+                <a href="../Configuring-security/FIPS-140-2.html">
+            
+                    
+                    FIPS-140-2
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.2.12.13" data-path="../Configuring-security/Securing-settings.html">
+            
+                <a href="../Configuring-security/Securing-settings.html">
+            
+                    
+                    安全设置
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.2.12.14" data-path="../Configuring-security/Securing-files.html">
+            
+                <a href="../Configuring-security/Securing-files.html">
+            
+                    
+                    安全文件
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.2.12.15" data-path="../Configuring-security/Auditing-Settings.html">
+            
+                <a href="../Configuring-security/Auditing-Settings.html">
+            
+                    
+                    审计设置
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.2.13" data-path="../Configuring-X-Pack-Java-Clients.html">
+            
+                <a href="../Configuring-X-Pack-Java-Clients.html">
+            
+                    
+                    配置X-Pack-Java客户端
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.2.14" data-path="../X-Pack-Settings.html">
+            
+                <a href="../X-Pack-Settings.html">
+            
+                    
+                    X-Pack设置
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.2.14.1" data-path="../X-Pack-Settings/Cross-cluster-replication-settings.html">
+            
+                <a href="../X-Pack-Settings/Cross-cluster-replication-settings.html">
+            
+                    
+                    跨集群副本设置
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.2.14.2" data-path="../X-Pack-Settings/License-Settings.html">
+            
+                <a href="../X-Pack-Settings/License-Settings.html">
+            
+                    
+                    许可证设置
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.2.14.3" data-path="../X-Pack-Settings/Machine-learning-settings.html">
+            
+                <a href="../X-Pack-Settings/Machine-learning-settings.html">
+            
+                    
+                    机器学习设置
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.2.14.4" data-path="../X-Pack-Settings/SQL-Access-Settings.html">
+            
+                <a href="../X-Pack-Settings/SQL-Access-Settings.html">
+            
+                    
+                    SQL访问设置
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.2.14.5" data-path="../X-Pack-Settings/Watcher-Settings.html">
+            
+                <a href="../X-Pack-Settings/Watcher-Settings.html">
+            
+                    
+                    观察者设置
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.2.15" data-path="../Bootstrap-Checks-for-X-Pack.html">
+            
+                <a href="../Bootstrap-Checks-for-X-Pack.html">
+            
+                    
+                    X-Pack启动检查
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.3" data-path="../../03-Upgrade-Elasticsearch/">
+            
+                <a href="../../03-Upgrade-Elasticsearch/">
+            
+                    
+                    第3章 升级
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.3.1" data-path="../../03-Upgrade-Elasticsearch/Rolling-upgrades.html">
+            
+                <a href="../../03-Upgrade-Elasticsearch/Rolling-upgrades.html">
+            
+                    
+                    滚动升级
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.3.2" data-path="../../03-Upgrade-Elasticsearch/Full-cluster-restart-upgrade.html">
+            
+                <a href="../../03-Upgrade-Elasticsearch/Full-cluster-restart-upgrade.html">
+            
+                    
+                    全集群重启升级
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.3.3" data-path="../../03-Upgrade-Elasticsearch/Reindex-before-upgrading.html">
+            
+                <a href="../../03-Upgrade-Elasticsearch/Reindex-before-upgrading.html">
+            
+                    
+                    升级前重建索引
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.3.3.1" data-path="../../03-Upgrade-Elasticsearch/Reindex-before-upgrading/Reindex-in-place.html">
+            
+                <a href="../../03-Upgrade-Elasticsearch/Reindex-before-upgrading/Reindex-in-place.html">
+            
+                    
+                    本地重建索引
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.3.3.2" data-path="../../03-Upgrade-Elasticsearch/Reindex-before-upgrading/Reindex-from-a-remote-cluster.html">
+            
+                <a href="../../03-Upgrade-Elasticsearch/Reindex-before-upgrading/Reindex-from-a-remote-cluster.html">
+            
+                    
+                    远程集群重建索引
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.4" data-path="../../04-API-Conventions/">
+            
+                <a href="../../04-API-Conventions/">
+            
+                    
+                    第4章 API约定
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.4.1" data-path="../../04-API-Conventions/Multiple-Indices.html">
+            
+                <a href="../../04-API-Conventions/Multiple-Indices.html">
+            
+                    
+                    多重索引
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.4.2" data-path="../../04-API-Conventions/Date-math-support-in-index-names.html">
+            
+                <a href="../../04-API-Conventions/Date-math-support-in-index-names.html">
+            
+                    
+                    日期数字索引
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.4.3" data-path="../../04-API-Conventions/Common-options.html">
+            
+                <a href="../../04-API-Conventions/Common-options.html">
+            
+                    
+                    通用项
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.4.4" data-path="../../04-API-Conventions/URL-based-access-control.html">
+            
+                <a href="../../04-API-Conventions/URL-based-access-control.html">
+            
+                    
+                    基于URL访问控制
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.5" data-path="../../05-Document-APIs/">
+            
+                <a href="../../05-Document-APIs/">
+            
+                    
+                    第5章 API文档
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.5.1" data-path="../../05-Document-APIs/Reading-and-Writing-documents.html">
+            
+                <a href="../../05-Document-APIs/Reading-and-Writing-documents.html">
+            
+                    
+                    读写文档
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.5.2" data-path="../../05-Document-APIs/Index-API.html">
+            
+                <a href="../../05-Document-APIs/Index-API.html">
+            
+                    
+                    Index API
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.5.3" data-path="../../05-Document-APIs/Get-API.html">
+            
+                <a href="../../05-Document-APIs/Get-API.html">
+            
+                    
+                    Get API
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.5.4" data-path="../../05-Document-APIs/Delete-API.html">
+            
+                <a href="../../05-Document-APIs/Delete-API.html">
+            
+                    
+                    Delete API
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.5.5" data-path="../../05-Document-APIs/Delete-By-Query-API.html">
+            
+                <a href="../../05-Document-APIs/Delete-By-Query-API.html">
+            
+                    
+                    Delete By Query API
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.5.6" data-path="../../05-Document-APIs/Update-API.html">
+            
+                <a href="../../05-Document-APIs/Update-API.html">
+            
+                    
+                    Update API
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.5.7" data-path="../../05-Document-APIs/Update-By-Query-API.html">
+            
+                <a href="../../05-Document-APIs/Update-By-Query-API.html">
+            
+                    
+                    Update By Query API
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.5.8" data-path="../../05-Document-APIs/Multi-Get-API.html">
+            
+                <a href="../../05-Document-APIs/Multi-Get-API.html">
+            
+                    
+                    Multi Get API
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.5.9" data-path="../../05-Document-APIs/Bulk-API.html">
+            
+                <a href="../../05-Document-APIs/Bulk-API.html">
+            
+                    
+                    Bulk API
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.5.10" data-path="../../05-Document-APIs/Reindex-API.html">
+            
+                <a href="../../05-Document-APIs/Reindex-API.html">
+            
+                    
+                    Reindex API
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.5.11" data-path="../../05-Document-APIs/Term-Vectors.html">
+            
+                <a href="../../05-Document-APIs/Term-Vectors.html">
+            
+                    
+                    Term-Vectors
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.5.12" data-path="../../05-Document-APIs/Multi-termvectors-API.html">
+            
+                <a href="../../05-Document-APIs/Multi-termvectors-API.html">
+            
+                    
+                    Multi-termvectors-API
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.5.13" data-path="../../05-Document-APIs/refresh.html">
+            
+                <a href="../../05-Document-APIs/refresh.html">
+            
+                    
+                    ?refresh
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.5.14" data-path="../../05-Document-APIs/Optimistic-concurrency-control.html">
+            
+                <a href="../../05-Document-APIs/Optimistic-concurrency-control.html">
+            
+                    
+                    乐观并发控制
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6" data-path="../../06-Search-APIs/">
+            
+                <a href="../../06-Search-APIs/">
+            
+                    
+                    第6章 搜索API
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.6.1" data-path="../../06-Search-APIs/Search.html">
+            
+                <a href="../../06-Search-APIs/Search.html">
+            
+                    
+                    搜索
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6.2" data-path="../../06-Search-APIs/URI-Search.html">
+            
+                <a href="../../06-Search-APIs/URI-Search.html">
+            
+                    
+                    URI搜索
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6.3" data-path="../../06-Search-APIs/Request-Body-Search.html">
+            
+                <a href="../../06-Search-APIs/Request-Body-Search.html">
+            
+                    
+                    搜索请求体
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.6.3.1" data-path="../../06-Search-APIs/Request-Body-Search/Query.html">
+            
+                <a href="../../06-Search-APIs/Request-Body-Search/Query.html">
+            
+                    
+                    Query
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6.3.2" data-path="../../06-Search-APIs/Request-Body-Search/From-Size.html">
+            
+                <a href="../../06-Search-APIs/Request-Body-Search/From-Size.html">
+            
+                    
+                    From-/-Size
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6.3.3" data-path="../../06-Search-APIs/Request-Body-Search/Sort.html">
+            
+                <a href="../../06-Search-APIs/Request-Body-Search/Sort.html">
+            
+                    
+                    Sort
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6.3.4" data-path="../../06-Search-APIs/Request-Body-Search/Source-filtering.html">
+            
+                <a href="../../06-Search-APIs/Request-Body-Search/Source-filtering.html">
+            
+                    
+                    Source过滤
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6.3.5" data-path="../../06-Search-APIs/Request-Body-Search/Fields.html">
+            
+                <a href="../../06-Search-APIs/Request-Body-Search/Fields.html">
+            
+                    
+                    Fields
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6.3.6" data-path="../../06-Search-APIs/Request-Body-Search/Script-Fields.html">
+            
+                <a href="../../06-Search-APIs/Request-Body-Search/Script-Fields.html">
+            
+                    
+                    Script-Fields
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6.3.7" data-path="../../06-Search-APIs/Request-Body-Search/Doc-value-Fields.html">
+            
+                <a href="../../06-Search-APIs/Request-Body-Search/Doc-value-Fields.html">
+            
+                    
+                    Doc-value-Fields
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6.3.8" data-path="../../06-Search-APIs/Request-Body-Search/Post-filter.html">
+            
+                <a href="../../06-Search-APIs/Request-Body-Search/Post-filter.html">
+            
+                    
+                    Post过滤
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6.3.9" data-path="../../06-Search-APIs/Request-Body-Search/Highlighting.html">
+            
+                <a href="../../06-Search-APIs/Request-Body-Search/Highlighting.html">
+            
+                    
+                    Highlighting
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6.3.10" data-path="../../06-Search-APIs/Request-Body-Search/Rescoring.html">
+            
+                <a href="../../06-Search-APIs/Request-Body-Search/Rescoring.html">
+            
+                    
+                    Rescoring
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6.3.11" data-path="../../06-Search-APIs/Request-Body-Search/Search-Type.html">
+            
+                <a href="../../06-Search-APIs/Request-Body-Search/Search-Type.html">
+            
+                    
+                    查询类型
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6.3.12" data-path="../../06-Search-APIs/Request-Body-Search/Scroll.html">
+            
+                <a href="../../06-Search-APIs/Request-Body-Search/Scroll.html">
+            
+                    
+                    Scroll
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6.3.13" data-path="../../06-Search-APIs/Request-Body-Search/Preference.html">
+            
+                <a href="../../06-Search-APIs/Request-Body-Search/Preference.html">
+            
+                    
+                    Preference
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6.3.14" data-path="../../06-Search-APIs/Request-Body-Search/Explain.html">
+            
+                <a href="../../06-Search-APIs/Request-Body-Search/Explain.html">
+            
+                    
+                    Explain
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6.3.15" data-path="../../06-Search-APIs/Request-Body-Search/Sequence-Numbers-and-Primary-Term.html">
+            
+                <a href="../../06-Search-APIs/Request-Body-Search/Sequence-Numbers-and-Primary-Term.html">
+            
+                    
+                    Sequence-Numbers-and-Primary-Term
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6.3.16" data-path="../../06-Search-APIs/Request-Body-Search/Version.html">
+            
+                <a href="../../06-Search-APIs/Request-Body-Search/Version.html">
+            
+                    
+                    Version
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6.3.17" data-path="../../06-Search-APIs/Request-Body-Search/Index-Boost.html">
+            
+                <a href="../../06-Search-APIs/Request-Body-Search/Index-Boost.html">
+            
+                    
+                    Index-Boost
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6.3.18" data-path="../../06-Search-APIs/Request-Body-Search/min_score.html">
+            
+                <a href="../../06-Search-APIs/Request-Body-Search/min_score.html">
+            
+                    
+                    min_score
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6.3.19" data-path="../../06-Search-APIs/Request-Body-Search/Named-Queries.html">
+            
+                <a href="../../06-Search-APIs/Request-Body-Search/Named-Queries.html">
+            
+                    
+                    Named-Queries
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6.3.20" data-path="../../06-Search-APIs/Request-Body-Search/Inner-hits.html">
+            
+                <a href="../../06-Search-APIs/Request-Body-Search/Inner-hits.html">
+            
+                    
+                    Inner-hits
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6.3.21" data-path="../../06-Search-APIs/Request-Body-Search/Field-Collapsing.html">
+            
+                <a href="../../06-Search-APIs/Request-Body-Search/Field-Collapsing.html">
+            
+                    
+                    Field-Collapsing
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6.3.22" data-path="../../06-Search-APIs/Request-Body-Search/Search-After.html">
+            
+                <a href="../../06-Search-APIs/Request-Body-Search/Search-After.html">
+            
+                    
+                    Search-After
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6.4" data-path="../../06-Search-APIs/Search-Template.html">
+            
+                <a href="../../06-Search-APIs/Search-Template.html">
+            
+                    
+                    查询模板
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6.5" data-path="../../06-Search-APIs/Multi-Search-Template.html">
+            
+                <a href="../../06-Search-APIs/Multi-Search-Template.html">
+            
+                    
+                    多查询模板
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6.6" data-path="../../06-Search-APIs/Search-Shards-API.html">
+            
+                <a href="../../06-Search-APIs/Search-Shards-API.html">
+            
+                    
+                    分片查询API
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6.7" data-path="../../06-Search-APIs/Suggesters.html">
+            
+                <a href="../../06-Search-APIs/Suggesters.html">
+            
+                    
+                    建议
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.6.7.1" data-path="../../06-Search-APIs/Suggesters/Term-suggester.html">
+            
+                <a href="../../06-Search-APIs/Suggesters/Term-suggester.html">
+            
+                    
+                    术语建议
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6.7.2" data-path="../../06-Search-APIs/Suggesters/Phrase-Suggester.html">
+            
+                <a href="../../06-Search-APIs/Suggesters/Phrase-Suggester.html">
+            
+                    
+                    Phrase建议
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6.7.3" data-path="../../06-Search-APIs/Suggesters/Completion-Suggester.html">
+            
+                <a href="../../06-Search-APIs/Suggesters/Completion-Suggester.html">
+            
+                    
+                    Completion建议
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6.7.4" data-path="../../06-Search-APIs/Suggesters/Context-Suggester.html">
+            
+                <a href="../../06-Search-APIs/Suggesters/Context-Suggester.html">
+            
+                    
+                    Context建议
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6.7.5" data-path="../../06-Search-APIs/Suggesters/Returning-the-type-of-the-suggester.html">
+            
+                <a href="../../06-Search-APIs/Suggesters/Returning-the-type-of-the-suggester.html">
+            
+                    
+                    返回建议类型
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6.8" data-path="../../06-Search-APIs/Multi-Search-API.html">
+            
+                <a href="../../06-Search-APIs/Multi-Search-API.html">
+            
+                    
+                    Multi Search API
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6.9" data-path="../../06-Search-APIs/Count-API.html">
+            
+                <a href="../../06-Search-APIs/Count-API.html">
+            
+                    
+                    Count-API
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6.10" data-path="../../06-Search-APIs/Validate-API.html">
+            
+                <a href="../../06-Search-APIs/Validate-API.html">
+            
+                    
+                    Validate-API
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6.11" data-path="../../06-Search-APIs/Explain-API.html">
+            
+                <a href="../../06-Search-APIs/Explain-API.html">
+            
+                    
+                    说明API
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6.12" data-path="../../06-Search-APIs/Profile-API.html">
+            
+                <a href="../../06-Search-APIs/Profile-API.html">
+            
+                    
+                    Profile-API
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.6.12.1" data-path="../../06-Search-APIs/Profile-API/Profiling-Queries.html">
+            
+                <a href="../../06-Search-APIs/Profile-API/Profiling-Queries.html">
+            
+                    
+                    Profile查询
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6.12.2" data-path="../../06-Search-APIs/Profile-API/Profiling-Aggregations.html">
+            
+                <a href="../../06-Search-APIs/Profile-API/Profiling-Aggregations.html">
+            
+                    
+                    Profile聚合
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6.12.3" data-path="../../06-Search-APIs/Profile-API/Profiling-Considerations.html">
+            
+                <a href="../../06-Search-APIs/Profile-API/Profiling-Considerations.html">
+            
+                    
+                    Profile研究
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6.13" data-path="../../06-Search-APIs/Field-Capabilities-API.html">
+            
+                <a href="../../06-Search-APIs/Field-Capabilities-API.html">
+            
+                    
+                    Field功能API
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6.14" data-path="../../06-Search-APIs/Ranking-Evaluation-API.html">
+            
+                <a href="../../06-Search-APIs/Ranking-Evaluation-API.html">
+            
+                    
+                    Ranking评估API
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.7" data-path="../../07-Aggregations/">
+            
+                <a href="../../07-Aggregations/">
+            
+                    
+                    第7章 聚合
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.7.1" data-path="../../07-Aggregations/Metrics-Aggregations.html">
+            
+                <a href="../../07-Aggregations/Metrics-Aggregations.html">
+            
+                    
+                    度量聚合
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.7.1.1" data-path="../../07-Aggregations/Metrics-Aggregations/Avg-Aggregation.html">
+            
+                <a href="../../07-Aggregations/Metrics-Aggregations/Avg-Aggregation.html">
+            
+                    
+                    平均值聚合
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.7.1.2" data-path="../../07-Aggregations/Metrics-Aggregations/Weighted-Avg-Aggregation.html">
+            
+                <a href="../../07-Aggregations/Metrics-Aggregations/Weighted-Avg-Aggregation.html">
+            
+                    
+                    加权平均聚合
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.7.1.3" data-path="../../07-Aggregations/Metrics-Aggregations/Cardinality-Aggregation.html">
+            
+                <a href="../../07-Aggregations/Metrics-Aggregations/Cardinality-Aggregation.html">
+            
+                    
+                    基数聚合
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.7.1.4" data-path="../../07-Aggregations/Metrics-Aggregations/Extended-Stats-Aggregation.html">
+            
+                <a href="../../07-Aggregations/Metrics-Aggregations/Extended-Stats-Aggregation.html">
+            
+                    
+                    扩展统计聚合
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.7.1.5" data-path="../../07-Aggregations/Metrics-Aggregations/Geo-Bounds-Aggregation.html">
+            
+                <a href="../../07-Aggregations/Metrics-Aggregations/Geo-Bounds-Aggregation.html">
+            
+                    
+                    Geo边界聚合
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.7.1.6" data-path="../../07-Aggregations/Metrics-Aggregations/Geo-Centroid-Aggregation.html">
+            
+                <a href="../../07-Aggregations/Metrics-Aggregations/Geo-Centroid-Aggregation.html">
+            
+                    
+                    Geo中心聚合
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.7.1.7" data-path="../../07-Aggregations/Metrics-Aggregations/Max-Aggregation.html">
+            
+                <a href="../../07-Aggregations/Metrics-Aggregations/Max-Aggregation.html">
+            
+                    
+                    最大聚合
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.7.1.8" data-path="../../07-Aggregations/Metrics-Aggregations/Min-Aggregation.html">
+            
+                <a href="../../07-Aggregations/Metrics-Aggregations/Min-Aggregation.html">
+            
+                    
+                    最小聚合
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.7.1.9" data-path="../../07-Aggregations/Metrics-Aggregations/Percentiles-Aggregation.html">
+            
+                <a href="../../07-Aggregations/Metrics-Aggregations/Percentiles-Aggregation.html">
+            
+                    
+                    百分数聚合
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.7.1.10" data-path="../../07-Aggregations/Metrics-Aggregations/Percentile-Ranks-Aggregation.html">
+            
+                <a href="../../07-Aggregations/Metrics-Aggregations/Percentile-Ranks-Aggregation.html">
+            
+                    
+                    百分数等级聚合
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.7.1.11" data-path="../../07-Aggregations/Metrics-Aggregations/Scripted-Metric-Aggregation.html">
+            
+                <a href="../../07-Aggregations/Metrics-Aggregations/Scripted-Metric-Aggregation.html">
+            
+                    
+                    脚本度量聚合
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.7.1.12" data-path="../../07-Aggregations/Metrics-Aggregations/Stats-Aggregation.html">
+            
+                <a href="../../07-Aggregations/Metrics-Aggregations/Stats-Aggregation.html">
+            
+                    
+                    统计聚合
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.7.1.13" data-path="../../07-Aggregations/Metrics-Aggregations/Sum-Aggregation.html">
+            
+                <a href="../../07-Aggregations/Metrics-Aggregations/Sum-Aggregation.html">
+            
+                    
+                    合计聚合
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.7.1.14" data-path="../../07-Aggregations/Metrics-Aggregations/Top-Hits-Aggregation.html">
+            
+                <a href="../../07-Aggregations/Metrics-Aggregations/Top-Hits-Aggregation.html">
+            
+                    
+                    顶级命中聚合
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.7.1.15" data-path="../../07-Aggregations/Metrics-Aggregations/Value-Count-Aggregation.html">
+            
+                <a href="../../07-Aggregations/Metrics-Aggregations/Value-Count-Aggregation.html">
+            
+                    
+                    值计数聚合
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.7.1.16" data-path="../../07-Aggregations/Metrics-Aggregations/Median-Absolute-Deviation-Aggregation.html">
+            
+                <a href="../../07-Aggregations/Metrics-Aggregations/Median-Absolute-Deviation-Aggregation.html">
+            
+                    
+                    中位值绝对偏差聚合
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.7.2" data-path="../../07-Aggregations/Bucket-Aggregations.html">
+            
+                <a href="../../07-Aggregations/Bucket-Aggregations.html">
+            
+                    
+                    桶聚合
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.7.2.1" data-path="../../07-Aggregations/Bucket-Aggregations/Adjacency-Matrix-Aggregation.html">
+            
+                <a href="../../07-Aggregations/Bucket-Aggregations/Adjacency-Matrix-Aggregation.html">
+            
+                    
+                    相邻矩阵聚合
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.7.2.2" data-path="../../07-Aggregations/Bucket-Aggregations/Auto-interval-Date-Histogram-Aggregation.html">
+            
+                <a href="../../07-Aggregations/Bucket-Aggregations/Auto-interval-Date-Histogram-Aggregation.html">
+            
+                    
+                    自动间隔日期直方图聚合
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.7.2.3" data-path="../../07-Aggregations/Bucket-Aggregations/Children-Aggregation.html">
+            
+                <a href="../../07-Aggregations/Bucket-Aggregations/Children-Aggregation.html">
+            
+                    
+                    子级聚合
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.7.2.4" data-path="../../07-Aggregations/Bucket-Aggregations/Composite-Aggregation.html">
+            
+                <a href="../../07-Aggregations/Bucket-Aggregations/Composite-Aggregation.html">
+            
+                    
+                    复合聚合
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.7.2.5" data-path="../../07-Aggregations/Bucket-Aggregations/Date-Histogram-Aggregation.html">
+            
+                <a href="../../07-Aggregations/Bucket-Aggregations/Date-Histogram-Aggregation.html">
+            
+                    
+                    日期直方图聚合
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.7.2.6" data-path="../../07-Aggregations/Bucket-Aggregations/Date-Range-Aggregation.html">
+            
+                <a href="../../07-Aggregations/Bucket-Aggregations/Date-Range-Aggregation.html">
+            
+                    
+                    日期范围聚合
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.7.2.7" data-path="../../07-Aggregations/Bucket-Aggregations/Diversified-Sampler-Aggregation.html">
+            
+                <a href="../../07-Aggregations/Bucket-Aggregations/Diversified-Sampler-Aggregation.html">
+            
+                    
+                    多种取样器聚合
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.7.2.8" data-path="../../07-Aggregations/Bucket-Aggregations/Filter-Aggregation.html">
+            
+                <a href="../../07-Aggregations/Bucket-Aggregations/Filter-Aggregation.html">
+            
+                    
+                    过滤器聚合
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.7.2.9" data-path="../../07-Aggregations/Bucket-Aggregations/Filters-Aggregation.html">
+            
+                <a href="../../07-Aggregations/Bucket-Aggregations/Filters-Aggregation.html">
+            
+                    
+                    多过滤器聚合
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.7.2.10" data-path="../../07-Aggregations/Bucket-Aggregations/Geo-Distance-Aggregation.html">
+            
+                <a href="../../07-Aggregations/Bucket-Aggregations/Geo-Distance-Aggregation.html">
+            
+                    
+                    Geo距离聚合
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.7.2.11" data-path="../../07-Aggregations/Bucket-Aggregations/GeoHash-grid-Aggregation.html">
+            
+                <a href="../../07-Aggregations/Bucket-Aggregations/GeoHash-grid-Aggregation.html">
+            
+                    
+                    GeoHash网格聚合
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.7.2.12" data-path="../../07-Aggregations/Bucket-Aggregations/Global-Aggregation.html">
+            
+                <a href="../../07-Aggregations/Bucket-Aggregations/Global-Aggregation.html">
+            
+                    
+                    全局聚合
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.7.2.13" data-path="../../07-Aggregations/Bucket-Aggregations/Histogram-Aggregation.html">
+            
+                <a href="../../07-Aggregations/Bucket-Aggregations/Histogram-Aggregation.html">
+            
+                    
+                    直方图聚合
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.7.2.14" data-path="../../07-Aggregations/Bucket-Aggregations/IP-Range-Aggregation.html">
+            
+                <a href="../../07-Aggregations/Bucket-Aggregations/IP-Range-Aggregation.html">
+            
+                    
+                    IP范围聚合
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.7.2.15" data-path="../../07-Aggregations/Bucket-Aggregations/Missing-Aggregation.html">
+            
+                <a href="../../07-Aggregations/Bucket-Aggregations/Missing-Aggregation.html">
+            
+                    
+                    缺失聚合
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.7.2.16" data-path="../../07-Aggregations/Bucket-Aggregations/Nested-Aggregation.html">
+            
+                <a href="../../07-Aggregations/Bucket-Aggregations/Nested-Aggregation.html">
+            
+                    
+                    嵌套聚合
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.7.2.17" data-path="../../07-Aggregations/Bucket-Aggregations/Parent-Aggregation.html">
+            
+                <a href="../../07-Aggregations/Bucket-Aggregations/Parent-Aggregation.html">
+            
+                    
+                    父级聚合
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.7.2.18" data-path="../../07-Aggregations/Bucket-Aggregations/Range-Aggregation.html">
+            
+                <a href="../../07-Aggregations/Bucket-Aggregations/Range-Aggregation.html">
+            
+                    
+                    范围聚合
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.7.2.19" data-path="../../07-Aggregations/Bucket-Aggregations/Reverse-nested-Aggregation.html">
+            
+                <a href="../../07-Aggregations/Bucket-Aggregations/Reverse-nested-Aggregation.html">
+            
+                    
+                    反向嵌套聚合
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.7.2.20" data-path="../../07-Aggregations/Bucket-Aggregations/Sampler-Aggregation.html">
+            
+                <a href="../../07-Aggregations/Bucket-Aggregations/Sampler-Aggregation.html">
+            
+                    
+                    采样器聚合
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.7.2.21" data-path="../../07-Aggregations/Bucket-Aggregations/Significant-Terms-Aggregation.html">
+            
+                <a href="../../07-Aggregations/Bucket-Aggregations/Significant-Terms-Aggregation.html">
+            
+                    
+                    重要术语聚合
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.7.2.22" data-path="../../07-Aggregations/Bucket-Aggregations/Significant-Text-Aggregation.html">
+            
+                <a href="../../07-Aggregations/Bucket-Aggregations/Significant-Text-Aggregation.html">
+            
+                    
+                    重要文本聚合
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.7.2.23" data-path="../../07-Aggregations/Bucket-Aggregations/Terms-Aggregation.html">
+            
+                <a href="../../07-Aggregations/Bucket-Aggregations/Terms-Aggregation.html">
+            
+                    
+                    术语聚合
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.7.3" data-path="../../07-Aggregations/Pipeline-Aggregations.html">
+            
+                <a href="../../07-Aggregations/Pipeline-Aggregations.html">
+            
+                    
+                    管道聚合
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.7.3.1" data-path="../../07-Aggregations/Pipeline-Aggregations/Avg-Bucket-Aggregation.html">
+            
+                <a href="../../07-Aggregations/Pipeline-Aggregations/Avg-Bucket-Aggregation.html">
+            
+                    
+                    平均值桶聚合
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.7.3.2" data-path="../../07-Aggregations/Pipeline-Aggregations/Derivative-Aggregation.html">
+            
+                <a href="../../07-Aggregations/Pipeline-Aggregations/Derivative-Aggregation.html">
+            
+                    
+                    衍生桶聚合
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.7.3.3" data-path="../../07-Aggregations/Pipeline-Aggregations/Max-Bucket-Aggregation.html">
+            
+                <a href="../../07-Aggregations/Pipeline-Aggregations/Max-Bucket-Aggregation.html">
+            
+                    
+                    最大桶聚合
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.7.3.4" data-path="../../07-Aggregations/Pipeline-Aggregations/Min-Bucket-Aggregation.html">
+            
+                <a href="../../07-Aggregations/Pipeline-Aggregations/Min-Bucket-Aggregation.html">
+            
+                    
+                    最小桶聚合
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.7.3.5" data-path="../../07-Aggregations/Pipeline-Aggregations/Sum-Bucket-Aggregation.html">
+            
+                <a href="../../07-Aggregations/Pipeline-Aggregations/Sum-Bucket-Aggregation.html">
+            
+                    
+                    合计桶聚合
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.7.3.6" data-path="../../07-Aggregations/Pipeline-Aggregations/Stats-Bucket-Aggregation.html">
+            
+                <a href="../../07-Aggregations/Pipeline-Aggregations/Stats-Bucket-Aggregation.html">
+            
+                    
+                    统计桶聚合
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.7.3.7" data-path="../../07-Aggregations/Pipeline-Aggregations/Extended-Stats-Bucket-Aggregation.html">
+            
+                <a href="../../07-Aggregations/Pipeline-Aggregations/Extended-Stats-Bucket-Aggregation.html">
+            
+                    
+                    扩展统计桶聚合
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.7.3.8" data-path="../../07-Aggregations/Pipeline-Aggregations/Percentiles-Bucket-Aggregation.html">
+            
+                <a href="../../07-Aggregations/Pipeline-Aggregations/Percentiles-Bucket-Aggregation.html">
+            
+                    
+                    百分数桶聚合
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.7.3.9" data-path="../../07-Aggregations/Pipeline-Aggregations/Moving-Average-Aggregation.html">
+            
+                <a href="../../07-Aggregations/Pipeline-Aggregations/Moving-Average-Aggregation.html">
+            
+                    
+                    移动平均数聚合
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.7.3.10" data-path="../../07-Aggregations/Pipeline-Aggregations/Moving-Function-Aggregation.html">
+            
+                <a href="../../07-Aggregations/Pipeline-Aggregations/Moving-Function-Aggregation.html">
+            
+                    
+                    移动函数聚合
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.7.3.11" data-path="../../07-Aggregations/Pipeline-Aggregations/Cumulative-Sum-Aggregation.html">
+            
+                <a href="../../07-Aggregations/Pipeline-Aggregations/Cumulative-Sum-Aggregation.html">
+            
+                    
+                    累计求和聚合
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.7.3.12" data-path="../../07-Aggregations/Pipeline-Aggregations/Bucket-Script-Aggregation.html">
+            
+                <a href="../../07-Aggregations/Pipeline-Aggregations/Bucket-Script-Aggregation.html">
+            
+                    
+                    桶脚本聚合
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.7.3.13" data-path="../../07-Aggregations/Pipeline-Aggregations/Bucket-Selector-Aggregation.html">
+            
+                <a href="../../07-Aggregations/Pipeline-Aggregations/Bucket-Selector-Aggregation.html">
+            
+                    
+                    桶选择器聚合
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.7.3.14" data-path="../../07-Aggregations/Pipeline-Aggregations/Bucket-Sort-Aggregation.html">
+            
+                <a href="../../07-Aggregations/Pipeline-Aggregations/Bucket-Sort-Aggregation.html">
+            
+                    
+                    桶排序聚合
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.7.3.15" data-path="../../07-Aggregations/Pipeline-Aggregations/Serial-Differencing-Aggregation.html">
+            
+                <a href="../../07-Aggregations/Pipeline-Aggregations/Serial-Differencing-Aggregation.html">
+            
+                    
+                    连续差分聚合
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.7.4" data-path="../../07-Aggregations/Matrix-Aggregations.html">
+            
+                <a href="../../07-Aggregations/Matrix-Aggregations.html">
+            
+                    
+                    矩阵聚合
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.7.4.1" data-path="../../07-Aggregations/Matrix-Aggregations/Matrix-Stats.html">
+            
+                <a href="../../07-Aggregations/Matrix-Aggregations/Matrix-Stats.html">
+            
+                    
+                    矩阵状态
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.7.5" data-path="../../07-Aggregations/Caching-heavy-aggregations.html">
+            
+                <a href="../../07-Aggregations/Caching-heavy-aggregations.html">
+            
+                    
+                    缓存重聚合
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.7.6" data-path="../../07-Aggregations/Returning-only-aggregation-results.html">
+            
+                <a href="../../07-Aggregations/Returning-only-aggregation-results.html">
+            
+                    
+                    仅返回聚合结果
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.7.7" data-path="../../07-Aggregations/Aggregation-Metadata.html">
+            
+                <a href="../../07-Aggregations/Aggregation-Metadata.html">
+            
+                    
+                    聚合元数据
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.7.8" data-path="../../07-Aggregations/Returning-the-type-of-the-aggregation.html">
+            
+                <a href="../../07-Aggregations/Returning-the-type-of-the-aggregation.html">
+            
+                    
+                    返回聚合类型
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.8" data-path="../../08-Indices-APIs/">
+            
+                <a href="../../08-Indices-APIs/">
+            
+                    
+                    第8章 索引API
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.8.1" data-path="../../08-Indices-APIs/Create-Index.html">
+            
+                <a href="../../08-Indices-APIs/Create-Index.html">
+            
+                    
+                    Create索引
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.8.2" data-path="../../08-Indices-APIs/Delete-Index.html">
+            
+                <a href="../../08-Indices-APIs/Delete-Index.html">
+            
+                    
+                    Delete索引
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.8.3" data-path="../../08-Indices-APIs/Get-Index.html">
+            
+                <a href="../../08-Indices-APIs/Get-Index.html">
+            
+                    
+                    Get索引
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.8.4" data-path="../../08-Indices-APIs/Indices-Exists.html">
+            
+                <a href="../../08-Indices-APIs/Indices-Exists.html">
+            
+                    
+                    Exists索引
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.8.5" data-path="../../08-Indices-APIs/Open-Close-Index-API.html">
+            
+                <a href="../../08-Indices-APIs/Open-Close-Index-API.html">
+            
+                    
+                    Open/Close索引
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.8.6" data-path="../../08-Indices-APIs/Shrink-Index.html">
+            
+                <a href="../../08-Indices-APIs/Shrink-Index.html">
+            
+                    
+                    Shrink索引
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.8.7" data-path="../../08-Indices-APIs/Split-Index.html">
+            
+                <a href="../../08-Indices-APIs/Split-Index.html">
+            
+                    
+                    Split索引
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.8.8" data-path="../../08-Indices-APIs/Rollover-Index.html">
+            
+                <a href="../../08-Indices-APIs/Rollover-Index.html">
+            
+                    
+                    Rollover索引
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.8.9" data-path="../../08-Indices-APIs/Put-Mapping.html">
+            
+                <a href="../../08-Indices-APIs/Put-Mapping.html">
+            
+                    
+                    Put映射
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.8.10" data-path="../../08-Indices-APIs/Get-Mapping.html">
+            
+                <a href="../../08-Indices-APIs/Get-Mapping.html">
+            
+                    
+                    Get映射
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.8.11" data-path="../../08-Indices-APIs/Get-Field-Mapping.html">
+            
+                <a href="../../08-Indices-APIs/Get-Field-Mapping.html">
+            
+                    
+                    Get Field映射
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.8.12" data-path="../../08-Indices-APIs/Types-Exists.html">
+            
+                <a href="../../08-Indices-APIs/Types-Exists.html">
+            
+                    
+                    Types-Exists
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.8.13" data-path="../../08-Indices-APIs/Index-Aliases.html">
+            
+                <a href="../../08-Indices-APIs/Index-Aliases.html">
+            
+                    
+                    Index-Aliases
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.8.14" data-path="../../08-Indices-APIs/Update-Indices-Settings.html">
+            
+                <a href="../../08-Indices-APIs/Update-Indices-Settings.html">
+            
+                    
+                    Update-Indices-Settings
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.8.15" data-path="../../08-Indices-APIs/Get-Settings.html">
+            
+                <a href="../../08-Indices-APIs/Get-Settings.html">
+            
+                    
+                    Get-Settings
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.8.16" data-path="../../08-Indices-APIs/Analyze.html">
+            
+                <a href="../../08-Indices-APIs/Analyze.html">
+            
+                    
+                    Analyze
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.8.16.1" data-path="../../08-Indices-APIs/Analyze/Explain-Analyze.html">
+            
+                <a href="../../08-Indices-APIs/Analyze/Explain-Analyze.html">
+            
+                    
+                    Explain-Analyze
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.8.17" data-path="../../08-Indices-APIs/Index-Templates.html">
+            
+                <a href="../../08-Indices-APIs/Index-Templates.html">
+            
+                    
+                    索引模板
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.8.18" data-path="../../08-Indices-APIs/Indices-Stats.html">
+            
+                <a href="../../08-Indices-APIs/Indices-Stats.html">
+            
+                    
+                    索引统计信息
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.8.19" data-path="../../08-Indices-APIs/Refresh.html">
+            
+                <a href="../../08-Indices-APIs/Refresh.html">
+            
+                    
+                    刷新
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.9" data-path="../../09-cat-APIs/">
+            
+                <a href="../../09-cat-APIs/">
+            
+                    
+                    第9章 cat-API
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.9.1" data-path="../../09-cat-APIs/cat-aliases.html">
+            
+                <a href="../../09-cat-APIs/cat-aliases.html">
+            
+                    
+                    cat aliases
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.9.2" data-path="../../09-cat-APIs/cat-allocation.html">
+            
+                <a href="../../09-cat-APIs/cat-allocation.html">
+            
+                    
+                    cat allocation
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.9.3" data-path="../../09-cat-APIs/cat-count.html">
+            
+                <a href="../../09-cat-APIs/cat-count.html">
+            
+                    
+                    cat count
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.9.4" data-path="../../09-cat-APIs/cat-fielddata.html">
+            
+                <a href="../../09-cat-APIs/cat-fielddata.html">
+            
+                    
+                    cat fielddata
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.9.5" data-path="../../09-cat-APIs/cat-health.html">
+            
+                <a href="../../09-cat-APIs/cat-health.html">
+            
+                    
+                    cat health
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.9.6" data-path="../../09-cat-APIs/cat-indices.html">
+            
+                <a href="../../09-cat-APIs/cat-indices.html">
+            
+                    
+                    cat indices
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.9.7" data-path="../../09-cat-APIs/cat-master.html">
+            
+                <a href="../../09-cat-APIs/cat-master.html">
+            
+                    
+                    cat master
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.9.8" data-path="../../09-cat-APIs/cat-nodeattrs.html">
+            
+                <a href="../../09-cat-APIs/cat-nodeattrs.html">
+            
+                    
+                    cat nodeattrs
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.9.9" data-path="../../09-cat-APIs/cat-nodes.html">
+            
+                <a href="../../09-cat-APIs/cat-nodes.html">
+            
+                    
+                    cat nodes
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.9.10" data-path="../../09-cat-APIs/cat-pending-tasks.html">
+            
+                <a href="../../09-cat-APIs/cat-pending-tasks.html">
+            
+                    
+                    cat pending tasks
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.9.11" data-path="../../09-cat-APIs/cat-plugins.html">
+            
+                <a href="../../09-cat-APIs/cat-plugins.html">
+            
+                    
+                    cat plugins
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.9.12" data-path="../../09-cat-APIs/cat-recovery.html">
+            
+                <a href="../../09-cat-APIs/cat-recovery.html">
+            
+                    
+                    cat recovery
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.9.13" data-path="../../09-cat-APIs/cat-repositories.html">
+            
+                <a href="../../09-cat-APIs/cat-repositories.html">
+            
+                    
+                    cat repositories
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.9.14" data-path="../../09-cat-APIs/cat-thread-pool.html">
+            
+                <a href="../../09-cat-APIs/cat-thread-pool.html">
+            
+                    
+                    cat thread pool
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.9.15" data-path="../../09-cat-APIs/cat-shards.html">
+            
+                <a href="../../09-cat-APIs/cat-shards.html">
+            
+                    
+                    cat shards
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.9.16" data-path="../../09-cat-APIs/cat-segments.html">
+            
+                <a href="../../09-cat-APIs/cat-segments.html">
+            
+                    
+                    cat segments
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.9.17" data-path="../../09-cat-APIs/cat-snapshots.html">
+            
+                <a href="../../09-cat-APIs/cat-snapshots.html">
+            
+                    
+                    cat snapshots
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.9.18" data-path="../../09-cat-APIs/cat-templates.html">
+            
+                <a href="../../09-cat-APIs/cat-templates.html">
+            
+                    
+                    cat templates
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.10" data-path="../../10-Cluster-APIs/">
+            
+                <a href="../../10-Cluster-APIs/">
+            
+                    
+                    第10章 集群API
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.10.1" data-path="../../10-Cluster-APIs/Cluster-Health.html">
+            
+                <a href="../../10-Cluster-APIs/Cluster-Health.html">
+            
+                    
+                    集群健康度
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.10.2" data-path="../../10-Cluster-APIs/Cluster-State.html">
+            
+                <a href="../../10-Cluster-APIs/Cluster-State.html">
+            
+                    
+                    集群状态
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.10.3" data-path="../../10-Cluster-APIs/Cluster-Stats.html">
+            
+                <a href="../../10-Cluster-APIs/Cluster-Stats.html">
+            
+                    
+                    集群统计信息
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.10.4" data-path="../../10-Cluster-APIs/Pending-cluster-tasks.html">
+            
+                <a href="../../10-Cluster-APIs/Pending-cluster-tasks.html">
+            
+                    
+                    挂起集群任务
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.10.5" data-path="../../10-Cluster-APIs/Cluster-Reroute.html">
+            
+                <a href="../../10-Cluster-APIs/Cluster-Reroute.html">
+            
+                    
+                    重新路由
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.10.6" data-path="../../10-Cluster-APIs/Cluster-Update-Settings.html">
+            
+                <a href="../../10-Cluster-APIs/Cluster-Update-Settings.html">
+            
+                    
+                    更新集群设置
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.10.7" data-path="../../10-Cluster-APIs/Cluster-Get-Settings.html">
+            
+                <a href="../../10-Cluster-APIs/Cluster-Get-Settings.html">
+            
+                    
+                    获取集群设置
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.10.8" data-path="../../10-Cluster-APIs/Nodes-Stats.html">
+            
+                <a href="../../10-Cluster-APIs/Nodes-Stats.html">
+            
+                    
+                    节点统计信息
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.10.9" data-path="../../10-Cluster-APIs/Nodes-Info.html">
+            
+                <a href="../../10-Cluster-APIs/Nodes-Info.html">
+            
+                    
+                    节点信息
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.10.10" data-path="../../10-Cluster-APIs/Nodes-Feature-Usage.html">
+            
+                <a href="../../10-Cluster-APIs/Nodes-Feature-Usage.html">
+            
+                    
+                    节点特征用法
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.10.11" data-path="../../10-Cluster-APIs/Remote-Cluster-Info.html">
+            
+                <a href="../../10-Cluster-APIs/Remote-Cluster-Info.html">
+            
+                    
+                    远程集群信息
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.10.12" data-path="../../10-Cluster-APIs/Task-Management-API.html">
+            
+                <a href="../../10-Cluster-APIs/Task-Management-API.html">
+            
+                    
+                    任务管理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.10.13" data-path="../../10-Cluster-APIs/Nodes-hot_threads.html">
+            
+                <a href="../../10-Cluster-APIs/Nodes-hot_threads.html">
+            
+                    
+                    节点hot_threads
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.10.14" data-path="../../10-Cluster-APIs/Cluster-Allocation-Explain-API.html">
+            
+                <a href="../../10-Cluster-APIs/Cluster-Allocation-Explain-API.html">
+            
+                    
+                    节点分配说明API
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.11" data-path="../../11-Query-DSL/">
+            
+                <a href="../../11-Query-DSL/">
+            
+                    
+                    第11章 查询DSL
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.12" data-path="../../12-Mapping/">
+            
+                <a href="../../12-Mapping/">
+            
+                    
+                    第12章 映射
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.12.1" data-path="../../12-Mapping/Removal-of-mapping-types.html">
+            
+                <a href="../../12-Mapping/Removal-of-mapping-types.html">
+            
+                    
+                    移除映射类型
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.12.2" data-path="../../12-Mapping/Meta-Fields.html">
+            
+                <a href="../../12-Mapping/Meta-Fields.html">
+            
+                    
+                    元字段
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.12.2.1" data-path="../../12-Mapping/Meta-Fields/_source-field.html">
+            
+                <a href="../../12-Mapping/Meta-Fields/_source-field.html">
+            
+                    
+                    _source字段
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.13" data-path="../../13-Analysis/">
+            
+                <a href="../../13-Analysis/">
+            
+                    
+                    第13章 分析
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.14" data-path="../../14-Modules/">
+            
+                <a href="../../14-Modules/">
+            
+                    
+                    第14章 模块
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.14.1" data-path="../../14-Modules/Cluster.html">
+            
+                <a href="../../14-Modules/Cluster.html">
+            
+                    
+                    集群
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.14.1.1" data-path="../../14-Modules/Cluster/Miscellaneous-cluster-settings.html">
+            
+                <a href="../../14-Modules/Cluster/Miscellaneous-cluster-settings.html">
+            
+                    
+                    集群杂项设置
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.14.2" data-path="../../14-Modules/Network-Settings.html">
+            
+                <a href="../../14-Modules/Network-Settings.html">
+            
+                    
+                    网络设置
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.14.3" data-path="../../14-Modules/Node.html">
+            
+                <a href="../../14-Modules/Node.html">
+            
+                    
+                    节点
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.14.4" data-path="../../14-Modules/Scripting.html">
+            
+                <a href="../../14-Modules/Scripting.html">
+            
+                    
+                    脚本
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.15" data-path="../../15-Index-Modules/">
+            
+                <a href="../../15-Index-Modules/">
+            
+                    
+                    第15章 索引模块
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.15.1" data-path="../../15-Index-Modules/Store.html">
+            
+                <a href="../../15-Index-Modules/Store.html">
+            
+                    
+                    存储
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.15.2" data-path="../../15-Index-Modules/Index-Sorting.html">
+            
+                <a href="../../15-Index-Modules/Index-Sorting.html">
+            
+                    
+                    索引排序
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.16" data-path="../../16-Ingest-Node/">
+            
+                <a href="../../16-Ingest-Node/">
+            
+                    
+                    第16章 摄取节点
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.17" data-path="../../17-Managing-the-index-lifecycle/">
+            
+                <a href="../../17-Managing-the-index-lifecycle/">
+            
+                    
+                    第17章 管理索引生命周期
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.18" data-path="../../18-SQL-Access/">
+            
+                <a href="../../18-SQL-Access/">
+            
+                    
+                    第18章 SQL访问
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.19" data-path="../../19-Monitoring-Elasticsearch/">
+            
+                <a href="../../19-Monitoring-Elasticsearch/">
+            
+                    
+                    第19章 监控
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.20" data-path="../../20-Rolling-up-historical-data/">
+            
+                <a href="../../20-Rolling-up-historical-data/">
+            
+                    
+                    第20章 滚动历史数据
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.21" data-path="../../21-Frozen-indices/">
+            
+                <a href="../../21-Frozen-indices/">
+            
+                    
+                    第21章 冻结索引
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.22" data-path="../../22-X-Pack-APIs/">
+            
+                <a href="../../22-X-Pack-APIs/">
+            
+                    
+                    第22章 X-Pack-API
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.23" data-path="../../23-Command-line-tools/">
+            
+                <a href="../../23-Command-line-tools/">
+            
+                    
+                    第23章 命令行工具
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.24" data-path="../../24-How-To/">
+            
+                <a href="../../24-How-To/">
+            
+                    
+                    第24章 怎么做
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.25" data-path="../../25-Testing/">
+            
+                <a href="../../25-Testing/">
+            
+                    
+                    第25章 测试
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.26" data-path="../../26-Glossary-of-terms/">
+            
+                <a href="../../26-Glossary-of-terms/">
+            
+                    
+                    第26章 专业术语
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.27" data-path="../../27-Release-Higglights/">
+            
+                <a href="../../27-Release-Higglights/">
+            
+                    
+                    第27章 重要版本
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.28" data-path="../../28-Breaking-changes/">
+            
+                <a href="../../28-Breaking-changes/">
+            
+                    
+                    第28章 重大变更
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.29" data-path="../../29-Release-Notes/">
+            
+                <a href="../../29-Release-Notes/">
+            
+                    
+                    第29章 发行版
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            本书使用 GitBook 发布
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../.." >Windows MSI安装</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <div id="anchor-navigation-ex-navbar"><i class="fa fa-navicon"></i><ul><ul><li><span class="title-icon "></span><a href="#windows-msi&#x5B89;&#x88C5;"><b></b>Windows MSI&#x5B89;&#x88C5;</a></li><ul><li><span class="title-icon "></span><a href="#&#x4E0B;&#x8F7D;msi&#x5305;"><b></b>&#x4E0B;&#x8F7D;.msi&#x5305;</a></li><li><span class="title-icon "></span><a href="#&#x56FE;&#x5F62;&#x754C;&#x9762;&#xFF08;gui&#xFF09;&#x5B89;&#x88C5;"><b></b>&#x56FE;&#x5F62;&#x754C;&#x9762;&#xFF08;GUI&#xFF09;&#x5B89;&#x88C5;</a></li><li><span class="title-icon "></span><a href="#&#x547D;&#x4EE4;&#x884C;&#x5B89;&#x88C5;"><b></b>&#x547D;&#x4EE4;&#x884C;&#x5B89;&#x88C5;</a></li><li><span class="title-icon "></span><a href="#&#x547D;&#x4EE4;&#x884C;&#x9009;&#x9879;"><b></b>&#x547D;&#x4EE4;&#x884C;&#x9009;&#x9879;</a></li><li><span class="title-icon "></span><a href="#&#x542F;&#x7528;&#x81EA;&#x52A8;&#x521B;&#x5EFA;x-pack&#x7D22;&#x5F15;"><b></b>&#x542F;&#x7528;&#x81EA;&#x52A8;&#x521B;&#x5EFA;X-Pack&#x7D22;&#x5F15;</a></li><li><span class="title-icon "></span><a href="#&#x547D;&#x4EE4;&#x884C;&#x8FD0;&#x884C;"><b></b>&#x547D;&#x4EE4;&#x884C;&#x8FD0;&#x884C;</a></li><li><span class="title-icon "></span><a href="#&#x547D;&#x4EE4;&#x884C;&#x914D;&#x7F6E;"><b></b>&#x547D;&#x4EE4;&#x884C;&#x914D;&#x7F6E;</a></li><li><span class="title-icon "></span><a href="#&#x68C0;&#x67E5;&#x8FD0;&#x884C;&#x60C5;&#x51B5;"><b></b>&#x68C0;&#x67E5;&#x8FD0;&#x884C;&#x60C5;&#x51B5;</a></li><li><span class="title-icon "></span><a href="#windows&#x4E0A;&#x5B89;&#x88C5;elasticsearch&#x670D;&#x52A1;"><b></b>Windows&#x4E0A;&#x5B89;&#x88C5;Elasticsearch&#x670D;&#x52A1;</a></li><li><span class="title-icon "></span><a href="#&#x4F7F;&#x7528;&#x56FE;&#x5F62;&#x754C;&#x9762;&#xFF08;gui&#xFF09;&#x5347;&#x7EA7;"><b></b>&#x4F7F;&#x7528;&#x56FE;&#x5F62;&#x754C;&#x9762;&#xFF08;GUI&#xFF09;&#x5347;&#x7EA7;</a></li><li><span class="title-icon "></span><a href="#&#x547D;&#x4EE4;&#x884C;&#x5347;&#x7EA7;"><b></b>&#x547D;&#x4EE4;&#x884C;&#x5347;&#x7EA7;</a></li><li><span class="title-icon "></span><a href="#&#x4F7F;&#x7528;&#x6DFB;&#x52A0;&#x5220;&#x9664;&#x7A0B;&#x5E8F;&#x4EE5;&#x5378;&#x8F7D;"><b></b>&#x4F7F;&#x7528;&#x6DFB;&#x52A0;/&#x5220;&#x9664;&#x7A0B;&#x5E8F;&#x4EE5;&#x5378;&#x8F7D;</a></li><li><span class="title-icon "></span><a href="#&#x547D;&#x4EE4;&#x884C;&#x5378;&#x8F7D;"><b></b>&#x547D;&#x4EE4;&#x884C;&#x5378;&#x8F7D;</a></li><li><span class="title-icon "></span><a href="#&#x4E0B;&#x4E00;&#x6B65;"><b></b>&#x4E0B;&#x4E00;&#x6B65;</a></li></ul></ul></ul></div><a href="#" id="anchorNavigationExGoTop"><i class="fa fa-arrow-up"></i></a><h2 id="windows-msi&#x5B89;&#x88C5;"><a name="windows-msi&#x5B89;&#x88C5;" class="anchor-navigation-ex-anchor" href="#windows-msi&#x5B89;&#x88C5;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="windows-msi&#x5B89;&#x88C5;" class="plugin-anchor" href="#windows-msi&#x5B89;&#x88C5;"><i class="fa fa-link" aria-hidden="true"></i></a>Windows MSI&#x5B89;&#x88C5;</h2>
+<blockquote>
+<p><strong>&#x8B66;&#x544A;</strong></p>
+<p>&#x6B64;&#x529F;&#x80FD;&#x5904;&#x4E8E;&#x6D4B;&#x8BD5;&#x9636;&#x6BB5;&#xFF0C;&#x53EF;&#x80FD;&#x4F1A;&#x53D1;&#x751F;&#x53D8;&#x5316;&#x3002;&#x8BBE;&#x8BA1;&#x548C;&#x4EE3;&#x7801;&#x4E0D;&#x5982;&#x5B98;&#x65B9;GA&#x529F;&#x80FD;&#x6210;&#x719F;&#xFF0C;&#x5E76;&#x4E14;&#x6309;&#x539F;&#x6837;&#x63D0;&#x4F9B;&#xFF0C;&#x4E0D;&#x63D0;&#x4F9B;&#x4EFB;&#x4F55;&#x4FDD;&#x8BC1;&#x3002;&#x6D4B;&#x8BD5;&#x7248;&#x529F;&#x80FD;&#x4E0D;&#x53D7;&#x5B98;&#x65B9;GA&#x529F;&#x80FD;&#x652F;&#x6301;SLA&#x7684;&#x7EA6;&#x675F;&#x3002;</p>
+</blockquote>
+<p>&#x53EF;&#x4EE5;&#x4F7F;&#x7528;<code>.msi</code>&#x5305;&#x5728;Windows&#x4E0A;&#x5B89;&#x88C5;Elasticsearch&#x3002;&#x8FD9;&#x53EF;&#x4EE5;&#x5C06;Elasticsearch&#x5B89;&#x88C5;&#x4E3A;Windows&#x670D;&#x52A1;&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x9644;&#x5E26;&#x7684;<code>elasticsearch.exe</code>&#x53EF;&#x6267;&#x884C;&#x6587;&#x4EF6;&#x624B;&#x52A8;&#x8FD0;&#x884C;&#x3002;</p>
+<blockquote>
+<p><strong>&#x63D0;&#x9192;</strong></p>
+<p>&#x4EE5;&#x524D;&#xFF0C;Elasticsearch&#x4F7F;&#x7528; <a href="Install-Elasticsearch-with-.zip-on-Windows.html">.zip</a> &#x5B58;&#x6863;&#x5728;Windows&#x5B89;&#x88C5;&#x3002;&#x5982;&#x679C;&#x60A8;&#x613F;&#x610F;&#xFF0C;&#x53EF;&#x4EE5;&#x7EE7;&#x7EED;&#x4F7F;&#x7528;<code>.zip</code>&#x65B9;&#x6CD5;&#x3002;</p>
+</blockquote>
+<p>&#x6B64;&#x8F6F;&#x4EF6;&#x5305;&#x53EF;&#x5728;Elastic&#x8BB8;&#x53EF;&#x4E0B;&#x514D;&#x8D39;&#x4F7F;&#x7528;&#x3002;&#x5B83;&#x5305;&#x542B;&#x5F00;&#x6E90;&#x548C;&#x514D;&#x8D39;&#x5546;&#x4E1A;&#x529F;&#x80FD;&#x4EE5;&#x53CA;&#x4ED8;&#x8D39;&#x5546;&#x4E1A;&#x529F;&#x80FD;&#x3002;&#x5F00;&#x59CB; <a href="https://www.elastic.co/guide/en/elastic-stack-overview/6.7/license-management.html" target="_blank">&#x4E3A;&#x671F;30&#x5929;&#x7684;&#x8BD5;&#x7528;</a>&#xFF0C;&#x8BD5;&#x7528;&#x6240;&#x6709;&#x4ED8;&#x8D39;&#x5546;&#x4E1A;&#x529F;&#x80FD;&#x3002;&#x6709;&#x5173;Elastic&#x8BB8;&#x53EF;&#x7EA7;&#x522B;&#x7684;&#x4FE1;&#x606F;&#xFF0C;&#x8BF7;&#x53C2;&#x9605; <a href="https://www.elastic.co/cn/subscriptions" target="_blank">&#x8BA2;&#x9605;</a> &#x9875;&#x9762;&#x3002;</p>
+<p>&#x53EF;&#x4EE5;&#x5728; <a href="https://www.elastic.co/cn/downloads/elasticsearch" target="_blank">Elasticsearch&#x4E0B;&#x8F7D;</a> &#x9875;&#x9762;&#x4E0A;&#x627E;&#x5230;&#x6700;&#x65B0;&#x7684;&#x7A33;&#x5B9A;&#x7248;Elasticsearch&#x3002;&#x5176;&#x4ED6;&#x7248;&#x672C;&#x53EF;&#x5728; <a href="https://www.elastic.co/downloads/past-releases" target="_blank">&#x5386;&#x53F2;&#x7248;&#x672C;</a> &#x9875;&#x9762;&#x4E0A;&#x627E;&#x5230;&#x3002;</p>
+<blockquote>
+<p><strong>&#x6CE8;&#x610F;</strong></p>
+<p>Elasticsearch&#x9700;&#x8981;Java 8&#x6216;&#x66F4;&#x9AD8;&#x7248;&#x672C;&#x3002;&#x4F7F;&#x7528; <a href="https://www.oracle.com/technetwork/java/javase/downloads/index.html" target="_blank">&#x5B98;&#x65B9;Oracle&#x53D1;&#x884C;&#x7248;</a> &#x6216; <a href="http://openjdk.java.net" target="_blank">OpenJDK</a> &#x7B49;&#x5F00;&#x6E90;&#x53D1;&#x884C;&#x7248;&#x3002;</p>
+</blockquote>
+<h3 id="&#x4E0B;&#x8F7D;msi&#x5305;"><a name="&#x4E0B;&#x8F7D;msi&#x5305;" class="anchor-navigation-ex-anchor" href="#&#x4E0B;&#x8F7D;msi&#x5305;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x4E0B;&#x8F7D;msi&#x5305;" class="plugin-anchor" href="#&#x4E0B;&#x8F7D;msi&#x5305;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x4E0B;&#x8F7D;.msi&#x5305;</h3>
+<p>&#x4ECE; <a href="https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-6.7.1.msi" target="_blank">https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-6.7.1.msi</a> &#x4E0B;&#x8F7D;Elasticsearch v6.7.1&#x7684;<code>.msi</code>&#x5305;</p>
+<h3 id="&#x56FE;&#x5F62;&#x754C;&#x9762;&#xFF08;gui&#xFF09;&#x5B89;&#x88C5;"><a name="&#x56FE;&#x5F62;&#x754C;&#x9762;&#xFF08;gui&#xFF09;&#x5B89;&#x88C5;" class="anchor-navigation-ex-anchor" href="#&#x56FE;&#x5F62;&#x754C;&#x9762;&#xFF08;gui&#xFF09;&#x5B89;&#x88C5;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x56FE;&#x5F62;&#x754C;&#x9762;&#xFF08;gui&#xFF09;&#x5B89;&#x88C5;" class="plugin-anchor" href="#&#x56FE;&#x5F62;&#x754C;&#x9762;&#xFF08;gui&#xFF09;&#x5B89;&#x88C5;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x56FE;&#x5F62;&#x754C;&#x9762;&#xFF08;GUI&#xFF09;&#x5B89;&#x88C5;</h3>
+<p>&#x53CC;&#x51FB;&#x4E0B;&#x8F7D;&#x7684;<code>.msi</code>&#x5305;&#x4EE5;&#x542F;&#x52A8;GUI&#x5411;&#x5BFC;&#xFF0C;&#x8BE5;&#x5411;&#x5BFC;&#x5C06;&#x6307;&#x5BFC;&#x60A8;&#x5B8C;&#x6210;&#x5B89;&#x88C5;&#x8FC7;&#x7A0B;&#x3002;&#x60A8;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x5355;&#x51FB;<code>?</code>&#x6309;&#x94AE;&#x663E;&#x793A;&#x4E00;&#x4E2A;&#x5E2E;&#x52A9;&#x4FE1;&#x606F;&#x9762;&#x677F;&#xFF0C;&#x9762;&#x677F;&#x4E2D;&#x5305;&#x542B;&#x6BCF;&#x4E2A;&#x8F93;&#x5165;&#x7684;&#x9644;&#x52A0;&#x4FE1;&#x606F;&#xFF1A;</p>
+<p><img src="../../source/images/ch-02/msi_installer_help.png" alt=""></p>
+<p>&#x5728;&#x7B2C;&#x4E00;&#x5C4F;&#x9009;&#x62E9;&#x5B89;&#x88C5;&#x76EE;&#x5F55;&#x3002;&#x6B64;&#x5916;&#xFF0C;&#x9009;&#x62E9;&#x5C06;&#x653E;&#x7F6E;&#x6570;&#x636E;&#xFF0C;&#x65E5;&#x5FD7;&#x548C;&#x914D;&#x7F6E;&#x7684;&#x76EE;&#x5F55;&#xFF0C;&#x6216; <a href="#&#x547D;&#x4EE4;&#x884C;&#x9009;&#x9879;">&#x4F7F;&#x7528;&#x9ED8;&#x8BA4;&#x4F4D;&#x7F6E;</a>&#xFF1A;</p>
+<p><img src="../../source/images/ch-02/msi_installer_locations.png" alt=""></p>
+<p>&#x7136;&#x540E;&#x9009;&#x62E9;Elasticsearch&#x662F;&#x4F5C;&#x4E3A;&#x670D;&#x52A1;&#x5B89;&#x88C5;&#x8FD8;&#x662F;&#x6839;&#x636E;&#x9700;&#x8981;&#x624B;&#x52A8;&#x542F;&#x52A8;&#x3002;&#x4F5C;&#x4E3A;&#x670D;&#x52A1;&#x5B89;&#x88C5;&#x65F6;&#xFF0C;&#x60A8;&#x8FD8;&#x53EF;&#x4EE5;&#x914D;&#x7F6E;Windows&#x5E10;&#x6237;&#x4EE5;&#x8FD0;&#x884C;&#x670D;&#x52A1;&#xFF0C;&#x65E0;&#x8BBA;&#x662F;&#x5728;&#x5B89;&#x88C5;&#x540E;&#x542F;&#x52A8;&#x670D;&#x52A1;&#x6216;&#x968F;Windows&#x542F;&#x52A8;&#xFF1A;</p>
+<p><img src="../../source/images/ch-02/msi_installer_service.png" alt=""></p>
+<blockquote>
+<p><strong>&#x91CD;&#x8981;</strong></p>
+<p>&#x9009;&#x62E9;&#x8981;&#x8FD0;&#x884C;&#x670D;&#x52A1;&#x7684;Windows&#x5E10;&#x6237;&#x65F6;&#xFF0C;&#x8BF7;&#x786E;&#x4FDD;&#x6240;&#x9009;&#x5E10;&#x6237;&#x5177;&#x6709;&#x8DB3;&#x591F;&#x7684;&#x6743;&#x9650;&#x6765;&#x8BBF;&#x95EE;&#x6240;&#x9009;&#x7684;&#x5B89;&#x88C5;&#x548C;&#x5176;&#x4ED6;&#x90E8;&#x7F72;&#x76EE;&#x5F55;&#x3002;&#x8FD8;&#x8981;&#x786E;&#x4FDD;&#x5E10;&#x6237;&#x80FD;&#x591F;&#x8FD0;&#x884C;Windows&#x670D;&#x52A1;&#x3002;</p>
+</blockquote>
+<p>&#x5E38;&#x89C1;&#x914D;&#x7F6E;&#x9879;&#x5728;&#x201C;&#x914D;&#x7F6E;&#x201D;&#x7AE0;&#x8282;&#x4E2D;&#xFF0C;&#x9664;&#x4E86;&#x5185;&#x5B58;&#x548C;&#x7F51;&#x7EDC;&#x8BBE;&#x7F6E;&#x5916;&#xFF0C;&#x8FD8;&#x5141;&#x8BB8;&#x8BBE;&#x7F6E;&#x96C6;&#x7FA4;&#x540D;&#x79F0;&#xFF0C;&#x8282;&#x70B9;&#x540D;&#x79F0;&#x548C;&#x89D2;&#x8272;&#xFF1A;</p>
+<p><img src="../../source/images/ch-02/msi_installer_configuration.png" alt=""></p>
+<p>&#x5B89;&#x88C5;&#x8FC7;&#x7A0B;&#x4E2D;&#x53EF;&#x4EE5;&#x4E0B;&#x8F7D;&#x548C;&#x5B89;&#x88C5;&#x7684;&#x5E38;&#x89C1;&#x63D2;&#x4EF6;&#x5217;&#x8868;&#xFF0C;&#x53EF;&#x9009;&#x62E9;&#x914D;&#x7F6E;HTTPS&#x4EE3;&#x7406;&#x4EE5;&#x4E0B;&#x8F7D;&#x8FD9;&#x4E9B;&#x63D2;&#x4EF6;&#x3002;</p>
+<blockquote>
+<p><strong>&#x63D0;&#x9192;</strong></p>
+<p>&#x786E;&#x4FDD;&#x5B89;&#x88C5;&#x8BA1;&#x7B97;&#x673A;&#x53EF;&#x4EE5;&#x8BBF;&#x95EE;Internet&#xFF0C;&#x5E76;&#x4E14;&#x6240;&#x6709;&#x4F01;&#x4E1A;&#x9632;&#x706B;&#x5899;&#x90FD;&#x914D;&#x7F6E;&#x4E3A;&#x5141;&#x8BB8;&#x4ECE;<code>artifacts.elastic.co</code>&#x4E0B;&#x8F7D;&#xFF1A;</p>
+</blockquote>
+<p><img src="../../source/images/ch-02/msi_installer_selected_plugins.png" alt=""></p>
+<p>&#x4ECE;&#x7248;&#x672C;6.3.0&#x5F00;&#x59CB;&#xFF0C;&#x9ED8;&#x8BA4;&#x60C5;&#x51B5;&#x4E0B; <a href="https://www.elastic.co/cn/products/x-pack/open" target="_blank">&#x6346;&#x7ED1;</a> X-Pack&#x3002;&#x9664;&#x5B89;&#x5168;&#x914D;&#x7F6E;&#x548C;&#x5185;&#x7F6E;&#x7528;&#x6237;&#x914D;&#x7F6E;&#x5916;&#xFF0C;&#x6700;&#x540E;&#x4E00;&#x6B65;&#x8FD8;&#x5141;&#x8BB8;&#x9009;&#x62E9;&#x8981;&#x5B89;&#x88C5;&#x7684;&#x8BB8;&#x53EF;&#x8BC1;&#x7C7B;&#x578B;&#xFF1A;</p>
+<p><img src="../../source/images/ch-02/msi_installer_xpack.png" alt=""></p>
+<blockquote>
+<p><strong>&#x6CE8;&#x610F;</strong></p>
+<p>X-Pack&#x5305;&#x62EC;&#x4E00;&#x4E2A;&#x8BD5;&#x7528;&#x7248;&#x6216;&#x57FA;&#x672C;&#x8BB8;&#x53EF;&#x8BC1;&#x3002;&#x8BD5;&#x7528;&#x8BB8;&#x53EF;&#x8BC1;&#x6709;&#x6548;&#x671F;&#x4E3A;30&#x5929;&#xFF0C;&#x4E4B;&#x540E;&#x60A8;&#x53EF;&#x4EE5;&#x83B7;&#x5F97;&#x5176;&#x4E2D;&#x4E00;&#x4E2A; <a href="https://www.elastic.co/cn/subscriptions" target="_blank">&#x53EF;&#x7528;&#x8BA2;&#x9605;</a>&#x3002;&#x57FA;&#x672C;&#x8BB8;&#x53EF;&#x662F;&#x514D;&#x8D39;&#x4E14;&#x6C38;&#x4E45;&#x7684;&#x3002;&#x6709;&#x5173;&#x54EA;&#x4E9B;&#x8BB8;&#x53EF;&#x8BC1;&#x53EF;&#x7528;&#x7684;&#x529F;&#x80FD;&#x7684;&#x8BE6;&#x7EC6;&#x4FE1;&#x606F;&#xFF0C;&#x8BF7;&#x53C2;&#x9605;&#x53EF;&#x7528;&#x7684;&#x8BA2;&#x9605;&#x3002;</p>
+</blockquote>
+<p>&#x5355;&#x51FB;&#x5B89;&#x88C5;&#x6309;&#x94AE;&#x540E;&#xFF0C;&#x5B89;&#x88C5;&#x5C06;&#x5F00;&#x59CB;&#xFF1A;</p>
+<p><img src="../../source/images/ch-02/msi_installer_installing.png" alt=""></p>
+<p>&#x5E76;&#x63D0;&#x793A;&#x4F55;&#x65F6;&#x6210;&#x529F;&#x5B89;&#x88C5;&#xFF1A;</p>
+<p><img src="../../source/images/ch-02/msi_installer_success.png" alt=""></p>
+<h3 id="&#x547D;&#x4EE4;&#x884C;&#x5B89;&#x88C5;"><a name="&#x547D;&#x4EE4;&#x884C;&#x5B89;&#x88C5;" class="anchor-navigation-ex-anchor" href="#&#x547D;&#x4EE4;&#x884C;&#x5B89;&#x88C5;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x547D;&#x4EE4;&#x884C;&#x5B89;&#x88C5;" class="plugin-anchor" href="#&#x547D;&#x4EE4;&#x884C;&#x5B89;&#x88C5;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x547D;&#x4EE4;&#x884C;&#x5B89;&#x88C5;</h3>
+<p><code>.msi</code>&#x8FD8;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x547D;&#x4EE4;&#x884C;&#x5B89;&#x88C5;Elasticsearch&#x3002;&#x5982;&#x679C;&#x4F7F;&#x7528;&#x4E0E;GUI&#x5B89;&#x88C5;&#x76F8;&#x540C;&#x7684;&#x9ED8;&#x8BA4;&#x8BBE;&#x7F6E;&#xFF0C;&#x53EF;&#x4EE5;&#x5148;&#x5BFC;&#x822A;&#x5230;&#x4E0B;&#x8F7D;&#x76EE;&#x5F55;&#xFF0C;&#x7136;&#x540E;&#x8FD0;&#x884C;&#xFF1A;</p>
+<pre><code class="lang-sh">msiexec.exe /i elasticsearch-6.7.1.msi /qn
+</code></pre>
+<p>&#x9ED8;&#x8BA4;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;<code>msiexec.exe</code>&#x4E0D;&#x4F1A;&#x7B49;&#x5F85;&#x5B89;&#x88C5;&#x8FC7;&#x7A0B;&#x5B8C;&#x6210;&#xFF0C;&#x56E0;&#x4E3A;&#x5B83;&#x5728;Windows&#x5B50;&#x7CFB;&#x7EDF;&#x4E2D;&#x8FD0;&#x884C;&#x3002;&#x8981;&#x7B49;&#x5F85;&#x8FDB;&#x7A0B;&#x5B8C;&#x6210;&#x5E76;&#x786E;&#x4FDD;&#x76F8;&#x5E94;&#x5730;&#x8BBE;&#x7F6E;<code>&#xFF05;ERRORLEVEL&#xFF05;</code>&#xFF0C;&#x5EFA;&#x8BAE;&#x4F7F;&#x7528;<code>start/wait</code>&#x521B;&#x5EFA;&#x8FDB;&#x7A0B;&#x5E76;&#x7B49;&#x5F85;&#x5B83;&#x9000;&#x51FA;</p>
+<pre><code class="lang-sh">start /<span class="hljs-built_in">wait</span> msiexec.exe /i elasticsearch-6.7.1.msi /qn
+</code></pre>
+<p>&#x4E0E;&#x5176;&#x4ED6;MSI&#x5B89;&#x88C5;&#x5305;&#x4E00;&#x6837;&#xFF0C;&#x53EF;&#x4EE5;&#x5728;<code>&#xFF05;TEMP&#xFF05;</code>&#x76EE;&#x5F55;&#x4E2D;&#x627E;&#x5230;&#x5B89;&#x88C5;&#x8FC7;&#x7A0B;&#x7684;&#x65E5;&#x5FD7;&#x6587;&#x4EF6;&#xFF0C;&#x5176;&#x4E2D;&#x968F;&#x673A;&#x751F;&#x6210;&#x7684;&#x540D;&#x79F0;&#x9075;&#x5FAA;&#x683C;&#x5F0F;<code>MSI &lt;random&gt;.LOG</code>&#x3002;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;<code>/l</code>&#x547D;&#x4EE4;&#x884C;&#x53C2;&#x6570;&#x63D0;&#x4F9B;&#x65E5;&#x5FD7;&#x6587;&#x4EF6;&#x7684;&#x8DEF;&#x5F84;</p>
+<pre><code class="lang-sh">start /<span class="hljs-built_in">wait</span> msiexec.exe /i elasticsearch-6.7.1.msi /qn /l install.log
+</code></pre>
+<p>&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x67E5;&#x770B;&#x652F;&#x6301;&#x7684;Windows Installer&#x547D;&#x4EE4;&#x884C;&#x53C2;&#x6570;</p>
+<pre><code class="lang-sh">msiexec.exe /<span class="hljs-built_in">help</span>
+</code></pre>
+<p>&#x6216;&#x67E5;&#x770B; <a href="https://docs.microsoft.com/windows/desktop/Msi/command-line-options" target="_blank">Windows Installer SDK&#x547D;&#x4EE4;&#x884C;&#x9009;&#x9879;</a>&#x3002;</p>
+<h3 id="&#x547D;&#x4EE4;&#x884C;&#x9009;&#x9879;"><a name="&#x547D;&#x4EE4;&#x884C;&#x9009;&#x9879;" class="anchor-navigation-ex-anchor" href="#&#x547D;&#x4EE4;&#x884C;&#x9009;&#x9879;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x547D;&#x4EE4;&#x884C;&#x9009;&#x9879;" class="plugin-anchor" href="#&#x547D;&#x4EE4;&#x884C;&#x9009;&#x9879;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x547D;&#x4EE4;&#x884C;&#x9009;&#x9879;</h3>
+<p>GUI&#x4E2D;&#x516C;&#x5F00;&#x7684;&#x6240;&#x6709;&#x8BBE;&#x7F6E;&#x4E5F;&#x53EF;&#x4EE5;&#x4F5C;&#x4E3A;&#x547D;&#x4EE4;&#x884C;&#x53C2;&#x6570;&#xFF08;&#x5728;Windows Installer&#x6587;&#x6863;&#x4E2D;&#x79F0;&#x4E3A;&#x5C5E;&#x6027;&#xFF09;&#x63D0;&#x4F9B;&#xFF0C;&#x53EF;&#x4EE5;&#x4F20;&#x9012;&#x7ED9;<code>msiexec.exe</code>&#xFF1A;
+| &#x53C2;&#x6570;                               | &#x8BF4;&#x660E; |
+| ---------------------------------- | ------------------------------------------------------------ |
+| <code>INSTALLDIR</code>                       | &#x5B89;&#x88C5;&#x76EE;&#x5F55;&#x3002;&#x8DEF;&#x5F84;&#x4E2D;&#x7684;&#x6700;&#x7EC8;&#x6587;&#x4EF6;&#x5939;&#x540D;&#x5FC5;&#x987B;&#x662F;Elasticsearch&#x7684;&#x7248;&#x672C;&#x3002;&#x9ED8;&#x8BA4;&#x4E3A;<code>%ProgramW6432%\Elastic\Elasticsearch\6.7.1</code>. |
+| <code>DATADIRECTORY</code>                    | &#x5B58;&#x50A8;&#x6570;&#x636E;&#x7684;&#x76EE;&#x5F55;&#x3002;&#x9ED8;&#x8BA4;&#x4E3A;<code>%ALLUSERSPROFILE%\Elastic\Elasticsearch\data</code> |
+| <code>CONFIGDIRECTORY</code>                  | &#x5B58;&#x50A8;&#x914D;&#x7F6E;&#x7684;&#x76EE;&#x5F55;&#x3002;&#x9ED8;&#x8BA4;&#x4E3A;<code>%ALLUSERSPROFILE%\Elastic\Elasticsearch\config</code> |
+| <code>LOGSDIRECTORY</code>                    | &#x5B58;&#x50A8;&#x65E5;&#x5FD7;&#x7684;&#x76EE;&#x5F55;&#x3002;&#x9ED8;&#x8BA4;&#x4E3A;<code>%ALLUSERSPROFILE%\Elastic\Elasticsearch\logs</code> |
+| <code>PLACEWRITABLELOCATIONSINSAMEPATH</code> | &#x662F;&#x5426;&#x5E94;&#x5728;&#x5B89;&#x88C5;&#x76EE;&#x5F55;&#x4E0B;&#x521B;&#x5EFA;&#x6570;&#x636E;&#xFF0C;&#x914D;&#x7F6E;&#x548C;&#x65E5;&#x5FD7;&#x76EE;&#x5F55;&#x3002;&#x9ED8;&#x8BA4;<code>false</code> |
+| <code>INSTALLASSERVICE</code>                 | &#x662F;&#x5426;&#x5DF2;&#x5B89;&#x88C5;Elasticsearch&#x5E76;&#x5C06;&#x5176;&#x914D;&#x7F6E;&#x4E3A;Windows&#x670D;&#x52A1;&#x3002;&#x9ED8;&#x8BA4;&#x4E3A;<code>true</code> |
+| <code>STARTAFTERINSTALL</code>                | &#x5B89;&#x88C5;&#x5B8C;&#x6210;&#x540E;&#x662F;&#x5426;&#x542F;&#x52A8;Windows&#x670D;&#x52A1;&#x3002;&#x9ED8;&#x8BA4;&#x4E3A;<code>true</code> |
+| <code>STARTWHENWINDOWSSTARTS</code>           | Windows&#x670D;&#x52A1;&#x662F;&#x5426;&#x5728;Windows&#x542F;&#x52A8;&#x65F6;&#x542F;&#x52A8;&#x3002;&#x9ED8;&#x8BA4;&#x4E3A;<code>true</code> |
+| <code>USELOCALSYSTEM</code>                   | Windows&#x670D;&#x52A1;&#x662F;&#x5426;&#x5728;LocalSystem&#x5E10;&#x6237;&#x4E0B;&#x8FD0;&#x884C;&#x3002;&#x9ED8;&#x8BA4;&#x4E3A;<code>true</code> |
+| <code>USENETWORKSERVICE</code>                | Windows&#x670D;&#x52A1;&#x662F;&#x5426;&#x5728;NetworkService&#x5E10;&#x6237;&#x4E0B;&#x8FD0;&#x884C;&#x3002;&#x9ED8;&#x8BA4;&#x4E3A;<code>false</code> |
+| <code>USEEXISTINGUSER</code>                  | Windows&#x670D;&#x52A1;&#x662F;&#x5426;&#x5728;&#x6307;&#x5B9A;&#x7684;&#x73B0;&#x6709;&#x5E10;&#x6237;&#x4E0B;&#x8FD0;&#x884C;&#x3002;&#x9ED8;&#x8BA4;&#x4E3A;<code>false</code> |
+| <code>USER</code>                             | &#x8FD0;&#x884C;Windows&#x670D;&#x52A1;&#x7684;&#x5E10;&#x6237;&#x7684;&#x7528;&#x6237;&#x540D;&#x3002;&#x9ED8;&#x8BA4;&#x4E3A;<code>&quot;&quot;</code> |
+| <code>PASSWORD</code>                         | &#x8FD0;&#x884C;Windows&#x670D;&#x52A1;&#x7684;&#x5E10;&#x6237;&#x7684;&#x5BC6;&#x7801;&#x3002;&#x9ED8;&#x8BA4;&#x4E3A;<code>&quot;&quot;</code> |
+| <code>CLUSTERNAME</code>                      | &#x96C6;&#x7FA4;&#x7684;&#x540D;&#x79F0;&#x3002;&#x9ED8;&#x8BA4;&#x4E3A;<code>elasticsearch</code> |
+| <code>NODENAME</code>                         | &#x8282;&#x70B9;&#x7684;&#x540D;&#x79F0;&#x3002;&#x9ED8;&#x8BA4;&#x4E3A;<code>%COMPUTERNAME%</code>  |
+| <code>MASTERNODE</code>                       | Elasticsearch&#x662F;&#x5426;&#x914D;&#x7F6E;&#x4E3A;&#x4E3B;&#x8282;&#x70B9;&#x3002;&#x9ED8;&#x8BA4;&#x4E3A;<code>true</code> |
+| <code>DATANODE</code>                         | Elasticsearch&#x662F;&#x5426;&#x914D;&#x7F6E;&#x4E3A;&#x6570;&#x636E;&#x8282;&#x70B9;&#x3002;&#x9ED8;&#x8BA4;&#x4E3A;<code>true</code> |
+| <code>INGESTNODE</code>                       | Elasticsearch&#x662F;&#x5426;&#x914D;&#x7F6E;&#x4E3A;&#x6444;&#x53D6;&#x8282;&#x70B9;&#x3002;&#x9ED8;&#x8BA4;&#x4E3A;<code>true</code> |
+| <code>SELECTEDMEMORY</code>                   | &#x4E3A;Elasticsearch&#x5206;&#x914D;&#x7ED9;JVM&#x5806;&#x7684;&#x5185;&#x5B58;&#x91CF;&#x3002;&#x9664;&#x975E;&#x76EE;&#x6807;&#x8BA1;&#x7B97;&#x673A;&#x603B;&#x5171;&#x5C11;&#x4E8E;4GB&#xFF0C;&#x5426;&#x5219;&#x9ED8;&#x8BA4;&#x4E3A;<code>2048</code>&#xFF0C;&#x5728;&#x8FD9;&#x79CD;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x5B83;&#x9ED8;&#x8BA4;&#x4E3A;&#x603B;&#x5185;&#x5B58;&#x7684;50&#xFF05;&#x3002; |
+| <code>LOCKMEMORY</code>                       | &#x662F;&#x5426;&#x5E94;&#x8BE5;&#x4F7F;&#x7528;<code>bootstrap.memory_lock</code>&#x6765;&#x5C1D;&#x8BD5;&#x5C06;&#x8FDB;&#x7A0B;&#x5730;&#x5740;&#x7A7A;&#x95F4;&#x9501;&#x5B9A;&#x5230;RAM&#x4E2D;&#x3002;&#x9ED8;&#x8BA4;&#x4E3A;<code>false</code> |
+| <code>UNICASTNODES</code>                     | &#x8868;&#x5355;<code>host:port</code>&#x6216;<code>host</code>&#x4E2D;&#x4EE5;&#x9017;&#x53F7;&#x5206;&#x9694;&#x7684;&#x4E3B;&#x673A;&#x5217;&#x8868;&#xFF0C;&#x7528;&#x4E8E;&#x5355;&#x64AD;&#x53D1;&#x73B0;&#x3002;&#x9ED8;&#x8BA4;&#x4E3A; <code>&quot;&quot;</code> |
+| <code>MINIMUMMASTERNODES</code>               | &#x4E3A;&#x4E86;&#x5F62;&#x6210;&#x96C6;&#x7FA4;&#x800C;&#x5FC5;&#x987B;&#x53EF;&#x89C1;&#x7684;&#x7B26;&#x5408;&#x4E3B;&#x8282;&#x70B9;&#x7684;&#x6700;&#x5C0F;&#x8282;&#x70B9;&#x6570;&#x3002;&#x9ED8;&#x8BA4;&#x4E3A;<code>&quot;&quot;</code> |
+| <code>NETWORKHOST</code>                      | &#x7528;&#x4E8E;&#x5C06;&#x8282;&#x70B9;&#x7ED1;&#x5B9A;&#x5230;&#x8BE5;&#x8282;&#x70B9;&#x5E76;&#x5C06;&#x5176;&#x53D1;&#x5E03;&#xFF08;&#x901A;&#x544A;&#xFF09;&#x5230;&#x96C6;&#x7FA4;&#x4E2D;&#x5176;&#x4ED6;&#x8282;&#x70B9;&#x7684;&#x4E3B;&#x673A;&#x540D;&#x6216;IP&#x5730;&#x5740;&#x3002;&#x9ED8;&#x8BA4;&#x4E3A;<code>&quot;&quot;</code> |
+| <code>HTTPPORT</code>                         | &#x7528;&#x4E8E;&#x901A;&#x8FC7;HTTP&#x516C;&#x5F00;Elasticsearch API&#x7684;&#x7AEF;&#x53E3;&#x3002;&#x9ED8;&#x8BA4;&#x4E3A;<code>9200</code> |
+| <code>TRANSPORTPORT</code>                    | &#x7528;&#x4E8E;&#x96C6;&#x7FA4;&#x5185;&#x8282;&#x70B9;&#x4E4B;&#x95F4;&#x5185;&#x90E8;&#x901A;&#x4FE1;&#x7684;&#x7AEF;&#x53E3;&#x3002;&#x9ED8;&#x8BA4;&#x4E3A;<code>9300</code> |
+| <code>PLUGINS</code>                          | &#x4EE5;&#x9017;&#x53F7;&#x5206;&#x9694;&#x7684;&#x63D2;&#x4EF6;&#x5217;&#x8868;&#xFF0C;&#x4F5C;&#x4E3A;&#x5B89;&#x88C5;&#x7684;&#x4E00;&#x90E8;&#x5206;&#x8FDB;&#x884C;&#x4E0B;&#x8F7D;&#x548C;&#x5B89;&#x88C5;&#x3002;&#x9ED8;&#x8BA4;&#x4E3A;<code>&quot;&quot;</code> |
+| <code>HTTPSPROXYHOST</code>                   | &#x7528;&#x4E8E;&#x901A;&#x8FC7;HTTPS&#x4E0B;&#x8F7D;&#x63D2;&#x4EF6;&#x7684;&#x4EE3;&#x7406;&#x4E3B;&#x673A;&#x3002;&#x9ED8;&#x8BA4;&#x4E3A;<code>&quot;&quot;</code> |
+| <code>HTTPSPROXYPORT</code>                   | &#x7528;&#x4E8E;&#x901A;&#x8FC7;HTTPS&#x4E0B;&#x8F7D;&#x63D2;&#x4EF6;&#x7684;&#x4EE3;&#x7406;&#x7AEF;&#x53E3;&#x3002;&#x9ED8;&#x8BA4;&#x4E3A;<code>443</code> |
+| <code>HTTPPROXYHOST</code>                    | &#x7528;&#x4E8E;&#x901A;&#x8FC7;HTTP&#x4E0B;&#x8F7D;&#x63D2;&#x4EF6;&#x7684;&#x4EE3;&#x7406;&#x4E3B;&#x673A;&#x3002;&#x9ED8;&#x8BA4;&#x4E3A;<code>&quot;&quot;</code> |
+| <code>HTTPPROXYPORT</code>                    | &#x7528;&#x4E8E;&#x901A;&#x8FC7;HTTP&#x4E0B;&#x8F7D;&#x63D2;&#x4EF6;&#x7684;&#x4EE3;&#x7406;&#x7AEF;&#x53E3;&#x3002;&#x9ED8;&#x8BA4;&#x4E3A;<code>80</code> |
+| <code>XPACKLICENSE</code>                     | &#x8981;&#x5B89;&#x88C5;&#x7684;&#x8BB8;&#x53EF;&#x8BC1;&#x7C7B;&#x578B;&#xFF0C;<code>Basic</code>&#x6216;<code>Trial</code>&#x3002;&#x9ED8;&#x8BA4;&#x4E3A;<code>Basic</code> |
+| <code>XPACKSECURITYENABLED</code>             | &#x4F7F;&#x7528;<code>Trial</code>&#x8BB8;&#x53EF;&#x8BC1;&#x8FDB;&#x884C;&#x5B89;&#x88C5;&#x65F6;&#xFF0C;&#x662F;&#x5426;&#x542F;&#x7528;&#x4E86;&#x5B89;&#x5168;&#x529F;&#x80FD;&#x3002;&#x9ED8;&#x8BA4;&#x4E3A;<code>true</code> |
+| <code>BOOTSTRAPPASSWORD</code>                | &#x4F7F;&#x7528;<code>Trial</code>&#x8BB8;&#x53EF;&#x8BC1;&#x8FDB;&#x884C;&#x5B89;&#x88C5;&#x5E76;&#x542F;&#x7528;&#x5B89;&#x5168;&#x529F;&#x80FD;&#x65F6;&#xFF0C;&#x5C06;&#x4F7F;&#x7528;&#x7528;&#x4E8E;&#x5F15;&#x5BFC;&#x96C6;&#x7FA4;&#x7684;&#x5BC6;&#x7801;&#x4F5C;&#x4E3A;&#x5BC6;&#x94A5;&#x5E93;&#x4E2D;&#x7684;<code>bootstrap.password</code>&#x8BBE;&#x7F6E;&#x4FDD;&#x7559;&#x3002;&#x9ED8;&#x8BA4;&#x4E3A;&#x968F;&#x673A;&#x503C;&#x3002; |
+| <code>SKIPSETTINGPASSWORDS</code>             | &#x5B89;&#x88C5;<code>Trial</code>&#x8BB8;&#x53EF;&#x8BC1;&#x5E76;&#x542F;&#x7528;&#x5B89;&#x5168;&#x529F;&#x80FD;&#x65F6;&#xFF0C;&#x5B89;&#x88C5;&#x662F;&#x5426;&#x5E94;&#x8DF3;&#x8FC7;&#x8BBE;&#x7F6E;&#x5185;&#x7F6E;&#x7528;&#x6237;&#x3002;&#x9ED8;&#x8BA4;&#x4E3A;<code>false</code> |
+| <code>ELASTICUSERPASSWORD</code>              | &#x4F7F;&#x7528;<code>Trial</code>&#x8BB8;&#x53EF;&#x8BC1;&#x5B89;&#x88C5;&#x5E76;&#x542F;&#x7528;&#x5B89;&#x5168;&#x529F;&#x80FD;&#x65F6;&#xFF0C;&#x7528;&#x4E8E;&#x5185;&#x7F6E;&#x7528;&#x6237;<code>elastic</code>&#x7684;&#x5BC6;&#x7801;&#x3002;&#x9ED8;&#x8BA4;&#x4E3A;<code>&quot;&quot;</code> |
+| <code>KIBANAUSERPASSWORD</code>               | &#x4F7F;&#x7528;<code>Trial</code>&#x8BB8;&#x53EF;&#x8BC1;&#x8FDB;&#x884C;&#x5B89;&#x88C5;&#x5E76;&#x542F;&#x7528;&#x5B89;&#x5168;&#x529F;&#x80FD;&#x65F6;&#xFF0C;&#x5C06;&#x4F7F;&#x7528;&#x7528;&#x4E8E;&#x5185;&#x7F6E;&#x7528;&#x6237;<code>kibana</code>&#x7684;&#x5BC6;&#x7801;&#x3002;&#x9ED8;&#x8BA4;&#x4E3A;<code>&quot;&quot;</code> |
+| <code>LOGSTASHSYSTEMUSERPASSWORD</code>       | &#x4F7F;&#x7528;<code>Trial</code>&#x8BB8;&#x53EF;&#x8BC1;&#x8FDB;&#x884C;&#x5B89;&#x88C5;&#x5E76;&#x542F;&#x7528;&#x5B89;&#x5168;&#x529F;&#x80FD;&#x65F6;&#xFF0C;&#x5C06;&#x4F7F;&#x7528;&#x7528;&#x4E8E;&#x5185;&#x7F6E;&#x7528;&#x6237;<code>logstash_system</code>&#x7684;&#x5BC6;&#x7801;&#x3002;&#x9ED8;&#x8BA4;&#x4E3A;<code>&quot;&quot;</code> |</p>
+<p>&#x8981;&#x4F20;&#x9012;&#x503C;&#xFF0C;&#x53EA;&#x9700;&#x4F7F;&#x7528;&#x683C;&#x5F0F;<code>&lt;PROPERTYNAME&gt;=&quot;&lt;VALUE&gt;&quot;</code>&#x5C06;&#x53C2;&#x6570;&#x548C;&#x503C;&#x9644;&#x52A0;&#x5230;&#x5B89;&#x88C5;&#x547D;&#x4EE4;&#x5373;&#x53EF;&#x3002;&#x4F8B;&#x5982;&#xFF0C;&#x8981;&#x5C06;&#x4E0D;&#x540C;&#x7684;&#x5B89;&#x88C5;&#x76EE;&#x5F55;&#x7528;&#x4E8E;&#x9ED8;&#x8BA4;&#x76EE;&#x5F55;&#xFF1A;</p>
+<pre><code class="lang-sh">start /<span class="hljs-built_in">wait</span> msiexec.exe /i elasticsearch-6.7.1.msi /qn INSTALLDIR=<span class="hljs-string">&quot;C:\Custom Install Directory{version}&quot;</span>
+</code></pre>
+<p>&#x6709;&#x5173;&#x4E0E;&#x5305;&#x542B;&#x5F15;&#x53F7;&#x7684;&#x503C;&#x76F8;&#x5173;&#x7684;&#x5176;&#x4ED6;&#x89C4;&#x5219;&#xFF0C;&#x8BF7;&#x53C2;&#x9605; <a href="https://docs.microsoft.com/zh-cn/windows/desktop/Msi/command-line-options" target="_blank">Windows Installer SDK&#x547D;&#x4EE4;&#x884C;&#x9009;&#x9879;</a>&#x3002;</p>
+<h3 id="&#x542F;&#x7528;&#x81EA;&#x52A8;&#x521B;&#x5EFA;x-pack&#x7D22;&#x5F15;"><a name="&#x542F;&#x7528;&#x81EA;&#x52A8;&#x521B;&#x5EFA;x-pack&#x7D22;&#x5F15;" class="anchor-navigation-ex-anchor" href="#&#x542F;&#x7528;&#x81EA;&#x52A8;&#x521B;&#x5EFA;x-pack&#x7D22;&#x5F15;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x542F;&#x7528;&#x81EA;&#x52A8;&#x521B;&#x5EFA;x-pack&#x7D22;&#x5F15;" class="plugin-anchor" href="#&#x542F;&#x7528;&#x81EA;&#x52A8;&#x521B;&#x5EFA;x-pack&#x7D22;&#x5F15;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x542F;&#x7528;&#x81EA;&#x52A8;&#x521B;&#x5EFA;X-Pack&#x7D22;&#x5F15;</h3>
+<p>Elastic Stack&#x529F;&#x80FD;&#x5C1D;&#x8BD5;&#x5728;Elasticsearch&#x4E2D;&#x81EA;&#x52A8;&#x521B;&#x5EFA;&#x591A;&#x4E2A;&#x7D22;&#x5F15;&#x3002;&#x9ED8;&#x8BA4;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;Elasticsearch&#x914D;&#x7F6E;&#x4E3A;&#x5141;&#x8BB8;&#x81EA;&#x52A8;&#x521B;&#x5EFA;&#x7D22;&#x5F15;&#xFF0C;&#x4E0D;&#x9700;&#x8981;&#x5176;&#x4ED6;&#x6B65;&#x9AA4;&#x3002;&#x4F46;&#x662F;&#xFF0C;&#x5982;&#x679C;&#x5728;Elasticsearch&#x4E2D;&#x7981;&#x7528;&#x4E86;&#x81EA;&#x52A8;&#x7D22;&#x5F15;&#x521B;&#x5EFA;&#xFF0C;&#x5219;&#x5FC5;&#x987B;&#x5728;<code>elasticsearch.yml</code>&#x4E2D;&#x914D;&#x7F6E;<code>action.auto_create_index</code>&#xFF0C;&#x4EE5;&#x5141;&#x8BB8;X-Pack&#x521B;&#x5EFA;&#x4EE5;&#x4E0B;&#x7D22;&#x5F15;&#xFF1A;</p>
+<pre><code class="lang-yaml">action.auto_create_index: .monitoring*,.watches,.triggered_watches,.watcher-history*,.ml*
+</code></pre>
+<blockquote>
+<p><strong>&#x91CD;&#x8981;</strong></p>
+<p>&#x5982;&#x679C;&#x60A8;&#x4F7F;&#x7528;&#x7684;&#x662F; <a href="https://www.elastic.co/cn/products/logstash" target="_blank">Logstash</a> &#x6216; <a href="https://www.elastic.co/products/beats" target="_blank">Beat</a>s&#xFF0C;&#x5219;&#x5F88;&#x53EF;&#x80FD;&#x5728;<code>action.auto_create_index</code>&#x8BBE;&#x7F6E;&#x4E2D;&#x9700;&#x8981;&#x5176;&#x4ED6;&#x7D22;&#x5F15;&#x540D;&#x79F0;&#xFF0C;&#x5177;&#x4F53;&#x503C;&#x53D6;&#x51B3;&#x4E8E;&#x60A8;&#x7684;&#x672C;&#x5730;&#x914D;&#x7F6E;&#x3002;&#x5982;&#x679C;&#x60A8;&#x4E0D;&#x786E;&#x5B9A;&#x73AF;&#x5883;&#x7684;&#x6B63;&#x786E;&#x503C;&#xFF0C;&#x53EF;&#x4EE5;&#x8003;&#x8651;&#x5C06;&#x503C;&#x8BBE;&#x7F6E;&#x4E3A;<code>*</code>&#xFF0C;&#x8FD9;&#x5C06;&#x5141;&#x8BB8;&#x81EA;&#x52A8;&#x521B;&#x5EFA;&#x6240;&#x6709;&#x7D22;&#x5F15;&#x3002;</p>
+</blockquote>
+<h3 id="&#x547D;&#x4EE4;&#x884C;&#x8FD0;&#x884C;"><a name="&#x547D;&#x4EE4;&#x884C;&#x8FD0;&#x884C;" class="anchor-navigation-ex-anchor" href="#&#x547D;&#x4EE4;&#x884C;&#x8FD0;&#x884C;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x547D;&#x4EE4;&#x884C;&#x8FD0;&#x884C;" class="plugin-anchor" href="#&#x547D;&#x4EE4;&#x884C;&#x8FD0;&#x884C;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x547D;&#x4EE4;&#x884C;&#x8FD0;&#x884C;</h3>
+<p>&#x5B89;&#x88C5;&#x540E;&#xFF0C;&#x5982;&#x679C;&#x672A;&#x4F5C;&#x4E3A;&#x670D;&#x52A1;&#x5B89;&#x88C5;&#x5E76;&#x914D;&#x7F6E;&#x4E3A;&#x5728;&#x5B89;&#x88C5;&#x5B8C;&#x6210;&#x65F6;&#x542F;&#x52A8;&#xFF0C;&#x53EF;&#x4EE5;&#x4ECE;&#x547D;&#x4EE4;&#x884C;&#x542F;&#x52A8;Elasticsearch&#xFF0C;&#x5982;&#x4E0B;&#x6240;&#x793A;&#xFF1A;</p>
+<pre><code class="lang-sh">.\bin\elasticsearch.exe
+</code></pre>
+<p>&#x547D;&#x4EE4;&#x884C;&#x7EC8;&#x7AEF;&#x8F93;&#x51FA;&#x5982;&#x4E0B;&#x5185;&#x5BB9;&#xFF1A;</p>
+<p><img src="../../source/images/ch-02/elasticsearch_exe.png" alt=""></p>
+<p>&#x9ED8;&#x8BA4;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;Elasticsearch&#x5728;&#x524D;&#x53F0;&#x8FD0;&#x884C;&#xFF0C;&#x9664;&#x4E86;<code>LOGSDIRECTORY</code>&#x4E2D;&#x7684;<code>&lt;cluster name&gt;.log</code>&#x6587;&#x4EF6;&#x5916;&#xFF0C;&#x8FD8;&#x5C06;&#x5176;&#x65E5;&#x5FD7;&#x6253;&#x5370;&#x5230;S<code>TDOUT</code>&#xFF0C;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x6309;<code>Ctrl-C</code>&#x6765;&#x505C;&#x6B62;&#x3002;</p>
+<h3 id="&#x547D;&#x4EE4;&#x884C;&#x914D;&#x7F6E;"><a name="&#x547D;&#x4EE4;&#x884C;&#x914D;&#x7F6E;" class="anchor-navigation-ex-anchor" href="#&#x547D;&#x4EE4;&#x884C;&#x914D;&#x7F6E;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x547D;&#x4EE4;&#x884C;&#x914D;&#x7F6E;" class="plugin-anchor" href="#&#x547D;&#x4EE4;&#x884C;&#x914D;&#x7F6E;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x547D;&#x4EE4;&#x884C;&#x914D;&#x7F6E;</h3>
+<p>&#x9ED8;&#x8BA4;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;Elasticsearch&#x4ECE;<code>%ES_PATH_CONF%\elasticsearch.yml</code>&#x6587;&#x4EF6;&#x52A0;&#x8F7D;&#x5176;&#x914D;&#x7F6E;&#x3002;<a href="../Configuring-Elasticsearch.html">&#x914D;&#x7F6E;</a> &#x4E2D;&#x4ECB;&#x7ECD;&#x4E86;&#x6B64;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x7684;&#x683C;&#x5F0F;&#x3002;</p>
+<p>&#x4E5F;&#x53EF;&#x4EE5;&#x5728;&#x547D;&#x4EE4;&#x884C;&#x4E2D;&#x4F7F;&#x7528;<code>-E</code>&#x8BED;&#x6CD5;&#x6307;&#x5B9A;&#x53EF;&#x5728;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x4E2D;&#x6307;&#x5B9A;&#x7684;&#x4EFB;&#x4F55;&#x8BBE;&#x7F6E;&#xFF0C;&#x5982;&#x4E0B;&#x6240;&#x793A;&#xFF1A;</p>
+<pre><code class="lang-sh">.\bin\elasticsearch.exe -E cluster.name=my_cluster -E node.name=node_1
+</code></pre>
+<blockquote>
+<p><strong>&#x6CE8;&#x610F;</strong></p>
+<p>&#x5305;&#x542B;&#x7A7A;&#x683C;&#x7684;&#x503C;&#x5FC5;&#x987B;&#x7528;&#x5F15;&#x53F7;&#x62EC;&#x8D77;&#x6765;&#x3002;&#x4F8B;&#x5982;<code>-E path.logs=&quot;C:\My Logs\logs&quot;</code></p>
+<p><strong>&#x63D0;&#x9192;</strong></p>
+<p>&#x901A;&#x5E38;&#xFF0C;&#x5E94;&#x5C06;&#x4EFB;&#x4F55;&#x96C6;&#x7FA4;&#x901A;&#x7528;&#x7684;&#x8BBE;&#x7F6E;&#xFF08;&#x5982;<code>cluster.name</code>&#xFF09;&#x6DFB;&#x52A0;&#x5230;<code>elasticsearch.yml</code>&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x4E2D;&#xFF0C;&#x800C;&#x53EF;&#x4EE5;&#x5728;&#x547D;&#x4EE4;&#x884C;&#x4E0A;&#x6307;&#x5B9A;&#x4EFB;&#x4F55;&#x7279;&#x5B9A;&#x4E8E;&#x8282;&#x70B9;&#x7684;&#x8BBE;&#x7F6E;&#xFF08;&#x5982;<code>node.name</code>&#xFF09;&#x3002;</p>
+</blockquote>
+<h3 id="&#x68C0;&#x67E5;&#x8FD0;&#x884C;&#x60C5;&#x51B5;"><a name="&#x68C0;&#x67E5;&#x8FD0;&#x884C;&#x60C5;&#x51B5;" class="anchor-navigation-ex-anchor" href="#&#x68C0;&#x67E5;&#x8FD0;&#x884C;&#x60C5;&#x51B5;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x68C0;&#x67E5;&#x8FD0;&#x884C;&#x60C5;&#x51B5;" class="plugin-anchor" href="#&#x68C0;&#x67E5;&#x8FD0;&#x884C;&#x60C5;&#x51B5;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x68C0;&#x67E5;&#x8FD0;&#x884C;&#x60C5;&#x51B5;</h3>
+<p>&#x60A8;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x5411;<code>localhost</code>&#x4E0A;&#x7684;&#x7AEF;&#x53E3;<code>9200</code>&#x53D1;&#x9001;HTTP&#x8BF7;&#x6C42;&#xFF0C;&#x6765;&#x6D4B;&#x8BD5;&#x60A8;&#x7684;Elasticsearch&#x8282;&#x70B9;&#x662F;&#x5426;&#x6B63;&#x5728;&#x8FD0;&#x884C;&#xFF1A;</p>
+<pre><code class="lang-sh">GET /
+</code></pre>
+<p>&#x5E94;&#x8BE5;&#x4F1A;&#x7ED9;&#x4F60;&#x4E00;&#x4E2A;&#x50CF;&#x8FD9;&#x6837;&#x7684;&#x54CD;&#x5E94;&#xFF1A;</p>
+<pre><code class="lang-json">{
+  <span class="hljs-string">&quot;name&quot;</span> : <span class="hljs-string">&quot;Cp8oag6&quot;</span>,
+  <span class="hljs-string">&quot;cluster_name&quot;</span> : <span class="hljs-string">&quot;elasticsearch&quot;</span>,
+  <span class="hljs-string">&quot;cluster_uuid&quot;</span> : <span class="hljs-string">&quot;AT69_T_DTp-1qgIJlatQqA&quot;</span>,
+  <span class="hljs-string">&quot;version&quot;</span> : {
+    <span class="hljs-string">&quot;number&quot;</span> : <span class="hljs-string">&quot;6.7.1&quot;</span>,
+    <span class="hljs-string">&quot;build_flavor&quot;</span> : <span class="hljs-string">&quot;default&quot;</span>,
+    <span class="hljs-string">&quot;build_type&quot;</span> : <span class="hljs-string">&quot;zip&quot;</span>,
+    <span class="hljs-string">&quot;build_hash&quot;</span> : <span class="hljs-string">&quot;f27399d&quot;</span>,
+    <span class="hljs-string">&quot;build_date&quot;</span> : <span class="hljs-string">&quot;2016-03-30T09:51:41.449Z&quot;</span>,
+    <span class="hljs-string">&quot;build_snapshot&quot;</span> : <span class="hljs-literal">false</span>,
+    <span class="hljs-string">&quot;lucene_version&quot;</span> : <span class="hljs-string">&quot;7.7.0&quot;</span>,
+    <span class="hljs-string">&quot;minimum_wire_compatibility_version&quot;</span> : <span class="hljs-string">&quot;1.2.3&quot;</span>,
+    <span class="hljs-string">&quot;minimum_index_compatibility_version&quot;</span> : <span class="hljs-string">&quot;1.2.3&quot;</span>
+  },
+  <span class="hljs-string">&quot;tagline&quot;</span> : <span class="hljs-string">&quot;You Know, for Search&quot;</span>
+}
+</code></pre>
+<h3 id="windows&#x4E0A;&#x5B89;&#x88C5;elasticsearch&#x670D;&#x52A1;"><a name="windows&#x4E0A;&#x5B89;&#x88C5;elasticsearch&#x670D;&#x52A1;" class="anchor-navigation-ex-anchor" href="#windows&#x4E0A;&#x5B89;&#x88C5;elasticsearch&#x670D;&#x52A1;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="windows&#x4E0A;&#x5B89;&#x88C5;elasticsearch&#x670D;&#x52A1;" class="plugin-anchor" href="#windows&#x4E0A;&#x5B89;&#x88C5;elasticsearch&#x670D;&#x52A1;"><i class="fa fa-link" aria-hidden="true"></i></a>Windows&#x4E0A;&#x5B89;&#x88C5;Elasticsearch&#x670D;&#x52A1;</h3>
+<p>Elasticsearch&#x53EF;&#x4EE5;&#x4F5C;&#x4E3A;&#x670D;&#x52A1;&#x5B89;&#x88C5;&#xFF0C;&#x4EE5;&#x4FBF;&#x5728;&#x540E;&#x53F0;&#x8FD0;&#x884C;&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;&#x5728;&#x542F;&#x52A8;&#x65F6;&#x81EA;&#x52A8;&#x542F;&#x52A8;&#xFF0C;&#x65E0;&#x9700;&#x4EFB;&#x4F55;&#x7528;&#x6237;&#x4EA4;&#x4E92;&#x3002;&#x4F7F;&#x7528;&#x4EE5;&#x4E0B;&#x547D;&#x4EE4;&#x884C;&#x9009;&#x9879;&#x5B89;&#x88C5;&#x65F6;&#x53EF;&#x4EE5;&#x5B9E;&#x73B0;&#x6B64;&#x76EE;&#x7684;</p>
+<ul>
+<li><code>INSTALLASSERVICE=true</code></li>
+<li><code>STARTAFTERINSTALL=true</code></li>
+<li><code>STARTWHENWINDOWSSTARTS=true</code></li>
+</ul>
+<p>&#x5B89;&#x88C5;&#x540E;&#xFF0C;Elasticsearch&#x5C06;&#x663E;&#x793A;&#x5728;&#x670D;&#x52A1;&#x63A7;&#x5236;&#x9762;&#x677F;&#x4E2D;&#xFF1A;</p>
+<p><img src="../../source/images/ch-02/msi_installer_installed_service.png" alt=""></p>
+<p>&#x53EF;&#x4EE5;&#x4ECE;&#x63A7;&#x5236;&#x9762;&#x677F;&#x4E2D;&#x505C;&#x6B62;&#x548C;&#x91CD;&#x65B0;&#x542F;&#x52A8;&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;&#x4ECE;&#x547D;&#x4EE4;&#x884C;&#x4F7F;&#x7528;&#x4EE5;&#x4E0B;&#x547D;&#x4EE4;&#x91CD;&#x65B0;&#x542F;&#x52A8;&#x548C;&#x91CD;&#x65B0;&#x542F;&#x52A8;&#xFF1A;</p>
+<p>&#x4F7F;&#x7528;&#x547D;&#x4EE4;&#x63D0;&#x793A;&#x7B26;&#xFF1A;</p>
+<pre><code class="lang-sh">sc.exe stop Elasticsearch
+sc.exe start Elasticsearch
+</code></pre>
+<p>&#x4F7F;&#x7528;PowerShell&#xFF1A;</p>
+<pre><code class="lang-powershell"><span class="hljs-built_in">Get-Service</span> Elasticsearch | <span class="hljs-built_in">Stop-Service</span>
+<span class="hljs-built_in">Get-Service</span> Elasticsearch | <span class="hljs-built_in">Start-Service</span>
+</code></pre>
+<p>&#x53EF;&#x4EE5;&#x5BF9;<code>jvm.options</code>&#x548C;<code>elasticsearch.yml</code>&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x8FDB;&#x884C;&#x66F4;&#x6539;&#xFF0C;&#x4EE5;&#x4FBF;&#x5728;&#x5B89;&#x88C5;&#x540E;&#x914D;&#x7F6E;&#x670D;&#x52A1;&#x3002;&#x5927;&#x591A;&#x6570;&#x66F4;&#x6539;&#xFF08;&#x5982;JVM&#x8BBE;&#x7F6E;&#xFF09;&#x90FD;&#x9700;&#x8981;&#x91CD;&#x65B0;&#x542F;&#x52A8;&#x670D;&#x52A1;&#x624D;&#x80FD;&#x751F;&#x6548;&#x3002;</p>
+<h3 id="&#x4F7F;&#x7528;&#x56FE;&#x5F62;&#x754C;&#x9762;&#xFF08;gui&#xFF09;&#x5347;&#x7EA7;"><a name="&#x4F7F;&#x7528;&#x56FE;&#x5F62;&#x754C;&#x9762;&#xFF08;gui&#xFF09;&#x5347;&#x7EA7;" class="anchor-navigation-ex-anchor" href="#&#x4F7F;&#x7528;&#x56FE;&#x5F62;&#x754C;&#x9762;&#xFF08;gui&#xFF09;&#x5347;&#x7EA7;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x4F7F;&#x7528;&#x56FE;&#x5F62;&#x754C;&#x9762;&#xFF08;gui&#xFF09;&#x5347;&#x7EA7;" class="plugin-anchor" href="#&#x4F7F;&#x7528;&#x56FE;&#x5F62;&#x754C;&#x9762;&#xFF08;gui&#xFF09;&#x5347;&#x7EA7;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x4F7F;&#x7528;&#x56FE;&#x5F62;&#x754C;&#x9762;&#xFF08;GUI&#xFF09;&#x5347;&#x7EA7;</h3>
+<p><code>.msi</code>&#x7A0B;&#x5E8F;&#x5305;&#x652F;&#x6301;&#x5C06;&#x5DF2;&#x5B89;&#x88C5;&#x7684;Elasticsearch&#x7248;&#x672C;&#x5347;&#x7EA7;&#x5230;&#x8F83;&#x65B0;&#x7248;&#x672C;&#x3002;&#x901A;&#x8FC7;GUI&#x7684;&#x5347;&#x7EA7;&#x8FC7;&#x7A0B;&#x5904;&#x7406;&#x5347;&#x7EA7;&#x6240;&#x6709;&#x5DF2;&#x5B89;&#x88C5;&#x7684;&#x63D2;&#x4EF6;&#xFF0C;&#x4EE5;&#x53CA;&#x4FDD;&#x7559;&#x6570;&#x636E;&#x548C;&#x914D;&#x7F6E;&#x3002;</p>
+<p>&#x4E0B;&#x8F7D;&#x5E76;&#x53CC;&#x51FB;&#x8F83;&#x65B0;&#x7248;&#x672C;&#x7684;<code>.msi</code>&#x5305;&#x5C06;&#x542F;&#x52A8;GUI&#x5411;&#x5BFC;&#x3002;&#x7B2C;&#x4E00;&#x6B65;&#x5C06;&#x5217;&#x51FA;&#x5148;&#x524D;&#x5B89;&#x88C5;&#x7684;&#x53EA;&#x8BFB;&#x5C5E;&#x6027;&#xFF1A;</p>
+<p><img src="../../source/images/ch-02/msi_installer_upgrade_notice.png" alt=""></p>
+<p>&#x4E0B;&#x4E00;&#x6B65;&#x5141;&#x8BB8;&#x66F4;&#x6539;&#x67D0;&#x4E9B;&#x914D;&#x7F6E;&#x9009;&#x9879;&#xFF1A;</p>
+<p><img src="../../source/images/ch-02/msi_installer_upgrade_configuration.png" alt=""></p>
+<p>&#x6700;&#x540E;&#xFF0C;&#x8BBE;&#x7F6E;&#x63D2;&#x4EF6;&#x6B65;&#x9AA4;&#x5141;&#x8BB8;&#x5347;&#x7EA7;&#x6216;&#x5220;&#x9664;&#x5F53;&#x524D;&#x5B89;&#x88C5;&#x7684;&#x63D2;&#x4EF6;&#xFF0C;&#x4EE5;&#x53CA;&#x4E0B;&#x8F7D;&#x548C;&#x5B89;&#x88C5;&#x5F53;&#x524D;&#x672A;&#x5B89;&#x88C5;&#x7684;&#x63D2;&#x4EF6;&#xFF1A;</p>
+<p><img src="../../source/images/ch-02/msi_installer_upgrade_plugins.png" alt=""></p>
+<h3 id="&#x547D;&#x4EE4;&#x884C;&#x5347;&#x7EA7;"><a name="&#x547D;&#x4EE4;&#x884C;&#x5347;&#x7EA7;" class="anchor-navigation-ex-anchor" href="#&#x547D;&#x4EE4;&#x884C;&#x5347;&#x7EA7;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x547D;&#x4EE4;&#x884C;&#x5347;&#x7EA7;" class="plugin-anchor" href="#&#x547D;&#x4EE4;&#x884C;&#x5347;&#x7EA7;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x547D;&#x4EE4;&#x884C;&#x5347;&#x7EA7;</h3>
+<p><code>.msi</code>&#x8FD8;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x547D;&#x4EE4;&#x884C;&#x5347;&#x7EA7;Elasticsearch&#x3002;</p>
+<blockquote>
+<p><strong>&#x91CD;&#x8981;</strong></p>
+<p>&#x547D;&#x4EE4;&#x884C;&#x5347;&#x7EA7;&#x9700;&#x8981;&#x4F20;&#x9012;&#x4E0E;&#x7B2C;&#x4E00;&#x6B21;&#x5B89;&#x88C5;&#x65F6;&#x76F8;&#x540C;&#x7684;&#x547D;&#x4EE4;&#x884C;&#x5C5E;&#x6027;&#xFF1B;Windows Installer&#x4E0D;&#x8BB0;&#x5F97;&#x8FD9;&#x4E9B;&#x5C5E;&#x6027;&#x3002;</p>
+<p>&#x4F8B;&#x5982;&#xFF0C;&#x5982;&#x679C;&#x6700;&#x521D;&#x4F7F;&#x7528;&#x547D;&#x4EE4;&#x884C;&#x9009;&#x9879;<code>PLUGINS=&quot;ingest-geoip&quot;</code>&#x548C;<code>LOCKMEMORY=&quot;true&quot;</code>&#x5B89;&#x88C5;&#xFF0C;&#x5219;&#x5728;&#x4ECE;&#x547D;&#x4EE4;&#x884C;&#x6267;&#x884C;&#x5347;&#x7EA7;&#x65F6;&#x5FC5;&#x987B;&#x4F20;&#x9012;&#x8FD9;&#x4E9B;&#x76F8;&#x540C;&#x7684;&#x503C;&#x3002;</p>
+<p>&#x4F8B;&#x5916;&#x60C5;&#x51B5;&#x662F;INSTALLDIR&#x53C2;&#x6570;&#xFF08;&#x5982;&#x679C;&#x6700;&#x521D;&#x6307;&#x5B9A;&#x7684;&#x8BDD;&#xFF09;&#xFF0C;&#x5B83;&#x5FC5;&#x987B;&#x662F;&#x5F53;&#x524D;&#x5B89;&#x88C5;&#x7684;&#x4E0D;&#x540C;&#x76EE;&#x5F55;&#x3002;&#x5982;&#x679C;&#x8BBE;&#x7F6E;INSTALLDIR&#xFF0C;&#x5219;&#x8DEF;&#x5F84;&#x4E2D;&#x7684;&#x6700;&#x7EC8;&#x76EE;&#x5F55;&#x5FC5;&#x987B;&#x662F;Elasticsearch&#x7684;&#x7248;&#x672C;&#xFF0C;&#x4F8B;&#x5982;</p>
+<pre><code>C:\Program Files\Elastic\Elasticsearch\6.7.1
+</code></pre></blockquote>
+<p>&#x5047;&#x8BBE;&#x4F7F;&#x7528;&#x6240;&#x6709;&#x9ED8;&#x8BA4;&#x503C;&#x5B89;&#x88C5;Elasticsearch&#xFF0C;&#x6700;&#x7B80;&#x5355;&#x7684;&#x5347;&#x7EA7;&#x662F;&#x9996;&#x5148;&#x5BFC;&#x822A;&#x5230;&#x4E0B;&#x8F7D;&#x76EE;&#x5F55;&#xFF0C;&#x7136;&#x540E;&#x8FD0;&#x884C;&#xFF1A;</p>
+<pre><code class="lang-sh">start /<span class="hljs-built_in">wait</span> msiexec.exe /i elasticsearch-6.7.1.msi /qn
+</code></pre>
+<p>&#x4E0E;&#x5B89;&#x88C5;&#x8FC7;&#x7A0B;&#x7C7B;&#x4F3C;&#xFF0C;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;/ l&#x547D;&#x4EE4;&#x884C;&#x53C2;&#x6570;&#x4F20;&#x9012;&#x5347;&#x7EA7;&#x8FC7;&#x7A0B;&#x7684;&#x65E5;&#x5FD7;&#x6587;&#x4EF6;&#x7684;&#x8DEF;&#x5F84;</p>
+<pre><code class="lang-sh">start /<span class="hljs-built_in">wait</span> msiexec.exe /i elasticsearch-6.7.1.msi /qn /l upgrade.log
+</code></pre>
+<h3 id="&#x4F7F;&#x7528;&#x6DFB;&#x52A0;&#x5220;&#x9664;&#x7A0B;&#x5E8F;&#x4EE5;&#x5378;&#x8F7D;"><a name="&#x4F7F;&#x7528;&#x6DFB;&#x52A0;&#x5220;&#x9664;&#x7A0B;&#x5E8F;&#x4EE5;&#x5378;&#x8F7D;" class="anchor-navigation-ex-anchor" href="#&#x4F7F;&#x7528;&#x6DFB;&#x52A0;&#x5220;&#x9664;&#x7A0B;&#x5E8F;&#x4EE5;&#x5378;&#x8F7D;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x4F7F;&#x7528;&#x6DFB;&#x52A0;&#x5220;&#x9664;&#x7A0B;&#x5E8F;&#x4EE5;&#x5378;&#x8F7D;" class="plugin-anchor" href="#&#x4F7F;&#x7528;&#x6DFB;&#x52A0;&#x5220;&#x9664;&#x7A0B;&#x5E8F;&#x4EE5;&#x5378;&#x8F7D;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x4F7F;&#x7528;&#x6DFB;&#x52A0;/&#x5220;&#x9664;&#x7A0B;&#x5E8F;&#x4EE5;&#x5378;&#x8F7D;</h3>
+<p><code>.msi</code>&#x5305;&#x5C06;&#x5B89;&#x88C5;&#x65F6;&#x6DFB;&#x52A0;&#x7684;&#x6240;&#x6709;&#x76EE;&#x5F55;&#x548C;&#x6587;&#x4EF6;&#x8FDB;&#x884C;&#x5378;&#x8F7D;&#x3002;</p>
+<blockquote>
+<p><strong>&#x8B66;&#x544A;</strong></p>
+<p>&#x5378;&#x8F7D;&#x5C06;&#x5220;&#x9664;&#x5B89;&#x88C5;&#x65F6;&#x521B;&#x5EFA;&#x7684;&#x6240;&#x6709;&#x5185;&#x5BB9;&#xFF0C;&#x4F46;&#x6570;&#x636E;&#xFF0C;&#x914D;&#x7F6E;&#x6216;&#x65E5;&#x5FD7;&#x76EE;&#x5F55;&#x9664;&#x5916;&#x3002;&#x5EFA;&#x8BAE;&#x60A8;&#x5728;&#x5347;&#x7EA7;&#x4E4B;&#x524D;&#x590D;&#x5236;&#x6570;&#x636E;&#x76EE;&#x5F55;&#xFF0C;&#x6216;&#x8003;&#x8651;&#x4F7F;&#x7528;&#x5FEB;&#x7167;API&#x3002;</p>
+</blockquote>
+<p>MSI&#x5B89;&#x88C5;&#x7A0B;&#x5E8F;&#x5305;&#x4E0D;&#x63D0;&#x4F9B;&#x5378;&#x8F7D;GUI&#x3002;&#x901A;&#x8FC7;&#x6309;Windows&#x952E;&#x5E76;&#x952E;&#x5165;&#x6DFB;&#x52A0;&#x6216;&#x5220;&#x9664;&#x7A0B;&#x5E8F;&#x4EE5;&#x6253;&#x5F00;&#x7CFB;&#x7EDF;&#x8BBE;&#x7F6E;&#xFF0C;&#x53EF;&#x4EE5;&#x5378;&#x8F7D;&#x5DF2;&#x5B89;&#x88C5;&#x7684;&#x7A0B;&#x5E8F;&#x3002;</p>
+<p>&#x6253;&#x5F00;&#x540E;&#xFF0C;&#x5728;&#x5DF2;&#x5B89;&#x88C5;&#x7684;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x5217;&#x8868;&#x4E2D;&#x627E;&#x5230;Elasticsearch&#x5B89;&#x88C5;&#xFF0C;&#x5355;&#x51FB;&#x5E76;&#x9009;&#x62E9;<code>Uninstall</code>&#xFF1A;</p>
+<p><img src="../../source/images/ch-02/msi_installer_uninstall.png" alt=""></p>
+<p>&#x8FD9;&#x5C06;&#x542F;&#x52A8;&#x5378;&#x8F7D;&#x8FC7;&#x7A0B;&#x3002;</p>
+<h3 id="&#x547D;&#x4EE4;&#x884C;&#x5378;&#x8F7D;"><a name="&#x547D;&#x4EE4;&#x884C;&#x5378;&#x8F7D;" class="anchor-navigation-ex-anchor" href="#&#x547D;&#x4EE4;&#x884C;&#x5378;&#x8F7D;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x547D;&#x4EE4;&#x884C;&#x5378;&#x8F7D;" class="plugin-anchor" href="#&#x547D;&#x4EE4;&#x884C;&#x5378;&#x8F7D;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x547D;&#x4EE4;&#x884C;&#x5378;&#x8F7D;</h3>
+<p>&#x4E5F;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x5BFC;&#x822A;&#x5230;&#x5305;&#x542B;<code>.msi</code>&#x5305;&#x7684;&#x76EE;&#x5F55;&#xFF0C;&#x5E76;&#x8FD0;&#x884C;&#x547D;&#x4EE4;&#x884C;&#x4ECE;&#x547D;&#x4EE4;&#x884C;&#x6267;&#x884C;&#x5378;&#x8F7D;&#xFF1A;</p>
+<pre><code class="lang-sh">start /<span class="hljs-built_in">wait</span> msiexec.exe /x elasticsearch-6.7.1.msi /qn
+</code></pre>
+<p>&#x4E0E;&#x5B89;&#x88C5;&#x8FC7;&#x7A0B;&#x7C7B;&#x4F3C;&#xFF0C;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;<code>/l</code>&#x547D;&#x4EE4;&#x884C;&#x53C2;&#x6570;&#x4F20;&#x9012;&#x5378;&#x8F7D;&#x8FC7;&#x7A0B;&#x7684;&#x65E5;&#x5FD7;&#x6587;&#x4EF6;&#x7684;&#x8DEF;&#x5F84;</p>
+<pre><code class="lang-sh">start /<span class="hljs-built_in">wait</span> msiexec.exe /x elasticsearch-6.7.1.msi /qn /l uninstall.log
+</code></pre>
+<h3 id="&#x4E0B;&#x4E00;&#x6B65;"><a name="&#x4E0B;&#x4E00;&#x6B65;" class="anchor-navigation-ex-anchor" href="#&#x4E0B;&#x4E00;&#x6B65;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x4E0B;&#x4E00;&#x6B65;" class="plugin-anchor" href="#&#x4E0B;&#x4E00;&#x6B65;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x4E0B;&#x4E00;&#x6B65;</h3>
+<p>&#x60A8;&#x73B0;&#x5728;&#x5DF2;&#x7ECF;&#x8BBE;&#x7F6E;&#x4E86;&#x6D4B;&#x8BD5;Elasticsearch&#x73AF;&#x5883;&#x3002;&#x5728;&#x5F00;&#x59CB;&#x8BA4;&#x771F;&#x5F00;&#x53D1;&#x6216;&#x4F7F;&#x7528;Elasticsearch&#x6295;&#x5165;&#x751F;&#x4EA7;&#x4E4B;&#x524D;&#xFF0C;&#x60A8;&#x5FC5;&#x987B;&#x8FDB;&#x884C;&#x4E00;&#x4E9B;&#x989D;&#x5916;&#x7684;&#x8BBE;&#x7F6E;&#xFF1A;</p>
+<ul>
+<li>&#x4E86;&#x89E3;&#x5982;&#x4F55; <a href="../Configuring-Elasticsearch.html">&#x914D;&#x7F6E;Elasticsearch</a>&#x3002;</li>
+<li>&#x914D;&#x7F6E; <a href="../Important-Elasticsearch-configuration.html">&#x91CD;&#x8981;&#x7684;Elasticsearch&#x914D;&#x7F6E;</a>&#x3002;</li>
+<li>&#x914D;&#x7F6E; <a href="../Important-System-Configuration.html">&#x91CD;&#x8981;&#x7684;&#x7CFB;&#x7EDF;&#x8BBE;&#x7F6E;</a>&#x3002;</li>
+</ul>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="Install-Elasticsearch-with-RPM.html" class="navigation navigation-prev " aria-label="Previous page: RPM安装">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="Install-Elasticsearch-with-Docker.html" class="navigation navigation-next " aria-label="Next page: Docker安装">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Windows MSI安装","level":"1.1.2.1.5","depth":4,"next":{"title":"Docker安装","level":"1.1.2.1.6","depth":4,"path":"02-Set-up-Elasticsearch/Installing-Elasticsearch/Install-Elasticsearch-with-Docker.md","ref":"02-Set-up-Elasticsearch/Installing-Elasticsearch/Install-Elasticsearch-with-Docker.md","articles":[]},"previous":{"title":"RPM安装","level":"1.1.2.1.4","depth":4,"path":"02-Set-up-Elasticsearch/Installing-Elasticsearch/Install-Elasticsearch-with-RPM.md","ref":"02-Set-up-Elasticsearch/Installing-Elasticsearch/Install-Elasticsearch-with-RPM.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","splitter","expandable-chapters-small","anchors","github","github-buttons","sharing-plus","anchor-navigation-ex"],"styles":{"website":"./styles/website.css"},"pluginsConfig":{"github":{"url":"https://github.com/tyrival"},"splitter":{},"search":{},"sharing-plus":{"qq":false,"all":["facebook","google","twitter","instapaper","linkedin","pocket","stumbleupon"],"douban":false,"facebook":true,"weibo":false,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":true,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"anchor-navigation-ex":{"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"mode":"float","multipleH1":true,"pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"printLog":false,"showGoTop":true,"showLevel":false},"github-buttons":{"buttons":[{"user":"Tyrival","repo":"gitbook","type":"star","size":"small","count":false}]},"expandable-chapters-small":{},"sharing":{"qq":false,"all":["google","facebook","weibo","twitter","qq","qzone","linkedin","pocket"],"douban":false,"facebook":false,"weibo":false,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":false,"messenger":false,"line":false,"vk":false,"pocket":false,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","author":"Tyrival","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Elasticsearch 6.7 用户指南中文版","language":"zh-hans","gitbook":"3.2.3","description":"Elasticsearch 6.7 的用户指南中文版"},"file":{"path":"02-Set-up-Elasticsearch/Installing-Elasticsearch/Install-Elasticsearch-with-Windows-MSI-Installer.md","mtime":"2019-04-23T05:18:37.482Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-06-11T09:11:43.691Z"},"basePath":"../..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../../gitbook/gitbook.js"></script>
+    <script src="../../gitbook/theme.js"></script>
+    
+        
+        <script src="../../gitbook/gitbook-plugin-splitter/splitter.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-github/plugin.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-github-buttons/plugin.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-sharing-plus/buttons.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
