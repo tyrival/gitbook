@@ -1,9 +1,12 @@
 ## URI搜索
-可以通过提供请求参数纯粹使用URI来执行搜索请求。 使用此模式执行搜索时，并非所有搜索选项都会暴露，但它可以方便快速“卷曲测试”。 这是一个例子：
+可以通过定义请求参数来使用URI进行搜索。此搜索模式的参数并未包含所有的请求配置项，但它可以方便快速地使用"curl"进行测试。 示例如下：
 
-获取twitter / _search？q =用户：kimchy
-作为CURLVIEW在CONSOLE中复制
-这是一个示例响应：
+```
+GET twitter/_search?q=user:kimchy
+```
+
+响应示例如下：
+
 ```json
 {
     "timed_out": false,
