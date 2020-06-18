@@ -4,3 +4,5 @@
 
 [《Elasticsearch 6.7 用户指南中文版》](http://www.tyrival.com/books/elasticsearch-guide/)
 
+[《Vision 用户指南》](http://www.tyrival.com/books/vision-guide/)
+
