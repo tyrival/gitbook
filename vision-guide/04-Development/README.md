@@ -20,33 +20,33 @@
 
 ###### - `style`
 
-​		样式数据，发生变更时，会触发钩子函数 `onStyleListener` 。
+样式数据，发生变更时，会触发钩子函数 `onStyleListener` 。
 
 ###### - `proxy`
 
-​		数据源配置，发生变更时，会触发钩子函数`onProxyListener`，并重新从数据源获取数据，并存储到 `data` 中。
+数据源配置，发生变更时，会触发钩子函数`onProxyListener`，并重新从数据源获取数据，并存储到 `data` 中。
 
 ###### - `data`
 
-​		默认的数据集，如果使用API、数据库等动态数据源时，从远端获取的真实数据会覆盖此处的默认数据。发生变更时，会触发 `config.handler` 函数，将数据进行转换映射，并存储到 `option` 中。
+默认的数据集，如果使用API、数据库等动态数据源时，从远端获取的真实数据会覆盖此处的默认数据。发生变更时，会触发 `config.handler` 函数，将数据进行转换映射，并存储到 `option` 中。
 
-​		`option` 与 `data` 的区别在于， `data` 中的数据是面向 `proxy` 的，用于接收从数据源获取到的数据集；而 `option` 中的数据和配置项是面向组件模板 `template` 的，因为 `template` 中的数据绑定和属性引用必须显式声明。
+`option` 与 `data` 的区别在于， `data` 中的数据是面向 `proxy` 的，用于接收从数据源获取到的数据集；而 `option` 中的数据和配置项是面向组件模板 `template` 的，因为 `template` 中的数据绑定和属性引用必须显式声明。
 
 ###### - `transform`
 
-​		数据映射规则，发生变更时，会触发钩子函数 `onTransformListener`。
+数据映射规则，发生变更时，会触发钩子函数 `onTransformListener`。
 
 ###### - `option`
 
-​		组件面向 `template` 的功能数据，发生变更时，触发钩子函数 `onOptionListener`，并调用 `config.render` 函数，`render` 函数主要用于渲染那些无法通过数据绑定来进行渲染的数据。例如：echarts的配置项发生变更时，是无法自动渲染到页面上的，必须调用 `echarts.setOption(this.config.option)` 来载入配置。
+组件面向 `template` 的功能数据，发生变更时，触发钩子函数 `onOptionListener`，并调用 `config.render` 函数，`render` 函数主要用于渲染那些无法通过数据绑定来进行渲染的数据。例如：echarts的配置项发生变更时，是无法自动渲染到页面上的，必须调用 `echarts.setOption(this.config.option)` 来载入配置。
 
 ###### - `trigger`
 
-​		触发器配置，发生变更时，触发钩子函数 `onTriggerListener`。
+触发器配置，发生变更时，触发钩子函数 `onTriggerListener`。
 
 ###### - `event`
 
-​		事件配置，发生变更时，触发钩子函数 `onEventListener`。
+事件配置，发生变更时，触发钩子函数 `onEventListener`。
 
 
 
@@ -289,26 +289,26 @@
 
 ###### `base`
 
-​		大屏画布的配置属性，包括分辨率，背景图片，背景色等。
+大屏画布的配置属性，包括分辨率，背景图片，背景色等。
 
 ###### `config`
 
-​		组件配置信息，通过 `lodash.assignIn(DEFAULT_CONFIG, CUSTOM_CONFIG)` 生成，`DEFAULT_CONFIG` 表示组件的默认配置项，`CUSTOM_CONFIG
+组件配置信息，通过 `lodash.assignIn(DEFAULT_CONFIG, CUSTOM_CONFIG)` 生成，`DEFAULT_CONFIG` 表示组件的默认配置项，`CUSTOM_CONFIG
 ` 为上面 [脚本示例](#脚本示例) 返回值中的 `config` 对象。
 
 `dynamic`
 
-​		组件从外部传入的原始配置项，即上面 [脚本示例](#脚本示例) 返回值中的 `config` 对象。
+组件从外部传入的原始配置项，即上面 [脚本示例](#脚本示例) 返回值中的 `config` 对象。
 
-​		需要注意的是， `dynamic == config` 为 `false` ，二者并不相等。
+需要注意的是， `dynamic == config` 为 `false` ，二者并不相等。
 
 ###### `store`
 
-​		Vuex store对象，可以通过 `this.store` 调用
+Vuex store对象，可以通过 `this.store` 调用
 
 ###### `echarts`
 
-​		Echarts模块，当需要使用Echarts图表、地图时，可以在钩子函数 `mounted` 中实例化Echarts对象，然后就可在组件中对Echarts实例进行操作，如下：
+Echarts模块，当需要使用Echarts图表、地图时，可以在钩子函数 `mounted` 中实例化Echarts对象，然后就可在组件中对Echarts实例进行操作，如下：
 
 ```js
 hooks: {
@@ -327,20 +327,20 @@ hooks: {
 
 ###### `onEvent`
 
-**说明：**
+说明：
 
-​		事件触发函数，内置了一套对外传值规则，此函数会根据参数和 [脚本示例](#脚本示例) 中的 `config.event` 配置，获取相应的数据值，并对外传递给全局变量，从而触发其他相关组件的联动。
+事件触发函数，内置了一套对外传值规则，此函数会根据参数和 [脚本示例](#脚本示例) 中的 `config.event` 配置，获取相应的数据值，并对外传递给全局变量，从而触发其他相关组件的联动。
 
-**参数：**
+参数：
 
 - `String eventName`
 
-  事件名，在 `config.event.name` 中声明。
+事件名，在 `config.event.name` 中声明。
 
 - `Object item`
 
-  向外传值的数据对象。当 `config.event.binders.prop` 属性声明时，从 `item` 对象中取值并对外传递
+向外传值的数据对象。当 `config.event.binders.prop` 属性声明时，从 `item` 对象中取值并对外传递
 
 - `Integer index`
 
-  向外传值的数据索引。当 `config.event.binders.prop` 属性未声明时，从 `config.data[index]` 对象中取值并对外传递
+向外传值的数据索引。当 `config.event.binders.prop` 属性未声明时，从 `config.data[index]` 对象中取值并对外传递
