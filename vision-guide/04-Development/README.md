@@ -302,7 +302,7 @@
 组件配置信息，通过 `lodash.assignIn(DEFAULT_CONFIG, CUSTOM_CONFIG)` 生成，`DEFAULT_CONFIG` 表示组件的默认配置项，`CUSTOM_CONFIG
 ` 为上面 [脚本示例](#脚本示例) 返回值中的 `config` 对象。
 
-`dynamic`
+###### `dynamic`
 
 组件从外部传入的原始配置项，即上面 [脚本示例](#脚本示例) 返回值中的 `config` 对象。
 
@@ -320,7 +320,7 @@ Echarts模块，当需要使用Echarts图表、地图时，可以在钩子函数
 hooks: {
     mounted: function (self) {
       	let dom = document.getElementById(DOM_ID)
-      	this.chart = echarts.init(dom)
+      	this.chart = this.echarts.init(dom)
     }
 }
 ```
