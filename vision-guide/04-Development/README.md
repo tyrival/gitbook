@@ -94,7 +94,7 @@
         template: `
             <button style="font-size:40px;"
                     @click="onEvent('click', config.data[0])">
-                {{config.option.name}}
+                {{config.option.data.name}}
             </button>`,
         /**
          * 方法
@@ -257,6 +257,9 @@
             },
             destroyed: function (self) {
                 console.log("destroyed")
+            },
+            onEvent: function (eventName, item, index, self) {
+                console.log("onEvent")
             },
             onStyleListener: function (val, oldVal, self) {
                 console.log("onResizeListener")
