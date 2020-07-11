@@ -327,7 +327,7 @@ case $1 in
   	echo stop success!!
   	sleep 3
   $CATALINA_HOME/bin/catalina.sh start
-  	echo start success!!
+  echo start success!!
   ;;
   version)
   $CATALINA_HOME/bin/catalina.sh version
