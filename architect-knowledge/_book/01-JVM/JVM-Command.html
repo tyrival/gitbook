@@ -1,0 +1,998 @@
+
+<!DOCTYPE HTML>
+<html lang="zh-hans" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>附1 JVM指令手册 · 架构师学习笔记</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        <meta name="author" content="Tyrival">
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-splitter/splitter.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-anchors/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-anchor-navigation-ex/style/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+        <link rel="stylesheet" href="../styles/website.css">
+        
+    
+
+        
+    
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="../02-Tomcat/" />
+    
+    
+    <link rel="prev" href="07-GC-Optimize.html" />
+    
+
+    <style>
+    @media only screen and (max-width: 640px) {
+        .book-header .hidden-mobile {
+            display: none;
+        }
+    }
+    </style>
+    <script>
+        window["gitbook-plugin-github-buttons"] = {"buttons":[{"user":"Tyrival","repo":"gitbook","type":"star","size":"small","count":false}]};
+    </script>
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="输入并搜索" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    架构师学习笔记
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.1" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    第1章 JVM
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.1.1" data-path="01-ClassLoader.html">
+            
+                <a href="01-ClassLoader.html">
+            
+                    
+                    1.1 类加载机制
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.2" data-path="02-JVM-Structure-Resolve.html">
+            
+                <a href="02-JVM-Structure-Resolve.html">
+            
+                    
+                    1.2 JVM整体结构
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.3" data-path="03-Memory-Allocation-Mechanism.html">
+            
+                <a href="03-Memory-Allocation-Mechanism.html">
+            
+                    
+                    1.3 JVM内存分配机制
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.4" data-path="04-JVM-Bytecode-File-Structure.html">
+            
+                <a href="04-JVM-Bytecode-File-Structure.html">
+            
+                    
+                    1.4 JVM字节码文件结构
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.5" data-path="05-GC-Algorithms.html">
+            
+                <a href="05-GC-Algorithms.html">
+            
+                    
+                    1.5 垃圾收集算法
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.6" data-path="06-GC.html">
+            
+                <a href="06-GC.html">
+            
+                    
+                    1.6 垃圾收集器
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.7" data-path="07-GC-Optimize.html">
+            
+                <a href="07-GC-Optimize.html">
+            
+                    
+                    1.7 GC调优
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.1.1.8" data-path="JVM-Command.html">
+            
+                <a href="JVM-Command.html">
+            
+                    
+                    附1 JVM指令手册
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.2" data-path="../02-Tomcat/">
+            
+                <a href="../02-Tomcat/">
+            
+                    
+                    第2章 Tomcat
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.2.1" data-path="../02-Tomcat/01-Tomcat-Summary.html">
+            
+                <a href="../02-Tomcat/01-Tomcat-Summary.html">
+            
+                    
+                    2.1 Tomcat生产环境应用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.2.2" data-path="../02-Tomcat/02-Tomcat-Component-Src.html">
+            
+                <a href="../02-Tomcat/02-Tomcat-Component-Src.html">
+            
+                    
+                    2.2 Tomcat核心组件源码
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.2.3" data-path="../02-Tomcat/03-Tomcat-Http-Process.html">
+            
+                <a href="../02-Tomcat/03-Tomcat-Http-Process.html">
+            
+                    
+                    2.3 Tomcat线程模型HTTP请求处理与管道线模型
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.3" data-path="../03-MySQL/">
+            
+                <a href="../03-MySQL/">
+            
+                    
+                    第3章 MySQL
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.4" data-path="../04-Concurrent/">
+            
+                <a href="../04-Concurrent/">
+            
+                    
+                    第4章 并发编程
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.5" data-path="../05-Source/">
+            
+                <a href="../05-Source/">
+            
+                    
+                    第5章 源码框架
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6" data-path="../06-Distributed/">
+            
+                <a href="../06-Distributed/">
+            
+                    
+                    第6章 分布式
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.7" data-path="../07-Microservice/">
+            
+                <a href="../07-Microservice/">
+            
+                    
+                    第7章 微服务
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.8" data-path="../08-Sample/">
+            
+                <a href="../08-Sample/">
+            
+                    
+                    第8章 案例
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            本书使用 GitBook 发布
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >附1 JVM指令手册</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <div id="anchor-navigation-ex-navbar"><i class="fa fa-navicon"></i><ul><ul><li><span class="title-icon "></span><a href="#&#x9644;1-jvm&#x6307;&#x4EE4;&#x624B;&#x518C;"><b></b>&#x9644;1 JVM&#x6307;&#x4EE4;&#x624B;&#x518C;</a></li><ul><li><span class="title-icon "></span><a href="#1-&#x6808;&#x548C;&#x5C40;&#x90E8;&#x53D8;&#x91CF;&#x64CD;&#x4F5C;"><b></b>1. &#x6808;&#x548C;&#x5C40;&#x90E8;&#x53D8;&#x91CF;&#x64CD;&#x4F5C;</a></li><li><span class="title-icon "></span><a href="#2-&#x903B;&#x8F91;&#x8FD0;&#x7B97;"><b></b>2. &#x903B;&#x8F91;&#x8FD0;&#x7B97;</a></li><li><span class="title-icon "></span><a href="#3-&#x5BF9;&#x8C61;&#x548C;&#x6570;&#x7EC4;"><b></b>3. &#x5BF9;&#x8C61;&#x548C;&#x6570;&#x7EC4;</a></li><li><span class="title-icon "></span><a href="#4-&#x63A7;&#x5236;&#x6D41;"><b></b>4. &#x63A7;&#x5236;&#x6D41;</a></li><li><span class="title-icon "></span><a href="#5-&#x65B9;&#x6CD5;&#x8C03;&#x7528;&#x4E0E;&#x8FD4;&#x56DE;"><b></b>5. &#x65B9;&#x6CD5;&#x8C03;&#x7528;&#x4E0E;&#x8FD4;&#x56DE;</a></li><li><span class="title-icon "></span><a href="#jvm&#x6307;&#x4EE4;&#x52A9;&#x8BB0;&#x7B26;"><b></b>JVM&#x6307;&#x4EE4;&#x52A9;&#x8BB0;&#x7B26;</a></li></ul></ul></ul></div><a href="#" id="anchorNavigationExGoTop"><i class="fa fa-arrow-up"></i></a><h2 id="&#x9644;1-jvm&#x6307;&#x4EE4;&#x624B;&#x518C;"><a name="&#x9644;1-jvm&#x6307;&#x4EE4;&#x624B;&#x518C;" class="anchor-navigation-ex-anchor" href="#&#x9644;1-jvm&#x6307;&#x4EE4;&#x624B;&#x518C;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x9644;1-jvm&#x6307;&#x4EE4;&#x624B;&#x518C;" class="plugin-anchor" href="#&#x9644;1-jvm&#x6307;&#x4EE4;&#x624B;&#x518C;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x9644;1 JVM&#x6307;&#x4EE4;&#x624B;&#x518C;</h2>
+<h3 id="1-&#x6808;&#x548C;&#x5C40;&#x90E8;&#x53D8;&#x91CF;&#x64CD;&#x4F5C;"><a name="1-&#x6808;&#x548C;&#x5C40;&#x90E8;&#x53D8;&#x91CF;&#x64CD;&#x4F5C;" class="anchor-navigation-ex-anchor" href="#1-&#x6808;&#x548C;&#x5C40;&#x90E8;&#x53D8;&#x91CF;&#x64CD;&#x4F5C;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="1-&#x6808;&#x548C;&#x5C40;&#x90E8;&#x53D8;&#x91CF;&#x64CD;&#x4F5C;" class="plugin-anchor" href="#1-&#x6808;&#x548C;&#x5C40;&#x90E8;&#x53D8;&#x91CF;&#x64CD;&#x4F5C;"><i class="fa fa-link" aria-hidden="true"></i></a>1. &#x6808;&#x548C;&#x5C40;&#x90E8;&#x53D8;&#x91CF;&#x64CD;&#x4F5C;</h3>
+<h5 id="&#x5C06;&#x5E38;&#x91CF;&#x538B;&#x5165;&#x6808;&#x7684;&#x6307;&#x4EE4;"><a name="&#x5C06;&#x5E38;&#x91CF;&#x538B;&#x5165;&#x6808;&#x7684;&#x6307;&#x4EE4;" class="anchor-navigation-ex-anchor" href="#&#x5C06;&#x5E38;&#x91CF;&#x538B;&#x5165;&#x6808;&#x7684;&#x6307;&#x4EE4;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x5C06;&#x5E38;&#x91CF;&#x538B;&#x5165;&#x6808;&#x7684;&#x6307;&#x4EE4;" class="plugin-anchor" href="#&#x5C06;&#x5E38;&#x91CF;&#x538B;&#x5165;&#x6808;&#x7684;&#x6307;&#x4EE4;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x5C06;&#x5E38;&#x91CF;&#x538B;&#x5165;&#x6808;&#x7684;&#x6307;&#x4EE4;</h5>
+<pre><code>aconst_null &#x5C06;null&#x5BF9;&#x8C61;&#x5F15;&#x7528;&#x538B;&#x5165;&#x6808;
+
+iconst_m1 &#x5C06;int&#x7C7B;&#x578B;&#x5E38;&#x91CF;-1&#x538B;&#x5165;&#x6808;
+
+iconst_0 &#x5C06;int&#x7C7B;&#x578B;&#x5E38;&#x91CF;0&#x538B;&#x5165;&#x6808;
+
+iconst_1 &#x5C06;int&#x7C7B;&#x578B;&#x5E38;&#x91CF;1&#x538B;&#x5165;&#x64CD;&#x4F5C;&#x6570;&#x6808;
+
+iconst_2 &#x5C06;int&#x7C7B;&#x578B;&#x5E38;&#x91CF;2&#x538B;&#x5165;&#x6808;
+
+iconst_3 &#x5C06;int&#x7C7B;&#x578B;&#x5E38;&#x91CF;3&#x538B;&#x5165;&#x6808;
+
+iconst_4 &#x5C06;int&#x7C7B;&#x578B;&#x5E38;&#x91CF;4&#x538B;&#x5165;&#x6808;
+
+iconst_5 &#x5C06;int&#x7C7B;&#x578B;&#x5E38;&#x91CF;5&#x538B;&#x5165;&#x6808;
+
+lconst_0 &#x5C06;long&#x7C7B;&#x578B;&#x5E38;&#x91CF;0&#x538B;&#x5165;&#x6808;
+
+lconst_1 &#x5C06;long&#x7C7B;&#x578B;&#x5E38;&#x91CF;1&#x538B;&#x5165;&#x6808;
+
+fconst_0 &#x5C06;float&#x7C7B;&#x578B;&#x5E38;&#x91CF;0&#x538B;&#x5165;&#x6808;
+
+fconst_1 &#x5C06;float&#x7C7B;&#x578B;&#x5E38;&#x91CF;1&#x538B;&#x5165;&#x6808;
+
+dconst_0 &#x5C06;double&#x7C7B;&#x578B;&#x5E38;&#x91CF;0&#x538B;&#x5165;&#x6808;
+
+dconst_1 &#x5C06;double&#x7C7B;&#x578B;&#x5E38;&#x91CF;1&#x538B;&#x5165;&#x6808;
+
+bipush &#x5C06;&#x4E00;&#x4E2A;8&#x4F4D;&#x5E26;&#x7B26;&#x53F7;&#x6574;&#x6570;&#x538B;&#x5165;&#x6808;
+
+sipush &#x5C06;16&#x4F4D;&#x5E26;&#x7B26;&#x53F7;&#x6574;&#x6570;&#x538B;&#x5165;&#x6808;
+
+ldc &#x628A;&#x5E38;&#x91CF;&#x6C60;&#x4E2D;&#x7684;&#x9879;&#x538B;&#x5165;&#x6808;
+
+ldc_w &#x628A;&#x5E38;&#x91CF;&#x6C60;&#x4E2D;&#x7684;&#x9879;&#x538B;&#x5165;&#x6808;&#xFF08;&#x4F7F;&#x7528;&#x5BBD;&#x7D22;&#x5F15;&#xFF09;
+
+ldc2_w &#x628A;&#x5E38;&#x91CF;&#x6C60;&#x4E2D;long&#x7C7B;&#x578B;&#x6216;&#x8005;double&#x7C7B;&#x578B;&#x7684;&#x9879;&#x538B;&#x5165;&#x6808;&#xFF08;&#x4F7F;&#x7528;&#x5BBD;&#x7D22;&#x5F15;&#xFF09;
+</code></pre><h5 id="&#x4ECE;&#x6808;&#x4E2D;&#x7684;&#x5C40;&#x90E8;&#x53D8;&#x91CF;&#x4E2D;&#x88C5;&#x8F7D;&#x503C;&#x7684;&#x6307;&#x4EE4;"><a name="&#x4ECE;&#x6808;&#x4E2D;&#x7684;&#x5C40;&#x90E8;&#x53D8;&#x91CF;&#x4E2D;&#x88C5;&#x8F7D;&#x503C;&#x7684;&#x6307;&#x4EE4;" class="anchor-navigation-ex-anchor" href="#&#x4ECE;&#x6808;&#x4E2D;&#x7684;&#x5C40;&#x90E8;&#x53D8;&#x91CF;&#x4E2D;&#x88C5;&#x8F7D;&#x503C;&#x7684;&#x6307;&#x4EE4;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x4ECE;&#x6808;&#x4E2D;&#x7684;&#x5C40;&#x90E8;&#x53D8;&#x91CF;&#x4E2D;&#x88C5;&#x8F7D;&#x503C;&#x7684;&#x6307;&#x4EE4;" class="plugin-anchor" href="#&#x4ECE;&#x6808;&#x4E2D;&#x7684;&#x5C40;&#x90E8;&#x53D8;&#x91CF;&#x4E2D;&#x88C5;&#x8F7D;&#x503C;&#x7684;&#x6307;&#x4EE4;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x4ECE;&#x6808;&#x4E2D;&#x7684;&#x5C40;&#x90E8;&#x53D8;&#x91CF;&#x4E2D;&#x88C5;&#x8F7D;&#x503C;&#x7684;&#x6307;&#x4EE4;</h5>
+<pre><code>iload &#x4ECE;&#x5C40;&#x90E8;&#x53D8;&#x91CF;&#x4E2D;&#x88C5;&#x8F7D;int&#x7C7B;&#x578B;&#x503C;
+
+lload &#x4ECE;&#x5C40;&#x90E8;&#x53D8;&#x91CF;&#x4E2D;&#x88C5;&#x8F7D;long&#x7C7B;&#x578B;&#x503C;
+
+fload &#x4ECE;&#x5C40;&#x90E8;&#x53D8;&#x91CF;&#x4E2D;&#x88C5;&#x8F7D;float&#x7C7B;&#x578B;&#x503C;
+
+dload &#x4ECE;&#x5C40;&#x90E8;&#x53D8;&#x91CF;&#x4E2D;&#x88C5;&#x8F7D;double&#x7C7B;&#x578B;&#x503C;
+
+aload &#x4ECE;&#x5C40;&#x90E8;&#x53D8;&#x91CF;&#x4E2D;&#x88C5;&#x8F7D;&#x5F15;&#x7528;&#x7C7B;&#x578B;&#x503C;&#xFF08;refernce&#xFF09;
+
+iload_0 &#x4ECE;&#x5C40;&#x90E8;&#x53D8;&#x91CF;0&#x4E2D;&#x88C5;&#x8F7D;int&#x7C7B;&#x578B;&#x503C;
+
+iload_1 &#x4ECE;&#x5C40;&#x90E8;&#x53D8;&#x91CF;1&#x4E2D;&#x88C5;&#x8F7D;int&#x7C7B;&#x578B;&#x503C;
+
+iload_2 &#x4ECE;&#x5C40;&#x90E8;&#x53D8;&#x91CF;2&#x4E2D;&#x88C5;&#x8F7D;int&#x7C7B;&#x578B;&#x503C;
+
+iload_3 &#x4ECE;&#x5C40;&#x90E8;&#x53D8;&#x91CF;3&#x4E2D;&#x88C5;&#x8F7D;int&#x7C7B;&#x578B;&#x503C;
+
+lload_0 &#x4ECE;&#x5C40;&#x90E8;&#x53D8;&#x91CF;0&#x4E2D;&#x88C5;&#x8F7D;long&#x7C7B;&#x578B;&#x503C;
+
+lload_1 &#x4ECE;&#x5C40;&#x90E8;&#x53D8;&#x91CF;1&#x4E2D;&#x88C5;&#x8F7D;long&#x7C7B;&#x578B;&#x503C;
+
+lload_2 &#x4ECE;&#x5C40;&#x90E8;&#x53D8;&#x91CF;2&#x4E2D;&#x88C5;&#x8F7D;long&#x7C7B;&#x578B;&#x503C;
+
+lload_3 &#x4ECE;&#x5C40;&#x90E8;&#x53D8;&#x91CF;3&#x4E2D;&#x88C5;&#x8F7D;long&#x7C7B;&#x578B;&#x503C;
+
+fload_0 &#x4ECE;&#x5C40;&#x90E8;&#x53D8;&#x91CF;0&#x4E2D;&#x88C5;&#x8F7D;float&#x7C7B;&#x578B;&#x503C;
+
+fload_1 &#x4ECE;&#x5C40;&#x90E8;&#x53D8;&#x91CF;1&#x4E2D;&#x88C5;&#x8F7D;float&#x7C7B;&#x578B;&#x503C; fload_2 &#x4ECE;&#x5C40;&#x90E8;&#x53D8;&#x91CF;2&#x4E2D;&#x88C5;&#x8F7D;float&#x7C7B;&#x578B;&#x503C;
+
+fload_3 &#x4ECE;&#x5C40;&#x90E8;&#x53D8;&#x91CF;3&#x4E2D;&#x88C5;&#x8F7D;float&#x7C7B;&#x578B;&#x503C;
+
+dload_0 &#x4ECE;&#x5C40;&#x90E8;&#x53D8;&#x91CF;0&#x4E2D;&#x88C5;&#x8F7D;double&#x7C7B;&#x578B;&#x503C;
+
+dload_1 &#x4ECE;&#x5C40;&#x90E8;&#x53D8;&#x91CF;1&#x4E2D;&#x88C5;&#x8F7D;double&#x7C7B;&#x578B;&#x503C;
+
+dload_2 &#x4ECE;&#x5C40;&#x90E8;&#x53D8;&#x91CF;2&#x4E2D;&#x88C5;&#x8F7D;double&#x7C7B;&#x578B;&#x503C;
+
+dload_3 &#x4ECE;&#x5C40;&#x90E8;&#x53D8;&#x91CF;3&#x4E2D;&#x88C5;&#x8F7D;double&#x7C7B;&#x578B;&#x503C;
+
+aload_0 &#x4ECE;&#x5C40;&#x90E8;&#x53D8;&#x91CF;0&#x4E2D;&#x88C5;&#x8F7D;&#x5F15;&#x7528;&#x7C7B;&#x578B;&#x503C;
+
+aload_1 &#x4ECE;&#x5C40;&#x90E8;&#x53D8;&#x91CF;1&#x4E2D;&#x88C5;&#x8F7D;&#x5F15;&#x7528;&#x7C7B;&#x578B;&#x503C;
+
+aload_2 &#x4ECE;&#x5C40;&#x90E8;&#x53D8;&#x91CF;2&#x4E2D;&#x88C5;&#x8F7D;&#x5F15;&#x7528;&#x7C7B;&#x578B;&#x503C;
+
+aload_3 &#x4ECE;&#x5C40;&#x90E8;&#x53D8;&#x91CF;3&#x4E2D;&#x88C5;&#x8F7D;&#x5F15;&#x7528;&#x7C7B;&#x578B;&#x503C;
+
+iaload &#x4ECE;&#x6570;&#x7EC4;&#x4E2D;&#x88C5;&#x8F7D;int&#x7C7B;&#x578B;&#x503C;
+
+laload &#x4ECE;&#x6570;&#x7EC4;&#x4E2D;&#x88C5;&#x8F7D;long&#x7C7B;&#x578B;&#x503C;
+
+faload &#x4ECE;&#x6570;&#x7EC4;&#x4E2D;&#x88C5;&#x8F7D;float&#x7C7B;&#x578B;&#x503C;
+
+daload &#x4ECE;&#x6570;&#x7EC4;&#x4E2D;&#x88C5;&#x8F7D;double&#x7C7B;&#x578B;&#x503C;
+
+aaload &#x4ECE;&#x6570;&#x7EC4;&#x4E2D;&#x88C5;&#x8F7D;&#x5F15;&#x7528;&#x7C7B;&#x578B;&#x503C;
+
+baload &#x4ECE;&#x6570;&#x7EC4;&#x4E2D;&#x88C5;&#x8F7D;byte&#x7C7B;&#x578B;&#x6216;boolean&#x7C7B;&#x578B;&#x503C;
+
+caload &#x4ECE;&#x6570;&#x7EC4;&#x4E2D;&#x88C5;&#x8F7D;char&#x7C7B;&#x578B;&#x503C;
+
+saload &#x4ECE;&#x6570;&#x7EC4;&#x4E2D;&#x88C5;&#x8F7D;short&#x7C7B;&#x578B;&#x503C;
+</code></pre><h5 id="&#x5C06;&#x6808;&#x4E2D;&#x7684;&#x503C;&#x5B58;&#x5165;&#x5C40;&#x90E8;&#x53D8;&#x91CF;&#x7684;&#x6307;&#x4EE4;"><a name="&#x5C06;&#x6808;&#x4E2D;&#x7684;&#x503C;&#x5B58;&#x5165;&#x5C40;&#x90E8;&#x53D8;&#x91CF;&#x7684;&#x6307;&#x4EE4;" class="anchor-navigation-ex-anchor" href="#&#x5C06;&#x6808;&#x4E2D;&#x7684;&#x503C;&#x5B58;&#x5165;&#x5C40;&#x90E8;&#x53D8;&#x91CF;&#x7684;&#x6307;&#x4EE4;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x5C06;&#x6808;&#x4E2D;&#x7684;&#x503C;&#x5B58;&#x5165;&#x5C40;&#x90E8;&#x53D8;&#x91CF;&#x7684;&#x6307;&#x4EE4;" class="plugin-anchor" href="#&#x5C06;&#x6808;&#x4E2D;&#x7684;&#x503C;&#x5B58;&#x5165;&#x5C40;&#x90E8;&#x53D8;&#x91CF;&#x7684;&#x6307;&#x4EE4;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x5C06;&#x6808;&#x4E2D;&#x7684;&#x503C;&#x5B58;&#x5165;&#x5C40;&#x90E8;&#x53D8;&#x91CF;&#x7684;&#x6307;&#x4EE4;</h5>
+<pre><code>istore &#x5C06;int&#x7C7B;&#x578B;&#x503C;&#x5B58;&#x5165;&#x5C40;&#x90E8;&#x53D8;&#x91CF;
+
+lstore &#x5C06;long&#x7C7B;&#x578B;&#x503C;&#x5B58;&#x5165;&#x5C40;&#x90E8;&#x53D8;&#x91CF;
+
+fstore &#x5C06;float&#x7C7B;&#x578B;&#x503C;&#x5B58;&#x5165;&#x5C40;&#x90E8;&#x53D8;&#x91CF;
+
+dstore &#x5C06;double&#x7C7B;&#x578B;&#x503C;&#x5B58;&#x5165;&#x5C40;&#x90E8;&#x53D8;&#x91CF;
+
+astore &#x5C06;&#x5C06;&#x5F15;&#x7528;&#x7C7B;&#x578B;&#x6216;returnAddress&#x7C7B;&#x578B;&#x503C;&#x5B58;&#x5165;&#x5C40;&#x90E8;&#x53D8;&#x91CF;
+
+istore_0 &#x5C06;int&#x7C7B;&#x578B;&#x503C;&#x5B58;&#x5165;&#x5C40;&#x90E8;&#x53D8;&#x91CF;0
+
+istore_1 &#x5C06;int&#x7C7B;&#x578B;&#x503C;&#x5B58;&#x5165;&#x5C40;&#x90E8;&#x53D8;&#x91CF;1
+
+istore_2 &#x5C06;int&#x7C7B;&#x578B;&#x503C;&#x5B58;&#x5165;&#x5C40;&#x90E8;&#x53D8;&#x91CF;2
+
+istore_3 &#x5C06;int&#x7C7B;&#x578B;&#x503C;&#x5B58;&#x5165;&#x5C40;&#x90E8;&#x53D8;&#x91CF;3
+
+lstore_0 &#x5C06;long&#x7C7B;&#x578B;&#x503C;&#x5B58;&#x5165;&#x5C40;&#x90E8;&#x53D8;&#x91CF;0
+
+lstore_1 &#x5C06;long&#x7C7B;&#x578B;&#x503C;&#x5B58;&#x5165;&#x5C40;&#x90E8;&#x53D8;&#x91CF;1
+
+lstore_2 &#x5C06;long&#x7C7B;&#x578B;&#x503C;&#x5B58;&#x5165;&#x5C40;&#x90E8;&#x53D8;&#x91CF;2
+
+lstore_3 &#x5C06;long&#x7C7B;&#x578B;&#x503C;&#x5B58;&#x5165;&#x5C40;&#x90E8;&#x53D8;&#x91CF;3
+
+fstore_0 &#x5C06;float&#x7C7B;&#x578B;&#x503C;&#x5B58;&#x5165;&#x5C40;&#x90E8;&#x53D8;&#x91CF;0
+
+fstore_1 &#x5C06;float&#x7C7B;&#x578B;&#x503C;&#x5B58;&#x5165;&#x5C40;&#x90E8;&#x53D8;&#x91CF;1
+
+fstore_2 &#x5C06;float&#x7C7B;&#x578B;&#x503C;&#x5B58;&#x5165;&#x5C40;&#x90E8;&#x53D8;&#x91CF;2
+
+fstore_3 &#x5C06;float&#x7C7B;&#x578B;&#x503C;&#x5B58;&#x5165;&#x5C40;&#x90E8;&#x53D8;&#x91CF;3
+
+dstore_0 &#x5C06;double&#x7C7B;&#x578B;&#x503C;&#x5B58;&#x5165;&#x5C40;&#x90E8;&#x53D8;&#x91CF;0
+
+dstore_1 &#x5C06;double&#x7C7B;&#x578B;&#x503C;&#x5B58;&#x5165;&#x5C40;&#x90E8;&#x53D8;&#x91CF;1 dstore_2 &#x5C06;double&#x7C7B;&#x578B;&#x503C;&#x5B58;&#x5165;&#x5C40;&#x90E8;&#x53D8;&#x91CF;2
+
+dstore_3 &#x5C06;double&#x7C7B;&#x578B;&#x503C;&#x5B58;&#x5165;&#x5C40;&#x90E8;&#x53D8;&#x91CF;3
+
+astore_0 &#x5C06;&#x5F15;&#x7528;&#x7C7B;&#x578B;&#x6216;returnAddress&#x7C7B;&#x578B;&#x503C;&#x5B58;&#x5165;&#x5C40;&#x90E8;&#x53D8;&#x91CF;0
+
+astore_1 &#x5C06;&#x5F15;&#x7528;&#x7C7B;&#x578B;&#x6216;returnAddress&#x7C7B;&#x578B;&#x503C;&#x5B58;&#x5165;&#x5C40;&#x90E8;&#x53D8;&#x91CF;1
+
+astore_2 &#x5C06;&#x5F15;&#x7528;&#x7C7B;&#x578B;&#x6216;returnAddress&#x7C7B;&#x578B;&#x503C;&#x5B58;&#x5165;&#x5C40;&#x90E8;&#x53D8;&#x91CF;2
+
+astore_3 &#x5C06;&#x5F15;&#x7528;&#x7C7B;&#x578B;&#x6216;returnAddress&#x7C7B;&#x578B;&#x503C;&#x5B58;&#x5165;&#x5C40;&#x90E8;&#x53D8;&#x91CF;3
+
+iastore &#x5C06;int&#x7C7B;&#x578B;&#x503C;&#x5B58;&#x5165;&#x6570;&#x7EC4;&#x4E2D;
+
+lastore &#x5C06;long&#x7C7B;&#x578B;&#x503C;&#x5B58;&#x5165;&#x6570;&#x7EC4;&#x4E2D;
+
+fastore &#x5C06;float&#x7C7B;&#x578B;&#x503C;&#x5B58;&#x5165;&#x6570;&#x7EC4;&#x4E2D;
+
+dastore &#x5C06;double&#x7C7B;&#x578B;&#x503C;&#x5B58;&#x5165;&#x6570;&#x7EC4;&#x4E2D;
+
+aastore &#x5C06;&#x5F15;&#x7528;&#x7C7B;&#x578B;&#x503C;&#x5B58;&#x5165;&#x6570;&#x7EC4;&#x4E2D;
+
+bastore &#x5C06;byte&#x7C7B;&#x578B;&#x6216;&#x8005;boolean&#x7C7B;&#x578B;&#x503C;&#x5B58;&#x5165;&#x6570;&#x7EC4;&#x4E2D;
+
+castore &#x5C06;char&#x7C7B;&#x578B;&#x503C;&#x5B58;&#x5165;&#x6570;&#x7EC4;&#x4E2D;
+
+sastore &#x5C06;short&#x7C7B;&#x578B;&#x503C;&#x5B58;&#x5165;&#x6570;&#x7EC4;&#x4E2D;
+</code></pre><h5 id="wide&#x6307;&#x4EE4;"><a name="wide&#x6307;&#x4EE4;" class="anchor-navigation-ex-anchor" href="#wide&#x6307;&#x4EE4;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="wide&#x6307;&#x4EE4;" class="plugin-anchor" href="#wide&#x6307;&#x4EE4;"><i class="fa fa-link" aria-hidden="true"></i></a>wide&#x6307;&#x4EE4;</h5>
+<pre><code>wide &#x4F7F;&#x7528;&#x9644;&#x52A0;&#x5B57;&#x8282;&#x6269;&#x5C55;&#x5C40;&#x90E8;&#x53D8;&#x91CF;&#x7D22;&#x5F15;
+</code></pre><h5 id="&#x901A;&#x7528;&#x65E0;&#x7C7B;&#x578B;&#xFF09;&#x6808;&#x64CD;&#x4F5C;"><a name="&#x901A;&#x7528;&#x65E0;&#x7C7B;&#x578B;&#xFF09;&#x6808;&#x64CD;&#x4F5C;" class="anchor-navigation-ex-anchor" href="#&#x901A;&#x7528;&#x65E0;&#x7C7B;&#x578B;&#xFF09;&#x6808;&#x64CD;&#x4F5C;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x901A;&#x7528;&#x65E0;&#x7C7B;&#x578B;&#xFF09;&#x6808;&#x64CD;&#x4F5C;" class="plugin-anchor" href="#&#x901A;&#x7528;&#x65E0;&#x7C7B;&#x578B;&#xFF09;&#x6808;&#x64CD;&#x4F5C;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x901A;&#x7528;(&#x65E0;&#x7C7B;&#x578B;&#xFF09;&#x6808;&#x64CD;&#x4F5C;</h5>
+<pre><code>nop &#x4E0D;&#x505A;&#x4EFB;&#x4F55;&#x64CD;&#x4F5C;
+
+pop &#x5F39;&#x51FA;&#x6808;&#x9876;&#x7AEF;&#x4E00;&#x4E2A;&#x5B57;&#x957F;&#x7684;&#x5185;&#x5BB9;
+
+pop2 &#x5F39;&#x51FA;&#x6808;&#x9876;&#x7AEF;&#x4E24;&#x4E2A;&#x5B57;&#x957F;&#x7684;&#x5185;&#x5BB9;
+
+dup &#x590D;&#x5236;&#x6808;&#x9876;&#x90E8;&#x4E00;&#x4E2A;&#x5B57;&#x957F;&#x5185;&#x5BB9;
+
+dup_x1 &#x590D;&#x5236;&#x6808;&#x9876;&#x90E8;&#x4E00;&#x4E2A;&#x5B57;&#x957F;&#x7684;&#x5185;&#x5BB9;&#xFF0C;&#x7136;&#x540E;&#x5C06;&#x590D;&#x5236;&#x5185;&#x5BB9;&#x53CA;&#x539F;&#x6765;&#x5F39;&#x51FA;&#x7684;&#x4E24;&#x4E2A;&#x5B57;&#x957F;&#x7684;&#x5185;&#x5BB9;&#x538B;&#x5165;&#x6808;
+
+dup_x2 &#x590D;&#x5236;&#x6808;&#x9876;&#x90E8;&#x4E00;&#x4E2A;&#x5B57;&#x957F;&#x7684;&#x5185;&#x5BB9;&#xFF0C;&#x7136;&#x540E;&#x5C06;&#x590D;&#x5236;&#x5185;&#x5BB9;&#x53CA;&#x539F;&#x6765;&#x5F39;&#x51FA;&#x7684;&#x4E09;&#x4E2A;&#x5B57;&#x957F;&#x7684;&#x5185;&#x5BB9;&#x538B;&#x5165;&#x6808;
+
+dup2 &#x590D;&#x5236;&#x6808;&#x9876;&#x90E8;&#x4E24;&#x4E2A;&#x5B57;&#x957F;&#x5185;&#x5BB9;
+
+dup2_x1 &#x590D;&#x5236;&#x6808;&#x9876;&#x90E8;&#x4E24;&#x4E2A;&#x5B57;&#x957F;&#x7684;&#x5185;&#x5BB9;&#xFF0C;&#x7136;&#x540E;&#x5C06;&#x590D;&#x5236;&#x5185;&#x5BB9;&#x53CA;&#x539F;&#x6765;&#x5F39;&#x51FA;&#x7684;&#x4E09;&#x4E2A;&#x5B57;&#x957F;&#x7684;&#x5185;&#x5BB9;&#x538B;&#x5165;&#x6808;
+
+dup2_x2 &#x590D;&#x5236;&#x6808;&#x9876;&#x90E8;&#x4E24;&#x4E2A;&#x5B57;&#x957F;&#x7684;&#x5185;&#x5BB9;&#xFF0C;&#x7136;&#x540E;&#x5C06;&#x590D;&#x5236;&#x5185;&#x5BB9;&#x53CA;&#x539F;&#x6765;&#x5F39;&#x51FA;&#x7684;&#x56DB;&#x4E2A;&#x5B57;&#x957F;&#x7684;&#x5185;&#x5BB9;&#x538B;&#x5165;&#x6808;
+
+swap &#x4EA4;&#x6362;&#x6808;&#x9876;&#x90E8;&#x4E24;&#x4E2A;&#x5B57;&#x957F;&#x5185;&#x5BB9;
+</code></pre><h5 id="&#x7C7B;&#x578B;&#x8F6C;&#x6362;"><a name="&#x7C7B;&#x578B;&#x8F6C;&#x6362;" class="anchor-navigation-ex-anchor" href="#&#x7C7B;&#x578B;&#x8F6C;&#x6362;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x7C7B;&#x578B;&#x8F6C;&#x6362;" class="plugin-anchor" href="#&#x7C7B;&#x578B;&#x8F6C;&#x6362;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x7C7B;&#x578B;&#x8F6C;&#x6362;</h5>
+<pre><code>i2l &#x628A;int&#x7C7B;&#x578B;&#x7684;&#x6570;&#x636E;&#x8F6C;&#x5316;&#x4E3A;long&#x7C7B;&#x578B;
+
+i2f &#x628A;int&#x7C7B;&#x578B;&#x7684;&#x6570;&#x636E;&#x8F6C;&#x5316;&#x4E3A;float&#x7C7B;&#x578B;
+
+i2d &#x628A;int&#x7C7B;&#x578B;&#x7684;&#x6570;&#x636E;&#x8F6C;&#x5316;&#x4E3A;double&#x7C7B;&#x578B;
+
+l2i &#x628A;long&#x7C7B;&#x578B;&#x7684;&#x6570;&#x636E;&#x8F6C;&#x5316;&#x4E3A;int&#x7C7B;&#x578B;
+
+l2f &#x628A;long&#x7C7B;&#x578B;&#x7684;&#x6570;&#x636E;&#x8F6C;&#x5316;&#x4E3A;float&#x7C7B;&#x578B;
+
+l2d &#x628A;long&#x7C7B;&#x578B;&#x7684;&#x6570;&#x636E;&#x8F6C;&#x5316;&#x4E3A;double&#x7C7B;&#x578B; f2i &#x628A;float&#x7C7B;&#x578B;&#x7684;&#x6570;&#x636E;&#x8F6C;&#x5316;&#x4E3A;int&#x7C7B;&#x578B;
+
+f2l &#x628A;float&#x7C7B;&#x578B;&#x7684;&#x6570;&#x636E;&#x8F6C;&#x5316;&#x4E3A;long&#x7C7B;&#x578B;
+
+f2d &#x628A;float&#x7C7B;&#x578B;&#x7684;&#x6570;&#x636E;&#x8F6C;&#x5316;&#x4E3A;double&#x7C7B;&#x578B;
+
+d2i &#x628A;double&#x7C7B;&#x578B;&#x7684;&#x6570;&#x636E;&#x8F6C;&#x5316;&#x4E3A;int&#x7C7B;&#x578B;
+
+d2l &#x628A;double&#x7C7B;&#x578B;&#x7684;&#x6570;&#x636E;&#x8F6C;&#x5316;&#x4E3A;long&#x7C7B;&#x578B;
+
+d2f &#x628A;double&#x7C7B;&#x578B;&#x7684;&#x6570;&#x636E;&#x8F6C;&#x5316;&#x4E3A;float&#x7C7B;&#x578B;
+
+i2b &#x628A;int&#x7C7B;&#x578B;&#x7684;&#x6570;&#x636E;&#x8F6C;&#x5316;&#x4E3A;byte&#x7C7B;&#x578B;
+
+i2c &#x628A;int&#x7C7B;&#x578B;&#x7684;&#x6570;&#x636E;&#x8F6C;&#x5316;&#x4E3A;char&#x7C7B;&#x578B;
+
+i2s &#x628A;int&#x7C7B;&#x578B;&#x7684;&#x6570;&#x636E;&#x8F6C;&#x5316;&#x4E3A;short&#x7C7B;&#x578B;
+</code></pre><h5 id="&#x6574;&#x6570;&#x8FD0;&#x7B97;"><a name="&#x6574;&#x6570;&#x8FD0;&#x7B97;" class="anchor-navigation-ex-anchor" href="#&#x6574;&#x6570;&#x8FD0;&#x7B97;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x6574;&#x6570;&#x8FD0;&#x7B97;" class="plugin-anchor" href="#&#x6574;&#x6570;&#x8FD0;&#x7B97;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x6574;&#x6570;&#x8FD0;&#x7B97;</h5>
+<pre><code>iadd &#x6267;&#x884C;int&#x7C7B;&#x578B;&#x7684;&#x52A0;&#x6CD5;
+
+ladd &#x6267;&#x884C;long&#x7C7B;&#x578B;&#x7684;&#x52A0;&#x6CD5;
+
+isub &#x6267;&#x884C;int&#x7C7B;&#x578B;&#x7684;&#x51CF;&#x6CD5;
+
+lsub &#x6267;&#x884C;long&#x7C7B;&#x578B;&#x7684;&#x51CF;&#x6CD5;
+
+imul &#x6267;&#x884C;int&#x7C7B;&#x578B;&#x7684;&#x4E58;&#x6CD5;
+
+lmul &#x6267;&#x884C;long&#x7C7B;&#x578B;&#x7684;&#x4E58;&#x6CD5;
+
+idiv &#x6267;&#x884C;int&#x7C7B;&#x578B;&#x7684;&#x9664;&#x6CD5;
+
+ldiv &#x6267;&#x884C;long&#x7C7B;&#x578B;&#x7684;&#x9664;&#x6CD5;
+
+irem &#x8BA1;&#x7B97;int&#x7C7B;&#x578B;&#x9664;&#x6CD5;&#x7684;&#x4F59;&#x6570;
+
+lrem &#x8BA1;&#x7B97;long&#x7C7B;&#x578B;&#x9664;&#x6CD5;&#x7684;&#x4F59;&#x6570;
+
+ineg &#x5BF9;&#x4E00;&#x4E2A;int&#x7C7B;&#x578B;&#x503C;&#x8FDB;&#x884C;&#x53D6;&#x53CD;&#x64CD;&#x4F5C;
+
+lneg &#x5BF9;&#x4E00;&#x4E2A;long&#x7C7B;&#x578B;&#x503C;&#x8FDB;&#x884C;&#x53D6;&#x53CD;&#x64CD;&#x4F5C;
+
+iinc &#x628A;&#x4E00;&#x4E2A;&#x5E38;&#x91CF;&#x503C;&#x52A0;&#x5230;&#x4E00;&#x4E2A;int&#x7C7B;&#x578B;&#x7684;&#x5C40;&#x90E8;&#x53D8;&#x91CF;&#x4E0A;
+</code></pre><h3 id="2-&#x903B;&#x8F91;&#x8FD0;&#x7B97;"><a name="2-&#x903B;&#x8F91;&#x8FD0;&#x7B97;" class="anchor-navigation-ex-anchor" href="#2-&#x903B;&#x8F91;&#x8FD0;&#x7B97;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="2-&#x903B;&#x8F91;&#x8FD0;&#x7B97;" class="plugin-anchor" href="#2-&#x903B;&#x8F91;&#x8FD0;&#x7B97;"><i class="fa fa-link" aria-hidden="true"></i></a>2. &#x903B;&#x8F91;&#x8FD0;&#x7B97;</h3>
+<h5 id="&#x79FB;&#x4F4D;&#x64CD;&#x4F5C;"><a name="&#x79FB;&#x4F4D;&#x64CD;&#x4F5C;" class="anchor-navigation-ex-anchor" href="#&#x79FB;&#x4F4D;&#x64CD;&#x4F5C;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x79FB;&#x4F4D;&#x64CD;&#x4F5C;" class="plugin-anchor" href="#&#x79FB;&#x4F4D;&#x64CD;&#x4F5C;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x79FB;&#x4F4D;&#x64CD;&#x4F5C;</h5>
+<pre><code>ishl &#x6267;&#x884C;int&#x7C7B;&#x578B;&#x7684;&#x5411;&#x5DE6;&#x79FB;&#x4F4D;&#x64CD;&#x4F5C;
+
+lshl &#x6267;&#x884C;long&#x7C7B;&#x578B;&#x7684;&#x5411;&#x5DE6;&#x79FB;&#x4F4D;&#x64CD;&#x4F5C;
+
+ishr &#x6267;&#x884C;int&#x7C7B;&#x578B;&#x7684;&#x5411;&#x53F3;&#x79FB;&#x4F4D;&#x64CD;&#x4F5C;
+
+lshr &#x6267;&#x884C;long&#x7C7B;&#x578B;&#x7684;&#x5411;&#x53F3;&#x79FB;&#x4F4D;&#x64CD;&#x4F5C;
+
+iushr &#x6267;&#x884C;int&#x7C7B;&#x578B;&#x7684;&#x5411;&#x53F3;&#x903B;&#x8F91;&#x79FB;&#x4F4D;&#x64CD;&#x4F5C;
+
+lushr &#x6267;&#x884C;long&#x7C7B;&#x578B;&#x7684;&#x5411;&#x53F3;&#x903B;&#x8F91;&#x79FB;&#x4F4D;&#x64CD;&#x4F5C;
+</code></pre><h5 id="&#x6309;&#x4F4D;&#x5E03;&#x5C14;&#x8FD0;&#x7B97;"><a name="&#x6309;&#x4F4D;&#x5E03;&#x5C14;&#x8FD0;&#x7B97;" class="anchor-navigation-ex-anchor" href="#&#x6309;&#x4F4D;&#x5E03;&#x5C14;&#x8FD0;&#x7B97;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x6309;&#x4F4D;&#x5E03;&#x5C14;&#x8FD0;&#x7B97;" class="plugin-anchor" href="#&#x6309;&#x4F4D;&#x5E03;&#x5C14;&#x8FD0;&#x7B97;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x6309;&#x4F4D;&#x5E03;&#x5C14;&#x8FD0;&#x7B97;</h5>
+<pre><code>iand &#x5BF9;int&#x7C7B;&#x578B;&#x503C;&#x8FDB;&#x884C;&#x201C;&#x903B;&#x8F91;&#x4E0E;&#x201D;&#x64CD;&#x4F5C;
+
+land &#x5BF9;long&#x7C7B;&#x578B;&#x503C;&#x8FDB;&#x884C;&#x201C;&#x903B;&#x8F91;&#x4E0E;&#x201D;&#x64CD;&#x4F5C;
+
+ior &#x5BF9;int&#x7C7B;&#x578B;&#x503C;&#x8FDB;&#x884C;&#x201C;&#x903B;&#x8F91;&#x6216;&#x201D;&#x64CD;&#x4F5C;
+
+lor &#x5BF9;long&#x7C7B;&#x578B;&#x503C;&#x8FDB;&#x884C;&#x201C;&#x903B;&#x8F91;&#x6216;&#x201D;&#x64CD;&#x4F5C;
+
+ixor &#x5BF9;int&#x7C7B;&#x578B;&#x503C;&#x8FDB;&#x884C;&#x201C;&#x903B;&#x8F91;&#x5F02;&#x6216;&#x201D;&#x64CD;&#x4F5C;
+
+lxor &#x5BF9;long&#x7C7B;&#x578B;&#x503C;&#x8FDB;&#x884C;&#x201C;&#x903B;&#x8F91;&#x5F02;&#x6216;&#x201D;&#x64CD;&#x4F5C; &#x6D6E;&#x70B9;&#x8FD0;&#x7B97;
+
+fadd &#x6267;&#x884C;float&#x7C7B;&#x578B;&#x7684;&#x52A0;&#x6CD5;
+
+dadd &#x6267;&#x884C;double&#x7C7B;&#x578B;&#x7684;&#x52A0;&#x6CD5;
+
+fsub &#x6267;&#x884C;float&#x7C7B;&#x578B;&#x7684;&#x51CF;&#x6CD5;
+
+dsub &#x6267;&#x884C;double&#x7C7B;&#x578B;&#x7684;&#x51CF;&#x6CD5;
+
+fmul &#x6267;&#x884C;float&#x7C7B;&#x578B;&#x7684;&#x4E58;&#x6CD5;
+
+dmul &#x6267;&#x884C;double&#x7C7B;&#x578B;&#x7684;&#x4E58;&#x6CD5;
+
+fdiv &#x6267;&#x884C;float&#x7C7B;&#x578B;&#x7684;&#x9664;&#x6CD5;
+
+ddiv &#x6267;&#x884C;double&#x7C7B;&#x578B;&#x7684;&#x9664;&#x6CD5;
+
+frem &#x8BA1;&#x7B97;float&#x7C7B;&#x578B;&#x9664;&#x6CD5;&#x7684;&#x4F59;&#x6570;
+
+drem &#x8BA1;&#x7B97;double&#x7C7B;&#x578B;&#x9664;&#x6CD5;&#x7684;&#x4F59;&#x6570;
+
+fneg &#x5C06;&#x4E00;&#x4E2A;float&#x7C7B;&#x578B;&#x7684;&#x6570;&#x503C;&#x53D6;&#x53CD;
+
+dneg &#x5C06;&#x4E00;&#x4E2A;double&#x7C7B;&#x578B;&#x7684;&#x6570;&#x503C;&#x53D6;&#x53CD;
+</code></pre><h3 id="3-&#x5BF9;&#x8C61;&#x548C;&#x6570;&#x7EC4;"><a name="3-&#x5BF9;&#x8C61;&#x548C;&#x6570;&#x7EC4;" class="anchor-navigation-ex-anchor" href="#3-&#x5BF9;&#x8C61;&#x548C;&#x6570;&#x7EC4;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="3-&#x5BF9;&#x8C61;&#x548C;&#x6570;&#x7EC4;" class="plugin-anchor" href="#3-&#x5BF9;&#x8C61;&#x548C;&#x6570;&#x7EC4;"><i class="fa fa-link" aria-hidden="true"></i></a>3. &#x5BF9;&#x8C61;&#x548C;&#x6570;&#x7EC4;</h3>
+<h5 id="&#x5BF9;&#x8C61;&#x64CD;&#x4F5C;&#x6307;&#x4EE4;"><a name="&#x5BF9;&#x8C61;&#x64CD;&#x4F5C;&#x6307;&#x4EE4;" class="anchor-navigation-ex-anchor" href="#&#x5BF9;&#x8C61;&#x64CD;&#x4F5C;&#x6307;&#x4EE4;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x5BF9;&#x8C61;&#x64CD;&#x4F5C;&#x6307;&#x4EE4;" class="plugin-anchor" href="#&#x5BF9;&#x8C61;&#x64CD;&#x4F5C;&#x6307;&#x4EE4;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x5BF9;&#x8C61;&#x64CD;&#x4F5C;&#x6307;&#x4EE4;</h5>
+<pre><code>new &#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x65B0;&#x5BF9;&#x8C61;
+
+checkcast &#x786E;&#x5B9A;&#x5BF9;&#x8C61;&#x4E3A;&#x6240;&#x7ED9;&#x5B9A;&#x7684;&#x7C7B;&#x578B;
+
+getfield &#x4ECE;&#x5BF9;&#x8C61;&#x4E2D;&#x83B7;&#x53D6;&#x5B57;&#x6BB5;
+
+putfield &#x8BBE;&#x7F6E;&#x5BF9;&#x8C61;&#x4E2D;&#x5B57;&#x6BB5;&#x7684;&#x503C;
+
+getstatic &#x4ECE;&#x7C7B;&#x4E2D;&#x83B7;&#x53D6;&#x9759;&#x6001;&#x5B57;&#x6BB5;
+
+putstatic &#x8BBE;&#x7F6E;&#x7C7B;&#x4E2D;&#x9759;&#x6001;&#x5B57;&#x6BB5;&#x7684;&#x503C;
+
+instanceof &#x5224;&#x65AD;&#x5BF9;&#x8C61;&#x662F;&#x5426;&#x4E3A;&#x7ED9;&#x5B9A;&#x7684;&#x7C7B;&#x578B;
+</code></pre><h5 id="&#x6570;&#x7EC4;&#x64CD;&#x4F5C;&#x6307;&#x4EE4;"><a name="&#x6570;&#x7EC4;&#x64CD;&#x4F5C;&#x6307;&#x4EE4;" class="anchor-navigation-ex-anchor" href="#&#x6570;&#x7EC4;&#x64CD;&#x4F5C;&#x6307;&#x4EE4;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x6570;&#x7EC4;&#x64CD;&#x4F5C;&#x6307;&#x4EE4;" class="plugin-anchor" href="#&#x6570;&#x7EC4;&#x64CD;&#x4F5C;&#x6307;&#x4EE4;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x6570;&#x7EC4;&#x64CD;&#x4F5C;&#x6307;&#x4EE4;</h5>
+<pre><code>newarray &#x5206;&#x914D;&#x6570;&#x636E;&#x6210;&#x5458;&#x7C7B;&#x578B;&#x4E3A;&#x57FA;&#x672C;&#x4E0A;&#x6570;&#x636E;&#x7C7B;&#x578B;&#x7684;&#x65B0;&#x6570;&#x7EC4;
+
+anewarray &#x5206;&#x914D;&#x6570;&#x636E;&#x6210;&#x5458;&#x7C7B;&#x578B;&#x4E3A;&#x5F15;&#x7528;&#x7C7B;&#x578B;&#x7684;&#x65B0;&#x6570;&#x7EC4;
+
+arraylength &#x83B7;&#x53D6;&#x6570;&#x7EC4;&#x957F;&#x5EA6;
+
+multianewarray &#x5206;&#x914D;&#x65B0;&#x7684;&#x591A;&#x7EF4;&#x6570;&#x7EC4;
+</code></pre><h3 id="4-&#x63A7;&#x5236;&#x6D41;"><a name="4-&#x63A7;&#x5236;&#x6D41;" class="anchor-navigation-ex-anchor" href="#4-&#x63A7;&#x5236;&#x6D41;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="4-&#x63A7;&#x5236;&#x6D41;" class="plugin-anchor" href="#4-&#x63A7;&#x5236;&#x6D41;"><i class="fa fa-link" aria-hidden="true"></i></a>4. &#x63A7;&#x5236;&#x6D41;</h3>
+<h5 id="&#x6761;&#x4EF6;&#x5206;&#x652F;&#x6307;&#x4EE4;"><a name="&#x6761;&#x4EF6;&#x5206;&#x652F;&#x6307;&#x4EE4;" class="anchor-navigation-ex-anchor" href="#&#x6761;&#x4EF6;&#x5206;&#x652F;&#x6307;&#x4EE4;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x6761;&#x4EF6;&#x5206;&#x652F;&#x6307;&#x4EE4;" class="plugin-anchor" href="#&#x6761;&#x4EF6;&#x5206;&#x652F;&#x6307;&#x4EE4;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x6761;&#x4EF6;&#x5206;&#x652F;&#x6307;&#x4EE4;</h5>
+<pre><code>ifeq &#x5982;&#x679C;&#x7B49;&#x4E8E;0&#xFF0C;&#x5219;&#x8DF3;&#x8F6C;
+
+ifne &#x5982;&#x679C;&#x4E0D;&#x7B49;&#x4E8E;0&#xFF0C;&#x5219;&#x8DF3;&#x8F6C;
+
+iflt &#x5982;&#x679C;&#x5C0F;&#x4E8E;0&#xFF0C;&#x5219;&#x8DF3;&#x8F6C;
+
+ifge &#x5982;&#x679C;&#x5927;&#x4E8E;&#x7B49;&#x4E8E;0&#xFF0C;&#x5219;&#x8DF3;&#x8F6C;
+
+ifgt &#x5982;&#x679C;&#x5927;&#x4E8E;0&#xFF0C;&#x5219;&#x8DF3;&#x8F6C;
+
+ifle &#x5982;&#x679C;&#x5C0F;&#x4E8E;&#x7B49;&#x4E8E;0&#xFF0C;&#x5219;&#x8DF3;&#x8F6C;
+
+if_icmpcq &#x5982;&#x679C;&#x4E24;&#x4E2A;int&#x503C;&#x76F8;&#x7B49;&#xFF0C;&#x5219;&#x8DF3;&#x8F6C;
+
+if_icmpne &#x5982;&#x679C;&#x4E24;&#x4E2A;int&#x7C7B;&#x578B;&#x503C;&#x4E0D;&#x76F8;&#x7B49;&#xFF0C;&#x5219;&#x8DF3;&#x8F6C;
+
+if_icmplt &#x5982;&#x679C;&#x4E00;&#x4E2A;int&#x7C7B;&#x578B;&#x503C;&#x5C0F;&#x4E8E;&#x53E6;&#x5916;&#x4E00;&#x4E2A;int&#x7C7B;&#x578B;&#x503C;&#xFF0C;&#x5219;&#x8DF3;&#x8F6C; if_icmpge &#x5982;&#x679C;&#x4E00;&#x4E2A;int&#x7C7B;&#x578B;&#x503C;&#x5927;&#x4E8E;&#x6216;&#x8005;&#x7B49;&#x4E8E;&#x53E6;&#x5916;&#x4E00;&#x4E2A;int&#x7C7B;&#x578B;&#x503C;&#xFF0C;&#x5219;&#x8DF3;&#x8F6C;
+
+if_icmpgt &#x5982;&#x679C;&#x4E00;&#x4E2A;int&#x7C7B;&#x578B;&#x503C;&#x5927;&#x4E8E;&#x53E6;&#x5916;&#x4E00;&#x4E2A;int&#x7C7B;&#x578B;&#x503C;&#xFF0C;&#x5219;&#x8DF3;&#x8F6C;
+
+if_icmple &#x5982;&#x679C;&#x4E00;&#x4E2A;int&#x7C7B;&#x578B;&#x503C;&#x5C0F;&#x4E8E;&#x6216;&#x8005;&#x7B49;&#x4E8E;&#x53E6;&#x5916;&#x4E00;&#x4E2A;int&#x7C7B;&#x578B;&#x503C;&#xFF0C;&#x5219;&#x8DF3;&#x8F6C;
+
+ifnull &#x5982;&#x679C;&#x7B49;&#x4E8E;null&#xFF0C;&#x5219;&#x8DF3;&#x8F6C;
+
+ifnonnull &#x5982;&#x679C;&#x4E0D;&#x7B49;&#x4E8E;null&#xFF0C;&#x5219;&#x8DF3;&#x8F6C;
+
+if_acmpeq &#x5982;&#x679C;&#x4E24;&#x4E2A;&#x5BF9;&#x8C61;&#x5F15;&#x7528;&#x76F8;&#x7B49;&#xFF0C;&#x5219;&#x8DF3;&#x8F6C;
+
+if_acmpnc &#x5982;&#x679C;&#x4E24;&#x4E2A;&#x5BF9;&#x8C61;&#x5F15;&#x7528;&#x4E0D;&#x76F8;&#x7B49;&#xFF0C;&#x5219;&#x8DF3;&#x8F6C;
+</code></pre><h5 id="&#x6BD4;&#x8F83;&#x6307;&#x4EE4;"><a name="&#x6BD4;&#x8F83;&#x6307;&#x4EE4;" class="anchor-navigation-ex-anchor" href="#&#x6BD4;&#x8F83;&#x6307;&#x4EE4;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x6BD4;&#x8F83;&#x6307;&#x4EE4;" class="plugin-anchor" href="#&#x6BD4;&#x8F83;&#x6307;&#x4EE4;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x6BD4;&#x8F83;&#x6307;&#x4EE4;</h5>
+<pre><code>lcmp &#x6BD4;&#x8F83;long&#x7C7B;&#x578B;&#x503C;
+
+fcmpl &#x6BD4;&#x8F83;float&#x7C7B;&#x578B;&#x503C;&#xFF08;&#x5F53;&#x9047;&#x5230;NaN&#x65F6;&#xFF0C;&#x8FD4;&#x56DE;-1&#xFF09;
+
+fcmpg &#x6BD4;&#x8F83;float&#x7C7B;&#x578B;&#x503C;&#xFF08;&#x5F53;&#x9047;&#x5230;NaN&#x65F6;&#xFF0C;&#x8FD4;&#x56DE;1&#xFF09;
+
+dcmpl &#x6BD4;&#x8F83;double&#x7C7B;&#x578B;&#x503C;&#xFF08;&#x5F53;&#x9047;&#x5230;NaN&#x65F6;&#xFF0C;&#x8FD4;&#x56DE;-1&#xFF09;
+
+dcmpg &#x6BD4;&#x8F83;double&#x7C7B;&#x578B;&#x503C;&#xFF08;&#x5F53;&#x9047;&#x5230;NaN&#x65F6;&#xFF0C;&#x8FD4;&#x56DE;1&#xFF09;
+</code></pre><h5 id="&#x65E0;&#x6761;&#x4EF6;&#x8F6C;&#x79FB;&#x6307;&#x4EE4;"><a name="&#x65E0;&#x6761;&#x4EF6;&#x8F6C;&#x79FB;&#x6307;&#x4EE4;" class="anchor-navigation-ex-anchor" href="#&#x65E0;&#x6761;&#x4EF6;&#x8F6C;&#x79FB;&#x6307;&#x4EE4;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x65E0;&#x6761;&#x4EF6;&#x8F6C;&#x79FB;&#x6307;&#x4EE4;" class="plugin-anchor" href="#&#x65E0;&#x6761;&#x4EF6;&#x8F6C;&#x79FB;&#x6307;&#x4EE4;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x65E0;&#x6761;&#x4EF6;&#x8F6C;&#x79FB;&#x6307;&#x4EE4;</h5>
+<pre><code>goto &#x65E0;&#x6761;&#x4EF6;&#x8DF3;&#x8F6C;
+
+goto_w &#x65E0;&#x6761;&#x4EF6;&#x8DF3;&#x8F6C;&#xFF08;&#x5BBD;&#x7D22;&#x5F15;&#xFF09;
+</code></pre><h5 id="&#x8868;&#x8DF3;&#x8F6C;&#x6307;&#x4EE4;"><a name="&#x8868;&#x8DF3;&#x8F6C;&#x6307;&#x4EE4;" class="anchor-navigation-ex-anchor" href="#&#x8868;&#x8DF3;&#x8F6C;&#x6307;&#x4EE4;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x8868;&#x8DF3;&#x8F6C;&#x6307;&#x4EE4;" class="plugin-anchor" href="#&#x8868;&#x8DF3;&#x8F6C;&#x6307;&#x4EE4;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x8868;&#x8DF3;&#x8F6C;&#x6307;&#x4EE4;</h5>
+<pre><code>tableswitch &#x901A;&#x8FC7;&#x7D22;&#x5F15;&#x8BBF;&#x95EE;&#x8DF3;&#x8F6C;&#x8868;&#xFF0C;&#x5E76;&#x8DF3;&#x8F6C;
+
+lookupswitch &#x901A;&#x8FC7;&#x952E;&#x503C;&#x5339;&#x914D;&#x8BBF;&#x95EE;&#x8DF3;&#x8F6C;&#x8868;&#xFF0C;&#x5E76;&#x6267;&#x884C;&#x8DF3;&#x8F6C;&#x64CD;&#x4F5C;
+</code></pre><h5 id="&#x5F02;&#x5E38;"><a name="&#x5F02;&#x5E38;" class="anchor-navigation-ex-anchor" href="#&#x5F02;&#x5E38;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x5F02;&#x5E38;" class="plugin-anchor" href="#&#x5F02;&#x5E38;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x5F02;&#x5E38;</h5>
+<pre><code>athrow &#x629B;&#x51FA;&#x5F02;&#x5E38;&#x6216;&#x9519;&#x8BEF;
+
+finally&#x5B50;&#x53E5;
+
+jsr &#x8DF3;&#x8F6C;&#x5230;&#x5B50;&#x4F8B;&#x7A0B;
+
+jsr_w &#x8DF3;&#x8F6C;&#x5230;&#x5B50;&#x4F8B;&#x7A0B;&#xFF08;&#x5BBD;&#x7D22;&#x5F15;&#xFF09;
+
+rct &#x4ECE;&#x5B50;&#x4F8B;&#x7A0B;&#x8FD4;&#x56DE;
+</code></pre><h3 id="5-&#x65B9;&#x6CD5;&#x8C03;&#x7528;&#x4E0E;&#x8FD4;&#x56DE;"><a name="5-&#x65B9;&#x6CD5;&#x8C03;&#x7528;&#x4E0E;&#x8FD4;&#x56DE;" class="anchor-navigation-ex-anchor" href="#5-&#x65B9;&#x6CD5;&#x8C03;&#x7528;&#x4E0E;&#x8FD4;&#x56DE;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="5-&#x65B9;&#x6CD5;&#x8C03;&#x7528;&#x4E0E;&#x8FD4;&#x56DE;" class="plugin-anchor" href="#5-&#x65B9;&#x6CD5;&#x8C03;&#x7528;&#x4E0E;&#x8FD4;&#x56DE;"><i class="fa fa-link" aria-hidden="true"></i></a>5. &#x65B9;&#x6CD5;&#x8C03;&#x7528;&#x4E0E;&#x8FD4;&#x56DE;</h3>
+<h5 id="&#x65B9;&#x6CD5;&#x8C03;&#x7528;&#x6307;&#x4EE4;"><a name="&#x65B9;&#x6CD5;&#x8C03;&#x7528;&#x6307;&#x4EE4;" class="anchor-navigation-ex-anchor" href="#&#x65B9;&#x6CD5;&#x8C03;&#x7528;&#x6307;&#x4EE4;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x65B9;&#x6CD5;&#x8C03;&#x7528;&#x6307;&#x4EE4;" class="plugin-anchor" href="#&#x65B9;&#x6CD5;&#x8C03;&#x7528;&#x6307;&#x4EE4;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x65B9;&#x6CD5;&#x8C03;&#x7528;&#x6307;&#x4EE4;</h5>
+<pre><code>invokcvirtual &#x8FD0;&#x884C;&#x65F6;&#x6309;&#x7167;&#x5BF9;&#x8C61;&#x7684;&#x7C7B;&#x6765;&#x8C03;&#x7528;&#x5B9E;&#x4F8B;&#x65B9;&#x6CD5;
+
+invokespecial &#x6839;&#x636E;&#x7F16;&#x8BD1;&#x65F6;&#x7C7B;&#x578B;&#x6765;&#x8C03;&#x7528;&#x5B9E;&#x4F8B;&#x65B9;&#x6CD5;
+
+invokestatic &#x8C03;&#x7528;&#x7C7B;&#xFF08;&#x9759;&#x6001;&#xFF09;&#x65B9;&#x6CD5;
+
+invokcinterface &#x8C03;&#x7528;&#x63A5;&#x53E3;&#x65B9;&#x6CD5;
+</code></pre><h5 id="&#x65B9;&#x6CD5;&#x8FD4;&#x56DE;&#x6307;&#x4EE4;"><a name="&#x65B9;&#x6CD5;&#x8FD4;&#x56DE;&#x6307;&#x4EE4;" class="anchor-navigation-ex-anchor" href="#&#x65B9;&#x6CD5;&#x8FD4;&#x56DE;&#x6307;&#x4EE4;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x65B9;&#x6CD5;&#x8FD4;&#x56DE;&#x6307;&#x4EE4;" class="plugin-anchor" href="#&#x65B9;&#x6CD5;&#x8FD4;&#x56DE;&#x6307;&#x4EE4;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x65B9;&#x6CD5;&#x8FD4;&#x56DE;&#x6307;&#x4EE4;</h5>
+<pre><code>ireturn &#x4ECE;&#x65B9;&#x6CD5;&#x4E2D;&#x8FD4;&#x56DE;int&#x7C7B;&#x578B;&#x7684;&#x6570;&#x636E;
+
+lreturn &#x4ECE;&#x65B9;&#x6CD5;&#x4E2D;&#x8FD4;&#x56DE;long&#x7C7B;&#x578B;&#x7684;&#x6570;&#x636E;
+
+freturn &#x4ECE;&#x65B9;&#x6CD5;&#x4E2D;&#x8FD4;&#x56DE;float&#x7C7B;&#x578B;&#x7684;&#x6570;&#x636E;
+
+dreturn &#x4ECE;&#x65B9;&#x6CD5;&#x4E2D;&#x8FD4;&#x56DE;double&#x7C7B;&#x578B;&#x7684;&#x6570;&#x636E;
+
+areturn &#x4ECE;&#x65B9;&#x6CD5;&#x4E2D;&#x8FD4;&#x56DE;&#x5F15;&#x7528;&#x7C7B;&#x578B;&#x7684;&#x6570;&#x636E;
+
+return &#x4ECE;&#x65B9;&#x6CD5;&#x4E2D;&#x8FD4;&#x56DE;&#xFF0C;&#x8FD4;&#x56DE;&#x503C;&#x4E3A;void &#x7EBF;&#x7A0B;&#x540C;&#x6B65;
+
+montiorenter &#x8FDB;&#x5165;&#x5E76;&#x83B7;&#x53D6;&#x5BF9;&#x8C61;&#x76D1;&#x89C6;&#x5668;
+
+monitorexit &#x91CA;&#x653E;&#x5E76;&#x9000;&#x51FA;&#x5BF9;&#x8C61;&#x76D1;&#x89C6;&#x5668;
+</code></pre><h3 id="jvm&#x6307;&#x4EE4;&#x52A9;&#x8BB0;&#x7B26;"><a name="jvm&#x6307;&#x4EE4;&#x52A9;&#x8BB0;&#x7B26;" class="anchor-navigation-ex-anchor" href="#jvm&#x6307;&#x4EE4;&#x52A9;&#x8BB0;&#x7B26;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="jvm&#x6307;&#x4EE4;&#x52A9;&#x8BB0;&#x7B26;" class="plugin-anchor" href="#jvm&#x6307;&#x4EE4;&#x52A9;&#x8BB0;&#x7B26;"><i class="fa fa-link" aria-hidden="true"></i></a>JVM&#x6307;&#x4EE4;&#x52A9;&#x8BB0;&#x7B26;</h3>
+<p>&#x53D8;&#x91CF;&#x5230;&#x64CD;&#x4F5C;&#x6570;&#x6808;&#xFF1A;</p>
+<pre><code>iload,iload_,lload,lload_,fload,fload_,dload,dload_,aload,aload_
+</code></pre><p>&#x64CD;&#x4F5C;&#x6570;&#x6808;&#x5230;&#x53D8;&#x91CF;&#xFF1A;</p>
+<pre><code>istore,istore_,lstore,lstore_,fstore,fstore_,dstore,dstor_,astore,astore_
+</code></pre><p>&#x5E38;&#x6570;&#x5230;&#x64CD;&#x4F5C;&#x6570;&#x6808;&#xFF1A;</p>
+<pre><code>bipush,sipush,ldc,ldc_w,ldc2_w,aconst_null,iconst_ml,iconst_,lconst_,fconst_,dconst_
+</code></pre><p>&#x52A0;&#xFF1A;</p>
+<pre><code>iadd,ladd,fadd,dadd
+</code></pre><p>&#x51CF;&#xFF1A;</p>
+<pre><code>isub,lsub,fsub,dsub
+</code></pre><p>&#x4E58;&#xFF1A;</p>
+<pre><code>imul,lmul,fmul,dmul
+</code></pre><p>&#x9664;&#xFF1A;</p>
+<pre><code>idiv,ldiv,fdiv,ddiv
+</code></pre><p>&#x4F59;&#x6570;&#xFF1A;</p>
+<pre><code>irem,lrem,frem,drem
+</code></pre><p>&#x53D6;&#x8D1F;&#xFF1A;</p>
+<pre><code>ineg,lneg,fneg,dneg
+</code></pre><p>&#x79FB;&#x4F4D;&#xFF1A;</p>
+<pre><code>ishl,lshr,iushr,lshl,lshr,lushr
+</code></pre><p>&#x6309;&#x4F4D;&#x6216;&#xFF1A;</p>
+<pre><code>ior,lor
+</code></pre><p>&#x6309;&#x4F4D;&#x4E0E;&#xFF1A;</p>
+<pre><code>iand,land
+</code></pre><p>&#x6309;&#x4F4D;&#x5F02;&#x6216;&#xFF1A;</p>
+<pre><code>ixor,lxor
+</code></pre><p>&#x7C7B;&#x578B;&#x8F6C;&#x6362;&#xFF1A;</p>
+<pre><code>i2l,i2f,i2d,l2f,l2d,f2d(&#x653E;&#x5BBD;&#x6570;&#x503C;&#x8F6C;&#x6362;)
+i2b,i2c,i2s,l2i,f2i,f2l,d2i,d2l,d2f(&#x7F29;&#x7A84;&#x6570;&#x503C;&#x8F6C;&#x6362;)
+</code></pre><p>&#x521B;&#x5EFA;&#x7C7B;&#x5B9E;&#x4FBF;&#xFF1A;</p>
+<pre><code>new
+</code></pre><p>&#x521B;&#x5EFA;&#x65B0;&#x6570;&#x7EC4;&#xFF1A;</p>
+<pre><code>newarray,anewarray,multianwarray
+</code></pre><p>&#x8BBF;&#x95EE;&#x7C7B;&#x7684;&#x57DF;&#x548C;&#x7C7B;&#x5B9E;&#x4F8B;&#x57DF;&#xFF1A;</p>
+<pre><code>getfield,putfield,getstatic,putstatic
+</code></pre><p>&#x628A;&#x6570;&#x636E;&#x88C5;&#x8F7D;&#x5230;&#x64CD;&#x4F5C;&#x6570;&#x6808;&#xFF1A;</p>
+<pre><code>baload,caload,saload,iaload,laload,faload,daload,aaload
+</code></pre><p>&#x4ECE;&#x64CD;&#x4F5C;&#x6570;&#x6808;&#x5B58;&#x5B58;&#x50A8;&#x5230;&#x6570;&#x7EC4;&#xFF1A;</p>
+<pre><code>bastore,castore,sastore,iastore,lastore,fastore,dastore,aastore
+</code></pre><p>&#x83B7;&#x53D6;&#x6570;&#x7EC4;&#x957F;&#x5EA6;&#xFF1A;</p>
+<pre><code>arraylength
+</code></pre><p>&#x68C0;&#x76F8;&#x7C7B;&#x5B9E;&#x4F8B;&#x6216;&#x6570;&#x7EC4;&#x5C5E;&#x6027;&#xFF1A;</p>
+<pre><code>instanceof,checkcast
+</code></pre><p>&#x64CD;&#x4F5C;&#x6570;&#x6808;&#x7BA1;&#x7406;&#xFF1A;</p>
+<pre><code>pop,pop2,dup,dup2,dup_xl,dup2_xl,dup_x2,dup2_x2,swap
+</code></pre><p>&#x6709;&#x6761;&#x4EF6;&#x8F6C;&#x79FB;&#xFF1A;</p>
+<pre><code>ifeq,iflt,ifle,ifne,ifgt,ifge,ifnull,ifnonnull,if_icmpeq,if_icmpene,
+if_icmplt,if_icmpgt,if_icmple,if_icmpge,if_acmpeq,if_acmpne,lcmp,fcmpl
+fcmpg,dcmpl,dcmpg
+</code></pre><p>&#x590D;&#x5408;&#x6761;&#x4EF6;&#x8F6C;&#x79FB;&#xFF1A;</p>
+<pre><code>tableswitch,lookupswitch
+</code></pre><p>&#x65E0;&#x6761;&#x4EF6;&#x8F6C;&#x79FB;&#xFF1A;</p>
+<pre><code>goto,goto_w,jsr,jsr_w,ret
+</code></pre><p>&#x8C03;&#x5EA6;&#x5BF9;&#x8C61;&#x7684;&#x5B9E;&#x4FBF;&#x65B9;&#x6CD5;&#xFF1A;</p>
+<pre><code>invokevirtual
+</code></pre><p>&#x8C03;&#x7528;&#x7531;&#x63A5;&#x53E3;&#x5B9E;&#x73B0;&#x7684;&#x65B9;&#x6CD5;&#xFF1A;</p>
+<pre><code>invokeinterface
+</code></pre><p>&#x8C03;&#x7528;&#x9700;&#x8981;&#x7279;&#x6B8A;&#x5904;&#x7406;&#x7684;&#x5B9E;&#x4F8B;&#x65B9;&#x6CD5;&#xFF1A;</p>
+<pre><code>invokespecial
+</code></pre><p>&#x8C03;&#x7528;&#x547D;&#x540D;&#x7C7B;&#x4E2D;&#x7684;&#x9759;&#x6001;&#x65B9;&#x6CD5;&#xFF1A;</p>
+<pre><code>invokestatic
+</code></pre><p>&#x65B9;&#x6CD5;&#x8FD4;&#x56DE;&#xFF1A;</p>
+<pre><code>ireturn,lreturn,freturn,dreturn,areturn,return
+</code></pre><p>&#x5F02;&#x5E38;&#xFF1A;</p>
+<pre><code>athrow
+</code></pre><p>finally&#x5173;&#x952E;&#x5B57;&#x7684;&#x5B9E;&#x73B0;&#x4F7F;&#x7528;&#xFF1A;</p>
+<pre><code>jsr,jsr_w,ret
+</code></pre>
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="07-GC-Optimize.html" class="navigation navigation-prev " aria-label="Previous page: 1.7 GC调优">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="../02-Tomcat/" class="navigation navigation-next " aria-label="Next page: 第2章 Tomcat">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"附1 JVM指令手册","level":"1.1.1.8","depth":3,"next":{"title":"第2章 Tomcat","level":"1.1.2","depth":2,"path":"02-Tomcat/README.md","ref":"02-Tomcat/README.md","articles":[{"title":"2.1 Tomcat生产环境应用","level":"1.1.2.1","depth":3,"path":"02-Tomcat/01-Tomcat-Summary.md","ref":"02-Tomcat/01-Tomcat-Summary.md","articles":[]},{"title":"2.2 Tomcat核心组件源码","level":"1.1.2.2","depth":3,"path":"02-Tomcat/02-Tomcat-Component-Src.md","ref":"02-Tomcat/02-Tomcat-Component-Src.md","articles":[]},{"title":"2.3 Tomcat线程模型HTTP请求处理与管道线模型","level":"1.1.2.3","depth":3,"path":"02-Tomcat/03-Tomcat-Http-Process.md","ref":"02-Tomcat/03-Tomcat-Http-Process.md","articles":[]}]},"previous":{"title":"1.7 GC调优","level":"1.1.1.7","depth":3,"path":"01-JVM/07-GC-Optimize.md","ref":"01-JVM/07-GC-Optimize.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","splitter","expandable-chapters-small","anchors","github","github-buttons","sharing-plus","anchor-navigation-ex"],"styles":{"website":"./styles/website.css"},"pluginsConfig":{"github":{"url":"https://github.com/tyrival"},"splitter":{},"search":{},"sharing-plus":{"qq":false,"all":["facebook","google","twitter","instapaper","linkedin","pocket","stumbleupon"],"douban":false,"facebook":true,"weibo":false,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":true,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"anchor-navigation-ex":{"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"mode":"float","multipleH1":true,"pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"printLog":false,"showGoTop":true,"showLevel":false},"github-buttons":{"buttons":[{"user":"Tyrival","repo":"gitbook","type":"star","size":"small","count":false}]},"expandable-chapters-small":{},"sharing":{"qq":false,"all":["google","facebook","weibo","twitter","qq","qzone","linkedin","pocket"],"douban":false,"facebook":false,"weibo":false,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":false,"messenger":false,"line":false,"vk":false,"pocket":false,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","author":"Tyrival","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"架构师学习笔记","language":"zh-hans","gitbook":"3.2.3","description":"架构师学习笔记"},"file":{"path":"01-JVM/JVM-Command.md","mtime":"2020-07-14T05:41:35.402Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-07-15T07:25:11.898Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-splitter/splitter.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-github/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-github-buttons/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing-plus/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

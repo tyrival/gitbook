@@ -13,3 +13,5 @@
 [1.6 垃圾收集器](./06-GC.md)
 
 [1.7 GC调优](./07-GC-Optimize.md)
+
+[附1 JVM指令手册](./JVM-Command.md)
