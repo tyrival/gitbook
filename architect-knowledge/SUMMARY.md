@@ -14,6 +14,7 @@
         * [2.1 Tomcat生产环境应用](02-Tomcat/01-Tomcat-Summary.md)
         * [2.2 Tomcat核心组件源码](02-Tomcat/02-Tomcat-Component-Src.md)
         * [2.3 Tomcat线程模型HTTP请求处理与管道线模型](02-Tomcat/03-Tomcat-Http-Process.md)
+        * [2.4 Tomcat热部署和热加载](02-Tomcat/04-Tomcat-Hot-Deployment-Load.md)
     * [第3章 MySQL](03-MySQL/README.md)
     * [第4章 并发编程](04-Concurrent/README.md)
     * [第5章 源码框架](05-Source/README.md)
