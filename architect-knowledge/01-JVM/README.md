@@ -8,9 +8,9 @@
 
 [1.4 JVM字节码文件结构](./04-JVM-Bytecode-File-Structure.md)
 
-[1.5 垃圾收集算法](./05-GC-Algorithms.md)
+[1.5 垃圾收集器ParNew和CMS](./05-GC-ParNew-CMS.md)
 
-[1.6 垃圾收集器](./06-GC.md)
+[1.6 垃圾收集器G1和ZGC](./06-GC-G1-ZGC.md)
 
 [1.7 GC调优](./07-GC-Optimize.md)
 
