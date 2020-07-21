@@ -1,0 +1,1222 @@
+
+<!DOCTYPE HTML>
+<html lang="zh-hans" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>1.1 类加载机制 · 架构师学习笔记</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        <meta name="author" content="Tyrival">
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-splitter/splitter.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-anchors/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-anchor-navigation-ex/style/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+        <link rel="stylesheet" href="../styles/website.css">
+        
+    
+
+        
+    
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="02-JVM-Structure-Resolve.html" />
+    
+    
+    <link rel="prev" href="./" />
+    
+
+    <style>
+    @media only screen and (max-width: 640px) {
+        .book-header .hidden-mobile {
+            display: none;
+        }
+    }
+    </style>
+    <script>
+        window["gitbook-plugin-github-buttons"] = {"buttons":[{"user":"Tyrival","repo":"gitbook","type":"star","size":"small","count":false}]};
+    </script>
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="输入并搜索" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    架构师学习笔记
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.1" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    第1章 JVM
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter active" data-level="1.1.1.1" data-path="01-ClassLoader.html">
+            
+                <a href="01-ClassLoader.html">
+            
+                    
+                    1.1 类加载机制
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.2" data-path="02-JVM-Structure-Resolve.html">
+            
+                <a href="02-JVM-Structure-Resolve.html">
+            
+                    
+                    1.2 JVM整体结构
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.3" data-path="03-Memory-Allocation-Mechanism.html">
+            
+                <a href="03-Memory-Allocation-Mechanism.html">
+            
+                    
+                    1.3 JVM内存分配机制
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.4" data-path="04-JVM-Bytecode-File-Structure.html">
+            
+                <a href="04-JVM-Bytecode-File-Structure.html">
+            
+                    
+                    1.4 JVM字节码文件结构
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.5" data-path="05-GC-ParNew-CMS.html">
+            
+                <a href="05-GC-ParNew-CMS.html">
+            
+                    
+                    1.5 垃圾收集器ParNew和CMS
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.6" data-path="06-GC-G1-ZGC.html">
+            
+                <a href="06-GC-G1-ZGC.html">
+            
+                    
+                    1.6 垃圾收集器G1和ZGC
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.7" data-path="07-GC-Optimize.html">
+            
+                <a href="07-GC-Optimize.html">
+            
+                    
+                    1.7 GC调优
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.8" data-path="JVM-Command.html">
+            
+                <a href="JVM-Command.html">
+            
+                    
+                    附1 JVM指令手册
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.2" data-path="../02-Tomcat/">
+            
+                <a href="../02-Tomcat/">
+            
+                    
+                    第2章 Tomcat
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.2.1" data-path="../02-Tomcat/01-Tomcat-Summary.html">
+            
+                <a href="../02-Tomcat/01-Tomcat-Summary.html">
+            
+                    
+                    2.1 Tomcat生产环境应用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.2.2" data-path="../02-Tomcat/02-Tomcat-Component-Src.html">
+            
+                <a href="../02-Tomcat/02-Tomcat-Component-Src.html">
+            
+                    
+                    2.2 Tomcat核心组件源码
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.2.3" data-path="../02-Tomcat/03-Tomcat-Http-Process.html">
+            
+                <a href="../02-Tomcat/03-Tomcat-Http-Process.html">
+            
+                    
+                    2.3 Tomcat线程模型HTTP请求处理与管道线模型
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.2.4" data-path="../02-Tomcat/04-Tomcat-Hot-Deployment-Load.html">
+            
+                <a href="../02-Tomcat/04-Tomcat-Hot-Deployment-Load.html">
+            
+                    
+                    2.4 Tomcat热部署和热加载
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.3" data-path="../03-MySQL/">
+            
+                <a href="../03-MySQL/">
+            
+                    
+                    第3章 MySQL
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.3.1" data-path="../03-MySQL/01-Mysql-index-data-structure.html">
+            
+                <a href="../03-MySQL/01-Mysql-index-data-structure.html">
+            
+                    
+                    3.1 Mysql索引数据结构
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.3.2" data-path="../03-MySQL/02-Explain-Index-Actual.html">
+            
+                <a href="../03-MySQL/02-Explain-Index-Actual.html">
+            
+                    
+                    3.2 Explain详解与索引最佳实践
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.4" data-path="../04-Concurrent/">
+            
+                <a href="../04-Concurrent/">
+            
+                    
+                    第4章 并发编程
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.5" data-path="../05-Source/">
+            
+                <a href="../05-Source/">
+            
+                    
+                    第5章 源码框架
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6" data-path="../06-Distributed/">
+            
+                <a href="../06-Distributed/">
+            
+                    
+                    第6章 分布式
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.7" data-path="../07-Microservice/">
+            
+                <a href="../07-Microservice/">
+            
+                    
+                    第7章 微服务
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.8" data-path="../08-Sample/">
+            
+                <a href="../08-Sample/">
+            
+                    
+                    第8章 案例
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            本书使用 GitBook 发布
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >1.1 类加载机制</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <div id="anchor-navigation-ex-navbar"><i class="fa fa-navicon"></i><ul><ul><li><span class="title-icon "></span><a href="#11-&#x7C7B;&#x52A0;&#x8F7D;&#x673A;&#x5236;"><b></b>1.1 &#x7C7B;&#x52A0;&#x8F7D;&#x673A;&#x5236;</a></li><ul><li><span class="title-icon "></span><a href="#111-&#x7C7B;&#x52A0;&#x8F7D;&#x5668;"><b></b>1.1.1 &#x7C7B;&#x52A0;&#x8F7D;&#x5668;</a></li><li><span class="title-icon "></span><a href="#112-&#x53CC;&#x4EB2;&#x59D4;&#x6D3E;&#x673A;&#x5236;"><b></b>1.1.2 &#x53CC;&#x4EB2;&#x59D4;&#x6D3E;&#x673A;&#x5236;</a></li><li><span class="title-icon "></span><a href="#113-&#x81EA;&#x5B9A;&#x4E49;&#x7C7B;&#x52A0;&#x8F7D;&#x5668;"><b></b>1.1.3 &#x81EA;&#x5B9A;&#x4E49;&#x7C7B;&#x52A0;&#x8F7D;&#x5668;</a></li><li><span class="title-icon "></span><a href="#114-&#x6253;&#x7834;&#x53CC;&#x4EB2;&#x59D4;&#x6D3E;&#x673A;&#x5236;"><b></b>1.1.4 &#x6253;&#x7834;&#x53CC;&#x4EB2;&#x59D4;&#x6D3E;&#x673A;&#x5236;</a></li></ul></ul></ul></div><a href="#" id="anchorNavigationExGoTop"><i class="fa fa-arrow-up"></i></a><h2 id="11-&#x7C7B;&#x52A0;&#x8F7D;&#x673A;&#x5236;"><a name="11-&#x7C7B;&#x52A0;&#x8F7D;&#x673A;&#x5236;" class="anchor-navigation-ex-anchor" href="#11-&#x7C7B;&#x52A0;&#x8F7D;&#x673A;&#x5236;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="11-&#x7C7B;&#x52A0;&#x8F7D;&#x673A;&#x5236;" class="plugin-anchor" href="#11-&#x7C7B;&#x52A0;&#x8F7D;&#x673A;&#x5236;"><i class="fa fa-link" aria-hidden="true"></i></a>1.1 &#x7C7B;&#x52A0;&#x8F7D;&#x673A;&#x5236;</h2>
+<h3 id="111-&#x7C7B;&#x52A0;&#x8F7D;&#x5668;"><a name="111-&#x7C7B;&#x52A0;&#x8F7D;&#x5668;" class="anchor-navigation-ex-anchor" href="#111-&#x7C7B;&#x52A0;&#x8F7D;&#x5668;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="111-&#x7C7B;&#x52A0;&#x8F7D;&#x5668;" class="plugin-anchor" href="#111-&#x7C7B;&#x52A0;&#x8F7D;&#x5668;"><i class="fa fa-link" aria-hidden="true"></i></a>1.1.1 &#x7C7B;&#x52A0;&#x8F7D;&#x5668;</h3>
+<h4 id="&#x7C7B;&#x52A0;&#x8F7D;&#x8FC7;&#x7A0B;"><a name="&#x7C7B;&#x52A0;&#x8F7D;&#x8FC7;&#x7A0B;" class="anchor-navigation-ex-anchor" href="#&#x7C7B;&#x52A0;&#x8F7D;&#x8FC7;&#x7A0B;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x7C7B;&#x52A0;&#x8F7D;&#x8FC7;&#x7A0B;" class="plugin-anchor" href="#&#x7C7B;&#x52A0;&#x8F7D;&#x8FC7;&#x7A0B;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x7C7B;&#x52A0;&#x8F7D;&#x8FC7;&#x7A0B;</h4>
+<p>&#x793A;&#x4F8B;&#x4EE3;&#x7801;&#xFF1A;</p>
+<pre><code class="lang-java"><span class="hljs-keyword">package</span> com.tyrival.jvm.lession01;
+
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Math</span> </span>{
+
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> initData = <span class="hljs-number">666</span>;
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> User user = <span class="hljs-keyword">new</span> User();
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">compute</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-keyword">int</span> a = <span class="hljs-number">1</span>;
+        <span class="hljs-keyword">int</span> b = <span class="hljs-number">2</span>;
+        <span class="hljs-keyword">int</span> c = (a + b) * <span class="hljs-number">10</span>;
+        <span class="hljs-keyword">return</span> c;
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>{
+        Math math = <span class="hljs-keyword">new</span> Math();
+        math.compute();
+    }
+}
+</code></pre>
+<p>&#x901A;&#x8FC7;Java&#x547D;&#x4EE4;&#x6267;&#x884C;&#x4EE3;&#x7801;&#x7684;&#x5927;&#x4F53;&#x6D41;&#x7A0B;&#x5982;&#x4E0B;&#xFF1A;</p>
+<p><img src="../source/images/ch-01/java-exec-process.png" alt="java-exec-process"></p>
+<p>&#x5176;&#x4E2D; <code>classLoader.loadClass()</code> &#x4E3B;&#x8981;&#x5305;&#x542B;&#x5982;&#x4E0B;&#x6B65;&#x9AA4;&#xFF1A;</p>
+<p><strong>&#x52A0;&#x8F7D; &gt;&gt; &#x9A8C;&#x8BC1; &gt;&gt; &#x51C6;&#x5907; &gt;&gt; &#x89E3;&#x6790; &gt;&gt; &#x521D;&#x59CB;&#x5316; &gt;&gt; &#x4F7F;&#x7528; &gt;&gt; &#x5378;&#x8F7D;</strong></p>
+<ul>
+<li><p><strong>&#x52A0;&#x8F7D;</strong>&#xFF1A;&#x5728;&#x786C;&#x76D8;&#x4E0A;&#x67E5;&#x627E;&#x5E76;&#x901A;&#x8FC7;IO&#x8BFB;&#x5165;&#x5B57;&#x8282;&#x7801;&#x6587;&#x4EF6;&#xFF0C;&#x4F7F;&#x7528;&#x5230;&#x7C7B;&#x65F6;&#x624D;&#x4F1A;&#x52A0;&#x8F7D;&#xFF0C;&#x4F8B;&#x5982;&#x8C03;&#x7528;&#x7C7B;&#x7684; <code>main()</code> &#x65B9;&#x6CD5;&#xFF0C;new&#x5BF9;&#x8C61;&#x7B49;&#x7B49;&#xFF0C;&#x5728;&#x52A0;&#x8F7D;&#x9636;&#x6BB5;&#xFF0C;&#x4F1A;&#x5728;&#x5185;&#x5B58;&#x4E2D;&#x751F;&#x6210;&#x4E00;&#x4E2A;&#x4EE3;&#x8868;&#x8FD9;&#x4E2A;&#x7C7B;&#x7684; <code>java.lang.Class</code> &#x5BF9;&#x8C61;&#xFF0C;&#x4F5C;&#x4E3A;&#x65B9;&#x6CD5;&#x533A;&#x8FD9;&#x4E2A;&#x7C7B;&#x7684;&#x5404;&#x79CD;&#x6570;&#x636E;&#x7684;&#x8BBF;&#x95EE;&#x5165;&#x53E3;</p>
+</li>
+<li><p><strong>&#x9A8C;&#x8BC1;</strong>&#xFF1A;&#x6821;&#x9A8C;&#x5B57;&#x8282;&#x7801;&#x6587;&#x4EF6;&#x7684;&#x6B63;&#x786E;&#x6027;</p>
+</li>
+<li><p><strong>&#x51C6;&#x5907;</strong>&#xFF1A;&#x7ED9;&#x7C7B;&#x7684;&#x9759;&#x6001;&#x53D8;&#x91CF;&#x5206;&#x914D;&#x5185;&#x5B58;&#xFF0C;&#x5E76;&#x8D4B;&#x4E88;&#x9ED8;&#x8BA4;&#x503C;</p>
+</li>
+<li><p><strong>&#x89E3;&#x6790;</strong>&#xFF1A;&#x5C06;&#x7B26;&#x53F7;&#x5F15;&#x7528;&#x66FF;&#x6362;&#x4E3A;&#x76F4;&#x63A5;&#x5F15;&#x7528;&#xFF0C;&#x8BE5;&#x9636;&#x6BB5;&#x4F1A;&#x628A;&#x4E00;&#x4E9B;&#x9759;&#x6001;&#x65B9;&#x6CD5;&#xFF08;&#x7B26;&#x53F7;&#x5F15;&#x7528;&#xFF0C;&#x6BD4;&#x5982; <code>main()</code> &#x65B9;&#x6CD5;&#xFF09;&#x66FF;&#x6362;&#x4E3A;&#x6307;&#x5411;&#x6570;&#x636E;&#x6240;&#x5B58;&#x5185;&#x5B58;&#x7684;&#x6307;&#x9488;&#x6216;&#x53E5;&#x67C4;&#x7B49;&#xFF08;&#x76F4;&#x63A5;&#x5F15;&#x7528;&#xFF09;&#xFF0C;&#x8FD9;&#x662F;&#x6240;&#x8C13;&#x7684;&#x9759;&#x6001;&#x94FE;&#x63A5;&#x8FC7;&#x8FC7;&#x7A0B;&#xFF08;&#x7C7B;&#x52A0;&#x8F7D;&#x671F;&#x95F4;&#x5B8C;&#x6210;&#xFF09;&#xFF0C;&#x52A8;&#x6001;&#x94FE;&#x63A5;&#x662F;&#x5728;&#x7A0B;&#x5E8F;&#x8FD0;&#x884C;&#x671F;&#x95F4;&#x5B8C;&#x6210;&#x7684;&#x5C06;&#x7B26;&#x53F7;&#x5F15;&#x7528;&#x66FF;&#x6362;&#x4E3A;&#x76F4;&#x63A5;&#x5F15;&#x7528;</p>
+</li>
+<li><p><strong>&#x521D;&#x59CB;&#x5316;</strong>&#xFF1A;&#x5BF9;&#x7C7B;&#x7684;&#x9759;&#x6001;&#x53D8;&#x91CF;&#x521D;&#x59CB;&#x5316;&#x4E3A;&#x6307;&#x5B9A;&#x7684;&#x503C;&#xFF0C;&#x6267;&#x884C;&#x9759;&#x6001;&#x4EE3;&#x7801;&#x5757; <code>static {}</code></p>
+</li>
+</ul>
+<p><img src="../source/images/ch-01/load-class-process.png" alt="load-class-process"></p>
+<p>&#x7C7B;&#x88AB;&#x52A0;&#x8F7D;&#x5230;&#x65B9;&#x6CD5;&#x533A;&#x4E2D;&#x540E;&#xFF0C;&#x4E3B;&#x8981;&#x5305;&#x542B;<strong>&#x8FD0;&#x884C;&#x65F6;&#x5E38;&#x91CF;&#x6C60;&#x3001;&#x7C7B;&#x578B;&#x4FE1;&#x606F;&#x3001;&#x5B57;&#x6BB5;&#x4FE1;&#x606F;&#x3001;&#x65B9;&#x6CD5;&#x4FE1;&#x606F;&#x3001;&#x7C7B;&#x52A0;&#x8F7D;&#x5668;&#x7684;&#x5F15;&#x7528;&#x3001;&#x5BF9;&#x5E94;class&#x5B9E;&#x4F8B;&#x7684;&#x5F15;&#x7528;</strong>&#x7B49;&#x4FE1;&#x606F;&#x3002; </p>
+<p><strong>&#x7C7B;&#x52A0;&#x8F7D;&#x5668;&#x7684;&#x5F15;&#x7528;</strong>&#xFF1A;&#x8FD9;&#x4E2A;&#x7C7B;&#x5230;&#x7C7B;&#x52A0;&#x8F7D;&#x5668;&#x5B9E;&#x4F8B;&#x7684;&#x5F15;&#x7528; </p>
+<p><strong>&#x5BF9;&#x5E94;class&#x5B9E;&#x4F8B;&#x7684;&#x5F15;&#x7528;</strong>&#xFF1A;&#x7C7B;&#x52A0;&#x8F7D;&#x5668;&#x5728;&#x52A0;&#x8F7D;&#x7C7B;&#x4FE1;&#x606F;&#x653E;&#x5230;&#x65B9;&#x6CD5;&#x533A;&#x4E2D;&#x540E;&#xFF0C;&#x4F1A;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x5BF9;&#x5E94;&#x7684;Class &#x7C7B;&#x578B;&#x7684;&#x5BF9;&#x8C61;&#x5B9E;&#x4F8B;&#x653E;&#x5230;&#x5806;(Heap)&#x4E2D;&#xFF0C;&#x4F5C;&#x4E3A;&#x5F00;&#x53D1;&#x4EBA;&#x5458;&#x8BBF;&#x95EE;&#x65B9;&#x6CD5;&#x533A;&#x4E2D;&#x7C7B;&#x5B9A;&#x4E49;&#x7684;&#x5165;&#x53E3;&#x548C;&#x5207;&#x5165;&#x70B9;&#x3002;</p>
+<p><em>&#x6CE8;&#x610F;&#xFF1A;&#x4E3B;&#x7C7B;&#x5728;&#x8FD0;&#x884C;&#x8FC7;&#x7A0B;&#x4E2D;&#x5982;&#x679C;&#x4F7F;&#x7528;&#x5230;&#x5176;&#x5B83;&#x7C7B;&#xFF0C;&#x4F1A;&#x9010;&#x6B65;&#x52A0;&#x8F7D;&#x8FD9;&#x4E9B;&#x7C7B;&#xFF0C;&#x7C7B;&#x4F3C;&#x56FE;&#x4E2D;&#x7684; <code>User.class</code>&#x3002;jar&#x5305;&#x6216;war&#x5305;&#x91CC;&#x7684;&#x7C7B;&#x4E0D;&#x662F;&#x4E00;&#x6B21;&#x6027;&#x5168;&#x90E8;&#x52A0;&#x8F7D;&#x7684;&#xFF0C;&#x662F;&#x4F7F;&#x7528;&#x5230;&#x65F6;&#x624D;&#x52A0;&#x8F7D;&#x3002;</em></p>
+<p>&#x793A;&#x4F8B;&#x4E2D;&#xFF0C;&#x901A;&#x8FC7;&#x8FD0;&#x884C;&#x7ED3;&#x679C;&#x53EF;&#x4EE5;&#x770B;&#x5230;&#xFF0C;&#x9996;&#x5148;&#x52A0;&#x8F7D;&#x4E86;&#x7C7B; <code>TestDynamicLoad</code> &#xFF0C;&#x6267;&#x884C;&#x4E86;&#x9759;&#x6001;&#x4EE3;&#x7801;&#x5757;&#xFF0C;&#x7136;&#x540E;&#x52A0;&#x8F7D;&#x7C7B; <code>A</code> &#xFF0C;&#x4F9D;&#x6B21;&#x6267;&#x884C;&#x9759;&#x6001;&#x4EE3;&#x7801;&#x5757;&#x548C;&#x6784;&#x9020;&#x65B9;&#x6CD5;&#x3002;&#x7C7B; <code>B</code> &#x7531;&#x4E8E;&#x672A;&#x5B9E;&#x4F8B;&#x5316;&#xFF0C;&#x5E76;&#x672A;&#x52A0;&#x8F7D;&#x3002;</p>
+<pre><code class="lang-java"><span class="hljs-keyword">package</span> com.tyrival.jvm.lession01;
+
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TestDynamicLoad</span> </span>{
+    <span class="hljs-keyword">static</span> {
+        System.out.println(<span class="hljs-string">&quot;*************load TestDynamicLoad************&quot;</span>);
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>{
+        <span class="hljs-keyword">new</span> A();
+        System.out.println(<span class="hljs-string">&quot;*************load test************&quot;</span>);
+          <span class="hljs-comment">//B&#x4E0D;&#x4F1A;&#x52A0;&#x8F7D;&#xFF0C;&#x9664;&#x975E;&#x8FD9;&#x91CC;&#x6267;&#x884C; new B()</span>
+        B b = <span class="hljs-keyword">null</span>;
+    }
+}
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">A</span> </span>{
+    <span class="hljs-keyword">static</span> {
+        System.out.println(<span class="hljs-string">&quot;*************load A************&quot;</span>);
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">A</span><span class="hljs-params">()</span> </span>{
+        System.out.println(<span class="hljs-string">&quot;*************initial A************&quot;</span>);
+    }
+}
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">B</span> </span>{
+    <span class="hljs-keyword">static</span> {
+        System.out.println(<span class="hljs-string">&quot;*************load B************&quot;</span>);
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">B</span><span class="hljs-params">()</span> </span>{
+        System.out.println(<span class="hljs-string">&quot;*************initial B************&quot;</span>);
+    }
+}
+
+&#x8FD0;&#x884C;&#x7ED3;&#x679C;&#x4E3A;&#xFF1A;
+*************load TestDynamicLoad************
+*************load A************
+*************initial A************
+*************load test************
+</code></pre>
+<h4 id="&#x7C7B;&#x52A0;&#x8F7D;&#x5668;"><a name="&#x7C7B;&#x52A0;&#x8F7D;&#x5668;" class="anchor-navigation-ex-anchor" href="#&#x7C7B;&#x52A0;&#x8F7D;&#x5668;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x7C7B;&#x52A0;&#x8F7D;&#x5668;" class="plugin-anchor" href="#&#x7C7B;&#x52A0;&#x8F7D;&#x5668;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x7C7B;&#x52A0;&#x8F7D;&#x5668;</h4>
+<p>&#x4E0A;&#x8FF0;&#x7C7B;&#x52A0;&#x8F7D;&#x8FC7;&#x7A0B;&#x4E3B;&#x8981;&#x901A;&#x8FC7;&#x7C7B;&#x52A0;&#x8F7D;&#x5668;&#x6765;&#x5B9E;&#x73B0;&#xFF0C;Java&#x4E2D;&#x6709;&#x4EE5;&#x4E0B;&#x51E0;&#x79CD;&#x7C7B;&#x52A0;&#x8F7D;&#x5668;&#xFF1A;</p>
+<ul>
+<li><strong>&#x5F15;&#x5BFC;&#x7C7B;&#x52A0;&#x8F7D;&#x5668;</strong>&#xFF1A;&#x8D1F;&#x8D23;&#x52A0;&#x8F7D;&#x652F;&#x6491;JVM&#x8FD0;&#x884C;&#x7684;&#x4F4D;&#x4E8E;JRE&#x7684;lib&#x76EE;&#x5F55;&#x4E0B;&#x7684;&#x6838;&#x5FC3;&#x7C7B;&#x5E93;&#xFF0C;&#x6BD4;&#x5982; rt.jar&#x3001;charsets.jar&#x7B49; </li>
+<li><strong>&#x6269;&#x5C55;&#x7C7B;&#x52A0;&#x8F7D;&#x5668;</strong>&#xFF1A;&#x8D1F;&#x8D23;&#x52A0;&#x8F7D;&#x652F;&#x6491;JVM&#x8FD0;&#x884C;&#x7684;&#x4F4D;&#x4E8E;JRE&#x7684;lib&#x76EE;&#x5F55;&#x4E0B;&#x7684;ext&#x6269;&#x5C55;&#x76EE;&#x5F55;&#x4E2D;&#x7684;JAR&#x7C7B;&#x5305; </li>
+<li><strong>&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x7C7B;&#x52A0;&#x8F7D;&#x5668;</strong>&#xFF1A;&#x8D1F;&#x8D23;&#x52A0;&#x8F7D;ClassPath&#x8DEF;&#x5F84;&#x4E0B;&#x7684;&#x7C7B;&#x5305;&#xFF0C;&#x4E3B;&#x8981;&#x5C31;&#x662F;&#x52A0;&#x8F7D;&#x5F00;&#x53D1;&#x4EBA;&#x5458;&#x5199;&#x7684;&#x7C7B; </li>
+<li><strong>&#x81EA;&#x5B9A;&#x4E49;&#x52A0;&#x8F7D;&#x5668;</strong>&#xFF1A;&#x8D1F;&#x8D23;&#x52A0;&#x8F7D;&#x7528;&#x6237;&#x81EA;&#x5B9A;&#x4E49;&#x8DEF;&#x5F84;&#x4E0B;&#x7684;&#x7C7B;&#x5305;</li>
+</ul>
+<h5 id="&#x793A;&#x4F8B;&#x4EE3;&#x7801;"><a name="&#x793A;&#x4F8B;&#x4EE3;&#x7801;" class="anchor-navigation-ex-anchor" href="#&#x793A;&#x4F8B;&#x4EE3;&#x7801;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x793A;&#x4F8B;&#x4EE3;&#x7801;" class="plugin-anchor" href="#&#x793A;&#x4F8B;&#x4EE3;&#x7801;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x793A;&#x4F8B;&#x4EE3;&#x7801;</h5>
+<pre><code class="lang-java"><span class="hljs-keyword">package</span> com.tyrival.jvm.lession01;
+
+<span class="hljs-keyword">import</span> sun.misc.Launcher;
+
+<span class="hljs-keyword">import</span> java.net.URL;
+
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TestJDKClassLoader</span> </span>{
+
+  <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>{
+
+    <span class="hljs-comment">// String&#x7C7B;&#x4E3A;Java&#x7684;&#x6838;&#x5FC3;&#x7C7B;&#xFF0C;&#x4F7F;&#x7528;&#x7684;&#x662F;&#x5F15;&#x5BFC;&#x7C7B;&#x52A0;&#x8F7D;&#x5668;&#xFF0C;</span>
+    <span class="hljs-comment">// &#x7531;&#x4E8E;&#x91C7;&#x7528;C++&#x751F;&#x6210;&#x7684;&#x5BF9;&#x8C61;&#xFF0C;&#x6240;&#x4EE5;&#x5B83;&#x7684;&#x7C7B;&#x52A0;&#x8F7D;&#x5668;&#x5728;Java&#x4E2D;&#x663E;&#x793A;&#x4E3A;null</span>
+    System.out.println(String.class.getClassLoader());
+
+    <span class="hljs-comment">// com.sun.crypto.provider.DESKeyFactory&#x4F4D;&#x4E8E;$JRE$/lib/ext&#x4E2D;&#xFF0C;</span>
+    <span class="hljs-comment">// &#x6240;&#x4EE5;&#x4F7F;&#x7528;ExtClassLoader&#x8FDB;&#x884C;&#x52A0;&#x8F7D;</span>
+    System.out.println(com.sun.crypto.provider.DESKeyFactory.class
+                          .getClassLoader().getClass().getName());
+
+    <span class="hljs-comment">// &#x7528;&#x6237;&#x81EA;&#x5DF1;&#x5199;&#x7684;&#x7C7B;&#xFF0C;&#x4F7F;&#x7528;AppClassLoader&#x8FDB;&#x884C;&#x52A0;&#x8F7D;</span>
+    System.out.println(TestJDKClassLoader.class.getClassLoader().getClass().getName());
+
+    System.out.println();
+
+    ClassLoader appClassLoader = ClassLoader.getSystemClassLoader();
+    ClassLoader extClassloader = appClassLoader.getParent();
+    ClassLoader bootstrapLoader = extClassloader.getParent();
+    System.out.println(<span class="hljs-string">&quot;the bootstrapLoader : &quot;</span> + bootstrapLoader);
+    System.out.println(<span class="hljs-string">&quot;the extClassloader : &quot;</span> + extClassloader);
+    System.out.println(<span class="hljs-string">&quot;the appClassLoader : &quot;</span> + appClassLoader);
+
+    System.out.println();
+
+    System.out.println(<span class="hljs-string">&quot;bootstrapLoader&#x52A0;&#x8F7D;&#x4EE5;&#x4E0B;&#x6587;&#x4EF6;&#xFF1A;&quot;</span>);
+    URL[] urls = Launcher.getBootstrapClassPath().getURLs();
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; urls.length; i++) {
+        System.out.println(urls[i]);
+    }
+
+    System.out.println();
+
+    System.out.println(<span class="hljs-string">&quot;extClassloader&#x52A0;&#x8F7D;&#x4EE5;&#x4E0B;&#x6587;&#x4EF6;&#xFF1A;&quot;</span>);
+    System.out.println(System.getProperty(<span class="hljs-string">&quot;java.ext.dirs&quot;</span>));
+
+    System.out.println();
+
+    System.out.println(<span class="hljs-string">&quot;appClassLoader&#x52A0;&#x8F7D;&#x4EE5;&#x4E0B;&#x6587;&#x4EF6;&#xFF1A;&quot;</span>);
+    System.out.println(System.getProperty(<span class="hljs-string">&quot;java.class.path&quot;</span>));
+    }
+}
+
+&#x8FD0;&#x884C;&#x7ED3;&#x679C;&#xFF1A;
+<span class="hljs-keyword">null</span>
+sun.misc.Launcher$ExtClassLoader
+sun.misc.Launcher$AppClassLoader
+
+the bootstrapLoader : <span class="hljs-keyword">null</span>
+the extClassloader : sun.misc.Launcher$ExtClassLoader<span class="hljs-meta">@d</span>716361
+the appClassLoader : sun.misc.Launcher$AppClassLoader@<span class="hljs-number">18</span>b4aac2
+
+bootstrapLoader&#x52A0;&#x8F7D;&#x4EE5;&#x4E0B;&#x6587;&#x4EF6;&#xFF1A;
+file:/Library/Java/JavaVirtualMachines/jdk1.8.0_231.jdk/Contents/Home/jre/lib/resources.jar
+file:/Library/Java/JavaVirtualMachines/jdk1.8.0_231.jdk/Contents/Home/jre/lib/rt.jar
+file:/Library/Java/JavaVirtualMachines/jdk1.8.0_231.jdk/Contents/Home/jre/lib/sunrsasign.jar
+file:/Library/Java/JavaVirtualMachines/jdk1.8.0_231.jdk/Contents/Home/jre/lib/jsse.jar
+file:/Library/Java/JavaVirtualMachines/jdk1.8.0_231.jdk/Contents/Home/jre/lib/jce.jar
+file:/Library/Java/JavaVirtualMachines/jdk1.8.0_231.jdk/Contents/Home/jre/lib/charsets.jar
+file:/Library/Java/JavaVirtualMachines/jdk1.8.0_231.jdk/Contents/Home/jre/lib/jfr.jar
+file:/Library/Java/JavaVirtualMachines/jdk1.8.0_231.jdk/Contents/Home/jre/classes
+
+extClassloader&#x52A0;&#x8F7D;&#x4EE5;&#x4E0B;&#x6587;&#x4EF6;&#xFF1A;
+/Users/tyrival/Library/Java/Extensions:/Library/Java/JavaVirtualMachines/jdk1.8.0_231.jdk/Contents/Home/jre/lib/ext:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java
+
+appClassLoader&#x52A0;&#x8F7D;&#x4EE5;&#x4E0B;&#x6587;&#x4EF6;&#xFF1A;
+/Library/Java/JavaVirtualMachines/jdk1.8.0_231.jdk/Contents/Home/jre/lib/charsets.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_231.jdk/Contents/Home/jre/lib/deploy.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_231.jdk/Contents/Home/jre/lib/ext/cldrdata.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_231.jdk/Contents/Home/jre/lib/ext/dnsns.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_231.jdk/Contents/Home/jre/lib/ext/jaccess.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_231.jdk/Contents/Home/jre/lib/ext/jfxrt.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_231.jdk/Contents/Home/jre/lib/ext/localedata.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_231.jdk/Contents/Home/jre/lib/ext/nashorn.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_231.jdk/Contents/Home/jre/lib/ext/sunec.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_231.jdk/Contents/Home/jre/lib/ext/sunjce_provider.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_231.jdk/Contents/Home/jre/lib/ext/sunpkcs11.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_231.jdk/Contents/Home/jre/lib/ext/zipfs.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_231.jdk/Contents/Home/jre/lib/javaws.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_231.jdk/Contents/Home/jre/lib/jce.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_231.jdk/Contents/Home/jre/lib/jfr.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_231.jdk/Contents/Home/jre/lib/jfxswt.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_231.jdk/Contents/Home/jre/lib/jsse.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_231.jdk/Contents/Home/jre/lib/management-agent.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_231.jdk/Contents/Home/jre/lib/plugin.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_231.jdk/Contents/Home/jre/lib/resources.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_231.jdk/Contents/Home/jre/lib/rt.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_231.jdk/Contents/Home/lib/ant-javafx.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_231.jdk/Contents/Home/lib/dt.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_231.jdk/Contents/Home/lib/javafx-mx.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_231.jdk/Contents/Home/lib/jconsole.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_231.jdk/Contents/Home/lib/packager.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_231.jdk/Contents/Home/lib/sa-jdi.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_231.jdk/Contents/Home/lib/tools.jar:/Users/tyrival/Workspace/architect-knowledge/<span class="hljs-number">01</span>-jvm/target/classes:/Applications/IntelliJ IDEA.app/Contents/lib/idea_rt.jar
+</code></pre>
+<h5 id="&#x521D;&#x59CB;&#x5316;&#x8FC7;&#x7A0B;"><a name="&#x521D;&#x59CB;&#x5316;&#x8FC7;&#x7A0B;" class="anchor-navigation-ex-anchor" href="#&#x521D;&#x59CB;&#x5316;&#x8FC7;&#x7A0B;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x521D;&#x59CB;&#x5316;&#x8FC7;&#x7A0B;" class="plugin-anchor" href="#&#x521D;&#x59CB;&#x5316;&#x8FC7;&#x7A0B;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x521D;&#x59CB;&#x5316;&#x8FC7;&#x7A0B;</h5>
+<p>&#x7C7B;&#x52A0;&#x8F7D;&#x8FC7;&#x7A0B;&#x56FE;&#x4E2D;&#x53EF;&#x4EE5;&#x770B;&#x5230;&#xFF0C;&#x9996;&#x5148;&#x521B;&#x5EFA;JVM&#x542F;&#x52A8;&#x5668;&#x5B9E;&#x4F8B; <code>sun.misc.Launcher</code> &#xFF0C;&#x8FD9;&#x4E2A;&#x7C7B;&#x91C7;&#x7528;&#x4E86;&#x5355;&#x4F8B;&#x6A21;&#x5F0F;&#xFF0C;&#x4FDD;&#x8BC1;&#x4E00;&#x4E2A;JVM&#x865A;&#x62DF;&#x673A;&#x5185;&#x53EA;&#x6709;&#x4E00;&#x4E2A;Launcher&#x5B9E;&#x4F8B;&#x3002;</p>
+<p>&#x5728;Launcher&#x6784;&#x9020;&#x65B9;&#x6CD5;&#x5185;&#x90E8;&#xFF0C;&#x521B;&#x5EFA;&#x4E86;&#x4E24;&#x4E2A;&#x7C7B;&#x52A0;&#x8F7D;&#x5668;&#xFF0C;&#x5206;&#x522B;&#x662F;&#x6269;&#x5C55;&#x7C7B;&#x52A0;&#x8F7D;&#x5668; <code>sun.misc.Launcher.ExtClassLoader</code> &#x548C;&#x5E94;&#x7528;&#x7C7B;&#x52A0;&#x8F7D;&#x5668; <code>sun.misc.Launcher.AppClassLoader</code></p>
+<p>JVM&#x9ED8;&#x8BA4;&#x4F7F;&#x7528; <code>Launcher.getClassLoader()</code> &#x8FD4;&#x56DE;&#x7684;&#x7C7B;&#x52A0;&#x8F7D;&#x5668;AppClassLoader&#x7684;&#x5B9E;&#x4F8B;&#x52A0;&#x8F7D;&#x6211;&#x4EEC;&#x7684;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x3002;</p>
+<pre><code class="lang-java"><span class="hljs-comment">// $JRE$/lib/rt.jar!/sun/misc/Launcher.class</span>
+<span class="hljs-keyword">package</span> sun.misc;
+
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Launcher</span><span class="hljs-params">()</span> </span>{
+  Launcher.ExtClassLoader var1;
+  <span class="hljs-keyword">try</span> {
+    <span class="hljs-comment">// &#x6784;&#x9020;&#x6269;&#x5C55;&#x7C7B;&#x52A0;&#x8F7D;&#x5668;&#xFF0C;&#x6267;&#x884C; &#x2460;</span>
+      var1 = Launcher.ExtClassLoader.getExtClassLoader();
+  } <span class="hljs-keyword">catch</span> (IOException var10) {
+      <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> InternalError(<span class="hljs-string">&quot;Could not create extension class loader&quot;</span>, var10);
+  }
+
+  <span class="hljs-keyword">try</span> {
+    <span class="hljs-comment">// &#x6784;&#x9020;&#x5E94;&#x7528;&#x7C7B;&#x52A0;&#x8F7D;&#x5668;&#xFF0C;&#x6267;&#x884C; &#x2463;</span>
+      <span class="hljs-keyword">this</span>.loader = Launcher.AppClassLoader.getAppClassLoader(var1);
+  } <span class="hljs-keyword">catch</span> (IOException var9) {
+      <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> InternalError(<span class="hljs-string">&quot;Could not create application class loader&quot;</span>, var9);
+  }
+
+  Thread.currentThread().setContextClassLoader(<span class="hljs-keyword">this</span>.loader);
+  String var2 = System.getProperty(<span class="hljs-string">&quot;java.security.manager&quot;</span>);
+
+  <span class="hljs-comment">/* ExtClassLoader&#xFF0C;&#x5B9E;&#x4F8B;&#x5316;&#x65F6;&#xFF0C;&#x8BBE;&#x7F6E;&#x7236;&#x52A0;&#x8F7D;&#x5668;&#x4E3A;null */</span>
+  <span class="hljs-keyword">static</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ExtClassLoader</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">URLClassLoader</span> </span>{
+    <span class="hljs-comment">// &#x2460;</span>
+        <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> Launcher.<span class="hljs-function">ExtClassLoader <span class="hljs-title">getExtClassLoader</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> IOException </span>{
+      <span class="hljs-keyword">if</span> (instance == <span class="hljs-keyword">null</span>) {
+        Class var0 = Launcher.ExtClassLoader.class;
+        <span class="hljs-keyword">synchronized</span>(Launcher.ExtClassLoader.class) {
+          <span class="hljs-keyword">if</span> (instance == <span class="hljs-keyword">null</span>) {
+            <span class="hljs-comment">// &#x6267;&#x884C; &#x2461;</span>
+            instance = createExtClassLoader();
+          }
+        }
+      }
+      <span class="hljs-keyword">return</span> instance;
+    }
+
+    <span class="hljs-comment">// &#x2461;</span>
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> Launcher.<span class="hljs-function">ExtClassLoader <span class="hljs-title">createExtClassLoader</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> IOException </span>{
+      <span class="hljs-keyword">try</span> {
+        <span class="hljs-keyword">return</span> (Launcher.ExtClassLoader)AccessController.doPrivileged(<span class="hljs-keyword">new</span> PrivilegedExceptionAction&lt;Launcher.ExtClassLoader&gt;() {
+          <span class="hljs-keyword">public</span> Launcher.<span class="hljs-function">ExtClassLoader <span class="hljs-title">run</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> IOException </span>{
+            File[] var1 = Launcher.ExtClassLoader.getExtDirs();
+            <span class="hljs-keyword">int</span> var2 = var1.length;
+
+            <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> var3 = <span class="hljs-number">0</span>; var3 &lt; var2; ++var3) {
+                MetaIndex.registerDirectory(var1[var3]);
+            }
+
+            <span class="hljs-comment">// &#x6267;&#x884C; &#x2462;</span>
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Launcher.ExtClassLoader(var1);
+          }
+        });
+      } <span class="hljs-keyword">catch</span> (PrivilegedActionException var1) {
+          <span class="hljs-keyword">throw</span> (IOException)var1.getException();
+      }
+    }
+
+    <span class="hljs-comment">// &#x2462;</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">ExtClassLoader</span><span class="hljs-params">(File[] var1)</span> <span class="hljs-keyword">throws</span> IOException </span>{
+      <span class="hljs-comment">// &#x8C03;&#x7528;&#x7236;&#x7C7B;&#x6784;&#x9020;&#x65B9;&#x6CD5;</span>
+      <span class="hljs-comment">// &#x7236;&#x7C7B;&#x4E3A;URLClassLoader&#xFF0C;&#x4F5C;&#x7528;&#x662F;&#x6839;&#x636E;&#x8DEF;&#x5F84;&#x52A0;&#x8F7D;&#x7C7B;</span>
+      <span class="hljs-comment">// &#x7B2C;&#x4E8C;&#x4E2A;&#x53C2;&#x6570;&#x4E3A;null&#xFF0C;&#x5373;&#x5C06;&#x5176;&#x7236;&#x52A0;&#x8F7D;&#x5668;&#x8BBE;&#x7F6E;&#x4E3A;null</span>
+      <span class="hljs-keyword">super</span>(getExtURLs(var1), (ClassLoader)<span class="hljs-keyword">null</span>, Launcher.factory);
+      SharedSecrets.getJavaNetAccess().getURLClassPath(<span class="hljs-keyword">this</span>).initLookupCache(<span class="hljs-keyword">this</span>);
+    }
+  }
+
+  <span class="hljs-comment">/* AppClassLoader&#xFF0C;&#x5B9E;&#x4F8B;&#x5316;&#x65F6;&#xFF0C;&#x5C06;ExtClassLoader&#x5B9E;&#x4F8B;&#x8BBE;&#x7F6E;&#x4E3A;&#x7236;&#x52A0;&#x8F7D;&#x5668; */</span>
+  <span class="hljs-keyword">static</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">AppClassLoader</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">URLClassLoader</span> </span>{
+        <span class="hljs-comment">// &#x2463;</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> ClassLoader <span class="hljs-title">getAppClassLoader</span><span class="hljs-params">(<span class="hljs-keyword">final</span> ClassLoader var0)</span> <span class="hljs-keyword">throws</span> IOException </span>{
+      <span class="hljs-keyword">final</span> String var1 = System.getProperty(<span class="hljs-string">&quot;java.class.path&quot;</span>);
+      <span class="hljs-keyword">final</span> File[] var2 = var1 == <span class="hljs-keyword">null</span> ? <span class="hljs-keyword">new</span> File[<span class="hljs-number">0</span>] : Launcher.getClassPath(var1);
+      <span class="hljs-keyword">return</span> (ClassLoader)AccessController.doPrivileged(<span class="hljs-keyword">new</span> PrivilegedAction&lt;Launcher.AppClassLoader&gt;() {
+        <span class="hljs-keyword">public</span> Launcher.<span class="hljs-function">AppClassLoader <span class="hljs-title">run</span><span class="hljs-params">()</span> </span>{
+          URL[] var1x = var1 == <span class="hljs-keyword">null</span> ? <span class="hljs-keyword">new</span> URL[<span class="hljs-number">0</span>] : Launcher.pathToURLs(var2);
+          <span class="hljs-comment">// &#x6267;&#x884C; &#x2464;</span>
+          <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Launcher.AppClassLoader(var1x, var0);
+        }
+      });
+    }
+
+    <span class="hljs-comment">// &#x2464;</span>
+    AppClassLoader(URL[] var1, ClassLoader var2) {
+      <span class="hljs-comment">// &#x8C03;&#x7528;&#x7236;&#x7C7B;&#x6784;&#x9020;&#x65B9;&#x6CD5;</span>
+      <span class="hljs-comment">// &#x7236;&#x7C7B;&#x4E3A;URLClassLoader&#xFF0C;&#x4F5C;&#x7528;&#x662F;&#x6839;&#x636E;&#x8DEF;&#x5F84;&#x52A0;&#x8F7D;&#x7C7B;</span>
+      <span class="hljs-comment">// &#x7B2C;&#x4E8C;&#x4E2A;&#x53C2;&#x6570;&#x4E3A;ExtClassLoader&#xFF0C;&#x5373;&#x5C06;&#x5176;&#x7236;&#x52A0;&#x8F7D;&#x5668;&#x8BBE;&#x7F6E;&#x4E3A;&#x6269;&#x5C55;&#x7C7B;&#x52A0;&#x8F7D;&#x5668;</span>
+      <span class="hljs-keyword">super</span>(var1, var2, Launcher.factory);
+      <span class="hljs-keyword">this</span>.ucp.initLookupCache(<span class="hljs-keyword">this</span>);
+    }
+  }
+}
+</code></pre>
+<h3 id="112-&#x53CC;&#x4EB2;&#x59D4;&#x6D3E;&#x673A;&#x5236;"><a name="112-&#x53CC;&#x4EB2;&#x59D4;&#x6D3E;&#x673A;&#x5236;" class="anchor-navigation-ex-anchor" href="#112-&#x53CC;&#x4EB2;&#x59D4;&#x6D3E;&#x673A;&#x5236;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="112-&#x53CC;&#x4EB2;&#x59D4;&#x6D3E;&#x673A;&#x5236;" class="plugin-anchor" href="#112-&#x53CC;&#x4EB2;&#x59D4;&#x6D3E;&#x673A;&#x5236;"><i class="fa fa-link" aria-hidden="true"></i></a>1.1.2 &#x53CC;&#x4EB2;&#x59D4;&#x6D3E;&#x673A;&#x5236;</h3>
+<p><img src="../source/images/ch-01/parents-delegate-process.png" alt="parents-delegate-process"></p>
+<p>&#x7C7B;&#x52A0;&#x8F7D;&#x4F7F;&#x7528;&#x7684;&#x662F;<strong>&#x53CC;&#x4EB2;&#x59D4;&#x6D3E;&#x673A;&#x5236;</strong>&#x3002;&#x52A0;&#x8F7D;&#x67D0;&#x4E2A;&#x7C7B;&#x65F6;&#xFF0C;&#x4F1A;&#x5148;&#x59D4;&#x6258;&#x7236;&#x52A0;&#x8F7D;&#x5668;&#x5BFB;&#x627E;&#x76EE;&#x6807;&#x7C7B;&#xFF0C;&#x627E;&#x4E0D;&#x5230;&#x65F6;&#xFF0C;&#x59D4;&#x6258;&#x4E0A;&#x5C42;&#x7236;&#x52A0;&#x8F7D;&#x5668;&#x52A0;&#x8F7D;&#xFF0C;&#x5982;&#x679C;&#x6240;&#x6709;&#x7236;&#x52A0;&#x8F7D;&#x5668;&#x5728;&#x81EA;&#x5DF1;&#x7684;&#x52A0;&#x8F7D;&#x7C7B;&#x8DEF;&#x5F84;&#x4E0B;&#x90FD;&#x627E;&#x4E0D;&#x5230;&#x76EE;&#x6807;&#x7C7B;&#xFF0C;&#x5219;&#x5728;&#x81EA;&#x5DF1;&#x7684; &#x7C7B;&#x52A0;&#x8F7D;&#x8DEF;&#x5F84;&#x4E2D;&#x67E5;&#x627E;&#x5E76;&#x8F7D;&#x5165;&#x76EE;&#x6807;&#x7C7B;&#x3002;</p>
+<p>&#x6BD4;&#x5982;&#x6211;&#x4EEC;&#x7684; <code>Math</code> &#x7C7B;&#xFF0C;&#x57FA;&#x672C;&#x6D41;&#x7A0B;&#x5982;&#x4E0B;&#xFF1A;</p>
+<ol>
+<li>&#x5148;&#x627E;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x7C7B;&#x52A0;&#x8F7D;&#x5668;&#x52A0;&#x8F7D;&#xFF1B;</li>
+<li>&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x7C7B;&#x52A0;&#x8F7D;&#x5668;&#x4F1A;&#x5148;&#x59D4;&#x6258;&#x6269;&#x5C55;&#x7C7B;&#x52A0;&#x8F7D;&#x5668;&#x52A0;&#x8F7D;&#xFF1B;</li>
+<li>&#x6269;&#x5C55;&#x7C7B;&#x52A0;&#x8F7D;&#x5668;&#x518D;&#x59D4;&#x6258;&#x5F15;&#x5BFC;&#x7C7B;&#x52A0;&#x8F7D;&#x5668;&#xFF0C;</li>
+<li>&#x9876;&#x5C42;&#x5F15;&#x5BFC;&#x7C7B;&#x52A0;&#x8F7D;&#x5668;&#x5728;&#x81EA;&#x5DF1;&#x7684;&#x7C7B;&#x52A0;&#x8F7D;&#x8DEF;&#x5F84;&#x91CC;&#x6CA1;&#x627E;&#x5230; <code>Math</code> &#x7C7B;,&#x5411;&#x4E0B;&#x9000;&#x56DE;  <code>Math</code> &#x7C7B;&#x7684;&#x52A0;&#x8F7D;&#x8BF7;&#x6C42;&#x7ED9;&#x6269;&#x5C55;&#x7C7B;&#x52A0;&#x8F7D;&#x5668;&#xFF1B;</li>
+<li>&#x6269;&#x5C55;&#x7C7B;&#x52A0;&#x8F7D;&#x5668;&#x5728;&#x81EA;&#x5DF1;&#x7684;&#x7C7B;&#x52A0;&#x8F7D;&#x8DEF;&#x5F84;&#x91CC;&#x6CA1;&#x627E;&#x5230; <code>Math</code> &#x7C7B;&#xFF0C;&#x5411;&#x4E0B;&#x9000;&#x56DE; <code>Math</code> &#x7C7B;&#x7684;&#x52A0;&#x8F7D;&#x8BF7;&#x6C42;&#x7ED9;&#x5E94;&#x7528;&#x7C7B;&#x52A0;&#x8F7D;&#x5668;&#xFF1B;</li>
+<li>&#x5E94;&#x7528;&#x7C7B;&#x52A0;&#x8F7D;&#x5668;&#x5728;&#x81EA;&#x5DF1;&#x7684;&#x7C7B;&#x52A0;&#x8F7D;&#x8DEF;&#x5F84;&#x91CC;&#x627E; <code>Math</code> &#x7C7B;&#xFF0C;&#x627E;&#x5230;&#x4E86;&#x5C31;&#x81EA;&#x5DF1;&#x8FDB;&#x884C;&#x52A0;&#x8F7D;&#x3002;</li>
+</ol>
+<p>&#x53CC;&#x4EB2;&#x59D4;&#x6D3E;&#x673A;&#x5236;&#x8BF4;&#x7B80;&#x5355;&#x70B9;&#x5C31;&#x662F;&#xFF0C;&#x5148;&#x627E;&#x7236;&#x4EB2;&#x52A0;&#x8F7D;&#xFF0C;&#x4E0D;&#x884C;&#x518D;&#x7531;&#x513F;&#x5B50;&#x81EA;&#x5DF1;&#x52A0;&#x8F7D;&#x3002;</p>
+<p>&#x5E94;&#x7528;&#x7C7B;&#x52A0;&#x8F7D;&#x5668; <code>AppClassLoader</code> &#x52A0;&#x8F7D;&#x7C7B;&#x7684;&#x53CC;&#x4EB2;&#x59D4;&#x6D3E;&#x673A;&#x5236;&#x6E90;&#x7801;&#xFF0C;<code>AppClassLoader</code> &#x7684; <code>loadClass()</code> &#x65B9;&#x6CD5;&#x6700;&#x7EC8;&#x4F1A;&#x8C03;&#x7528;&#x5176;&#x7236;&#x7C7B; <code>ClassLoader</code> &#x7684; <code>loadClass()</code> &#x65B9;&#x6CD5;&#xFF0C;&#x8BE5;&#x65B9;&#x6CD5;&#x7684;&#x5927;&#x4F53;&#x903B;&#x8F91;&#x5982;&#x4E0B;&#xFF1A;</p>
+<ol>
+<li>&#x9996;&#x5148;&#x68C0;&#x67E5;&#x6307;&#x5B9A;&#x540D;&#x79F0;&#x7684;&#x7C7B;&#x662F;&#x5426;&#x5DF2;&#x7ECF;&#x52A0;&#x8F7D;&#x8FC7;&#xFF0C;&#x5982;&#x679C;&#x52A0;&#x8F7D;&#x8FC7;&#x4E86;&#xFF0C;&#x5C31;&#x4E0D;&#x9700;&#x8981;&#x518D;&#x52A0;&#x8F7D;&#xFF0C;&#x76F4;&#x63A5;&#x8FD4;&#x56DE;&#xFF1B;</li>
+<li>&#x5982;&#x679C;&#x6B64;&#x7C7B;&#x6CA1;&#x6709;&#x52A0;&#x8F7D;&#x8FC7;&#xFF0C;&#x518D;&#x5224;&#x65AD;&#x4E00;&#x4E0B;&#x662F;&#x5426;&#x6709;&#x7236;&#x52A0;&#x8F7D;&#x5668;&#xFF1B;&#x5982;&#x679C;&#x6709;&#x7236;&#x52A0;&#x8F7D;&#x5668;&#xFF0C;&#x5219;&#x7531;&#x7236;&#x52A0;&#x8F7D;&#x5668;&#x52A0;&#x8F7D;&#xFF08;&#x5373;&#x8C03;&#x7528; <code>parent.loadClass(name, false)</code> &#xFF0C;&#x6216;&#x8005;&#x662F;&#x8C03;&#x7528; <code>bootstrap</code> &#x7C7B;&#x52A0;&#x8F7D;&#x5668;&#x6765;&#x52A0;&#x8F7D;&#xFF1B;</li>
+<li>&#x5982;&#x679C;&#x7236;&#x52A0;&#x8F7D;&#x5668;&#x53CA; <code>bootstrap</code> &#x7C7B;&#x52A0;&#x8F7D;&#x5668;&#x90FD;&#x6CA1;&#x6709;&#x627E;&#x5230;&#x6307;&#x5B9A;&#x7684;&#x7C7B;&#xFF0C;&#x90A3;&#x4E48;&#x8C03;&#x7528;&#x5F53;&#x524D;&#x7C7B;&#x52A0;&#x8F7D;&#x5668;&#x7684; <code>findClass()</code> &#x65B9;&#x6CD5;&#x6765;&#x5B8C;&#x6210;&#x7C7B;&#x52A0;&#x8F7D;&#x3002;</li>
+</ol>
+<p>&#x4EE5;&#x4E0B;&#x4E3A;&#x53CC;&#x4EB2;&#x59D4;&#x6D3E;&#x673A;&#x5236;&#x7684;&#x4EE3;&#x7801;&#x793A;&#x4F8B;&#xFF1A;</p>
+<pre><code class="lang-java"><span class="hljs-keyword">package</span> java.lang;
+
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ClassLoader</span> </span>{
+
+  <span class="hljs-comment">// &#x2460;</span>
+  <span class="hljs-keyword">protected</span> Class&lt;?&gt; loadClass(String name, <span class="hljs-keyword">boolean</span> resolve) <span class="hljs-keyword">throws</span> ClassNotFoundException {
+
+    <span class="hljs-keyword">synchronized</span> (getClassLoadingLock(name)) {
+      <span class="hljs-comment">// &#x5728;&#x5F53;&#x524D;&#x52A0;&#x8F7D;&#x5668;&#x4E2D;&#x68C0;&#x67E5;&#x662F;&#x5426;&#x5DF2;&#x52A0;&#x8F7D;&#x8BE5;&#x7C7B;</span>
+      Class&lt;?&gt; c = findLoadedClass(name);
+      <span class="hljs-keyword">if</span> (c == <span class="hljs-keyword">null</span>) {
+        <span class="hljs-keyword">long</span> t0 = System.nanoTime();
+        <span class="hljs-keyword">try</span> {
+          <span class="hljs-keyword">if</span> (parent != <span class="hljs-keyword">null</span>) {
+            <span class="hljs-comment">// &#x5F53;&#x524D;&#x52A0;&#x8F7D;&#x5668;&#x7684;&#x7236;&#x52A0;&#x8F7D;&#x5668;&#x4E0D;&#x4E3A;&#x7A7A;&#xFF0C;&#x5219;&#x59D4;&#x6258;&#x7236;&#x52A0;&#x8F7D;&#x5668;&#x52A0;&#x8F7D;&#x8BE5;&#x7C7B;</span>
+            <span class="hljs-comment">// &#x7236;&#x52A0;&#x8F7D;&#x5668;&#x4E5F;&#x662F;ClassLoader&#xFF0C;&#x8DF3;&#x8F6C;&#x5230;&#x7236;&#x7C7B;&#x6267;&#x884C; &#x2460;</span>
+            c = parent.loadClass(name, <span class="hljs-keyword">false</span>);
+          } <span class="hljs-keyword">else</span> {
+            <span class="hljs-comment">// &#x7236;&#x52A0;&#x8F7D;&#x5668;&#x4E3A;&#x7A7A;&#xFF0C;&#x5219;&#x59D4;&#x6258;&#x5F15;&#x5BFC;&#x7C7B;&#x52A0;&#x8F7D;&#x5668;&#x52A0;&#x8F7D;&#x8BE5;&#x7C7B;</span>
+            c = findBootstrapClassOrNull(name);
+          }
+        } <span class="hljs-keyword">catch</span> (ClassNotFoundException e) {
+          <span class="hljs-comment">// ClassNotFoundException thrown if class not found</span>
+          <span class="hljs-comment">// from the non-null parent class loader</span>
+        }
+
+        <span class="hljs-keyword">if</span> (c == <span class="hljs-keyword">null</span>) {
+          <span class="hljs-comment">// If still not found, then invoke findClass in order</span>
+          <span class="hljs-comment">// to find the class.</span>
+          <span class="hljs-keyword">long</span> t1 = System.nanoTime();
+
+          <span class="hljs-comment">// &#x5728;&#x5F53;&#x524D;&#x52A0;&#x8F7D;&#x5668;&#x7684;&#x7C7B;&#x8DEF;&#x5F84;&#x91CC;&#x67E5;&#x627E;&#x5E76;&#x52A0;&#x8F7D;&#x8BE5;&#x7C7B;&#xFF0C;&#x6267;&#x884C; &#x2461;&#xFF0C;</span>
+          <span class="hljs-comment">// &#x5728;&#x6B64;&#x5904;findClass&#x662F;protected&#x7C7B;&#x578B;&#xFF0C;&#x5B9E;&#x9645;&#x6267;&#x884C;&#x7684;&#x662F;URLClassLoader.findClass()</span>
+          c = findClass(name);
+
+          <span class="hljs-comment">// this is the defining class loader; record the stats</span>
+          sun.misc.PerfCounter.getParentDelegationTime().addTime(t1 - t0);
+          sun.misc.PerfCounter.getFindClassTime().addElapsedTimeFrom(t1);
+          sun.misc.PerfCounter.getFindClasses().increment();
+        }
+      }
+      <span class="hljs-keyword">if</span> (resolve) {
+        resolveClass(c);
+      }
+      <span class="hljs-keyword">return</span> c;
+    }
+
+    <span class="hljs-comment">// &#x2461;</span>
+    <span class="hljs-keyword">protected</span> Class&lt;?&gt; findClass(String name) <span class="hljs-keyword">throws</span> ClassNotFoundException {
+      <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> ClassNotFoundException(name);
+    }
+  }
+}
+</code></pre>
+<h5 id="&#x53CC;&#x4EB2;&#x59D4;&#x6D3E;&#x673A;&#x5236;&#x7684;&#x4F5C;&#x7528;"><a name="&#x53CC;&#x4EB2;&#x59D4;&#x6D3E;&#x673A;&#x5236;&#x7684;&#x4F5C;&#x7528;" class="anchor-navigation-ex-anchor" href="#&#x53CC;&#x4EB2;&#x59D4;&#x6D3E;&#x673A;&#x5236;&#x7684;&#x4F5C;&#x7528;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x53CC;&#x4EB2;&#x59D4;&#x6D3E;&#x673A;&#x5236;&#x7684;&#x4F5C;&#x7528;" class="plugin-anchor" href="#&#x53CC;&#x4EB2;&#x59D4;&#x6D3E;&#x673A;&#x5236;&#x7684;&#x4F5C;&#x7528;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x53CC;&#x4EB2;&#x59D4;&#x6D3E;&#x673A;&#x5236;&#x7684;&#x4F5C;&#x7528;</h5>
+<ul>
+<li>&#x6C99;&#x7BB1;&#x5B89;&#x5168;&#x673A;&#x5236;&#xFF1A;&#x81EA;&#x5DF1;&#x5199;&#x7684; <code>java.lang.String.class</code> &#x7C7B;&#x4E0D;&#x4F1A;&#x88AB;&#x52A0;&#x8F7D;&#xFF0C;&#x8FD9;&#x6837;&#x4FBF;&#x53EF;&#x4EE5;&#x9632;&#x6B62;&#x6838;&#x5FC3;API&#x5E93;&#x88AB;&#x968F;&#x610F;&#x7BE1;&#x6539;&#xFF1B;</li>
+<li>&#x907F;&#x514D;&#x7C7B;&#x7684;&#x91CD;&#x590D;&#x52A0;&#x8F7D;&#xFF1A;&#x5F53;&#x7236;&#x4EB2;&#x5DF2;&#x7ECF;&#x52A0;&#x8F7D;&#x4E86;&#x8BE5;&#x7C7B;&#x65F6;&#xFF0C;&#x5C31;&#x6CA1;&#x6709;&#x5FC5;&#x8981;&#x5B50;&#x52A0;&#x8F7D;&#x5668;&#x518D;&#x52A0;&#x8F7D;&#x4E00;&#x6B21;&#xFF0C;&#x4FDD;&#x8BC1;&#x88AB;&#x52A0;&#x8F7D;&#x7C7B;&#x7684;&#x552F;&#x4E00;&#x6027;&#x3002;</li>
+</ul>
+<h5 id="&#x5168;&#x76D8;&#x8D1F;&#x8D23;&#x59D4;&#x6258;&#x673A;&#x5236;"><a name="&#x5168;&#x76D8;&#x8D1F;&#x8D23;&#x59D4;&#x6258;&#x673A;&#x5236;" class="anchor-navigation-ex-anchor" href="#&#x5168;&#x76D8;&#x8D1F;&#x8D23;&#x59D4;&#x6258;&#x673A;&#x5236;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x5168;&#x76D8;&#x8D1F;&#x8D23;&#x59D4;&#x6258;&#x673A;&#x5236;" class="plugin-anchor" href="#&#x5168;&#x76D8;&#x8D1F;&#x8D23;&#x59D4;&#x6258;&#x673A;&#x5236;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x5168;&#x76D8;&#x8D1F;&#x8D23;&#x59D4;&#x6258;&#x673A;&#x5236;</h5>
+<p><strong>&#x5168;&#x76D8;&#x8D1F;&#x8D23;</strong>&#x662F;&#x6307;&#x5F53;&#x4E00;&#x4E2A;ClassLoader&#x88C5;&#x8F7D;&#x4E00;&#x4E2A;&#x7C7B;&#x65F6;&#xFF0C;&#x9664;&#x975E;&#x663E;&#x793A;&#x7684;&#x4F7F;&#x7528;&#x53E6;&#x5916;&#x4E00;&#x4E2A;ClassLoader&#xFF0C;&#x8BE5;&#x7C7B;&#x6240;&#x4F9D;&#x8D56;&#x53CA;&#x5F15;&#x7528;&#x7684;&#x7C7B;&#x4E5F;&#x7531;&#x8FD9;&#x4E2A;ClassLoader&#x8F7D;&#x5165;&#xFF0C;&#x800C;&#x4E0D;&#x4F1A;&#x5B9E;&#x4F8B;&#x5316;&#x53E6;&#x4E00;&#x4E2A;ClassLoader&#x3002;&#x4F8B;&#x5982;&#x672C;&#x7AE0;&#x8282;&#x7B2C;&#x4E00;&#x4E2A;&#x793A;&#x4F8B;&#x4E2D;&#x7684; <code>Math</code> &#x7C7B;&#x4E2D;&#x5F15;&#x7528;&#x4E86; <code>User</code> &#x7C7B;&#xFF0C;<code>User</code> &#x7C7B;&#x548C; <code>Math</code> &#x7C7B;&#x4F7F;&#x7528;&#x540C;&#x4E00;&#x4E2A;AppClassLoader&#x3002;&#x5F53;&#x7136;&#xFF0C;&#x52A0;&#x8F7D; <code>User</code> &#x7C7B;&#x65F6;&#xFF0C;&#x4E5F;&#x9700;&#x8981;&#x7531;AppClassLoader&#x901A;&#x8FC7;&#x53CC;&#x4EB2;&#x59D4;&#x6D3E;&#x673A;&#x5236;&#xFF0C;&#x6309;&#x7167;&#x5148;&#x5411;&#x4E0A;&#x59D4;&#x6258;&#xFF0C;&#x518D;&#x5411;&#x4E0B;&#x9010;&#x7EA7;&#x67E5;&#x627E;&#x540E;&#x8FDB;&#x884C;&#x52A0;&#x8F7D;&#x3002;</p>
+<h3 id="113-&#x81EA;&#x5B9A;&#x4E49;&#x7C7B;&#x52A0;&#x8F7D;&#x5668;"><a name="113-&#x81EA;&#x5B9A;&#x4E49;&#x7C7B;&#x52A0;&#x8F7D;&#x5668;" class="anchor-navigation-ex-anchor" href="#113-&#x81EA;&#x5B9A;&#x4E49;&#x7C7B;&#x52A0;&#x8F7D;&#x5668;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="113-&#x81EA;&#x5B9A;&#x4E49;&#x7C7B;&#x52A0;&#x8F7D;&#x5668;" class="plugin-anchor" href="#113-&#x81EA;&#x5B9A;&#x4E49;&#x7C7B;&#x52A0;&#x8F7D;&#x5668;"><i class="fa fa-link" aria-hidden="true"></i></a>1.1.3 &#x81EA;&#x5B9A;&#x4E49;&#x7C7B;&#x52A0;&#x8F7D;&#x5668;</h3>
+<p>&#x81EA;&#x5B9A;&#x4E49;&#x7C7B;&#x52A0;&#x8F7D;&#x5668;&#x53EA;&#x9700;&#x8981;&#x7EE7;&#x627F; <code>java.lang.ClassLoader</code> &#x7C7B;&#x3002;&#x8BE5;&#x7C7B;&#x6709;&#x4E24;&#x4E2A;&#x6838;&#x5FC3;&#x65B9;&#x6CD5;&#xFF0C;&#x4E00;&#x4E2A;&#x662F; <code>loadClass(String, boolean)</code>&#xFF0C;&#x5B9E;&#x73B0;&#x4E86;&#x53CC;&#x4EB2;&#x59D4;&#x6D3E;&#x673A;&#x5236;&#xFF0C;&#x53E6;&#x4E00;&#x4E2A;&#x65B9;&#x6CD5;&#x662F; <code>findClass</code>&#xFF0C;&#x9ED8;&#x8BA4;&#x5B9E;&#x73B0;&#x662F;&#x7A7A;&#x65B9;&#x6CD5;&#xFF0C;&#x6240;&#x4EE5;&#x6211;&#x4EEC;&#x81EA;&#x5B9A;&#x4E49;&#x7C7B;&#x52A0;&#x8F7D;&#x5668;&#x4E3B;&#x8981;&#x662F;&#x91CD;&#x5199; <code>findClass</code> &#x65B9;&#x6CD5;&#x3002;</p>
+<pre><code class="lang-java"><span class="hljs-keyword">package</span> com.tyrival.jvm.lession01;
+
+<span class="hljs-keyword">import</span> java.io.FileInputStream;
+<span class="hljs-keyword">import</span> java.lang.reflect.Method;
+
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyClassLoaderTest</span> </span>{
+
+  <span class="hljs-keyword">static</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyClassLoader</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">ClassLoader</span> </span>{
+    <span class="hljs-keyword">private</span> String classPath;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">MyClassLoader</span><span class="hljs-params">(String classPath)</span> </span>{
+      <span class="hljs-keyword">this</span>.classPath = classPath;
+    }
+
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">byte</span>[] loadByte(String name) <span class="hljs-keyword">throws</span> Exception {
+      name = name.replaceAll(<span class="hljs-string">&quot;\\.&quot;</span>, <span class="hljs-string">&quot;/&quot;</span>);
+      FileInputStream fis = <span class="hljs-keyword">new</span> FileInputStream(classPath + <span class="hljs-string">&quot;/&quot;</span> + name + <span class="hljs-string">&quot;.class&quot;</span>);
+      <span class="hljs-keyword">int</span> len = fis.available();
+      <span class="hljs-keyword">byte</span>[] data = <span class="hljs-keyword">new</span> <span class="hljs-keyword">byte</span>[len];
+      fis.read(data);
+      fis.close();
+      <span class="hljs-keyword">return</span> data;
+    }
+
+    <span class="hljs-keyword">protected</span> Class&lt;?&gt; findClass(String name) <span class="hljs-keyword">throws</span> ClassNotFoundException {
+      <span class="hljs-keyword">try</span> {
+        <span class="hljs-keyword">byte</span>[] data = loadByte(name);
+        <span class="hljs-comment">//defineClass&#x5C06;&#x4E00;&#x4E2A;&#x5B57;&#x8282;&#x6570;&#x7EC4;&#x8F6C;&#x4E3A;Class&#x5BF9;&#x8C61;&#xFF0C;&#x8FD9;&#x4E2A;&#x5B57;&#x8282;&#x6570;&#x7EC4;&#x662F;class&#x6587;&#x4EF6;&#x8BFB;&#x53D6;&#x540E;&#x6700;&#x7EC8;&#x7684;&#x5B57;&#x8282; &#x6570;&#x7EC4;&#x3002;</span>
+        <span class="hljs-keyword">return</span> defineClass(name, data, <span class="hljs-number">0</span>, data.length);
+      } <span class="hljs-keyword">catch</span> (Exception e) {
+        e.printStackTrace();
+        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> ClassNotFoundException();
+      }
+    }
+  }
+
+  <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String args[])</span> <span class="hljs-keyword">throws</span> Exception </span>{
+
+    <span class="hljs-comment">// &#x521D;&#x59CB;&#x5316;&#x81EA;&#x5B9A;&#x4E49;&#x7C7B;&#x52A0;&#x8F7D;&#x5668;&#xFF0C;&#x4F1A;&#x5148;&#x521D;&#x59CB;&#x5316;&#x7236;&#x7C7B;ClassLoader&#xFF0C;</span>
+    <span class="hljs-comment">// &#x81EA;&#x5B9A;&#x4E49;&#x7C7B;&#x52A0;&#x8F7D;&#x5668;&#x7684;&#x7236;&#x52A0;&#x8F7D;&#x5668;&#x8BBE;&#x7F6E;&#x4E3A;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x7C7B;&#x52A0;&#x8F7D;&#x5668;AppClassLoader</span>
+    MyClassLoader classLoader = <span class="hljs-keyword">new</span> MyClassLoader(<span class="hljs-string">&quot;/Users/tyrival/&quot;</span>);
+
+    <span class="hljs-comment">// &#x5C06;User&#x7C7B;&#x7684;&#x5B57;&#x8282;&#x7801;&#x6587;&#x4EF6;User.class&#x653E;&#x5165;/Users/tyrival/</span>
+    <span class="hljs-comment">// &#x7528;&#x81EA;&#x5B9A;&#x4E49;&#x7C7B;&#x52A0;&#x8F7D;&#x5668;&#x52A0;&#x8F7D;User&#x7C7B;</span>
+    Class clazz = classLoader.loadClass(<span class="hljs-string">&quot;com.tyrival.jvm.lession01.User&quot;</span>);
+
+    <span class="hljs-comment">// &#x5B9E;&#x4F8B;&#x5316;User&#x7C7B;</span>
+    Object obj = clazz.newInstance();
+
+    <span class="hljs-comment">// &#x83B7;&#x53D6;User.sout()&#x65B9;&#x6CD5;</span>
+    Method method = clazz.getDeclaredMethod(<span class="hljs-string">&quot;sout&quot;</span>, <span class="hljs-keyword">null</span>);
+
+    <span class="hljs-comment">// &#x6267;&#x884C;&#x65B9;&#x6CD5;</span>
+    method.invoke(obj, <span class="hljs-keyword">null</span>);
+
+    <span class="hljs-comment">// &#x6253;&#x5370;&#x52A0;&#x8F7D;User&#x7C7B;&#x7684;&#x52A0;&#x8F7D;&#x5668;&#x540D;&#xFF0C;&#x6B64;&#x5904;&#x6253;&#x5370;&#x51FA;&#x7684;&#x662F;AppClassLoader&#xFF0C;&#x800C;&#x4E0D;&#x662F;MyClassLoader&#xFF0C;</span>
+    <span class="hljs-comment">// &#x56E0;&#x4E3A;&#x5728;&#x5DE5;&#x7A0B;&#x4E2D;&#x5B58;&#x5728;&#x4E00;&#x4E2A;User&#x7C7B;&#xFF0C;&#x6240;&#x4EE5;&#x5F53;&#x5411;&#x4E0A;&#x59D4;&#x6258;&#x5230;AppClassLoader&#x65F6;&#xFF0C;</span>
+    <span class="hljs-comment">// AppClassLoader&#x5728;&#x5176;classpath&#x4E0B;&#x53EF;&#x4EE5;&#x627E;&#x5230;User&#x7C7B;&#xFF0C;&#x6B64;&#x65F6;&#x52A0;&#x8F7D;&#x7684;User&#x7C7B;&#x5B9E;&#x9645;&#x4E0A;&#x4E3A;&#x5DE5;&#x7A0B;&#x4E2D;&#x7684;User&#x7C7B;&#xFF0C;</span>
+    <span class="hljs-comment">// &#x800C;&#x4E0D;&#x662F;/Users/tyrival/User.class</span>
+    System.out.println(clazz.getClassLoader().getClass().getName());
+
+    <span class="hljs-comment">// &#x5F53;&#x6211;&#x4EEC;&#x628A;User&#x7C7B;&#x590D;&#x5236;&#x4E00;&#x4EFD;&#x4E3A;User1&#xFF0C;&#x5C06;User1&#x7F16;&#x8BD1;&#x4E3A;User1.class&#xFF0C;&#x7136;&#x540E;&#x653E;&#x5230;/Users/tyrival/&#x4E0B;</span>
+    <span class="hljs-comment">// &#x5E76;&#x5C06;&#x5DE5;&#x7A0B;&#x4E2D;&#x7684;User1&#x7C7B;&#x5220;&#x9664;&#xFF0C;&#x7136;&#x540E;&#x6267;&#x884C;&#x5982;&#x4E0B;&#x4EE3;&#x7801;&#xFF0C;&#x6253;&#x5370;&#x51FA;&#x7684;&#x52A0;&#x8F7D;&#x5668;&#x4E3A;MyClassLoader</span>
+    MyClassLoader classLoader = <span class="hljs-keyword">new</span> MyClassLoader(<span class="hljs-string">&quot;/Users/tyrival/&quot;</span>);
+    Class clazz = classLoader.loadClass(<span class="hljs-string">&quot;com.tyrival.jvm.lession01.User1&quot;</span>);
+    Object obj = clazz.newInstance();
+    Method method = clazz.getDeclaredMethod(<span class="hljs-string">&quot;sout&quot;</span>, <span class="hljs-keyword">null</span>);
+    method.invoke(obj, <span class="hljs-keyword">null</span>);
+    System.out.println(clazz.getClassLoader().getClass().getName());
+  }
+}
+
+&#x8FD0;&#x884C;&#x7ED3;&#x679C;&#xFF1A;
+=======&#x81EA;&#x5DF1;&#x7684;&#x52A0;&#x8F7D;&#x5668;&#x52A0;&#x8F7D;&#x7C7B;&#x8C03;&#x7528;&#x65B9;&#x6CD5;=======
+sun.misc.Launcher$AppClassLoader
+
+=======&#x81EA;&#x5DF1;&#x7684;&#x52A0;&#x8F7D;&#x5668;&#x52A0;&#x8F7D;&#x7C7B;&#x8C03;&#x7528;&#x65B9;&#x6CD5;=======
+com.tyrival.jvm.lession01.MyClassLoader$MyClassLoader
+</code></pre>
+<h3 id="114-&#x6253;&#x7834;&#x53CC;&#x4EB2;&#x59D4;&#x6D3E;&#x673A;&#x5236;"><a name="114-&#x6253;&#x7834;&#x53CC;&#x4EB2;&#x59D4;&#x6D3E;&#x673A;&#x5236;" class="anchor-navigation-ex-anchor" href="#114-&#x6253;&#x7834;&#x53CC;&#x4EB2;&#x59D4;&#x6D3E;&#x673A;&#x5236;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="114-&#x6253;&#x7834;&#x53CC;&#x4EB2;&#x59D4;&#x6D3E;&#x673A;&#x5236;" class="plugin-anchor" href="#114-&#x6253;&#x7834;&#x53CC;&#x4EB2;&#x59D4;&#x6D3E;&#x673A;&#x5236;"><i class="fa fa-link" aria-hidden="true"></i></a>1.1.4 &#x6253;&#x7834;&#x53CC;&#x4EB2;&#x59D4;&#x6D3E;&#x673A;&#x5236;</h3>
+<h4 id="&#x6C99;&#x7BB1;&#x5B89;&#x5168;&#x673A;&#x5236;"><a name="&#x6C99;&#x7BB1;&#x5B89;&#x5168;&#x673A;&#x5236;" class="anchor-navigation-ex-anchor" href="#&#x6C99;&#x7BB1;&#x5B89;&#x5168;&#x673A;&#x5236;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x6C99;&#x7BB1;&#x5B89;&#x5168;&#x673A;&#x5236;" class="plugin-anchor" href="#&#x6C99;&#x7BB1;&#x5B89;&#x5168;&#x673A;&#x5236;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x6C99;&#x7BB1;&#x5B89;&#x5168;&#x673A;&#x5236;</h4>
+<p>&#x9996;&#x5148;&#x4F7F;&#x7528;&#x81EA;&#x5B9A;&#x4E49;&#x7C7B;&#x52A0;&#x8F7D;&#x5668;&#x52A0;&#x8F7D;&#x81EA;&#x5B9A;&#x4E49;&#x7684; <code>java.lang.String.class</code></p>
+<pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyClassLoaderTest</span> </span>{
+    <span class="hljs-keyword">static</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyClassLoader</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">ClassLoader</span> </span>{
+        <span class="hljs-keyword">private</span> String classPath;
+
+        <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">MyClassLoader</span><span class="hljs-params">(String classPath)</span> </span>{
+            <span class="hljs-keyword">this</span>.classPath = classPath;
+        }
+
+        <span class="hljs-keyword">private</span> <span class="hljs-keyword">byte</span>[] loadByte(String name) <span class="hljs-keyword">throws</span> Exception {
+            name = name.replaceAll(<span class="hljs-string">&quot;\\.&quot;</span>, <span class="hljs-string">&quot;/&quot;</span>);
+            FileInputStream fis = <span class="hljs-keyword">new</span> FileInputStream(classPath + <span class="hljs-string">&quot;/&quot;</span> + name
+                    + <span class="hljs-string">&quot;.class&quot;</span>);
+            <span class="hljs-keyword">int</span> len = fis.available();
+            <span class="hljs-keyword">byte</span>[] data = <span class="hljs-keyword">new</span> <span class="hljs-keyword">byte</span>[len];
+            fis.read(data);
+            fis.close();
+            <span class="hljs-keyword">return</span> data;
+
+        }
+
+        <span class="hljs-keyword">protected</span> Class&lt;?&gt; findClass(String name) <span class="hljs-keyword">throws</span> ClassNotFoundException {
+            <span class="hljs-keyword">try</span> {
+                <span class="hljs-keyword">byte</span>[] data = loadByte(name);
+                <span class="hljs-keyword">return</span> defineClass(name, data, <span class="hljs-number">0</span>, data.length);
+            } <span class="hljs-keyword">catch</span> (Exception e) {
+                e.printStackTrace();
+                <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> ClassNotFoundException();
+            }
+        }
+
+        <span class="hljs-comment">/**
+         * &#x91CD;&#x5199;&#x7C7B;&#x52A0;&#x8F7D;&#x65B9;&#x6CD5;&#xFF0C;&#x5B9E;&#x73B0;&#x81EA;&#x5DF1;&#x7684;&#x52A0;&#x8F7D;&#x903B;&#x8F91;&#xFF0C;&#x4E0D;&#x59D4;&#x6D3E;&#x7ED9;&#x53CC;&#x4EB2;&#x52A0;&#x8F7D;
+         * <span class="hljs-doctag">@param</span> name
+         * <span class="hljs-doctag">@param</span> resolve
+         * <span class="hljs-doctag">@return</span>
+         * <span class="hljs-doctag">@throws</span> ClassNotFoundException
+         */</span>
+        <span class="hljs-keyword">protected</span> Class&lt;?&gt; loadClass(String name, <span class="hljs-keyword">boolean</span> resolve)
+                <span class="hljs-keyword">throws</span> ClassNotFoundException {
+            <span class="hljs-keyword">synchronized</span> (getClassLoadingLock(name)) {
+                <span class="hljs-comment">// First, check if the class has already been loaded</span>
+                Class&lt;?&gt; c = findLoadedClass(name);
+
+                <span class="hljs-keyword">if</span> (c == <span class="hljs-keyword">null</span>) {
+                    <span class="hljs-comment">// If still not found, then invoke findClass in order</span>
+                    <span class="hljs-comment">// to find the class.</span>
+                    <span class="hljs-keyword">long</span> t1 = System.nanoTime();
+                    c = findClass(name);
+
+                    <span class="hljs-comment">// this is the defining class loader; record the stats</span>
+                    sun.misc.PerfCounter.getFindClassTime().addElapsedTimeFrom(t1);
+                    sun.misc.PerfCounter.getFindClasses().increment();
+                }
+                <span class="hljs-keyword">if</span> (resolve) {
+                    resolveClass(c);
+                }
+                <span class="hljs-keyword">return</span> c;
+            }
+        }
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String args[])</span> <span class="hljs-keyword">throws</span> Exception </span>{
+        MyClassLoader classLoader = <span class="hljs-keyword">new</span> MyClassLoader(<span class="hljs-string">&quot;D:/test&quot;</span>);
+        <span class="hljs-comment">//&#x5C1D;&#x8BD5;&#x7528;&#x81EA;&#x5DF1;&#x6539;&#x5199;&#x7C7B;&#x52A0;&#x8F7D;&#x673A;&#x5236;&#x53BB;&#x52A0;&#x8F7D;&#x81EA;&#x5DF1;&#x5199;&#x7684;java.lang.String.class</span>
+        Class clazz = classLoader.loadClass(<span class="hljs-string">&quot;java.lang.String&quot;</span>);
+        Object obj = clazz.newInstance();
+        Method method= clazz.getDeclaredMethod(<span class="hljs-string">&quot;sout&quot;</span>, <span class="hljs-keyword">null</span>);
+        method.invoke(obj, <span class="hljs-keyword">null</span>);
+        System.out.println(clazz.getClassLoader().getClass().getName());
+    }
+}
+
+&#x8FD0;&#x884C;&#x7ED3;&#x679C;&#xFF1A;
+java.lang.SecurityException: Prohibited <span class="hljs-keyword">package</span> name: java.lang
+    at java.lang.ClassLoader.preDefineClass(ClassLoader.java:<span class="hljs-number">659</span>)
+    at java.lang.ClassLoader.defineClass(ClassLoader.java:<span class="hljs-number">758</span>)
+</code></pre>
+<p>&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x6700;&#x540E;&#x62A5;&#x9519;&#x7981;&#x6B62;&#x4F7F;&#x7528; <code>java.lang</code> &#x5305;&#x540D;&#x3002;</p>
+<h4 id="tomcat&#x6253;&#x7834;&#x53CC;&#x4EB2;&#x59D4;&#x6D3E;&#x673A;&#x5236;"><a name="tomcat&#x6253;&#x7834;&#x53CC;&#x4EB2;&#x59D4;&#x6D3E;&#x673A;&#x5236;" class="anchor-navigation-ex-anchor" href="#tomcat&#x6253;&#x7834;&#x53CC;&#x4EB2;&#x59D4;&#x6D3E;&#x673A;&#x5236;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="tomcat&#x6253;&#x7834;&#x53CC;&#x4EB2;&#x59D4;&#x6D3E;&#x673A;&#x5236;" class="plugin-anchor" href="#tomcat&#x6253;&#x7834;&#x53CC;&#x4EB2;&#x59D4;&#x6D3E;&#x673A;&#x5236;"><i class="fa fa-link" aria-hidden="true"></i></a>Tomcat&#x6253;&#x7834;&#x53CC;&#x4EB2;&#x59D4;&#x6D3E;&#x673A;&#x5236;</h4>
+<p>&#x4EE5;Tomcat&#x7C7B;&#x52A0;&#x8F7D;&#x4E3A;&#x4F8B;&#xFF0C;Tomcat &#x5982;&#x679C;&#x4F7F;&#x7528;&#x9ED8;&#x8BA4;&#x7684;&#x53CC;&#x4EB2;&#x59D4;&#x6D3E;&#x7C7B;&#x52A0;&#x8F7D;&#x673A;&#x5236;&#x884C;&#x4E0D;&#x884C;&#xFF1F;</p>
+<p>Tomcat&#x662F;&#x4E2A;web&#x5BB9;&#x5668;&#xFF0C; &#x90A3;&#x4E48;&#x5B83;&#x8981;&#x89E3;&#x51B3;&#x4EC0;&#x4E48;&#x95EE;&#x9898;&#xFF1A; </p>
+<ol>
+<li><p>&#x4E00;&#x4E2A;web&#x5BB9;&#x5668;&#x53EF;&#x80FD;&#x9700;&#x8981;&#x90E8;&#x7F72;&#x4E24;&#x4E2A;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#xFF0C;&#x4E0D;&#x540C;&#x7684;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x53EF;&#x80FD;&#x4F1A;<strong>&#x4F9D;&#x8D56;&#x540C;&#x4E00;&#x4E2A;&#x7B2C;&#x4E09;&#x65B9;&#x7C7B;&#x5E93;&#x7684;&#x4E0D;&#x540C;&#x7248;&#x672C;</strong>&#xFF0C;&#x4E0D;&#x80FD;&#x8981;&#x6C42;&#x540C;&#x4E00;&#x4E2A;&#x7C7B;&#x5E93;&#x5728;&#x540C;&#x4E00;&#x4E2A;&#x670D;&#x52A1;&#x5668;&#x53EA;&#x6709;&#x4E00;&#x4EFD;&#xFF0C;&#x56E0;&#x6B64;&#x8981;&#x4FDD;&#x8BC1;&#x6BCF;&#x4E2A;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x7684;&#x7C7B;&#x5E93;&#x90FD;&#x662F;&#x72EC;&#x7ACB;&#x7684;&#xFF0C;&#x4FDD;&#x8BC1;&#x76F8;&#x4E92;&#x9694;&#x79BB;&#x3002; </p>
+</li>
+<li><p>&#x90E8;&#x7F72;&#x5728;&#x540C;&#x4E00;&#x4E2A;web&#x5BB9;&#x5668;&#x4E2D;<strong>&#x76F8;&#x540C;&#x7684;&#x7C7B;&#x5E93;&#x76F8;&#x540C;&#x7684;&#x7248;&#x672C;&#x53EF;&#x4EE5;&#x5171;&#x4EAB;</strong>&#x3002;&#x5426;&#x5219;&#xFF0C;&#x5982;&#x679C;&#x670D;&#x52A1;&#x5668;&#x6709;10&#x4E2A;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#xFF0C;&#x90A3;&#x4E48;&#x8981;&#x6709;10&#x4EFD;&#x76F8;&#x540C;&#x7684;&#x7C7B;&#x5E93;&#x52A0;&#x8F7D;&#x8FDB;&#x865A;&#x62DF;&#x673A;&#x3002; </p>
+</li>
+<li><p><strong>web&#x5BB9;&#x5668;&#x4E5F;&#x6709;&#x81EA;&#x5DF1;&#x4F9D;&#x8D56;&#x7684;&#x7C7B;&#x5E93;&#xFF0C;&#x4E0D;&#x80FD;&#x4E0E;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x7684;&#x7C7B;&#x5E93;&#x6DF7;&#x6DC6;</strong>&#x3002;&#x57FA;&#x4E8E;&#x5B89;&#x5168;&#x8003;&#x8651;&#xFF0C;&#x5E94;&#x8BE5;&#x8BA9;&#x5BB9;&#x5668;&#x7684;&#x7C7B;&#x5E93;&#x548C;&#x7A0B;&#x5E8F;&#x7684;&#x7C7B;&#x5E93;&#x9694;&#x79BB;&#x5F00;&#x6765;&#x3002; </p>
+</li>
+<li><p>web&#x5BB9;&#x5668;&#x8981;&#x652F;&#x6301;jsp&#x7684;&#x4FEE;&#x6539;&#xFF0C;&#x6211;&#x4EEC;&#x77E5;&#x9053;&#xFF0C;jsp &#x6587;&#x4EF6;&#x6700;&#x7EC8;&#x4E5F;&#x662F;&#x8981;&#x7F16;&#x8BD1;&#x6210;class&#x6587;&#x4EF6;&#x624D;&#x80FD;&#x5728;&#x865A;&#x62DF;&#x673A;&#x4E2D;&#x8FD0;&#x884C;&#xFF0C;&#x4F46;&#x7A0B;&#x5E8F;&#x8FD0;&#x884C;&#x540E;&#x4FEE;&#x6539;jsp&#x5DF2;&#x7ECF;&#x662F;&#x53F8;&#x7A7A;&#x89C1;&#x60EF;&#x7684;&#x4E8B;&#x60C5;&#xFF0C; web&#x5BB9;&#x5668;&#x9700;&#x8981;&#x652F;&#x6301; jsp &#x4FEE;&#x6539;&#x540E;&#x4E0D;&#x7528;&#x91CD;&#x542F;&#x3002;</p>
+</li>
+</ol>
+<p>&#x518D;&#x770B;&#x770B;&#x6211;&#x4EEC;&#x7684;&#x95EE;&#x9898;&#xFF1A;<strong>Tomcat &#x5982;&#x679C;&#x4F7F;&#x7528;&#x9ED8;&#x8BA4;&#x7684;&#x53CC;&#x4EB2;&#x59D4;&#x6D3E;&#x7C7B;&#x52A0;&#x8F7D;&#x673A;&#x5236;&#x884C;&#x4E0D;&#x884C;&#xFF1F;</strong> </p>
+<p>&#x7B54;&#x6848;&#x662F;&#x4E0D;&#x884C;&#x7684;&#x3002;&#x4E3A;&#x4EC0;&#x4E48;&#xFF1F;</p>
+<p>&#x7B2C;&#x4E00;&#x4E2A;&#x95EE;&#x9898;&#xFF0C;&#x5982;&#x679C;&#x4F7F;&#x7528;&#x9ED8;&#x8BA4;&#x7684;&#x7C7B;&#x52A0;&#x8F7D;&#x5668;&#x673A;&#x5236;&#xFF0C;&#x90A3;&#x4E48;&#x662F;&#x65E0;&#x6CD5;&#x52A0;&#x8F7D;&#x4E24;&#x4E2A;&#x76F8;&#x540C;&#x7C7B;&#x5E93;&#x7684;&#x4E0D;&#x540C;&#x7248;&#x672C;&#x7684;&#xFF0C;&#x9ED8;&#x8BA4;&#x7684;&#x7C7B;&#x52A0;&#x5668;&#x662F;&#x4E0D;&#x7BA1;&#x4F60;&#x662F;&#x4EC0;&#x4E48;&#x7248;&#x672C;&#x7684;&#xFF0C;&#x53EA;&#x5728;&#x4E4E;&#x4F60;&#x7684;&#x5168;&#x9650;&#x5B9A;&#x7C7B;&#x540D;&#xFF0C;&#x5E76;&#x4E14;&#x53EA;&#x6709;&#x4E00;&#x4EFD;&#x3002;</p>
+<p>&#x7B2C;&#x4E8C;&#x4E2A;&#x95EE;&#x9898;&#xFF0C;&#x9ED8;&#x8BA4;&#x7684;&#x7C7B;&#x52A0;&#x8F7D;&#x5668;&#x662F;&#x80FD;&#x591F;&#x5B9E;&#x73B0;&#x7684;&#xFF0C;&#x56E0;&#x4E3A;&#x4ED6;&#x7684;&#x804C;&#x8D23;&#x5C31;&#x662F;&#x4FDD;&#x8BC1;<strong>&#x552F;&#x4E00;&#x6027;</strong>&#x3002;</p>
+<p>&#x7B2C;&#x4E09;&#x4E2A;&#x95EE;&#x9898;&#x548C;&#x7B2C;&#x4E00;&#x4E2A;&#x95EE;&#x9898;&#x4E00;&#x6837;&#x3002;</p>
+<p>&#x7B2C;&#x56DB;&#x4E2A;&#x95EE;&#x9898;&#xFF0C;&#x6211;&#x4EEC;&#x60F3;&#x6211;&#x4EEC;&#x8981;&#x600E;&#x4E48;&#x5B9E;&#x73B0;jsp&#x6587;&#x4EF6;&#x7684;&#x70ED;&#x52A0;&#x8F7D;&#xFF0C;jsp &#x6587;&#x4EF6;&#x5176;&#x5B9E;&#x4E5F;&#x5C31;&#x662F;class&#x6587;&#x4EF6;&#xFF0C;&#x90A3;&#x4E48;&#x5982;&#x679C;&#x4FEE;&#x6539;&#x4E86;&#xFF0C;&#x4F46;&#x7C7B;&#x540D;&#x8FD8;&#x662F;&#x4E00;&#x6837;&#xFF0C;&#x7C7B;&#x52A0;&#x8F7D;&#x5668;&#x4F1A;&#x76F4;&#x63A5;&#x53D6;&#x65B9;&#x6CD5;&#x533A;&#x4E2D;&#x5DF2;&#x7ECF;&#x5B58;&#x5728;&#x7684;&#xFF0C;&#x4FEE;&#x6539;&#x540E;&#x7684;jsp&#x662F;&#x4E0D;&#x4F1A;&#x91CD;&#x65B0;&#x52A0;&#x8F7D;&#x7684;&#x3002;&#x90A3;&#x4E48;&#x600E;&#x4E48;&#x529E;&#x5462;&#xFF1F;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x76F4;&#x63A5;&#x5378;&#x8F7D;&#x6389;&#x8FD9;jsp&#x6587;&#x4EF6;&#x7684;&#x7C7B;&#x52A0;&#x8F7D;&#x5668;&#xFF0C;&#x6240;&#x4EE5;&#x4F60;&#x5E94;&#x8BE5;&#x60F3;&#x5230;&#x4E86;&#xFF0C;&#x6BCF;&#x4E2A;jsp&#x6587;&#x4EF6;&#x5BF9;&#x5E94;&#x4E00;&#x4E2A;&#x552F;&#x4E00;&#x7684;&#x7C7B;&#x52A0;&#x8F7D;&#x5668;&#xFF0C;&#x5F53;&#x4E00;&#x4E2A;jsp&#x6587;&#x4EF6;&#x4FEE;&#x6539;&#x4E86;&#xFF0C;&#x5C31;&#x76F4;&#x63A5;&#x5378;&#x8F7D;&#x8FD9;&#x4E2A;jsp&#x7C7B;&#x52A0;&#x8F7D;&#x5668;&#x3002;&#x91CD;&#x65B0;&#x521B;&#x5EFA;&#x7C7B;&#x52A0;&#x8F7D;&#x5668;&#xFF0C;&#x91CD;&#x65B0;&#x52A0;&#x8F7D;jsp&#x6587;&#x4EF6;&#x3002;</p>
+<h4 id="tomcat&#x81EA;&#x5B9A;&#x4E49;&#x52A0;&#x8F7D;&#x5668;&#x8BE6;&#x89E3;"><a name="tomcat&#x81EA;&#x5B9A;&#x4E49;&#x52A0;&#x8F7D;&#x5668;&#x8BE6;&#x89E3;" class="anchor-navigation-ex-anchor" href="#tomcat&#x81EA;&#x5B9A;&#x4E49;&#x52A0;&#x8F7D;&#x5668;&#x8BE6;&#x89E3;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="tomcat&#x81EA;&#x5B9A;&#x4E49;&#x52A0;&#x8F7D;&#x5668;&#x8BE6;&#x89E3;" class="plugin-anchor" href="#tomcat&#x81EA;&#x5B9A;&#x4E49;&#x52A0;&#x8F7D;&#x5668;&#x8BE6;&#x89E3;"><i class="fa fa-link" aria-hidden="true"></i></a>Tomcat&#x81EA;&#x5B9A;&#x4E49;&#x52A0;&#x8F7D;&#x5668;&#x8BE6;&#x89E3;</h4>
+<p><img src="../source/images/ch-01/tomcat-webapp-classloader.png" alt="tomcat-webapp-classloader"></p>
+<p>tomcat&#x7684;&#x51E0;&#x4E2A;&#x4E3B;&#x8981;&#x7C7B;&#x52A0;&#x8F7D;&#x5668;&#xFF1A;</p>
+<ul>
+<li><strong>CommonLoader</strong>&#xFF1A;Tomcat&#x6700;&#x57FA;&#x672C;&#x7684;&#x7C7B;&#x52A0;&#x8F7D;&#x5668;&#xFF0C;&#x52A0;&#x8F7D;&#x8DEF;&#x5F84;&#x4E2D;&#x7684;class&#x53EF;&#x4EE5;&#x88AB;Tomcat&#x5BB9;&#x5668;&#x672C;&#x8EAB;&#x4EE5;&#x53CA;&#x5404;&#x4E2A;Webapp&#x8BBF;&#x95EE;&#xFF1B;</li>
+<li><strong>CatalinaLoader</strong>&#xFF1A;Tomcat&#x5BB9;&#x5668;&#x79C1;&#x6709;&#x7684;&#x7C7B;&#x52A0;&#x8F7D;&#x5668;&#xFF0C;&#x52A0;&#x8F7D;&#x8DEF;&#x5F84;&#x4E2D;&#x7684;class&#x5BF9;&#x4E8E;Webapp&#x4E0D;&#x53EF;&#x89C1;&#xFF1B;</li>
+<li><strong>SharedLoader</strong>&#xFF1A;&#x5404;&#x4E2A;Webapp&#x5171;&#x4EAB;&#x7684;&#x7C7B;&#x52A0;&#x8F7D;&#x5668;&#xFF0C;&#x52A0;&#x8F7D;&#x8DEF;&#x5F84;&#x4E2D;&#x7684;class&#x5BF9;&#x4E8E;&#x6240;&#x6709;Webapp&#x53EF;&#x89C1;&#xFF0C;&#x4F46;&#x662F;&#x5BF9;&#x4E8E;Tomcat&#x5BB9;&#x5668;&#x4E0D;&#x53EF;&#x89C1;&#xFF1B;</li>
+<li><strong>WebappClassLoader</strong>&#xFF1A;&#x5404;&#x4E2A;Webapp&#x79C1;&#x6709;&#x7684;&#x7C7B;&#x52A0;&#x8F7D;&#x5668;&#xFF0C;&#x52A0;&#x8F7D;&#x8DEF;&#x5F84;&#x4E2D;&#x7684;class&#x53EA;&#x5BF9;&#x5F53;&#x524D;Webapp&#x53EF;&#x89C1;&#xFF0C;&#x6BD4;&#x5982;&#x52A0;&#x8F7D;war&#x5305;&#x91CC;&#x76F8;&#x5173;&#x7684;&#x7C7B;&#xFF0C;&#x6BCF;&#x4E2A;war&#x5305;&#x5E94;&#x7528;&#x90FD;&#x6709;&#x81EA;&#x5DF1;&#x7684;WebappClassLoader&#xFF0C;&#x5B9E;&#x73B0;&#x76F8;&#x4E92;&#x9694;&#x79BB;&#xFF0C;&#x6BD4;&#x5982;&#x4E0D;&#x540C;war&#x5305;&#x5E94;&#x7528;&#x5F15;&#x5165;&#x4E86;&#x4E0D;&#x540C;&#x7684;spring&#x7248;&#x672C;&#xFF0C;&#x8FD9;&#x6837;&#x5B9E;&#x73B0;&#x5C31;&#x80FD;&#x52A0;&#x8F7D;&#x5404;&#x81EA;&#x7684;spring&#x7248;&#x672C;&#xFF1B;</li>
+</ul>
+<p>&#x4ECE;&#x56FE;&#x4E2D;&#x7684;&#x59D4;&#x6D3E;&#x5173;&#x7CFB;&#x4E2D;&#x53EF;&#x4EE5;&#x770B;&#x51FA;&#xFF1A;</p>
+<p>CommonClassLoader&#x80FD;&#x52A0;&#x8F7D;&#x7684;&#x7C7B;&#x90FD;&#x53EF;&#x4EE5;&#x88AB;CatalinaClassLoader&#x548C;SharedClassLoader&#x4F7F;&#x7528;&#xFF0C;&#x4ECE;&#x800C;&#x5B9E;&#x73B0;&#x4E86;&#x516C;&#x6709;&#x7C7B;&#x5E93;&#x7684;&#x5171;&#x7528;&#xFF0C;&#x800C;CatalinaClassLoader&#x548C;SharedClassLoader&#x81EA;&#x5DF1;&#x80FD;&#x52A0;&#x8F7D;&#x7684;&#x7C7B;&#x5219;&#x4E0E;&#x5BF9;&#x65B9;&#x76F8;&#x4E92;&#x9694;&#x79BB;&#x3002;</p>
+<p>WebAppClassLoader&#x53EF;&#x4EE5;&#x4F7F;&#x7528;SharedClassLoader&#x52A0;&#x8F7D;&#x5230;&#x7684;&#x7C7B;&#xFF0C;&#x4F46;&#x5404;&#x4E2A;WebAppClassLoader&#x5B9E;&#x4F8B;&#x4E4B;&#x95F4;&#x76F8;&#x4E92;&#x9694;&#x79BB;&#x3002;</p>
+<p>&#x800C;JasperLoader&#x7684;&#x52A0;&#x8F7D;&#x8303;&#x56F4;&#x4EC5;&#x4EC5;&#x662F;&#x8FD9;&#x4E2A;JSP&#x6587;&#x4EF6;&#x6240;&#x7F16;&#x8BD1;&#x51FA;&#x6765;&#x7684;&#x90A3;&#x4E00;&#x4E2A; <code>.class</code> &#x6587;&#x4EF6;&#xFF0C;&#x5B83;&#x51FA;&#x73B0;&#x7684;&#x76EE;&#x7684;&#x5C31;&#x662F;&#x4E3A;&#x4E86;&#x88AB;&#x4E22;&#x5F03;&#xFF1A;&#x5F53;Web&#x5BB9;&#x5668;&#x68C0;&#x6D4B;&#x5230;JSP&#x6587;&#x4EF6;&#x88AB;&#x4FEE;&#x6539;&#x65F6;&#xFF0C;&#x4F1A;&#x66FF;&#x6362;&#x6389;&#x76EE;&#x524D;&#x7684;JasperLoader&#x7684;&#x5B9E;&#x4F8B;&#xFF0C;&#x5E76;&#x901A;&#x8FC7;&#x518D;&#x5EFA;&#x7ACB;&#x4E00;&#x4E2A;&#x65B0;&#x7684;Jsp&#x7C7B;&#x52A0;&#x8F7D;&#x5668;&#x6765;&#x5B9E;&#x73B0;JSP&#x6587;&#x4EF6;&#x7684;&#x70ED;&#x52A0;&#x8F7D;&#x529F;&#x80FD;&#x3002;</p>
+<p>tomcat &#x8FD9;&#x79CD;&#x7C7B;&#x52A0;&#x8F7D;&#x673A;&#x5236;&#x8FDD;&#x80CC;&#x4E86;java &#x63A8;&#x8350;&#x7684;&#x53CC;&#x4EB2;&#x59D4;&#x6D3E;&#x6A21;&#x578B;&#x4E86;&#x5417;&#xFF1F;&#x7B54;&#x6848;&#x662F;&#xFF1A;&#x8FDD;&#x80CC;&#x4E86;&#x3002; </p>
+<p>&#x5F88;&#x663E;&#x7136;&#xFF0C;tomcat &#x4E0D;&#x662F;&#x8FD9;&#x6837;&#x5B9E;&#x73B0;&#xFF0C;tomcat &#x4E3A;&#x4E86;&#x5B9E;&#x73B0;&#x9694;&#x79BB;&#x6027;&#xFF0C;&#x6CA1;&#x6709;&#x9075;&#x5B88;&#x8FD9;&#x4E2A;&#x7EA6;&#x5B9A;&#xFF0C;<strong>&#x6BCF;&#x4E2A;WebappClassLoader&#x52A0;&#x8F7D;&#x81EA;&#x5DF1;&#x7684;&#x76EE;&#x5F55;&#x4E0B;&#x7684;class&#x6587;&#x4EF6;&#xFF0C;&#x4E0D;&#x4F1A;&#x4F20;&#x9012;&#x7ED9;&#x7236;&#x7C7B;&#x52A0;&#x8F7D;&#x5668;&#xFF0C;&#x6253;&#x7834;&#x4E86;&#x53CC;&#x4EB2;&#x59D4;&#x6D3E;&#x673A;&#x5236;</strong>&#x3002;</p>
+<p>&#x5B9E;&#x73B0;Tomcat&#x7684;webappClassLoader&#x52A0;&#x8F7D;&#x81EA;&#x5DF1;war&#x5305;&#x5E94;&#x7528;&#x5185;&#x4E0D;&#x540C;&#x7248;&#x672C;&#x7C7B;&#x5B9E;&#x73B0;&#x76F8;&#x4E92;&#x5171;&#x5B58;&#x4E0E;&#x9694;&#x79BB;</p>
+<pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyClassLoaderTest</span> </span>{
+
+    <span class="hljs-keyword">static</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyClassLoader</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">ClassLoader</span> </span>{
+        <span class="hljs-keyword">private</span> String classPath;
+
+        <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">MyClassLoader</span><span class="hljs-params">(String classPath)</span> </span>{
+            <span class="hljs-keyword">this</span>.classPath = classPath;
+        }
+
+        <span class="hljs-keyword">private</span> <span class="hljs-keyword">byte</span>[] loadByte(String name) <span class="hljs-keyword">throws</span> Exception {
+            name = name.replaceAll(<span class="hljs-string">&quot;\\.&quot;</span>, <span class="hljs-string">&quot;/&quot;</span>);
+            FileInputStream fis = <span class="hljs-keyword">new</span> FileInputStream(classPath + <span class="hljs-string">&quot;/&quot;</span> + name + <span class="hljs-string">&quot;.class&quot;</span>);
+            <span class="hljs-keyword">int</span> len = fis.available();
+            <span class="hljs-keyword">byte</span>[] data = <span class="hljs-keyword">new</span> <span class="hljs-keyword">byte</span>[len];
+            fis.read(data);
+            fis.close();
+            <span class="hljs-keyword">return</span> data;
+        }
+
+        <span class="hljs-keyword">protected</span> Class&lt;?&gt; findClass(String name) <span class="hljs-keyword">throws</span> ClassNotFoundException {
+            <span class="hljs-keyword">try</span> {
+                <span class="hljs-keyword">byte</span>[] data = loadByte(name);
+                <span class="hljs-comment">//defineClass&#x5C06;&#x4E00;&#x4E2A;&#x5B57;&#x8282;&#x6570;&#x7EC4;&#x8F6C;&#x4E3A;Class&#x5BF9;&#x8C61;&#xFF0C;&#x8FD9;&#x4E2A;&#x5B57;&#x8282;&#x6570;&#x7EC4;&#x662F;class&#x6587;&#x4EF6;&#x8BFB;&#x53D6;&#x540E;&#x6700;&#x7EC8;&#x7684;&#x5B57;&#x8282; &#x6570;&#x7EC4;&#x3002;</span>
+                <span class="hljs-keyword">return</span> defineClass(name, data, <span class="hljs-number">0</span>, data.length);
+            } <span class="hljs-keyword">catch</span> (Exception e) {
+                e.printStackTrace();
+                <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> ClassNotFoundException();
+            }
+        }
+        <span class="hljs-comment">/**
+         * &#x91CD;&#x5199;&#x7C7B;&#x52A0;&#x8F7D;&#x65B9;&#x6CD5;&#xFF0C;&#x5B9E;&#x73B0;&#x81EA;&#x5DF1;&#x7684;&#x52A0;&#x8F7D;&#x903B;&#x8F91;&#xFF0C;&#x4E0D;&#x59D4;&#x6D3E;&#x7ED9;&#x53CC;&#x4EB2;&#x52A0;&#x8F7D;
+         * <span class="hljs-doctag">@param</span> name
+         * <span class="hljs-doctag">@param</span> resolve
+         * <span class="hljs-doctag">@return</span>
+         * <span class="hljs-doctag">@throws</span> ClassNotFoundException
+         */</span>
+        <span class="hljs-keyword">protected</span> Class&lt;?&gt; loadClass(String name, <span class="hljs-keyword">boolean</span> resolve)
+                <span class="hljs-keyword">throws</span> ClassNotFoundException {
+            <span class="hljs-keyword">synchronized</span> (getClassLoadingLock(name)) {
+                <span class="hljs-comment">// First, check if the class has already been loaded</span>
+                Class&lt;?&gt; c = findLoadedClass(name);
+
+                <span class="hljs-keyword">if</span> (c == <span class="hljs-keyword">null</span>) {
+                    <span class="hljs-comment">// If still not found, then invoke findClass in order</span>
+                    <span class="hljs-comment">// to find the class.</span>
+                    <span class="hljs-keyword">long</span> t1 = System.nanoTime();
+
+                    <span class="hljs-comment">//&#x975E;&#x81EA;&#x5B9A;&#x4E49;&#x7684;&#x7C7B;&#x8FD8;&#x662F;&#x8D70;&#x53CC;&#x4EB2;&#x59D4;&#x6D3E;&#x52A0;&#x8F7D;</span>
+                    <span class="hljs-keyword">if</span> (!name.startsWith(<span class="hljs-string">&quot;com.tyrival.jvm.lession01&quot;</span>)){
+                        c = <span class="hljs-keyword">this</span>.getParent().loadClass(name);
+                    }<span class="hljs-keyword">else</span>{
+                        c = findClass(name);
+                    }
+
+                    <span class="hljs-comment">// this is the defining class loader; record the stats</span>
+                    sun.misc.PerfCounter.getFindClassTime().addElapsedTimeFrom(t1);
+                    sun.misc.PerfCounter.getFindClasses().increment();
+                }
+                <span class="hljs-keyword">if</span> (resolve) {
+                    resolveClass(c);
+                }
+                <span class="hljs-keyword">return</span> c;
+            }
+        }
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String args[])</span> <span class="hljs-keyword">throws</span> Exception </span>{
+
+        <span class="hljs-comment">//&#x521D;&#x59CB;&#x5316;&#x81EA;&#x5B9A;&#x4E49;&#x7C7B;&#x52A0;&#x8F7D;&#x5668;&#xFF0C;&#x4F1A;&#x5148;&#x521D;&#x59CB;&#x5316;&#x7236;&#x7C7B;ClassLoader&#xFF0C;&#x5176;&#x4E2D;&#x4F1A;&#x628A;&#x81EA;&#x5B9A;&#x4E49;&#x7C7B;&#x52A0;&#x8F7D;&#x5668;&#x7684;&#x7236;&#x52A0;&#x8F7D; &#x5668;&#x8BBE;&#x7F6E;&#x4E3A;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x7C7B;&#x52A0;&#x8F7D;&#x5668;AppClassLoader</span>
+        MyClassLoader classLoader = <span class="hljs-keyword">new</span> MyClassLoader(
+                <span class="hljs-string">&quot;/Users/tyrival/Workspace/architect-knowledge/01-jvm/target/classes/com/tyrival/jvm/lession01/&quot;</span>);
+        <span class="hljs-comment">// &#x5C06;User&#x7C7B;&#x7684;&#x590D;&#x5236;&#x7C7B;User1.class&#x4E22;&#x5165;&#x8BE5;&#x76EE;&#x5F55;</span>
+        Class clazz = classLoader.loadClass(<span class="hljs-string">&quot;com.tyrival.jvm.lession01.User&quot;</span>);
+        Object obj = clazz.newInstance();
+        Method method = clazz.getDeclaredMethod(<span class="hljs-string">&quot;sout&quot;</span>, <span class="hljs-keyword">null</span>);
+        method.invoke(obj, <span class="hljs-keyword">null</span>);
+        System.out.println(clazz.getClassLoader().getClass().getName());
+
+        MyClassLoader classLoader1 = <span class="hljs-keyword">new</span> MyClassLoader(
+                <span class="hljs-string">&quot;/Users/tyrival/Workspace/architect-knowledge/01-jvm/target/classes/com/tyrival/jvm/lession01/test/&quot;</span>);
+        Class clazz1 = classLoader1.loadClass(<span class="hljs-string">&quot;com.tyrival.jvm.lession01.User&quot;</span>);
+        Object obj1 = clazz1.newInstance();
+        Method method1 = clazz1.getDeclaredMethod(<span class="hljs-string">&quot;sout&quot;</span>, <span class="hljs-keyword">null</span>);
+        method1.invoke(obj1, <span class="hljs-keyword">null</span>);
+        System.out.println(clazz1.getClassLoader().getClass().getName());
+    }
+}
+
+&#x8FD0;&#x884C;&#x7ED3;&#x679C;&#xFF1A;
+=======&#x81EA;&#x5DF1;&#x7684;&#x52A0;&#x8F7D;&#x5668;&#x52A0;&#x8F7D;&#x7C7B;&#x8C03;&#x7528;&#x65B9;&#x6CD5;=======
+com.tyrival.jvm.lession01.MyClassLoaderTest$MyClassLoader@<span class="hljs-number">266474</span>c2
+
+=======&#x53E6;&#x5916;&#x4E00;&#x4E2A;User1&#x7248;&#x672C;&#xFF1A;&#x81EA;&#x5DF1;&#x7684;&#x52A0;&#x8F7D;&#x5668;&#x52A0;&#x8F7D;&#x7C7B;&#x8C03;&#x7528;&#x65B9;&#x6CD5;=======
+com.tyrival.jvm.lession01.MyClassLoaderTest$MyClassLoader@<span class="hljs-number">66</span>d3c617
+</code></pre>
+<p><em>&#x6CE8;&#x610F;&#xFF1A;&#x540C;&#x4E00;&#x4E2A;JVM&#x5185;&#xFF0C;&#x4E24;&#x4E2A;&#x76F8;&#x540C;&#x5305;&#x540D;&#x548C;&#x7C7B;&#x540D;&#x7684;&#x7C7B;&#x5BF9;&#x8C61;&#x53EF;&#x4EE5;&#x5171;&#x5B58;&#xFF0C;&#x56E0;&#x4E3A;&#x4ED6;&#x4EEC;&#x7684;&#x7C7B;&#x52A0;&#x8F7D;&#x5668;&#x53EF;&#x4EE5;&#x4E0D;&#x4E00;&#x6837;&#xFF0C;&#x6240;&#x4EE5;&#x770B;&#x4E24;&#x4E2A;&#x7C7B;&#x5BF9;&#x8C61;&#x662F;&#x5426;&#x662F;&#x540C;&#x4E00;&#x4E2A;&#xFF0C;&#x9664;&#x4E86;&#x770B;&#x7C7B;&#x7684;&#x5305;&#x540D;&#x548C;&#x7C7B;&#x540D;&#x662F;&#x5426;&#x90FD;&#x76F8;&#x540C;&#x4E4B;&#x5916;&#xFF0C;&#x8FD8;&#x9700;&#x8981;&#x4ED6;&#x4EEC;&#x7684;&#x7C7B;&#x52A0;&#x8F7D;&#x5668;&#x4E5F;&#x662F;&#x540C;&#x4E00;&#x4E2A;&#x624D;&#x80FD;&#x8BA4;&#x4E3A;&#x4ED6;&#x4EEC;&#x662F;&#x540C;&#x4E00;&#x4E2A;&#x3002;</em></p>
+<h4 id="tomcat&#x7684;jasperloader&#x70ED;&#x52A0;&#x8F7D;"><a name="tomcat&#x7684;jasperloader&#x70ED;&#x52A0;&#x8F7D;" class="anchor-navigation-ex-anchor" href="#tomcat&#x7684;jasperloader&#x70ED;&#x52A0;&#x8F7D;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="tomcat&#x7684;jasperloader&#x70ED;&#x52A0;&#x8F7D;" class="plugin-anchor" href="#tomcat&#x7684;jasperloader&#x70ED;&#x52A0;&#x8F7D;"><i class="fa fa-link" aria-hidden="true"></i></a>Tomcat&#x7684;JasperLoader&#x70ED;&#x52A0;&#x8F7D;</h4>
+<p>&#x539F;&#x7406;&#xFF1A;&#x540E;&#x53F0;&#x542F;&#x52A8;&#x7EBF;&#x7A0B;&#x76D1;&#x542C;jsp&#x6587;&#x4EF6;&#x53D8;&#x5316;&#xFF0C;&#x5982;&#x679C;&#x53D8;&#x5316;&#x4E86;&#x627E;&#x5230;&#x8BE5;jsp&#x5BF9;&#x5E94;&#x7684;servlet&#x7C7B;&#x7684;&#x52A0;&#x8F7D;&#x5668;&#x5F15;&#x7528;(gcroot)&#xFF0C;&#x91CD;&#x65B0;&#x751F;&#x6210;&#x65B0;&#x7684;<strong>JasperLoader</strong>&#x52A0;&#x8F7D;&#x5668;&#x8D4B;&#x503C;&#x7ED9;&#x5F15;&#x7528;&#xFF0C;&#x7136;&#x540E;&#x52A0;&#x8F7D;&#x65B0;&#x7684;jsp&#x5BF9;&#x5E94;&#x7684;servlet&#x7C7B;&#xFF0C;&#x4E4B;&#x524D;&#x7684;&#x90A3;&#x4E2A;&#x52A0;&#x8F7D;&#x5668;&#x56E0;&#x4E3A;&#x6CA1;&#x6709;gcroot&#x5F15;&#x7528;&#x4E86;&#xFF0C;&#x4E0B;&#x4E00;&#x6B21;gc&#x7684;&#x65F6;&#x5019;&#x4F1A;&#x88AB;&#x9500;&#x6BC1;&#x3002;</p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="./" class="navigation navigation-prev " aria-label="Previous page: 第1章 JVM">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="02-JVM-Structure-Resolve.html" class="navigation navigation-next " aria-label="Next page: 1.2 JVM整体结构">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"1.1 类加载机制","level":"1.1.1.1","depth":3,"next":{"title":"1.2 JVM整体结构","level":"1.1.1.2","depth":3,"path":"01-JVM/02-JVM-Structure-Resolve.md","ref":"01-JVM/02-JVM-Structure-Resolve.md","articles":[]},"previous":{"title":"第1章 JVM","level":"1.1.1","depth":2,"path":"01-JVM/README.md","ref":"01-JVM/README.md","articles":[{"title":"1.1 类加载机制","level":"1.1.1.1","depth":3,"path":"01-JVM/01-ClassLoader.md","ref":"01-JVM/01-ClassLoader.md","articles":[]},{"title":"1.2 JVM整体结构","level":"1.1.1.2","depth":3,"path":"01-JVM/02-JVM-Structure-Resolve.md","ref":"01-JVM/02-JVM-Structure-Resolve.md","articles":[]},{"title":"1.3 JVM内存分配机制","level":"1.1.1.3","depth":3,"path":"01-JVM/03-Memory-Allocation-Mechanism.md","ref":"01-JVM/03-Memory-Allocation-Mechanism.md","articles":[]},{"title":"1.4 JVM字节码文件结构","level":"1.1.1.4","depth":3,"path":"01-JVM/04-JVM-Bytecode-File-Structure.md","ref":"01-JVM/04-JVM-Bytecode-File-Structure.md","articles":[]},{"title":"1.5 垃圾收集器ParNew和CMS","level":"1.1.1.5","depth":3,"path":"01-JVM/05-GC-ParNew-CMS.md","ref":"01-JVM/05-GC-ParNew-CMS.md","articles":[]},{"title":"1.6 垃圾收集器G1和ZGC","level":"1.1.1.6","depth":3,"path":"01-JVM/06-GC-G1-ZGC.md","ref":"01-JVM/06-GC-G1-ZGC.md","articles":[]},{"title":"1.7 GC调优","level":"1.1.1.7","depth":3,"path":"01-JVM/07-GC-Optimize.md","ref":"01-JVM/07-GC-Optimize.md","articles":[]},{"title":"附1 JVM指令手册","level":"1.1.1.8","depth":3,"path":"01-JVM/JVM-Command.md","ref":"01-JVM/JVM-Command.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["-sharing","splitter","expandable-chapters-small","anchors","github","github-buttons","sharing-plus","anchor-navigation-ex"],"styles":{"website":"./styles/website.css"},"pluginsConfig":{"github":{"url":"https://github.com/tyrival"},"splitter":{},"search":{},"sharing-plus":{"qq":false,"all":["facebook","google","twitter","instapaper","linkedin","pocket","stumbleupon"],"douban":false,"facebook":true,"weibo":false,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":true,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"anchor-navigation-ex":{"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"mode":"float","multipleH1":true,"pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"printLog":false,"showGoTop":true,"showLevel":false},"github-buttons":{"buttons":[{"user":"Tyrival","repo":"gitbook","type":"star","size":"small","count":false}]},"expandable-chapters-small":{},"sharing":{"qq":false,"all":["google","facebook","weibo","twitter","qq","qzone","linkedin","pocket"],"douban":false,"facebook":false,"weibo":false,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":false,"messenger":false,"line":false,"vk":false,"pocket":false,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","author":"Tyrival","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"架构师学习笔记","language":"zh-hans","gitbook":"3.2.3","description":"架构师学习笔记"},"file":{"path":"01-JVM/01-ClassLoader.md","mtime":"2020-07-14T03:46:56.146Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-07-21T01:54:00.047Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-splitter/splitter.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-github/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-github-buttons/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing-plus/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
