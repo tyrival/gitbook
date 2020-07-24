@@ -12,6 +12,8 @@
 
 [1.6 垃圾收集器G1和ZGC](./06-GC-G1-ZGC.md)
 
-[1.7 GC调优](./07-GC-Optimize.md)
+[1.7 GC调优（一）](./07-GC-Optimize-01.md)
+
+[1.8 GC调优（二）](./08-GC-Optimize-02.md)
 
 [附1 JVM指令手册](./JVM-Command.md)
