@@ -26,6 +26,23 @@ img[alt="jdk-classloader"] {
     width: 60%;
 }
 
+img[alt="gc-g1-not-like"] {
+    width: 60%;
+}
+
+img[alt="gc-g1-region"] {
+    width: 80%;
+}
+
+img[alt="jps-list"] {
+    width: 60%;
+}
+
+img[alt="jmap-heap"] {
+    width: 80%;
+}
+
+/* Tomcat */
 img[alt="tomcat-classloader"] {
     width: 60%;
 }
@@ -43,6 +60,22 @@ img[alt="card-table"] {
 }
 
 img[alt="hash-index"] {
+    width: 80%;
+}
+
+img[alt="mysql-component-infrastructure"] {
+    width: 80%;
+}
+
+img[alt="wait-timeout"] {
+    width: 80%;
+}
+
+img[alt="mysql-qcache-status"] {
+    width: 60%;
+}
+
+img[alt="mysql-qcache-status"] {
     width: 80%;
 }
 

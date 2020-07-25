@@ -1,0 +1,856 @@
+
+<!DOCTYPE HTML>
+<html lang="zh-hans" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>3.3 SQL底层执行原理 · 架构师学习笔记</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        <meta name="author" content="Tyrival">
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-splitter/splitter.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-anchors/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-anchor-navigation-ex/style/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+        <link rel="stylesheet" href="../styles/website.css">
+        
+    
+
+        
+    
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="04-Sql-Optimize-01.html" />
+    
+    
+    <link rel="prev" href="02-Explain-Index-Actual.html" />
+    
+
+    <style>
+    @media only screen and (max-width: 640px) {
+        .book-header .hidden-mobile {
+            display: none;
+        }
+    }
+    </style>
+    <script>
+        window["gitbook-plugin-github-buttons"] = {"buttons":[{"user":"Tyrival","repo":"gitbook","type":"star","size":"small","count":false}]};
+    </script>
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="输入并搜索" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    架构师学习笔记
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.1" data-path="../01-JVM/">
+            
+                <a href="../01-JVM/">
+            
+                    
+                    第1章 JVM
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.1.1" data-path="../01-JVM/01-ClassLoader.html">
+            
+                <a href="../01-JVM/01-ClassLoader.html">
+            
+                    
+                    1.1 类加载机制
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.2" data-path="../01-JVM/02-JVM-Structure-Resolve.html">
+            
+                <a href="../01-JVM/02-JVM-Structure-Resolve.html">
+            
+                    
+                    1.2 JVM整体结构
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.3" data-path="../01-JVM/03-Memory-Allocation-Mechanism.html">
+            
+                <a href="../01-JVM/03-Memory-Allocation-Mechanism.html">
+            
+                    
+                    1.3 JVM内存分配机制
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.4" data-path="../01-JVM/04-JVM-Bytecode-File-Structure.html">
+            
+                <a href="../01-JVM/04-JVM-Bytecode-File-Structure.html">
+            
+                    
+                    1.4 JVM字节码文件结构
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.5" data-path="../01-JVM/05-GC-ParNew-CMS.html">
+            
+                <a href="../01-JVM/05-GC-ParNew-CMS.html">
+            
+                    
+                    1.5 垃圾收集器ParNew和CMS
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.6" data-path="../01-JVM/06-GC-G1-ZGC.html">
+            
+                <a href="../01-JVM/06-GC-G1-ZGC.html">
+            
+                    
+                    1.6 垃圾收集器G1和ZGC
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.7" data-path="../01-JVM/07-GC-Optimize-01.html">
+            
+                <a href="../01-JVM/07-GC-Optimize-01.html">
+            
+                    
+                    1.7 GC调优（一）
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.8" data-path="../01-JVM/08-GC-Optimize-02.html">
+            
+                <a href="../01-JVM/08-GC-Optimize-02.html">
+            
+                    
+                    1.7 GC调优（二）
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.9" data-path="../01-JVM/JVM-Command.html">
+            
+                <a href="../01-JVM/JVM-Command.html">
+            
+                    
+                    附1 JVM指令手册
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.2" data-path="../02-Tomcat/">
+            
+                <a href="../02-Tomcat/">
+            
+                    
+                    第2章 Tomcat
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.2.1" data-path="../02-Tomcat/01-Tomcat-Summary.html">
+            
+                <a href="../02-Tomcat/01-Tomcat-Summary.html">
+            
+                    
+                    2.1 Tomcat生产环境应用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.2.2" data-path="../02-Tomcat/02-Tomcat-Component-Src.html">
+            
+                <a href="../02-Tomcat/02-Tomcat-Component-Src.html">
+            
+                    
+                    2.2 Tomcat核心组件源码
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.2.3" data-path="../02-Tomcat/03-Tomcat-Http-Process.html">
+            
+                <a href="../02-Tomcat/03-Tomcat-Http-Process.html">
+            
+                    
+                    2.3 Tomcat线程模型HTTP请求处理与管道线模型
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.2.4" data-path="../02-Tomcat/04-Tomcat-Hot-Deployment-Load.html">
+            
+                <a href="../02-Tomcat/04-Tomcat-Hot-Deployment-Load.html">
+            
+                    
+                    2.4 Tomcat热部署和热加载
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.3" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    第3章 MySQL
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.3.1" data-path="01-Mysql-index-data-structure.html">
+            
+                <a href="01-Mysql-index-data-structure.html">
+            
+                    
+                    3.1 Mysql索引数据结构
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.3.2" data-path="02-Explain-Index-Actual.html">
+            
+                <a href="02-Explain-Index-Actual.html">
+            
+                    
+                    3.2 Explain详解与索引最佳实践
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.1.3.3" data-path="03-Sql-Execution-Fundamental.html">
+            
+                <a href="03-Sql-Execution-Fundamental.html">
+            
+                    
+                    3.3 SQL底层执行原理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.3.4" data-path="04-Sql-Optimize-01.html">
+            
+                <a href="04-Sql-Optimize-01.html">
+            
+                    
+                    3.4 SQL优化实战（一）
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.3.5" data-path="Slow-Sql-Query.html">
+            
+                <a href="Slow-Sql-Query.html">
+            
+                    
+                    附1 慢SQL查询
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.4" data-path="../04-Concurrent/">
+            
+                <a href="../04-Concurrent/">
+            
+                    
+                    第4章 并发编程
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.5" data-path="../05-Source/">
+            
+                <a href="../05-Source/">
+            
+                    
+                    第5章 源码框架
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6" data-path="../06-Distributed/">
+            
+                <a href="../06-Distributed/">
+            
+                    
+                    第6章 分布式
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.7" data-path="../07-Microservice/">
+            
+                <a href="../07-Microservice/">
+            
+                    
+                    第7章 微服务
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.8" data-path="../08-Sample/">
+            
+                <a href="../08-Sample/">
+            
+                    
+                    第8章 案例
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            本书使用 GitBook 发布
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >3.3 SQL底层执行原理</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <div id="anchor-navigation-ex-navbar"><i class="fa fa-navicon"></i><ul><ul><li><span class="title-icon "></span><a href="#33-sql&#x5E95;&#x5C42;&#x6267;&#x884C;&#x539F;&#x7406;"><b></b>3.3 SQL&#x5E95;&#x5C42;&#x6267;&#x884C;&#x539F;&#x7406;</a></li><ul><li><span class="title-icon "></span><a href="#mysql&#x7684;&#x5185;&#x90E8;&#x7EC4;&#x4EF6;&#x7ED3;&#x6784;"><b></b>MySQL&#x7684;&#x5185;&#x90E8;&#x7EC4;&#x4EF6;&#x7ED3;&#x6784;</a></li></ul></ul></ul></div><a href="#" id="anchorNavigationExGoTop"><i class="fa fa-arrow-up"></i></a><h2 id="33-sql&#x5E95;&#x5C42;&#x6267;&#x884C;&#x539F;&#x7406;"><a name="33-sql&#x5E95;&#x5C42;&#x6267;&#x884C;&#x539F;&#x7406;" class="anchor-navigation-ex-anchor" href="#33-sql&#x5E95;&#x5C42;&#x6267;&#x884C;&#x539F;&#x7406;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="33-sql&#x5E95;&#x5C42;&#x6267;&#x884C;&#x539F;&#x7406;" class="plugin-anchor" href="#33-sql&#x5E95;&#x5C42;&#x6267;&#x884C;&#x539F;&#x7406;"><i class="fa fa-link" aria-hidden="true"></i></a>3.3 SQL&#x5E95;&#x5C42;&#x6267;&#x884C;&#x539F;&#x7406;</h2>
+<h3 id="mysql&#x7684;&#x5185;&#x90E8;&#x7EC4;&#x4EF6;&#x7ED3;&#x6784;"><a name="mysql&#x7684;&#x5185;&#x90E8;&#x7EC4;&#x4EF6;&#x7ED3;&#x6784;" class="anchor-navigation-ex-anchor" href="#mysql&#x7684;&#x5185;&#x90E8;&#x7EC4;&#x4EF6;&#x7ED3;&#x6784;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="mysql&#x7684;&#x5185;&#x90E8;&#x7EC4;&#x4EF6;&#x7ED3;&#x6784;" class="plugin-anchor" href="#mysql&#x7684;&#x5185;&#x90E8;&#x7EC4;&#x4EF6;&#x7ED3;&#x6784;"><i class="fa fa-link" aria-hidden="true"></i></a>MySQL&#x7684;&#x5185;&#x90E8;&#x7EC4;&#x4EF6;&#x7ED3;&#x6784;</h3>
+<p><img src="../source/images/ch-03/mysql-component-infrastructure.png" alt="mysql-component-infrastructure"></p>
+<p>&#x5927;&#x4F53;&#x6765;&#x8BF4;&#xFF0C;MySQL &#x53EF;&#x4EE5;&#x5206;&#x4E3A; Server &#x5C42;&#x548C;&#x5B58;&#x50A8;&#x5F15;&#x64CE;&#x5C42;&#x4E24;&#x90E8;&#x5206;&#x3002;</p>
+<h4 id="server&#x5C42;"><a name="server&#x5C42;" class="anchor-navigation-ex-anchor" href="#server&#x5C42;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="server&#x5C42;" class="plugin-anchor" href="#server&#x5C42;"><i class="fa fa-link" aria-hidden="true"></i></a>Server&#x5C42;</h4>
+<p>&#x4E3B;&#x8981;&#x5305;&#x62EC;&#x8FDE;&#x63A5;&#x5668;&#x3001;&#x67E5;&#x8BE2;&#x7F13;&#x5B58;&#x3001;&#x5206;&#x6790;&#x5668;&#x3001;&#x4F18;&#x5316;&#x5668;&#x3001;&#x6267;&#x884C;&#x5668;&#x7B49;&#xFF0C;&#x6DB5;&#x76D6; MySQL &#x7684;&#x5927;&#x591A;&#x6570;&#x6838;&#x5FC3;&#x670D;&#x52A1;&#x529F;&#x80FD;&#xFF0C;&#x4EE5;&#x53CA;&#x6240;&#x6709;&#x7684;&#x5185;&#x7F6E;&#x51FD;&#x6570;&#xFF08;&#x5982;&#x65E5;&#x671F;&#x3001;&#x65F6;&#x95F4;&#x3001;&#x6570;&#x5B66;&#x548C;&#x52A0;&#x5BC6;&#x51FD;&#x6570;&#x7B49;&#xFF09;&#xFF0C;&#x6240;&#x6709;&#x8DE8;&#x5B58;&#x50A8;&#x5F15;&#x64CE;&#x7684;&#x529F;&#x80FD;&#x90FD;&#x5728;&#x8FD9;&#x4E00;&#x5C42;&#x5B9E;&#x73B0;&#xFF0C;&#x6BD4;&#x5982;&#x5B58;&#x50A8;&#x8FC7;&#x7A0B;&#x3001;&#x89E6;&#x53D1;&#x5668;&#x3001;&#x89C6;&#x56FE;&#x7B49;&#x3002;</p>
+<h4 id="store&#x5C42;"><a name="store&#x5C42;" class="anchor-navigation-ex-anchor" href="#store&#x5C42;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="store&#x5C42;" class="plugin-anchor" href="#store&#x5C42;"><i class="fa fa-link" aria-hidden="true"></i></a>Store&#x5C42;</h4>
+<p>&#x5B58;&#x50A8;&#x5F15;&#x64CE;&#x5C42;&#x8D1F;&#x8D23;&#x6570;&#x636E;&#x7684;&#x5B58;&#x50A8;&#x548C;&#x63D0;&#x53D6;&#x3002;&#x5176;&#x67B6;&#x6784;&#x6A21;&#x5F0F;&#x662F;&#x63D2;&#x4EF6;&#x5F0F;&#x7684;&#xFF0C;&#x652F;&#x6301; InnoDB&#x3001;MyISAM&#x3001;Memory &#x7B49;&#x591A;&#x4E2A;&#x5B58;&#x50A8;&#x5F15;&#x64CE;&#x3002;&#x73B0;&#x5728;&#x6700;&#x5E38;&#x7528;&#x7684;&#x5B58;&#x50A8;&#x5F15;&#x64CE;&#x662F; InnoDB&#xFF0C;&#x5B83;&#x4ECE; MySQL 5.5.5 &#x7248;&#x672C;&#x5F00;&#x59CB;&#x6210;&#x4E3A;&#x4E86;&#x9ED8;&#x8BA4;&#x5B58;&#x50A8;&#x5F15;&#x64CE;&#x3002;&#x4E5F;&#x5C31;&#x662F;&#x8BF4;&#x5982;&#x679C;&#x6211;&#x4EEC;&#x5728;create table&#x65F6;&#x4E0D;&#x6307;&#x5B9A;&#x8868;&#x7684;&#x5B58;&#x50A8;&#x5F15;&#x64CE;&#x7C7B;&#x578B;,&#x9ED8;&#x8BA4;&#x4F1A;&#x7ED9;&#x4F60;&#x8BBE;&#x7F6E;&#x5B58;&#x50A8;&#x5F15;&#x64CE;&#x4E3A;InnoDB&#x3002;</p>
+<p>&#x672C;&#x8282;&#x8BFE;&#x6F14;&#x793A;&#x8868;&#x7684;DDL&#xFF1A;</p>
+<pre><code class="lang-sql"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> <span class="hljs-string">`test`</span> (
+  <span class="hljs-string">`id`</span> <span class="hljs-built_in">int</span>(<span class="hljs-number">11</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span> AUTO_INCREMENT,
+  <span class="hljs-string">`name`</span> <span class="hljs-built_in">varchar</span>(<span class="hljs-number">255</span>) <span class="hljs-keyword">DEFAULT</span> <span class="hljs-literal">NULL</span>,
+  PRIMARY <span class="hljs-keyword">KEY</span> (<span class="hljs-string">`id`</span>)
+) <span class="hljs-keyword">ENGINE</span>=<span class="hljs-keyword">InnoDB</span> AUTO_INCREMENT=<span class="hljs-number">9</span> <span class="hljs-keyword">DEFAULT</span> <span class="hljs-keyword">CHARSET</span>=utf8;
+</code></pre>
+<p>&#x4E0B;&#x9762;&#x6211;&#x4EEC;&#x91CD;&#x70B9;&#x6765;&#x5206;&#x6790;<strong>&#x8FDE;&#x63A5;&#x5668;&#x3001;&#x67E5;&#x8BE2;&#x7F13;&#x5B58;&#x3001;&#x5206;&#x6790;&#x5668;&#x3001;&#x4F18;&#x5316;&#x5668;&#x3001;&#x6267;&#x884C;&#x5668;</strong>&#x5206;&#x522B;&#x4E3B;&#x8981;&#x5E72;&#x4E86;&#x54EA;&#x4E9B;&#x4E8B;&#x60C5;&#x3002;</p>
+<h5 id="&#x8FDE;&#x63A5;&#x5668;"><a name="&#x8FDE;&#x63A5;&#x5668;" class="anchor-navigation-ex-anchor" href="#&#x8FDE;&#x63A5;&#x5668;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x8FDE;&#x63A5;&#x5668;" class="plugin-anchor" href="#&#x8FDE;&#x63A5;&#x5668;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x8FDE;&#x63A5;&#x5668;</h5>
+<p>&#x6211;&#x4EEC;&#x77E5;&#x9053;&#x7531;&#x4E8E;MySQL&#x662F;&#x5F00;&#x6E90;&#x7684;&#xFF0C;&#x4ED6;&#x6709;&#x975E;&#x5E38;&#x591A;&#x79CD;&#x7C7B;&#x7684;&#x5BA2;&#x6237;&#x7AEF;&#xFF1A;navicat, mysql front, jdbc, SQLyog&#x7B49;&#x975E;&#x5E38;&#x4E30;&#x5BCC;&#x7684;&#x5BA2;&#x6237;&#x7AEF;,&#x8FD9;&#x4E9B;&#x5BA2;&#x6237;&#x7AEF;&#x8981;&#x5411;mysql&#x53D1;&#x8D77;&#x901A;&#x4FE1;&#x90FD;&#x5FC5;&#x987B;&#x5148;&#x8DDF;Server&#x7AEF;&#x5EFA;&#x7ACB;&#x901A;&#x4FE1;&#x8FDE;&#x63A5;&#xFF0C;&#x800C;&#x5EFA;&#x7ACB;&#x8FDE;&#x63A5;&#x7684;&#x5DE5;&#x4F5C;&#x5C31;&#x662F;&#x6709;&#x8FDE;&#x63A5;&#x5668;&#x5B8C;&#x6210;&#x7684;&#x3002;</p>
+<p>&#x7B2C;&#x4E00;&#x6B65;&#xFF0C;&#x4F60;&#x4F1A;&#x5148;&#x8FDE;&#x63A5;&#x5230;&#x8FD9;&#x4E2A;&#x6570;&#x636E;&#x5E93;&#x4E0A;&#xFF0C;&#x8FD9;&#x65F6;&#x5019;&#x63A5;&#x5F85;&#x4F60;&#x7684;&#x5C31;&#x662F;&#x8FDE;&#x63A5;&#x5668;&#x3002;&#x8FDE;&#x63A5;&#x5668;&#x8D1F;&#x8D23;&#x8DDF;&#x5BA2;&#x6237;&#x7AEF;&#x5EFA;&#x7ACB;&#x8FDE;&#x63A5;&#x3001;&#x83B7;&#x53D6;&#x6743;&#x9650;&#x3001;&#x7EF4;&#x6301;&#x548C;&#x7BA1;&#x7406;&#x8FDE;&#x63A5;&#x3002;&#x8FDE;&#x63A5;&#x547D;&#x4EE4;&#x4E00;&#x822C;&#x662F;&#x8FD9;&#x4E48;&#x5199;&#x7684;&#xFF1A;</p>
+<pre><code class="lang-bash">mysql -h host[&#x6570;&#x636E;&#x5E93;&#x5730;&#x5740;] -u root[&#x7528;&#x6237;] -p 123[&#x5BC6;&#x7801;] -P 3306
+</code></pre>
+<p>&#x8FDE;&#x63A5;&#x547D;&#x4EE4;&#x4E2D;&#x7684; mysql &#x662F;&#x5BA2;&#x6237;&#x7AEF;&#x5DE5;&#x5177;&#xFF0C;&#x7528;&#x6765;&#x8DDF;&#x670D;&#x52A1;&#x7AEF;&#x5EFA;&#x7ACB;&#x8FDE;&#x63A5;&#x3002;&#x5728;&#x5B8C;&#x6210;&#x7ECF;&#x5178;&#x7684; TCP &#x63E1;&#x624B;&#x540E;&#xFF0C;&#x8FDE;&#x63A5;&#x5668;&#x5C31;&#x8981;&#x5F00;&#x59CB;&#x8BA4;&#x8BC1;&#x4F60;&#x7684;&#x8EAB;&#x4EFD;&#xFF0C;&#x8FD9;&#x4E2A;&#x65F6;&#x5019;&#x7528;&#x7684;&#x5C31;&#x662F;&#x4F60;&#x8F93;&#x5165;&#x7684;&#x7528;&#x6237;&#x540D;&#x548C;&#x5BC6;&#x7801;&#x3002;</p>
+<ol>
+<li><p>&#x5982;&#x679C;&#x7528;&#x6237;&#x540D;&#x6216;&#x5BC6;&#x7801;&#x4E0D;&#x5BF9;&#xFF0C;&#x4F60;&#x5C31;&#x4F1A;&#x6536;&#x5230;&#x4E00;&#x4E2A;&quot;Access denied for user&quot;&#x7684;&#x9519;&#x8BEF;&#xFF0C;&#x7136;&#x540E;&#x5BA2;&#x6237;&#x7AEF;&#x7A0B;&#x5E8F;&#x7ED3;&#x675F;&#x6267;&#x884C;&#x3002;</p>
+</li>
+<li><p>&#x5982;&#x679C;&#x7528;&#x6237;&#x540D;&#x5BC6;&#x7801;&#x8BA4;&#x8BC1;&#x901A;&#x8FC7;&#xFF0C;&#x8FDE;&#x63A5;&#x5668;&#x4F1A;&#x5230;&#x6743;&#x9650;&#x8868;&#x91CC;&#x9762;&#x67E5;&#x51FA;&#x4F60;&#x62E5;&#x6709;&#x7684;&#x6743;&#x9650;&#x3002;&#x4E4B;&#x540E;&#xFF0C;&#x8FD9;&#x4E2A;&#x8FDE;&#x63A5;&#x91CC;&#x9762;&#x7684;&#x6743;&#x9650;&#x5224;&#x65AD;&#x903B;&#x8F91;&#xFF0C;&#x90FD;&#x5C06;&#x4F9D;&#x8D56;&#x4E8E;&#x6B64;&#x65F6;&#x8BFB;&#x5230;&#x7684;&#x6743;&#x9650;&#x3002;</p>
+</li>
+</ol>
+<p>&#x8FD9;&#x5C31;&#x610F;&#x5473;&#x7740;&#xFF0C;&#x4E00;&#x4E2A;&#x7528;&#x6237;&#x6210;&#x529F;&#x5EFA;&#x7ACB;&#x8FDE;&#x63A5;&#x540E;&#xFF0C;&#x5373;&#x4F7F;&#x4F60;&#x7528;&#x7BA1;&#x7406;&#x5458;&#x8D26;&#x53F7;&#x5BF9;&#x8FD9;&#x4E2A;&#x7528;&#x6237;&#x7684;&#x6743;&#x9650;&#x505A;&#x4E86;&#x4FEE;&#x6539;&#xFF0C;&#x4E5F;&#x4E0D;&#x4F1A;&#x5F71;&#x54CD;&#x5DF2;&#x7ECF;&#x5B58;&#x5728;&#x8FDE;&#x63A5;&#x7684;&#x6743;&#x9650;&#x3002;&#x4FEE;&#x6539;&#x5B8C;&#x6210;&#x540E;&#xFF0C;&#x53EA;&#x6709;&#x518D;&#x65B0;&#x5EFA;&#x7684;&#x8FDE;&#x63A5;&#x624D;&#x4F1A;&#x4F7F;&#x7528;&#x65B0;&#x7684;&#x6743;&#x9650;&#x8BBE;&#x7F6E;&#x3002;&#x7528;&#x6237;&#x7684;&#x6743;&#x9650;&#x8868;&#x5728;&#x7CFB;&#x7EDF;&#x8868;&#x7A7A;&#x95F4;&#x7684;mysql&#x7684;user&#x8868;&#x4E2D;&#x3002;</p>
+<p><img src="../source/images/ch-03/mysql-table-user.png" alt="mysql-table-user"></p>
+<p>&#x4FEE;&#x6539;user&#x5BC6;&#x7801;</p>
+<pre><code class="lang-bash"><span class="hljs-comment"># &#x521B;&#x5EFA;&#x65B0;&#x7528;&#x6237;</span>
+mysql&gt; CREATE USER <span class="hljs-string">&apos;username&apos;</span>@<span class="hljs-string">&apos;host&apos;</span> IDENTIFIED BY <span class="hljs-string">&apos;password&apos;</span>;
+<span class="hljs-comment"># &#x8D4B;&#x6743;&#x9650;,%&#x8868;&#x793A;&#x6240;&#x6709;(host)</span>
+mysql&gt; grant all privileges on *.* to <span class="hljs-string">&apos;username&apos;</span>@<span class="hljs-string">&apos;%&apos;</span>;
+<span class="hljs-comment"># &#x5237;&#x65B0;&#x6570;&#x636E;&#x5E93;</span>
+mysql&gt; flush privileges
+<span class="hljs-comment"># &#x8BBE;&#x7F6E;&#x7528;&#x6237;&#x540D;&#x5BC6;&#x7801;</span>
+mysql&gt; update user <span class="hljs-built_in">set</span> password=password(&#x201D;123456&#x2033;) <span class="hljs-built_in">where</span> user=&#x2019;root&#x2019;;
+<span class="hljs-comment"># &#x67E5;&#x770B;&#x5F53;&#x524D;&#x7528;&#x6237;&#x7684;&#x6743;&#x9650;</span>
+mysql&gt; show grants <span class="hljs-keyword">for</span> root@<span class="hljs-string">&quot;%&quot;</span>;
+</code></pre>
+<p>&#x8FDE;&#x63A5;&#x5B8C;&#x6210;&#x540E;&#xFF0C;&#x5982;&#x679C;&#x4F60;&#x6CA1;&#x6709;&#x540E;&#x7EED;&#x7684;&#x52A8;&#x4F5C;&#xFF0C;&#x8FD9;&#x4E2A;&#x8FDE;&#x63A5;&#x5C31;&#x5904;&#x4E8E;&#x7A7A;&#x95F2;&#x72B6;&#x6001;&#xFF0C;&#x4F60;&#x53EF;&#x4EE5;&#x5728; show processlist &#x547D;&#x4EE4;&#x4E2D;&#x770B;&#x5230;&#x5B83;&#x3002;&#x6587;&#x672C;&#x4E2D;&#x8FD9;&#x4E2A;&#x56FE;&#x662F; show processlist &#x7684;&#x7ED3;&#x679C;&#xFF0C;&#x5176;&#x4E2D;&#x7684; Command &#x5217;&#x663E;&#x793A;&#x4E3A;&#x201C;Sleep&#x201D;&#x7684;&#x8FD9;&#x4E00;&#x884C;&#xFF0C;&#x5C31;&#x8868;&#x793A;&#x73B0;&#x5728;&#x7CFB;&#x7EDF;&#x91CC;&#x9762;&#x6709;&#x4E00;&#x4E2A;&#x7A7A;&#x95F2;&#x8FDE;&#x63A5;&#x3002;</p>
+<p><img src="../source/images/ch-03/mysql-process-list.png" alt="mysql-process-list"></p>
+<p>&#x5BA2;&#x6237;&#x7AEF;&#x5982;&#x679C;&#x957F;&#x65F6;&#x95F4;&#x4E0D;&#x53D1;&#x9001;command&#x5230;Server&#x7AEF;&#xFF0C;&#x8FDE;&#x63A5;&#x5668;&#x5C31;&#x4F1A;&#x81EA;&#x52A8;&#x5C06;&#x5B83;&#x65AD;&#x5F00;&#x3002;&#x8FD9;&#x4E2A;&#x65F6;&#x95F4;&#x662F;&#x7531;&#x53C2;&#x6570; wait_timeout &#x63A7;&#x5236;&#x7684;&#xFF0C;&#x9ED8;&#x8BA4;&#x503C;&#x662F; 8 &#x5C0F;&#x65F6;&#x3002;</p>
+<p>&#x67E5;&#x770B;wait_timeout</p>
+<pre><code class="lang-bash">mysql&gt; show global variables like <span class="hljs-string">&apos;wait_timeout&apos;</span>;
+<span class="hljs-comment"># &#x8BBE;&#x7F6E;&#x5168;&#x5C40;&#x670D;&#x52A1;&#x5668;&#x5173;&#x95ED;&#x975E;&#x4EA4;&#x4E92;&#x8FDE;&#x63A5;&#x4E4B;&#x524D;&#x7B49;&#x5F85;&#x6D3B;&#x52A8;&#x7684;&#x79D2;&#x6570;</span>
+mysql&gt; <span class="hljs-built_in">set</span> global <span class="hljs-built_in">wait</span>_timeout=28800;
+</code></pre>
+<p><img src="../source/images/ch-03/mysql-wait-timeout.png" alt="mysql-wait-timeout"></p>
+<p>&#x5982;&#x679C;&#x5728;&#x8FDE;&#x63A5;&#x88AB;&#x65AD;&#x5F00;&#x4E4B;&#x540E;&#xFF0C;&#x5BA2;&#x6237;&#x7AEF;&#x518D;&#x6B21;&#x53D1;&#x9001;&#x8BF7;&#x6C42;&#x7684;&#x8BDD;&#xFF0C;&#x5C31;&#x4F1A;&#x6536;&#x5230;&#x4E00;&#x4E2A;&#x9519;&#x8BEF;&#x63D0;&#x9192;&#xFF1A; Lost connection to MySQL server during query&#x3002;&#x8FD9;&#x65F6;&#x5019;&#x5982;&#x679C;&#x4F60;&#x8981;&#x7EE7;&#x7EED;&#xFF0C;&#x5C31;&#x9700;&#x8981;&#x91CD;&#x8FDE;&#xFF0C;&#x7136;&#x540E;&#x518D;&#x6267;&#x884C;&#x8BF7;&#x6C42;&#x4E86;&#x3002;</p>
+<p>&#x6570;&#x636E;&#x5E93;&#x91CC;&#x9762;&#xFF0C;&#x957F;&#x8FDE;&#x63A5;&#x662F;&#x6307;&#x8FDE;&#x63A5;&#x6210;&#x529F;&#x540E;&#xFF0C;&#x5982;&#x679C;&#x5BA2;&#x6237;&#x7AEF;&#x6301;&#x7EED;&#x6709;&#x8BF7;&#x6C42;&#xFF0C;&#x5219;&#x4E00;&#x76F4;&#x4F7F;&#x7528;&#x540C;&#x4E00;&#x4E2A;&#x8FDE;&#x63A5;&#x3002;&#x77ED;&#x8FDE;&#x63A5;&#x5219;&#x662F;&#x6307;&#x6BCF;&#x6B21;&#x6267;&#x884C;&#x5B8C;&#x5F88;&#x5C11;&#x7684;&#x51E0;&#x6B21;&#x67E5;&#x8BE2;&#x5C31;&#x65AD;&#x5F00;&#x8FDE;&#x63A5;&#xFF0C;&#x4E0B;&#x6B21;&#x67E5;&#x8BE2;&#x518D;&#x91CD;&#x65B0;&#x5EFA;&#x7ACB;&#x4E00;&#x4E2A;&#x3002;</p>
+<p>&#x5F00;&#x53D1;&#x5F53;&#x4E2D;&#x6211;&#x4EEC;&#x5927;&#x591A;&#x6570;&#x65F6;&#x5019;&#x7528;&#x7684;&#x90FD;&#x662F;&#x957F;&#x8FDE;&#x63A5;,&#x628A;&#x8FDE;&#x63A5;&#x653E;&#x5728;Pool&#x5185;&#x8FDB;&#x884C;&#x7BA1;&#x7406;&#xFF0C;&#x4F46;&#x662F;&#x957F;&#x8FDE;&#x63A5;&#x6709;&#x4E9B;&#x65F6;&#x5019;&#x4F1A;&#x5BFC;&#x81F4; MySQL &#x5360;&#x7528;&#x5185;&#x5B58;&#x6DA8;&#x5F97;&#x7279;&#x522B;&#x5FEB;&#xFF0C;&#x8FD9;&#x662F;&#x56E0;&#x4E3A; MySQL &#x5728;&#x6267;&#x884C;&#x8FC7;&#x7A0B;&#x4E2D;&#x4E34;&#x65F6;&#x4F7F;&#x7528;&#x7684;&#x5185;&#x5B58;&#x662F;&#x7BA1;&#x7406;&#x5728;&#x8FDE;&#x63A5;&#x5BF9;&#x8C61;&#x91CC;&#x9762;&#x7684;&#x3002;&#x8FD9;&#x4E9B;&#x8D44;&#x6E90;&#x4F1A;&#x5728;&#x8FDE;&#x63A5;&#x65AD;&#x5F00;&#x7684;&#x65F6;&#x5019;&#x624D;&#x91CA;&#x653E;&#x3002;&#x6240;&#x4EE5;&#x5982;&#x679C;&#x957F;&#x8FDE;&#x63A5;&#x7D2F;&#x79EF;&#x4E0B;&#x6765;&#xFF0C;&#x53EF;&#x80FD;&#x5BFC;&#x81F4;&#x5185;&#x5B58;&#x5360;&#x7528;&#x592A;&#x5927;&#xFF0C;&#x88AB;&#x7CFB;&#x7EDF;&#x5F3A;&#x884C;&#x6740;&#x6389;&#xFF08;OOM&#xFF09;&#xFF0C;&#x4ECE;&#x73B0;&#x8C61;&#x770B;&#x5C31;&#x662F; MySQL &#x5F02;&#x5E38;&#x91CD;&#x542F;&#x4E86;&#x3002;</p>
+<p>&#x600E;&#x4E48;&#x89E3;&#x51B3;&#x8FD9;&#x7C7B;&#x95EE;&#x9898;&#x5462;&#xFF1F;</p>
+<ol>
+<li><p>&#x5B9A;&#x671F;&#x65AD;&#x5F00;&#x957F;&#x8FDE;&#x63A5;&#x3002;&#x4F7F;&#x7528;&#x4E00;&#x6BB5;&#x65F6;&#x95F4;&#xFF0C;&#x6216;&#x8005;&#x7A0B;&#x5E8F;&#x91CC;&#x9762;&#x5224;&#x65AD;&#x6267;&#x884C;&#x8FC7;&#x4E00;&#x4E2A;&#x5360;&#x7528;&#x5185;&#x5B58;&#x7684;&#x5927;&#x67E5;&#x8BE2;&#x540E;&#xFF0C;&#x65AD;&#x5F00;&#x8FDE;&#x63A5;&#xFF0C;&#x4E4B;&#x540E;&#x8981;&#x67E5;&#x8BE2;&#x518D;&#x91CD;&#x8FDE;&#x3002;</p>
+</li>
+<li><p>&#x5982;&#x679C;&#x4F60;&#x7528;&#x7684;&#x662F; MySQL 5.7 &#x6216;&#x66F4;&#x65B0;&#x7248;&#x672C;&#xFF0C;&#x53EF;&#x4EE5;&#x5728;&#x6BCF;&#x6B21;&#x6267;&#x884C;&#x4E00;&#x4E2A;&#x6BD4;&#x8F83;&#x5927;&#x7684;&#x64CD;&#x4F5C;&#x540E;&#xFF0C;&#x901A;&#x8FC7;&#x6267;&#x884C; mysql_reset_connection &#x6765;&#x91CD;&#x65B0;&#x521D;&#x59CB;&#x5316;&#x8FDE;&#x63A5;&#x8D44;&#x6E90;&#x3002;&#x8FD9;&#x4E2A;&#x8FC7;&#x7A0B;&#x4E0D;&#x9700;&#x8981;&#x91CD;&#x8FDE;&#x548C;&#x91CD;&#x65B0;&#x505A;&#x6743;&#x9650;&#x9A8C;&#x8BC1;&#xFF0C;&#x4F46;&#x662F;&#x4F1A;&#x5C06;&#x8FDE;&#x63A5;&#x6062;&#x590D;&#x5230;&#x521A;&#x521A;&#x521B;&#x5EFA;&#x5B8C;&#x65F6;&#x7684;&#x72B6;&#x6001;&#x3002;</p>
+</li>
+</ol>
+<h5 id="&#x67E5;&#x8BE2;&#x7F13;&#x5B58;"><a name="&#x67E5;&#x8BE2;&#x7F13;&#x5B58;" class="anchor-navigation-ex-anchor" href="#&#x67E5;&#x8BE2;&#x7F13;&#x5B58;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x67E5;&#x8BE2;&#x7F13;&#x5B58;" class="plugin-anchor" href="#&#x67E5;&#x8BE2;&#x7F13;&#x5B58;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x67E5;&#x8BE2;&#x7F13;&#x5B58;</h5>
+<p>&#x5E38;&#x7528;&#x7684;&#x4E00;&#x4E9B;&#x64CD;&#x4F5C;</p>
+<pre><code class="lang-bash"><span class="hljs-comment"># &#x663E;&#x793A;&#x6240;&#x6709;&#x6570;&#x636E;&#x5E93;</span>
+mysql&gt;show databases;
+<span class="hljs-comment"># &#x6253;&#x5F00;&#x6570;&#x636E;&#x5E93;&#xFF1A;</span>
+mysql&gt;use dbname;
+<span class="hljs-comment"># &#x663E;&#x793A;&#x6570;&#x636E;&#x5E93;mysql&#x4E2D;&#x6240;&#x6709;&#x7684;&#x8868;&#xFF1B;</span>
+mysql&gt;show tables;
+<span class="hljs-comment"># &#x663E;&#x793A;&#x8868;mysql&#x6570;&#x636E;&#x5E93;&#x4E2D;user&#x8868;&#x7684;&#x5217;&#x4FE1;&#x606F;&#xFF09;&#xFF1B;</span>
+mysql&gt;describe user;
+</code></pre>
+<p>&#x8FDE;&#x63A5;&#x5EFA;&#x7ACB;&#x5B8C;&#x6210;&#x540E;&#xFF0C;&#x4F60;&#x5C31;&#x53EF;&#x4EE5;&#x6267;&#x884C; select &#x8BED;&#x53E5;&#x4E86;&#x3002;&#x6267;&#x884C;&#x903B;&#x8F91;&#x5C31;&#x4F1A;&#x6765;&#x5230;&#x7B2C;&#x4E8C;&#x6B65;&#xFF1A;&#x67E5;&#x8BE2;&#x7F13;&#x5B58;&#x3002;</p>
+<p>MySQL &#x62FF;&#x5230;&#x4E00;&#x4E2A;&#x67E5;&#x8BE2;&#x8BF7;&#x6C42;&#x540E;&#xFF0C;&#x4F1A;&#x5148;&#x5230;&#x67E5;&#x8BE2;&#x7F13;&#x5B58;&#x770B;&#x770B;&#xFF0C;&#x4E4B;&#x524D;&#x662F;&#x4E0D;&#x662F;&#x6267;&#x884C;&#x8FC7;&#x8FD9;&#x6761;&#x8BED;&#x53E5;&#x3002;&#x4E4B;&#x524D;&#x6267;&#x884C;&#x8FC7;&#x7684;&#x8BED;&#x53E5;&#x53CA;&#x5176;&#x7ED3;&#x679C;&#x53EF;&#x80FD;&#x4F1A;&#x4EE5; key-value &#x5BF9;&#x7684;&#x5F62;&#x5F0F;&#xFF0C;&#x88AB;&#x76F4;&#x63A5;&#x7F13;&#x5B58;&#x5728;&#x5185;&#x5B58;&#x4E2D;&#x3002;key &#x662F;&#x67E5;&#x8BE2;&#x7684;&#x8BED;&#x53E5;&#xFF0C;value &#x662F;&#x67E5;&#x8BE2;&#x7684;&#x7ED3;&#x679C;&#x3002;&#x5982;&#x679C;&#x4F60;&#x7684;&#x67E5;&#x8BE2;&#x80FD;&#x591F;&#x76F4;&#x63A5;&#x5728;&#x8FD9;&#x4E2A;&#x7F13;&#x5B58;&#x4E2D;&#x627E;&#x5230; key&#xFF0C;&#x90A3;&#x4E48;&#x8FD9;&#x4E2A; value &#x5C31;&#x4F1A;&#x88AB;&#x76F4;&#x63A5;&#x8FD4;&#x56DE;&#x7ED9;&#x5BA2;&#x6237;&#x7AEF;&#x3002;</p>
+<p>&#x5982;&#x679C;&#x8BED;&#x53E5;&#x4E0D;&#x5728;&#x67E5;&#x8BE2;&#x7F13;&#x5B58;&#x4E2D;&#xFF0C;&#x5C31;&#x4F1A;&#x7EE7;&#x7EED;&#x540E;&#x9762;&#x7684;&#x6267;&#x884C;&#x9636;&#x6BB5;&#x3002;&#x6267;&#x884C;&#x5B8C;&#x6210;&#x540E;&#xFF0C;&#x6267;&#x884C;&#x7ED3;&#x679C;&#x4F1A;&#x88AB;&#x5B58;&#x5165;&#x67E5;&#x8BE2;&#x7F13;&#x5B58;&#x4E2D;&#x3002;&#x4F60;&#x53EF;&#x4EE5;&#x770B;&#x5230;&#xFF0C;&#x5982;&#x679C;&#x67E5;&#x8BE2;&#x547D;&#x4E2D;&#x7F13;&#x5B58;&#xFF0C;MySQL &#x4E0D;&#x9700;&#x8981;&#x6267;&#x884C;&#x540E;&#x9762;&#x7684;&#x590D;&#x6742;&#x64CD;&#x4F5C;&#xFF0C;&#x5C31;&#x53EF;&#x4EE5;&#x76F4;&#x63A5;&#x8FD4;&#x56DE;&#x7ED3;&#x679C;&#xFF0C;&#x8FD9;&#x4E2A;&#x6548;&#x7387;&#x4F1A;&#x5F88;&#x9AD8;&#x3002;</p>
+<p><strong>&#x5927;&#x591A;&#x6570;&#x60C5;&#x51B5;&#x67E5;&#x8BE2;&#x7F13;&#x5B58;&#x5C31;&#x662F;&#x4E2A;&#x9E21;&#x808B;&#xFF0C;&#x4E3A;&#x4EC0;&#x4E48;&#x5462;&#xFF1F;</strong></p>
+<p>&#x56E0;&#x4E3A;&#x67E5;&#x8BE2;&#x7F13;&#x5B58;&#x5F80;&#x5F80;&#x5F0A;&#x5927;&#x4E8E;&#x5229;&#x3002;&#x67E5;&#x8BE2;&#x7F13;&#x5B58;&#x7684;&#x5931;&#x6548;&#x975E;&#x5E38;&#x9891;&#x7E41;&#xFF0C;&#x53EA;&#x8981;&#x6709;&#x5BF9;&#x4E00;&#x4E2A;&#x8868;&#x7684;&#x66F4;&#x65B0;&#xFF0C;&#x8FD9;&#x4E2A;&#x8868;&#x4E0A;&#x6240;&#x6709;&#x7684;&#x67E5;&#x8BE2;&#x7F13;&#x5B58;&#x90FD;&#x4F1A;&#x88AB;&#x6E05;&#x7A7A;&#x3002;&#x56E0;&#x6B64;&#x5F88;&#x53EF;&#x80FD;&#x4F60;&#x8D39;&#x52B2;&#x5730;&#x628A;&#x7ED3;&#x679C;&#x5B58;&#x8D77;&#x6765;&#xFF0C;&#x8FD8;&#x6CA1;&#x4F7F;&#x7528;&#x5462;&#xFF0C;&#x5C31;&#x88AB;&#x4E00;&#x4E2A;&#x66F4;&#x65B0;&#x5168;&#x6E05;&#x7A7A;&#x4E86;&#x3002;&#x5BF9;&#x4E8E;&#x66F4;&#x65B0;&#x538B;&#x529B;&#x5927;&#x7684;&#x6570;&#x636E;&#x5E93;&#x6765;&#x8BF4;&#xFF0C;&#x67E5;&#x8BE2;&#x7F13;&#x5B58;&#x7684;&#x547D;&#x4E2D;&#x7387;&#x4F1A;&#x975E;&#x5E38;&#x4F4E;&#x3002;</p>
+<p>&#x4E00;&#x822C;&#x5EFA;&#x8BAE;&#x5927;&#x5BB6;&#x5728;&#x9759;&#x6001;&#x8868;&#x91CC;&#x4F7F;&#x7528;&#x67E5;&#x8BE2;&#x7F13;&#x5B58;&#xFF0C;&#x4EC0;&#x4E48;&#x53EB;&#x9759;&#x6001;&#x8868;&#x5462;&#xFF1F;&#x5C31;&#x662F;&#x4E00;&#x822C;&#x6211;&#x4EEC;&#x6781;&#x5C11;&#x66F4;&#x65B0;&#x7684;&#x8868;&#x3002;&#x6BD4;&#x5982;&#xFF0C;&#x4E00;&#x4E2A;&#x7CFB;&#x7EDF;&#x914D;&#x7F6E;&#x8868;&#x3001;&#x5B57;&#x5178;&#x8868;&#xFF0C;&#x90A3;&#x8FD9;&#x5F20;&#x8868;&#x4E0A;&#x7684;&#x67E5;&#x8BE2;&#x624D;&#x9002;&#x5408;&#x4F7F;&#x7528;&#x67E5;&#x8BE2;&#x7F13;&#x5B58;&#x3002;&#x597D;&#x5728; MySQL &#x4E5F;&#x63D0;&#x4F9B;&#x4E86;&#x8FD9;&#x79CD;&#x201C;&#x6309;&#x9700;&#x4F7F;&#x7528;&#x201D;&#x7684;&#x65B9;&#x5F0F;&#x3002;&#x4F60;&#x53EF;&#x4EE5;&#x5C06;my.cnf&#x53C2;&#x6570; query_cache_type &#x8BBE;&#x7F6E;&#x6210; DEMAND&#x3002;</p>
+<pre><code class="lang-bash">my.cnf
+<span class="hljs-comment"># query_cache_type&#x6709;3&#x4E2A;&#x503C; 0&#x4EE3;&#x8868;&#x5173;&#x95ED;&#x67E5;&#x8BE2;&#x7F13;&#x5B58;OFF&#xFF0C;1&#x4EE3;&#x8868;&#x5F00;&#x542F;ON&#xFF0C;2&#xFF08;DEMAND&#xFF09;&#x4EE3;&#x8868;&#x5F53;sql&#x8BED;&#x53E5;&#x4E2D;&#x6709;SQL_CACHE&#x5173;&#x952E;&#x8BCD;&#x65F6;&#x624D;&#x7F13;&#x5B58;</span>
+query_cache_<span class="hljs-built_in">type</span>=2
+</code></pre>
+<p>&#x8FD9;&#x6837;&#x5BF9;&#x4E8E;&#x9ED8;&#x8BA4;&#x7684; SQL &#x8BED;&#x53E5;&#x90FD;&#x4E0D;&#x4F7F;&#x7528;&#x67E5;&#x8BE2;&#x7F13;&#x5B58;&#x3002;&#x800C;&#x5BF9;&#x4E8E;&#x4F60;&#x786E;&#x5B9A;&#x8981;&#x4F7F;&#x7528;&#x67E5;&#x8BE2;&#x7F13;&#x5B58;&#x7684;&#x8BED;&#x53E5;&#xFF0C;&#x53EF;&#x4EE5;&#x7528; SQL_CACHE &#x663E;&#x5F0F;&#x6307;&#x5B9A;&#xFF0C;&#x50CF;&#x4E0B;&#x9762;&#x8FD9;&#x4E2A;&#x8BED;&#x53E5;&#x4E00;&#x6837;&#xFF1A;</p>
+<pre><code class="lang-bash">mysql&gt; select SQL_CACHE * from <span class="hljs-built_in">test</span> <span class="hljs-built_in">where</span> ID=5&#xFF1B;
+</code></pre>
+<p>&#x67E5;&#x770B;&#x5F53;&#x524D;mysql&#x5B9E;&#x4F8B;&#x662F;&#x5426;&#x5F00;&#x542F;&#x7F13;&#x5B58;&#x673A;&#x5236;</p>
+<pre><code class="lang-bash">mysql&gt; show global variables like <span class="hljs-string">&quot;%query_cache_type%&quot;</span>;
+</code></pre>
+<p>&#x76D1;&#x63A7;&#x67E5;&#x8BE2;&#x7F13;&#x5B58;&#x7684;&#x547D;&#x4E2D;&#x7387;:</p>
+<pre><code class="lang-bash"><span class="hljs-comment"># &#x67E5;&#x770B;&#x8FD0;&#x884C;&#x7684;&#x7F13;&#x5B58;&#x4FE1;&#x606F;</span>
+mysql&gt; show status like <span class="hljs-string">&apos;%Qcache%&apos;</span>;
+</code></pre>
+<p><img src="../source/images/ch-03/mysql-qcache-status.png" alt="mysql-qcache-status"></p>
+<ul>
+<li>Qcache_free_blocks: &#x8868;&#x793A;&#x67E5;&#x8BE2;&#x7F13;&#x5B58;&#x4E2D;&#x76EE;&#x524D;&#x8FD8;&#x6709;&#x591A;&#x5C11;&#x5269;&#x4F59;&#x7684;blocks&#xFF0C;&#x5982;&#x679C;&#x8BE5;&#x503C;&#x663E;&#x793A;&#x8F83;&#x5927;&#xFF0C;&#x5219;&#x8BF4;&#x660E;&#x67E5;&#x8BE2;&#x7F13;&#x5B58;&#x4E2D;&#x7684;&#x5185;&#x5B58;&#x788E;&#x7247;&#x8FC7;&#x591A;&#x4E86;&#xFF0C;&#x53EF;&#x80FD;&#x5728;&#x4E00;&#x5B9A;&#x7684;&#x65F6;&#x95F4;&#x8FDB;&#x884C;&#x6574;&#x7406;&#x3002;</li>
+<li>Qcache_free_memory: &#x67E5;&#x8BE2;&#x7F13;&#x5B58;&#x7684;&#x5185;&#x5B58;&#x5927;&#x5C0F;&#xFF0C;&#x901A;&#x8FC7;&#x8FD9;&#x4E2A;&#x53C2;&#x6570;&#x53EF;&#x4EE5;&#x5F88;&#x6E05;&#x6670;&#x7684;&#x77E5;&#x9053;&#x5F53;&#x524D;&#x7CFB;&#x7EDF;&#x7684;&#x67E5;&#x8BE2;&#x5185;&#x5B58;&#x662F;&#x5426;&#x591F;&#x7528;&#xFF0C;&#x662F;&#x591A;&#x4E86;&#xFF0C;&#x8FD8;&#x662F;&#x4E0D;&#x591F;&#x7528;&#xFF0C;DBA&#x53EF;&#x4EE5;&#x6839;&#x636E;&#x5B9E;&#x9645;&#x60C5;&#x51B5;&#x505A;&#x51FA;&#x8C03;&#x6574;&#x3002;</li>
+<li>Qcache_hits: &#x8868;&#x793A;&#x6709;&#x591A;&#x5C11;&#x6B21;&#x547D;&#x4E2D;&#x7F13;&#x5B58;&#x3002;&#x6211;&#x4EEC;&#x4E3B;&#x8981;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x8BE5;&#x503C;&#x6765;&#x9A8C;&#x8BC1;&#x6211;&#x4EEC;&#x7684;&#x67E5;&#x8BE2;&#x7F13;&#x5B58;&#x7684;&#x6548;&#x679C;&#x3002;&#x6570;&#x5B57;&#x8D8A;&#x5927;&#xFF0C;&#x7F13;&#x5B58;&#x6548;&#x679C;&#x8D8A;&#x7406;&#x60F3;&#x3002;</li>
+<li>Qcache_inserts:  &#x8868;&#x793A;&#x591A;&#x5C11;&#x6B21;&#x672A;&#x547D;&#x4E2D;&#x7136;&#x540E;&#x63D2;&#x5165;&#xFF0C;&#x610F;&#x601D;&#x662F;&#x65B0;&#x6765;&#x7684;SQL&#x8BF7;&#x6C42;&#x5728;&#x7F13;&#x5B58;&#x4E2D;&#x672A;&#x627E;&#x5230;&#xFF0C;&#x4E0D;&#x5F97;&#x4E0D;&#x6267;&#x884C;&#x67E5;&#x8BE2;&#x5904;&#x7406;&#xFF0C;&#x6267;&#x884C;&#x67E5;&#x8BE2;&#x5904;&#x7406;&#x540E;&#x628A;&#x7ED3;&#x679C;insert&#x5230;&#x67E5;&#x8BE2;&#x7F13;&#x5B58;&#x4E2D;&#x3002;&#x8FD9;&#x6837;&#x7684;&#x60C5;&#x51B5;&#x7684;&#x6B21;&#x6570;&#xFF0C;&#x6B21;&#x6570;&#x8D8A;&#x591A;&#xFF0C;&#x8868;&#x793A;&#x67E5;&#x8BE2;&#x7F13;&#x5B58;&#x5E94;&#x7528;&#x5230;&#x7684;&#x6BD4;&#x8F83;&#x5C11;&#xFF0C;&#x6548;&#x679C;&#x4E5F;&#x5C31;&#x4E0D;&#x7406;&#x60F3;&#x3002;&#x5F53;&#x7136;&#x7CFB;&#x7EDF;&#x521A;&#x542F;&#x52A8;&#x540E;&#xFF0C;&#x67E5;&#x8BE2;&#x7F13;&#x5B58;&#x662F;&#x7A7A;&#x7684;&#xFF0C;&#x8FD9;&#x5F88;&#x6B63;&#x5E38;&#x3002;</li>
+<li>Qcache_lowmem_prunes: &#x8BE5;&#x53C2;&#x6570;&#x8BB0;&#x5F55;&#x6709;&#x591A;&#x5C11;&#x6761;&#x67E5;&#x8BE2;&#x56E0;&#x4E3A;&#x5185;&#x5B58;&#x4E0D;&#x8DB3;&#x800C;&#x88AB;&#x79FB;&#x9664;&#x51FA;&#x67E5;&#x8BE2;&#x7F13;&#x5B58;&#x3002;&#x901A;&#x8FC7;&#x8FD9;&#x4E2A;&#x503C;&#xFF0C;&#x7528;&#x6237;&#x53EF;&#x4EE5;&#x9002;&#x5F53;&#x7684;&#x8C03;&#x6574;&#x7F13;&#x5B58;&#x5927;&#x5C0F;&#x3002;</li>
+<li>Qcache_not_cached: &#x8868;&#x793A;&#x56E0;&#x4E3A;query_cache_type&#x7684;&#x8BBE;&#x7F6E;&#x800C;&#x6CA1;&#x6709;&#x88AB;&#x7F13;&#x5B58;&#x7684;&#x67E5;&#x8BE2;&#x6570;&#x91CF;&#x3002;</li>
+<li>Qcache_queries_in_cache: &#x5F53;&#x524D;&#x7F13;&#x5B58;&#x4E2D;&#x7F13;&#x5B58;&#x7684;&#x67E5;&#x8BE2;&#x6570;&#x91CF;&#x3002;</li>
+<li><p>Qcache_total_blocks: &#x5F53;&#x524D;&#x7F13;&#x5B58;&#x7684;block&#x6570;&#x91CF;&#x3002;</p>
+<p><strong>mysql8.0&#x5DF2;&#x7ECF;&#x79FB;&#x9664;&#x4E86;&#x67E5;&#x8BE2;&#x7F13;&#x5B58;&#x529F;&#x80FD;</strong></p>
+</li>
+</ul>
+<h5 id="&#x5206;&#x6790;&#x5668;"><a name="&#x5206;&#x6790;&#x5668;" class="anchor-navigation-ex-anchor" href="#&#x5206;&#x6790;&#x5668;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x5206;&#x6790;&#x5668;" class="plugin-anchor" href="#&#x5206;&#x6790;&#x5668;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x5206;&#x6790;&#x5668;</h5>
+<p>&#x5982;&#x679C;&#x6CA1;&#x6709;&#x547D;&#x4E2D;&#x67E5;&#x8BE2;&#x7F13;&#x5B58;&#xFF0C;&#x5C31;&#x8981;&#x5F00;&#x59CB;&#x771F;&#x6B63;&#x6267;&#x884C;&#x8BED;&#x53E5;&#x4E86;&#x3002;&#x9996;&#x5148;&#xFF0C;MySQL &#x9700;&#x8981;&#x77E5;&#x9053;&#x4F60;&#x8981;&#x505A;&#x4EC0;&#x4E48;&#xFF0C;&#x56E0;&#x6B64;&#x9700;&#x8981;&#x5BF9; SQL &#x8BED;&#x53E5;&#x505A;&#x89E3;&#x6790;&#x3002;</p>
+<p>&#x5206;&#x6790;&#x5668;&#x5148;&#x4F1A;&#x505A;&#x201C;&#x8BCD;&#x6CD5;&#x5206;&#x6790;&#x201D;&#x3002;&#x4F60;&#x8F93;&#x5165;&#x7684;&#x662F;&#x7531;&#x591A;&#x4E2A;&#x5B57;&#x7B26;&#x4E32;&#x548C;&#x7A7A;&#x683C;&#x7EC4;&#x6210;&#x7684;&#x4E00;&#x6761; SQL &#x8BED;&#x53E5;&#xFF0C;MySQL &#x9700;&#x8981;&#x8BC6;&#x522B;&#x51FA;&#x91CC;&#x9762;&#x7684;&#x5B57;&#x7B26;&#x4E32;&#x5206;&#x522B;&#x662F;&#x4EC0;&#x4E48;&#xFF0C;&#x4EE3;&#x8868;&#x4EC0;&#x4E48;&#x3002;</p>
+<p>MySQL &#x4ECE;&#x4F60;&#x8F93;&#x5165;&#x7684;&quot;select&quot;&#x8FD9;&#x4E2A;&#x5173;&#x952E;&#x5B57;&#x8BC6;&#x522B;&#x51FA;&#x6765;&#xFF0C;&#x8FD9;&#x662F;&#x4E00;&#x4E2A;&#x67E5;&#x8BE2;&#x8BED;&#x53E5;&#x3002;&#x5B83;&#x4E5F;&#x8981;&#x628A;&#x5B57;&#x7B26;&#x4E32;&#x201C;T&#x201D;&#x8BC6;&#x522B;&#x6210;&#x201C;&#x8868;&#x540D; T&#x201D;&#xFF0C;&#x628A;&#x5B57;&#x7B26;&#x4E32;&#x201C;ID&#x201D;&#x8BC6;&#x522B;&#x6210;&#x201C;&#x5217; ID&#x201D;&#x3002;</p>
+<p>&#x505A;&#x5B8C;&#x4E86;&#x8FD9;&#x4E9B;&#x8BC6;&#x522B;&#x4EE5;&#x540E;&#xFF0C;&#x5C31;&#x8981;&#x505A;&#x201C;&#x8BED;&#x6CD5;&#x5206;&#x6790;&#x201D;&#x3002;&#x6839;&#x636E;&#x8BCD;&#x6CD5;&#x5206;&#x6790;&#x7684;&#x7ED3;&#x679C;&#xFF0C;&#x8BED;&#x6CD5;&#x5206;&#x6790;&#x5668;&#x4F1A;&#x6839;&#x636E;&#x8BED;&#x6CD5;&#x89C4;&#x5219;&#xFF0C;&#x5224;&#x65AD;&#x4F60;&#x8F93;&#x5165;&#x7684;&#x8FD9;&#x4E2A; SQL &#x8BED;&#x53E5;&#x662F;&#x5426;&#x6EE1;&#x8DB3; MySQL &#x8BED;&#x6CD5;&#x3002;</p>
+<p>&#x5982;&#x679C;&#x4F60;&#x7684;&#x8BED;&#x53E5;&#x4E0D;&#x5BF9;&#xFF0C;&#x5C31;&#x4F1A;&#x6536;&#x5230;&#x201C;You have an error in your SQL syntax&#x201D;&#x7684;&#x9519;&#x8BEF;&#x63D0;&#x9192;&#xFF0C;&#x6BD4;&#x5982;&#x4E0B;&#x9762;&#x8FD9;&#x4E2A;&#x8BED;&#x53E5; from &#x5199;&#x6210;&#x4E86; &quot;rom&quot;&#x3002;</p>
+<pre><code class="lang-bash">mysql&gt; select * fro <span class="hljs-built_in">test</span> <span class="hljs-built_in">where</span> id=1;
+ERROR 1064 (42000): You have an error <span class="hljs-keyword">in</span> your SQL syntax; check the manual that corresponds to your MySQL server version <span class="hljs-keyword">for</span> the right syntax to use near <span class="hljs-string">&apos;fro test where id=1&apos;</span> at line 1
+</code></pre>
+<h6 id="&#x8BCD;&#x6CD5;&#x5206;&#x6790;&#x5668;&#x539F;&#x7406;"><a name="&#x8BCD;&#x6CD5;&#x5206;&#x6790;&#x5668;&#x539F;&#x7406;" class="anchor-navigation-ex-anchor" href="#&#x8BCD;&#x6CD5;&#x5206;&#x6790;&#x5668;&#x539F;&#x7406;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x8BCD;&#x6CD5;&#x5206;&#x6790;&#x5668;&#x539F;&#x7406;" class="plugin-anchor" href="#&#x8BCD;&#x6CD5;&#x5206;&#x6790;&#x5668;&#x539F;&#x7406;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x8BCD;&#x6CD5;&#x5206;&#x6790;&#x5668;&#x539F;&#x7406;</h6>
+<p>&#x8BCD;&#x6CD5;&#x5206;&#x6790;&#x5668;&#x5206;&#x6210;6&#x4E2A;&#x4E3B;&#x8981;&#x6B65;&#x9AA4;&#x5B8C;&#x6210;&#x5BF9;sql&#x8BED;&#x53E5;&#x7684;&#x5206;&#x6790;</p>
+<p>1&#x3001;&#x8BCD;&#x6CD5;&#x5206;&#x6790;</p>
+<p>2&#x3001;&#x8BED;&#x6CD5;&#x5206;&#x6790;</p>
+<p>3&#x3001;&#x8BED;&#x4E49;&#x5206;&#x6790;</p>
+<p>4&#x3001;&#x6784;&#x9020;&#x6267;&#x884C;&#x6811;</p>
+<p>5&#x3001;&#x751F;&#x6210;&#x6267;&#x884C;&#x8BA1;&#x5212;</p>
+<p>6&#x3001;&#x8BA1;&#x5212;&#x7684;&#x6267;&#x884C;</p>
+<p>&#x4E0B;&#x56FE;&#x662F;SQL&#x8BCD;&#x6CD5;&#x5206;&#x6790;&#x7684;&#x8FC7;&#x7A0B;&#x6B65;&#x9AA4;&#xFF1A;</p>
+<p><img src="../source/images/ch-03/mysql-grammar-analyse.png" alt="mysql-grammar-analyse"></p>
+<p>SQL&#x8BED;&#x53E5;&#x7684;&#x5206;&#x6790;&#x5206;&#x4E3A;&#x8BCD;&#x6CD5;&#x5206;&#x6790;&#x4E0E;&#x8BED;&#x6CD5;&#x5206;&#x6790;&#xFF0C;mysql&#x7684;&#x8BCD;&#x6CD5;&#x5206;&#x6790;&#x7531;MySQLLex&#xFF08;MySQL&#x81EA;&#x5DF1;&#x5B9E;&#x73B0;&#xFF09;&#x5B8C;&#x6210;&#xFF0C;&#x8BED;&#x6CD5;&#x5206;&#x6790;&#x7531;Bison&#x751F;&#x6210;&#x3002;&#x5173;&#x4E8E;&#x8BED;&#x6CD5;&#x6811;&#x7684;&#x6DF1;&#x5165;&#x7814;&#x7A76;&#x53EF;&#x4EE5;&#x53C2;&#x8003;&#x8FD9;&#x7BC7;wiki&#xFF1A;<a href="https://en.wikipedia.org/wiki/LR_parser&#x3002;&#x9664;&#x4E86;Bison&#x5916;&#xFF0C;Java&#x5F53;&#x4E2D;&#x4E5F;&#x6709;&#x5F00;&#x6E90;&#x7684;&#x8BCD;&#x6CD5;&#x7ED3;&#x6784;&#x5206;&#x6790;&#x5DE5;&#x5177;&#x4F8B;&#x5982;Antlr4&#xFF0C;ANTLR&#x4ECE;&#x8BED;&#x6CD5;&#x751F;&#x6210;&#x4E00;&#x4E2A;&#x89E3;&#x6790;&#x5668;&#xFF0C;&#x53EF;&#x4EE5;&#x6784;&#x5EFA;&#x548C;&#x904D;&#x5386;&#x89E3;&#x6790;&#x6811;&#xFF0C;&#x53EF;&#x4EE5;&#x5728;IDEA&#x5DE5;&#x5177;&#x5F53;&#x4E2D;&#x5B89;&#x88C5;&#x63D2;&#x4EF6;&#xFF1A;antlr" target="_blank">https://en.wikipedia.org/wiki/LR_parser&#x3002;&#x9664;&#x4E86;Bison&#x5916;&#xFF0C;Java&#x5F53;&#x4E2D;&#x4E5F;&#x6709;&#x5F00;&#x6E90;&#x7684;&#x8BCD;&#x6CD5;&#x7ED3;&#x6784;&#x5206;&#x6790;&#x5DE5;&#x5177;&#x4F8B;&#x5982;Antlr4&#xFF0C;ANTLR&#x4ECE;&#x8BED;&#x6CD5;&#x751F;&#x6210;&#x4E00;&#x4E2A;&#x89E3;&#x6790;&#x5668;&#xFF0C;&#x53EF;&#x4EE5;&#x6784;&#x5EFA;&#x548C;&#x904D;&#x5386;&#x89E3;&#x6790;&#x6811;&#xFF0C;&#x53EF;&#x4EE5;&#x5728;IDEA&#x5DE5;&#x5177;&#x5F53;&#x4E2D;&#x5B89;&#x88C5;&#x63D2;&#x4EF6;&#xFF1A;antlr</a> v4 grammar plugin&#x3002;</p>
+<p>&#x7ECF;&#x8FC7;bison&#x8BED;&#x6CD5;&#x5206;&#x6790;&#x4E4B;&#x540E;&#xFF0C;&#x4F1A;&#x751F;&#x6210;&#x4E00;&#x4E2A;&#x8FD9;&#x6837;&#x7684;&#x8BED;&#x6CD5;&#x6811;</p>
+<p><img src="../source/images/ch-03/mysql-grammar-tree.png" alt="mysql-grammar-tree"></p>
+<p>&#x81F3;&#x6B64;&#x6211;&#x4EEC;&#x5206;&#x6790;&#x5668;&#x7684;&#x5DE5;&#x4F5C;&#x4EFB;&#x52A1;&#x4E5F;&#x57FA;&#x672C;&#x5706;&#x6EE1;&#x4E86;&#x3002;&#x63A5;&#x4E0B;&#x6765;&#x8FDB;&#x5165;&#x5230;&#x4F18;&#x5316;&#x5668;</p>
+<h5 id="&#x4F18;&#x5316;&#x5668;"><a name="&#x4F18;&#x5316;&#x5668;" class="anchor-navigation-ex-anchor" href="#&#x4F18;&#x5316;&#x5668;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x4F18;&#x5316;&#x5668;" class="plugin-anchor" href="#&#x4F18;&#x5316;&#x5668;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x4F18;&#x5316;&#x5668;</h5>
+<p>&#x7ECF;&#x8FC7;&#x4E86;&#x5206;&#x6790;&#x5668;&#xFF0C;MySQL &#x5C31;&#x77E5;&#x9053;&#x4F60;&#x8981;&#x505A;&#x4EC0;&#x4E48;&#x4E86;&#x3002;&#x5728;&#x5F00;&#x59CB;&#x6267;&#x884C;&#x4E4B;&#x524D;&#xFF0C;&#x8FD8;&#x8981;&#x5148;&#x7ECF;&#x8FC7;&#x4F18;&#x5316;&#x5668;&#x7684;&#x5904;&#x7406;&#x3002;</p>
+<p>&#x4F18;&#x5316;&#x5668;&#x662F;&#x5728;&#x8868;&#x91CC;&#x9762;&#x6709;&#x591A;&#x4E2A;&#x7D22;&#x5F15;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x51B3;&#x5B9A;&#x4F7F;&#x7528;&#x54EA;&#x4E2A;&#x7D22;&#x5F15;&#xFF1B;&#x6216;&#x8005;&#x5728;&#x4E00;&#x4E2A;&#x8BED;&#x53E5;&#x6709;&#x591A;&#x8868;&#x5173;&#x8054;&#xFF08;join&#xFF09;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x51B3;&#x5B9A;&#x5404;&#x4E2A;&#x8868;&#x7684;&#x8FDE;&#x63A5;&#x987A;&#x5E8F;&#x3002;&#x6BD4;&#x5982;&#x4F60;&#x6267;&#x884C;&#x4E0B;&#x9762;&#x8FD9;&#x6837;&#x7684;&#x8BED;&#x53E5;&#xFF0C;&#x8FD9;&#x4E2A;&#x8BED;&#x53E5;&#x662F;&#x6267;&#x884C;&#x4E24;&#x4E2A;&#x8868;&#x7684; join&#xFF1A;</p>
+<pre><code class="lang-bash">mysql&gt; select * from <span class="hljs-built_in">test</span>1 join <span class="hljs-built_in">test</span>2 using(ID) <span class="hljs-built_in">where</span> <span class="hljs-built_in">test</span>1.name=yangguo and <span class="hljs-built_in">test</span>2.name=xiaolongnv;
+</code></pre>
+<p>&#x65E2;&#x53EF;&#x4EE5;&#x5148;&#x4ECE;&#x8868; test1 &#x91CC;&#x9762;&#x53D6;&#x51FA; name=yangguo&#x7684;&#x8BB0;&#x5F55;&#x7684; ID &#x503C;&#xFF0C;&#x518D;&#x6839;&#x636E; ID &#x503C;&#x5173;&#x8054;&#x5230;&#x8868; test2&#xFF0C;&#x518D;&#x5224;&#x65AD; test2 &#x91CC;&#x9762; name&#x7684;&#x503C;&#x662F;&#x5426;&#x7B49;&#x4E8E; yangguo&#x3002;</p>
+<p>&#x4E5F;&#x53EF;&#x4EE5;&#x5148;&#x4ECE;&#x8868; test2 &#x91CC;&#x9762;&#x53D6;&#x51FA; name=xiaolongnv &#x7684;&#x8BB0;&#x5F55;&#x7684; ID &#x503C;&#xFF0C;&#x518D;&#x6839;&#x636E; ID &#x503C;&#x5173;&#x8054;&#x5230; test1&#xFF0C;&#x518D;&#x5224;&#x65AD; test1 &#x91CC;&#x9762; name &#x7684;&#x503C;&#x662F;&#x5426;&#x7B49;&#x4E8E; yangguo&#x3002;</p>
+<p>&#x8FD9;&#x4E24;&#x79CD;&#x6267;&#x884C;&#x65B9;&#x6CD5;&#x7684;&#x903B;&#x8F91;&#x7ED3;&#x679C;&#x662F;&#x4E00;&#x6837;&#x7684;&#xFF0C;&#x4F46;&#x662F;&#x6267;&#x884C;&#x7684;&#x6548;&#x7387;&#x4F1A;&#x6709;&#x4E0D;&#x540C;&#xFF0C;&#x800C;&#x4F18;&#x5316;&#x5668;&#x7684;&#x4F5C;&#x7528;&#x5C31;&#x662F;&#x51B3;&#x5B9A;&#x9009;&#x62E9;&#x4F7F;&#x7528;&#x54EA;&#x4E00;&#x4E2A;&#x65B9;&#x6848;&#x3002;&#x4F18;&#x5316;&#x5668;&#x9636;&#x6BB5;&#x5B8C;&#x6210;&#x540E;&#xFF0C;&#x8FD9;&#x4E2A;&#x8BED;&#x53E5;&#x7684;&#x6267;&#x884C;&#x65B9;&#x6848;&#x5C31;&#x786E;&#x5B9A;&#x4E0B;&#x6765;&#x4E86;&#xFF0C;&#x7136;&#x540E;&#x8FDB;&#x5165;&#x6267;&#x884C;&#x5668;&#x9636;&#x6BB5;&#x3002;&#x5982;&#x679C;&#x4F60;&#x8FD8;&#x6709;&#x4E00;&#x4E9B;&#x7591;&#x95EE;&#xFF0C;&#x6BD4;&#x5982;&#x4F18;&#x5316;&#x5668;&#x662F;&#x600E;&#x4E48;&#x9009;&#x62E9;&#x7D22;&#x5F15;&#x7684;&#xFF0C;&#x6709;&#x6CA1;&#x6709;&#x53EF;&#x80FD;&#x9009;&#x62E9;&#x9519;&#x7B49;&#x7B49;&#x3002;</p>
+<h5 id="&#x6267;&#x884C;&#x5668;"><a name="&#x6267;&#x884C;&#x5668;" class="anchor-navigation-ex-anchor" href="#&#x6267;&#x884C;&#x5668;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x6267;&#x884C;&#x5668;" class="plugin-anchor" href="#&#x6267;&#x884C;&#x5668;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x6267;&#x884C;&#x5668;</h5>
+<p>&#x5F00;&#x59CB;&#x6267;&#x884C;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x8981;&#x5148;&#x5224;&#x65AD;&#x4E00;&#x4E0B;&#x4F60;&#x5BF9;&#x8FD9;&#x4E2A;&#x8868; T &#x6709;&#x6CA1;&#x6709;&#x6267;&#x884C;&#x67E5;&#x8BE2;&#x7684;&#x6743;&#x9650;&#xFF0C;&#x5982;&#x679C;&#x6CA1;&#x6709;&#xFF0C;&#x5C31;&#x4F1A;&#x8FD4;&#x56DE;&#x6CA1;&#x6709;&#x6743;&#x9650;&#x7684;&#x9519;&#x8BEF;&#xFF0C;&#x5982;&#x4E0B;&#x6240;&#x793A; (&#x5728;&#x5DE5;&#x7A0B;&#x5B9E;&#x73B0;&#x4E0A;&#xFF0C;&#x5982;&#x679C;&#x547D;&#x4E2D;&#x67E5;&#x8BE2;&#x7F13;&#x5B58;&#xFF0C;&#x4F1A;&#x5728;&#x67E5;&#x8BE2;&#x7F13;&#x5B58;&#x8FD4;&#x56DE;&#x7ED3;&#x679C;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x505A;&#x6743;&#x9650;&#x9A8C;&#x8BC1;&#x3002;&#x67E5;&#x8BE2;&#x4E5F;&#x4F1A;&#x5728;&#x4F18;&#x5316;&#x5668;&#x4E4B;&#x524D;&#x8C03;&#x7528; precheck &#x9A8C;&#x8BC1;&#x6743;&#x9650;)&#x3002;</p>
+<pre><code class="lang-bash">mysql&gt; select * from <span class="hljs-built_in">test</span> <span class="hljs-built_in">where</span> id=1;
+</code></pre>
+<p>&#x5982;&#x679C;&#x6709;&#x6743;&#x9650;&#xFF0C;&#x5C31;&#x6253;&#x5F00;&#x8868;&#x7EE7;&#x7EED;&#x6267;&#x884C;&#x3002;&#x6253;&#x5F00;&#x8868;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x6267;&#x884C;&#x5668;&#x5C31;&#x4F1A;&#x6839;&#x636E;&#x8868;&#x7684;&#x5F15;&#x64CE;&#x5B9A;&#x4E49;&#xFF0C;&#x53BB;&#x4F7F;&#x7528;&#x8FD9;&#x4E2A;&#x5F15;&#x64CE;&#x63D0;&#x4F9B;&#x7684;&#x63A5;&#x53E3;&#x3002;</p>
+<p>&#x6BD4;&#x5982;&#x6211;&#x4EEC;&#x8FD9;&#x4E2A;&#x4F8B;&#x5B50;&#x4E2D;&#x7684;&#x8868; test &#x4E2D;&#xFF0C;ID &#x5B57;&#x6BB5;&#x6CA1;&#x6709;&#x7D22;&#x5F15;&#xFF0C;&#x90A3;&#x4E48;&#x6267;&#x884C;&#x5668;&#x7684;&#x6267;&#x884C;&#x6D41;&#x7A0B;&#x662F;&#x8FD9;&#x6837;&#x7684;&#xFF1A;</p>
+<ol>
+<li>&#x8C03;&#x7528; InnoDB &#x5F15;&#x64CE;&#x63A5;&#x53E3;&#x53D6;&#x8FD9;&#x4E2A;&#x8868;&#x7684;&#x7B2C;&#x4E00;&#x884C;&#xFF0C;&#x5224;&#x65AD; ID &#x503C;&#x662F;&#x4E0D;&#x662F; 10&#xFF0C;&#x5982;&#x679C;&#x4E0D;&#x662F;&#x5219;&#x8DF3;&#x8FC7;&#xFF0C;&#x5982;&#x679C;&#x662F;&#x5219;&#x5C06;&#x8FD9;&#x884C;&#x5B58;&#x5728;&#x7ED3;&#x679C;&#x96C6;&#x4E2D;&#xFF1B;</li>
+<li>&#x8C03;&#x7528;&#x5F15;&#x64CE;&#x63A5;&#x53E3;&#x53D6;&#x201C;&#x4E0B;&#x4E00;&#x884C;&#x201D;&#xFF0C;&#x91CD;&#x590D;&#x76F8;&#x540C;&#x7684;&#x5224;&#x65AD;&#x903B;&#x8F91;&#xFF0C;&#x76F4;&#x5230;&#x53D6;&#x5230;&#x8FD9;&#x4E2A;&#x8868;&#x7684;&#x6700;&#x540E;&#x4E00;&#x884C;&#x3002;</li>
+<li>&#x6267;&#x884C;&#x5668;&#x5C06;&#x4E0A;&#x8FF0;&#x904D;&#x5386;&#x8FC7;&#x7A0B;&#x4E2D;&#x6240;&#x6709;&#x6EE1;&#x8DB3;&#x6761;&#x4EF6;&#x7684;&#x884C;&#x7EC4;&#x6210;&#x7684;&#x8BB0;&#x5F55;&#x96C6;&#x4F5C;&#x4E3A;&#x7ED3;&#x679C;&#x96C6;&#x8FD4;&#x56DE;&#x7ED9;&#x5BA2;&#x6237;&#x7AEF;&#x3002;</li>
+</ol>
+<p>&#x81F3;&#x6B64;&#xFF0C;&#x8FD9;&#x4E2A;&#x8BED;&#x53E5;&#x5C31;&#x6267;&#x884C;&#x5B8C;&#x6210;&#x4E86;&#x3002;&#x5BF9;&#x4E8E;&#x6709;&#x7D22;&#x5F15;&#x7684;&#x8868;&#xFF0C;&#x6267;&#x884C;&#x7684;&#x903B;&#x8F91;&#x4E5F;&#x5DEE;&#x4E0D;&#x591A;&#x3002;&#x7B2C;&#x4E00;&#x6B21;&#x8C03;&#x7528;&#x7684;&#x662F;&#x201C;&#x53D6;&#x6EE1;&#x8DB3;&#x6761;&#x4EF6;&#x7684;&#x7B2C;&#x4E00;&#x884C;&#x201D;&#x8FD9;&#x4E2A;&#x63A5;&#x53E3;&#xFF0C;&#x4E4B;&#x540E;&#x5FAA;&#x73AF;&#x53D6;&#x201C;&#x6EE1;&#x8DB3;&#x6761;&#x4EF6;&#x7684;&#x4E0B;&#x4E00;&#x884C;&#x201D;&#x8FD9;&#x4E2A;&#x63A5;&#x53E3;&#xFF0C;&#x8FD9;&#x4E9B;&#x63A5;&#x53E3;&#x90FD;&#x662F;&#x5F15;&#x64CE;&#x4E2D;&#x5DF2;&#x7ECF;&#x5B9A;&#x4E49;&#x597D;&#x7684;&#x3002;&#x4F60;&#x4F1A;&#x5728;&#x6570;&#x636E;&#x5E93;&#x7684;&#x6162;&#x67E5;&#x8BE2;&#x65E5;&#x5FD7;&#x4E2D;&#x770B;&#x5230;&#x4E00;&#x4E2A; rows_examined &#x7684;&#x5B57;&#x6BB5;&#xFF0C;&#x8868;&#x793A;&#x8FD9;&#x4E2A;&#x8BED;&#x53E5;&#x6267;&#x884C;&#x8FC7;&#x7A0B;&#x4E2D;&#x626B;&#x63CF;&#x4E86;&#x591A;&#x5C11;&#x884C;&#x3002;&#x8FD9;&#x4E2A;&#x503C;&#x5C31;&#x662F;&#x5728;&#x6267;&#x884C;&#x5668;&#x6BCF;&#x6B21;&#x8C03;&#x7528;&#x5F15;&#x64CE;&#x83B7;&#x53D6;&#x6570;&#x636E;&#x884C;&#x7684;&#x65F6;&#x5019;&#x7D2F;&#x52A0;&#x7684;&#x3002;&#x5728;&#x6709;&#x4E9B;&#x573A;&#x666F;&#x4E0B;&#xFF0C;&#x6267;&#x884C;&#x5668;&#x8C03;&#x7528;&#x4E00;&#x6B21;&#xFF0C;&#x5728;&#x5F15;&#x64CE;&#x5185;&#x90E8;&#x5219;&#x626B;&#x63CF;&#x4E86;&#x591A;&#x884C;&#xFF0C;&#x56E0;&#x6B64;&#x5F15;&#x64CE;&#x626B;&#x63CF;&#x884C;&#x6570;&#x8DDF; rows_examined &#x5E76;&#x4E0D;&#x662F;&#x5B8C;&#x5168;&#x76F8;&#x540C;&#x7684;&#x3002;</p>
+<h5 id="bin-log&#x5F52;&#x6863;"><a name="bin-log&#x5F52;&#x6863;" class="anchor-navigation-ex-anchor" href="#bin-log&#x5F52;&#x6863;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="bin-log&#x5F52;&#x6863;" class="plugin-anchor" href="#bin-log&#x5F52;&#x6863;"><i class="fa fa-link" aria-hidden="true"></i></a>bin-log&#x5F52;&#x6863;</h5>
+<p>&#x5220;&#x5E93;&#x662F;&#x4E0D;&#x9700;&#x8981;&#x8DD1;&#x8DEF;&#x7684;&#xFF0C;&#x56E0;&#x4E3A;&#x6211;&#x4EEC;&#x7684;SQL&#x6267;&#x884C;&#x65F6;&#xFF0C;&#x4F1A;&#x5C06;sql&#x8BED;&#x53E5;&#x7684;&#x6267;&#x884C;&#x903B;&#x8F91;&#x8BB0;&#x5F55;&#x5728;&#x6211;&#x4EEC;&#x7684;bin-log&#x5F53;&#x4E2D;&#xFF0C;&#x4EC0;&#x4E48;&#x662F;bin-log&#x5462;&#xFF1F;</p>
+<p>binlog&#x662F;Server&#x5C42;&#x5B9E;&#x73B0;&#x7684;&#x4E8C;&#x8FDB;&#x5236;&#x65E5;&#x5FD7;,&#x4ED6;&#x4F1A;&#x8BB0;&#x5F55;&#x6211;&#x4EEC;&#x7684;cud&#x64CD;&#x4F5C;&#x3002;Binlog&#x6709;&#x4EE5;&#x4E0B;&#x51E0;&#x4E2A;&#x7279;&#x70B9;&#xFF1A;</p>
+<ol>
+<li><p>Binlog&#x5728;MySQL&#x7684;Server&#x5C42;&#x5B9E;&#x73B0;&#xFF08;&#x5F15;&#x64CE;&#x5171;&#x7528;&#xFF09;</p>
+</li>
+<li><p>Binlog&#x4E3A;&#x903B;&#x8F91;&#x65E5;&#x5FD7;,&#x8BB0;&#x5F55;&#x7684;&#x662F;&#x4E00;&#x6761;&#x8BED;&#x53E5;&#x7684;&#x539F;&#x59CB;&#x903B;&#x8F91;</p>
+</li>
+<li><p>Binlog&#x4E0D;&#x9650;&#x5927;&#x5C0F;,&#x8FFD;&#x52A0;&#x5199;&#x5165;,&#x4E0D;&#x4F1A;&#x8986;&#x76D6;&#x4EE5;&#x524D;&#x7684;&#x65E5;&#x5FD7;    </p>
+</li>
+</ol>
+<p>&#x5982;&#x679C;&#xFF0C;&#x6211;&#x4EEC;&#x8BEF;&#x5220;&#x4E86;&#x6570;&#x636E;&#x5E93;,&#x53EF;&#x4EE5;&#x4F7F;&#x7528;binlog&#x8FDB;&#x884C;&#x5F52;&#x6863;!&#x8981;&#x4F7F;&#x7528;binlog&#x5F52;&#x6863;&#xFF0C;&#x9996;&#x5148;&#x6211;&#x4EEC;&#x5F97;&#x8BB0;&#x5F55;binlog&#xFF0C;&#x56E0;&#x6B64;&#x9700;&#x8981;&#x5148;&#x5F00;&#x542F;MySQL&#x7684;binlog&#x529F;&#x80FD;&#x3002;</p>
+<p>&#x914D;&#x7F6E;my.cnf</p>
+<pre><code class="lang-bash"><span class="hljs-comment"># &#x914D;&#x7F6E;&#x5F00;&#x542F;binlog</span>
+<span class="hljs-built_in">log</span>-bin=/usr/<span class="hljs-built_in">local</span>/mysql/data/binlog/mysql-bin
+<span class="hljs-comment"># &#x6CE8;&#x610F;5.7&#x4EE5;&#x53CA;&#x66F4;&#x9AD8;&#x7248;&#x672C;&#x9700;&#x8981;&#x914D;&#x7F6E;&#x672C;&#x9879;</span>
+server-id=123454&#xFF08;&#x81EA;&#x5B9A;&#x4E49;,&#x4FDD;&#x8BC1;&#x552F;&#x4E00;&#x6027;&#xFF09;;
+<span class="hljs-comment"># binlog&#x683C;&#x5F0F;&#xFF0C;&#x6709;3&#x79CD;statement,row,mixed&#xFF0C;&#x63A8;&#x8350;&#x7528;row</span>
+<span class="hljs-comment"># - statement&#xFF1A;&#x8BB0;&#x5F55;&#x6267;&#x884C;&#x8FC7;&#x7684;sql&#x8BED;&#x53E5;&#xFF0C;&#x6548;&#x7387;&#x6700;&#x9AD8;&#xFF0C;&#x4F46;&#x662F;&#x6709;&#x53EF;&#x80FD;&#x4E3B;&#x4ECE;&#x4E0D;&#x4E00;&#x81F4;&#xFF1B;</span>
+<span class="hljs-comment"># - row&#xFF1A;&#x8BB0;&#x5F55;&#x8BED;&#x53E5;&#x6267;&#x884C;&#x5B8C;&#x540E;&#xFF0C;&#x5F71;&#x54CD;&#x5230;&#x7684;&#x8BB0;&#x5F55;&#x7684;&#x7ED3;&#x679C;&#xFF0C;&#x4E3B;&#x4ECE;&#x540C;&#x6B65;&#x65F6;&#x4F20;&#x8F93;&#x6570;&#x636E;&#x91CF;&#x8F83;&#x5927;&#xFF0C;&#x6027;&#x80FD;&#x5F00;&#x9500;&#x5927;&#xFF0C;&#x4F46;&#x4E00;&#x81F4;&#x6027;&#x6700;&#x597D;&#xFF1B;</span>
+<span class="hljs-comment"># - mixed&#xFF1A;&#x4EE5;&#x4E0A;&#x4E24;&#x79CD;&#x65B9;&#x5F0F;&#x7684;&#x7ED3;&#x5408;&#x4F53;&#xFF0C;&#x4F18;&#x5316;&#x8BED;&#x53E5;&#x65F6;&#xFF0C;&#x5F53;&#x6709;&#x53EF;&#x80FD;&#x51FA;&#x73B0;&#x4E3B;&#x4ECE;&#x4E0D;&#x4E00;&#x81F4;&#xFF0C;&#x5219;&#x7528;row&#xFF0C;&#x6CA1;&#x6709;&#x95EE;&#x9898;&#x5C31;&#x7528;statement&#xFF1B;</span>
+binlog-format=ROW
+<span class="hljs-comment"># &#x8868;&#x793A;&#x6BCF;1&#x6B21;&#x6267;&#x884C;&#x5199;&#x5165;&#x5C31;&#x4E0E;&#x786C;&#x76D8;&#x540C;&#x6B65;&#xFF0C;&#x4F1A;&#x5F71;&#x54CD;&#x6027;&#x80FD;&#xFF0C;&#x4E3A;0&#x65F6;&#x8868;&#x793A;&#xFF0C;&#x4E8B;&#x52A1;&#x63D0;&#x4EA4;&#x65F6;mysql&#x4E0D;&#x505A;&#x5237;&#x76D8;&#x64CD;&#x4F5C;&#xFF0C;&#x7531;&#x7CFB;&#x7EDF;&#x51B3;&#x5B9A;</span>
+sync-binlog=1
+</code></pre>
+<p>binlog&#x547D;&#x4EE4;</p>
+<pre><code class="lang-bash"><span class="hljs-comment"># &#x67E5;&#x770B;bin-log&#x662F;&#x5426;&#x5F00;&#x542F;</span>
+mysql&gt; show variables like <span class="hljs-string">&apos;%log_bin%&apos;</span>;
+<span class="hljs-comment"># &#x4F1A;&#x591A;&#x4E00;&#x4E2A;&#x6700;&#x65B0;&#x7684;bin-log&#x65E5;&#x5FD7;</span>
+mysql&gt; flush logs;
+<span class="hljs-comment"># &#x67E5;&#x770B;&#x6700;&#x540E;&#x4E00;&#x4E2A;bin-log&#x65E5;&#x5FD7;&#x7684;&#x76F8;&#x5173;&#x4FE1;&#x606F;</span>
+mysql&gt; show master status;
+<span class="hljs-comment"># &#x6E05;&#x7A7A;&#x6240;&#x6709;&#x7684;bin-log&#x65E5;&#x5FD7;</span>
+mysql&gt; reset master;
+</code></pre>
+<p>&#x67E5;&#x770B;binlog&#x5185;&#x5BB9;</p>
+<pre><code class="lang-bash">mysql&gt; /usr/<span class="hljs-built_in">local</span>/mysql/bin/mysqlbinlog --no-defaults /usr/<span class="hljs-built_in">local</span>/mysql/data/binlog/mysql-bin.000001 &#x67E5;&#x770B;binlog&#x5185;&#x5BB9;
+</code></pre>
+<p>binlog&#x91CC;&#x7684;&#x5185;&#x5BB9;&#x4E0D;&#x5177;&#x5907;&#x53EF;&#x8BFB;&#x6027;&#xFF0C;&#x6240;&#x4EE5;&#x9700;&#x8981;&#x6211;&#x4EEC;&#x81EA;&#x5DF1;&#x53BB;&#x5224;&#x65AD;&#x6062;&#x590D;&#x7684;&#x903B;&#x8F91;&#x70B9;&#x4F4D;&#xFF0C;&#x600E;&#x4E48;&#x89C2;&#x5BDF;&#x5462;&#xFF1F;&#x770B;&#x91CD;&#x70B9;&#x4FE1;&#x606F;&#xFF0C;&#x6BD4;&#x5982;begin,commit&#x8FD9;&#x79CD;&#x5173;&#x952E;&#x8BCD;&#x4FE1;&#x606F;&#xFF0C;&#x53EA;&#x8981;&#x5728;binlog&#x5F53;&#x4E2D;&#x770B;&#x5230;&#x4E86;&#xFF0C;&#x4F60;&#x5C31;&#x53EF;&#x4EE5;&#x7406;&#x89E3;&#x4E3A;begin-commit&#x4E4B;&#x95F4;&#x7684;&#x4FE1;&#x606F;&#x662F;&#x4E00;&#x4E2A;&#x5B8C;&#x6574;&#x7684;&#x4E8B;&#x52A1;&#x903B;&#x8F91;,&#x7136;&#x540E;&#x518D;&#x6839;&#x636E;&#x4F4D;&#x7F6E;position&#x5224;&#x65AD;&#x6062;&#x590D;&#x5373;&#x53EF;&#x3002;binlog&#x5185;&#x5BB9;&#x5982;&#x4E0B;&#xFF1A;</p>
+<p><img src="../source/images/ch-03/mysql-binlog.png" alt="mysql-binlog"></p>
+<p>&#x6570;&#x636E;&#x5F52;&#x6863;&#x64CD;&#x4F5C;</p>
+<pre><code class="lang-bash"><span class="hljs-comment"># &#x4ECE;bin-log&#x6062;&#x590D;&#x6570;&#x636E;</span>
+<span class="hljs-comment"># &#x6062;&#x590D;&#x5168;&#x90E8;&#x6570;&#x636E;</span>
+/usr/<span class="hljs-built_in">local</span>/mysql/bin/mysqlbinlog --no-defaults /usr/<span class="hljs-built_in">local</span>/mysql/data/binlog/mysql-bin.000001 |mysql -uroot -p tuling(&#x6570;&#x636E;&#x5E93;&#x540D;)
+<span class="hljs-comment"># &#x6062;&#x590D;&#x6307;&#x5B9A;&#x4F4D;&#x7F6E;&#x6570;&#x636E;</span>
+/usr/<span class="hljs-built_in">local</span>/mysql/bin/mysqlbinlog --no-defaults --start-position=<span class="hljs-string">&quot;408&quot;</span> --stop-position=<span class="hljs-string">&quot;731&quot;</span>  /usr/<span class="hljs-built_in">local</span>/mysql/data/binlog/mysql-bin.000001 |mysql -uroot -p tuling(&#x6570;&#x636E;&#x5E93;)
+<span class="hljs-comment"># &#x6062;&#x590D;&#x6307;&#x5B9A;&#x65F6;&#x95F4;&#x6BB5;&#x6570;&#x636E;</span>
+/usr/<span class="hljs-built_in">local</span>/mysql/bin/mysqlbinlog --no-defaults /usr/<span class="hljs-built_in">local</span>/mysql/data/binlog/mysql-bin.000001 --stop-date= <span class="hljs-string">&quot;2018-03-02 12:00:00&quot;</span>  --start-date= <span class="hljs-string">&quot;2019-03-02 11:55:00&quot;</span>|mysql -uroot -p <span class="hljs-built_in">test</span>(&#x6570;&#x636E;&#x5E93;)
+</code></pre>
+<h6 id="&#x5F52;&#x6863;&#x6D4B;&#x8BD5;"><a name="&#x5F52;&#x6863;&#x6D4B;&#x8BD5;" class="anchor-navigation-ex-anchor" href="#&#x5F52;&#x6863;&#x6D4B;&#x8BD5;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x5F52;&#x6863;&#x6D4B;&#x8BD5;" class="plugin-anchor" href="#&#x5F52;&#x6863;&#x6D4B;&#x8BD5;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x5F52;&#x6863;&#x6D4B;&#x8BD5;</h6>
+<ol>
+<li>&#x5B9A;&#x4E49;&#x4E00;&#x4E2A;&#x5B58;&#x50A8;&#x8FC7;&#x7A0B;&#xFF0C;&#x5199;&#x5165;&#x6570;&#x636E;</li>
+</ol>
+<pre><code class="lang-sql">drop procedure if exists tproc;
+delimiter $$
+create procedure tproc(i int)
+begin
+    declare s int default 1;
+    declare c char(50) default repeat(&apos;a&apos;,50);
+    while s&lt;=i do
+        start transaction;
+        insert into test values(null,c);
+        commit;
+        set s=s+1;
+    end while;
+end$$
+delimiter ;
+</code></pre>
+<ol>
+<li>&#x5220;&#x9664;&#x6570;&#x636E;</li>
+</ol>
+<pre><code class="lang-bash">mysql&gt; truncate <span class="hljs-built_in">test</span>;
+</code></pre>
+<ol>
+<li>&#x5229;&#x7528;binlog&#x5F52;&#x6863;</li>
+</ol>
+<pre><code class="lang-bash">mysql&gt; /usr/<span class="hljs-built_in">local</span>/mysql/bin/mysqlbinlog --no-defaults /usr/<span class="hljs-built_in">local</span>/mysql/data/binlog/mysql-bin.000001 |mysql -uroot -p tuling(&#x6570;&#x636E;&#x5E93;&#x540D;)
+</code></pre>
+<ol>
+<li>&#x5F52;&#x6863;&#x5B8C;&#x6BD5;&#xFF0C;&#x6570;&#x636E;&#x6062;&#x590D;</li>
+</ol>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="02-Explain-Index-Actual.html" class="navigation navigation-prev " aria-label="Previous page: 3.2 Explain详解与索引最佳实践">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="04-Sql-Optimize-01.html" class="navigation navigation-next " aria-label="Next page: 3.4 SQL优化实战（一）">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"3.3 SQL底层执行原理","level":"1.1.3.3","depth":3,"next":{"title":"3.4 SQL优化实战（一）","level":"1.1.3.4","depth":3,"path":"03-MySQL/04-Sql-Optimize-01.md","ref":"03-MySQL/04-Sql-Optimize-01.md","articles":[]},"previous":{"title":"3.2 Explain详解与索引最佳实践","level":"1.1.3.2","depth":3,"path":"03-MySQL/02-Explain-Index-Actual.md","ref":"03-MySQL/02-Explain-Index-Actual.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","splitter","expandable-chapters-small","anchors","github","github-buttons","sharing-plus","anchor-navigation-ex"],"styles":{"website":"./styles/website.css"},"pluginsConfig":{"github":{"url":"https://github.com/tyrival"},"splitter":{},"search":{},"sharing-plus":{"qq":false,"all":["facebook","google","twitter","instapaper","linkedin","pocket","stumbleupon"],"douban":false,"facebook":true,"weibo":false,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":true,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"anchor-navigation-ex":{"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"mode":"float","multipleH1":true,"pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"printLog":false,"showGoTop":true,"showLevel":false},"github-buttons":{"buttons":[{"user":"Tyrival","repo":"gitbook","type":"star","size":"small","count":false}]},"expandable-chapters-small":{},"sharing":{"qq":false,"all":["google","facebook","weibo","twitter","qq","qzone","linkedin","pocket"],"douban":false,"facebook":false,"weibo":false,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":false,"messenger":false,"line":false,"vk":false,"pocket":false,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","author":"Tyrival","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"架构师学习笔记","language":"zh-hans","gitbook":"3.2.3","description":"架构师学习笔记"},"file":{"path":"03-MySQL/03-Sql-Execution-Fundamental.md","mtime":"2020-07-23T12:33:28.322Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-07-25T13:46:00.485Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-splitter/splitter.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-github/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-github-buttons/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing-plus/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
