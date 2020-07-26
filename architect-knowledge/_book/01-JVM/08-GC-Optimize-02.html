@@ -396,7 +396,20 @@
             
         </li>
     
-        <li class="chapter " data-level="1.1.3.5" data-path="../03-MySQL/Slow-Sql-Query.html">
+        <li class="chapter " data-level="1.1.3.5" data-path="../03-MySQL/05-Sql-Optimize-02.html">
+            
+                <a href="../03-MySQL/05-Sql-Optimize-02.html">
+            
+                    
+                    3.5 SQL优化实战（二）
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.3.6" data-path="../03-MySQL/Slow-Sql-Query.html">
             
                 <a href="../03-MySQL/Slow-Sql-Query.html">
             
@@ -529,9 +542,507 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <div id="anchor-navigation-ex-navbar"><i class="fa fa-navicon"></i><ul><ul><li><span class="title-icon "></span><a href="#17-gc&#x8C03;&#x4F18;&#xFF08;&#x4E8C;&#xFF09;"><b></b>1.7 GC&#x8C03;&#x4F18;&#xFF08;&#x4E8C;&#xFF09;</a></li><ul><li><span class="title-icon "></span><a href="#arthas"><b></b>Arthas</a></li></ul></ul></ul></div><a href="#" id="anchorNavigationExGoTop"><i class="fa fa-arrow-up"></i></a><h2 id="17-gc&#x8C03;&#x4F18;&#xFF08;&#x4E8C;&#xFF09;"><a name="17-gc&#x8C03;&#x4F18;&#xFF08;&#x4E8C;&#xFF09;" class="anchor-navigation-ex-anchor" href="#17-gc&#x8C03;&#x4F18;&#xFF08;&#x4E8C;&#xFF09;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="17-gc&#x8C03;&#x4F18;&#xFF08;&#x4E8C;&#xFF09;" class="plugin-anchor" href="#17-gc&#x8C03;&#x4F18;&#xFF08;&#x4E8C;&#xFF09;"><i class="fa fa-link" aria-hidden="true"></i></a>1.7 GC&#x8C03;&#x4F18;&#xFF08;&#x4E8C;&#xFF09;</h2>
-<h3 id="arthas"><a name="arthas" class="anchor-navigation-ex-anchor" href="#arthas"><i class="fa fa-link" aria-hidden="true"></i></a><a name="arthas" class="plugin-anchor" href="#arthas"><i class="fa fa-link" aria-hidden="true"></i></a>Arthas</h3>
-<p><a href="https://github.com/alibaba/arthas" target="_blank">Github</a></p>
+                                <div id="anchor-navigation-ex-navbar"><i class="fa fa-navicon"></i><ul><ul><li><span class="title-icon "></span><a href="#17-gc&#x8C03;&#x4F18;&#xFF08;&#x4E8C;&#xFF09;"><b></b>1.7 GC&#x8C03;&#x4F18;&#xFF08;&#x4E8C;&#xFF09;</a></li><ul><li><span class="title-icon "></span><a href="#171-arthas"><b></b>1.7.1 Arthas</a></li><li><span class="title-icon "></span><a href="#172-gc&#x65E5;&#x5FD7;&#x8BE6;&#x89E3;"><b></b>1.7.2 GC&#x65E5;&#x5FD7;&#x8BE6;&#x89E3;</a></li><li><span class="title-icon "></span><a href="#173-&#x5E38;&#x91CF;&#x6C60;"><b></b>1.7.3 &#x5E38;&#x91CF;&#x6C60;</a></li></ul></ul></ul></div><a href="#" id="anchorNavigationExGoTop"><i class="fa fa-arrow-up"></i></a><h2 id="17-gc&#x8C03;&#x4F18;&#xFF08;&#x4E8C;&#xFF09;"><a name="17-gc&#x8C03;&#x4F18;&#xFF08;&#x4E8C;&#xFF09;" class="anchor-navigation-ex-anchor" href="#17-gc&#x8C03;&#x4F18;&#xFF08;&#x4E8C;&#xFF09;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="17-gc&#x8C03;&#x4F18;&#xFF08;&#x4E8C;&#xFF09;" class="plugin-anchor" href="#17-gc&#x8C03;&#x4F18;&#xFF08;&#x4E8C;&#xFF09;"><i class="fa fa-link" aria-hidden="true"></i></a>1.7 GC&#x8C03;&#x4F18;&#xFF08;&#x4E8C;&#xFF09;</h2>
+<h3 id="171-arthas"><a name="171-arthas" class="anchor-navigation-ex-anchor" href="#171-arthas"><i class="fa fa-link" aria-hidden="true"></i></a><a name="171-arthas" class="plugin-anchor" href="#171-arthas"><i class="fa fa-link" aria-hidden="true"></i></a>1.7.1 Arthas</h3>
+<p><a href="https://github.com/alibaba/arthas" target="_blank">Arthas Github</a></p>
+<h4 id="arthas&#x4F7F;&#x7528;"><a name="arthas&#x4F7F;&#x7528;" class="anchor-navigation-ex-anchor" href="#arthas&#x4F7F;&#x7528;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="arthas&#x4F7F;&#x7528;" class="plugin-anchor" href="#arthas&#x4F7F;&#x7528;"><i class="fa fa-link" aria-hidden="true"></i></a>Arthas&#x4F7F;&#x7528;</h4>
+<pre><code class="lang-bash"><span class="hljs-comment"># github&#x4E0B;&#x8F7D;arthas</span>
+wget https://alibaba.github.io/arthas/arthas-boot.jar
+<span class="hljs-comment"># &#x6216;&#x8005; Gitee &#x4E0B;&#x8F7D;</span>
+wget https://arthas.gitee.io/arthas-boot.jar
+</code></pre>
+<p>&#x7528;java -jar&#x8FD0;&#x884C;&#x5373;&#x53EF;&#xFF0C;&#x53EF;&#x4EE5;&#x8BC6;&#x522B;&#x673A;&#x5668;&#x4E0A;&#x6240;&#x6709;Java&#x8FDB;&#x7A0B;(&#x6211;&#x4EEC;&#x8FD9;&#x91CC;&#x4E4B;&#x524D;&#x5DF2;&#x7ECF;&#x8FD0;&#x884C;&#x4E86;&#x4E00;&#x4E2A;Arthas&#x6D4B;&#x8BD5;&#x7A0B;&#x5E8F;&#xFF0C;&#x4EE3;&#x7801;&#x89C1;&#x4E0B;&#x65B9;)</p>
+<p><img src="../source/images/ch-01/arthas-boot.png" alt="arthas-boot"></p>
+<pre><code class="lang-java"><span class="hljs-keyword">package</span> com.tyrival.jvm.lession08;
+
+<span class="hljs-keyword">import</span> java.util.HashSet;
+
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Arthas</span> </span>{
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> HashSet hashSet = <span class="hljs-keyword">new</span> HashSet();
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>{
+        <span class="hljs-comment">// &#x6A21;&#x62DF; CPU &#x8FC7;&#x9AD8;</span>
+        cpuHigh();
+        <span class="hljs-comment">// &#x6A21;&#x62DF;&#x7EBF;&#x7A0B;&#x6B7B;&#x9501;</span>
+        deadThread();
+        <span class="hljs-comment">// &#x4E0D;&#x65AD;&#x7684;&#x5411; hashSet &#x96C6;&#x5408;&#x589E;&#x52A0;&#x6570;&#x636E;</span>
+        addHashSetThread();
+    }
+
+    <span class="hljs-comment">/**
+     * &#x4E0D;&#x65AD;&#x7684;&#x5411; hashSet &#x96C6;&#x5408;&#x6DFB;&#x52A0;&#x6570;&#x636E;
+     */</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">addHashSetThread</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-comment">// &#x521D;&#x59CB;&#x5316;&#x5E38;&#x91CF;</span>
+        <span class="hljs-keyword">new</span> Thread(() -&gt; {
+            <span class="hljs-keyword">int</span> count = <span class="hljs-number">0</span>;
+            <span class="hljs-keyword">while</span> (<span class="hljs-keyword">true</span>) {
+                <span class="hljs-keyword">try</span> {
+                    hashSet.add(<span class="hljs-string">&quot;count&quot;</span> + count);
+                    Thread.sleep(<span class="hljs-number">1000</span>);
+                    count++;
+                } <span class="hljs-keyword">catch</span> (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">cpuHigh</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-keyword">new</span> Thread(() -&gt; {
+            <span class="hljs-keyword">while</span> (<span class="hljs-keyword">true</span>) {
+
+            }
+        }).start();
+    }
+
+    <span class="hljs-comment">/**
+     * &#x6B7B;&#x9501;
+     */</span>
+    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">deadThread</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-comment">/** &#x521B;&#x5EFA;&#x8D44;&#x6E90; */</span>
+        Object resourceA = <span class="hljs-keyword">new</span> Object();
+        Object resourceB = <span class="hljs-keyword">new</span> Object();
+        <span class="hljs-comment">// &#x521B;&#x5EFA;&#x7EBF;&#x7A0B;</span>
+        Thread threadA = <span class="hljs-keyword">new</span> Thread(() -&gt; {
+            <span class="hljs-keyword">synchronized</span> (resourceA) {
+                System.out.println(Thread.currentThread() + <span class="hljs-string">&quot; get ResourceA&quot;</span>);
+                <span class="hljs-keyword">try</span> {
+                    Thread.sleep(<span class="hljs-number">1000</span>);
+                } <span class="hljs-keyword">catch</span> (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                System.out.println(Thread.currentThread() + <span class="hljs-string">&quot;waiting get resourceB&quot;</span>);
+                <span class="hljs-keyword">synchronized</span> (resourceB) {
+                    System.out.println(Thread.currentThread() + <span class="hljs-string">&quot; get resourceB&quot;</span>);
+                }
+            }
+        });
+
+        Thread threadB = <span class="hljs-keyword">new</span> Thread(() -&gt; {
+            <span class="hljs-keyword">synchronized</span> (resourceB) {
+                System.out.println(Thread.currentThread() + <span class="hljs-string">&quot; get ResourceB&quot;</span>);
+                <span class="hljs-keyword">try</span> {
+                    Thread.sleep(<span class="hljs-number">1000</span>);
+                } <span class="hljs-keyword">catch</span> (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                System.out.println(Thread.currentThread() + <span class="hljs-string">&quot;waiting get resourceA&quot;</span>);
+                <span class="hljs-keyword">synchronized</span> (resourceA) {
+                    System.out.println(Thread.currentThread() + <span class="hljs-string">&quot; get resourceA&quot;</span>);
+                }
+            }
+        });
+        threadA.start();
+        threadB.start();
+    }
+}
+</code></pre>
+<h5 id="&#x8FDB;&#x5165;&#x8FDB;&#x7A0B;"><a name="&#x8FDB;&#x5165;&#x8FDB;&#x7A0B;" class="anchor-navigation-ex-anchor" href="#&#x8FDB;&#x5165;&#x8FDB;&#x7A0B;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x8FDB;&#x5165;&#x8FDB;&#x7A0B;" class="plugin-anchor" href="#&#x8FDB;&#x5165;&#x8FDB;&#x7A0B;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x8FDB;&#x5165;&#x8FDB;&#x7A0B;</h5>
+<p>&#x9009;&#x62E9;&#x8FDB;&#x7A0B;&#x5E8F;&#x53F7;4&#xFF0C;&#x8FDB;&#x5165;&#x8FDB;&#x7A0B;&#x4FE1;&#x606F;&#x64CD;&#x4F5C;</p>
+<p><img src="../source/images/ch-01/arthas-attach.png" alt="arthas-attach"></p>
+<h5 id="dashboard"><a name="dashboard" class="anchor-navigation-ex-anchor" href="#dashboard"><i class="fa fa-link" aria-hidden="true"></i></a><a name="dashboard" class="plugin-anchor" href="#dashboard"><i class="fa fa-link" aria-hidden="true"></i></a>dashboard</h5>
+<p>&#x8F93;&#x5165; <code>dashboard</code>&#xFF0C;&#x7136;&#x540E;&#x6309;&#x56DE;&#x8F66;&#xFF0C;&#x53EF;&#x4EE5;&#x67E5;&#x770B;&#x6574;&#x4E2A;&#x8FDB;&#x7A0B;&#x7684;&#x8FD0;&#x884C;&#x60C5;&#x51B5;&#xFF0C;&#x7EBF;&#x7A0B;&#x3001;&#x5185;&#x5B58;&#x3001;GC&#x3001;&#x8FD0;&#x884C;&#x73AF;&#x5883;&#x4FE1;&#x606F;&#xFF1A;</p>
+<p><img src="../source/images/ch-01/arthas-dashboard.png" alt="arthas-dashboard"></p>
+<h5 id="thread"><a name="thread" class="anchor-navigation-ex-anchor" href="#thread"><i class="fa fa-link" aria-hidden="true"></i></a><a name="thread" class="plugin-anchor" href="#thread"><i class="fa fa-link" aria-hidden="true"></i></a>thread</h5>
+<p>&#x8F93;&#x5165;<strong>thread</strong>&#x53EF;&#x4EE5;&#x67E5;&#x770B;&#x7EBF;&#x7A0B;&#x8BE6;&#x7EC6;&#x60C5;&#x51B5;</p>
+<p><img src="../source/images/ch-01/arthas-thread.png" alt="arthas-thread"></p>
+<p>&#x8F93;&#x5165; <strong>thread&#x52A0;&#x4E0A;&#x7EBF;&#x7A0B;ID</strong> &#x53EF;&#x4EE5;&#x67E5;&#x770B;&#x7EBF;&#x7A0B;&#x5806;&#x6808;</p>
+<p><img src="../source/images/ch-01/arthas-thread-id.png" alt="arthas-thread-id"></p>
+<p>&#x8F93;&#x5165; <strong>thread -b</strong> &#x53EF;&#x4EE5;&#x67E5;&#x770B;&#x7EBF;&#x7A0B;&#x6B7B;&#x9501;</p>
+<p><img src="../source/images/ch-01/arthas-thread-b.png" alt="arthas-thread-b"></p>
+<h5 id="jad"><a name="jad" class="anchor-navigation-ex-anchor" href="#jad"><i class="fa fa-link" aria-hidden="true"></i></a><a name="jad" class="plugin-anchor" href="#jad"><i class="fa fa-link" aria-hidden="true"></i></a>jad</h5>
+<p>&#x8F93;&#x5165; <strong>jad&#x52A0;&#x7C7B;&#x7684;&#x5168;&#x540D;</strong> &#x53EF;&#x4EE5;&#x53CD;&#x7F16;&#x8BD1;&#xFF0C;&#x8FD9;&#x6837;&#x53EF;&#x4EE5;&#x65B9;&#x4FBF;&#x6211;&#x4EEC;&#x67E5;&#x770B;&#x7EBF;&#x4E0A;&#x4EE3;&#x7801;&#x662F;&#x5426;&#x662F;&#x6B63;&#x786E;&#x7684;&#x7248;&#x672C;</p>
+<p><img src="../source/images/ch-01/arthas-jad.png" alt="arthas-jad"></p>
+<h5 id="ognl"><a name="ognl" class="anchor-navigation-ex-anchor" href="#ognl"><i class="fa fa-link" aria-hidden="true"></i></a><a name="ognl" class="plugin-anchor" href="#ognl"><i class="fa fa-link" aria-hidden="true"></i></a>ognl</h5>
+<p>&#x4F7F;&#x7528; <strong>ognl</strong> &#x547D;&#x4EE4;&#x53EF;&#x4EE5;&#x67E5;&#x770B;&#x7EBF;&#x4E0A;&#x7CFB;&#x7EDF;&#x53D8;&#x91CF;&#x7684;&#x503C;</p>
+<p><img src="../source/images/ch-01/arthas-ognl.png" alt="arthas-ognl"></p>
+<p>&#x751A;&#x81F3;&#x53EF;&#x4EE5;&#x4FEE;&#x6539;&#x53D8;&#x91CF;&#x7684;&#x503C;</p>
+<p><img src="../source/images/ch-01/arthas-ognl-modify.png" alt="arthas-ognl-modify"></p>
+<p>&#x66F4;&#x591A;&#x547D;&#x4EE4;&#x4F7F;&#x7528;&#x53EF;&#x4EE5;&#x7528;help&#x547D;&#x4EE4;&#x67E5;&#x770B;&#xFF0C;&#x6216;&#x67E5;&#x770B; <a href="https://alibaba.github.io/arthas/commands.html#arthas" target="_blank">&#x6587;&#x6863;</a></p>
+<h3 id="172-gc&#x65E5;&#x5FD7;&#x8BE6;&#x89E3;"><a name="172-gc&#x65E5;&#x5FD7;&#x8BE6;&#x89E3;" class="anchor-navigation-ex-anchor" href="#172-gc&#x65E5;&#x5FD7;&#x8BE6;&#x89E3;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="172-gc&#x65E5;&#x5FD7;&#x8BE6;&#x89E3;" class="plugin-anchor" href="#172-gc&#x65E5;&#x5FD7;&#x8BE6;&#x89E3;"><i class="fa fa-link" aria-hidden="true"></i></a>1.7.2 GC&#x65E5;&#x5FD7;&#x8BE6;&#x89E3;</h3>
+<p>&#x5BF9;&#x4E8E;java&#x5E94;&#x7528;&#xFF0C;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x4E00;&#x4E9B;&#x914D;&#x7F6E;&#xFF0C;&#x628A;&#x7A0B;&#x5E8F;&#x8FD0;&#x884C;&#x8FC7;&#x7A0B;&#x4E2D;&#x7684;gc&#x65E5;&#x5FD7;&#x5168;&#x90E8;&#x6253;&#x5370;&#x51FA;&#x6765;&#xFF0C;&#x7136;&#x540E;&#x5206;&#x6790;gc&#x65E5;&#x5FD7;&#x5F97;&#x5230;&#x5173;&#x952E;&#x6027;&#x6307;&#x6807;&#xFF0C;&#x5206;&#x6790;GC&#x539F;&#x56E0;&#xFF0C;&#x8C03;&#x4F18;JVM&#x53C2;&#x6570;&#x3002;</p>
+<p>&#x6253;&#x5370;GC&#x65E5;&#x5FD7;&#x65B9;&#x6CD5;&#xFF0C;&#x5728;JVM&#x53C2;&#x6570;&#x91CC;&#x589E;&#x52A0;&#x53C2;&#x6570;&#xFF0C;%t &#x4EE3;&#x8868;&#x65F6;&#x95F4;</p>
+<pre><code class="lang-bash">-Xloggc:./gc-%t.log -XX:+PrintGCDetails -XX:+PrintGCDateStamps -XX:+PrintGCTimeStamps -XX:+PrintGCCause -XX:+UseGCLogFileRotation -XX:NumberOfGCLogFiles=10 -XX:GCLogFileSize=100M
+</code></pre>
+<p>Tomcat&#x5219;&#x76F4;&#x63A5;&#x52A0;&#x5728;JAVA_OPTS&#x53D8;&#x91CF;&#x91CC;&#x3002;</p>
+<h4 id="&#x5982;&#x4F55;&#x5206;&#x6790;gc&#x65E5;&#x5FD7;"><a name="&#x5982;&#x4F55;&#x5206;&#x6790;gc&#x65E5;&#x5FD7;" class="anchor-navigation-ex-anchor" href="#&#x5982;&#x4F55;&#x5206;&#x6790;gc&#x65E5;&#x5FD7;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x5982;&#x4F55;&#x5206;&#x6790;gc&#x65E5;&#x5FD7;" class="plugin-anchor" href="#&#x5982;&#x4F55;&#x5206;&#x6790;gc&#x65E5;&#x5FD7;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x5982;&#x4F55;&#x5206;&#x6790;GC&#x65E5;&#x5FD7;</h4>
+<p>&#x8FD0;&#x884C;&#x7A0B;&#x5E8F;&#x52A0;&#x4E0A;&#x5BF9;&#x5E94;gc&#x65E5;&#x5FD7;</p>
+<pre><code class="lang-bash">java -jar -Xloggc:./gc-%t.log -XX:+PrintGCDetails -XX:+PrintGCDateStamps -XX:+PrintGCTimeStamps -XX:+PrintGCCause -XX:+UseGCLogFileRotation -XX:NumberOfGCLogFiles=10 -XX:GCLogFileSize=100M eureka-server.jar
+</code></pre>
+<p>&#x4E0B;&#x56FE;&#x4E2D;&#x662F;JVM&#x521A;&#x542F;&#x52A8;eureka-server.jar&#x7684;&#x4E00;&#x90E8;&#x5206;GC&#x65E5;&#x5FD7; </p>
+<p><img src="../source/images/ch-01/gc-log.png" alt="gc-log"></p>
+<h6 id="&#x914D;&#x7F6E;&#x53C2;&#x6570;"><a name="&#x914D;&#x7F6E;&#x53C2;&#x6570;" class="anchor-navigation-ex-anchor" href="#&#x914D;&#x7F6E;&#x53C2;&#x6570;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x914D;&#x7F6E;&#x53C2;&#x6570;" class="plugin-anchor" href="#&#x914D;&#x7F6E;&#x53C2;&#x6570;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x914D;&#x7F6E;&#x53C2;&#x6570;</h6>
+<p>&#x7B2C;&#x4E00;&#x884C;&#x7EA2;&#x6846;&#x662F;&#x9879;&#x76EE;&#x7684;&#x914D;&#x7F6E;&#x53C2;&#x6570;&#x3002;&#x8FD9;&#x91CC;&#x4E0D;&#x4EC5;&#x914D;&#x7F6E;&#x4E86;&#x6253;&#x5370;GC&#x65E5;&#x5FD7;&#xFF0C;&#x8FD8;&#x6709;&#x76F8;&#x5173;&#x7684;VM&#x5185;&#x5B58;&#x53C2;&#x6570;&#x3002; </p>
+<h6 id="minor-gc"><a name="minor-gc" class="anchor-navigation-ex-anchor" href="#minor-gc"><i class="fa fa-link" aria-hidden="true"></i></a><a name="minor-gc" class="plugin-anchor" href="#minor-gc"><i class="fa fa-link" aria-hidden="true"></i></a>Minor GC</h6>
+<p>&#x56FE;&#x4E2D;&#x6700;&#x5E38;&#x89C1;&#x7684;&#x662F;&#x5982;&#x4E0B;&#x5185;&#x5BB9;&#xFF0C;&#x5373;Minor GC&#x65E5;&#x5FD7;</p>
+<pre><code>2020-07-26T14:10:06.785-0800: 1.223: [GC (Allocation Failure) [PSYoungGen: 65536K-&gt;5869K(76288K)] 65536K-&gt;5885K(251392K), 0.0061165 secs] [Times: user=0.02 sys=0.00, real=0.01 secs]
+</code></pre><ul>
+<li><p><code>[PSYoungGen: 65536K-&gt;5869K(76288K)]</code> &#x8868;&#x793A; <code>&#x5E74;&#x8F7B;&#x4EE3;&#xFF1A;&#x56DE;&#x6536;&#x524D;&#x5185;&#x5B58;&#x7528;&#x91CF;-&gt;&#x56DE;&#x6536;&#x540E;&#x5185;&#x5B58;&#x7528;&#x91CF;&#xFF08;&#x5E74;&#x8F7B;&#x4EE3;&#x603B;&#x5185;&#x5B58;&#xFF09;</code></p>
+</li>
+<li><p><code>65536K-&gt;5885K(251392K)</code> &#x8868;&#x793A; <code>&#x56DE;&#x6536;&#x524D;&#x5806;&#x5185;&#x5B58;&#x7528;&#x91CF;-&gt;&#x56DE;&#x6536;&#x540E;&#x5806;&#x5185;&#x5B58;&#x7528;&#x91CF;&#xFF08;&#x5806;&#x603B;&#x5185;&#x5B58;&#xFF09;</code></p>
+</li>
+<li><code>0.0061165 secs</code> &#x8868;&#x793A;&#x6B64;&#x6B21;GC&#x8017;&#x8D39;&#x65F6;&#x95F4;</li>
+</ul>
+<h6 id="full-gc"><a name="full-gc" class="anchor-navigation-ex-anchor" href="#full-gc"><i class="fa fa-link" aria-hidden="true"></i></a><a name="full-gc" class="plugin-anchor" href="#full-gc"><i class="fa fa-link" aria-hidden="true"></i></a>Full GC</h6>
+<p>&#x7B2C;&#x4E8C;&#x884C;&#x7EA2;&#x6846;&#x4E2D;&#x7684;&#x662F;&#x5728;&#x8FD9;&#x4E2A;GC&#x65F6;&#x95F4;&#x70B9;&#x53D1;&#x751F;GC&#x4E4B;&#x540E;&#x76F8;&#x5173;GC&#x60C5;&#x51B5;&#x3002; </p>
+<pre><code>2020-07-26T14:10:07.353-0800: 1.791: [Full GC (Metadata GC Threshold) [PSYoungGen: 6754K-&gt;0K(141824K)] [ParOldGen: 40K-&gt;6600K(92672K)] 6794K-&gt;6600K(234496K), [Metaspace: 20583K-&gt;20583K(1067008K)], 0.0263121 secs] [Times: user=0.11 sys=0.01, real=0.02 secs]
+</code></pre><ul>
+<li><p><code>1.791</code>&#xFF1A;  &#x8FD9;&#x662F;&#x4ECE;jvm&#x542F;&#x52A8;&#x5F00;&#x59CB;&#x8BA1;&#x7B97;&#x5230;&#x8FD9;&#x6B21;GC&#x7ECF;&#x8FC7;&#x7684;&#x65F6;&#x95F4;&#xFF0C;&#x524D;&#x9762;&#x8FD8;&#x6709;&#x5177;&#x4F53;&#x7684;&#x53D1;&#x751F;&#x65F6;&#x95F4;&#x65E5;&#x671F;&#x3002; </p>
+</li>
+<li><p><code>Full GC(Metadata GC Threshold)</code> &#x6307;&#x8FD9;&#x662F;&#x4E00;&#x6B21;full gc&#xFF0C;&#x62EC;&#x53F7;&#x91CC;&#x662F;gc&#x7684;&#x539F;&#x56E0;&#xFF0C; PSYoungGen&#x662F;&#x5E74;&#x8F7B;&#x4EE3;&#x7684;GC&#xFF0C;ParOldGen&#x662F;&#x8001;&#x5E74;&#x4EE3;&#x7684;GC&#xFF0C;Metaspace&#x662F;&#x5143;&#x7A7A;&#x95F4;&#x7684;GC</p>
+</li>
+<li><p><code>[PSYoungGen: 6754K-&gt;0K(141824K)]</code>&#xFF0C;&#x8FD9;&#x4E09;&#x4E2A;&#x6570;&#x5B57;&#x5206;&#x522B;&#x5BF9;&#x5E94;GC&#x4E4B;&#x524D;&#x5360;&#x7528;&#x5E74;&#x8F7B;&#x4EE3;&#x7684;&#x5927;&#x5C0F;&#xFF0C;GC&#x4E4B;&#x540E;&#x5E74;&#x8F7B;&#x4EE3;&#x5360;&#x7528;&#xFF0C;&#x4EE5;&#x53CA;&#x6574;&#x4E2A;&#x5E74;&#x8F7B;&#x4EE3;&#x7684;&#x5927;&#x5C0F;&#x3002; </p>
+</li>
+<li><p><code>[ParOldGen: 40K-&gt;6600K(92672K)]</code>&#xFF0C;&#x8FD9;&#x4E09;&#x4E2A;&#x6570;&#x5B57;&#x5206;&#x522B;&#x5BF9;&#x5E94;GC&#x4E4B;&#x524D;&#x5360;&#x7528;&#x8001;&#x5E74;&#x4EE3;&#x7684;&#x5927;&#x5C0F;&#xFF0C;GC&#x4E4B;&#x540E;&#x8001;&#x5E74;&#x4EE3;&#x5360;&#x7528;&#xFF0C;&#x4EE5;&#x53CA;&#x6574;&#x4E2A;&#x8001;&#x5E74;&#x4EE3;&#x7684;&#x5927;&#x5C0F;&#x3002; </p>
+</li>
+<li><p><code>6794K-&gt;6600K(234496K)</code>&#xFF0C;&#x8FD9;&#x4E09;&#x4E2A;&#x6570;&#x5B57;&#x5206;&#x522B;&#x5BF9;&#x5E94;GC&#x4E4B;&#x524D;&#x5360;&#x7528;&#x5806;&#x5185;&#x5B58;&#x7684;&#x5927;&#x5C0F;&#xFF0C;GC&#x4E4B;&#x540E;&#x5806;&#x5185;&#x5B58;&#x5360;&#x7528;&#xFF0C;&#x4EE5;&#x53CA;&#x6574;&#x4E2A;&#x5806;&#x5185;&#x5B58;&#x7684;&#x5927;&#x5C0F;&#x3002; </p>
+</li>
+<li><p><code>[Metaspace: 20583K-&gt;20583K(1067008K)]</code>&#xFF0C;&#x8FD9;&#x4E09;&#x4E2A;&#x6570;&#x5B57;&#x5206;&#x522B;&#x5BF9;&#x5E94;GC&#x4E4B;&#x524D;&#x5360;&#x7528;&#x5143;&#x7A7A;&#x95F4;&#x5185;&#x5B58;&#x7684;&#x5927;&#x5C0F;&#xFF0C;GC&#x4E4B;&#x540E;&#x5143;&#x7A7A;&#x95F4;&#x5185;&#x5B58;&#x5360;&#x7528;&#xFF0C;&#x4EE5;&#x53CA;&#x6574;&#x4E2A;&#x5143;&#x7A7A;&#x95F4;&#x5185;&#x5B58;&#x7684;&#x5927;&#x5C0F;&#x3002; </p>
+</li>
+<li><p>0.0209707&#x662F;&#x8BE5;&#x65F6;&#x95F4;&#x70B9;GC&#x603B;&#x8017;&#x8D39;&#x65F6;&#x95F4;&#x3002; </p>
+</li>
+</ul>
+<h5 id="&#x4F18;&#x5316;&#x65B9;&#x6848;"><a name="&#x4F18;&#x5316;&#x65B9;&#x6848;" class="anchor-navigation-ex-anchor" href="#&#x4F18;&#x5316;&#x65B9;&#x6848;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x4F18;&#x5316;&#x65B9;&#x6848;" class="plugin-anchor" href="#&#x4F18;&#x5316;&#x65B9;&#x6848;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x4F18;&#x5316;&#x65B9;&#x6848;</h5>
+<p>&#x4ECE;&#x65E5;&#x5FD7;&#x53EF;&#x4EE5;&#x53D1;&#x73B0;&#x51E0;&#x6B21;fullgc&#x90FD;&#x662F;&#x7531;&#x4E8E;&#x5143;&#x7A7A;&#x95F4;&#x4E0D;&#x591F;&#x5BFC;&#x81F4;&#x7684;&#xFF0C;&#x6240;&#x4EE5;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x5C06;&#x5143;&#x7A7A;&#x95F4;&#x8C03;&#x5927;&#x70B9;</p>
+<pre><code class="lang-bash">java -jar -Xloggc:./gc-adjust-%t.log -XX:MetaspaceSize=256M -XX:MaxMetaspaceSize=256M -XX:+PrintGCDetails -XX:+PrintGCDateStamps -XX:+PrintGCTimeStamps -XX:+PrintGCCause -XX:+UseGCLogFileRotation -XX:NumberOfGCLogFiles=10 -XX:GCLogFileSize=100M eureka-server.jar
+</code></pre>
+<blockquote>
+<p>MetaSpaceSize&#x9ED8;&#x8BA4;&#x4E3A;21M&#xFF0C;&#x8868;&#x793A;&#x89E6;&#x53D1;full gc&#x7684;&#x9608;&#x503C;&#x3002;</p>
+<p>&#x53EF;&#x4EE5;&#x770B;&#x5230;gc&#x65E5;&#x5FD7;&#x4E2D;&#xFF0C;&#x7B2C;&#x4E00;&#x6B21;full gc&#x89E6;&#x53D1;&#x65F6;&#xFF0C;Metaspace&#x4E3A;20583K&#xFF0C;&#x7EA6;&#x4E3A;20.1M&#x3002;&#x7136;&#x800C;&#x7531;&#x4E8E;&#x5143;&#x7A7A;&#x95F4;&#x4E2D;&#x50A8;&#x5B58;&#x7684;&#x57FA;&#x672C;&#x662F;&#x4E00;&#x4E9B;&#x7C7B;&#x4FE1;&#x606F;&#xFF0C;&#x5F88;&#x96BE;&#x88AB;&#x56DE;&#x6536;&#xFF0C;&#x6240;&#x4EE5;&#x5143;&#x7A7A;&#x95F4;&#x7684;&#x5185;&#x5B58;&#x51E0;&#x4E4E;&#x6CA1;&#x88AB;&#x56DE;&#x6536;&#x3002;</p>
+<p>&#x7B2C;&#x4E8C;&#x6B21;&#x89E6;&#x53D1;full gc&#x65F6;&#xFF0C;Metaspace&#x5927;&#x5C0F;&#x4E3A;34030K&#xFF0C;&#x8FD9;&#x662F;&#x56E0;&#x4E3A;&#x7B2C;&#x4E00;&#x6B21;&#x89E6;&#x53D1;full gc&#x540E;&#xFF0C;&#x5143;&#x7A7A;&#x95F4;&#x7684;&#x9608;&#x503C;&#x4F1A;&#x88AB;&#x81EA;&#x52A8;&#x8C03;&#x9AD8;&#x3002;</p>
+</blockquote>
+<p>&#x8C03;&#x6574;&#x5B8C;&#x540E;&#x91CD;&#x65B0;&#x542F;&#x52A8;&#x5DE5;&#x7A0B;&#xFF0C;&#x53D1;&#x73B0;&#x6CA1;&#x6709;&#x56E0;&#x4E3A;&#x5143;&#x7A7A;&#x95F4;&#x4E0D;&#x591F;&#x5BFC;&#x81F4;&#x7684;full gc&#x4E86;&#x3002;</p>
+<p><img src="../source/images/ch-01/gc-log-adjust.png" alt="gc-log-adjust"></p>
+<h4 id="cms--g1&#x65E5;&#x5FD7;"><a name="cms--g1&#x65E5;&#x5FD7;" class="anchor-navigation-ex-anchor" href="#cms--g1&#x65E5;&#x5FD7;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="cms--g1&#x65E5;&#x5FD7;" class="plugin-anchor" href="#cms--g1&#x65E5;&#x5FD7;"><i class="fa fa-link" aria-hidden="true"></i></a>CMS &amp; G1&#x65E5;&#x5FD7;</h4>
+<p>&#x5BF9;&#x4E8E;CMS&#x548C;G1&#x6536;&#x96C6;&#x5668;&#x7684;&#x65E5;&#x5FD7;&#x4F1A;&#x6709;&#x4E00;&#x70B9;&#x4E0D;&#x4E00;&#x6837;&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;&#x8BD5;&#x7740;&#x6253;&#x5370;&#x4E0B;&#x5BF9;&#x5E94;&#x7684;gc&#x65E5;&#x5FD7;&#x5206;&#x6790;&#x4E0B;&#xFF0C;&#x53EF;&#x4EE5;&#x53D1;&#x73B0;gc&#x65E5;&#x5FD7;&#x91CC;&#x9762;&#x7684;gc&#x6B65;&#x9AA4;&#x8DDF;&#x4E4B;&#x524D;&#x7684;&#x6B65;&#x9AA4;&#x662F;&#x7C7B;&#x4F3C;&#x7684;</p>
+<pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">HeapTest</span> </span>{
+
+    <span class="hljs-keyword">byte</span>[] a = <span class="hljs-keyword">new</span> <span class="hljs-keyword">byte</span>[<span class="hljs-number">1024</span> * <span class="hljs-number">100</span>];  <span class="hljs-comment">//100KB</span>
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> InterruptedException </span>{
+        ArrayList&lt;HeapTest&gt; heapTests = <span class="hljs-keyword">new</span> ArrayList&lt;&gt;();
+        <span class="hljs-keyword">while</span> (<span class="hljs-keyword">true</span>) {
+            heapTests.add(<span class="hljs-keyword">new</span> HeapTest());
+            Thread.sleep(<span class="hljs-number">10</span>);
+        }
+    }
+}
+</code></pre>
+<h5 id="cms"><a name="cms" class="anchor-navigation-ex-anchor" href="#cms"><i class="fa fa-link" aria-hidden="true"></i></a><a name="cms" class="plugin-anchor" href="#cms"><i class="fa fa-link" aria-hidden="true"></i></a>CMS</h5>
+<pre><code class="lang-bash">-Xloggc:./gc-cms-%t.log -Xms50M -Xmx50M -XX:MetaspaceSize=256M -XX:MaxMetaspaceSize=256M -XX:+PrintGCDetails -XX:+PrintGCDateStamps -XX:+PrintGCTimeStamps -XX:+PrintGCCause -XX:+UseGCLogFileRotation -XX:NumberOfGCLogFiles=10 -XX:GCLogFileSize=100M -XX:+UseParNewGC -XX:+UseConcMarkSweepGC
+</code></pre>
+<p>&#x901A;&#x8FC7;&#x67E5;&#x770B;&#x65E5;&#x5FD7;&#xFF0C;&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x9996;&#x5148;&#x8FDB;&#x884C;&#x7684;&#x662F;CMS&#x6B63;&#x5E38;&#x7684;full gc&#xFF0C;&#x5176;&#x4E2D;&#x7684; <code>[CMS-concurrent-mark-start]</code> &#x7B49;&#x5BF9;&#x5E94;&#x7684;&#x662F;CMS&#x5783;&#x573E;&#x6536;&#x96C6;&#x7684;&#x5404;&#x4E2A;&#x9636;&#x6BB5;&#x3002;</p>
+<p><img src="../source/images/ch-01/cms-full-gc.png" alt="cms-full-gc"></p>
+<p>&#x5728;CMS&#x5783;&#x573E;&#x6536;&#x96C6;&#x8FC7;&#x7A0B;&#x4E2D;&#xFF0C;&#x51FA;&#x73B0;&#x4E86; <a href="05-GC-ParNew-CMS.html#CMS&#x6536;&#x96C6;&#x5668;(%60-XX:+UseConcMarkSweepGC%60(&#x4EC5;&#x7528;&#x4E8E;&#x8001;&#x5E74;&#x4EE3;">concurrent mode failure</a>)&#xFF0C;&#x6B64;&#x65F6;&#x4F1A;&#x542F;&#x52A8;Serial old&#x5355;&#x7EBF;&#x7A0B;&#x5783;&#x573E;&#x6536;&#x96C6;&#x3002;</p>
+<p><img src="../source/images/ch-01/cms-serial-gc.png" alt="cms-serial-gc"></p>
+<h5 id="g1"><a name="g1" class="anchor-navigation-ex-anchor" href="#g1"><i class="fa fa-link" aria-hidden="true"></i></a><a name="g1" class="plugin-anchor" href="#g1"><i class="fa fa-link" aria-hidden="true"></i></a>G1</h5>
+<pre><code class="lang-bash">-Xloggc:./gc-g1-%t.log -Xms50M -Xmx50M -XX:MetaspaceSize=256M -XX:MaxMetaspaceSize=256M -XX:+PrintGCDetails -XX:+PrintGCDateStamps -XX:+PrintGCTimeStamps -XX:+PrintGCCause -XX:+UseGCLogFileRotation -XX:NumberOfGCLogFiles=10 -XX:GCLogFileSize=100M -XX:+UseG1GC
+</code></pre>
+<h4 id="gceasy"><a name="gceasy" class="anchor-navigation-ex-anchor" href="#gceasy"><i class="fa fa-link" aria-hidden="true"></i></a><a name="gceasy" class="plugin-anchor" href="#gceasy"><i class="fa fa-link" aria-hidden="true"></i></a>gceasy</h4>
+<p>&#x4E0A;&#x9762;&#x7684;&#x8FD9;&#x4E9B;&#x53C2;&#x6570;&#xFF0C;&#x80FD;&#x591F;&#x5E2E;&#x6211;&#x4EEC;&#x67E5;&#x770B;&#x5206;&#x6790;GC&#x7684;&#x5783;&#x573E;&#x6536;&#x96C6;&#x60C5;&#x51B5;&#x3002;&#x4F46;&#x662F;&#x5982;&#x679C;GC&#x65E5;&#x5FD7;&#x5F88;&#x591A;&#x5F88;&#x591A;&#xFF0C;&#x6210;&#x5343;&#x4E0A;&#x4E07;&#x884C;&#x3002;&#x63A8;&#x8350;&#x4F7F;&#x7528; <strong><a href="https://gceasy.io/" target="_blank">gceasy</a></strong>&#xFF0C;&#x53EF;&#x4EE5;&#x4E0A;&#x4F20;gc&#x6587;&#x4EF6;&#xFF0C;&#x7136;&#x540E;&#x4ED6;&#x4F1A;&#x5229;&#x7528;&#x53EF;&#x89C6;&#x5316;&#x7684;&#x754C;&#x9762;&#x6765;&#x5C55;&#x73B0;GC&#x60C5;&#x51B5;&#x3002;&#x5177;&#x4F53;&#x4E0B;&#x56FE;&#x6240;&#x793A;&#xFF0C;&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x5E74;&#x8F7B;&#x4EE3;&#x3001;&#x8001;&#x5E74;&#x4EE3;&#x3001;&#x5143;&#x7A7A;&#x95F4;&#x7684;&#x5185;&#x5B58;&#x5206;&#x914D;&#x548C;&#x6700;&#x5927;&#x4F7F;&#x7528;&#x60C5;&#x51B5;&#x3002; </p>
+<p><img src="../source/images/ch-01/gceasy-01.png" alt="gceasy-01"></p>
+<p>&#x4E0B;&#x56FE;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x5806;&#x5185;&#x5B58;&#x5728;GC&#x4E4B;&#x524D;&#x548C;&#x4E4B;&#x540E;&#x7684;&#x53D8;&#x5316;&#xFF0C;&#x4EE5;&#x53CA;&#x5176;&#x4ED6;&#x4FE1;&#x606F;&#x3002;</p>
+<p><img src="../source/images/ch-01/gceasy-02.png" alt="gceasy-02"></p>
+<p>&#x8FD8;&#x53EF;&#x4EE5;&#x770B;&#x5230;GC&#x7684;&#x539F;&#x56E0;&#x3002;</p>
+<p><img src="../source/images/ch-01/gceasy-gc-cause.png" alt="gceasy-gc-cause"></p>
+<p>&#x8FD9;&#x4E2A;&#x5DE5;&#x5177;&#x8FD8;&#x63D0;&#x4F9B;&#x57FA;&#x4E8E;&#x673A;&#x5668;&#x5B66;&#x4E60;&#x7684;JVM&#x667A;&#x80FD;&#x4F18;&#x5316;&#x5EFA;&#x8BAE;&#xFF0C;&#x8FD9;&#x4E2A;&#x529F;&#x80FD;&#x9700;&#x8981;&#x4ED8;&#x8D39;</p>
+<h5 id="jvm&#x53C2;&#x6570;&#x6C47;&#x603B;&#x67E5;&#x770B;&#x547D;&#x4EE4;"><a name="jvm&#x53C2;&#x6570;&#x6C47;&#x603B;&#x67E5;&#x770B;&#x547D;&#x4EE4;" class="anchor-navigation-ex-anchor" href="#jvm&#x53C2;&#x6570;&#x6C47;&#x603B;&#x67E5;&#x770B;&#x547D;&#x4EE4;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="jvm&#x53C2;&#x6570;&#x6C47;&#x603B;&#x67E5;&#x770B;&#x547D;&#x4EE4;" class="plugin-anchor" href="#jvm&#x53C2;&#x6570;&#x6C47;&#x603B;&#x67E5;&#x770B;&#x547D;&#x4EE4;"><i class="fa fa-link" aria-hidden="true"></i></a>JVM&#x53C2;&#x6570;&#x6C47;&#x603B;&#x67E5;&#x770B;&#x547D;&#x4EE4;</h5>
+<p><code>java -XX:+PrintFlagsInitial</code> &#x8868;&#x793A;&#x6253;&#x5370;&#x51FA;&#x6240;&#x6709;&#x53C2;&#x6570;&#x9009;&#x9879;&#x7684;&#x9ED8;&#x8BA4;&#x503C;</p>
+<p><code>java -XX:+PrintFlagsFinal</code> &#x8868;&#x793A;&#x6253;&#x5370;&#x51FA;&#x6240;&#x6709;&#x53C2;&#x6570;&#x9009;&#x9879;&#x5728;&#x8FD0;&#x884C;&#x7A0B;&#x5E8F;&#x65F6;&#x751F;&#x6548;&#x7684;&#x503C;</p>
+<h3 id="173-&#x5E38;&#x91CF;&#x6C60;"><a name="173-&#x5E38;&#x91CF;&#x6C60;" class="anchor-navigation-ex-anchor" href="#173-&#x5E38;&#x91CF;&#x6C60;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="173-&#x5E38;&#x91CF;&#x6C60;" class="plugin-anchor" href="#173-&#x5E38;&#x91CF;&#x6C60;"><i class="fa fa-link" aria-hidden="true"></i></a>1.7.3 &#x5E38;&#x91CF;&#x6C60;</h3>
+<h4 id="class&#x5E38;&#x91CF;&#x6C60;&#x4E0E;&#x8FD0;&#x884C;&#x65F6;&#x5E38;&#x91CF;&#x6C60;"><a name="class&#x5E38;&#x91CF;&#x6C60;&#x4E0E;&#x8FD0;&#x884C;&#x65F6;&#x5E38;&#x91CF;&#x6C60;" class="anchor-navigation-ex-anchor" href="#class&#x5E38;&#x91CF;&#x6C60;&#x4E0E;&#x8FD0;&#x884C;&#x65F6;&#x5E38;&#x91CF;&#x6C60;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="class&#x5E38;&#x91CF;&#x6C60;&#x4E0E;&#x8FD0;&#x884C;&#x65F6;&#x5E38;&#x91CF;&#x6C60;" class="plugin-anchor" href="#class&#x5E38;&#x91CF;&#x6C60;&#x4E0E;&#x8FD0;&#x884C;&#x65F6;&#x5E38;&#x91CF;&#x6C60;"><i class="fa fa-link" aria-hidden="true"></i></a>Class&#x5E38;&#x91CF;&#x6C60;&#x4E0E;&#x8FD0;&#x884C;&#x65F6;&#x5E38;&#x91CF;&#x6C60;</h4>
+<p>Class&#x5E38;&#x91CF;&#x6C60;&#x53EF;&#x4EE5;&#x7406;&#x89E3;&#x4E3A;&#x662F;Class&#x6587;&#x4EF6;&#x4E2D;&#x7684;&#x8D44;&#x6E90;&#x4ED3;&#x5E93;&#x3002; Class&#x6587;&#x4EF6;&#x4E2D;&#x9664;&#x4E86;&#x5305;&#x542B;&#x7C7B;&#x7684;&#x7248;&#x672C;&#x3001;&#x5B57;&#x6BB5;&#x3001;&#x65B9;&#x6CD5;&#x3001;&#x63A5;&#x53E3;&#x7B49;&#x63CF;&#x8FF0;&#x4FE1;&#x606F;&#x5916;&#xFF0C;&#x8FD8;&#x6709;&#x4E00;&#x9879;&#x4FE1;&#x606F;&#x5C31;&#x662F;<strong>&#x5E38;&#x91CF;&#x6C60;(constant pool table)</strong>&#xFF0C;&#x7528;&#x4E8E;&#x5B58;&#x653E;&#x7F16;&#x8BD1;&#x671F;&#x751F;&#x6210;&#x7684;&#x5404;&#x79CD;<strong>&#x5B57;&#x9762;&#x91CF;(Literal)&#x548C;&#x7B26;&#x53F7;&#x5F15;&#x7528;(Symbolic References)</strong>&#x3002;</p>
+<p>&#x4E00;&#x4E2A;class&#x6587;&#x4EF6;&#x7684;16&#x8FDB;&#x5236;&#x5927;&#x4F53;&#x7ED3;&#x6784;&#x5982;&#x4E0B;&#x56FE;&#xFF1A;</p>
+<p><img src="../source/images/ch-01/class-file.png" alt="class-file"></p>
+<p>&#x5BF9;&#x5E94;&#x7684;&#x542B;&#x4E49;&#x5982;&#x4E0B;&#xFF0C;&#x7EC6;&#x8282;&#x53EF;&#x4EE5;&#x67E5;&#x4E0B;oracle&#x5B98;&#x65B9;&#x6587;&#x6863;</p>
+<p><img src="../source/images/ch-01/class-file-header.png" alt="class-file-header"></p>
+<p>&#x5F53;&#x7136;&#x6211;&#x4EEC;&#x4E00;&#x822C;&#x4E0D;&#x4F1A;&#x53BB;&#x4EBA;&#x5DE5;&#x89E3;&#x6790;&#x8FD9;&#x79CD;16&#x8FDB;&#x5236;&#x7684;&#x5B57;&#x8282;&#x7801;&#x6587;&#x4EF6;&#xFF0C;&#x6211;&#x4EEC;&#x4E00;&#x822C;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;javap&#x547D;&#x4EE4;&#x751F;&#x6210;&#x66F4;&#x53EF;&#x8BFB;&#x7684;JVM&#x5B57;&#x8282;&#x7801;&#x6307;&#x4EE4;&#x6587;&#x4EF6;&#xFF1A;</p>
+<pre><code class="lang-bash">javap -v Math.class
+</code></pre>
+<p><img src="../source/images/ch-01/class-javap-v.png" alt="class-javap-v"></p>
+<p>&#x5176;&#x4E2D;&#x7684; <code>Constant pool</code> &#x662F;class&#x5E38;&#x91CF;&#x6C60;&#x4FE1;&#x606F;&#xFF0C;&#x5E38;&#x91CF;&#x6C60;&#x4E2D;&#x4E3B;&#x8981;&#x5B58;&#x653E;&#x4E24;&#x5927;&#x7C7B;&#x5E38;&#x91CF;&#xFF1A;<strong>&#x5B57;&#x9762;&#x91CF;&#x548C;&#x7B26;&#x53F7;&#x5F15;&#x7528;</strong>&#x3002;</p>
+<h5 id="&#x5B57;&#x9762;&#x91CF;"><a name="&#x5B57;&#x9762;&#x91CF;" class="anchor-navigation-ex-anchor" href="#&#x5B57;&#x9762;&#x91CF;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x5B57;&#x9762;&#x91CF;" class="plugin-anchor" href="#&#x5B57;&#x9762;&#x91CF;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x5B57;&#x9762;&#x91CF;</h5>
+<p><strong>&#x5B57;&#x9762;&#x91CF;&#x5C31;&#x662F;&#x6307;&#x7531;&#x5B57;&#x6BCD;&#x3001;&#x6570;&#x5B57;&#x7B49;&#x6784;&#x6210;&#x7684;&#x5B57;&#x7B26;&#x4E32;&#x6216;&#x8005;&#x6570;&#x503C;&#x5E38;&#x91CF;</strong></p>
+<p>&#x5B57;&#x9762;&#x91CF;&#x53EA;&#x53EF;&#x4EE5;&#x53F3;&#x503C;&#x51FA;&#x73B0;&#xFF0C;&#x6240;&#x8C13;&#x53F3;&#x503C;&#x662F;&#x6307;&#x7B49;&#x53F7;&#x53F3;&#x8FB9;&#x7684;&#x503C;&#xFF0C;&#x5982;&#xFF1A;int a=1 &#x8FD9;&#x91CC;&#x7684;a&#x4E3A;&#x5DE6;&#x503C;&#xFF0C;1&#x4E3A;&#x53F3;&#x503C;&#x3002;&#x5728;&#x8FD9;&#x4E2A;&#x4F8B;&#x5B50;&#x4E2D;1&#x5C31;&#x662F;&#x5B57;&#x9762;&#x91CF;&#x3002;</p>
+<pre><code class="lang-java"><span class="hljs-keyword">int</span> a = <span class="hljs-number">1</span>;
+<span class="hljs-keyword">int</span> b = <span class="hljs-number">2</span>;
+<span class="hljs-keyword">int</span> c = <span class="hljs-string">&quot;abcdefg&quot;</span>;
+<span class="hljs-keyword">int</span> d = <span class="hljs-string">&quot;abcdefg&quot;</span>;
+</code></pre>
+<h5 id="&#x7B26;&#x53F7;&#x5F15;&#x7528;"><a name="&#x7B26;&#x53F7;&#x5F15;&#x7528;" class="anchor-navigation-ex-anchor" href="#&#x7B26;&#x53F7;&#x5F15;&#x7528;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x7B26;&#x53F7;&#x5F15;&#x7528;" class="plugin-anchor" href="#&#x7B26;&#x53F7;&#x5F15;&#x7528;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x7B26;&#x53F7;&#x5F15;&#x7528;</h5>
+<p>&#x7B26;&#x53F7;&#x5F15;&#x7528;&#x662F;&#x7F16;&#x8BD1;&#x539F;&#x7406;&#x4E2D;&#x7684;&#x6982;&#x5FF5;&#xFF0C;&#x662F;&#x76F8;&#x5BF9;&#x4E8E;&#x76F4;&#x63A5;&#x5F15;&#x7528;&#x6765;&#x8BF4;&#x7684;&#x3002;&#x4E3B;&#x8981;&#x5305;&#x62EC;&#x4E86;&#x4EE5;&#x4E0B;&#x4E09;&#x7C7B;&#x5E38;&#x91CF;&#xFF1A;</p>
+<ul>
+<li>&#x7C7B;&#x548C;&#x63A5;&#x53E3;&#x7684;&#x5168;&#x9650;&#x5B9A;&#x540D; </li>
+<li>&#x5B57;&#x6BB5;&#x7684;&#x540D;&#x79F0;&#x548C;&#x63CF;&#x8FF0;&#x7B26; </li>
+<li>&#x65B9;&#x6CD5;&#x7684;&#x540D;&#x79F0;&#x548C;&#x63CF;&#x8FF0;&#x7B26;</li>
+</ul>
+<p>&#x4E0A;&#x9762;&#x7684;a&#xFF0C;b&#x5C31;&#x662F;&#x5B57;&#x6BB5;&#x540D;&#x79F0;&#xFF0C;&#x5C31;&#x662F;&#x4E00;&#x79CD;&#x7B26;&#x53F7;&#x5F15;&#x7528;&#xFF0C;&#x8FD8;&#x6709;Math&#x7C7B;&#x5E38;&#x91CF;&#x6C60;&#x91CC;&#x7684; <code>Lcom/tyrival/jvm/lession01/Math</code> &#x662F;&#x7C7B;&#x7684;&#x5168;&#x9650;&#x5B9A;&#x540D;&#xFF0C;main&#x548C;compute&#x662F;&#x65B9;&#x6CD5;&#x540D;&#x79F0;&#xFF0C;()&#x662F;&#x4E00;&#x79CD;UTF8&#x683C;&#x5F0F;&#x7684;&#x63CF;&#x8FF0;&#x7B26;&#xFF0C;&#x8FD9;&#x4E9B;&#x90FD;&#x662F;&#x7B26;&#x53F7;&#x5F15;&#x7528;&#x3002;</p>
+<p>&#x8FD9;&#x4E9B;&#x5E38;&#x91CF;&#x6C60;&#x73B0;&#x5728;&#x662F;&#x9759;&#x6001;&#x4FE1;&#x606F;&#xFF0C;&#x53EA;&#x6709;&#x5230;&#x8FD0;&#x884C;&#x65F6;&#x88AB;&#x52A0;&#x8F7D;&#x5230;&#x5185;&#x5B58;&#x540E;&#xFF0C;&#x8FD9;&#x4E9B;&#x7B26;&#x53F7;&#x624D;&#x6709;&#x5BF9;&#x5E94;&#x7684;&#x5185;&#x5B58;&#x5730;&#x5740;&#x4FE1;&#x606F;&#xFF0C;&#x8FD9;&#x4E9B;&#x5E38;&#x91CF;&#x6C60;&#x4E00;&#x65E6;&#x88AB;&#x88C5;&#x5165;&#x5185;&#x5B58;&#x5C31;&#x53D8;&#x6210;<strong>&#x8FD0;&#x884C;&#x65F6;&#x5E38;&#x91CF;&#x6C60;</strong>&#xFF0C;&#x5BF9;&#x5E94;&#x7684;&#x7B26;&#x53F7;&#x5F15;&#x7528;&#x5728;&#x7A0B;&#x5E8F;&#x52A0;&#x8F7D;&#x6216;&#x8FD0;&#x884C;&#x65F6;&#x4F1A;&#x88AB;&#x8F6C;&#x53D8;&#x4E3A;&#x88AB;&#x52A0;&#x8F7D;&#x5230;&#x5185;&#x5B58;&#x533A;&#x57DF;&#x7684;&#x4EE3;&#x7801;&#x7684;&#x76F4;&#x63A5;&#x5F15;&#x7528;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x6211;&#x4EEC;&#x8BF4;&#x7684;<strong>&#x52A8;&#x6001;&#x94FE;&#x63A5;&#x4E86;&#x3002;&#x4F8B;&#x5982;&#xFF0C;compute()&#x8FD9;&#x4E2A;&#x7B26;&#x53F7;&#x5F15;&#x7528;&#x5728;&#x8FD0;&#x884C;&#x65F6;&#x5C31;&#x4F1A;&#x88AB;&#x8F6C;&#x53D8;&#x4E3A;compute()&#x65B9;&#x6CD5;&#x5177;&#x4F53;&#x4EE3;&#x7801;&#x5728;&#x5185;&#x5B58;&#x4E2D;&#x7684;&#x5730;&#x5740;&#xFF0C;&#x4E3B;&#x8981;&#x901A;&#x8FC7;&#x5BF9;&#x8C61;&#x5934;&#x91CC;&#x7684;&#x7C7B;&#x578B;&#x6307;&#x9488;&#x53BB;&#x8F6C;&#x6362;&#x76F4;&#x63A5;&#x5F15;&#x7528;&#x3002;</strong></p>
+<h4 id="&#x5B57;&#x7B26;&#x4E32;&#x5E38;&#x91CF;&#x6C60;"><a name="&#x5B57;&#x7B26;&#x4E32;&#x5E38;&#x91CF;&#x6C60;" class="anchor-navigation-ex-anchor" href="#&#x5B57;&#x7B26;&#x4E32;&#x5E38;&#x91CF;&#x6C60;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x5B57;&#x7B26;&#x4E32;&#x5E38;&#x91CF;&#x6C60;" class="plugin-anchor" href="#&#x5B57;&#x7B26;&#x4E32;&#x5E38;&#x91CF;&#x6C60;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x5B57;&#x7B26;&#x4E32;&#x5E38;&#x91CF;&#x6C60;</h4>
+<h5 id="&#x5B57;&#x7B26;&#x4E32;&#x5E38;&#x91CF;&#x6C60;&#x7684;&#x8BBE;&#x8BA1;&#x601D;&#x60F3;"><a name="&#x5B57;&#x7B26;&#x4E32;&#x5E38;&#x91CF;&#x6C60;&#x7684;&#x8BBE;&#x8BA1;&#x601D;&#x60F3;" class="anchor-navigation-ex-anchor" href="#&#x5B57;&#x7B26;&#x4E32;&#x5E38;&#x91CF;&#x6C60;&#x7684;&#x8BBE;&#x8BA1;&#x601D;&#x60F3;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x5B57;&#x7B26;&#x4E32;&#x5E38;&#x91CF;&#x6C60;&#x7684;&#x8BBE;&#x8BA1;&#x601D;&#x60F3;" class="plugin-anchor" href="#&#x5B57;&#x7B26;&#x4E32;&#x5E38;&#x91CF;&#x6C60;&#x7684;&#x8BBE;&#x8BA1;&#x601D;&#x60F3;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x5B57;&#x7B26;&#x4E32;&#x5E38;&#x91CF;&#x6C60;&#x7684;&#x8BBE;&#x8BA1;&#x601D;&#x60F3;</h5>
+<ul>
+<li><p>&#x5B57;&#x7B26;&#x4E32;&#x7684;&#x5206;&#x914D;&#xFF0C;&#x548C;&#x5176;&#x4ED6;&#x7684;&#x5BF9;&#x8C61;&#x5206;&#x914D;&#x4E00;&#x6837;&#xFF0C;&#x8017;&#x8D39;&#x9AD8;&#x6602;&#x7684;&#x65F6;&#x95F4;&#x4E0E;&#x7A7A;&#x95F4;&#x4EE3;&#x4EF7;&#xFF0C;&#x4F5C;&#x4E3A;&#x6700;&#x57FA;&#x7840;&#x7684;&#x6570;&#x636E;&#x7C7B;&#x578B;&#xFF0C;&#x5927;&#x91CF;&#x9891;&#x7E41;&#x7684;&#x521B;&#x5EFA;&#x5B57;&#x7B26;&#x4E32;&#xFF0C;&#x6781;&#x5927;&#x7A0B;&#x5EA6;&#x5730;&#x5F71;&#x54CD;&#x7A0B;&#x5E8F;&#x7684;&#x6027;&#x80FD;</p>
+</li>
+<li><p>JVM&#x4E3A;&#x4E86;&#x63D0;&#x9AD8;&#x6027;&#x80FD;&#x548C;&#x51CF;&#x5C11;&#x5185;&#x5B58;&#x5F00;&#x9500;&#xFF0C;&#x5728;&#x5B9E;&#x4F8B;&#x5316;&#x5B57;&#x7B26;&#x4E32;&#x5E38;&#x91CF;&#x7684;&#x65F6;&#x5019;&#x8FDB;&#x884C;&#x4E86;&#x4E00;&#x4E9B;&#x4F18;&#x5316;</p>
+<ul>
+<li>&#x4E3A;&#x5B57;&#x7B26;&#x4E32;&#x5F00;&#x8F9F;&#x4E00;&#x4E2A;&#x5B57;&#x7B26;&#x4E32;&#x5E38;&#x91CF;&#x6C60;&#xFF0C;&#x7C7B;&#x4F3C;&#x4E8E;&#x7F13;&#x5B58;&#x533A;</li>
+<li>&#x521B;&#x5EFA;&#x5B57;&#x7B26;&#x4E32;&#x5E38;&#x91CF;&#x65F6;&#xFF0C;&#x9996;&#x5148;&#x67E5;&#x8BE2;&#x5B57;&#x7B26;&#x4E32;&#x5E38;&#x91CF;&#x6C60;&#x662F;&#x5426;&#x5B58;&#x5728;&#x8BE5;&#x5B57;&#x7B26;&#x4E32;</li>
+<li>&#x5B58;&#x5728;&#x8BE5;&#x5B57;&#x7B26;&#x4E32;&#xFF0C;&#x8FD4;&#x56DE;&#x5F15;&#x7528;&#x5B9E;&#x4F8B;&#xFF0C;&#x4E0D;&#x5B58;&#x5728;&#xFF0C;&#x5B9E;&#x4F8B;&#x5316;&#x8BE5;&#x5B57;&#x7B26;&#x4E32;&#x5E76;&#x653E;&#x5165;&#x6C60;&#x4E2D;</li>
+</ul>
+</li>
+</ul>
+<h5 id="&#x4E09;&#x79CD;&#x5B57;&#x7B26;&#x4E32;&#x64CD;&#x4F5C;jdk17-&#x53CA;&#x4EE5;&#x4E0A;&#x7248;&#x672C;"><a name="&#x4E09;&#x79CD;&#x5B57;&#x7B26;&#x4E32;&#x64CD;&#x4F5C;jdk17-&#x53CA;&#x4EE5;&#x4E0A;&#x7248;&#x672C;" class="anchor-navigation-ex-anchor" href="#&#x4E09;&#x79CD;&#x5B57;&#x7B26;&#x4E32;&#x64CD;&#x4F5C;jdk17-&#x53CA;&#x4EE5;&#x4E0A;&#x7248;&#x672C;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x4E09;&#x79CD;&#x5B57;&#x7B26;&#x4E32;&#x64CD;&#x4F5C;jdk17-&#x53CA;&#x4EE5;&#x4E0A;&#x7248;&#x672C;" class="plugin-anchor" href="#&#x4E09;&#x79CD;&#x5B57;&#x7B26;&#x4E32;&#x64CD;&#x4F5C;jdk17-&#x53CA;&#x4EE5;&#x4E0A;&#x7248;&#x672C;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x4E09;&#x79CD;&#x5B57;&#x7B26;&#x4E32;&#x64CD;&#x4F5C;(Jdk1.7 &#x53CA;&#x4EE5;&#x4E0A;&#x7248;&#x672C;)</h5>
+<ul>
+<li>&#x76F4;&#x63A5;&#x8D4B;&#x503C;&#x5B57;&#x7B26;&#x4E32;</li>
+</ul>
+<pre><code class="lang-java">String s = <span class="hljs-string">&quot;tyrival&quot;</span>;  <span class="hljs-comment">// s&#x6307;&#x5411;&#x5E38;&#x91CF;&#x6C60;&#x4E2D;&#x7684;&#x5F15;&#x7528;</span>
+</code></pre>
+<p>&#x8FD9;&#x79CD;&#x65B9;&#x5F0F;&#x521B;&#x5EFA;&#x7684;&#x5B57;&#x7B26;&#x4E32;&#x5BF9;&#x8C61;&#xFF0C;&#x53EA;&#x4F1A;&#x5728;&#x5E38;&#x91CF;&#x6C60;&#x4E2D;&#x3002;</p>
+<p>&#x56E0;&#x4E3A;&#x6709;&quot;tyrival&quot;&#x8FD9;&#x4E2A;&#x5B57;&#x9762;&#x91CF;&#xFF0C;&#x521B;&#x5EFA;&#x5BF9;&#x8C61;s&#x7684;&#x65F6;&#x5019;&#xFF0C;JVM&#x4F1A;&#x5148;&#x53BB;&#x5E38;&#x91CF;&#x6C60;&#x4E2D;&#x901A;&#x8FC7; equals(key) &#x65B9;&#x6CD5;&#xFF0C;&#x5224;&#x65AD;&#x662F;&#x5426;&#x6709;&#x76F8;&#x540C;&#x7684;&#x5BF9;&#x8C61;</p>
+<p>&#x5982;&#x679C;&#x6709;&#xFF0C;&#x5219;&#x76F4;&#x63A5;&#x8FD4;&#x56DE;&#x8BE5;&#x5BF9;&#x8C61;&#x5728;&#x5E38;&#x91CF;&#x6C60;&#x4E2D;&#x7684;&#x5F15;&#x7528;&#xFF1B;</p>
+<p>&#x5982;&#x679C;&#x6CA1;&#x6709;&#xFF0C;&#x5219;&#x4F1A;&#x5728;&#x5E38;&#x91CF;&#x6C60;&#x4E2D;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x65B0;&#x5BF9;&#x8C61;&#xFF0C;&#x518D;&#x8FD4;&#x56DE;&#x5F15;&#x7528;&#x3002;</p>
+<ul>
+<li>new String();</li>
+</ul>
+<pre><code class="lang-java">String s1 = <span class="hljs-keyword">new</span> String(<span class="hljs-string">&quot;tyrival&quot;</span>);  <span class="hljs-comment">// s1&#x6307;&#x5411;&#x5185;&#x5B58;&#x4E2D;&#x7684;&#x5BF9;&#x8C61;&#x5F15;&#x7528;</span>
+</code></pre>
+<p>&#x8FD9;&#x79CD;&#x65B9;&#x5F0F;&#x4F1A;&#x4FDD;&#x8BC1;&#x5B57;&#x7B26;&#x4E32;&#x5E38;&#x91CF;&#x6C60;&#x548C;&#x5806;&#x4E2D;&#x90FD;&#x6709;&#x8FD9;&#x4E2A;&#x5BF9;&#x8C61;&#xFF0C;&#x6CA1;&#x6709;&#x5C31;&#x521B;&#x5EFA;&#xFF0C;&#x6700;&#x540E;&#x8FD4;&#x56DE;&#x5806;&#x5185;&#x5B58;&#x4E2D;&#x7684;&#x5BF9;&#x8C61;&#x5F15;&#x7528;&#x3002;</p>
+<p>&#x6B65;&#x9AA4;&#x5927;&#x81F4;&#x5982;&#x4E0B;&#xFF1A;</p>
+<p>&#x56E0;&#x4E3A;&#x6709;&quot;tyrival&quot;&#x8FD9;&#x4E2A;&#x5B57;&#x9762;&#x91CF;&#xFF0C;&#x6240;&#x4EE5;&#x4F1A;&#x5148;&#x68C0;&#x67E5;&#x5B57;&#x7B26;&#x4E32;&#x5E38;&#x91CF;&#x6C60;&#x4E2D;&#x662F;&#x5426;&#x5B58;&#x5728;&#x5B57;&#x7B26;&#x4E32;&quot;tyrival&quot;</p>
+<p>&#x4E0D;&#x5B58;&#x5728;&#xFF0C;&#x5148;&#x5728;&#x5B57;&#x7B26;&#x4E32;&#x5E38;&#x91CF;&#x6C60;&#x91CC;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x5B57;&#x7B26;&#x4E32;&#x5BF9;&#x8C61;&#xFF1B;&#x518D;&#x53BB;&#x5185;&#x5B58;&#x4E2D;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x5B57;&#x7B26;&#x4E32;&#x5BF9;&#x8C61;&quot;tyrival&quot;&#xFF1B;</p>
+<p>&#x5B58;&#x5728;&#x7684;&#x8BDD;&#xFF0C;&#x5C31;&#x76F4;&#x63A5;&#x53BB;&#x5806;&#x5185;&#x5B58;&#x4E2D;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x5B57;&#x7B26;&#x4E32;&#x5BF9;&#x8C61;&quot;tyrival&quot;&#xFF1B;</p>
+<p>&#x6700;&#x540E;&#xFF0C;&#x5C06;&#x5185;&#x5B58;&#x4E2D;&#x7684;&#x5F15;&#x7528;&#x8FD4;&#x56DE;&#x3002;</p>
+<ul>
+<li>intern&#x65B9;&#x6CD5;</li>
+</ul>
+<pre><code class="lang-java">String s1 = <span class="hljs-keyword">new</span> String(<span class="hljs-string">&quot;tyrival&quot;</span>);   
+String s2 = s1.intern();
+
+<span class="hljs-comment">// &#x56E0;&#x4E3A;s2&#x6307;&#x5411;&#x7684;&#x662F;&#x5E38;&#x91CF;&#x6C60;&#x4E2D;&#x7684;&quot;tyrival&quot;&#x5B57;&#x7B26;&#x4E32;&#xFF0C;&#x800C;s1&#x5F15;&#x7528;&#x7684;&#x662F;&#x5806;&#x5185;&#x7684;String&#x5BF9;&#x8C61;&#xFF0C;&#x6240;&#x4EE5;&#x8FD4;&#x56DE;false</span>
+System.out.println(s1 == s2);
+</code></pre>
+<p>String&#x4E2D;&#x7684;intern&#x65B9;&#x6CD5;&#x662F;&#x4E00;&#x4E2A; native &#x7684;&#x65B9;&#x6CD5;&#xFF0C;&#x5F53;&#x8C03;&#x7528; intern&#x65B9;&#x6CD5;&#x65F6;&#xFF0C;&#x5982;&#x679C;&#x6C60;&#x5DF2;&#x7ECF;&#x5305;&#x542B;&#x4E00;&#x4E2A;&#x7B49;&#x4E8E;&#x6B64;String&#x5BF9;&#x8C61;&#x7684;&#x5B57;&#x7B26;&#x4E32;&#xFF08;&#x7528; <code>equals(object)</code> &#x65B9;&#x6CD5;&#x786E;&#x5B9A;&#xFF09;&#xFF0C;&#x5219;&#x8FD4;&#x56DE;&#x6C60;&#x4E2D;&#x7684;&#x5B57;&#x7B26;&#x4E32;&#x3002;<strong>&#x5426;&#x5219;&#xFF0C;&#x5C06;intern&#x8FD4;&#x56DE;&#x7684;&#x5F15;&#x7528;&#x6307;&#x5411;&#x5F53;&#x524D;&#x5B57;&#x7B26;&#x4E32; s1</strong>(<strong>jdk1.6&#x7248;&#x672C;&#x9700;&#x8981;&#x5C06; s1 &#x590D;&#x5236;&#x5230;&#x5B57;&#x7B26;&#x4E32;&#x5E38;&#x91CF;&#x6C60;&#x91CC;</strong>)&#x3002;</p>
+<h5 id="&#x5B57;&#x7B26;&#x4E32;&#x5E38;&#x91CF;&#x6C60;&#x4F4D;&#x7F6E;"><a name="&#x5B57;&#x7B26;&#x4E32;&#x5E38;&#x91CF;&#x6C60;&#x4F4D;&#x7F6E;" class="anchor-navigation-ex-anchor" href="#&#x5B57;&#x7B26;&#x4E32;&#x5E38;&#x91CF;&#x6C60;&#x4F4D;&#x7F6E;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x5B57;&#x7B26;&#x4E32;&#x5E38;&#x91CF;&#x6C60;&#x4F4D;&#x7F6E;" class="plugin-anchor" href="#&#x5B57;&#x7B26;&#x4E32;&#x5E38;&#x91CF;&#x6C60;&#x4F4D;&#x7F6E;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x5B57;&#x7B26;&#x4E32;&#x5E38;&#x91CF;&#x6C60;&#x4F4D;&#x7F6E;</h5>
+<ul>
+<li><p>Jdk1.6&#x53CA;&#x4E4B;&#x524D;&#xFF1A; &#x6709;&#x6C38;&#x4E45;&#x4EE3;, &#x8FD0;&#x884C;&#x65F6;&#x5E38;&#x91CF;&#x6C60;&#x5728;&#x6C38;&#x4E45;&#x4EE3;&#xFF0C;&#x8FD0;&#x884C;&#x65F6;&#x5E38;&#x91CF;&#x6C60;&#x5305;&#x542B;&#x5B57;&#x7B26;&#x4E32;&#x5E38;&#x91CF;&#x6C60;</p>
+</li>
+<li><p>Jdk1.7&#xFF1A;&#x6709;&#x6C38;&#x4E45;&#x4EE3;&#xFF0C;&#x4F46;&#x5DF2;&#x7ECF;&#x9010;&#x6B65;&#x201C;&#x53BB;&#x6C38;&#x4E45;&#x4EE3;&#x201D;&#xFF0C;&#x5B57;&#x7B26;&#x4E32;&#x5E38;&#x91CF;&#x6C60;&#x4ECE;&#x6C38;&#x4E45;&#x4EE3;&#x91CC;&#x7684;&#x8FD0;&#x884C;&#x65F6;&#x5E38;&#x91CF;&#x6C60;&#x5206;&#x79BB;&#x5230;&#x5806;&#x91CC;</p>
+</li>
+<li><p>Jdk1.8&#x53CA;&#x4E4B;&#x540E;&#xFF1A; &#x65E0;&#x6C38;&#x4E45;&#x4EE3;&#xFF0C;&#x8FD0;&#x884C;&#x65F6;&#x5E38;&#x91CF;&#x6C60;&#x5728;&#x5143;&#x7A7A;&#x95F4;&#xFF0C;&#x5B57;&#x7B26;&#x4E32;&#x5E38;&#x91CF;&#x6C60;&#x91CC;&#x4F9D;&#x7136;&#x5728;&#x5806;&#x91CC;</p>
+</li>
+</ul>
+<p>&#x7528;&#x4E00;&#x4E2A;&#x7A0B;&#x5E8F;&#x8BC1;&#x660E;&#x4E0B;&#x5B57;&#x7B26;&#x4E32;&#x5E38;&#x91CF;&#x6C60;&#x5728;&#x54EA;&#x91CC;&#xFF1A;</p>
+<pre><code class="lang-java"><span class="hljs-comment">/**
+ * jdk6&#xFF1A;-Xms6M -Xmx6M -XX:PermSize=6M -XX:MaxPermSize=6M  
+ * jdk8&#xFF1A;-Xms6M -Xmx6M -XX:MetaspaceSize=6M -XX:MaxMetaspaceSize=6M
+ */</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">RuntimeConstantPoolOOM</span> </span>{
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>{
+        ArrayList&lt;String&gt; list = <span class="hljs-keyword">new</span> ArrayList&lt;String&gt;();
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">10000000</span>; i++) {
+            String str = String.valueOf(i).intern();
+            list.add(str);
+        }
+    }
+}
+
+&#x8FD0;&#x884C;&#x7ED3;&#x679C;&#xFF1A;
+jdk7&#x53CA;&#x4EE5;&#x4E0A;&#xFF1A;Exception in thread <span class="hljs-string">&quot;main&quot;</span> java.lang.OutOfMemoryError: Java heap space
+jdk6&#xFF1A;Exception in thread <span class="hljs-string">&quot;main&quot;</span> java.lang.OutOfMemoryError: PermGen space
+</code></pre>
+<h5 id="&#x5B57;&#x7B26;&#x4E32;&#x5E38;&#x91CF;&#x6C60;&#x8BBE;&#x8BA1;&#x539F;&#x7406;"><a name="&#x5B57;&#x7B26;&#x4E32;&#x5E38;&#x91CF;&#x6C60;&#x8BBE;&#x8BA1;&#x539F;&#x7406;" class="anchor-navigation-ex-anchor" href="#&#x5B57;&#x7B26;&#x4E32;&#x5E38;&#x91CF;&#x6C60;&#x8BBE;&#x8BA1;&#x539F;&#x7406;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x5B57;&#x7B26;&#x4E32;&#x5E38;&#x91CF;&#x6C60;&#x8BBE;&#x8BA1;&#x539F;&#x7406;" class="plugin-anchor" href="#&#x5B57;&#x7B26;&#x4E32;&#x5E38;&#x91CF;&#x6C60;&#x8BBE;&#x8BA1;&#x539F;&#x7406;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x5B57;&#x7B26;&#x4E32;&#x5E38;&#x91CF;&#x6C60;&#x8BBE;&#x8BA1;&#x539F;&#x7406;</h5>
+<p>&#x5B57;&#x7B26;&#x4E32;&#x5E38;&#x91CF;&#x6C60;&#x5E95;&#x5C42;&#x662F;hotspot&#x7684;C++&#x5B9E;&#x73B0;&#x7684;&#xFF0C;&#x5E95;&#x5C42;&#x7C7B;&#x4F3C;&#x4E00;&#x4E2A; HashTable&#xFF0C; &#x4FDD;&#x5B58;&#x7684;&#x672C;&#x8D28;&#x4E0A;&#x662F;&#x5B57;&#x7B26;&#x4E32;&#x5BF9;&#x8C61;&#x7684;&#x5F15;&#x7528;&#x3002;</p>
+<p>&#x770B;&#x4E00;&#x9053;&#x6BD4;&#x8F83;&#x5E38;&#x89C1;&#x7684;&#x9762;&#x8BD5;&#x9898;&#xFF0C;&#x4E0B;&#x9762;&#x7684;&#x4EE3;&#x7801;&#x521B;&#x5EFA;&#x4E86;&#x591A;&#x5C11;&#x4E2A; String &#x5BF9;&#x8C61;&#xFF1F;</p>
+<pre><code class="lang-java">String s1 = <span class="hljs-keyword">new</span> String(<span class="hljs-string">&quot;he&quot;</span>) + <span class="hljs-keyword">new</span> String(<span class="hljs-string">&quot;llo&quot;</span>);
+String s2 = s1.intern();
+
+System.out.println(s1 == s2);
+<span class="hljs-comment">// &#x5728; JDK 1.6 &#x4E0B;&#x8F93;&#x51FA;&#x662F; false&#xFF0C;&#x521B;&#x5EFA;&#x4E86; 6 &#x4E2A;&#x5BF9;&#x8C61;</span>
+<span class="hljs-comment">// &#x5728; JDK 1.7 &#x53CA;&#x4EE5;&#x4E0A;&#x7684;&#x7248;&#x672C;&#x8F93;&#x51FA;&#x662F; true&#xFF0C;&#x521B;&#x5EFA;&#x4E86; 5 &#x4E2A;&#x5BF9;&#x8C61;</span>
+<span class="hljs-comment">// &#x5F53;&#x7136;&#x6211;&#x4EEC;&#x8FD9;&#x91CC;&#x6CA1;&#x6709;&#x8003;&#x8651;GC&#xFF0C;&#x4F46;&#x8FD9;&#x4E9B;&#x5BF9;&#x8C61;&#x786E;&#x5B9E;&#x5B58;&#x5728;&#x6216;&#x5B58;&#x5728;&#x8FC7;</span>
+</code></pre>
+<p>&#x4E3A;&#x4EC0;&#x4E48;&#x8F93;&#x51FA;&#x4F1A;&#x6709;&#x8FD9;&#x4E9B;&#x53D8;&#x5316;&#x5462;&#xFF1F;&#x4E3B;&#x8981;&#x8FD8;&#x662F;&#x5B57;&#x7B26;&#x4E32;&#x6C60;&#x4ECE;&#x6C38;&#x4E45;&#x4EE3;&#x4E2D;&#x8131;&#x79BB;&#x3001;&#x79FB;&#x5165;&#x5806;&#x533A;&#x7684;&#x539F;&#x56E0;&#xFF0C; intern() &#x65B9;&#x6CD5;&#x4E5F;&#x76F8;&#x5E94;&#x53D1;&#x751F;&#x4E86;&#x53D8;&#x5316;&#xFF1A;</p>
+<ol>
+<li>&#x5728; JDK 1.6 &#x4E2D;&#xFF0C;&#x8C03;&#x7528; intern() &#x9996;&#x5148;&#x4F1A;&#x5728;&#x5B57;&#x7B26;&#x4E32;&#x6C60;&#x4E2D;&#x5BFB;&#x627E; equal() &#x76F8;&#x7B49;&#x7684;&#x5B57;&#x7B26;&#x4E32;&#x3002;<ul>
+<li>&#x5047;&#x5982;&#x5B57;&#x7B26;&#x4E32;&#x5B58;&#x5728;&#x5C31;&#x8FD4;&#x56DE;&#x8BE5;&#x5B57;&#x7B26;&#x4E32;&#x5728;&#x5B57;&#x7B26;&#x4E32;&#x6C60;&#x4E2D;&#x7684;&#x5F15;&#x7528;&#xFF1B;</li>
+<li>&#x5047;&#x5982;&#x5B57;&#x7B26;&#x4E32;&#x4E0D;&#x5B58;&#x5728;&#xFF0C;&#x865A;&#x62DF;&#x673A;&#x4F1A;&#x91CD;&#x65B0;&#x5728;&#x6C38;&#x4E45;&#x4EE3;&#x4E0A;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x5B9E;&#x4F8B;&#xFF0C;&#x5C06; StringTable &#x7684;&#x4E00;&#x4E2A;&#x8868;&#x9879;&#x6307;&#x5411;&#x8FD9;&#x4E2A;&#x65B0;&#x521B;&#x5EFA;&#x7684;&#x5B9E;&#x4F8B;&#x3002;</li>
+</ul>
+</li>
+</ol>
+<p><img src="../source/images/ch-01/jdk6-intern.png" alt="jdk6-intern"> </p>
+<ol>
+<li><p>&#x5728; JDK 1.7 &#x53CA;&#x4EE5;&#x4E0A;&#x7248;&#x672C;&#x4E2D;&#xFF0C;&#x7531;&#x4E8E;&#x5B57;&#x7B26;&#x4E32;&#x6C60;&#x4E0D;&#x5728;&#x6C38;&#x4E45;&#x4EE3;&#x4E86;&#xFF0C;&#x5F53;&#x6267;&#x884C; <code>intern()</code> &#x65B9;&#x6CD5;&#x65F6;&#xFF0C;&#x5982;&#x679C;String Pool&#x4E2D;&#x5B58;&#x5728;&#x8FD9;&#x4E2A;&#x5B57;&#x7B26;&#x4E32;&#x5B57;&#x9762;&#x91CF;&#xFF0C;&#x5219;&#x76F4;&#x63A5;&#x4F7F;&#x7528;&#xFF0C;&#x5982;&#x679C;&#x4E0D;&#x5B58;&#x5728;&#xFF08;&#x4F8B;&#x5982;&#x4E0A;&#x9762;&#x7684; <code>String s1 = new String(&quot;he&quot;) + new String(&quot;llo&quot;);</code>&#xFF0C;String Pool&#x4E2D;&#x6CA1;&#x6709;&quot;hello&quot;&#x8FD9;&#x4E2A;&#x5B57;&#x9762;&#x91CF;&#xFF09;&#xFF0C;&#x4E0D;&#x4F1A;&#x91CD;&#x65B0;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x5B9E;&#x4F8B;&#xFF0C;&#x800C;&#x662F;&#x5728;<strong>&#x5806;&#x5185;&#x627E;&#x5230;&#x8FD9;&#x4E2A;&#x53D8;&#x91CF;&#x6307;&#x5411;&#x7684;&#x5B57;&#x7B26;&#x4E32;&#x5BF9;&#x8C61;&#xFF0C;&#x7136;&#x540E;&#x5728;String Pool&#x4E2D;&#x7EF4;&#x62A4;&#x4E00;&#x4E2A;&#x6620;&#x5C04;&#x5173;&#x7CFB;&#xFF0C;&#x6620;&#x5C04;&#x7684;key&#x4E3A;&#x8FD9;&#x4E2A;&#x5B57;&#x7B26;&#x4E32;&#xFF0C;value&#x4E3A;&#x8FD9;&#x4E2A;&#x5B57;&#x7B26;&#x4E32;&#x5BF9;&#x8C61;&#x7684;&#x5185;&#x5B58;&#x5730;&#x5740;</strong>&#x3002;</p>
+<blockquote>
+<p>s1&#x6307;&#x5411;&#x7684;&#x662F;&#x5806;&#x5185;&#x7684;<strong>&quot;hello&quot;&#x5BF9;&#x8C61;</strong>&#xFF0C;&#x6267;&#x884C; <code>intern()</code> &#x65F6;&#xFF0C;String Pool&#x4F1A;&#x5EFA;&#x7ACB;&#x4E00;&#x4E2A;&#x5F15;&#x7528;&#xFF0C;&#x6307;&#x5411;&#x5806;&#x5185;&#x7684;<strong>&quot;hello&quot;&#x5BF9;&#x8C61;</strong>&#xFF0C;&#x8FD9;&#x4E2A;&#x5F15;&#x7528;&#x7684;key&#x662F;&quot;hello&quot;&#xFF0C;value&#x662F;<strong>&quot;hello&quot;&#x5BF9;&#x8C61;</strong>&#x7684;&#x5185;&#x5B58;&#x5730;&#x5740;&#x3002;&#x5F53;intern()&#x65B9;&#x6CD5;&#x7ED9;s2&#x8D4B;&#x503C;&#x65F6;&#xFF0C;&#x53D6;String Pool&#x4E2D;&#x7684;&#x503C;&#x65F6;&#xFF0C;&#x5B9E;&#x9645;&#x53D6;&#x5230;&#x7684;&#x662F;<strong>&quot;hello&quot;&#x5BF9;&#x8C61;</strong>&#x7684;&#x5185;&#x5B58;&#x5730;&#x5740;&#xFF0C;&#x4E8E;&#x662F;s2&#x4E5F;&#x4F1A;&#x6307;&#x5411;&#x5806;&#x5185;&#x7684;<strong>&quot;hello&quot;&#x5BF9;&#x8C61;</strong>&#xFF0C;&#x6240;&#x4EE5; <code>s1 == s2</code> &#x8FD4;&#x56DE; <code>true</code>&#x3002;</p>
+</blockquote>
+</li>
+</ol>
+<p><img src="../source/images/ch-01/jdk7-intern.png" alt="jdk7-intern"> </p>
+<p>&#x7531;&#x4E0A;&#x9762;&#x4E24;&#x4E2A;&#x56FE;&#xFF0C;&#x4E5F;&#x4E0D;&#x96BE;&#x7406;&#x89E3;&#x4E3A;&#x4EC0;&#x4E48; JDK 1.6 &#x5B57;&#x7B26;&#x4E32;&#x6C60;&#x6EA2;&#x51FA;&#x4F1A;&#x629B;&#x51FA; <code>OutOfMemoryError: PermGen space</code>&#xFF0C;&#x800C;&#x5728; JDK 1.7 &#x53CA;&#x4EE5;&#x4E0A;&#x7248;&#x672C;&#x629B;&#x51FA; <code>OutOfMemoryError: Java heap space</code>&#x3002;</p>
+<h5 id="string&#x5E38;&#x91CF;&#x6C60;&#x95EE;&#x9898;&#x7684;&#x51E0;&#x4E2A;&#x4F8B;&#x5B50;"><a name="string&#x5E38;&#x91CF;&#x6C60;&#x95EE;&#x9898;&#x7684;&#x51E0;&#x4E2A;&#x4F8B;&#x5B50;" class="anchor-navigation-ex-anchor" href="#string&#x5E38;&#x91CF;&#x6C60;&#x95EE;&#x9898;&#x7684;&#x51E0;&#x4E2A;&#x4F8B;&#x5B50;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="string&#x5E38;&#x91CF;&#x6C60;&#x95EE;&#x9898;&#x7684;&#x51E0;&#x4E2A;&#x4F8B;&#x5B50;" class="plugin-anchor" href="#string&#x5E38;&#x91CF;&#x6C60;&#x95EE;&#x9898;&#x7684;&#x51E0;&#x4E2A;&#x4F8B;&#x5B50;"><i class="fa fa-link" aria-hidden="true"></i></a>String&#x5E38;&#x91CF;&#x6C60;&#x95EE;&#x9898;&#x7684;&#x51E0;&#x4E2A;&#x4F8B;&#x5B50;</h5>
+<h6 id="&#x793A;&#x4F8B;1"><a name="&#x793A;&#x4F8B;1" class="anchor-navigation-ex-anchor" href="#&#x793A;&#x4F8B;1"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x793A;&#x4F8B;1" class="plugin-anchor" href="#&#x793A;&#x4F8B;1"><i class="fa fa-link" aria-hidden="true"></i></a>&#x793A;&#x4F8B;1</h6>
+<pre><code class="lang-java">String s0 = <span class="hljs-string">&quot;tyrival&quot;</span>;
+String s1 = <span class="hljs-string">&quot;tyrival&quot;</span>;
+String s2 = <span class="hljs-string">&quot;tyri&quot;</span> + <span class="hljs-string">&quot;val&quot;</span>;
+System.out.println( s0 == s1 ); <span class="hljs-comment">//true</span>
+System.out.println( s0 == s2 ); <span class="hljs-comment">//true&#xFF0C;s2&#x5728;&#x7F16;&#x8BD1;&#x9636;&#x6BB5;&#x4F1A;&#x88AB;&#x4F18;&#x5316;&#x4E3A;tyrival</span>
+</code></pre>
+<p><img src="../source/images/ch-01/string-pool-01.png" alt="string-pool-01"></p>
+<blockquote>
+<p>&#x56E0;&#x4E3A;&#x4F8B;&#x5B50;&#x4E2D;&#x7684; s0&#x548C;s1&#x4E2D;&#x7684;&quot;tyrival&quot;&#x90FD;&#x662F;&#x5B57;&#x7B26;&#x4E32;&#x5E38;&#x91CF;&#xFF0C;&#x5B83;&#x4EEC;&#x5728;&#x7F16;&#x8BD1;&#x671F;&#x5C31;&#x88AB;&#x786E;&#x5B9A;&#x4E86;&#xFF0C;&#x6240;&#x4EE5;s0==s1&#x4E3A;true&#xFF1B;&#x800C;&quot;tyri&quot;&#x548C;&quot;val&quot;&#x4E5F;&#x90FD;&#x662F;&#x5B57;&#x7B26;&#x4E32;&#x5E38;&#x91CF;&#xFF0C;&#x5F53;&#x4E00;&#x4E2A;&#x5B57; &#x7B26;&#x4E32;&#x7531;&#x591A;&#x4E2A;&#x5B57;&#x7B26;&#x4E32;&#x5E38;&#x91CF;&#x8FDE;&#x63A5;&#x800C;&#x6210;&#x65F6;&#xFF0C;&#x5B83;&#x81EA;&#x5DF1;&#x80AF;&#x5B9A;&#x4E5F;&#x662F;&#x5B57;&#x7B26;&#x4E32;&#x5E38;&#x91CF;&#xFF0C;&#x6240;&#x4EE5;s2&#x4E5F;&#x540C;&#x6837;&#x5728;&#x7F16;&#x8BD1;&#x671F;&#x5C31;&#x88AB;&#x4F18;&#x5316;&#x4E3A;&#x4E00;&#x4E2A;&#x5B57;&#x7B26;&#x4E32;&#x5E38;&#x91CF;&quot;tyrival&quot;&#xFF0C;&#x6240;&#x4EE5;s2&#x4E5F;&#x662F;&#x5E38;&#x91CF;&#x6C60;&#x4E2D;&quot;tyrival&quot;&#x7684;&#x4E00;&#x4E2A;&#x5F15;&#x7528;&#x3002;&#x6240;&#x4EE5;&#x6211;&#x4EEC;&#x5F97;&#x51FA;s0==s1==s2&#xFF1B;</p>
+</blockquote>
+<h6 id="&#x793A;&#x4F8B;2"><a name="&#x793A;&#x4F8B;2" class="anchor-navigation-ex-anchor" href="#&#x793A;&#x4F8B;2"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x793A;&#x4F8B;2" class="plugin-anchor" href="#&#x793A;&#x4F8B;2"><i class="fa fa-link" aria-hidden="true"></i></a>&#x793A;&#x4F8B;2</h6>
+<pre><code class="lang-java"><span class="hljs-comment">// s0&#x662F;&#x5E38;&#x91CF;&#x6C60;&#x91CC;&#x7684;&#x5B57;&#x7B26;&#x4E32;</span>
+String s0 = <span class="hljs-string">&quot;tyrival&quot;</span>;
+<span class="hljs-comment">// s1&#x662F;&#x5806;&#x5185;&#x7684;&#x5BF9;&#x8C61;</span>
+String s1 = <span class="hljs-keyword">new</span> String(<span class="hljs-string">&quot;tyrival&quot;</span>);
+<span class="hljs-comment">// s2&#x4E0D;&#x80FD;&#x5728;&#x7F16;&#x8BD1;&#x9636;&#x6BB5;&#x8FDB;&#x884C;&#x4F18;&#x5316;&#xFF0C;&#x9700;&#x8981;&#x989D;&#x5916;&#x5728;&#x5806;&#x5185;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;</span>
+String s2 = <span class="hljs-string">&quot;tyri&quot;</span> + <span class="hljs-keyword">new</span> String(<span class="hljs-string">&quot;val&quot;</span>);
+System.out.println( s0 == s1 );&#x3000;&#x3000;<span class="hljs-comment">// false&#xFF0C;</span>
+System.out.println( s0 == s2 )&#xFF1B;&#x3000; <span class="hljs-comment">// false</span>
+System.out.println( s1 == s2 );&#x3000;&#x3000;<span class="hljs-comment">// false</span>
+</code></pre>
+<p><img src="../source/images/ch-01/string-pool-02.png" alt="string-pool-02"></p>
+<blockquote>
+<p>&#x7528;new String() &#x521B;&#x5EFA;&#x7684;&#x5B57;&#x7B26;&#x4E32;&#x4E0D;&#x662F;&#x5E38;&#x91CF;&#xFF0C;&#x4E0D;&#x80FD;&#x5728;&#x7F16;&#x8BD1;&#x671F;&#x5C31;&#x786E;&#x5B9A;&#xFF0C;&#x6240;&#x4EE5;new String() &#x521B;&#x5EFA;&#x7684;&#x5B57;&#x7B26;&#x4E32;&#x4E0D;&#x653E;&#x5165;&#x5E38;&#x91CF;&#x6C60;&#x4E2D;&#xFF0C;&#x5B83;&#x4EEC;&#x6709;&#x81EA;&#x5DF1;&#x7684;&#x5730;&#x5740;&#x7A7A;&#x95F4;&#x3002;</p>
+<p>s0&#x8FD8;&#x662F;&#x5E38;&#x91CF;&#x6C60; &#x4E2D;&quot;tyrival&quot;&#x7684;&#x5F15;&#x7528;&#xFF0C;s1&#x56E0;&#x4E3A;&#x65E0;&#x6CD5;&#x5728;&#x7F16;&#x8BD1;&#x671F;&#x786E;&#x5B9A;&#xFF0C;&#x6240;&#x4EE5;&#x662F;&#x8FD0;&#x884C;&#x65F6;&#x521B;&#x5EFA;&#x7684;&#x65B0;&#x5BF9;&#x8C61;&quot;tyrival&quot;&#x7684;&#x5F15;&#x7528;&#xFF0C;s2&#x56E0;&#x4E3A;&#x6709;&#x540E;&#x534A;&#x90E8;&#x5206; new String(&quot;val&quot;)&#x6240;&#x4EE5;&#x4E5F;&#x65E0;&#x6CD5;&#x5728;&#x7F16;&#x8BD1;&#x671F;&#x786E;&#x5B9A;&#xFF0C;&#x6240;&#x4EE5;&#x4E5F;&#x662F;&#x4E00;&#x4E2A;&#x65B0;&#x521B;&#x5EFA;&#x5BF9;&#x8C61;&quot;tyrival&quot;&#x7684;&#x5F15;&#x7528;;&#x660E;&#x767D;&#x4E86;&#x8FD9;&#x4E9B;&#x4E5F;&#x5C31;&#x77E5;&#x9053;&#x4E3A;&#x4F55;&#x5F97;&#x51FA;&#x6B64;&#x7ED3;&#x679C;&#x4E86;&#x3002;</p>
+</blockquote>
+<h6 id="&#x793A;&#x4F8B;3"><a name="&#x793A;&#x4F8B;3" class="anchor-navigation-ex-anchor" href="#&#x793A;&#x4F8B;3"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x793A;&#x4F8B;3" class="plugin-anchor" href="#&#x793A;&#x4F8B;3"><i class="fa fa-link" aria-hidden="true"></i></a>&#x793A;&#x4F8B;3</h6>
+<pre><code class="lang-java">  String a = <span class="hljs-string">&quot;a1&quot;</span>;
+  String b = <span class="hljs-string">&quot;a&quot;</span> + <span class="hljs-number">1</span>;
+  System.out.println(a == b); <span class="hljs-comment">// true </span>
+
+  String a = <span class="hljs-string">&quot;atrue&quot;</span>;
+  String b = <span class="hljs-string">&quot;a&quot;</span> + <span class="hljs-string">&quot;true&quot;</span>;
+  System.out.println(a == b); <span class="hljs-comment">// true </span>
+
+  String a = <span class="hljs-string">&quot;a3.4&quot;</span>;
+  String b = <span class="hljs-string">&quot;a&quot;</span> + <span class="hljs-number">3.4</span>;
+  System.out.println(a == b); <span class="hljs-comment">// true</span>
+</code></pre>
+<blockquote>
+<p>JVM&#x5BF9;&#x4E8E;&#x5B57;&#x7B26;&#x4E32;&#x5E38;&#x91CF;&#x7684;&quot;+&quot;&#x53F7;&#x8FDE;&#x63A5;&#xFF0C;&#x5C06;&#x5728;&#x7A0B;&#x5E8F;&#x7F16;&#x8BD1;&#x671F;&#xFF0C;JVM&#x5C31;&#x5C06;&#x5E38;&#x91CF;&#x5B57;&#x7B26;&#x4E32;&#x7684;&quot;+&quot;&#x8FDE;&#x63A5;&#x4F18;&#x5316;&#x4E3A;&#x8FDE;&#x63A5;&#x540E;&#x7684;&#x503C;&#xFF0C;&#x62FF;&quot;a&quot; + 1&#x6765;&#x8BF4;&#xFF0C;&#x7ECF;&#x7F16;&#x8BD1;&#x5668;&#x4F18;&#x5316;&#x540E;&#x5728;class&#x4E2D;&#x5C31;&#x5DF2;&#x7ECF;&#x662F;a1&#x3002;&#x5728;&#x7F16;&#x8BD1;&#x671F;&#x5176;&#x5B57;&#x7B26;&#x4E32;&#x5E38;&#x91CF;&#x7684;&#x503C;&#x5C31;&#x786E;&#x5B9A;&#x4E0B;&#x6765;&#xFF0C;&#x6545;&#x4E0A;&#x9762;&#x7A0B;&#x5E8F;&#x6700;&#x7EC8;&#x7684;&#x7ED3;&#x679C;&#x90FD;&#x4E3A;true&#x3002;</p>
+</blockquote>
+<h6 id="&#x793A;&#x4F8B;4"><a name="&#x793A;&#x4F8B;4" class="anchor-navigation-ex-anchor" href="#&#x793A;&#x4F8B;4"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x793A;&#x4F8B;4" class="plugin-anchor" href="#&#x793A;&#x4F8B;4"><i class="fa fa-link" aria-hidden="true"></i></a>&#x793A;&#x4F8B;4</h6>
+<pre><code class="lang-java">String a = <span class="hljs-string">&quot;ab&quot;</span>;
+String bb = <span class="hljs-string">&quot;b&quot;</span>;
+String b = <span class="hljs-string">&quot;a&quot;</span> + bb;
+
+System.out.println(a == b); <span class="hljs-comment">// false</span>
+</code></pre>
+<p><img src="../source/images/ch-01/string-pool-03.png" alt="string-pool-03"></p>
+<blockquote>
+<p>JVM&#x5BF9;&#x4E8E;&#x5B57;&#x7B26;&#x4E32;&#x5F15;&#x7528;&#xFF0C;&#x7531;&#x4E8E;&#x5728;&#x5B57;&#x7B26;&#x4E32;&#x7684;&quot;+&quot;&#x8FDE;&#x63A5;&#x4E2D;&#xFF0C;&#x6709;&#x5B57;&#x7B26;&#x4E32;&#x5F15;&#x7528;&#x5B58;&#x5728;&#xFF0C;&#x800C;&#x5F15;&#x7528;&#x7684;&#x503C;&#x5728;&#x7A0B;&#x5E8F;&#x7F16;&#x8BD1;&#x671F;&#x662F;&#x65E0;&#x6CD5;&#x786E;&#x5B9A;&#x7684;&#xFF0C;&#x5373;&quot;a&quot; + bb&#x65E0;&#x6CD5;&#x88AB;&#x7F16;&#x8BD1;&#x5668;&#x4F18;&#x5316;&#xFF0C;&#x53EA;&#x6709;&#x5728;&#x7A0B;&#x5E8F;&#x8FD0;&#x884C;&#x671F;&#x6765;&#x52A8;&#x6001;&#x5206;&#x914D;&#x5E76;&#x5C06;&#x8FDE;&#x63A5;&#x540E;&#x7684;&#x65B0;&#x5730;&#x5740;&#x8D4B;&#x7ED9;b&#x3002;&#x6240;&#x4EE5;&#x4E0A;&#x9762;&#x7A0B;&#x5E8F;&#x7684;&#x7ED3;&#x679C;&#x4E5F;&#x5C31;&#x4E3A;false&#x3002;</p>
+</blockquote>
+<h6 id="&#x793A;&#x4F8B;5"><a name="&#x793A;&#x4F8B;5" class="anchor-navigation-ex-anchor" href="#&#x793A;&#x4F8B;5"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x793A;&#x4F8B;5" class="plugin-anchor" href="#&#x793A;&#x4F8B;5"><i class="fa fa-link" aria-hidden="true"></i></a>&#x793A;&#x4F8B;5</h6>
+<pre><code class="lang-java">String a = <span class="hljs-string">&quot;ab&quot;</span>;
+<span class="hljs-keyword">final</span> String bb = <span class="hljs-string">&quot;b&quot;</span>;
+String b = <span class="hljs-string">&quot;a&quot;</span> + bb;
+
+System.out.println(a == b); <span class="hljs-comment">// true</span>
+</code></pre>
+<p><img src="../source/images/ch-01/string-pool-04.png" alt="string-pool-04"></p>
+<blockquote>
+<p>&#x548C;&#x793A;&#x4F8B;4&#x4E2D;&#x552F;&#x4E00;&#x4E0D;&#x540C;&#x7684;&#x662F;bb&#x5B57;&#x7B26;&#x4E32;&#x52A0;&#x4E86;final&#x4FEE;&#x9970;&#xFF0C;&#x5BF9;&#x4E8E;final&#x4FEE;&#x9970;&#x7684;&#x53D8;&#x91CF;&#xFF0C;&#x5B83;&#x5728;&#x7F16;&#x8BD1;&#x65F6;&#x88AB;&#x89E3;&#x6790;&#x4E3A;&#x5E38;&#x91CF;&#x503C;&#x7684;&#x4E00;&#x4E2A;&#x672C;&#x5730;&#x62F7;&#x8D1D;&#x5B58;&#x50A8;&#x5230;&#x81EA;&#x5DF1;&#x7684;&#x5E38;&#x91CF;&#x6C60;&#x4E2D;&#x6216;&#x5D4C;&#x5165;&#x5230;&#x5B83;&#x7684;&#x5B57;&#x8282;&#x7801;&#x6D41;&#x4E2D;&#x3002;&#x6240;&#x4EE5;&#x6B64;&#x65F6;&#x7684;&quot;a&quot; + bb&#x548C;&quot;a&quot; + &quot;b&quot;&#x6548;&#x679C;&#x662F;&#x4E00;&#x6837;&#x7684;&#x3002;&#x6545;&#x4E0A;&#x9762;&#x7A0B;&#x5E8F;&#x7684;&#x7ED3;&#x679C;&#x4E3A;true&#x3002;</p>
+</blockquote>
+<h6 id="&#x793A;&#x4F8B;6"><a name="&#x793A;&#x4F8B;6" class="anchor-navigation-ex-anchor" href="#&#x793A;&#x4F8B;6"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x793A;&#x4F8B;6" class="plugin-anchor" href="#&#x793A;&#x4F8B;6"><i class="fa fa-link" aria-hidden="true"></i></a>&#x793A;&#x4F8B;6</h6>
+<pre><code class="lang-java">String a = <span class="hljs-string">&quot;ab&quot;</span>;
+<span class="hljs-keyword">final</span> String bb = getBB();
+String b = <span class="hljs-string">&quot;a&quot;</span> + bb;
+
+System.out.println(a == b); <span class="hljs-comment">// false</span>
+
+<span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> String <span class="hljs-title">getBB</span><span class="hljs-params">()</span> </span>{  
+        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;b&quot;</span>;  
+}
+</code></pre>
+<p><img src="../source/images/ch-01/string-pool-05.png" alt="string-pool-05"></p>
+<blockquote>
+<p>JVM&#x5BF9;&#x4E8E;&#x5B57;&#x7B26;&#x4E32;&#x5F15;&#x7528;bb&#xFF0C;&#x5B83;&#x7684;&#x503C;&#x5728;&#x7F16;&#x8BD1;&#x671F;&#x65E0;&#x6CD5;&#x786E;&#x5B9A;&#xFF0C;&#x53EA;&#x6709;&#x5728;&#x7A0B;&#x5E8F;&#x8FD0;&#x884C;&#x671F;&#x8C03;&#x7528;&#x65B9;&#x6CD5;&#x540E;&#xFF0C;&#x5C06;&#x65B9;&#x6CD5;&#x7684;&#x8FD4;&#x56DE;&#x503C;&#x548C;&quot;a&quot;&#x6765;&#x52A8;&#x6001;&#x8FDE;&#x63A5;&#x5E76;&#x5206;&#x914D;&#x5730;&#x5740;&#x4E3A;b&#xFF0C;&#x6545;&#x4E0A;&#x9762; &#x7A0B;&#x5E8F;&#x7684;&#x7ED3;&#x679C;&#x4E3A;false&#x3002;</p>
+</blockquote>
+<h5 id="&#x5173;&#x4E8E;string&#x662F;&#x4E0D;&#x53EF;&#x53D8;&#x7684;"><a name="&#x5173;&#x4E8E;string&#x662F;&#x4E0D;&#x53EF;&#x53D8;&#x7684;" class="anchor-navigation-ex-anchor" href="#&#x5173;&#x4E8E;string&#x662F;&#x4E0D;&#x53EF;&#x53D8;&#x7684;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x5173;&#x4E8E;string&#x662F;&#x4E0D;&#x53EF;&#x53D8;&#x7684;" class="plugin-anchor" href="#&#x5173;&#x4E8E;string&#x662F;&#x4E0D;&#x53EF;&#x53D8;&#x7684;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x5173;&#x4E8E;String&#x662F;&#x4E0D;&#x53EF;&#x53D8;&#x7684;</h5>
+<p>&#x901A;&#x8FC7;&#x4E0A;&#x9762;&#x4F8B;&#x5B50;&#x53EF;&#x4EE5;&#x5F97;&#x51FA;&#x5F97;&#x77E5;&#xFF1A;</p>
+<pre><code class="lang-java">String s = <span class="hljs-string">&quot;a&quot;</span> + <span class="hljs-string">&quot;b&quot;</span> + <span class="hljs-string">&quot;c&quot;</span>;  <span class="hljs-comment">// &#x5C31;&#x7B49;&#x4EF7;&#x4E8E;String s = &quot;abc&quot;;</span>
+String a = <span class="hljs-string">&quot;a&quot;</span>;
+String b = <span class="hljs-string">&quot;b&quot;</span>;
+String c = <span class="hljs-string">&quot;c&quot;</span>;
+String s1 = a + b + c;
+</code></pre>
+<p>s1 &#x8FD9;&#x4E2A;&#x5C31;&#x4E0D;&#x4E00;&#x6837;&#x4E86;&#xFF0C;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x89C2;&#x5BDF;&#x5176;<strong>JVM&#x6307;&#x4EE4;&#x7801;</strong>&#x73B0;s1&#x7684;&quot;+&quot;&#x64CD;&#x4F5C;&#x4F1A;&#x53D8;&#x6210;&#x5982;&#x4E0B;&#x64CD;&#x4F5C;&#xFF1A;</p>
+<pre><code class="lang-java">StringBuilder temp = <span class="hljs-keyword">new</span> StringBuilder();
+temp.append(a).append(b).append(c);
+String s = temp.toString();
+</code></pre>
+<p><img src="../source/images/ch-01/string-pool-06.png" alt="string-pool-06"></p>
+<h5 id="&#x6700;&#x540E;&#x518D;&#x770B;&#x4E00;&#x4E2A;&#x4F8B;&#x5B50;"><a name="&#x6700;&#x540E;&#x518D;&#x770B;&#x4E00;&#x4E2A;&#x4F8B;&#x5B50;" class="anchor-navigation-ex-anchor" href="#&#x6700;&#x540E;&#x518D;&#x770B;&#x4E00;&#x4E2A;&#x4F8B;&#x5B50;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x6700;&#x540E;&#x518D;&#x770B;&#x4E00;&#x4E2A;&#x4F8B;&#x5B50;" class="plugin-anchor" href="#&#x6700;&#x540E;&#x518D;&#x770B;&#x4E00;&#x4E2A;&#x4F8B;&#x5B50;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x6700;&#x540E;&#x518D;&#x770B;&#x4E00;&#x4E2A;&#x4F8B;&#x5B50;</h5>
+<pre><code class="lang-java"><span class="hljs-comment">// &#x6CA1;&#x6709;&#x51FA;&#x73B0;&quot;&#x8BA1;&#x7B97;&#x673A;&#x6280;&#x672F;&quot;&#x5B57;&#x9762;&#x91CF;&#xFF0C;&#x6240;&#x4EE5;&#x4E0D;&#x4F1A;&#x5728;&#x5E38;&#x91CF;&#x6C60;&#x91CC;&#x751F;&#x6210;&quot;&#x8BA1;&#x7B97;&#x673A;&#x6280;&#x672F;&quot;&#x5BF9;&#x8C61;</span>
+String str2 = <span class="hljs-keyword">new</span> StringBuilder(<span class="hljs-string">&quot;&#x8BA1;&#x7B97;&#x673A;&quot;</span>).append(<span class="hljs-string">&quot;&#x6280;&#x672F;&quot;</span>).toString();
+String str1 = str2.intern();
+<span class="hljs-comment">// &quot;&#x8BA1;&#x7B97;&#x673A;&#x6280;&#x672F;&quot; &#x5728;&#x6C60;&#x4E2D;&#x6CA1;&#x6709;&#xFF0C;&#x4F46;&#x662F;&#x5728;heap&#x4E2D;&#x5B58;&#x5728;&#xFF0C;&#x5219;intern&#x65F6;&#xFF0C;&#x4F1A;&#x76F4;&#x63A5;&#x8FD4;&#x56DE;&#x8BE5;heap&#x4E2D;&#x7684;&#x5F15;&#x7528;</span>
+System.out.println(str2 == str1);  <span class="hljs-comment">//true</span>
+</code></pre>
+<p><img src="../source/images/ch-01/string-pool-08.png" alt="string-pool-08"></p>
+<blockquote>
+<p>&#x5B57;&#x7B26;&#x4E32;&#x5E38;&#x91CF;&#x6C60;&#xFF1A;&quot;&#x8BA1;&#x7B97;&#x673A;&quot;&#x548C;&quot;&#x6280;&#x672F;&quot;&#xFF1B;&#x5806;&#x5185;&#x5B58;&#xFF1A;str1&#x5F15;&#x7528;&#x7684;&#x5BF9;&#x8C61;&quot;&#x8BA1;&#x7B97;&#x673A;&#x6280;&#x672F;&quot;  </p>
+<p>&#x5806;&#x5185;&#x5B58;&#x4E2D;&#x8FD8;&#x6709;&#x4E2A;StringBuilder&#x7684;&#x5BF9;&#x8C61;&#xFF0C;&#x4F46;&#x662F;&#x4F1A;&#x88AB;gc&#x56DE;&#x6536;&#xFF0C;StringBuilder&#x7684;toString&#x65B9;&#x6CD5;&#x4F1A;new String()&#xFF0C;&#x8FD9;&#x4E2A;String&#x624D;&#x662F;&#x771F;&#x6B63;&#x8FD4;&#x56DE;&#x7684;&#x5BF9;&#x8C61;&#x5F15;&#x7528;</p>
+</blockquote>
+<pre><code class="lang-java"><span class="hljs-comment">// &#x6CA1;&#x6709;&#x51FA;&#x73B0;&quot;java&quot;&#x5B57;&#x9762;&#x91CF;&#xFF0C;&#x6240;&#x4EE5;&#x4E0D;&#x4F1A;&#x5728;&#x5E38;&#x91CF;&#x6C60;&#x91CC;&#x751F;&#x6210;&quot;java&quot;&#x5BF9;&#x8C61;</span>
+String str1 = <span class="hljs-keyword">new</span> StringBuilder(<span class="hljs-string">&quot;ja&quot;</span>).append(<span class="hljs-string">&quot;va&quot;</span>).toString();
+<span class="hljs-comment">// java&#x662F;&#x5173;&#x952E;&#x5B57;&#xFF0C;&#x5728;JVM&#x521D;&#x59CB;&#x5316;&#x7684;&#x76F8;&#x5173;&#x7C7B;&#x91CC;&#x80AF;&#x5B9A;&#x65E9;&#x5C31;&#x653E;&#x8FDB;&#x5B57;&#x7B26;&#x4E32;&#x5E38;&#x91CF;&#x6C60;&#x4E86;&#xFF0C;&#x6240;&#x4EE5;&#x5728;&#x5B57;&#x7B26;&#x4E32;&#x5E38;&#x91CF;&#x6C60;&#x4E2D;&#x5BFB;&#x627E;&#x65F6;&#xFF0C;&#x53EA;&#x4F1A;&#x627E;&#x5230;JVM&#x542F;&#x52A8;&#x65F6;&#x521D;&#x59CB;&#x5316;&#x7684;&quot;java&quot;&#x5B57;&#x7B26;&#x4E32;&#xFF0C;&#x800C;&#x4E0D;&#x4F1A;&#x6307;&#x5411;&#x5806;&#x5185;&#x7684;&quot;java&quot;&#x5B57;&#x7B26;&#x4E32;&#x5BF9;&#x8C61;</span>
+String str2 = str1.intern();
+System.out.println(str1 == str2);  <span class="hljs-comment">//false</span>
+</code></pre>
+<p><img src="../source/images/ch-01/string-pool-09.png" alt="string-pool-09"></p>
+<blockquote>
+<p>&#x5B57;&#x7B26;&#x4E32;&#x5E38;&#x91CF;&#x6C60;&#xFF1A;&quot;ja&quot;&#x548C;&quot;va&quot;&#xFF1B;&#x5806;&#x5185;&#x5B58;&#xFF1A;str1&#x5F15;&#x7528;&#x7684;&#x5BF9;&#x8C61;&quot;java&quot;</p>
+<p>&#x5806;&#x5185;&#x5B58;&#x4E2D;&#x8FD8;&#x6709;&#x4E2A;StringBuilder&#x7684;&#x5BF9;&#x8C61;&#xFF0C;&#x4F46;&#x662F;&#x4F1A;&#x88AB;gc&#x56DE;&#x6536;&#xFF0C;StringBuilder&#x7684;toString&#x65B9;&#x6CD5;&#x4F1A;new String()&#xFF0C;&#x8FD9;&#x4E2A;String&#x624D;&#x662F;&#x771F;&#x6B63;&#x8FD4;&#x56DE;&#x7684;&#x5BF9;&#x8C61;&#x5F15;&#x7528;</p>
+<p><strong>&#x8FD9;&#x91CC;&#x7684;str2&#x6307;&#x5411;&#x7684;&#x5B57;&#x7B26;&#x4E32;&#x5E38;&#x91CF;&#x6C60;&#x4E2D;&quot;java&quot;&#xFF0C;&#x4E0D;&#x4E00;&#x5B9A;&#x662F;&#x5B57;&#x9762;&#x91CF;&#xFF0C;&#x4E5F;&#x6709;&#x53EF;&#x80FD;&#x662F;&#x5176;&#x4ED6;&#x5730;&#x65B9;&#x751F;&#x6210;&#x7684;&quot;java&quot;&#x5B57;&#x7B26;&#x4E32;&#x5BF9;&#x8C61;&#x3002;</strong></p>
+</blockquote>
+<pre><code class="lang-java"><span class="hljs-comment">//&quot;test&quot;&#x4F5C;&#x4E3A;&#x5B57;&#x9762;&#x91CF;&#xFF0C;&#x653E;&#x5165;&#x4E86;&#x6C60;&#x4E2D;&#xFF0C;&#x800C;new&#x65F6;s1&#x6307;&#x5411;&#x7684;&#x662F;heap&#x4E2D;&#x65B0;&#x751F;&#x6210;&#x7684;string&#x5BF9;&#x8C61;&#xFF0C;s1.intern()&#x6307;&#x5411;&#x7684;&#x662F;&quot;test&quot;&#x5B57;&#x9762;&#x91CF;&#x4E4B;&#x524D;&#x5728;&#x6C60;&#x4E2D;&#x751F;&#x6210;&#x7684;&#x5B57;&#x7B26;&#x4E32;&#x5BF9;&#x8C61;</span>
+String s1 = <span class="hljs-keyword">new</span> String(<span class="hljs-string">&quot;test&quot;</span>);  
+String s2 = s1.intern();
+System.out.println(s1 == s2);   <span class="hljs-comment">//false</span>
+
+<span class="hljs-comment">//&#x540C;&#x4E0A;</span>
+String s2 = <span class="hljs-keyword">new</span> StringBuilder(<span class="hljs-string">&quot;abc&quot;</span>).toString();
+System.out.println(s2 == s2.intern());  <span class="hljs-comment">//false</span>
+</code></pre>
+<p><img src="../source/images/ch-01/string-pool-10.png" alt="string-pool-10"></p>
+<h5 id="&#x516B;&#x79CD;&#x57FA;&#x672C;&#x7C7B;&#x578B;&#x7684;&#x5305;&#x88C5;&#x7C7B;&#x548C;&#x5BF9;&#x8C61;&#x6C60;"><a name="&#x516B;&#x79CD;&#x57FA;&#x672C;&#x7C7B;&#x578B;&#x7684;&#x5305;&#x88C5;&#x7C7B;&#x548C;&#x5BF9;&#x8C61;&#x6C60;" class="anchor-navigation-ex-anchor" href="#&#x516B;&#x79CD;&#x57FA;&#x672C;&#x7C7B;&#x578B;&#x7684;&#x5305;&#x88C5;&#x7C7B;&#x548C;&#x5BF9;&#x8C61;&#x6C60;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x516B;&#x79CD;&#x57FA;&#x672C;&#x7C7B;&#x578B;&#x7684;&#x5305;&#x88C5;&#x7C7B;&#x548C;&#x5BF9;&#x8C61;&#x6C60;" class="plugin-anchor" href="#&#x516B;&#x79CD;&#x57FA;&#x672C;&#x7C7B;&#x578B;&#x7684;&#x5305;&#x88C5;&#x7C7B;&#x548C;&#x5BF9;&#x8C61;&#x6C60;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x516B;&#x79CD;&#x57FA;&#x672C;&#x7C7B;&#x578B;&#x7684;&#x5305;&#x88C5;&#x7C7B;&#x548C;&#x5BF9;&#x8C61;&#x6C60;</h5>
+<p>java&#x4E2D;&#x57FA;&#x672C;&#x7C7B;&#x578B;&#x7684;&#x5305;&#x88C5;&#x7C7B;&#x7684;&#x5927;&#x90E8;&#x5206;&#x90FD;&#x5B9E;&#x73B0;&#x4E86;&#x5E38;&#x91CF;&#x6C60;&#x6280;&#x672F;(&#x4E25;&#x683C;&#x6765;&#x8BF4;&#x5E94;&#x8BE5;&#x53EB;<strong>&#x5BF9;&#x8C61;&#x6C60;&#xFF0C;</strong>&#x5728;&#x5806;&#x4E0A;)&#xFF0C;&#x8FD9;&#x4E9B;&#x7C7B;&#x662F;Byte,Short,Integer,Long,Character,Boolean,&#x53E6;&#x5916;&#x4E24;&#x79CD;&#x6D6E;&#x70B9;&#x6570;&#x7C7B;&#x578B;&#x7684;&#x5305;&#x88C5;&#x7C7B;&#x5219;&#x6CA1;&#x6709;&#x5B9E;&#x73B0;&#x3002;&#x53E6;&#x5916;Byte,Short,Integer,Long,Character&#x8FD9;5&#x79CD;&#x6574;&#x578B;&#x7684;&#x5305;&#x88C5;&#x7C7B;&#x4E5F;&#x53EA;&#x662F;&#x5728;&#x5BF9;&#x5E94;&#x503C;&#x5C0F;&#x4E8E;&#x7B49;&#x4E8E;127&#x65F6;&#x624D;&#x53EF;&#x4F7F;&#x7528;&#x5BF9;&#x8C61;&#x6C60;&#xFF0C;&#x4E5F;&#x5373;&#x5BF9;&#x8C61;&#x4E0D;&#x8D1F;&#x8D23;&#x521B;&#x5EFA;&#x548C;&#x7BA1;&#x7406;&#x5927;&#x4E8E;127&#x7684;&#x8FD9;&#x4E9B;&#x7C7B;&#x7684;&#x5BF9;&#x8C61;&#x3002;&#x56E0;&#x4E3A;&#x4E00;&#x822C;&#x8FD9;&#x79CD;&#x6BD4;&#x8F83;&#x5C0F;&#x7684;&#x6570;&#x7528;&#x5230;&#x7684;&#x6982;&#x7387;&#x76F8;&#x5BF9;&#x8F83;&#x5927;&#x3002;</p>
+<pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Test</span> </span>{
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>{
+        <span class="hljs-comment">//5&#x79CD;&#x6574;&#x5F62;&#x7684;&#x5305;&#x88C5;&#x7C7B;Byte,Short,Integer,Long,Character&#x7684;&#x5BF9;&#x8C61;&#xFF0C;  </span>
+        <span class="hljs-comment">//&#x5728;&#x503C;&#x5C0F;&#x4E8E;127&#x65F6;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x5BF9;&#x8C61;&#x6C60;</span>
+          <span class="hljs-comment">//&#x8FD9;&#x79CD;&#x8C03;&#x7528;&#x5E95;&#x5C42;&#x5B9E;&#x9645;&#x662F;&#x6267;&#x884C;&#x7684;Integer.valueOf(127)&#xFF0C;&#x91CC;&#x9762;&#x7528;&#x5230;&#x4E86;IntegerCache&#x5BF9;&#x8C61;&#x6C60;</span>
+        Integer i1 = <span class="hljs-number">127</span>;
+        Integer i2 = <span class="hljs-number">127</span>;
+        System.out.println(i1 == i2);<span class="hljs-comment">//&#x8F93;&#x51FA;true  </span>
+
+        <span class="hljs-comment">//&#x503C;&#x5927;&#x4E8E;127&#x65F6;&#xFF0C;&#x4E0D;&#x4F1A;&#x4ECE;&#x5BF9;&#x8C61;&#x6C60;&#x4E2D;&#x53D6;&#x5BF9;&#x8C61;  </span>
+        Integer i3 = <span class="hljs-number">128</span>;
+        Integer i4 = <span class="hljs-number">128</span>;
+        System.out.println(i3 == i4);<span class="hljs-comment">//&#x8F93;&#x51FA;false  </span>
+
+        <span class="hljs-comment">//&#x7528;new&#x5173;&#x952E;&#x8BCD;&#x65B0;&#x751F;&#x6210;&#x5BF9;&#x8C61;&#x4E0D;&#x4F1A;&#x4F7F;&#x7528;&#x5BF9;&#x8C61;&#x6C60;</span>
+        Integer i5 = <span class="hljs-keyword">new</span> Integer(<span class="hljs-number">127</span>);  
+        Integer i6 = <span class="hljs-keyword">new</span> Integer(<span class="hljs-number">127</span>);
+        System.out.println(i5 == i6);<span class="hljs-comment">//&#x8F93;&#x51FA;false </span>
+
+        <span class="hljs-comment">//Boolean&#x7C7B;&#x4E5F;&#x5B9E;&#x73B0;&#x4E86;&#x5BF9;&#x8C61;&#x6C60;&#x6280;&#x672F;  </span>
+        Boolean bool1 = <span class="hljs-keyword">true</span>;
+        Boolean bool2 = <span class="hljs-keyword">true</span>;
+        System.out.println(bool1 == bool2);<span class="hljs-comment">//&#x8F93;&#x51FA;true  </span>
+
+        <span class="hljs-comment">//&#x6D6E;&#x70B9;&#x7C7B;&#x578B;&#x7684;&#x5305;&#x88C5;&#x7C7B;&#x6CA1;&#x6709;&#x5B9E;&#x73B0;&#x5BF9;&#x8C61;&#x6C60;&#x6280;&#x672F;  </span>
+        Double d1 = <span class="hljs-number">1.0</span>;
+        Double d2 = <span class="hljs-number">1.0</span>;
+        System.out.println(d1 == d2);<span class="hljs-comment">//&#x8F93;&#x51FA;false  </span>
+    }
+}
+</code></pre>
 
                                 
                                 </section>
@@ -575,7 +1086,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"1.7 GC调优（二）","level":"1.1.1.8","depth":3,"next":{"title":"附1 JVM指令手册","level":"1.1.1.9","depth":3,"path":"01-JVM/JVM-Command.md","ref":"01-JVM/JVM-Command.md","articles":[]},"previous":{"title":"1.7 GC调优（一）","level":"1.1.1.7","depth":3,"path":"01-JVM/07-GC-Optimize-01.md","ref":"01-JVM/07-GC-Optimize-01.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","splitter","expandable-chapters-small","anchors","github","github-buttons","sharing-plus","anchor-navigation-ex"],"styles":{"website":"./styles/website.css"},"pluginsConfig":{"github":{"url":"https://github.com/tyrival"},"splitter":{},"search":{},"sharing-plus":{"qq":false,"all":["facebook","google","twitter","instapaper","linkedin","pocket","stumbleupon"],"douban":false,"facebook":true,"weibo":false,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":true,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"anchor-navigation-ex":{"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"mode":"float","multipleH1":true,"pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"printLog":false,"showGoTop":true,"showLevel":false},"github-buttons":{"buttons":[{"user":"Tyrival","repo":"gitbook","type":"star","size":"small","count":false}]},"expandable-chapters-small":{},"sharing":{"qq":false,"all":["google","facebook","weibo","twitter","qq","qzone","linkedin","pocket"],"douban":false,"facebook":false,"weibo":false,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":false,"messenger":false,"line":false,"vk":false,"pocket":false,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","author":"Tyrival","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"架构师学习笔记","language":"zh-hans","gitbook":"3.2.3","description":"架构师学习笔记"},"file":{"path":"01-JVM/08-GC-Optimize-02.md","mtime":"2020-07-24T01:49:37.769Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-07-25T13:46:00.485Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"1.7 GC调优（二）","level":"1.1.1.8","depth":3,"next":{"title":"附1 JVM指令手册","level":"1.1.1.9","depth":3,"path":"01-JVM/JVM-Command.md","ref":"01-JVM/JVM-Command.md","articles":[]},"previous":{"title":"1.7 GC调优（一）","level":"1.1.1.7","depth":3,"path":"01-JVM/07-GC-Optimize-01.md","ref":"01-JVM/07-GC-Optimize-01.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","splitter","expandable-chapters-small","anchors","github","github-buttons","sharing-plus","anchor-navigation-ex"],"styles":{"website":"./styles/website.css"},"pluginsConfig":{"github":{"url":"https://github.com/tyrival"},"splitter":{},"search":{},"sharing-plus":{"qq":false,"all":["facebook","google","twitter","instapaper","linkedin","pocket","stumbleupon"],"douban":false,"facebook":true,"weibo":false,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":true,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"anchor-navigation-ex":{"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"mode":"float","multipleH1":true,"pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"printLog":false,"showGoTop":true,"showLevel":false},"github-buttons":{"buttons":[{"user":"Tyrival","repo":"gitbook","type":"star","size":"small","count":false}]},"expandable-chapters-small":{},"sharing":{"qq":false,"all":["google","facebook","weibo","twitter","qq","qzone","linkedin","pocket"],"douban":false,"facebook":false,"weibo":false,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":false,"messenger":false,"line":false,"vk":false,"pocket":false,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","author":"Tyrival","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"架构师学习笔记","language":"zh-hans","gitbook":"3.2.3","description":"架构师学习笔记"},"file":{"path":"01-JVM/08-GC-Optimize-02.md","mtime":"2020-07-26T11:56:48.389Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-07-26T11:57:17.125Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

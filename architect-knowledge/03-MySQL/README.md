@@ -8,4 +8,6 @@
 
 [3.4 SQL优化实战（一）](./04-Sql-Optimize-01.md)
 
+[3.5 SQL优化实战（二）](./04-Sql-Optimize-02.md)
+
 [附1 慢SQL查询](./Slow-Sql-Query.md)

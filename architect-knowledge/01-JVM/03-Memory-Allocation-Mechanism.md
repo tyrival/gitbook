@@ -218,7 +218,7 @@ Space losses: 3 bytes internal + 4 bytes external = 7 bytes total
 public User test1() {
    User user = new User();
    user.setId(1);
-   user.setName("zhuge");
+   user.setName("tyrival");
    //TODO 保存到数据库
    return user;
 }
@@ -228,7 +228,7 @@ public User test1() {
 public void test2() {
    User user = new User();
    user.setId(1);
-   user.setName("zhuge");
+   user.setName("tyrival");
    //TODO 保存到数据库
 }
  ```
@@ -268,7 +268,7 @@ public class AllotOnStack {
     private static void alloc() {
         User user = new User();
         user.setId(1);
-        user.setName("zhuge");
+        user.setName("tyrival");
     }
 }
  ```

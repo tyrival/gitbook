@@ -21,6 +21,7 @@
         * [3.2 Explain详解与索引最佳实践](03-MySQL/02-Explain-Index-Actual.md)
         * [3.3 SQL底层执行原理](03-MySQL/03-Sql-Execution-Fundamental.md)
         * [3.4 SQL优化实战（一）](03-MySQL/04-Sql-Optimize-01.md)
+        * [3.5 SQL优化实战（二）](03-MySQL/05-Sql-Optimize-02.md)
         * [附1 慢SQL查询](03-MySQL/Slow-Sql-Query.md)
     * [第4章 并发编程](04-Concurrent/README.md)
     * [第5章 源码框架](05-Source/README.md)
