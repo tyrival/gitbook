@@ -170,7 +170,7 @@ call insert_t2();
 
 - Block Nested-Loop Join 算法
 
-##### 1. 嵌套循环连接Nested-Loop Join(NLJ) 算法
+##### 嵌套循环连接Nested-Loop Join(NLJ) 算法
 
 一次一行循环地从第一张表（称为**驱动表**）中读取行，在这行数据中取到关联字段，根据关联字段在另一张表（**被驱动表**）里取出满足条件的行，然后取出两张表的结果合集。
 
@@ -199,7 +199,7 @@ EXPLAIN select * from t1 inner join t2 on t1.a= t2.a;
 
 如果被驱动表的关联字段没索引，使用NLJ算法性能会比较低(下面有详细解释)，mysql会选择Block Nested-Loop Join算法。
 
-##### 2. 基于块的嵌套循环连接Block Nested-Loop Join(BNL)算法
+##### 基于块的嵌套循环连接Block Nested-Loop Join(BNL)算法
 
 把**驱动表**的数据读入到 join_buffer 中，然后扫描**被驱动表**，把**被驱动表**每一行取出来跟 join_buffer 中的数据做对比。
 

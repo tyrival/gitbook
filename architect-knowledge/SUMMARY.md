@@ -23,6 +23,7 @@
         * [3.4 SQL优化实战（一）](03-MySQL/04-Sql-Optimize-01.md)
         * [3.5 SQL优化实战（二）](03-MySQL/05-Sql-Optimize-02.md)
         * [附1 慢SQL查询](03-MySQL/Slow-Sql-Query.md)
+        * [附2 附2 阿里巴巴手册（泰山版）解读-MySQL数据库](03-MySQL/Ali-Java-Explain.md)
     * [第4章 并发编程](04-Concurrent/README.md)
     * [第5章 源码框架](05-Source/README.md)
     * [第6章 分布式](06-Distributed/README.md)

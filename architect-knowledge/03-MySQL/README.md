@@ -11,3 +11,5 @@
 [3.5 SQL优化实战（二）](./04-Sql-Optimize-02.md)
 
 [附1 慢SQL查询](./Slow-Sql-Query.md)
+
+[附2 阿里巴巴手册（泰山版）解读-MySQL数据库](./Ali-Java-Explain.md)
