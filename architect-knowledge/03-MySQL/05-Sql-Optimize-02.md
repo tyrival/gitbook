@@ -1,6 +1,6 @@
-## 3.4 SQL优化实战（二）
+## 3.5 SQL优化实战（二）
 
-### 3.4.1 分页查询优化
+### 3.5.1 分页查询优化
 
 ```sql
 示例表：
@@ -118,7 +118,7 @@ EXPLAIN select * from employees e inner join (select id from employees order by 
 
 
 
-### 3.4.2 Join关联查询优化
+### 3.5.2 Join关联查询优化
 
 ```sql
 -- 示例表：
@@ -295,7 +295,7 @@ for(select * from A){
 
 
 
-### 3.4.3 count(\*)查询优化
+### 3.5.3 count(\*)查询优化
 
 ```sql
 -- 临时关闭mysql查询缓存，为了查看sql多次执行的真实时间
@@ -388,7 +388,7 @@ show table status like 'employees';
 
 
 
-### 3.4.4 阿里巴巴Mysql规范解读
+### 3.5.4 阿里巴巴Mysql规范解读
 
 **补充：MySQL数据类型选择**
 

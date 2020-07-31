@@ -56,7 +56,9 @@ public class Math {
 
 **对应class实例的引用**：类加载器在加载类信息放到方法区中后，会创建一个对应的Class 类型的对象实例放到堆(Heap)中，作为开发人员访问方法区中类定义的入口和切入点。
 
-*注意：主类在运行过程中如果使用到其它类，会逐步加载这些类，类似图中的 `User.class`。jar包或war包里的类不是一次性全部加载的，是使用到时才加载。*
+> **注意**
+>
+> 主类在运行过程中如果使用到其它类，会逐步加载这些类，类似图中的 `User.class`。jar包或war包里的类不是一次性全部加载的，是使用到时才加载。
 
 示例中，通过运行结果可以看到，首先加载了类 `TestDynamicLoad` ，执行了静态代码块，然后加载类 `A` ，依次执行静态代码块和构造方法。类 `B` 由于未实例化，并未加载。
 
@@ -113,8 +115,6 @@ class B {
 - **扩展类加载器**：负责加载支撑JVM运行的位于JRE的lib目录下的ext扩展目录中的JAR类包 
 - **应用程序类加载器**：负责加载ClassPath路径下的类包，主要就是加载开发人员写的类 
 - **自定义加载器**：负责加载用户自定义路径下的类包
-
-
 
 ##### 示例代码
 
@@ -230,7 +230,12 @@ public Launcher() {
   Thread.currentThread().setContextClassLoader(this.loader);
   String var2 = System.getProperty("java.security.manager");
   
-  /* ExtClassLoader，实例化时，设置父加载器为null */
+  /* 
+  	ExtClassLoader，实例化时，设置父加载器为null，
+  	ExtClassLoader的父加载器是BootstrapLoader，BootstrapLoader是C++写的类，不能设置为Java对象，
+  	后面在讲解双亲委派机制时可以看到，当父加载器为null时，ExtClassLoader会通过native方法找到
+  	BootstrapLoader加载器，并委托其加载类。
+   */
   static class ExtClassLoader extends URLClassLoader {
     // ①
 		public static Launcher.ExtClassLoader getExtClassLoader() throws IOException {
@@ -310,7 +315,7 @@ public Launcher() {
 
 ![parents-delegate-process](../source/images/ch-01/parents-delegate-process.png)
 
-类加载使用的是**双亲委派机制**。加载某个类时，会先委托父加载器寻找目标类，找不到时，委托上层父加载器加载，如果所有父加载器在自己的加载类路径下都找不到目标类，则在自己的 类加载路径中查找并载入目标类。
+类加载使用的是**双亲委派机制**。加载某个类时，会先委托父加载器寻找目标类，找不到时，委托上层父加载器加载，如果所有父加载器在各自的加载类路径下都找不到目标类，则在自己的类加载路径中查找并载入目标类。
 
 比如我们的 `Math` 类，基本流程如下：
 
@@ -350,7 +355,7 @@ public abstract class ClassLoader {
             // 父加载器也是ClassLoader，跳转到父类执行 ①
             c = parent.loadClass(name, false);
           } else {
-            // 父加载器为空，则委托引导类加载器加载该类
+            // 父加载器为空，则委托引导类加载器加载该类，执行 ③
             c = findBootstrapClassOrNull(name);
           }
         } catch (ClassNotFoundException e) {
@@ -378,12 +383,22 @@ public abstract class ClassLoader {
       }
       return c;
     }
-    
-    // ②
-    protected Class<?> findClass(String name) throws ClassNotFoundException {
-      throw new ClassNotFoundException(name);
-    }
   }
+  
+  // ②
+  protected Class<?> findClass(String name) throws ClassNotFoundException {
+    throw new ClassNotFoundException(name);
+  }
+  
+	// ③
+  private Class<?> findBootstrapClassOrNull(String name) {
+    if (!checkName(name)) return null;
+		// 执行 ④
+    return findBootstrapClass(name);
+  }
+
+  // ④ native方法，调用C++实现的方法
+  private native Class<?> findBootstrapClass(String name);
 }
 ```
 
@@ -493,7 +508,7 @@ com.tyrival.jvm.lession01.MyClassLoader$MyClassLoader
 
 #### 沙箱安全机制
 
-首先使用自定义类加载器加载自定义的 `java.lang.String.class`
+首先看一个例子，使用自定义类加载器加载自定义的 `java.lang.String.class`
 
 ```java
 public class MyClassLoaderTest {
@@ -558,8 +573,9 @@ public class MyClassLoaderTest {
     }
 
     public static void main(String args[]) throws Exception {
-        MyClassLoader classLoader = new MyClassLoader("D:/test");
-        //尝试用自己改写类加载机制去加载自己写的java.lang.String.class
+        MyClassLoader classLoader = new MyClassLoader("/Users/tyrival/");
+        // 执行时候会报错：无法加载java.lang.String类，因为/Users/tyrival目录下找不到String类，
+      	// 我们把java.lang.String.class复制到/Users/tyrival/目录下，尝试用自定义类加载器进行加载。
         Class clazz = classLoader.loadClass("java.lang.String");
         Object obj = clazz.newInstance();
         Method method= clazz.getDeclaredMethod("sout", null);
@@ -574,7 +590,38 @@ java.lang.SecurityException: Prohibited package name: java.lang
 	at java.lang.ClassLoader.defineClass(ClassLoader.java:758)
 ```
 
-可以看到最后报错禁止使用 `java.lang` 包名。
+可以看到最后报错禁止使用 `java.lang` 包名，因为JVM禁止自定义类加载器加载JDK的核心类。
+
+此时只要进行如下改造，加载JDK核心类仍旧向上委托，而加载自定义类则不再向上委托。
+
+```java
+protected Class<?> loadClass(String name, boolean resolve)
+                throws ClassNotFoundException {
+    synchronized (getClassLoadingLock(name)) {
+
+        Class<?> c = findLoadedClass(name);
+
+        if (c == null) {
+        		long t1 = System.nanoTime();
+          	// 非自定义的类还是走双亲委派加载
+            if (!name.startsWith("com.tyrival.jvm.lession01")){
+              	c = this.getParent().loadClass(name);
+            }else{
+              	// 自定义类打破双亲委派，不再向上委托
+              	c = findClass(name);
+            }
+        		sun.misc.PerfCounter.getFindClassTime().addElapsedTimeFrom(t1);
+        		sun.misc.PerfCounter.getFindClasses().increment();
+        }
+        if (resolve) {
+        		resolveClass(c);
+        }
+        return c;
+    }
+}
+```
+
+
 
 #### Tomcat打破双亲委派机制
 
@@ -601,6 +648,8 @@ Tomcat是个web容器， 那么它要解决什么问题：
 第三个问题和第一个问题一样。
 
 第四个问题，我们想我们要怎么实现jsp文件的热加载，jsp 文件其实也就是class文件，那么如果修改了，但类名还是一样，类加载器会直接取方法区中已经存在的，修改后的jsp是不会重新加载的。那么怎么办呢？我们可以直接卸载掉这jsp文件的类加载器，所以你应该想到了，每个jsp文件对应一个唯一的类加载器，当一个jsp文件修改了，就直接卸载这个jsp类加载器。重新创建类加载器，重新加载jsp文件。
+
+
 
 #### Tomcat自定义加载器详解
 
@@ -675,10 +724,11 @@ public class MyClassLoaderTest {
                     // to find the class.
                     long t1 = System.nanoTime();
 
-                    //非自定义的类还是走双亲委派加载
+                    // 非自定义的类还是走双亲委派加载
                     if (!name.startsWith("com.tyrival.jvm.lession01")){
                         c = this.getParent().loadClass(name);
                     }else{
+                      	// 自定义类不向上委托
                         c = findClass(name);
                     }
 
@@ -724,7 +774,13 @@ com.tyrival.jvm.lession01.MyClassLoaderTest$MyClassLoader@266474c2
 com.tyrival.jvm.lession01.MyClassLoaderTest$MyClassLoader@66d3c617
 ```
 
-*注意：同一个JVM内，两个相同包名和类名的类对象可以共存，因为他们的类加载器可以不一样，所以看两个类对象是否是同一个，除了看类的包名和类名是否都相同之外，还需要他们的类加载器也是同一个才能认为他们是同一个。*
+> **注意**
+>
+> 同一个JVM内，两个相同包名和类名的类对象可以共存，因为他们的类加载器可以不一样，所以看两个类对象是否是同一个，除了看类的包名和类名是否都相同之外，还需要他们的类加载器也是同一个才能认为他们是同一个。
+>
+> Tomcat就是通过这种方法，实现了不同的APP中的类分别加载，不会出现冲突的问题。
+
+
 
 #### Tomcat的JasperLoader热加载
 

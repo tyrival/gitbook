@@ -8,7 +8,9 @@
 
 [3.4 SQL优化实战（一）](./04-Sql-Optimize-01.md)
 
-[3.5 SQL优化实战（二）](./04-Sql-Optimize-02.md)
+[3.5 SQL优化实战（二）](./05-Sql-Optimize-02.md)
+
+[3.6 Mysql锁与事务隔离级别](./06-Mysql-Lock-Transaction-Isolation.md)
 
 [附1 慢SQL查询](./Slow-Sql-Query.md)
 

@@ -22,6 +22,7 @@
         * [3.3 SQL底层执行原理](03-MySQL/03-Sql-Execution-Fundamental.md)
         * [3.4 SQL优化实战（一）](03-MySQL/04-Sql-Optimize-01.md)
         * [3.5 SQL优化实战（二）](03-MySQL/05-Sql-Optimize-02.md)
+        * [3.6 Mysql锁与事务隔离级别](03-MySQL/06-Mysql-Lock-Transaction-Isolation.md)
         * [附1 慢SQL查询](03-MySQL/Slow-Sql-Query.md)
         * [附2 附2 阿里巴巴手册（泰山版）解读-MySQL数据库](03-MySQL/Ali-Java-Explain.md)
     * [第4章 并发编程](04-Concurrent/README.md)
