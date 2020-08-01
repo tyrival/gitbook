@@ -1,8 +1,8 @@
-## 3.4 SQL优化实战（一）
+# 3.4 SQL优化实战（一）
 
-### 3.4.1 示例
+## 3.4.1 示例
 
-##### 示例表
+#### 示例表
 
 ```sql
 -- 建表，并建立联合索引index(name,age,position)
@@ -36,9 +36,9 @@ delimiter ;
 call insert_emp();
 ```
 
-#### 一个不容易理解的综合例子
+### 一个不容易理解的综合例子
 
-##### 1. 联合索引第一个字段用范围不会走索引
+#### 1. 联合索引第一个字段用范围不会走索引
 
 ```sql
 EXPLAIN SELECT * FROM employees WHERE name > 'LiLei' AND age = 22 AND position ='manager';
@@ -50,7 +50,7 @@ EXPLAIN SELECT * FROM employees WHERE name > 'LiLei' AND age = 22 AND position =
 
 > 通常，如果只有最后一个条件使用范围查询时，才会使用联合索引，如果前面的条件就使用范围查询，则不会使用联合索引。
 
-##### 2. 强制走索引
+#### 2. 强制走索引
 
 ```sql
 EXPLAIN SELECT * FROM employees force index(idx_name_age_position) WHERE name > 'LiLei' AND age = 22 AND position ='manager';
@@ -74,7 +74,7 @@ SELECT * FROM employees WHERE name > 'LiLei';
 SELECT * FROM employees force index(idx_name_age_position) WHERE name > 'LiLei';
 ```
 
-##### 3. 覆盖索引优化
+#### 3. 覆盖索引优化
 
 ```sql
 EXPLAIN SELECT name,age,position FROM employees WHERE name > 'LiLei' AND age = 22 AND position ='manager';
@@ -84,7 +84,7 @@ EXPLAIN SELECT name,age,position FROM employees WHERE name > 'LiLei' AND age = 2
 
 > 查询条件覆盖联合索引后，可以直接在联合索引中检索出所有数据，无需回表，所以mysql选择了走联合索引。
 
-##### 4. in和or在表数据量比较大的情况会走索引，在表记录不多的情况下会选择全表扫描
+#### 4. in和or在表数据量比较大的情况会走索引，在表记录不多的情况下会选择全表扫描
 
 ```sql
 EXPLAIN SELECT * FROM employees WHERE name in ('LiLei','HanMeimei','Lucy') AND age = 22 AND position ='manager';
@@ -132,7 +132,7 @@ EXPLAIN SELECT * FROM employees_copy WHERE (name = 'LiLei' or name = 'HanMeimei'
 
 > 可以看到，以上两条语句均未使用联合索引，虽然possible_keys显示可以使用索引，但因为表内数据较少，使用联合索引还需要回表，所以mysql选择直接进行全表扫描。
 
-##### 5. like KK%不管表数据量大小都会走索引
+#### 5. like KK%不管表数据量大小都会走索引
 
 ```sql
 EXPLAIN SELECT * FROM employees WHERE name like 'LiLei%' AND age = 22 AND position = 'manager';
@@ -148,7 +148,7 @@ EXPLAIN SELECT * FROM employees_copy WHERE name like 'LiLei%' AND age = 22 AND p
 
 这里补充一个概念，**索引下推（Index Condition Pushdown，ICP）**, like KK%其实就是用到了索引下推优化。
 
-#### 索引下推
+### 索引下推
 
 对于辅助的联合索引(name,age,position)，正常情况按照最左前缀原则，
 
@@ -164,11 +164,11 @@ MySQL 5.6引入了索引下推优化，**可以在索引遍历过程中，对索
 
 索引下推会减少回表次数，对于innodb引擎的表索引下推只能用于二级索引，innodb的主键索引（聚簇索引）树叶子节点上保存的是全行数据，所以这个时候索引下推并不会起到减少查询全行数据的效果。
 
-###### 为什么范围查找Mysql没有用索引下推优化？
+##### 为什么范围查找Mysql没有用索引下推优化？
 
 估计应该是Mysql认为范围查找过滤的结果集过大，like KK% 在绝大多数情况来看，过滤后的结果集比较小，所以Mysql选择给 like KK% 用索引下推优化。
 
-#### Mysql如何选择合适的索引
+### Mysql如何选择合适的索引
 
 ```sql
 EXPLAIN select * from employees where name > 'a';
@@ -192,7 +192,7 @@ EXPLAIN select * from employees where name > 'zzz';
 
 对于上面这两种 `name>'a'` 和 `name>'zzz'` 的执行结果，mysql最终是否选择走索引或者一张表涉及多个索引，mysql最终如何选择索引，我们可以用**trace工具**来一查究竟，开启trace工具会影响mysql性能，所以只能临时分析sql使用，用完之后立即关闭
 
-##### trace工具
+#### trace工具
 
 ```sql
 set session optimizer_trace="enabled=on",end_markers_in_json=on;  --开启trace
@@ -412,11 +412,11 @@ set session optimizer_trace="enabled=off";    --关闭trace
 
 
 
-### 3.4.2 常见sql深入优化
+## 3.4.2 常见sql深入优化
 
-##### Order by与Group by优化
+#### Order by与Group by优化
 
-###### Case 1
+##### Case 1
 
 ```sql
 EXPLAIN select * from employees where name = 'LiLei' and position = 'dev' order by age;
@@ -426,7 +426,7 @@ EXPLAIN select * from employees where name = 'LiLei' and position = 'dev' order 
 
 >利用最左前缀法则：中间字段不能断，因此查询用到了name索引，从key_len=74也能看出，age索引列用在排序过程中，因为Extra字段里没有using filesort
 
-###### Case 2
+##### Case 2
 
 ```sql
 EXPLAIN select * from employees where name = 'LiLei' order by position;
@@ -436,7 +436,7 @@ EXPLAIN select * from employees where name = 'LiLei' order by position;
 
 > 从explain的执行结果来看：key_len=74，查询使用了name索引，由于用了position进行排序，跳过了age，出现了Using filesort。
 
-###### Case 3
+##### Case 3
 
 ```sql
 EXPLAIN select * from employees where name = 'LiLei' order by age,position;
@@ -446,7 +446,7 @@ EXPLAIN select * from employees where name = 'LiLei' order by age,position;
 
 > 查找只用到索引name，age和position用于排序，无Using filesort。
 
-###### Case 4
+##### Case 4
 
 ```sql
 EXPLAIN select * from employees where name = 'LiLei' order by position, age;
@@ -456,7 +456,7 @@ EXPLAIN select * from employees where name = 'LiLei' order by position, age;
 
 > 和Case 3中explain的执行结果一样，但是出现了Using filesort，因为索引的创建顺序为name,age,position，但是排序的时候age和position颠倒位置了。
 
-###### Case 5
+##### Case 5
 
 ```sql
 EXPLAIN select * from employees where name = 'LiLei' and age = 18 order by position, age;
@@ -466,7 +466,7 @@ EXPLAIN select * from employees where name = 'LiLei' and age = 18 order by posit
 
 > 与Case 4对比，在Extra中并未出现Using filesort，因为age为常量，在排序中被优化，所以索引未颠倒，不会出现Using filesort。
 
-###### Case 6
+##### Case 6
 
 ```sql
 EXPLAIN select * from employees where name = 'LiLei' order by age asc, position desc;
@@ -476,7 +476,7 @@ EXPLAIN select * from employees where name = 'LiLei' order by age asc, position 
 
 > 虽然排序的字段列与索引顺序一样，且order by默认升序，这里position desc变成了降序，导致与索引的排序方式不同，从而产生Using filesort。Mysql8以上版本有降序索引可以支持该种查询方式。
 
-###### Case 7
+##### Case 7
 
 ```sql
 EXPLAIN select * from employees where name in('LiLei','tyrival') order by age, position;
@@ -486,7 +486,7 @@ EXPLAIN select * from employees where name in('LiLei','tyrival') order by age, p
 
 > 对于排序来说，多个相等条件也是范围查询，查出来的结果是无序的。
 
-###### Case 8
+##### Case 8
 
 ```sql
 EXPLAIN select * from employees where name > 'a' order by name;
@@ -502,7 +502,7 @@ EXPLAIN select name,age,position from employees where name > 'a' order by name;
 
 ![optimize-21](../source/images/ch-03/optimize-21.png)
 
-#### 优化总结
+### 优化总结
 
 1. MySQL支持两种方式的排序filesort和index，Using index是指MySQL扫描索引本身完成排序。**index效率高，filesort效率低**；
 
@@ -518,9 +518,9 @@ EXPLAIN select name,age,position from employees where name > 'a' order by name;
 
 6. group by与order by很类似，其实质是**先排序后分组**，遵照索引创建顺序的最左前缀法则。对于group by的优化如果不需要排序的可以加上**order by null禁止排序**。注意，where高于having，能写在where中的限定条件就不要去having限定了。
 
-#### Using filesort文件排序原理详解
+### Using filesort文件排序原理详解
 
-##### filesort文件排序方式
+#### filesort文件排序方式
 
 - **单路排序**：是一次性取出满足条件行的所有字段，然后在sort buffer中进行排序；用trace工具可以看到sort_mode信息里显示 `<sort_key, additional_fields>` 或者 `<sort_key, packed_additional_fields>`，**占用内存大，不需要回表**。
 - **双路排序**（又叫**回表排序模式**）：是首先根据相应的条件取出相应的**排序字段**和**可以直接定位行数据的行 ID**，然后在 sort buffer 中进行排序，排序完后需要再次取回其它需要的字段；用trace工具可以看到sort_mode信息里显示 `<sort_key, rowid>`，**占用内存小，需要回表**。
@@ -530,7 +530,7 @@ MySQL 通过比较系统变量 max_length_for_sort_data(**默认1024字节**) �
 - 字段的总长度小于max_length_for_sort_data ，使用单路排序模式；
 - 字段的总长度大于max_length_for_sort_data ，使用双路排序模式。
 
-##### 示例验证下各种排序方式
+#### 示例验证下各种排序方式
 
 ```sql
 EXPLAIN select * from employees where name = 'tyrival' order by position;
@@ -612,7 +612,7 @@ trace排序部分结果：
 set session optimizer_trace="enabled=off";    --关闭trace
 ```
 
-##### 单路排序的详细过程
+#### 单路排序的详细过程
 
 1. 从索引name找到第一个满足 `name = 'tyrival'` 条件的主键 id
 2. 根据主键 id 取出整行，**取出所有字段的值，存入 sort_buffer 中**
@@ -621,7 +621,7 @@ set session optimizer_trace="enabled=off";    --关闭trace
 5. 对 sort_buffer 中的数据按照字段 position 进行排序
 6. 返回结果给客户端
 
-##### 双路排序的详细过程
+#### 双路排序的详细过程
 
 1. 从索引 name 找到第一个满足 `name = 'tyrival'` 的主键id
 2. 根据主键 id 取出整行，**把排序字段 position 和主键 id 这两个字段放到 sort buffer 中**
@@ -642,19 +642,19 @@ set session optimizer_trace="enabled=off";    --关闭trace
 
 
 
-### 3.4.3 索引设计原则
+## 3.4.3 索引设计原则
 
-##### 1. 代码先行，索引后上
+#### 1. 代码先行，索引后上
 
 给数据表建立索引，一般应该等到**主体业务功能开发完毕**，把涉及到该表相关sql都拿出来分析之后再建立索引。
 
-##### 2. 联合索引尽量覆盖条件
+#### 2. 联合索引尽量覆盖条件
 
 比如可以设计一个或者两三个联合索引，让每一个联合索引都尽量去包含sql语句里的where、order by、group by的字段，还要确保这些联合索引的字段顺序尽量满足sql查询的最左前缀原则。
 
 > 尽量少建单值索引，因为查询条件通常不止一个，建立单值索引无意义，而且会占据大量磁盘空间
 
-##### 3. 不要在小基数字段上建立索引
+#### 3. 不要在小基数字段上建立索引
 
 索引基数是指这个字段在表里总共有多少个不同的值，比如一张表总共100万行记录，其中有个性别字段，其值不是男就是女，那么该字段的基数就是2。
 
@@ -662,7 +662,7 @@ set session optimizer_trace="enabled=off";    --关闭trace
 
 一般建立索引，尽量使用基数比较大的字段，就是值比较多的字段，才能发挥出B+树快速二分查找的优势。
 
-##### 4. 长字符串我们可以采用前缀索引
+#### 4. 长字符串我们可以采用前缀索引
 
 尽量对字段类型较小的列设计索引，比如说什么tinyint之类的，因为字段类型较小的话，占用磁盘空间也会比较小，此时你在搜索的时候性能也会比较好一点。
 
@@ -674,7 +674,7 @@ set session optimizer_trace="enabled=off";    --关闭trace
 
 但是假如要order by name，那么此时name因为在索引树里仅仅包含了前20个字符，所以这个排序是没法用上索引的， group by也是同理。
 
-##### 5. where与order by冲突时优先where
+#### 5. where与order by冲突时优先where
 
 在where和order by出现索引设计冲突时，到底是针对where去设计索引，还是针对order by设计索引？到底是让where去用上索引，还是让order by用上索引?
 
@@ -682,7 +682,7 @@ set session optimizer_trace="enabled=off";    --关闭trace
 
 因为大多数情况基于索引进行where筛选，可以最快速度筛选出少部分数据，然后做排序的成本可能会小很多。
 
-##### 6. 基于慢sql查询做优化
+#### 6. 基于慢sql查询做优化
 
 可以根据监控后台的一些慢sql，针对这些慢sql查询做特定的索引优化。
 
@@ -690,7 +690,7 @@ set session optimizer_trace="enabled=off";    --关闭trace
 
 
 
-### 3.4.4 索引设计实战
+## 3.4.4 索引设计实战
 
 以社交场景APP来举例，我们一般会去搜索一些好友，这里面就涉及到对用户信息的筛选，这里肯定就是对用户user表搜索了，这个表一般来说数据量会比较大，我们先不考虑分库分表的情况，比如，我们一般会筛选地区(省市)，性别，年龄，身高，爱好之类的，有的APP可能用户还有评分，比如用户的受欢迎程度评分，我们可能还会根据评分来排序等等。
 

@@ -1,8 +1,8 @@
-## 1.1 类加载机制
+# 1.1 类加载机制
 
-### 1.1.1 类加载器
+## 1.1.1 类加载器
 
-#### 类加载过程
+### 类加载过程
 
 示例代码：
 
@@ -107,7 +107,7 @@ class B {
 
 
 
-#### 类加载器
+### 类加载器
 
 上述类加载过程主要通过类加载器来实现，Java中有以下几种类加载器：
 
@@ -116,7 +116,7 @@ class B {
 - **应用程序类加载器**：负责加载ClassPath路径下的类包，主要就是加载开发人员写的类 
 - **自定义加载器**：负责加载用户自定义路径下的类包
 
-##### 示例代码
+#### 示例代码
 
 ```java
 package com.tyrival.jvm.lession01;
@@ -199,7 +199,7 @@ appClassLoader加载以下文件：
 
 
 
-##### 初始化过程
+#### 初始化过程
 
 类加载过程图中可以看到，首先创建JVM启动器实例 `sun.misc.Launcher` ，这个类采用了单例模式，保证一个JVM虚拟机内只有一个Launcher实例。
 
@@ -311,7 +311,7 @@ public Launcher() {
 
 
 
-### 1.1.2 双亲委派机制
+## 1.1.2 双亲委派机制
 
 ![parents-delegate-process](../source/images/ch-01/parents-delegate-process.png)
 
@@ -404,20 +404,20 @@ public abstract class ClassLoader {
 
 
 
-##### 双亲委派机制的作用
+#### 双亲委派机制的作用
 
 - 沙箱安全机制：自己写的 `java.lang.String.class` 类不会被加载，这样便可以防止核心API库被随意篡改；
 - 避免类的重复加载：当父亲已经加载了该类时，就没有必要子加载器再加载一次，保证被加载类的唯一性。
 
 
 
-##### 全盘负责委托机制
+#### 全盘负责委托机制
 
 **全盘负责**是指当一个ClassLoader装载一个类时，除非显示的使用另外一个ClassLoader，该类所依赖及引用的类也由这个ClassLoader载入，而不会实例化另一个ClassLoader。例如本章节第一个示例中的 `Math` 类中引用了 `User` 类，`User` 类和 `Math` 类使用同一个AppClassLoader。当然，加载 `User` 类时，也需要由AppClassLoader通过双亲委派机制，按照先向上委托，再向下逐级查找后进行加载。
 
 
 
-### 1.1.3 自定义类加载器
+## 1.1.3 自定义类加载器
 
 自定义类加载器只需要继承 `java.lang.ClassLoader` 类。该类有两个核心方法，一个是 `loadClass(String, boolean)`，实现了双亲委派机制，另一个方法是 `findClass`，默认实现是空方法，所以我们自定义类加载器主要是重写 `findClass` 方法。
 
@@ -504,9 +504,9 @@ com.tyrival.jvm.lession01.MyClassLoader$MyClassLoader
 
 
 
-### 1.1.4 打破双亲委派机制
+## 1.1.4 打破双亲委派机制
 
-#### 沙箱安全机制
+### 沙箱安全机制
 
 首先看一个例子，使用自定义类加载器加载自定义的 `java.lang.String.class`
 
@@ -623,7 +623,7 @@ protected Class<?> loadClass(String name, boolean resolve)
 
 
 
-#### Tomcat打破双亲委派机制
+### Tomcat打破双亲委派机制
 
 以Tomcat类加载为例，Tomcat 如果使用默认的双亲委派类加载机制行不行？
 
@@ -651,7 +651,7 @@ Tomcat是个web容器， 那么它要解决什么问题：
 
 
 
-#### Tomcat自定义加载器详解
+### Tomcat自定义加载器详解
 
 ![tomcat-webapp-classloader](../source/images/ch-01/tomcat-webapp-classloader.png)
 
@@ -782,6 +782,6 @@ com.tyrival.jvm.lession01.MyClassLoaderTest$MyClassLoader@66d3c617
 
 
 
-#### Tomcat的JasperLoader热加载
+### Tomcat的JasperLoader热加载
 
 原理：后台启动线程监听jsp文件变化，如果变化了找到该jsp对应的servlet类的加载器引用(gcroot)，重新生成新的**JasperLoader**加载器赋值给引用，然后加载新的jsp对应的servlet类，之前的那个加载器因为没有gcroot引用了，下一次gc的时候会被销毁。

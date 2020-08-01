@@ -1,6 +1,6 @@
-## 附1 慢SQL查询
+# 附1 慢SQL查询
 
-### 1. 概念
+## 1. 概念
 
 MySQL的慢查询，全名是**慢查询日志**，是MySQL提供的一种日志记录，用来记录在MySQL中**响应时间超过阀值**的语句。
 
@@ -16,7 +16,7 @@ MySQL的慢查询，全名是**慢查询日志**，是MySQL提供的一种日志
 
 官方文档，关于慢查询的日志介绍如下（部分资料，具体参考官方相关链接）：
 
-### 2. 参数
+## 2. 参数
 
 MySQL 慢查询的相关参数解释：
 
@@ -32,9 +32,9 @@ MySQL 慢查询的相关参数解释：
 
 `log_output`：日志存储方式。`log_output='FILE'` 表示将日志存入文件，默认值是 `'FILE'`。`log_output='TABLE'` 表示将日志存入数据库。
 
-### 3. 配置
+## 3. 配置
 
-#### 3.1 slow_query_log
+### 3.1 slow_query_log
 
 默认情况下 `slow_query_log` 的值为 `OFF`，表示慢查询日志是禁用的，可以通过设置 `slow_query_log` 的值来开启，如下所示：
 
@@ -65,7 +65,7 @@ slow_query_log_file = /tmp/mysql_slow.log
 
 然后重启MySQL服务器。
 
-#### 3.2 slow_query_log_file
+### 3.2 slow_query_log_file
 
 这个参数用于指定慢查询日志的存放路径，缺省情况是host_name-slow.log文件，
 
@@ -79,7 +79,7 @@ mysql> show variables like 'slow_query_log_file';
  1 row in set (0.00 sec)
 ```
 
-#### 3.3 long_query_time
+### 3.3 long_query_time
 
 开启了慢查询日志后，什么样的SQL才会记录到慢查询日志里面呢？
 
@@ -122,7 +122,7 @@ mysql> show variables like 'long_query_time';
 
 也可以不用重新连接会话，而是用 `show global variables like 'long_query_time';`。
 
-#### 3.4 log_output
+### 3.4 log_output
 
 `log_output` 参数指定日志的存储方式。
 
@@ -176,7 +176,7 @@ mysql> select * from mysql.slow_log;
  2 rows in set (0.00 sec)
 ```
 
-#### 3.5 log-queries-not-using-indexes
+### 3.5 log-queries-not-using-indexes
 
 该系统变量指定未使用索引的查询也被记录到慢查询日志中（可选项）。
 
@@ -205,7 +205,7 @@ mysql> show variables like 'log_queries_not_using_indexes';
  1 row in set (0.00 sec)
 ```
 
-#### 3.6 log_slow_admin_statements
+### 3.6 log_slow_admin_statements
 
 这个系统变量表示，是否将慢管理语句例如 `ANALYZE TABLE` 和 `ALTER TABLE` 等记入慢查询日志。
 
@@ -234,7 +234,7 @@ mysql> show global status like '%Slow_queries%';
 
 另外，还有 `log_slow_slave_statements` 和 `--log-short-format` 参数，可到MySQL网站了解。
 
-### 4 mysqldumpslow工具
+## 4 mysqldumpslow工具
 
 在生产环境中，如果要手工分析日志，查找、分析SQL，显然是个体力活。
 

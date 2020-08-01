@@ -1,10 +1,10 @@
-## 1.7 GC调优（二）
+# 1.7 GC调优（二）
 
-### 1.7.1 Arthas
+## 1.7.1 Arthas
 
 [Arthas Github](https://github.com/alibaba/arthas)
 
-#### Arthas使用
+### Arthas使用
 
 ```bash
 # github下载arthas
@@ -104,19 +104,19 @@ public class Arthas {
 }
 ```
 
-##### 进入进程
+#### 进入进程
 
 选择进程序号4，进入进程信息操作
 
 ![arthas-attach](../source/images/ch-01/arthas-attach.png)
 
-##### dashboard
+#### dashboard
 
 输入 `dashboard`，然后按回车，可以查看整个进程的运行情况，线程、内存、GC、运行环境信息：
 
 ![arthas-dashboard](../source/images/ch-01/arthas-dashboard.png)
 
-##### thread
+#### thread
 
 输入**thread**可以查看线程详细情况
 
@@ -130,13 +130,13 @@ public class Arthas {
 
 ![arthas-thread-b](../source/images/ch-01/arthas-thread-b.png)
 
-##### jad
+#### jad
 
 输入 **jad加类的全名** 可以反编译，这样可以方便我们查看线上代码是否是正确的版本
 
 ![arthas-jad](../source/images/ch-01/arthas-jad.png)
 
-##### ognl
+#### ognl
 
 使用 **ognl** 命令可以查看线上系统变量的值
 
@@ -150,7 +150,7 @@ public class Arthas {
 
 
 
-### 1.7.2 GC日志详解
+## 1.7.2 GC日志详解
 
 对于java应用，我们可以通过一些配置，把程序运行过程中的gc日志全部打印出来，然后分析gc日志得到关键性指标，分析GC原因，调优JVM参数。
 
@@ -162,7 +162,7 @@ public class Arthas {
 
 Tomcat则直接加在JAVA_OPTS变量里。
 
-#### 如何分析GC日志
+### 如何分析GC日志
 
 运行程序加上对应gc日志
 
@@ -174,11 +174,11 @@ java -jar -Xloggc:./gc-%t.log -XX:+PrintGCDetails -XX:+PrintGCDateStamps -XX:+Pr
 
 ![gc-log](../source/images/ch-01/gc-log.png)
 
-###### 配置参数
+##### 配置参数
 
 第一行红框是项目的配置参数。这里不仅配置了打印GC日志，还有相关的VM内存参数。 
 
-###### Minor GC
+##### Minor GC
 
 图中最常见的是如下内容，即Minor GC日志
 
@@ -191,7 +191,7 @@ java -jar -Xloggc:./gc-%t.log -XX:+PrintGCDetails -XX:+PrintGCDateStamps -XX:+Pr
 - `65536K->5885K(251392K)` 表示 `回收前堆内存用量->回收后堆内存用量（堆总内存）`
 - `0.0061165 secs` 表示此次GC耗费时间
 
-###### Full GC
+##### Full GC
 
 第二行红框中的是在这个GC时间点发生GC之后相关GC情况。 
 
@@ -213,7 +213,7 @@ java -jar -Xloggc:./gc-%t.log -XX:+PrintGCDetails -XX:+PrintGCDateStamps -XX:+Pr
 
 - 0.0209707是该时间点GC总耗费时间。 
 
-##### 优化方案
+#### 优化方案
 
 从日志可以发现几次fullgc都是由于元空间不够导致的，所以我们可以将元空间调大点
 
@@ -231,7 +231,7 @@ java -jar -Xloggc:./gc-adjust-%t.log -XX:MetaspaceSize=256M -XX:MaxMetaspaceSize
 
 ![gc-log-adjust](../source/images/ch-01/gc-log-adjust.png)
 
-#### CMS & G1日志
+### CMS & G1日志
 
 对于CMS和G1收集器的日志会有一点不一样，也可以试着打印下对应的gc日志分析下，可以发现gc日志里面的gc步骤跟之前的步骤是类似的
 
@@ -250,7 +250,7 @@ public class HeapTest {
 }
 ```
 
-##### CMS
+#### CMS
 
 ```bash
 -Xloggc:./gc-cms-%t.log -Xms50M -Xmx50M -XX:MetaspaceSize=256M -XX:MaxMetaspaceSize=256M -XX:+PrintGCDetails -XX:+PrintGCDateStamps -XX:+PrintGCTimeStamps -XX:+PrintGCCause -XX:+UseGCLogFileRotation -XX:NumberOfGCLogFiles=10 -XX:GCLogFileSize=100M -XX:+UseParNewGC -XX:+UseConcMarkSweepGC
@@ -264,13 +264,13 @@ public class HeapTest {
 
 ![cms-serial-gc](../source/images/ch-01/cms-serial-gc.png)
 
-##### G1
+#### G1
 
 ```bash
 -Xloggc:./gc-g1-%t.log -Xms50M -Xmx50M -XX:MetaspaceSize=256M -XX:MaxMetaspaceSize=256M -XX:+PrintGCDetails -XX:+PrintGCDateStamps -XX:+PrintGCTimeStamps -XX:+PrintGCCause -XX:+UseGCLogFileRotation -XX:NumberOfGCLogFiles=10 -XX:GCLogFileSize=100M -XX:+UseG1GC
 ```
 
-#### gceasy
+### gceasy
 
 上面的这些参数，能够帮我们查看分析GC的垃圾收集情况。但是如果GC日志很多很多，成千上万行。推荐使用 **[gceasy](https://gceasy.io/)**，可以上传gc文件，然后他会利用可视化的界面来展现GC情况。具体下图所示，可以看到年轻代、老年代、元空间的内存分配和最大使用情况。 
 
@@ -286,7 +286,7 @@ public class HeapTest {
 
 这个工具还提供基于机器学习的JVM智能优化建议，这个功能需要付费
 
-##### JVM参数汇总查看命令
+#### JVM参数汇总查看命令
 
 `java -XX:+PrintFlagsInitial` 表示打印出所有参数选项的默认值
 
@@ -294,9 +294,9 @@ public class HeapTest {
 
 
 
-### 1.7.3 常量池
+## 1.7.3 常量池
 
-#### Class常量池与运行时常量池
+### Class常量池与运行时常量池
 
 Class常量池可以理解为是Class文件中的资源仓库。 Class文件中除了包含类的版本、字段、方法、接口等描述信息外，还有一项信息就是**常量池(constant pool table)**，用于存放编译期生成的各种**字面量(Literal)和符号引用(Symbolic References)**。
 
@@ -318,7 +318,7 @@ javap -v Math.class
 
 其中的 `Constant pool` 是class常量池信息，常量池中主要存放两大类常量：**字面量和符号引用**。
 
-##### 字面量
+#### 字面量
 
 **字面量就是指由字母、数字等构成的字符串或者数值常量**
 
@@ -331,7 +331,7 @@ int c = "abcdefg";
 int d = "abcdefg";
 ```
 
-##### 符号引用
+#### 符号引用
 
 符号引用是编译原理中的概念，是相对于直接引用来说的。主要包括了以下三类常量：
 
@@ -343,9 +343,9 @@ int d = "abcdefg";
 
 这些常量池现在是静态信息，只有到运行时被加载到内存后，这些符号才有对应的内存地址信息，这些常量池一旦被装入内存就变成**运行时常量池**，对应的符号引用在程序加载或运行时会被转变为被加载到内存区域的代码的直接引用，也就是我们说的**动态链接了。例如，compute()这个符号引用在运行时就会被转变为compute()方法具体代码在内存中的地址，主要通过对象头里的类型指针去转换直接引用。**
 
-#### 字符串常量池
+### 字符串常量池
 
-##### 字符串常量池的设计思想
+#### 字符串常量池的设计思想
 
 - 字符串的分配，和其他的对象分配一样，耗费高昂的时间与空间代价，作为最基础的数据类型，大量频繁的创建字符串，极大程度地影响程序的性能
 
@@ -354,7 +354,7 @@ int d = "abcdefg";
   - 创建字符串常量时，首先查询字符串常量池是否存在该字符串
   - 存在该字符串，返回引用实例，不存在，实例化该字符串并放入池中
 
-##### 三种字符串操作(Jdk1.7 及以上版本)
+#### 三种字符串操作(Jdk1.7 及以上版本)
 
 - 直接赋值字符串
 
@@ -400,7 +400,7 @@ System.out.println(s1 == s2);
 
 String中的intern方法是一个 native 的方法，当调用 intern方法时，如果池已经包含一个等于此String对象的字符串（用 `equals(object)` 方法确定），则返回池中的字符串。**否则，将intern返回的引用指向当前字符串 s1**(**jdk1.6版本需要将 s1 复制到字符串常量池里**)。
 
-##### 字符串常量池位置
+#### 字符串常量池位置
 
 - Jdk1.6及之前： 有永久代, 运行时常量池在永久代，运行时常量池包含字符串常量池
 
@@ -430,7 +430,7 @@ jdk7及以上：Exception in thread "main" java.lang.OutOfMemoryError: Java heap
 jdk6：Exception in thread "main" java.lang.OutOfMemoryError: PermGen space
 ```
 
-##### 字符串常量池设计原理
+#### 字符串常量池设计原理
 
 字符串常量池底层是hotspot的C++实现的，底层类似一个 HashTable， 保存的本质上是字符串对象的引用。
 
@@ -462,9 +462,9 @@ System.out.println(s1 == s2);
 
 由上面两个图，也不难理解为什么 JDK 1.6 字符串池溢出会抛出 `OutOfMemoryError: PermGen space`，而在 JDK 1.7 及以上版本抛出 `OutOfMemoryError: Java heap space`。
 
-##### String常量池问题的几个例子
+#### String常量池问题的几个例子
 
-###### 示例1
+##### 示例1
 
 ```java
 String s0 = "tyrival";
@@ -478,7 +478,7 @@ System.out.println( s0 == s2 ); //true，s2在编译阶段会被优化为tyrival
 
 > 因为例子中的 s0和s1中的"tyrival"都是字符串常量，它们在编译期就被确定了，所以s0==s1为true；而"tyri"和"val"也都是字符串常量，当一个字 符串由多个字符串常量连接而成时，它自己肯定也是字符串常量，所以s2也同样在编译期就被优化为一个字符串常量"tyrival"，所以s2也是常量池中"tyrival"的一个引用。所以我们得出s0==s1==s2；
 
-###### 示例2
+##### 示例2
 
 ```java
 // s0是常量池里的字符串
@@ -498,7 +498,7 @@ System.out.println( s1 == s2 );　　// false
 >
 > s0还是常量池 中"tyrival"的引用，s1因为无法在编译期确定，所以是运行时创建的新对象"tyrival"的引用，s2因为有后半部分 new String("val")所以也无法在编译期确定，所以也是一个新创建对象"tyrival"的引用;明白了这些也就知道为何得出此结果了。
 
-###### 示例3
+##### 示例3
 
 ```java
   String a = "a1";
@@ -516,7 +516,7 @@ System.out.println( s1 == s2 );　　// false
 
 > JVM对于字符串常量的"+"号连接，将在程序编译期，JVM就将常量字符串的"+"连接优化为连接后的值，拿"a" + 1来说，经编译器优化后在class中就已经是a1。在编译期其字符串常量的值就确定下来，故上面程序最终的结果都为true。
 
-###### 示例4
+##### 示例4
 
 ```java
 String a = "ab";
@@ -530,7 +530,7 @@ System.out.println(a == b); // false
 
 > JVM对于字符串引用，由于在字符串的"+"连接中，有字符串引用存在，而引用的值在程序编译期是无法确定的，即"a" + bb无法被编译器优化，只有在程序运行期来动态分配并将连接后的新地址赋给b。所以上面程序的结果也就为false。
 
-###### 示例5
+##### 示例5
 
 ```java
 String a = "ab";
@@ -544,7 +544,7 @@ System.out.println(a == b); // true
 
 > 和示例4中唯一不同的是bb字符串加了final修饰，对于final修饰的变量，它在编译时被解析为常量值的一个本地拷贝存储到自己的常量池中或嵌入到它的字节码流中。所以此时的"a" + bb和"a" + "b"效果是一样的。故上面程序的结果为true。
 
-###### 示例6
+##### 示例6
 
 ```java
 String a = "ab";
@@ -562,7 +562,7 @@ private static String getBB() {
 
 > JVM对于字符串引用bb，它的值在编译期无法确定，只有在程序运行期调用方法后，将方法的返回值和"a"来动态连接并分配地址为b，故上面 程序的结果为false。
 
-##### 关于String是不可变的
+#### 关于String是不可变的
 
 通过上面例子可以得出得知：
 
@@ -584,7 +584,7 @@ String s = temp.toString();
 
 ![string-pool-06](../source/images/ch-01/string-pool-06.png)
 
-##### 最后再看一个例子
+#### 最后再看一个例子
 
 ```java
 // 没有出现"计算机技术"字面量，所以不会在常量池里生成"计算机技术"对象
@@ -629,7 +629,7 @@ System.out.println(s2 == s2.intern());  //false
 
 ![string-pool-10](../source/images/ch-01/string-pool-10.png)
 
-##### 八种基本类型的包装类和对象池
+#### 八种基本类型的包装类和对象池
 
 java中基本类型的包装类的大部分都实现了常量池技术(严格来说应该叫**对象池，**在堆上)，这些类是Byte,Short,Integer,Long,Character,Boolean,另外两种浮点数类型的包装类则没有实现。另外Byte,Short,Integer,Long,Character这5种整型的包装类也只是在对应值小于等于127时才可使用对象池，也即对象不负责创建和管理大于127的这些类的对象。因为一般这种比较小的数用到的概率相对较大。
 

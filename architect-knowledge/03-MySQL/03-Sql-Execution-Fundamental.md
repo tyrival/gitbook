@@ -1,16 +1,16 @@
-## 3.3 SQL底层执行原理
+# 3.3 SQL底层执行原理
 
-### MySQL的内部组件结构
+## MySQL的内部组件结构
 
 ![mysql-component-infrastructure](../source/images/ch-03/mysql-component-infrastructure.png)
 
 大体来说，MySQL 可以分为 Server 层和存储引擎层两部分。
 
-#### Server层
+### Server层
 
 主要包括连接器、查询缓存、分析器、优化器、执行器等，涵盖 MySQL 的大多数核心服务功能，以及所有的内置函数（如日期、时间、数学和加密函数等），所有跨存储引擎的功能都在这一层实现，比如存储过程、触发器、视图等。
 
-#### Store层
+### Store层
 
 存储引擎层负责数据的存储和提取。其架构模式是插件式的，支持 InnoDB、MyISAM、Memory 等多个存储引擎。现在最常用的存储引擎是 InnoDB，它从 MySQL 5.5.5 版本开始成为了默认存储引擎。也就是说如果我们在create table时不指定表的存储引擎类型,默认会给你设置存储引擎为InnoDB。
 
@@ -26,7 +26,7 @@ CREATE TABLE `test` (
 
 下面我们重点来分析**连接器、查询缓存、分析器、优化器、执行器**分别主要干了哪些事情。
 
-##### 连接器
+#### 连接器
 
 我们知道由于MySQL是开源的，他有非常多种类的客户端：navicat, mysql front, jdbc, SQLyog等非常丰富的客户端,这些客户端要向mysql发起通信都必须先跟Server端建立通信连接，而建立连接的工作就是有连接器完成的。
 
@@ -89,7 +89,7 @@ mysql> set global wait_timeout=28800;
 
 2. 如果你用的是 MySQL 5.7 或更新版本，可以在每次执行一个比较大的操作后，通过执行 mysql_reset_connection 来重新初始化连接资源。这个过程不需要重连和重新做权限验证，但是会将连接恢复到刚刚创建完时的状态。
 
-##### 查询缓存
+#### 查询缓存
 
 常用的一些操作
 
@@ -154,7 +154,7 @@ mysql> show status like '%Qcache%';
 
   **mysql8.0已经移除了查询缓存功能**
 
-##### 分析器
+#### 分析器
 
 如果没有命中查询缓存，就要开始真正执行语句了。首先，MySQL 需要知道你要做什么，因此需要对 SQL 语句做解析。
 
@@ -171,7 +171,7 @@ mysql> select * fro test where id=1;
 ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'fro test where id=1' at line 1
 ```
 
-###### 词法分析器原理
+##### 词法分析器原理
 
 词法分析器分成6个主要步骤完成对sql语句的分析
 
@@ -199,7 +199,7 @@ SQL语句的分析分为词法分析与语法分析，mysql的词法分析由MyS
 
 至此我们分析器的工作任务也基本圆满了。接下来进入到优化器
 
-##### 优化器
+#### 优化器
 
 经过了分析器，MySQL 就知道你要做什么了。在开始执行之前，还要先经过优化器的处理。
 
@@ -215,7 +215,7 @@ mysql> select * from test1 join test2 using(ID) where test1.name=yangguo and tes
 
 这两种执行方法的逻辑结果是一样的，但是执行的效率会有不同，而优化器的作用就是决定选择使用哪一个方案。优化器阶段完成后，这个语句的执行方案就确定下来了，然后进入执行器阶段。如果你还有一些疑问，比如优化器是怎么选择索引的，有没有可能选择错等等。
 
-##### 执行器
+#### 执行器
 
 开始执行的时候，要先判断一下你对这个表 T 有没有执行查询的权限，如果没有，就会返回没有权限的错误，如下所示 (在工程实现上，如果命中查询缓存，会在查询缓存返回结果的时候，做权限验证。查询也会在优化器之前调用 precheck 验证权限)。
 
@@ -233,7 +233,7 @@ mysql> select * from test where id=1;
 
 至此，这个语句就执行完成了。对于有索引的表，执行的逻辑也差不多。第一次调用的是“取满足条件的第一行”这个接口，之后循环取“满足条件的下一行”这个接口，这些接口都是引擎中已经定义好的。你会在数据库的慢查询日志中看到一个 rows_examined 的字段，表示这个语句执行过程中扫描了多少行。这个值就是在执行器每次调用引擎获取数据行的时候累加的。在有些场景下，执行器调用一次，在引擎内部则扫描了多行，因此引擎扫描行数跟 rows_examined 并不是完全相同的。
 
-##### bin-log归档
+#### bin-log归档
 
 删库是不需要跑路的，因为我们的SQL执行时，会将sql语句的执行逻辑记录在我们的bin-log当中，什么是bin-log呢？
 
@@ -298,7 +298,7 @@ binlog里的内容不具备可读性，所以需要我们自己去判断恢复�
 /usr/local/mysql/bin/mysqlbinlog --no-defaults /usr/local/mysql/data/binlog/mysql-bin.000001 --stop-date= "2018-03-02 12:00:00"  --start-date= "2019-03-02 11:55:00"|mysql -uroot -p test(数据库)
 ```
 
-###### 归档测试
+##### 归档测试
 
 1. 定义一个存储过程，写入数据
 

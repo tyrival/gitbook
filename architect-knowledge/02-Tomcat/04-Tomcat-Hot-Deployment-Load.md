@@ -1,4 +1,4 @@
-## 2.4 Tomcat热部署和热加载
+# 2.4 Tomcat热部署和热加载
 
 要在运行的过程中升级 Web 应用，如果你不想重启系统，实现的方式有两种：热加载和热部署。
 
@@ -128,7 +128,7 @@ public void backgroundProcess() {
 
 
 
-###  2.4.1 Tomcat 热加载
+##  2.4.1 Tomcat 热加载
 
 有了 ContainerBase 的周期性任务处理“框架”，作为具体容器子类，只需要实现自己的周期性任务就行。而 Tomcat 的热加载，就是在 Context 容器中实现的。Context 容器的 backgroundProcess 方法是这样实现的：
 
@@ -178,7 +178,7 @@ WebappLoader 是如何实现热加载的，它主要是调用了 Context 容器�
 
 
 
-### 2.4.2 Tomcat 热部署
+## 2.4.2 Tomcat 热部署
 
 热部署跟热加载的本质区别是，热部署会重新部署 Web 应用，原来的 Context 对象会整个被销毁掉，因此这个 Context 所关联的一切资源都会被销毁，包括 Session。
 
@@ -289,7 +289,7 @@ JDK 中有哪些默认的类加载器？它们的本质区别是什么？为什�
 
 这里请你注意，类加载器的父子关系不是通过继承来实现的，比如 AppClassLoader 并不是 ExtClassLoader 的子类，而是说 AppClassLoader 的 parent 成员变量指向 ExtClassLoader 对象。同样的道理，如果你要自定义类加载器，不去继承 AppClassLoader，而是继承 ClassLoader 抽象类，再重写 findClass 和 loadClass 方法即可，Tomcat 就是通过自定义类加载器来实现自己的类加载逻辑。不知道你发现没有，如果你要打破双亲委托机制，就需要重写 loadClass 方法，因为 loadClass 的默认实现就是双亲委托机制。
 
-#### Tomcat 的类加载器
+### Tomcat 的类加载器
 
 Tomcat 的自定义类加载器 WebAppClassLoader 打破了双亲委托机制，**它首先自己尝试去加载某个类，如果找不到再代理给父类加载器**，其目的是优先加载 Web 应用自己定义的类。具体实现就是重写 ClassLoader 的两个方法：findClass 和 loadClass。
 
@@ -403,7 +403,7 @@ loadClass 方法稍微复杂一点，主要有六个步骤：
 5. 如果本地目录下没有这个类，说明不是 Web 应用自己定义的类，那么由系统类加载器去加载。这里请你注意，Web 应用是通过Class.forName调用交给系统类加载器的，因为Class.forName的默认加载器就是系统类加载器。
 6. 如果上述加载过程全部失败，抛出 ClassNotFound 异常。
 
-#### Tomcat 类加载器的层次结构
+### Tomcat 类加载器的层次结构
 
 1. 假如我们在 Tomcat 中运行了两个 Web 应用程序，两个 Web 应用中有同名的 Servlet，但是功能不同，Tomcat 需要同时加载和管理这两个同名的 Servlet 类，保证它们不会冲突，因此 Web 应用之间的类需要隔离。
 2. 假如两个 Web 应用都依赖同一个第三方的 JAR 包，比如 Spring，那 Spring 的 JAR 包被加载到内存后，Tomcat 要保证这两个 Web 应用能够共享，也就是说 Spring 的 JAR 包只被加载一次，否则随着依赖的第三方 JAR 包增多，JVM 的内存会膨胀。
@@ -411,13 +411,13 @@ loadClass 方法稍微复杂一点，主要有六个步骤：
 
 ![img](https://note.youdao.com/yws/public/resource/6c1a4fe250f949a9ced638b9fabd1235/xmlnote/3F431C2511E943B98544123C16726E7C/1387)
 
-#### Session
+### Session
 
 我们可以通过 Request 对象的 getSession 方法来获取 Session，并通过 Session 对象来读取和写入属性值。而 Session 的管理是由 Web 容器来完成的，主要是对 Session 的创建和销毁，除此之外 Web 容器还需要将 Session 状态的变化通知给监听者。
 
 当然 Session 管理还可以交给 Spring 来做，好处是与特定的 Web 容器解耦，Spring Session 的核心原理是通过 Filter 拦截 Servlet 请求，将标准的 ServletRequest 包装一下，换成 Spring 的 Request 对象，这样当我们调用 Request 对象的 getSession 方法时，Spring 在背后为我们创建和管理 Session。
 
-##### Session 的创建
+#### Session 的创建
 
 Tomcat 中主要由每个 Context 容器内的一个 Manager 对象来管理 Session。默认实现类为 StandardManager。下面我们通过它的接口来了解一下 StandardManager 的功能：
 
@@ -602,7 +602,7 @@ public void processExpires() {
 
 backgroundProcess 由 Tomcat 后台线程调用，默认是每隔 10 秒调用一次，但是 Session 的清理动作不能太频繁，因为需要遍历 Session 列表，会耗费 CPU 资源，所以在 backgroundProcess 方法中做了取模处理，backgroundProcess 调用 6 次，才执行一次 Session 清理，也就是说 Session 清理每 60 秒执行一次。
 
-##### Session 事件通知
+#### Session 事件通知
 
 按照 Servlet 规范，在 Session 的生命周期过程中，要将事件通知监听者，Servlet 规范定义了 Session 的监听器接口：
 

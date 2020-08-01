@@ -1,8 +1,8 @@
-## 1.7 GC调优（一）
+# 1.7 GC调优（一）
 
 事先启动一个web应用程序，用jps查看其进程id，接着用各种jdk自带命令优化应用
 
-### 1.7.1 Jmap
+## 1.7.1 Jmap
 
 此命令可以用来查看内存信息，实例个数以及占用内存大小
 
@@ -25,7 +25,7 @@ jmap -histo:live 30680
 - bytes：占用空间大小
 - class name：类名称，[C is a char[]，[S is a short[]，[I is a int[]，[B is a byte[]，[[I is a int[][]
 
-###### 堆信息
+##### 堆信息
 
 ```bash
 jmap -heap 30588
@@ -33,7 +33,7 @@ jmap -heap 30588
 
 ![jmap-heap](../source/images/ch-01/jmap-heap.png)
 
-###### 堆内存dump
+##### 堆内存dump
 
 ```bash
 jmap -dump:format=b,file=eureka.hprof 30588
@@ -75,7 +75,7 @@ public class OOMTest {
 
 
 
-### 1.7.2 Jstack
+## 1.7.2 Jstack
 
 用jstack加进程id查找死锁，见如下示例
 
@@ -141,9 +141,9 @@ java.lang.Thread.State: BLOCKED 线程状态
 
  
 
-#### 远程连接jvisualvm
+### 远程连接jvisualvm
 
-###### jar程序JMX配置
+##### jar程序JMX配置
 
 在生产环境因为安全性的考虑，通常不允许开放这类远程端口。
 
@@ -153,7 +153,7 @@ java.lang.Thread.State: BLOCKED 线程状态
 java -Dcom.sun.management.jmxremote.port=8888 -Djava.rmi.server.hostname=192.168.65.60 -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.authenticate=false -jar eureka-server.jar
 ```
 
-###### tomcat的JMX配置
+##### tomcat的JMX配置
 
 在catalina.sh文件里的最后一个JAVA_OPTS的赋值语句下一行增加如下配置行
 
@@ -168,7 +168,7 @@ JAVA_OPTS="$JAVA_OPTS -Dcom.sun.management.jmxremote.port=8888 -Djava.rmi.server
 systemctl stop firewalld
 ```
 
-#### jstack找出占用cpu最高的线程堆栈信息
+### jstack找出占用cpu最高的线程堆栈信息
 
 ```java
 package com.tuling.jvm;
@@ -218,7 +218,7 @@ public class Math {
 
 
 
-### 1.7.4 jinfo
+## 1.7.4 jinfo
 
 查看正在运行的Java应用程序的扩展参数 
 
@@ -232,7 +232,7 @@ public class Math {
 
 
 
-### 1.7.5 jstat
+## 1.7.5 jstat
 
 jstat命令可以查看堆内存各部分的使用量，以及加载类的数量。命令的格式如下：
 
@@ -242,7 +242,7 @@ jstat [-命令选项] [vmid] [间隔时间(毫秒)] [查询次数]
 
 注意：使用的jdk版本是jdk8
 
-##### 垃圾回收统计
+#### 垃圾回收统计
 
 **jstat -gc pid 最常用**，可以评估程序内存使用及GC压力整体情况
 
@@ -266,7 +266,7 @@ jstat [-命令选项] [vmid] [间隔时间(毫秒)] [查询次数]
 - FGCT：老年代垃圾回收消耗时间，单位s
 - GCT：垃圾回收消耗总时间，单位s
 
-##### 堆内存统计
+#### 堆内存统计
 
 ![jstat-gccapacity](../source/images/ch-01/jstat-gccapacity.png)
 
@@ -289,7 +289,7 @@ jstat [-命令选项] [vmid] [间隔时间(毫秒)] [查询次数]
 - YGC：年轻代gc次数
 - FGC：老年代GC次数
 
-##### 新生代垃圾回收统计
+#### 新生代垃圾回收统计
 
 ![jstat-gcnew](../source/images/ch-01/jstat-gcnew.png)
 
@@ -305,7 +305,7 @@ jstat [-命令选项] [vmid] [间隔时间(毫秒)] [查询次数]
 - YGC：年轻代垃圾回收次数
 - YGCT：年轻代垃圾回收消耗时间
 
-##### 新生代内存统计
+#### 新生代内存统计
 
 ![jstat-gcnewcapacity](../source/images/ch-01/jstat-gcnewcapacity.png)
 
@@ -321,7 +321,7 @@ jstat [-命令选项] [vmid] [间隔时间(毫秒)] [查询次数]
 - YGC：年轻代垃圾回收次数
 - FGC：老年代回收次数
 
-##### 老年代垃圾回收统计
+#### 老年代垃圾回收统计
 
 ![jstat-gcold](../source/images/ch-01/jstat-gcold.png)
 
@@ -336,7 +336,7 @@ jstat [-命令选项] [vmid] [间隔时间(毫秒)] [查询次数]
 - FGCT：老年代垃圾回收消耗时间
 - GCT：垃圾回收消耗总时间
 
-##### 老年代内存统计
+#### 老年代内存统计
 
 ![jstat-gcoldcapacity](../source/images/ch-01/jstat-gcoldcapacity.png)
 
@@ -349,7 +349,7 @@ jstat [-命令选项] [vmid] [间隔时间(毫秒)] [查询次数]
 - FGCT：老年代垃圾回收消耗时间
 - GCT：垃圾回收消耗总时间
 
-##### 元数据空间统计
+#### 元数据空间统计
 
 ![jstat-gcmetacapacity](../source/images/ch-01/jstat-gcmetacapacity.png)
 
@@ -379,23 +379,23 @@ jstat [-命令选项] [vmid] [间隔时间(毫秒)] [查询次数]
 
 
 
-### 1.7.6 JVM运行情况预估
+## 1.7.6 JVM运行情况预估
 
 用 `jstat gc -pid` 命令可以计算出如下一些关键数据，有了这些数据就可以采用之前介绍过的优化思路，先给自己的系统设置一些初始性的JVM参数，比如堆内存大小，年轻代大小，Eden和Survivor的比例，老年代的大小，大对象的阈值，大龄对象进入老年代的阈值等。
 
-##### 年轻代对象增长的速率
+#### 年轻代对象增长的速率
 
 可以执行命令 jstat -gc pid 1000 10 (每隔1秒执行1次命令，共执行10次)，通过观察EU(eden区的使用)来估算每秒eden大概新增多少对象，如果系统负载不高，可以把频率1秒换成1分钟，甚至10分钟来观察整体情况。注意，一般系统可能有高峰期和日常期，所以需要在不同的时间分别估算不同情况下对象增长速率。
 
-##### Young GC的触发频率和每次耗时
+#### Young GC的触发频率和每次耗时
 
 知道年轻代对象增长速率我们就能推根据eden区的大小推算出Young GC大概多久触发一次，Young GC的平均耗时可以通过 YGCT/YGC 公式算出，根据结果我们大概就能知道**系统大概多久会因为Young GC的执行而卡顿多久。**
 
-##### 每次Young GC后有多少对象存活和进入老年代
+#### 每次Young GC后有多少对象存活和进入老年代
 
 这个因为之前已经大概知道Young GC的频率，假设是每5分钟一次，那么可以执行命令 jstat -gc pid 300000 10 ，观察每次结果eden，survivor和老年代使用的变化情况，在每次gc后eden区使用一般会大幅减少，survivor和老年代都有可能增长，这些增长的对象就是每次Young GC后存活的对象，同时还可以看出每次Young GC后进去老年代大概多少对象，从而可以推算出**老年代对象增长速率。**
 
-##### Full GC的触发频率和每次耗时
+#### Full GC的触发频率和每次耗时
 
 知道了老年代对象的增长速率就可以推算出Full GC的触发频率了，Full GC的每次耗时可以用公式 FGCT/FGC 计算得出。
 
@@ -403,7 +403,7 @@ jstat [-命令选项] [vmid] [间隔时间(毫秒)] [查询次数]
 
 
 
-### 1.7.7 系统频繁Full GC导致系统卡顿是怎么回事
+## 1.7.7 系统频繁Full GC导致系统卡顿是怎么回事
 
 - 机器配置：2核4G
 - JVM内存大小：2G
@@ -509,7 +509,7 @@ public class IndexController {
 
 同时，java的代码也是需要优化的，一次查询出5000条对象出来，明显不合适，要根据之前说的各种原则尽量优化到合适的值，尽量消除这种朝生夕死的对象导致的full gc
 
-#### 内存泄露
+### 内存泄露
 
 一般电商架构可能会使用多级缓存架构，就是redis加上JVM级缓存。但有些情况下，为了方便对于JVM级缓存就简单使用一个hashmap，于是不断往里面放缓存数据，但是很少考虑这个map的容量问题，结果这个缓存map越来越大，一直占用着老年代的很多空间，时间长了就会导致full gc非常频繁，这就是一种内存泄漏，对于一些老旧数据没有及时清理导致一直占用着宝贵的内存资源，时间长了除了导致full gc，还有可能导致OOM。
 

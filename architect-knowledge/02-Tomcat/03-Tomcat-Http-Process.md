@@ -1,6 +1,6 @@
-## 2.3 Tomcat线程模型HTTP请求处理与管道线模型
+# 2.3 Tomcat线程模型HTTP请求处理与管道线模型
 
-### 2.3.1 Connector
+## 2.3.1 Connector
 
 蓝色框包裹的是nio的线程模型
 
@@ -20,7 +20,7 @@
 
 
 
-### 2.3.2 Tomcat connector 并发参数解读
+## 2.3.2 Tomcat connector 并发参数解读
 
 | 名称 | 描述 |
 |:----|:----|
@@ -41,7 +41,7 @@
 
 
 
-### 2.3.3 容器
+## 2.3.3 容器
 
 只有容器才有管道线，其他组件没有
 
@@ -51,43 +51,43 @@ Tomcat中有四个容器，分别是Engine,Host,context,Wrapper。级别是从�
 
 
 
-### 2.3.4 TCP三次握手
+## 2.3.4 TCP三次握手
 
 ![tcp-handshake](../source/images/ch-02/tcp-handshake.png)
 
 
 
-### 2.3.5 BIO & NIO
+## 2.3.5 BIO & NIO
 
 ![bio-and-nio](../source/images/ch-02/bio-and-nio.png)
 
 
 
-### 2.3.6 网络请求响应
+## 2.3.6 网络请求响应
 
 ![request-and-response](../source/images/ch-02/request-and-response.png)
 
 
 
-### 2.3.7 阻塞式 I/O 模型(blocking I/O）
+## 2.3.7 阻塞式 I/O 模型(blocking I/O）
 
 ![blocking-io](../source/images/ch-02/blocking-io.png)
 
 
 
-### 2.3.8 非阻塞式 I/O 模型(non-blocking I/O）
+## 2.3.8 非阻塞式 I/O 模型(non-blocking I/O）
 
 ![non-blocking-io](../source/images/ch-02/non-blocking-io.png)
 
 
 
-### 2.3.9 I/O模型3：I/O 复用模型(I/O multiplexing）
+## 2.3.9 I/O模型3：I/O 复用模型(I/O multiplexing）
 
 ![multiplexing-io](../source/images/ch-02/multiplexing-io.png)
 
 
 
-### 2.3.10 I/O模型5：异步 I/O 模型（即AIO，全称asynchronous I/O）
+## 2.3.10 I/O模型5：异步 I/O 模型（即AIO，全称asynchronous I/O）
 
 ![asynchronous-io](../source/images/ch-02/asynchronous-io.png)
 

@@ -1,4 +1,4 @@
-## 第3章 MySQL
+# 第3章 MySQL
 
 [3.1 Mysql索引数据结构](./01-Mysql-index-data-structure.md)
 
