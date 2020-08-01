@@ -12,6 +12,8 @@
 
 [3.6 Mysql锁与事务隔离级别](./06-Mysql-Lock-Transaction-Isolation.md)
 
+[3.7 MVCC底层原理与Mysql日志详解](./07-MVCC-And-Log.md)
+
 [附1 慢SQL查询](./Slow-Sql-Query.md)
 
 [附2 阿里巴巴手册（泰山版）解读-MySQL数据库](./Ali-Java-Explain.md)

@@ -122,9 +122,7 @@
 
 ### SQL语句
 
-- 【强制】不要使用 count(列名)或 count(常量)来替代 count(\*)，count(\*)是 SQL92 定义的标
-
-  准统计行数的语法，跟数据库无关，跟 NULL 和非 NULL 无关。
+- 【强制】不要使用 count(列名)或 count(常量)来替代 count(\*)，count(\*)是 SQL92 定义的标准统计行数的语法，跟数据库无关，跟 NULL 和非 NULL 无关。
 
   说明：count(\*)会统计值为 NULL 的行，而 count(列名)不会统计此列为 NULL 值的行。
 
