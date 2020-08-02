@@ -26,6 +26,7 @@
         * [附1 慢SQL查询](03-MySQL/Slow-Sql-Query.md)
         * [附2 阿里巴巴手册（泰山版）解读-MySQL数据库](03-MySQL/Ali-Java-Explain.md)
     * [第4章 并发编程](04-Concurrent/README.md)
+        * [4.1 并发编程之JMM & JSR133规范解读](04-Concurrent/01-JMM-JSR133.md)
     * [第5章 源码框架](05-Source/README.md)
     * [第6章 分布式](06-Distributed/README.md)
     * [第7章 微服务](07-Microservice/README.md)
