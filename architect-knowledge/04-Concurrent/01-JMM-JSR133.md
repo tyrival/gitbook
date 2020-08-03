@@ -116,7 +116,7 @@ public class TwoDimensionalArraySum {
 
     public static void main(String[] args) throws Exception {
         /*
-         * 初始化数组
+         * 初始化数组，是一个1024*1024行，6列的矩阵
          */
         longs = new long[DIMENSION_1][];
         for (int i = 0; i < DIMENSION_1; i++) {
@@ -156,6 +156,17 @@ public class TwoDimensionalArraySum {
         System.out.println("sum2:" + sum);
     }
 }
+
+/*
+ * sum1先遍历DIMENSION_1，所以根据空间局部性原理，CPU会将这一个维度全部读出，
+ * 也就是每次先从内存读取1024*1024个1L，然后在缓存中进行累加，所以一共需要从内存中读取6次；
+ * sum2需要从内存读取1024*1024次，所以sum2的运行时间是sum1的2.5倍还多
+ */
+Array初始化完毕....
+spend time1:1185
+sum1:629145600
+spend time2:2845
+sum2:629145600
 ```
 
 ##### 带有高速缓存的CPU执行计算的流程
@@ -180,7 +191,7 @@ Linux与Windows只用到了2个级别：ring0、ring3，操作系统内部内部
 
 step1：CPU从ring3切换ring0创建线程
 
-step2：创建完毕,CPU从ring0切换回ring3
+step2：创建完毕，CPU从ring0切换回ring3
 
 step3：线程执行JVM程序
 
@@ -209,15 +220,15 @@ Linux为内核代码和数据结构预留了几个页框，这些页永远不会
 
 ![klt-architecture](../source/images/ch-04/klt-architecture.png)
 
-内核线程(KLT)：系统内核管理线程(KLT),内核保存线程的状态和上下文信息，线程阻塞不会引起进程阻塞。在多处理器系统上，多线程在多处理器上并行运行。线程的创建、调度和管理由内核完成，效率比ULT要慢，比进程操作快。 
+内核线程(KLT)：系统内核管理线程(KLT)，内核保存线程的状态和上下文信息，线程阻塞不会引起进程阻塞。在多处理器系统上，多线程在多处理器上并行运行。线程的创建、调度和管理由内核完成，效率比ULT要慢，比进程操作快。 
+
+> **注**：JVM采用的是KLT线程模型。
 
 #### 用户线程模型
 
 ![ult-architecture](../source/images/ch-04/ult-architecture.png)
 
 用户线程(ULT)：用户程序实现,不依赖操作系统核心,应用提供创建、同步、调度和管理线程的函数来控制用户线程。不需要用户态/内核态切换，速度快。内核对ULT无感知，线程阻塞则进程（包括它的所有线程）阻塞。
-
-> **注**：JVM采用的是KLT线程模型。
 
 
 
@@ -231,7 +242,11 @@ Linux为内核代码和数据结构预留了几个页框，这些页永远不会
 
 线程是OS(操作系统)调度CPU的最小单元，也叫轻量级进程（Light Weight Process），在一个进程里可以创建多个线程，这些线程都拥有各自的计数器、堆栈和局部变量等属性，并且能够访问共享的内存变量。CPU在这些线程上高速切换，让使用者感觉到这些线程在同时执行，即并发的概念，相似的概念还有并行！
 
-线程上下文切换过程：
+CPU在运行多个线程时，会把运行时间分成若干**时间片**，分配给各线程，当一个线程运行时，其他线程处于挂起状态，这种方式叫做**并发**。
+
+当一个线程的时间片用完，如果任务还未结束，这个线程将挂起，而运行状态将被保留，然后切换到正在排队的下一个线程；如果时间片还未用完而任务结束，则直接切换到下一个线程，这个过程就叫做上下文切换。
+
+线程上下文切换过程如下：
 
 ![thread-and-process](../source/images/ch-04/thread-and-process.png)
 
