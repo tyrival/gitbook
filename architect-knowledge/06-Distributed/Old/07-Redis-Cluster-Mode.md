@@ -27,7 +27,7 @@ redis集群是一个由多个主从节点群组成的分布式服务器群，它
 # 安装gcc
 yum install gcc
 
-# 把下载好的redis-5.0.3.tar.gz放在/usr/local文件夹下，并解压
+# 把下载好的redis-5.0.3.tar.gz放在/usr文件夹下，并解压
 wget http://download.redis.io/releases/redis-5.0.3.tar.gz
 tar xzf redis-5.0.3.tar.gz
 cd redis-5.0.3
@@ -35,8 +35,9 @@ cd redis-5.0.3
 # 进入到解压好的redis-5.0.3目录下，进行编译与安装
 make 
 
+# 要使用后台启动，所以修改redis.conf里的daemonize改为yes
+
 # 启动并指定配置文件
-# 注意要使用后台启动，所以修改redis.conf里的daemonize改为yes
 src/redis-server redis.conf
 
 # 验证启动是否成功 
@@ -93,14 +94,14 @@ masterauth tyrival		⑪
 3. 把修改后的配置文件，copy到8004，修改第②、③、⑤项里的端口号，可以用批量替换
 
 ```bash
-:%s/源字符串/目的字符串/g 
+:%s/源字符串/目的字符串/g
 ```
 
 4. 另外两台机器也需要做上面几步操作，第二台机器用8002和8005，第三台机器用8003和8006
 5. 分别启动6个redis实例，然后检查是否启动成功
 
 ```bash
-/usr/local/redis-5.0.3/src/redis-server /usr/local/redis-cluster/800*/redis.conf
+/usr/redis-5.0.3/src/redis-server /usr/local/redis-cluster/800*/redis.conf
 # 查看是否启动成功
 ps -ef | grep redis
 ```
@@ -109,19 +110,21 @@ ps -ef | grep redis
 
 ```bash
 # 下面命令里的1代表为每个创建的主服务器节点创建一个从服务器节点
-# 执行这条命令需要确认三台机器之间的redis实例要能相互访问，可以先简单把所有机器防火墙关掉，如果不关闭防火墙则需要打开redis服务端口和集群节点gossip通信端口16379(默认是在redis端口号上加1W)
+# 执行这条命令需要确认三台机器之间的redis实例要能相互访问，可以先简单把所有机器防火墙关掉，如果不关闭防火墙则需要打开redis服务端口和集群节点gossip通信端口16379(默认是在redis端口号上加10000)
+
 # 关闭防火墙
 # systemctl stop firewalld # 临时关闭防火墙
 # systemctl disable firewalld # 禁止开机启动
+
 # --cluster-replicas 1 表示为每个主节点创建一个副本
-/usr/local/redis-5.0.3/src/redis-cli -a tyrival --cluster create --cluster-replicas 1 192.168.0.61:8001 192.168.0.62:8002 192.168.0.63:8003 192.168.0.61:8004 192.168.0.62:8005 192.168.0.63:8006 
+/usr/redis-5.0.3/src/redis-cli -a tyrival --cluster create --cluster-replicas 1 10.211.55.9:8001 10.211.55.10:8002 10.211.55.11:8003 10.211.55.9:8004 10.211.55.10:8005 10.211.55.11:8006 
 ```
 
 7. 验证集群
 
 ```bash
 # 连接任意一个客户端即可：./redis-cli -c -h -p (-a访问服务端密码，-c表示集群模式，指定ip地址和端口号）
-/usr/local/redis-5.0.3/src/redis-cli -a tyrival -c -h 192.168.0.61 -p 8001
+/usr/redis-5.0.3/src/redis-cli -a tyrival -c -h 10.211.55.9 -p 8001
 
 # 查看集群信息
 cluster info
@@ -130,7 +133,7 @@ cluster info
 cluster nodes
 
 # 关闭集群则需要逐个进行关闭，使用命令：
-/usr/local/redis-5.0.3/src/redis-cli -a tyrival -c -h 192.168.0.60 -p 800* shutdown
+/usr/redis-5.0.3/src/redis-cli -a tyrival -c -h 10.211.55.* -p 800* shutdown
 ```
 
 
@@ -150,6 +153,16 @@ cluster nodes
 Java编写访问redis集群的代码非常简单，如下所示：
 
 ```java
+package com.tyrival.distributed.old.lession07;
+
+import redis.clients.jedis.HostAndPort;
+import redis.clients.jedis.JedisCluster;
+import redis.clients.jedis.JedisPoolConfig;
+
+import java.io.IOException;
+import java.util.HashSet;
+import java.util.Set;
+
 public class JedisClusterTest {
     public static void main(String[] args) throws IOException {
 
@@ -159,19 +172,19 @@ public class JedisClusterTest {
         config.setMinIdle(5);
 
         Set<HostAndPort> jedisClusterNode = new HashSet<HostAndPort>();
-        jedisClusterNode.add(new HostAndPort("192.168.0.61", 8001));
-        jedisClusterNode.add(new HostAndPort("192.168.0.62", 8002));
-        jedisClusterNode.add(new HostAndPort("192.168.0.63", 8003));
-        jedisClusterNode.add(new HostAndPort("192.168.0.61", 8004));
-        jedisClusterNode.add(new HostAndPort("192.168.0.62", 8005));
-        jedisClusterNode.add(new HostAndPort("192.168.0.63", 8006));
+        jedisClusterNode.add(new HostAndPort("10.211.55.9", 8001));
+        jedisClusterNode.add(new HostAndPort("10.211.55.10", 8002));
+        jedisClusterNode.add(new HostAndPort("10.211.55.11", 8003));
+        jedisClusterNode.add(new HostAndPort("10.211.55.9", 8004));
+        jedisClusterNode.add(new HostAndPort("10.211.55.10", 8005));
+        jedisClusterNode.add(new HostAndPort("10.211.55.11", 8006));
 
         JedisCluster jedisCluster = null;
         try {
             // connectionTimeout：指的是连接一个url的连接等待时间
             // soTimeout：指的是连接上一个url，获取response的返回等待时间
-            jedisCluster = 
-              	new JedisCluster(jedisClusterNode, 6000, 5000, 10, "tyrival", config);
+            jedisCluster =
+                    new JedisCluster(jedisClusterNode, 6000, 5000, 10, "tyrival", config);
             System.out.println(jedisCluster.set("cluster", "tyrival"));
             System.out.println(jedisCluster.get("cluster"));
         } catch (Exception e) {
@@ -216,7 +229,7 @@ spring:
     timeout: 3000
     password: tyrival
     cluster:
-      nodes: 192.168.0.61:8001,192.168.0.62:8002,192.168.0.63:8003,192.168.0.61:8004,192.168.0.62:8005,192.168.0.63:8006
+      nodes: 10.211.55.9:8001,10.211.55.10:8002,10.211.55.11:8003,10.211.55.9:8004,10.211.55.10:8005,10.211.55.11:8006
    lettuce:
       pool:
         max-idle: 50
@@ -228,21 +241,40 @@ spring:
 访问代码：
 
 ```java
-@RestController
-public class IndexController {
+package com.tyrival.distributed.old.lession07;
 
-    private static final Logger logger = LoggerFactory.getLogger(IndexController.class);
+import com.tyrival.distributed.old.lession05.RedisOpsController;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class IndexClusterController {
+
+    private static final Logger logger = LoggerFactory.getLogger(RedisOpsController.class);
 
     @Autowired
     private StringRedisTemplate stringRedisTemplate;
 
     @RequestMapping("/test_cluster")
     public void testCluster() throws InterruptedException {
-       stringRedisTemplate.opsForValue().set("tyrival", "666");
-       System.out.println(stringRedisTemplate.opsForValue().get("tyrival"));
+        stringRedisTemplate.opsForValue().set("tyrival", "666");
+        logger.info(stringRedisTemplate.opsForValue().get("tyrival"));
+
+        stringRedisTemplate.opsForValue().set("tom", "666");
+        logger.info(stringRedisTemplate.opsForValue().get("tom"));
     }
 }
 ```
+
+> **注意**
+>
+> 执行上述代码可以发现，在8001节点遍历keys只能看到tyrival，看不到tom，说明tyrival储存在8001节点；同时，在8001节点查询tom，会被重定向到8002节点。
+>
+> ![redis-cluster-sample-01](../../source/images/ch-06/old/redis-cluster-sample-01.png)
 
 
 
@@ -264,7 +296,7 @@ HASH_SLOT = CRC16(key) mod 16384
 
 当客户端向一个错误的节点发出了指令，该节点会发现指令的 key 所在的槽位并不归自己管理，这时它会向客户端发送一个特殊的跳转指令携带目标操作的节点地址，告诉客户端去连这个节点去获取数据。客户端收到指令后除了跳转到正确的节点上去操作，还会同步更新纠正本地的槽位映射表缓存，后续所有 key 将使用新的槽位映射表。
 
-![redis-redirect-to-slot](../../source/images/ch-06/old/redis-redirect-to-slot.png)
+![redis-cluster-sample-02](/Users/tyrival/Desktop/redis-cluster-sample-02.png)
 
 #### Redis集群节点间的通信机制
 
@@ -298,7 +330,7 @@ gossip协议包含多种消息，包括ping，pong，meet，fail等等。
 
 gossip协议的优点在于元数据的更新比较分散，不是集中在一个地方，更新请求会陆陆续续，打到所有节点上去更新，有一定的延时，降低了压力；缺点在于元数据更新有延时可能导致集群的一些操作会有一些滞后。
 
-- 10000端口 
+- +10000端口 
 
   每个节点都有一个专门用于节点间通信的端口，就是自己提供服务的端口号+10000，比如7001，那么用于节点间通信的就是17001端口。 每个节点每隔一段时间都会往另外几个节点发送ping消息，同时其他几点接收到ping消息之后返回pong消息。
 
@@ -373,29 +405,56 @@ Redis3.0以后的版本虽然有了集群功能，提供了比之前版本的哨
 1. 启动整个集群
 
 ```bash
-/usr/local/redis-5.0.3/src/redis-server /usr/local/redis-cluster/8001/redis.conf
-/usr/local/redis-5.0.3/src/redis-server /usr/local/redis-cluster/8002/redis.conf
-/usr/local/redis-5.0.3/src/redis-server /usr/local/redis-cluster/8003/redis.conf
-/usr/local/redis-5.0.3/src/redis-server /usr/local/redis-cluster/8004/redis.conf
-/usr/local/redis-5.0.3/src/redis-server /usr/local/redis-cluster/8005/redis.conf
-/usr/local/redis-5.0.3/src/redis-server /usr/local/redis-cluster/8006/redis.conf
+/usr/redis-5.0.3/src/redis-server /usr/local/redis-cluster/8001/redis.conf
+/usr/redis-5.0.3/src/redis-server /usr/local/redis-cluster/8002/redis.conf
+/usr/redis-5.0.3/src/redis-server /usr/local/redis-cluster/8003/redis.conf
+/usr/redis-5.0.3/src/redis-server /usr/local/redis-cluster/8004/redis.conf
+/usr/redis-5.0.3/src/redis-server /usr/local/redis-cluster/8005/redis.conf
+/usr/redis-5.0.3/src/redis-server /usr/local/redis-cluster/8006/redis.conf
 ```
 
 2. 客户端连接8001端口的redis实例
 
 ```bash
-/usr/local/redis-5.0.3/src/redis-cli -a zhuge -c -h 192.168.0.61 -p 8001
+/usr/redis-5.0.3/src/redis-cli -a zhuge -c -h 10.211.55.9 -p 8001
 ```
 
 3. 查看集群状态
 
 ```bash
-192.168.0.61:8001> cluster  nodes
+10.211.55.9:8001> cluster nodes
 ```
 
-![redis-cluster-scaling-02](../../source/images/ch-06/old/redis-cluster-scaling-02.png)
+![redis-cluster-node](../../source/images/ch-06/old/redis-cluster-node.png)
 
 从上图可以看出，整个集群运行正常，三个master节点和三个slave节点，8001端口的实例节点存储0-5460这些hash槽，8002端口的实例节点存储5461-10922这些hash槽，8003端口的实例节点存储10923-16383这些hash槽，这三个master节点存储的所有hash槽组成redis集群的存储槽位，slave点是每个主节点的备份从节点，不显示存储槽位  
+
+```bash
+10.211.55.9:8001> cluster info
+```
+
+![redis-cluster-info](../../source/images/ch-06/old/redis-cluster-info.png)
+
+##### 查看redis集群的命令帮助
+
+```bash
+cd /usr/redis-5.0.3
+src/redis-cli --cluster help
+```
+
+![redis-cluster-scaling-04](../../source/images/ch-06/old/redis-cluster-scaling-04.png)
+
+- create：创建一个集群环境host1:port1 ... hostN:portN
+
+- call：可以执行redis命令
+
+- add-node：将一个节点添加到集群里，第一个参数为新节点的ip:port，第二个参数为集群中任意一个已经存在的节点的ip:port 
+
+- del-node：移除一个节点
+
+- reshard：重新分片
+
+- check：检查集群状态 
 
 #### 集群操作
 
@@ -416,57 +475,36 @@ cp redis.conf /usr/local/redis-cluster/8008/
 # 修改8007文件夹下的redis.conf配置文件
 vim /usr/local/redis-cluster/8007/redis.conf
 # 修改如下内容：
-port:8007
+port 8007
 dir /usr/local/redis-cluster/8007/
 cluster-config-file nodes-8007.conf
 
 # 修改8008文件夹下的redis.conf配置文件
 vim /usr/local/redis-cluster/8008/redis.conf
 修改内容如下：
-port:8008
+port 8008
 dir /usr/local/redis-cluster/8008/
 cluster-config-file nodes8008.conf
 
 # 启动8007和8008俩个服务并查看服务状态
-/usr/local/redis-5.0.3/src/redis-server /usr/local/redis-cluster/8007/redis.conf
-/usr/local/redis-5.0.3/src/redis-server /usr/local/redis-cluster/8008/redis.conf
+/usr/redis-5.0.3/src/redis-server /usr/local/redis-cluster/8007/redis.conf
+/usr/redis-5.0.3/src/redis-server /usr/local/redis-cluster/8008/redis.conf
 ps -el | grep redis
 ```
-
-##### 查看redis集群的命令帮助
-
-```bash
-cd /usr/local/redis-5.0.3
-src/redis-cli --cluster help
-```
-
-![redis-cluster-scaling-04](../../source/images/ch-06/old/redis-cluster-scaling-04.png)
-
-- create：创建一个集群环境host1:port1 ... hostN:portN
-
-- call：可以执行redis命令
-
-- add-node：将一个节点添加到集群里，第一个参数为新节点的ip:port，第二个参数为集群中任意一个已经存在的节点的ip:port 
-
-- del-node：移除一个节点
-
-- reshard：重新分片
-
-- check：检查集群状态 
 
 ##### 配置8007为集群主节点
 
 使用add-node命令新增一个主节点8007(master)，前面的ip:port为新增节点，后面的ip:port为已知存在节点，看到日志最后有"[OK] New node added correctly"提示代表新节点加入成功
 
 ```bash
-/usr/local/redis-5.0.3/src/redis-cli -a zhuge --cluster add-node 192.168.0.61:8007 192.168.0.61:8001
+/usr/redis-5.0.3/src/redis-cli -a tyrival --cluster add-node 10.211.55.12:8007 10.211.55.9:8001
 ```
 
 ##### 查看集群状态
 
 ```bash
-/usr/local/redis-5.0.3/src/redis-cli -a zhuge -c -h 192.168.0.61 -p 8001
-192.168.0.61:8001> cluster nodes
+/usr/redis-5.0.3/src/redis-cli -a tyrival -c -h 10.211.55.9 -p 8001
+10.211.55.9:8001> cluster nodes
 ```
 
 ![redis-cluster-scaling-05](../../source/images/ch-06/old/redis-cluster-scaling-05.png)
@@ -480,45 +518,47 @@ src/redis-cli --cluster help
 使用redis-cli命令为8007分配hash槽，找到集群中的任意一个主节点，对其进行重新分片工作。
 
 ```bash
-/usr/local/redis-5.0.3/src/redis-cli -a zhuge --cluster reshard 192.168.0.61:8001
+/usr/redis-5.0.3/src/redis-cli -a tyrival --cluster reshard 10.211.55.9:8001
 ```
 
 输出如下：
 
 ```bash
 ... ...
-How many slots do you want to move (from 1 to 16384)? 600
 # 需要多少个槽移动到新的节点上，自己设置，比如600个hash槽
-What is the receiving node ID? 2728a594a0498e98e4b83a537e19f9a0a3790f38
+How many slots do you want to move (from 1 to 16384)? 600
+
 # 把这600个hash槽移动到哪个节点上去，需要指定节点id
+What is the receiving node ID? 4de61d99866c684ec1ea7f8104f6b79768d113ed
+
+# 输入all为从所有主节点(8001,8002,8003)中分别抽取相应的槽数指定到新节点中，抽取的总槽数为600个
 Please enter all the source node IDs.
 Type 'all' to use all the nodes as source nodes for the hash slots.
 Type 'done' once you entered all the source nodes IDs.
 Source node 1:all
-# 输入all为从所有主节点(8001,8002,8003)中分别抽取相应的槽数指定到新节点中，抽取的总槽数为600个
- ... ...
-Do you want to proceed with the proposed reshard plan (yes/no)? yes
+... ...
 # 输入yes确认开始执行分片任务
+Do you want to proceed with the proposed reshard plan (yes/no)? yes
 ......
 ```
 
 ##### 查看最新的集群状态
 
 ```bash
-/usr/local/redis-5.0.3/src/redis-cli -a zhuge -c -h 192.168.0.61 -p 8001
-192.168.0.61:8001> cluster nodes
+/usr/redis-5.0.3/src/redis-cli -a tyrival -c -h 10.211.55.9 -p 8001
+10.211.55.9:8001> cluster nodes
 ```
 
 ![redis-cluster-scaling-06](../../source/images/ch-06/old/redis-cluster-scaling-06.png)
 
-如上图所示，现在我们的8007已经有hash槽了，也就是说可以在8007上进行读写数据啦！到此为止我们的8007已经加入到集群中，并且是主节点(Master)
+如上图所示，现在8007已经有hash槽了，也就是说可以在8007上进行读写数据了。8007已经加入到集群中，并且是主节点(Master)。
 
 ##### 配置8008为8007的从节点
 
 添加从节点8008到集群中去并查看集群状态
 
 ```bash
-/usr/local/redis-5.0.3/src/redis-cli -a zhuge --cluster add-node 192.168.0.61:8008 192.168.0.61:8001
+/usr/redis-5.0.3/src/redis-cli -a tyrival --cluster add-node 10.211.55.12:8008 10.211.55.9:8001
 ```
 
 ![redis-cluster-scaling-07](../../source/images/ch-06/old/redis-cluster-scaling-07.png)
@@ -528,8 +568,9 @@ Do you want to proceed with the proposed reshard plan (yes/no)? yes
 我们需要执行replicate命令来指定当前节点(从节点)的主节点id为哪个,首先需要连接新加的8008节点的客户端，然后使用集群命令进行操作，把当前的8008(slave)节点指定到一个主节点下(这里使用之前创建的8007主节点)
 
 ```bash
-/usr/local/redis-5.0.3/src/redis-cli -a zhuge -c -h 192.168.0.61 -p 8008
-192.168.0.61:8008> cluster replicate 2728a594a0498e98e4b83a537e19f9a0a3790f38  #后面这串id为8007的节点id
+/usr/redis-5.0.3/src/redis-cli -a tyrival -c -h 10.211.55.12 -p 8008
+# 后面的id为8007的节点id
+10.211.55.12:8008> cluster replicate 4de61d99866c684ec1ea7f8104f6b79768d113ed
 ```
 
 查看集群状态，8008节点已成功添加为8007节点的从节点
@@ -538,10 +579,10 @@ Do you want to proceed with the proposed reshard plan (yes/no)? yes
 
 ##### 删除8008从节点
 
-用del-node删除从节点8008，指定删除节点ip和端口，以及节点id(红色为8008节点id)
+用del-node删除从节点8008，指定删除节点ip、端口和节点id
 
 ```bash
-/usr/local/redis-5.0.3/src/redis-cli -a zhuge --cluster del-node 192.168.0.61:8008 a1cfe35722d151cf70585cee21275565393c0956
+/usr/redis-5.0.3/src/redis-cli -a tyrival --cluster del-node 10.211.55.12:8008 9e32ed7d916cba1b5f65bbea2d1efe440d3baf26
 ```
 
 再次查看集群状态，如下图所示，8008这个slave节点已经移除，并且该节点的redis服务也已被停止
@@ -553,7 +594,7 @@ Do you want to proceed with the proposed reshard plan (yes/no)? yes
 最后，我们尝试删除之前加入的主节点8007，这个步骤相对比较麻烦一些，因为主节点的里面是有分配了hash槽的，所以我们这里必须先把8007里的hash槽放入到其他的可用主节点中去，然后再进行移除节点操作，不然会出现数据丢失问题(目前只能把master的数据迁移到一个节点上，暂时做不了平均分配功能)，执行命令如下：
 
 ```bash
-/usr/local/redis-5.0.3/src/redis-cli -a zhuge --cluster reshard 192.168.0.61:8007
+/usr/redis-5.0.3/src/redis-cli -a tyrival --cluster reshard 10.211.55.12:8007
 ```
 
 输出如下：
@@ -561,30 +602,32 @@ Do you want to proceed with the proposed reshard plan (yes/no)? yes
 ```bash
 ... ...
 How many slots do you want to move (from 1 to 16384)? 600
-What is the receiving node ID? dfca1388f124dec92f394a7cc85cf98cfa02f86f
-(ps:这里是需要把数据移动到哪？8001的主节点id)
+
+# 需要把数据移动到哪？8001的主节点id
+What is the receiving node ID? ce66b4b7592d2259028650ed9a699006005476be
+
+# 数据源，也就是8007节点id
 Please enter all the source node IDs.
 Type 'all' to use all the nodes as source nodes for the hash slots.
 Type 'done' once you entered all the source nodes IDs.
 Source node 1:2728a594a0498e98e4b83a537e19f9a0a3790f38
-(ps:这里是需要数据源，也就是我们的8007节点id)
+# 这里直接输入done 开始生成迁移计划
 Source node 2:done
-# ps:这里直接输入done 开始生成迁移计划
  ... ...
+# 输入yes开始迁移
 Do you want to proceed with the proposed reshard plan (yes/no)? Yes
-# 这里输入yes开始迁移
 ```
 
-至此，我们已经成功的把8007主节点的数据迁移到8001上去了，我们可以看一下现在的集群状态如下图，你会发现8007下面已经没有任何hash槽了，证明迁移成功！
+至此已经成功的把8007主节点的数据迁移到8001上去了，可以看一下现在的集群状态如下图，8007下面已经没有任何hash槽了，证明迁移成功。
 
 ![redis-cluster-scaling-10](../../source/images/ch-06/old/redis-cluster-scaling-10.png)
 
-最后我们直接使用del-node命令删除8007主节点即可
+最后直接使用del-node命令删除8007主节点即可
 
 ```bash
-/usr/local/redis-5.0.3/src/redis-cli -a zhuge --cluster del-node 192.168.0.61:8007 2728a594a0498e98e4b83a537e19f9a0a3790f38
+/usr/redis-5.0.3/src/redis-cli -a tyrival --cluster del-node 10.211.55.12:8007 4de61d99866c684ec1ea7f8104f6b79768d113ed
 ```
 
-查看集群状态，一切还原为最初始状态啦！大功告成！
+查看集群状态，一切还原为最初始状态。
 
 ![redis-cluster-scaling-11](../../source/images/ch-06/old/redis-cluster-scaling-11.png)

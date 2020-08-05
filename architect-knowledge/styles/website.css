@@ -205,18 +205,59 @@ img[alt="lock-20"] {
 
 
 /* ================ 06-Distributed ================ */
-img[alt="cmd-keys"] {
+img[alt="redis-cmd-keys"] {
     width: 80%;
 }
 
-img[alt="cmd-scan"] {
+img[alt="redis-cmd-scan"] {
     width: 80%;
 }
 
-img[alt="aof-use-rdb-preamble"] {
+img[alt="redis-aof-use-rdb-preamble"] {
     width: 60%;
 }
 
 img[alt="redis-master-slave"] {
     width: 60%;
 }
+
+img[alt="redis-data-structure"] {
+    width: 60%;
+}
+
+img[alt="redis-object-cache.png"] {
+    width: 60%;
+}
+
+img[alt="redis-list.png"] {
+    width: 60%;
+}
+
+img[alt="redis-hash.png"] {
+    width: 60%;
+}
+
+img[alt="redis-set.png"] {
+    width: 60%;
+}
+
+img[alt="redis-zset.png"] {
+    width: 60%;
+}
+
+img[alt="redis-cluster-sample-01.png"] {
+    width: 60%;
+}
+
+img[alt="redis-cluster-sample-02.png"] {
+    width: 60%;
+}
+
+img[alt="redis-cluster-info.png"] {
+    width: 60%;
+}
+
+img[alt="redisson-lock-process"] {
+    width: 80%;
+}
+
