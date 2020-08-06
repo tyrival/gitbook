@@ -1,19 +1,19 @@
 # 第3章 MySQL
 
-[1. Mysql索引数据结构](./01-Mysql-index-data-structure.md)
+[1 Mysql索引数据结构](./01-Mysql-index-data-structure.md)
 
-[2. Explain详解与索引最佳实践](./02-Explain-Index-Actual.md)
+[2 Explain详解与索引最佳实践](./02-Explain-Index-Actual.md)
 
-[3. SQL底层执行原理](./03-Sql-Execution-Fundamental.md)
+[3 SQL底层执行原理](./03-Sql-Execution-Fundamental.md)
 
-[4. SQL优化实战（一）](./04-Sql-Optimize-01.md)
+[4 SQL优化实战（一）](./04-Sql-Optimize-01.md)
 
-[5. SQL优化实战（二）](./05-Sql-Optimize-02.md)
+[5 SQL优化实战（二）](./05-Sql-Optimize-02.md)
 
-[6. Mysql锁与事务隔离级别](./06-Mysql-Lock-Transaction-Isolation.md)
+[6 Mysql锁与事务隔离级别](./06-Mysql-Lock-Transaction-Isolation.md)
 
-[7. MVCC底层原理与Mysql日志详解](./07-MVCC-And-Log.md)
+[7 MVCC底层原理与Mysql日志详解](./07-MVCC-And-Log.md)
 
-[附1. 慢SQL查询](./Slow-Sql-Query.md)
+[附1 慢SQL查询](./Slow-Sql-Query.md)
 
-[附2. 阿里巴巴手册（泰山版）解读-MySQL数据库](./Ali-Java-Explain.md)
+[附2 阿里巴巴手册（泰山版）解读-MySQL数据库](./Ali-Java-Explain.md)

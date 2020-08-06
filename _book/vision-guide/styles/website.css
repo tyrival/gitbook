@@ -1,0 +1,43 @@
+img[alt="base-panel"] {
+    width: 40%;
+}
+
+img[alt="layer-sequence"] {
+    width: 80%;
+}
+
+img[alt="component-sample"] {
+    width: 60%;
+}
+
+img[alt="context-menu"] {
+    width: 60%;
+}
+
+img[alt="multi-align"] {
+    width: 70%;
+}
+
+img[alt="multi-align-sample"] {
+    width: 70%;
+}
+
+img[alt="global-panel"] {
+    width: 40%;
+}
+
+img[alt="data-panel"] {
+    width: 40%;
+}
+
+img[alt="api-bind"] {
+    width: 40%;
+}
+
+img[alt="database-bind"] {
+    width: 40%;
+}
+
+img[alt="interaction-panel"] {
+    width: 40%;
+}

@@ -1,0 +1,4497 @@
+
+<!DOCTYPE HTML>
+<html lang="zh-hans" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>jdbc_static · Logstash 6.7 用户指南中文版</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        <meta name="author" content="Tyrival">
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-splitter/splitter.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-anchors/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-anchor-navigation-ex/style/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+
+        
+    
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="jdbc_streaming.html" />
+    
+    
+    <link rel="prev" href="i18n.html" />
+    
+
+    <style>
+    @media only screen and (max-width: 640px) {
+        .book-header .hidden-mobile {
+            display: none;
+        }
+    }
+    </style>
+    <script>
+        window["gitbook-plugin-github-buttons"] = {"buttons":[{"user":"Tyrival","repo":"gitbook","type":"star","size":"small","count":false}]};
+    </script>
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="输入并搜索" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Logstash 6.7 用户指南中文版
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.1" data-path="../01-Logstash-Introduction/">
+            
+                <a href="../01-Logstash-Introduction/">
+            
+                    
+                    第1章 简介
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.2" data-path="../02-Getting-Started-with-Logstash/">
+            
+                <a href="../02-Getting-Started-with-Logstash/">
+            
+                    
+                    第2章 快速入门
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.3" data-path="../03-How-Logstash-Works/">
+            
+                <a href="../03-How-Logstash-Works/">
+            
+                    
+                    第3章 工作原理
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.3.1" data-path="../03-How-Logstash-Works/Execution-Model.html">
+            
+                <a href="../03-How-Logstash-Works/Execution-Model.html">
+            
+                    
+                    运行模型
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.4" data-path="../04-Setting-Up-and-Running-Logstash/">
+            
+                <a href="../04-Setting-Up-and-Running-Logstash/">
+            
+                    
+                    第4章 配置和运行
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.4.1" data-path="../04-Setting-Up-and-Running-Logstash/Logstash-Directory-Layout.html">
+            
+                <a href="../04-Setting-Up-and-Running-Logstash/Logstash-Directory-Layout.html">
+            
+                    
+                    目录结构
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.4.2" data-path="../04-Setting-Up-and-Running-Logstash/Logstash-Configuration-Files.html">
+            
+                <a href="../04-Setting-Up-and-Running-Logstash/Logstash-Configuration-Files.html">
+            
+                    
+                    配置文件
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.4.3" data-path="../04-Setting-Up-and-Running-Logstash/logstash.yml.html">
+            
+                <a href="../04-Setting-Up-and-Running-Logstash/logstash.yml.html">
+            
+                    
+                    logstash.yml
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.4.4" data-path="../04-Setting-Up-and-Running-Logstash/Secrets-keystore-for-secure-settings.html">
+            
+                <a href="../04-Setting-Up-and-Running-Logstash/Secrets-keystore-for-secure-settings.html">
+            
+                    
+                    密钥库和安全设置
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.4.5" data-path="../04-Setting-Up-and-Running-Logstash/Running-Logstash-from-the-Command-Line.html">
+            
+                <a href="../04-Setting-Up-and-Running-Logstash/Running-Logstash-from-the-Command-Line.html">
+            
+                    
+                    命令行运行
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.4.6" data-path="../04-Setting-Up-and-Running-Logstash/Running-Logstash-as-a-Service-on-Debian-or-RPM.html">
+            
+                <a href="../04-Setting-Up-and-Running-Logstash/Running-Logstash-as-a-Service-on-Debian-or-RPM.html">
+            
+                    
+                    作为Debian或RPM系统服务运行
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.4.7" data-path="../04-Setting-Up-and-Running-Logstash/Running-Logstash-on-Docker.html">
+            
+                <a href="../04-Setting-Up-and-Running-Logstash/Running-Logstash-on-Docker.html">
+            
+                    
+                    Docker运行
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.4.8" data-path="../04-Setting-Up-and-Running-Logstash/Configuring-Logstash-on-Docker.html">
+            
+                <a href="../04-Setting-Up-and-Running-Logstash/Configuring-Logstash-on-Docker.html">
+            
+                    
+                    Docker配置
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.4.9" data-path="../04-Setting-Up-and-Running-Logstash/Logging.html">
+            
+                <a href="../04-Setting-Up-and-Running-Logstash/Logging.html">
+            
+                    
+                    日志
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.4.10" data-path="../04-Setting-Up-and-Running-Logstash/Shutting-Down-Logstash.html">
+            
+                <a href="../04-Setting-Up-and-Running-Logstash/Shutting-Down-Logstash.html">
+            
+                    
+                    关闭
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.4.11" data-path="../04-Setting-Up-and-Running-Logstash/Installing-X-Pack.html">
+            
+                <a href="../04-Setting-Up-and-Running-Logstash/Installing-X-Pack.html">
+            
+                    
+                    安装X-Pack
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.4.12" data-path="../04-Setting-Up-and-Running-Logstash/Setting-Up-X-Pack.html">
+            
+                <a href="../04-Setting-Up-and-Running-Logstash/Setting-Up-X-Pack.html">
+            
+                    
+                    设置X-Pack
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.5" data-path="../05-Uprading-Logstash/">
+            
+                <a href="../05-Uprading-Logstash/">
+            
+                    
+                    第5章 升级
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.5.1" data-path="../05-Uprading-Logstash/Upgrading-Using-Package-Managers.html">
+            
+                <a href="../05-Uprading-Logstash/Upgrading-Using-Package-Managers.html">
+            
+                    
+                    包管理器升级
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.5.2" data-path="../05-Uprading-Logstash/Upgrading-Using-a-Direct-Download.html">
+            
+                <a href="../05-Uprading-Logstash/Upgrading-Using-a-Direct-Download.html">
+            
+                    
+                    安装包升级
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.5.3" data-path="../05-Uprading-Logstash/Upgrading-Logstash-to-6.0.html">
+            
+                <a href="../05-Uprading-Logstash/Upgrading-Logstash-to-6.0.html">
+            
+                    
+                    升级Logstash到6.0
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.5.4" data-path="../05-Uprading-Logstash/Upgrading-with-the-Persistent-Queue-Enabled.html">
+            
+                <a href="../05-Uprading-Logstash/Upgrading-with-the-Persistent-Queue-Enabled.html">
+            
+                    
+                    启用持久化队列时的升级
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6" data-path="../06-Configuring-Logstash/">
+            
+                <a href="../06-Configuring-Logstash/">
+            
+                    
+                    第6章 配置
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.6.1" data-path="../06-Configuring-Logstash/Structure-of-a-Config-File.html">
+            
+                <a href="../06-Configuring-Logstash/Structure-of-a-Config-File.html">
+            
+                    
+                    构建配置文件
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6.2" data-path="../06-Configuring-Logstash/Accessing-Event-Data-and-Fields-in-the-Configuration.html">
+            
+                <a href="../06-Configuring-Logstash/Accessing-Event-Data-and-Fields-in-the-Configuration.html">
+            
+                    
+                    配置中引用事件数据和字段
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6.3" data-path="../06-Configuring-Logstash/Using-Environment-Variables-in-the-Configuration.html">
+            
+                <a href="../06-Configuring-Logstash/Using-Environment-Variables-in-the-Configuration.html">
+            
+                    
+                    配置中引用环境变量
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6.4" data-path="../06-Configuring-Logstash/Logstash-Configuration-Examples.html">
+            
+                <a href="../06-Configuring-Logstash/Logstash-Configuration-Examples.html">
+            
+                    
+                    配置示例
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6.5" data-path="../06-Configuring-Logstash/Multiple-Pipelines.html">
+            
+                <a href="../06-Configuring-Logstash/Multiple-Pipelines.html">
+            
+                    
+                    多管道
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6.6" data-path="../06-Configuring-Logstash/Pipeline-to-Pipeline-Communication.html">
+            
+                <a href="../06-Configuring-Logstash/Pipeline-to-Pipeline-Communication.html">
+            
+                    
+                    管道间通信（Beta）
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6.7" data-path="../06-Configuring-Logstash/Reloading-the-Config-File.html">
+            
+                <a href="../06-Configuring-Logstash/Reloading-the-Config-File.html">
+            
+                    
+                    重载配置文件
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6.8" data-path="../06-Configuring-Logstash/Managing-Multiline-Events.html">
+            
+                <a href="../06-Configuring-Logstash/Managing-Multiline-Events.html">
+            
+                    
+                    多行事件管理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6.9" data-path="../06-Configuring-Logstash/Glob-Pattern-Support.html">
+            
+                <a href="../06-Configuring-Logstash/Glob-Pattern-Support.html">
+            
+                    
+                    通配符支持
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6.10" data-path="../06-Configuring-Logstash/Converting-Ingest-Node-Pipelines.html">
+            
+                <a href="../06-Configuring-Logstash/Converting-Ingest-Node-Pipelines.html">
+            
+                    
+                    转换摄取节点通道
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6.11" data-path="../06-Configuring-Logstash/Logstash-to-Logstash-Communication.html">
+            
+                <a href="../06-Configuring-Logstash/Logstash-to-Logstash-Communication.html">
+            
+                    
+                    实例间通信
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6.12" data-path="../06-Configuring-Logstash/Configuring-Centralized-Pipeline-Management.html">
+            
+                <a href="../06-Configuring-Logstash/Configuring-Centralized-Pipeline-Management.html">
+            
+                    
+                    配置集中管理管道
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6.13" data-path="../06-Configuring-Logstash/X-Pack-monitoring.html">
+            
+                <a href="../06-Configuring-Logstash/X-Pack-monitoring.html">
+            
+                    
+                    X-Pack监控
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6.14" data-path="../06-Configuring-Logstash/X-Pack-security.html">
+            
+                <a href="../06-Configuring-Logstash/X-Pack-security.html">
+            
+                    
+                    X-Pack安全性
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6.15" data-path="../06-Configuring-Logstash/X-Pack-Settings.html">
+            
+                <a href="../06-Configuring-Logstash/X-Pack-Settings.html">
+            
+                    
+                    X-Pack设置
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.7" data-path="../07-Managing-Logstash/">
+            
+                <a href="../07-Managing-Logstash/">
+            
+                    
+                    第7章-运维
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.7.1" data-path="../07-Managing-Logstash/Centralized-Pipeline-Management.html">
+            
+                <a href="../07-Managing-Logstash/Centralized-Pipeline-Management.html">
+            
+                    
+                    集中管道管理
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.8" data-path="../08-Working-with-Logstash-Modules/">
+            
+                <a href="../08-Working-with-Logstash-Modules/">
+            
+                    
+                    第8章-模块
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.8.1" data-path="../08-Working-with-Logstash-Modules/Using-Elastic-Cloud.html">
+            
+                <a href="../08-Working-with-Logstash-Modules/Using-Elastic-Cloud.html">
+            
+                    
+                    Elastic Cloud
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.8.2" data-path="../08-Working-with-Logstash-Modules/ArcSight-Module.html">
+            
+                <a href="../08-Working-with-Logstash-Modules/ArcSight-Module.html">
+            
+                    
+                    ArcSight模块
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.8.3" data-path="../08-Working-with-Logstash-Modules/Netflow-Module.html">
+            
+                <a href="../08-Working-with-Logstash-Modules/Netflow-Module.html">
+            
+                    
+                    Netflow模块
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.8.4" data-path="../08-Working-with-Logstash-Modules/Azure-Module.html">
+            
+                <a href="../08-Working-with-Logstash-Modules/Azure-Module.html">
+            
+                    
+                    Azure模块
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.9" data-path="../09-Working-with-Filebeat-Modules/">
+            
+                <a href="../09-Working-with-Filebeat-Modules/">
+            
+                    
+                    第9章-Filebeat
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.9.1" data-path="../09-Working-with-Filebeat-Modules/Use-ingest-pipelines-for-parsing.html">
+            
+                <a href="../09-Working-with-Filebeat-Modules/Use-ingest-pipelines-for-parsing.html">
+            
+                    
+                    使用采集管道解析
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.9.2" data-path="../09-Working-with-Filebeat-Modules/Use-Logstash-pipelines-for-parsing.html">
+            
+                <a href="../09-Working-with-Filebeat-Modules/Use-Logstash-pipelines-for-parsing.html">
+            
+                    
+                    使用Logstash管道解析
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.9.3" data-path="../09-Working-with-Filebeat-Modules/Example-Set-up-Filebeat-modules-to-work-with-Kafka-and-Logstash.html">
+            
+                <a href="../09-Working-with-Filebeat-Modules/Example-Set-up-Filebeat-modules-to-work-with-Kafka-and-Logstash.html">
+            
+                    
+                    示例：安装Filebeat并连接Kafka和Logstash
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.10" data-path="../10-Data-Resiliency/">
+            
+                <a href="../10-Data-Resiliency/">
+            
+                    
+                    第10章-数据弹性
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.10.1" data-path="../10-Data-Resiliency/Persistent-Queues.html">
+            
+                <a href="../10-Data-Resiliency/Persistent-Queues.html">
+            
+                    
+                    持久化队列
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.10.2" data-path="../10-Data-Resiliency/Dead-Letter-Queues.html">
+            
+                <a href="../10-Data-Resiliency/Dead-Letter-Queues.html">
+            
+                    
+                    死信队列
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.11" data-path="../11-Transforming-Data/">
+            
+                <a href="../11-Transforming-Data/">
+            
+                    
+                    第11章-数据传输
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.11.1" data-path="../11-Transforming-Data/Performing-Core-Operations.html">
+            
+                <a href="../11-Transforming-Data/Performing-Core-Operations.html">
+            
+                    
+                    核心操作
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.11.2" data-path="../11-Transforming-Data/Deserializing-Data.html">
+            
+                <a href="../11-Transforming-Data/Deserializing-Data.html">
+            
+                    
+                    反序列化数据
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.11.3" data-path="../11-Transforming-Data/Extracting-Fields-and-Wrangling-Data.html">
+            
+                <a href="../11-Transforming-Data/Extracting-Fields-and-Wrangling-Data.html">
+            
+                    
+                    提取字段和调整数据
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.11.4" data-path="../11-Transforming-Data/Enriching-Data-with-Lookups.html">
+            
+                <a href="../11-Transforming-Data/Enriching-Data-with-Lookups.html">
+            
+                    
+                    丰富数据
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.12" data-path="../12-Deploying-and-Scaling-Logstash/">
+            
+                <a href="../12-Deploying-and-Scaling-Logstash/">
+            
+                    
+                    第12章-部署和集群扩展
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.13" data-path="../13-Performance-Tuning/">
+            
+                <a href="../13-Performance-Tuning/">
+            
+                    
+                    第13章-性能调优
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.13.1" data-path="../13-Performance-Tuning/Performance-Troubleshooting-Guide.html">
+            
+                <a href="../13-Performance-Tuning/Performance-Troubleshooting-Guide.html">
+            
+                    
+                    性能故障排除指南
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.13.2" data-path="../13-Performance-Tuning/Tuning-and-Profiling-Logstash-Performance.html">
+            
+                <a href="../13-Performance-Tuning/Tuning-and-Profiling-Logstash-Performance.html">
+            
+                    
+                    性能调试和查看
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.14" data-path="../14-Monitoring-Logstash/">
+            
+                <a href="../14-Monitoring-Logstash/">
+            
+                    
+                    第14章-监控
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.14.1" data-path="../14-Monitoring-Logstash/Overview.html">
+            
+                <a href="../14-Monitoring-Logstash/Overview.html">
+            
+                    
+                    X-Pack监控概述
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.14.2" data-path="../14-Monitoring-Logstash/Monitoring-UI.html">
+            
+                <a href="../14-Monitoring-Logstash/Monitoring-UI.html">
+            
+                    
+                    监控UI
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.14.3" data-path="../14-Monitoring-Logstash/Pipeline-Viewer-UI.html">
+            
+                <a href="../14-Monitoring-Logstash/Pipeline-Viewer-UI.html">
+            
+                    
+                    管道视图UI
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.14.4" data-path="../14-Monitoring-Logstash/Troubleshooting.html">
+            
+                <a href="../14-Monitoring-Logstash/Troubleshooting.html">
+            
+                    
+                    故障排查
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.15" data-path="../15-Monitoring-APIs/">
+            
+                <a href="../15-Monitoring-APIs/">
+            
+                    
+                    第15章-API
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.15.1" data-path="../15-Monitoring-APIs/Node-Info-API.html">
+            
+                <a href="../15-Monitoring-APIs/Node-Info-API.html">
+            
+                    
+                    节点信息API
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.15.2" data-path="../15-Monitoring-APIs/Plugins-Info-API.html">
+            
+                <a href="../15-Monitoring-APIs/Plugins-Info-API.html">
+            
+                    
+                    插件信息API
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.15.3" data-path="../15-Monitoring-APIs/Node-Stats-API.html">
+            
+                <a href="../15-Monitoring-APIs/Node-Stats-API.html">
+            
+                    
+                    节点状态API
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.15.4" data-path="../15-Monitoring-APIs/Hot-Threads-API.html">
+            
+                <a href="../15-Monitoring-APIs/Hot-Threads-API.html">
+            
+                    
+                    热线程API
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.16" data-path="../16-Working-with-plugins/">
+            
+                <a href="../16-Working-with-plugins/">
+            
+                    
+                    第16章-插件
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.16.1" data-path="../16-Working-with-plugins/Generating-Plugins.html">
+            
+                <a href="../16-Working-with-plugins/Generating-Plugins.html">
+            
+                    
+                    生成插件
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.16.2" data-path="../16-Working-with-plugins/Offline-Plugin-Management.html">
+            
+                <a href="../16-Working-with-plugins/Offline-Plugin-Management.html">
+            
+                    
+                    离线插件管理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.16.3" data-path="../16-Working-with-plugins/Private-Gem-Repositories.html">
+            
+                <a href="../16-Working-with-plugins/Private-Gem-Repositories.html">
+            
+                    
+                    私有Gem仓库
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.16.4" data-path="../16-Working-with-plugins/Event-API.html">
+            
+                <a href="../16-Working-with-plugins/Event-API.html">
+            
+                    
+                    事件API
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.17" data-path="../17-Input-plugins/">
+            
+                <a href="../17-Input-plugins/">
+            
+                    
+                    第17章-输入插件Input
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.17.1" data-path="../17-Input-plugins/azure_event_hubs.html">
+            
+                <a href="../17-Input-plugins/azure_event_hubs.html">
+            
+                    
+                    azure_event_hubs
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.17.2" data-path="../17-Input-plugins/beats.html">
+            
+                <a href="../17-Input-plugins/beats.html">
+            
+                    
+                    beats
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.17.3" data-path="../17-Input-plugins/cloudwatch.html">
+            
+                <a href="../17-Input-plugins/cloudwatch.html">
+            
+                    
+                    cloudwatch
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.17.4" data-path="../17-Input-plugins/couchdb_changes.html">
+            
+                <a href="../17-Input-plugins/couchdb_changes.html">
+            
+                    
+                    couchdb_changes
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.17.5" data-path="../17-Input-plugins/dead_letter_queue.html">
+            
+                <a href="../17-Input-plugins/dead_letter_queue.html">
+            
+                    
+                    dead_letter_queue
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.17.6" data-path="../17-Input-plugins/elasticsearch.html">
+            
+                <a href="../17-Input-plugins/elasticsearch.html">
+            
+                    
+                    elasticsearch
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.17.7" data-path="../17-Input-plugins/exec.html">
+            
+                <a href="../17-Input-plugins/exec.html">
+            
+                    
+                    exec
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.17.8" data-path="../17-Input-plugins/file.html">
+            
+                <a href="../17-Input-plugins/file.html">
+            
+                    
+                    file
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.17.9" data-path="../17-Input-plugins/ganglia.html">
+            
+                <a href="../17-Input-plugins/ganglia.html">
+            
+                    
+                    ganglia
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.17.10" data-path="../17-Input-plugins/gelf.html">
+            
+                <a href="../17-Input-plugins/gelf.html">
+            
+                    
+                    gelf
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.17.11" data-path="../17-Input-plugins/generator.html">
+            
+                <a href="../17-Input-plugins/generator.html">
+            
+                    
+                    generator
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.17.12" data-path="../17-Input-plugins/github.html">
+            
+                <a href="../17-Input-plugins/github.html">
+            
+                    
+                    github
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.17.13" data-path="../17-Input-plugins/google_pubsub.html">
+            
+                <a href="../17-Input-plugins/google_pubsub.html">
+            
+                    
+                    google_pubsub
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.17.14" data-path="../17-Input-plugins/graphite.html">
+            
+                <a href="../17-Input-plugins/graphite.html">
+            
+                    
+                    graphite
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.17.15" data-path="../17-Input-plugins/heartbeat.html">
+            
+                <a href="../17-Input-plugins/heartbeat.html">
+            
+                    
+                    heartbeat
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.17.16" data-path="../17-Input-plugins/http.html">
+            
+                <a href="../17-Input-plugins/http.html">
+            
+                    
+                    http
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.17.17" data-path="../17-Input-plugins/http_poller.html">
+            
+                <a href="../17-Input-plugins/http_poller.html">
+            
+                    
+                    http_poller
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.17.18" data-path="../17-Input-plugins/imap.html">
+            
+                <a href="../17-Input-plugins/imap.html">
+            
+                    
+                    imap
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.17.19" data-path="../17-Input-plugins/irc.html">
+            
+                <a href="../17-Input-plugins/irc.html">
+            
+                    
+                    irc
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.17.20" data-path="../17-Input-plugins/jdbc.html">
+            
+                <a href="../17-Input-plugins/jdbc.html">
+            
+                    
+                    jdbc
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.17.21" data-path="../17-Input-plugins/jms.html">
+            
+                <a href="../17-Input-plugins/jms.html">
+            
+                    
+                    jms
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.17.22" data-path="../17-Input-plugins/jmx.html">
+            
+                <a href="../17-Input-plugins/jmx.html">
+            
+                    
+                    jmx
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.17.23" data-path="../17-Input-plugins/kafka.html">
+            
+                <a href="../17-Input-plugins/kafka.html">
+            
+                    
+                    kafka
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.17.24" data-path="../17-Input-plugins/kinesis.html">
+            
+                <a href="../17-Input-plugins/kinesis.html">
+            
+                    
+                    kinesis
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.17.25" data-path="../17-Input-plugins/log4j.html">
+            
+                <a href="../17-Input-plugins/log4j.html">
+            
+                    
+                    log4j
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.17.26" data-path="../17-Input-plugins/lumberjack.html">
+            
+                <a href="../17-Input-plugins/lumberjack.html">
+            
+                    
+                    lumberjack
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.17.27" data-path="../17-Input-plugins/meetup.html">
+            
+                <a href="../17-Input-plugins/meetup.html">
+            
+                    
+                    meetup
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.17.28" data-path="../17-Input-plugins/pipe.html">
+            
+                <a href="../17-Input-plugins/pipe.html">
+            
+                    
+                    pipe
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.17.29" data-path="../17-Input-plugins/puppet_facter.html">
+            
+                <a href="../17-Input-plugins/puppet_facter.html">
+            
+                    
+                    puppet_facter
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.17.30" data-path="../17-Input-plugins/rabbitmq.html">
+            
+                <a href="../17-Input-plugins/rabbitmq.html">
+            
+                    
+                    rabbitmq
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.17.31" data-path="../17-Input-plugins/redis.html">
+            
+                <a href="../17-Input-plugins/redis.html">
+            
+                    
+                    redis
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.17.32" data-path="../17-Input-plugins/relp.html">
+            
+                <a href="../17-Input-plugins/relp.html">
+            
+                    
+                    relp
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.17.33" data-path="../17-Input-plugins/rss.html">
+            
+                <a href="../17-Input-plugins/rss.html">
+            
+                    
+                    rss
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.17.34" data-path="../17-Input-plugins/s3.html">
+            
+                <a href="../17-Input-plugins/s3.html">
+            
+                    
+                    s3
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.17.35" data-path="../17-Input-plugins/salesforce.html">
+            
+                <a href="../17-Input-plugins/salesforce.html">
+            
+                    
+                    salesforce
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.17.36" data-path="../17-Input-plugins/snmp.html">
+            
+                <a href="../17-Input-plugins/snmp.html">
+            
+                    
+                    snmp
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.17.37" data-path="../17-Input-plugins/snmptrap.html">
+            
+                <a href="../17-Input-plugins/snmptrap.html">
+            
+                    
+                    snmptrap
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.17.38" data-path="../17-Input-plugins/sqlite.html">
+            
+                <a href="../17-Input-plugins/sqlite.html">
+            
+                    
+                    sqlite
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.17.39" data-path="../17-Input-plugins/sqs.html">
+            
+                <a href="../17-Input-plugins/sqs.html">
+            
+                    
+                    sqs
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.17.40" data-path="../17-Input-plugins/stdin.html">
+            
+                <a href="../17-Input-plugins/stdin.html">
+            
+                    
+                    stdin
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.17.41" data-path="../17-Input-plugins/stomp.html">
+            
+                <a href="../17-Input-plugins/stomp.html">
+            
+                    
+                    stomp
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.17.42" data-path="../17-Input-plugins/syslog.html">
+            
+                <a href="../17-Input-plugins/syslog.html">
+            
+                    
+                    syslog
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.17.43" data-path="../17-Input-plugins/tcp.html">
+            
+                <a href="../17-Input-plugins/tcp.html">
+            
+                    
+                    tcp
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.17.44" data-path="../17-Input-plugins/twitter.html">
+            
+                <a href="../17-Input-plugins/twitter.html">
+            
+                    
+                    twitter
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.17.45" data-path="../17-Input-plugins/udp.html">
+            
+                <a href="../17-Input-plugins/udp.html">
+            
+                    
+                    udp
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.17.46" data-path="../17-Input-plugins/unix.html">
+            
+                <a href="../17-Input-plugins/unix.html">
+            
+                    
+                    unix
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.17.47" data-path="../17-Input-plugins/varnishlog.html">
+            
+                <a href="../17-Input-plugins/varnishlog.html">
+            
+                    
+                    varnishlog
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.17.48" data-path="../17-Input-plugins/websocket.html">
+            
+                <a href="../17-Input-plugins/websocket.html">
+            
+                    
+                    websocket
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.17.49" data-path="../17-Input-plugins/wmi.html">
+            
+                <a href="../17-Input-plugins/wmi.html">
+            
+                    
+                    wmi
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.17.50" data-path="../17-Input-plugins/xmpp.html">
+            
+                <a href="../17-Input-plugins/xmpp.html">
+            
+                    
+                    xmpp
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.18" data-path="../18-Output-plugins/">
+            
+                <a href="../18-Output-plugins/">
+            
+                    
+                    第18章-输出插件Output
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.18.1" data-path="../18-Output-plugins/boundary.html">
+            
+                <a href="../18-Output-plugins/boundary.html">
+            
+                    
+                    boundary
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.18.2" data-path="../18-Output-plugins/circonus.html">
+            
+                <a href="../18-Output-plugins/circonus.html">
+            
+                    
+                    circonus
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.18.3" data-path="../18-Output-plugins/cloudwatch.html">
+            
+                <a href="../18-Output-plugins/cloudwatch.html">
+            
+                    
+                    cloudwatch
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.18.4" data-path="../18-Output-plugins/csv.html">
+            
+                <a href="../18-Output-plugins/csv.html">
+            
+                    
+                    csv
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.18.5" data-path="../18-Output-plugins/datadog.html">
+            
+                <a href="../18-Output-plugins/datadog.html">
+            
+                    
+                    datadog
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.18.6" data-path="../18-Output-plugins/datadog_metrics.html">
+            
+                <a href="../18-Output-plugins/datadog_metrics.html">
+            
+                    
+                    datadog_metrics
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.18.7" data-path="../18-Output-plugins/elastic_app_search.html">
+            
+                <a href="../18-Output-plugins/elastic_app_search.html">
+            
+                    
+                    elastic_app_search
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.18.8" data-path="../18-Output-plugins/elasticsearch.html">
+            
+                <a href="../18-Output-plugins/elasticsearch.html">
+            
+                    
+                    elasticsearch
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.18.9" data-path="../18-Output-plugins/email.html">
+            
+                <a href="../18-Output-plugins/email.html">
+            
+                    
+                    email
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.18.10" data-path="../18-Output-plugins/exec.html">
+            
+                <a href="../18-Output-plugins/exec.html">
+            
+                    
+                    exec
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.18.11" data-path="../18-Output-plugins/file.html">
+            
+                <a href="../18-Output-plugins/file.html">
+            
+                    
+                    file
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.18.12" data-path="../18-Output-plugins/ganglia.html">
+            
+                <a href="../18-Output-plugins/ganglia.html">
+            
+                    
+                    ganglia
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.18.13" data-path="../18-Output-plugins/gelf.html">
+            
+                <a href="../18-Output-plugins/gelf.html">
+            
+                    
+                    gelf
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.18.14" data-path="../18-Output-plugins/google_bigquery.html">
+            
+                <a href="../18-Output-plugins/google_bigquery.html">
+            
+                    
+                    google_bigquery
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.18.15" data-path="../18-Output-plugins/google_pubsub.html">
+            
+                <a href="../18-Output-plugins/google_pubsub.html">
+            
+                    
+                    google_pubsub
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.18.16" data-path="../18-Output-plugins/graphite.html">
+            
+                <a href="../18-Output-plugins/graphite.html">
+            
+                    
+                    graphite
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.18.17" data-path="../18-Output-plugins/graphtastic.html">
+            
+                <a href="../18-Output-plugins/graphtastic.html">
+            
+                    
+                    graphtastic
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.18.18" data-path="../18-Output-plugins/http.html">
+            
+                <a href="../18-Output-plugins/http.html">
+            
+                    
+                    http
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.18.19" data-path="../18-Output-plugins/influxdb.html">
+            
+                <a href="../18-Output-plugins/influxdb.html">
+            
+                    
+                    influxdb
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.18.20" data-path="../18-Output-plugins/irc.html">
+            
+                <a href="../18-Output-plugins/irc.html">
+            
+                    
+                    irc
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.18.21" data-path="../18-Output-plugins/juggernaut.html">
+            
+                <a href="../18-Output-plugins/juggernaut.html">
+            
+                    
+                    juggernaut
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.18.22" data-path="../18-Output-plugins/kafka.html">
+            
+                <a href="../18-Output-plugins/kafka.html">
+            
+                    
+                    kafka
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.18.23" data-path="../18-Output-plugins/librato.html">
+            
+                <a href="../18-Output-plugins/librato.html">
+            
+                    
+                    librato
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.18.24" data-path="../18-Output-plugins/loggly.html">
+            
+                <a href="../18-Output-plugins/loggly.html">
+            
+                    
+                    loggly
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.18.25" data-path="../18-Output-plugins/lumberjack.html">
+            
+                <a href="../18-Output-plugins/lumberjack.html">
+            
+                    
+                    lumberjack
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.18.26" data-path="../18-Output-plugins/metriccatcher.html">
+            
+                <a href="../18-Output-plugins/metriccatcher.html">
+            
+                    
+                    metriccatcher
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.18.27" data-path="../18-Output-plugins/mongodb.html">
+            
+                <a href="../18-Output-plugins/mongodb.html">
+            
+                    
+                    mongodb
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.18.28" data-path="../18-Output-plugins/nagios.html">
+            
+                <a href="../18-Output-plugins/nagios.html">
+            
+                    
+                    nagios
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.18.29" data-path="../18-Output-plugins/nagios_nsca.html">
+            
+                <a href="../18-Output-plugins/nagios_nsca.html">
+            
+                    
+                    nagios_nsca
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.18.30" data-path="../18-Output-plugins/opentsdb.html">
+            
+                <a href="../18-Output-plugins/opentsdb.html">
+            
+                    
+                    opentsdb
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.18.31" data-path="../18-Output-plugins/pagerduty.html">
+            
+                <a href="../18-Output-plugins/pagerduty.html">
+            
+                    
+                    pagerduty
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.18.32" data-path="../18-Output-plugins/pipe.html">
+            
+                <a href="../18-Output-plugins/pipe.html">
+            
+                    
+                    pipe
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.18.33" data-path="../18-Output-plugins/rabbitmq.html">
+            
+                <a href="../18-Output-plugins/rabbitmq.html">
+            
+                    
+                    rabbitmq
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.18.34" data-path="../18-Output-plugins/redis.html">
+            
+                <a href="../18-Output-plugins/redis.html">
+            
+                    
+                    redis
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.18.35" data-path="../18-Output-plugins/redmine.html">
+            
+                <a href="../18-Output-plugins/redmine.html">
+            
+                    
+                    redmine
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.18.36" data-path="../18-Output-plugins/riak.html">
+            
+                <a href="../18-Output-plugins/riak.html">
+            
+                    
+                    riak
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.18.37" data-path="../18-Output-plugins/riemann.html">
+            
+                <a href="../18-Output-plugins/riemann.html">
+            
+                    
+                    riemann
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.18.38" data-path="../18-Output-plugins/s3.html">
+            
+                <a href="../18-Output-plugins/s3.html">
+            
+                    
+                    s3
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.18.39" data-path="../18-Output-plugins/sns.html">
+            
+                <a href="../18-Output-plugins/sns.html">
+            
+                    
+                    sns
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.18.40" data-path="../18-Output-plugins/solr_http.html">
+            
+                <a href="../18-Output-plugins/solr_http.html">
+            
+                    
+                    solr_http
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.18.41" data-path="../18-Output-plugins/sqs.html">
+            
+                <a href="../18-Output-plugins/sqs.html">
+            
+                    
+                    sqs
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.18.42" data-path="../18-Output-plugins/statsd.html">
+            
+                <a href="../18-Output-plugins/statsd.html">
+            
+                    
+                    statsd
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.18.43" data-path="../18-Output-plugins/stdout.html">
+            
+                <a href="../18-Output-plugins/stdout.html">
+            
+                    
+                    stdout
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.18.44" data-path="../18-Output-plugins/stomp.html">
+            
+                <a href="../18-Output-plugins/stomp.html">
+            
+                    
+                    stomp
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.18.45" data-path="../18-Output-plugins/syslog.html">
+            
+                <a href="../18-Output-plugins/syslog.html">
+            
+                    
+                    syslog
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.18.46" data-path="../18-Output-plugins/tcp.html">
+            
+                <a href="../18-Output-plugins/tcp.html">
+            
+                    
+                    tcp
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.18.47" data-path="../18-Output-plugins/timber.html">
+            
+                <a href="../18-Output-plugins/timber.html">
+            
+                    
+                    timber
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.18.48" data-path="../18-Output-plugins/udp.html">
+            
+                <a href="../18-Output-plugins/udp.html">
+            
+                    
+                    udp
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.18.49" data-path="../18-Output-plugins/webhdfs.html">
+            
+                <a href="../18-Output-plugins/webhdfs.html">
+            
+                    
+                    webhdfs
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.18.50" data-path="../18-Output-plugins/websocket.html">
+            
+                <a href="../18-Output-plugins/websocket.html">
+            
+                    
+                    websocket
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.18.51" data-path="../18-Output-plugins/xmpp.html">
+            
+                <a href="../18-Output-plugins/xmpp.html">
+            
+                    
+                    xmpp
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.18.52" data-path="../18-Output-plugins/zabbix.html">
+            
+                <a href="../18-Output-plugins/zabbix.html">
+            
+                    
+                    zabbix
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.19" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    第19章-过滤器Filter
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.19.1" data-path="aggregate.html">
+            
+                <a href="aggregate.html">
+            
+                    
+                    aggregate
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.19.2" data-path="alter.html">
+            
+                <a href="alter.html">
+            
+                    
+                    alter
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.19.3" data-path="cidr.html">
+            
+                <a href="cidr.html">
+            
+                    
+                    cidr
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.19.4" data-path="cipher.html">
+            
+                <a href="cipher.html">
+            
+                    
+                    cipher
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.19.5" data-path="clone.html">
+            
+                <a href="clone.html">
+            
+                    
+                    clone
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.19.6" data-path="csv.html">
+            
+                <a href="csv.html">
+            
+                    
+                    csv
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.19.7" data-path="date.html">
+            
+                <a href="date.html">
+            
+                    
+                    date
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.19.8" data-path="de_dot.html">
+            
+                <a href="de_dot.html">
+            
+                    
+                    de_dot
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.19.9" data-path="dissect.html">
+            
+                <a href="dissect.html">
+            
+                    
+                    dissect
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.19.10" data-path="dns.html">
+            
+                <a href="dns.html">
+            
+                    
+                    dns
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.19.11" data-path="drop.html">
+            
+                <a href="drop.html">
+            
+                    
+                    drop
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.19.12" data-path="elapsed.html">
+            
+                <a href="elapsed.html">
+            
+                    
+                    elapsed
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.19.13" data-path="elasticsearch.html">
+            
+                <a href="elasticsearch.html">
+            
+                    
+                    elasticsearch
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.19.14" data-path="environment.html">
+            
+                <a href="environment.html">
+            
+                    
+                    environment
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.19.15" data-path="extractnumbers.html">
+            
+                <a href="extractnumbers.html">
+            
+                    
+                    extractnumbers
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.19.16" data-path="fingerprint.html">
+            
+                <a href="fingerprint.html">
+            
+                    
+                    fingerprint
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.19.17" data-path="geoip.html">
+            
+                <a href="geoip.html">
+            
+                    
+                    geoip
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.19.18" data-path="grok.html">
+            
+                <a href="grok.html">
+            
+                    
+                    grok
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.19.19" data-path="http.html">
+            
+                <a href="http.html">
+            
+                    
+                    http
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.19.20" data-path="i18n.html">
+            
+                <a href="i18n.html">
+            
+                    
+                    i18n
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.1.19.21" data-path="jdbc_static.html">
+            
+                <a href="jdbc_static.html">
+            
+                    
+                    jdbc_static
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.19.22" data-path="jdbc_streaming.html">
+            
+                <a href="jdbc_streaming.html">
+            
+                    
+                    jdbc_streaming
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.19.23" data-path="json.html">
+            
+                <a href="json.html">
+            
+                    
+                    json
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.19.24" data-path="json_encode.html">
+            
+                <a href="json_encode.html">
+            
+                    
+                    json_encode
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.19.25" data-path="kv.html">
+            
+                <a href="kv.html">
+            
+                    
+                    kv
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.19.26" data-path="memcached.html">
+            
+                <a href="memcached.html">
+            
+                    
+                    memcached
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.19.27" data-path="metricize.html">
+            
+                <a href="metricize.html">
+            
+                    
+                    metricize
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.19.28" data-path="metrics.html">
+            
+                <a href="metrics.html">
+            
+                    
+                    metrics
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.19.29" data-path="mutate.html">
+            
+                <a href="mutate.html">
+            
+                    
+                    mutate
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.19.30" data-path="prune.html">
+            
+                <a href="prune.html">
+            
+                    
+                    prune
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.19.31" data-path="range.html">
+            
+                <a href="range.html">
+            
+                    
+                    range
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.19.32" data-path="ruby.html">
+            
+                <a href="ruby.html">
+            
+                    
+                    ruby
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.19.33" data-path="sleep.html">
+            
+                <a href="sleep.html">
+            
+                    
+                    sleep
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.19.34" data-path="split.html">
+            
+                <a href="split.html">
+            
+                    
+                    split
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.19.35" data-path="syslog_pri.html">
+            
+                <a href="syslog_pri.html">
+            
+                    
+                    syslog_pri
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.19.36" data-path="throttle.html">
+            
+                <a href="throttle.html">
+            
+                    
+                    throttle
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.19.37" data-path="tld.html">
+            
+                <a href="tld.html">
+            
+                    
+                    tld
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.19.38" data-path="translate.html">
+            
+                <a href="translate.html">
+            
+                    
+                    translate
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.19.39" data-path="truncate.html">
+            
+                <a href="truncate.html">
+            
+                    
+                    truncate
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.19.40" data-path="urldecode.html">
+            
+                <a href="urldecode.html">
+            
+                    
+                    urldecode
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.19.41" data-path="useragent.html">
+            
+                <a href="useragent.html">
+            
+                    
+                    useragent
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.19.42" data-path="uuid.html">
+            
+                <a href="uuid.html">
+            
+                    
+                    uuid
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.19.43" data-path="xml.html">
+            
+                <a href="xml.html">
+            
+                    
+                    xml
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.20" data-path="../20-Coder-plugins/">
+            
+                <a href="../20-Coder-plugins/">
+            
+                    
+                    第20章-编解码器Codec
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.20.1" data-path="../20-Coder-plugins/avro.html">
+            
+                <a href="../20-Coder-plugins/avro.html">
+            
+                    
+                    avro
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.20.2" data-path="../20-Coder-plugins/cef.html">
+            
+                <a href="../20-Coder-plugins/cef.html">
+            
+                    
+                    cef
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.20.3" data-path="../20-Coder-plugins/cloudfront.html">
+            
+                <a href="../20-Coder-plugins/cloudfront.html">
+            
+                    
+                    cloudfront
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.20.4" data-path="../20-Coder-plugins/cloudtrail.html">
+            
+                <a href="../20-Coder-plugins/cloudtrail.html">
+            
+                    
+                    cloudtrail
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.20.5" data-path="../20-Coder-plugins/collectd.html">
+            
+                <a href="../20-Coder-plugins/collectd.html">
+            
+                    
+                    collectd
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.20.6" data-path="../20-Coder-plugins/dots.html">
+            
+                <a href="../20-Coder-plugins/dots.html">
+            
+                    
+                    dots
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.20.7" data-path="../20-Coder-plugins/edn.html">
+            
+                <a href="../20-Coder-plugins/edn.html">
+            
+                    
+                    edn
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.20.8" data-path="../20-Coder-plugins/edn_lines.html">
+            
+                <a href="../20-Coder-plugins/edn_lines.html">
+            
+                    
+                    edn_lines
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.20.9" data-path="../20-Coder-plugins/es_bulk.html">
+            
+                <a href="../20-Coder-plugins/es_bulk.html">
+            
+                    
+                    es_bulk
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.20.10" data-path="../20-Coder-plugins/fluent.html">
+            
+                <a href="../20-Coder-plugins/fluent.html">
+            
+                    
+                    fluent
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.20.11" data-path="../20-Coder-plugins/graphite.html">
+            
+                <a href="../20-Coder-plugins/graphite.html">
+            
+                    
+                    graphite
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.20.12" data-path="../20-Coder-plugins/gzip_lines.html">
+            
+                <a href="../20-Coder-plugins/gzip_lines.html">
+            
+                    
+                    gzip_lines
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.20.13" data-path="../20-Coder-plugins/json.html">
+            
+                <a href="../20-Coder-plugins/json.html">
+            
+                    
+                    json
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.20.14" data-path="../20-Coder-plugins/json_lines.html">
+            
+                <a href="../20-Coder-plugins/json_lines.html">
+            
+                    
+                    json_lines
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.20.15" data-path="../20-Coder-plugins/line.html">
+            
+                <a href="../20-Coder-plugins/line.html">
+            
+                    
+                    line
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.20.16" data-path="../20-Coder-plugins/msgpack.html">
+            
+                <a href="../20-Coder-plugins/msgpack.html">
+            
+                    
+                    msgpack
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.20.17" data-path="../20-Coder-plugins/multiline.html">
+            
+                <a href="../20-Coder-plugins/multiline.html">
+            
+                    
+                    multiline
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.20.18" data-path="../20-Coder-plugins/netflow.html">
+            
+                <a href="../20-Coder-plugins/netflow.html">
+            
+                    
+                    netflow
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.20.19" data-path="../20-Coder-plugins/nmap.html">
+            
+                <a href="../20-Coder-plugins/nmap.html">
+            
+                    
+                    nmap
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.20.20" data-path="../20-Coder-plugins/plain.html">
+            
+                <a href="../20-Coder-plugins/plain.html">
+            
+                    
+                    plain
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.20.21" data-path="../20-Coder-plugins/protobuf.html">
+            
+                <a href="../20-Coder-plugins/protobuf.html">
+            
+                    
+                    protobuf
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.20.22" data-path="../20-Coder-plugins/rubydebug.html">
+            
+                <a href="../20-Coder-plugins/rubydebug.html">
+            
+                    
+                    rubydebug
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.21" data-path="../21-Tips-and-Best-Pracitices/">
+            
+                <a href="../21-Tips-and-Best-Pracitices/">
+            
+                    
+                    第21章-技巧和最佳实践
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.22" data-path="../22-Troubleshooting-Common-Problems/">
+            
+                <a href="../22-Troubleshooting-Common-Problems/">
+            
+                    
+                    第22章-常见问题
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.23" data-path="../23-Contributing-to-Logstash/">
+            
+                <a href="../23-Contributing-to-Logstash/">
+            
+                    
+                    第23章-插件开发
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.23.1" data-path="../23-Contributing-to-Logstash/How-to-write-a-Logstash-input-plugin.html">
+            
+                <a href="../23-Contributing-to-Logstash/How-to-write-a-Logstash-input-plugin.html">
+            
+                    
+                    开发输入插件
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.23.2" data-path="../23-Contributing-to-Logstash/How-to-write-a-Logstash-codec-plugin.html">
+            
+                <a href="../23-Contributing-to-Logstash/How-to-write-a-Logstash-codec-plugin.html">
+            
+                    
+                    开发编解码器插件
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.23.3" data-path="../23-Contributing-to-Logstash/How-to-write-a-Logstash-filter-plugin.html">
+            
+                <a href="../23-Contributing-to-Logstash/How-to-write-a-Logstash-filter-plugin.html">
+            
+                    
+                    开发过滤器插件
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.23.4" data-path="../23-Contributing-to-Logstash/How-to-write-a-Logstash-output-plugin.html">
+            
+                <a href="../23-Contributing-to-Logstash/How-to-write-a-Logstash-output-plugin.html">
+            
+                    
+                    开发输出插件
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.23.5" data-path="../23-Contributing-to-Logstash/Contributing-a-Patch-to-a-Logstash-Plugin.html">
+            
+                <a href="../23-Contributing-to-Logstash/Contributing-a-Patch-to-a-Logstash-Plugin.html">
+            
+                    
+                    开发插件补丁
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.23.6" data-path="../23-Contributing-to-Logstash/Logstash-Plugins-Community-Maintainer-Guide.html">
+            
+                <a href="../23-Contributing-to-Logstash/Logstash-Plugins-Community-Maintainer-Guide.html">
+            
+                    
+                    插件社区维护指南
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.23.7" data-path="../23-Contributing-to-Logstash/Submitting-your-plugin-to-RubyGems.org-and-the-logstash-plugins-repository.html">
+            
+                <a href="../23-Contributing-to-Logstash/Submitting-your-plugin-to-RubyGems.org-and-the-logstash-plugins-repository.html">
+            
+                    
+                    提交插件到RubyGems.org和插件库
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.24" data-path="../24-Contributing-a-java-Plugin/">
+            
+                <a href="../24-Contributing-a-java-Plugin/">
+            
+                    
+                    第24章-Java插件开发
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.25" data-path="../25-Glossary-of-Terms/">
+            
+                <a href="../25-Glossary-of-Terms/">
+            
+                    
+                    第25章-术语
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.26" data-path="../26-Breaking-Changes/">
+            
+                <a href="../26-Breaking-Changes/">
+            
+                    
+                    第26章-重大变更
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.27" data-path="../99-Others/">
+            
+                <a href="../99-Others/">
+            
+                    
+                    相关资料
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.27.1" data-path="../99-Others/Field-References-Deep-Dive.html">
+            
+                <a href="../99-Others/Field-References-Deep-Dive.html">
+            
+                    
+                    引用事件字段详解
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            本书使用 GitBook 发布
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >jdbc_static</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <div id="anchor-navigation-ex-navbar"><i class="fa fa-navicon"></i><ul><ul><li><span class="title-icon "></span><a href="#jdbcstatic"><b></b>jdbc_static</a></li><ul><li><span class="title-icon "></span><a href="#&#x5E2E;&#x52A9;"><b></b>&#x5E2E;&#x52A9;</a></li><li><span class="title-icon "></span><a href="#&#x8BF4;&#x660E;"><b></b>&#x8BF4;&#x660E;</a></li><li><span class="title-icon "></span><a href="#&#x4F7F;&#x7528;&#x6B64;&#x63D2;&#x4EF6;&#x5BF9;&#x63A5;&#x591A;&#x4E2A;&#x7BA1;&#x9053;"><b></b>&#x4F7F;&#x7528;&#x6B64;&#x63D2;&#x4EF6;&#x5BF9;&#x63A5;&#x591A;&#x4E2A;&#x7BA1;&#x9053;</a></li><li><span class="title-icon "></span><a href="#&#x52A0;&#x8F7D;&#x5217;&#x548C;localdbobject&#x987A;&#x5E8F;&#x4F9D;&#x8D56;&#x9879;"><b></b>&#x52A0;&#x8F7D;&#x5217;&#x548C;local_db_object&#x987A;&#x5E8F;&#x4F9D;&#x8D56;&#x9879;</a></li><li><span class="title-icon "></span><a href="#jdbcstatic&#x8FC7;&#x6EE4;&#x5668;&#x914D;&#x7F6E;&#x9879;"><b></b>Jdbc_static&#x8FC7;&#x6EE4;&#x5668;&#x914D;&#x7F6E;&#x9879;</a></li><li><span class="title-icon "></span><a href="#&#x901A;&#x7528;&#x914D;&#x7F6E;&#x9879;"><b></b>&#x901A;&#x7528;&#x914D;&#x7F6E;&#x9879;</a></li></ul></ul></ul></div><a href="#" id="anchorNavigationExGoTop"><i class="fa fa-arrow-up"></i></a><h2 id="jdbcstatic"><a name="jdbcstatic" class="anchor-navigation-ex-anchor" href="#jdbcstatic"><i class="fa fa-link" aria-hidden="true"></i></a><a name="jdbcstatic" class="plugin-anchor" href="#jdbcstatic"><i class="fa fa-link" aria-hidden="true"></i></a>jdbc_static</h2>
+<ul>
+<li>&#x63D2;&#x4EF6;&#x7248;&#x672C; v1.0.6</li>
+<li>&#x53D1;&#x5E03;&#x4E8E;&#xFF1A;2018-10-29</li>
+<li><a href="https://github.com/logstash-plugins/logstash-filter-jdbc_static/blob/v1.0.6/CHANGELOG.md" target="_blank">&#x66F4;&#x65B0;&#x65E5;&#x5FD7;</a></li>
+</ul>
+<p>&#x5BF9;&#x4E8E;&#x5176;&#x4ED6;&#x7248;&#x672C;&#xFF0C;&#x8BF7;&#x53C2;&#x9605; <a href="https://www.elastic.co/guide/en/logstash-versioned-plugins/current/filter-jdbc_static-index.html" target="_blank">&#x63D2;&#x4EF6;&#x7248;&#x672C;&#x6587;&#x6863;</a>&#x3002;</p>
+<h3 id="&#x5E2E;&#x52A9;"><a name="&#x5E2E;&#x52A9;" class="anchor-navigation-ex-anchor" href="#&#x5E2E;&#x52A9;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x5E2E;&#x52A9;" class="plugin-anchor" href="#&#x5E2E;&#x52A9;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x5E2E;&#x52A9;</h3>
+<p>&#x6709;&#x5173;&#x63D2;&#x4EF6;&#x7684;&#x95EE;&#x9898;&#xFF0C;&#x8BF7;&#x5728; <a href="https://discuss.elastic.co" target="_blank">&#x8BBA;&#x575B;</a> &#x4E2D;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x4E3B;&#x9898;&#x3002;&#x5BF9;&#x4E8E;bug&#x6216;&#x529F;&#x80FD;&#x8BF7;&#x6C42;&#xFF0C;&#x8BF7;&#x5728; <a href="https://github.com/logstash-plugins/logstash-filter-jdbc_static" target="_blank">Github</a> &#x521B;&#x5EFA;issue&#x3002;&#x6709;&#x5173;Elastic&#x652F;&#x6301;&#x63D2;&#x4EF6;&#x7684;&#x5217;&#x8868;&#xFF0C;&#x8BF7;&#x53C2;&#x9605; <a href="https://www.elastic.co/support/matrix#matrix_logstash_plugins" target="_blank">Elastic&#x652F;&#x6301;&#x5217;&#x8868;</a>&#x3002;</p>
+<h3 id="&#x8BF4;&#x660E;"><a name="&#x8BF4;&#x660E;" class="anchor-navigation-ex-anchor" href="#&#x8BF4;&#x660E;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x8BF4;&#x660E;" class="plugin-anchor" href="#&#x8BF4;&#x660E;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x8BF4;&#x660E;</h3>
+<p>&#x6B64;&#x8FC7;&#x6EE4;&#x5668;&#x4F7F;&#x7528;&#x4ECE;&#x8FDC;&#x7A0B;&#x6570;&#x636E;&#x5E93;&#x9884;&#x52A0;&#x8F7D;&#x7684;&#x6570;&#x636E;&#x6765;&#x4E30;&#x5BCC;&#x4E8B;&#x4EF6;&#x6570;&#x636E;&#x3002;</p>
+<p>&#x6B64;&#x8FC7;&#x6EE4;&#x5668;&#x6700;&#x9002;&#x5408;&#x4F7F;&#x7528;&#x9759;&#x6001;&#x6216;&#x4E0D;&#x7ECF;&#x5E38;&#x66F4;&#x6539;&#x7684;&#x53C2;&#x8003;&#x6570;&#x636E;&#xFF08;&#x5982;&#x73AF;&#x5883;&#xFF0C;&#x7528;&#x6237;&#x548C;&#x4EA7;&#x54C1;&#xFF09;&#x6765;&#x4E30;&#x5BCC;&#x4E8B;&#x4EF6;&#x6570;&#x636E;&#x3002;</p>
+<p>&#x6B64;&#x8FC7;&#x6EE4;&#x5668;&#x7684;&#x5DE5;&#x4F5C;&#x65B9;&#x5F0F;&#x662F;&#x4ECE;&#x8FDC;&#x7A0B;&#x6570;&#x636E;&#x5E93;&#x83B7;&#x53D6;&#x6570;&#x636E;&#xFF0C;&#x5728;&#x672C;&#x5730;&#x5185;&#x5B58;&#x4E2D;&#x7684; <a href="https://db.apache.org/derby/manuals/#docs_10.14" target="_blank">Apache Derby</a> &#x6570;&#x636E;&#x5E93;&#x4E2D;&#x7F13;&#x5B58;&#x6570;&#x636E;&#xFF0C;&#x5E76;&#x901A;&#x8FC7;&#x67E5;&#x627E;&#x672C;&#x5730;&#x6570;&#x636E;&#x5E93;&#x4E2D;&#x7F13;&#x5B58;&#x7684;&#x6570;&#x636E;&#x6765;&#x4E30;&#x5BCC;&#x4E8B;&#x4EF6;&#x3002;&#x60A8;&#x53EF;&#x4EE5;&#x8BBE;&#x7F6E;&#x8FC7;&#x6EE4;&#x5668;&#xFF0C;&#x4EE5;&#x52A0;&#x8F7D;&#x8FDC;&#x7A0B;&#x6570;&#x636E;&#x4E00;&#x6B21;&#xFF08;&#x5BF9;&#x4E8E;&#x9759;&#x6001;&#x6570;&#x636E;&#xFF09;&#xFF0C;&#x6216;&#x8005;&#x53EF;&#x4EE5;&#x5B89;&#x6392;&#x8FDC;&#x7A0B;&#x52A0;&#x8F7D;&#x5B9A;&#x671F;&#x8FD0;&#x884C;&#xFF08;&#x5BF9;&#x4E8E;&#x9700;&#x8981;&#x5237;&#x65B0;&#x7684;&#x6570;&#x636E;&#xFF09;&#x3002;</p>
+<p>&#x8981;&#x5B9A;&#x4E49;&#x8FC7;&#x6EE4;&#x5668;&#xFF0C;&#x8BF7;&#x6307;&#x5B9A;&#x4E09;&#x4E2A;&#x4E3B;&#x8981;&#x90E8;&#x5206;&#xFF1A;local_db_objects&#xFF0C;loaders&#x548C;lookups&#x3002;</p>
+<p><strong>local_db_objects</strong></p>
+<p>&#x200B;    &#x5B9A;&#x4E49;&#x7528;&#x4E8E;&#x6784;&#x5EFA;&#x672C;&#x5730;&#x6570;&#x636E;&#x5E93;&#x7ED3;&#x6784;&#x7684;&#x5217;&#xFF0C;&#x7C7B;&#x578B;&#x548C;&#x7D22;&#x5F15;&#x3002;&#x5217;&#x540D;&#x548C;&#x7C7B;&#x578B;&#x5E94;&#x4E0E;&#x5916;&#x90E8;&#x6570;&#x636E;&#x5E93;&#x5339;&#x914D;&#x3002;&#x6839;&#x636E;&#x9700;&#x8981;&#x5B9A;&#x4E49;&#x8BB8;&#x591A;&#x8FD9;&#x4E9B;&#x5BF9;&#x8C61;&#x4EE5;&#x6784;&#x5EFA;&#x672C;&#x5730;&#x6570;&#x636E;&#x5E93;&#x7ED3;&#x6784;&#x3002;</p>
+<p><strong>loaders</strong></p>
+<p>&#x200B;    &#x67E5;&#x8BE2;&#x5916;&#x90E8;&#x6570;&#x636E;&#x5E93;&#x4EE5;&#x83B7;&#x53D6;&#x5C06;&#x5728;&#x672C;&#x5730;&#x7F13;&#x5B58;&#x7684;&#x6570;&#x636E;&#x96C6;&#x3002;&#x6839;&#x636E;&#x9700;&#x8981;&#x5B9A;&#x4E49;&#x5C3D;&#x53EF;&#x80FD;&#x591A;&#x7684;&#x52A0;&#x8F7D;&#x5668;&#x4EE5;&#x83B7;&#x53D6;&#x8FDC;&#x7A0B;&#x6570;&#x636E;&#x3002;&#x6BCF;&#x4E2A;&#x52A0;&#x8F7D;&#x5668;&#x90FD;&#x5E94;&#x8BE5;&#x586B;&#x5145; <code>local_db_objects</code> &#x5B9A;&#x4E49;&#x7684;&#x8868;&#x3002;&#x786E;&#x4FDD;SQL&#x8BED;&#x53E5;&#x4E2D;&#x52A0;&#x8F7D;&#x7684;&#x5217;&#x540D;&#x548C;&#x6570;&#x636E;&#x7C7B;&#x578B;&#xFF0C;&#x4E0E; <code>local_db_objects</code> &#x4E0B;&#x5B9A;&#x4E49;&#x7684;&#x5217;&#x5339;&#x914D;&#x3002;&#x6BCF;&#x4E2A;&#x52A0;&#x8F7D;&#x5668;&#x90FD;&#x6709;&#x72EC;&#x7ACB;&#x7684;&#x8FDC;&#x7A0B;&#x6570;&#x636E;&#x5E93;&#x8FDE;&#x63A5;&#x3002;</p>
+<p><strong>lookups</strong></p>
+<p>&#x200B;    &#x5728;&#x672C;&#x5730;&#x6570;&#x636E;&#x5E93;&#x4E0A;&#x6267;&#x884C;&#x67E5;&#x8BE2;&#x4EE5;&#x4E30;&#x5BCC;&#x4E8B;&#x4EF6;&#x6570;&#x636E;&#x3002;&#x6839;&#x636E;&#x9700;&#x8981;&#x5B9A;&#x4E49;&#x5C3D;&#x53EF;&#x80FD;&#x591A;&#x7684;&#x67E5;&#x8BE2;&#xFF0C;&#x4EE5;&#x4FBF;&#x901A;&#x8FC7;&#x4E00;&#x6B21;&#x67E5;&#x8BE2;&#x6240;&#x6709;&#x8868;&#x6765;&#x4E30;&#x5BCC;&#x4E8B;&#x4EF6;&#x6570;&#x636E;&#x3002;&#x7406;&#x60F3;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;SQL&#x8BED;&#x53E5;&#x5E94;&#x8BE5;&#x53EA;&#x8FD4;&#x56DE;&#x4E00;&#x884C;&#x3002;&#x4EFB;&#x4F55;&#x884C;&#x90FD;&#x5C06;&#x8F6C;&#x6362;&#x4E3A;Hash&#x5BF9;&#x8C61;&#xFF0C;&#x5E76;&#x5B58;&#x50A8;&#x76EE;&#x6807;&#x5B57;&#x6BB5;&#x6570;&#x7EC4;&#x4E2D;&#x3002;</p>
+<p>&#x200B;    &#x4EE5;&#x4E0B;config&#x793A;&#x4F8B;&#x4ECE;&#x8FDC;&#x7A0B;&#x6570;&#x636E;&#x5E93;&#x4E2D;&#x63D0;&#x53D6;&#x6570;&#x636E;&#xFF0C;&#x5C06;&#x5176;&#x7F13;&#x5B58;&#x5728;&#x672C;&#x5730;&#x6570;&#x636E;&#x5E93;&#x4E2D;&#xFF0C;&#x5E76;&#x901A;&#x8FC7;&#x67E5;&#x8BE2;&#x672C;&#x5730;&#x6570;&#x636E;&#x5E93;&#x4E2D;&#x7F13;&#x5B58;&#x7684;&#x6570;&#x636E;&#x6765;&#x4E30;&#x5BCC;&#x4E8B;&#x4EF6;&#x3002;</p>
+<pre><code class="lang-sh">filter {
+  jdbc_static {
+    loaders =&gt; [ &#x2460;
+      {
+        id =&gt; <span class="hljs-string">&quot;remote-servers&quot;</span>
+        query =&gt; <span class="hljs-string">&quot;select ip, descr from ref.local_ips order by ip&quot;</span>
+        <span class="hljs-built_in">local</span>_table =&gt; <span class="hljs-string">&quot;servers&quot;</span>
+      },
+      {
+        id =&gt; <span class="hljs-string">&quot;remote-users&quot;</span>
+        query =&gt; <span class="hljs-string">&quot;select firstname, lastname, userid from ref.local_users order by userid&quot;</span>
+        <span class="hljs-built_in">local</span>_table =&gt; <span class="hljs-string">&quot;users&quot;</span>
+      }
+    ]
+    <span class="hljs-built_in">local</span>_db_objects =&gt; [ &#x2461;
+      {
+        name =&gt; <span class="hljs-string">&quot;servers&quot;</span>
+        index_columns =&gt; [<span class="hljs-string">&quot;ip&quot;</span>]
+        columns =&gt; [
+          [<span class="hljs-string">&quot;ip&quot;</span>, <span class="hljs-string">&quot;varchar(15)&quot;</span>],
+          [<span class="hljs-string">&quot;descr&quot;</span>, <span class="hljs-string">&quot;varchar(255)&quot;</span>]
+        ]
+      },
+      {
+        name =&gt; <span class="hljs-string">&quot;users&quot;</span>
+        index_columns =&gt; [<span class="hljs-string">&quot;userid&quot;</span>]
+        columns =&gt; [
+          [<span class="hljs-string">&quot;firstname&quot;</span>, <span class="hljs-string">&quot;varchar(255)&quot;</span>],
+          [<span class="hljs-string">&quot;lastname&quot;</span>, <span class="hljs-string">&quot;varchar(255)&quot;</span>],
+          [<span class="hljs-string">&quot;userid&quot;</span>, <span class="hljs-string">&quot;int&quot;</span>]
+        ]
+      }
+    ]
+    <span class="hljs-built_in">local</span>_lookups =&gt; [ &#x2462;
+      {
+        id =&gt; <span class="hljs-string">&quot;local-servers&quot;</span>
+        query =&gt; <span class="hljs-string">&quot;select descr as description from servers WHERE ip = :ip&quot;</span>
+        parameters =&gt; {ip =&gt; <span class="hljs-string">&quot;[from_ip]&quot;</span>}
+        target =&gt; <span class="hljs-string">&quot;server&quot;</span>
+      },
+      {
+        id =&gt; <span class="hljs-string">&quot;local-users&quot;</span>
+        query =&gt; <span class="hljs-string">&quot;select firstname, lastname from users WHERE userid = :id&quot;</span>
+        parameters =&gt; {id =&gt; <span class="hljs-string">&quot;[loggedin_userid]&quot;</span>}
+        target =&gt; <span class="hljs-string">&quot;user&quot;</span> &#x2463;
+      }
+    ]
+    <span class="hljs-comment"># using add_field here to add &amp; rename values to the event root</span>
+    add_field =&gt; { server_name =&gt; <span class="hljs-string">&quot;%{[server][0][description]}&quot;</span> }
+    add_field =&gt; { user_firstname =&gt; <span class="hljs-string">&quot;%{[user][0][firstname]}&quot;</span> } &#x2464;
+    add_field =&gt; { user_lastname =&gt; <span class="hljs-string">&quot;%{[user][0][lastname]}&quot;</span> } &#x2465;
+    remove_field =&gt; [<span class="hljs-string">&quot;server&quot;</span>, <span class="hljs-string">&quot;user&quot;</span>]
+    staging_directory =&gt; <span class="hljs-string">&quot;/tmp/logstash/jdbc_static/import_data&quot;</span>
+    loader_schedule =&gt; <span class="hljs-string">&quot;* */2 * * *&quot;</span> <span class="hljs-comment"># run loaders every 2 hours</span>
+    jdbc_user =&gt; <span class="hljs-string">&quot;logstash&quot;</span>
+    jdbc_password =&gt; <span class="hljs-string">&quot;example&quot;</span>
+    jdbc_driver_class =&gt; <span class="hljs-string">&quot;org.postgresql.Driver&quot;</span>
+    jdbc_driver_library =&gt; <span class="hljs-string">&quot;/tmp/logstash/vendor/postgresql-42.1.4.jar&quot;</span>
+    jdbc_connection_string =&gt; <span class="hljs-string">&quot;jdbc:postgresql://remotedb:5432/ls_test_2&quot;</span>
+  }
+}
+</code></pre>
+<p><img src="../source/images/common/1.png" alt="1"> &#x67E5;&#x8BE2;&#x5916;&#x90E8;&#x6570;&#x636E;&#x5E93;&#x4EE5;&#x83B7;&#x53D6;&#x5C06;&#x5728;&#x672C;&#x5730;&#x7F13;&#x5B58;&#x7684;&#x6570;&#x636E;&#x96C6;&#x3002;</p>
+<p><img src="../source/images/common/2.png" alt="2"> &#x5B9A;&#x4E49;&#x7528;&#x4E8E;&#x6784;&#x5EFA;&#x672C;&#x5730;&#x6570;&#x636E;&#x5E93;&#x7ED3;&#x6784;&#x7684;&#x5217;&#xFF0C;&#x7C7B;&#x578B;&#x548C;&#x7D22;&#x5F15;&#x3002; &#x5217;&#x540D;&#x548C;&#x7C7B;&#x578B;&#x5E94;&#x4E0E;&#x5916;&#x90E8;&#x6570;&#x636E;&#x5E93;&#x5339;&#x914D;&#x3002; &#x8868;&#x5B9A;&#x4E49;&#x7684;&#x987A;&#x5E8F;&#x5E94;&#x4E0E;&#x52A0;&#x8F7D;&#x5668;&#x67E5;&#x8BE2;&#x7684;&#x987A;&#x5E8F;&#x76F8;&#x5339;&#x914D;&#x3002; &#x8BF7;&#x53C2;&#x9605;  <a href="#&#x52A0;&#x8F7D;&#x5217;&#x548C;localdbobject&#x987A;&#x5E8F;&#x4F9D;&#x8D56;&#x9879;">&#x52A0;&#x8F7D;&#x5217;&#x548C;local_db_object&#x987A;&#x5E8F;&#x4F9D;&#x8D56;&#x9879;</a>&#x3002;</p>
+<p><img src="../source/images/common/3.png" alt="3"> &#x5728;&#x672C;&#x5730;&#x6570;&#x636E;&#x5E93;&#x4E0A;&#x6267;&#x884C;&#x67E5;&#x8BE2;&#x67E5;&#x8BE2;&#x4EE5;&#x4E30;&#x5BCC;&#x4E8B;&#x4EF6;&#x6570;&#x636E;&#x3002;</p>
+<p><img src="../source/images/common/4.png" alt="4"> &#x6307;&#x5B9A;&#x67E5;&#x8BE2;&#x7ED3;&#x679C;&#x4E2D;&#x8981;&#x5B58;&#x50A8;&#x7684;&#x4E8B;&#x4EF6;&#x5B57;&#x6BB5;&#x3002; &#x5982;&#x679C;&#x67E5;&#x627E;&#x8FD4;&#x56DE;&#x591A;&#x4E2A;&#x5217;&#xFF0C;&#x5219;&#x6570;&#x636E;&#x5C06;&#x4F5C;&#x4E3A;JSON&#x5BF9;&#x8C61;&#x5B58;&#x50A8;&#x5728;&#x5B57;&#x6BB5;&#x4E2D;&#x3002;</p>
+<p><img src="../source/images/common/5.png" alt="5"> <img src="../source/images/common/6.png" alt="6"> &#x4ECE;JSON&#x5BF9;&#x8C61;&#x83B7;&#x53D6;&#x6570;&#x636E;&#xFF0C;&#x5E76;&#x5C06;&#x5176;&#x5B58;&#x50A8;&#x5728;&#x9876;&#x7EA7;&#x4E8B;&#x4EF6;&#x5B57;&#x6BB5;&#x4E2D;&#xFF0C;&#x4EE5;&#x4FBF;&#x5728;Kibana&#x4E2D;&#x8FDB;&#x884C;&#x5206;&#x6790;&#x3002;</p>
+<p>&#x8FD9;&#x662F;&#x4E00;&#x4E2A;&#x5B8C;&#x6574;&#x7684;&#x4F8B;&#x5B50;&#xFF1A;</p>
+<pre><code class="lang-sh">input {
+  generator {
+    lines =&gt; [
+      <span class="hljs-string">&apos;{&quot;from_ip&quot;: &quot;10.2.3.20&quot;, &quot;app&quot;: &quot;foobar&quot;, &quot;amount&quot;: 32.95}&apos;</span>,
+      <span class="hljs-string">&apos;{&quot;from_ip&quot;: &quot;10.2.3.30&quot;, &quot;app&quot;: &quot;barfoo&quot;, &quot;amount&quot;: 82.95}&apos;</span>,
+      <span class="hljs-string">&apos;{&quot;from_ip&quot;: &quot;10.2.3.40&quot;, &quot;app&quot;: &quot;bazfoo&quot;, &quot;amount&quot;: 22.95}&apos;</span>
+    ]
+    count =&gt; 200
+  }
+}
+
+filter {
+  json {
+    <span class="hljs-built_in">source</span> =&gt; <span class="hljs-string">&quot;message&quot;</span>
+  }
+
+  jdbc_static {
+    loaders =&gt; [
+      {
+        id =&gt; <span class="hljs-string">&quot;servers&quot;</span>
+        query =&gt; <span class="hljs-string">&quot;select ip, descr from ref.local_ips order by ip&quot;</span>
+        <span class="hljs-built_in">local</span>_table =&gt; <span class="hljs-string">&quot;servers&quot;</span>
+      }
+    ]
+    <span class="hljs-built_in">local</span>_db_objects =&gt; [
+      {
+        name =&gt; <span class="hljs-string">&quot;servers&quot;</span>
+        index_columns =&gt; [<span class="hljs-string">&quot;ip&quot;</span>]
+        columns =&gt; [
+          [<span class="hljs-string">&quot;ip&quot;</span>, <span class="hljs-string">&quot;varchar(15)&quot;</span>],
+          [<span class="hljs-string">&quot;descr&quot;</span>, <span class="hljs-string">&quot;varchar(255)&quot;</span>]
+        ]
+      }
+    ]
+    <span class="hljs-built_in">local</span>_lookups =&gt; [
+      {
+        query =&gt; <span class="hljs-string">&quot;select descr as description from servers WHERE ip = :ip&quot;</span>
+        parameters =&gt; {ip =&gt; <span class="hljs-string">&quot;[from_ip]&quot;</span>}
+        target =&gt; <span class="hljs-string">&quot;server&quot;</span>
+      }
+    ]
+    staging_directory =&gt; <span class="hljs-string">&quot;/tmp/logstash/jdbc_static/import_data&quot;</span>
+    loader_schedule =&gt; <span class="hljs-string">&quot;*/30 * * * *&quot;</span>
+    jdbc_user =&gt; <span class="hljs-string">&quot;logstash&quot;</span>
+    jdbc_password =&gt; <span class="hljs-string">&quot;logstash??&quot;</span>
+    jdbc_driver_class =&gt; <span class="hljs-string">&quot;org.postgresql.Driver&quot;</span>
+    jdbc_driver_library =&gt; <span class="hljs-string">&quot;/Users/guy/tmp/logstash-6.0.0/vendor/postgresql-42.1.4.jar&quot;</span>
+    jdbc_connection_string =&gt; <span class="hljs-string">&quot;jdbc:postgresql://localhost:5432/ls_test_2&quot;</span>
+  }
+}
+
+output {
+  stdout {
+    codec =&gt; rubydebug {metadata =&gt; <span class="hljs-literal">true</span>}
+  }
+}
+</code></pre>
+<p>&#x5047;&#x8BBE;&#x52A0;&#x8F7D;&#x7A0B;&#x5E8F;&#x4ECE;Postgres&#x6570;&#x636E;&#x5E93;&#x4E2D;&#x83B7;&#x53D6;&#x4EE5;&#x4E0B;&#x6570;&#x636E;&#xFF1A;</p>
+<pre><code class="lang-shell">select * from ref.local_ips order by ip;
+    ip     |         descr
+-----------+-----------------------
+ 10.2.3.10 | Authentication Server
+ 10.2.3.20 | Payments Server
+ 10.2.3.30 | Events Server
+ 10.2.3.40 | Payroll Server
+ 10.2.3.50 | Uploads Server
+</code></pre>
+<p>&#x57FA;&#x4E8E;IP&#x7684;&#x503C;&#xFF0C;&#x670D;&#x52A1;&#x5668;&#x7684;&#x63CF;&#x8FF0;&#x4E30;&#x5BCC;&#x4E86;&#x4E8B;&#x4EF6;&#x6570;&#x636E;&#xFF1A;</p>
+<pre><code class="lang-shell">{
+           &quot;app&quot; =&gt; &quot;bazfoo&quot;,
+      &quot;sequence&quot; =&gt; 0,
+        &quot;server&quot; =&gt; [
+        [0] {
+            &quot;description&quot; =&gt; &quot;Payroll Server&quot;
+        }
+    ],
+        &quot;amount&quot; =&gt; 22.95,
+    &quot;@timestamp&quot; =&gt; 2017-11-30T18:08:15.694Z,
+      &quot;@version&quot; =&gt; &quot;1&quot;,
+          &quot;host&quot; =&gt; &quot;Elastics-MacBook-Pro.local&quot;,
+       &quot;message&quot; =&gt; &quot;{\&quot;from_ip\&quot;: \&quot;10.2.3.40\&quot;, \&quot;app\&quot;: \&quot;bazfoo\&quot;, \&quot;amount\&quot;: 22.95}&quot;,
+       &quot;from_ip&quot; =&gt; &quot;10.2.3.40&quot;
+}
+</code></pre>
+<h3 id="&#x4F7F;&#x7528;&#x6B64;&#x63D2;&#x4EF6;&#x5BF9;&#x63A5;&#x591A;&#x4E2A;&#x7BA1;&#x9053;"><a name="&#x4F7F;&#x7528;&#x6B64;&#x63D2;&#x4EF6;&#x5BF9;&#x63A5;&#x591A;&#x4E2A;&#x7BA1;&#x9053;" class="anchor-navigation-ex-anchor" href="#&#x4F7F;&#x7528;&#x6B64;&#x63D2;&#x4EF6;&#x5BF9;&#x63A5;&#x591A;&#x4E2A;&#x7BA1;&#x9053;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x4F7F;&#x7528;&#x6B64;&#x63D2;&#x4EF6;&#x5BF9;&#x63A5;&#x591A;&#x4E2A;&#x7BA1;&#x9053;" class="plugin-anchor" href="#&#x4F7F;&#x7528;&#x6B64;&#x63D2;&#x4EF6;&#x5BF9;&#x63A5;&#x591A;&#x4E2A;&#x7BA1;&#x9053;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x4F7F;&#x7528;&#x6B64;&#x63D2;&#x4EF6;&#x5BF9;&#x63A5;&#x591A;&#x4E2A;&#x7BA1;&#x9053;</h3>
+<blockquote>
+<p><strong>&#x91CD;&#x8981;&#xFF1A;</strong></p>
+<p>Logstash&#x4F7F;&#x7528;&#x4E00;&#x4E2A;&#x5185;&#x5B58;&#x4E2D;&#x7684;Apache Derby&#x5B9E;&#x4F8B;&#xFF0C;&#x4F5C;&#x4E3A;&#x6574;&#x4E2A;JVM&#x7684;&#x67E5;&#x627E;&#x6570;&#x636E;&#x5E93;&#x5F15;&#x64CE;&#x3002;&#x7531;&#x4E8E;&#x6BCF;&#x4E2A;&#x63D2;&#x4EF6;&#x5B9E;&#x4F8B;&#x5728;&#x5171;&#x4EAB;Derby&#x5F15;&#x64CE;&#x4E2D;&#x4F7F;&#x7528;&#x552F;&#x4E00;&#x6570;&#x636E;&#x5E93;&#xFF0C;&#x56E0;&#x6B64;&#x4E0E;&#x5C1D;&#x8BD5;&#x521B;&#x5EFA;&#x548C;&#x586B;&#x5145;&#x76F8;&#x540C;&#x8868;&#x7684;&#x63D2;&#x4EF6;&#x4E0D;&#x5B58;&#x5728;&#x51B2;&#x7A81;&#x3002;&#x65E0;&#x8BBA;&#x63D2;&#x4EF6;&#x662F;&#x5728;&#x5355;&#x4E2A;&#x7BA1;&#x9053;&#x4E2D;&#x5B9A;&#x4E49;&#xFF0C;&#x8FD8;&#x662F;&#x5728;&#x591A;&#x4E2A;&#x7BA1;&#x9053;&#x4E2D;&#x5B9A;&#x4E49;&#xFF0C;&#x90FD;&#x662F;&#x5982;&#x6B64;&#x3002;&#x4F46;&#x662F;&#xFF0C;&#x5728;&#x8BBE;&#x7F6E;&#x8FC7;&#x6EE4;&#x5668;&#x540E;&#xFF0C;&#x60A8;&#x5E94;&#x8BE5;&#x67E5;&#x770B;&#x67E5;&#x8BE2;&#x7ED3;&#x679C;&#xFF0C;&#x5E76;&#x67E5;&#x770B;&#x65E5;&#x5FD7;&#x4EE5;&#x9A8C;&#x8BC1;&#x64CD;&#x4F5C;&#x662F;&#x5426;&#x6B63;&#x786E;&#x3002;</p>
+</blockquote>
+<h3 id="&#x52A0;&#x8F7D;&#x5217;&#x548C;localdbobject&#x987A;&#x5E8F;&#x4F9D;&#x8D56;&#x9879;"><a name="&#x52A0;&#x8F7D;&#x5217;&#x548C;localdbobject&#x987A;&#x5E8F;&#x4F9D;&#x8D56;&#x9879;" class="anchor-navigation-ex-anchor" href="#&#x52A0;&#x8F7D;&#x5217;&#x548C;localdbobject&#x987A;&#x5E8F;&#x4F9D;&#x8D56;&#x9879;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x52A0;&#x8F7D;&#x5217;&#x548C;localdbobject&#x987A;&#x5E8F;&#x4F9D;&#x8D56;&#x9879;" class="plugin-anchor" href="#&#x52A0;&#x8F7D;&#x5217;&#x548C;localdbobject&#x987A;&#x5E8F;&#x4F9D;&#x8D56;&#x9879;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x52A0;&#x8F7D;&#x5217;&#x548C;local_db_object&#x987A;&#x5E8F;&#x4F9D;&#x8D56;&#x9879;</h3>
+<blockquote>
+<p><strong>&#x91CD;&#x8981;&#xFF1A;</strong></p>
+<p>&#x51FA;&#x4E8E;&#x52A0;&#x8F7D;&#x7A0B;&#x5E8F;&#x6027;&#x80FD;&#x539F;&#x56E0;&#xFF0C;&#x52A0;&#x8F7D;&#x673A;&#x5236;&#x4F7F;&#x7528;&#x5185;&#x7F6E;&#x7684;Derby&#x6587;&#x4EF6;&#x5BFC;&#x5165;&#x529F;&#x80FD;&#x5BFC;&#x5165;CSV&#x6587;&#x4EF6;&#xFF0C;&#x4ECE;&#x800C;&#x5C06;&#x8FDC;&#x7A0B;&#x6570;&#x636E;&#x6DFB;&#x52A0;&#x5230;&#x672C;&#x5730;&#x6570;&#x636E;&#x5E93;&#x3002;&#x68C0;&#x7D22;&#x5230;&#x7684;&#x5217;&#x6309;&#x539F;&#x6837;&#x5199;&#x5165;CSV&#x6587;&#x4EF6;&#xFF0C;&#x6587;&#x4EF6;&#x5BFC;&#x5165;&#x8FC7;&#x7A0B;&#x9700;&#x8981;&#x4E0E; <code>local_db_object</code> &#x8BBE;&#x7F6E;&#x4E2D;&#x6307;&#x5B9A;&#x7684;&#x5217;&#x7684;&#x987A;&#x5E8F;&#x4E00;&#x4E00;&#x5BF9;&#x5E94;&#x3002;&#x8BF7;&#x786E;&#x4FDD;&#x6B64;&#x987A;&#x5E8F;&#x3002;</p>
+</blockquote>
+<h3 id="jdbcstatic&#x8FC7;&#x6EE4;&#x5668;&#x914D;&#x7F6E;&#x9879;"><a name="jdbcstatic&#x8FC7;&#x6EE4;&#x5668;&#x914D;&#x7F6E;&#x9879;" class="anchor-navigation-ex-anchor" href="#jdbcstatic&#x8FC7;&#x6EE4;&#x5668;&#x914D;&#x7F6E;&#x9879;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="jdbcstatic&#x8FC7;&#x6EE4;&#x5668;&#x914D;&#x7F6E;&#x9879;" class="plugin-anchor" href="#jdbcstatic&#x8FC7;&#x6EE4;&#x5668;&#x914D;&#x7F6E;&#x9879;"><i class="fa fa-link" aria-hidden="true"></i></a>Jdbc_static&#x8FC7;&#x6EE4;&#x5668;&#x914D;&#x7F6E;&#x9879;</h3>
+<p>&#x6B64;&#x63D2;&#x4EF6;&#x652F;&#x6301;&#x4EE5;&#x4E0B;&#x914D;&#x7F6E;&#x9009;&#x9879;&#x4EE5;&#x53CA;&#x7A0D;&#x540E;&#x63CF;&#x8FF0;&#x7684; <a href="#&#x901A;&#x7528;&#x914D;&#x7F6E;&#x9879;">&#x901A;&#x7528;&#x914D;&#x7F6E;&#x9879;</a>&#x3002;</p>
+<table>
+<thead>
+<tr>
+<th>&#x8BBE;&#x7F6E;</th>
+<th>&#x8F93;&#x5165;&#x7C7B;&#x578B;</th>
+<th>&#x5FC5;&#x987B;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#jdbcconnectionstring"><code>jdbc_connection_string</code></a></td>
+<td><a href="../06-Configuring-Logstash/Structure-of-a-Config-File.html#string">string</a></td>
+<td>&#x662F;</td>
+</tr>
+<tr>
+<td><a href="#jdbcdriverclass"><code>jdbc_driver_class</code></a></td>
+<td><a href="../06-Configuring-Logstash/Structure-of-a-Config-File.html#string">string</a></td>
+<td>&#x662F;</td>
+</tr>
+<tr>
+<td><a href="#jdbcdriverlibrary"><code>jdbc_driver_library</code></a></td>
+<td><a href="../06-Configuring-Logstash/Structure-of-a-Config-File.html#path">path</a></td>
+<td>&#x5426;</td>
+</tr>
+<tr>
+<td><a href="#jdbcpassword"><code>jdbc_password</code></a></td>
+<td><a href="../06-Configuring-Logstash/Structure-of-a-Config-File.html#password">password</a></td>
+<td>&#x5426;</td>
+</tr>
+<tr>
+<td><a href="#jdbcuser"><code>jdbc_user</code></a></td>
+<td><a href="../06-Configuring-Logstash/Structure-of-a-Config-File.html#string">string</a></td>
+<td>&#x5426;</td>
+</tr>
+<tr>
+<td><a href="#tagonfailure"><code>tag_on_failure</code></a></td>
+<td><a href="../06-Configuring-Logstash/Structure-of-a-Config-File.html#array">array</a></td>
+<td>&#x5426;</td>
+</tr>
+<tr>
+<td><a href="#tagondefaultuse"><code>tag_on_default_use</code></a></td>
+<td><a href="../06-Configuring-Logstash/Structure-of-a-Config-File.html#array">array</a></td>
+<td>&#x5426;</td>
+</tr>
+<tr>
+<td><a href="#stagingdirectory"><code>staging_directory</code></a></td>
+<td><a href="../06-Configuring-Logstash/Structure-of-a-Config-File.html#string">string</a></td>
+<td>&#x5426;</td>
+</tr>
+<tr>
+<td><a href="#loaderschedule"><code>loader_schedule</code></a></td>
+<td><a href="../06-Configuring-Logstash/Structure-of-a-Config-File.html#string">string</a></td>
+<td>&#x5426;</td>
+</tr>
+<tr>
+<td><a href="#loaders"><code>loaders</code></a></td>
+<td><a href="../06-Configuring-Logstash/Structure-of-a-Config-File.html#array">array</a></td>
+<td>&#x5426;</td>
+</tr>
+<tr>
+<td><a href="#localdbobjects"><code>local_db_objects</code></a></td>
+<td><a href="../06-Configuring-Logstash/Structure-of-a-Config-File.html#array">array</a></td>
+<td>&#x5426;</td>
+</tr>
+<tr>
+<td><a href="#locallookups"><code>local_lookups</code></a></td>
+<td><a href="../06-Configuring-Logstash/Structure-of-a-Config-File.html#array">array</a></td>
+<td>&#x5426;</td>
+</tr>
+</tbody>
+</table>
+<p>&#x53E6;&#x8BF7;&#x53C2;&#x9605; <a href="#&#x901A;&#x7528;&#x914D;&#x7F6E;&#x9879;">&#x901A;&#x7528;&#x914D;&#x7F6E;&#x9879;</a> &#x4EE5;&#x83B7;&#x53D6;&#x6240;&#x6709;&#x8F93;&#x5165;&#x63D2;&#x4EF6;&#x652F;&#x6301;&#x7684;&#x9009;&#x9879;&#x5217;&#x8868;&#x3002;</p>
+<h5 id="jdbcconnectionstring"><a name="jdbcconnectionstring" class="anchor-navigation-ex-anchor" href="#jdbcconnectionstring"><i class="fa fa-link" aria-hidden="true"></i></a><a name="jdbcconnectionstring" class="plugin-anchor" href="#jdbcconnectionstring"><i class="fa fa-link" aria-hidden="true"></i></a>jdbc_connection_string</h5>
+<ul>
+<li>&#x8FD9;&#x662F;&#x5FC5;&#x9700;&#x7684;&#x8BBE;&#x7F6E;&#x3002;</li>
+<li>&#x503C;&#x7C7B;&#x578B;&#x662F; <a href="../06-Configuring-Logstash/Structure-of-a-Config-File.html#string">string</a></li>
+<li>&#x6B64;&#x8BBE;&#x7F6E;&#x6CA1;&#x6709;&#x9ED8;&#x8BA4;&#x503C;&#x3002;</li>
+</ul>
+<p>JDBC&#x8FDE;&#x63A5;&#x5B57;&#x7B26;&#x4E32;&#x3002;</p>
+<h5 id="jdbcdriverclass"><a name="jdbcdriverclass" class="anchor-navigation-ex-anchor" href="#jdbcdriverclass"><i class="fa fa-link" aria-hidden="true"></i></a><a name="jdbcdriverclass" class="plugin-anchor" href="#jdbcdriverclass"><i class="fa fa-link" aria-hidden="true"></i></a>jdbc_driver_class</h5>
+<ul>
+<li>&#x8FD9;&#x662F;&#x5FC5;&#x9700;&#x7684;&#x8BBE;&#x7F6E;&#x3002;</li>
+<li>&#x503C;&#x7C7B;&#x578B;&#x662F; <a href="../06-Configuring-Logstash/Structure-of-a-Config-File.html#string">string</a></li>
+<li>&#x6B64;&#x8BBE;&#x7F6E;&#x6CA1;&#x6709;&#x9ED8;&#x8BA4;&#x503C;&#x3002;</li>
+</ul>
+<p>&#x8981;&#x52A0;&#x8F7D;&#x7684;JDBC&#x9A71;&#x52A8;&#x7A0B;&#x5E8F;&#x7C7B;&#xFF0C;&#x4F8B;&#x5982; &quot;org.apache.derby.jdbc.ClientDriver&quot;&#x3002;</p>
+<blockquote>
+<p><strong>&#x6CE8;&#x610F;&#xFF1A;</strong></p>
+<p>&#x6839;&#x636E; <a href="https://github.com/logstash-plugins/logstash-input-jdbc/issues/43" target="_blank">issue 43</a> &#xFF0C;&#x5982;&#x679C;&#x60A8;&#x4F7F;&#x7528;&#x7684;&#x662F;Oracle JDBC&#x9A71;&#x52A8;&#x7A0B;&#x5E8F;&#xFF08;ojdbc6.jar&#xFF09;&#xFF0C;&#x5219;&#x6B63;&#x786E;&#x7684; <code>jdbc_driver_class</code> &#x662F; <code>&quot;Java::oracle.jdbc.driver.OracleDriver&quot;</code>&#x3002;</p>
+</blockquote>
+<h5 id="jdbcdriverlibrary"><a name="jdbcdriverlibrary" class="anchor-navigation-ex-anchor" href="#jdbcdriverlibrary"><i class="fa fa-link" aria-hidden="true"></i></a><a name="jdbcdriverlibrary" class="plugin-anchor" href="#jdbcdriverlibrary"><i class="fa fa-link" aria-hidden="true"></i></a>jdbc_driver_library</h5>
+<ul>
+<li>&#x503C;&#x7C7B;&#x578B;&#x662F; <a href="../06-Configuring-Logstash/Structure-of-a-Config-File.html#string">string</a></li>
+<li>&#x6B64;&#x8BBE;&#x7F6E;&#x6CA1;&#x6709;&#x9ED8;&#x8BA4;&#x503C;&#x3002;</li>
+</ul>
+<p>JDBC&#x9A71;&#x52A8;&#x7A0B;&#x5E8F;&#x5E93;&#x5230;&#x7B2C;&#x4E09;&#x65B9;&#x9A71;&#x52A8;&#x7A0B;&#x5E8F;&#x5E93;&#x7684;&#x8DEF;&#x5F84;&#x3002;&#x5982;&#x679C;&#x9700;&#x8981;&#x591A;&#x4E2A;&#x5E93;&#xFF0C;&#x8BF7;&#x5728;&#x4E00;&#x4E2A;&#x5B57;&#x7B26;&#x4E32;&#x4E2D;&#x4F7F;&#x7528;&#x9017;&#x53F7;&#x5206;&#x9694;&#x7684;&#x8DEF;&#x5F84;&#x3002;</p>
+<p>&#x5982;&#x679C;&#x672A;&#x63D0;&#x4F9B;&#x9A71;&#x52A8;&#x7A0B;&#x5E8F;&#x7C7B;&#xFF0C;&#x5219;&#x63D2;&#x4EF6;&#x4F1A;&#x5728;Logstash Java&#x7C7B;&#x8DEF;&#x5F84;&#x4E2D;&#x67E5;&#x627E;&#x5B83;&#x3002;</p>
+<h5 id="jdbcpassword"><a name="jdbcpassword" class="anchor-navigation-ex-anchor" href="#jdbcpassword"><i class="fa fa-link" aria-hidden="true"></i></a><a name="jdbcpassword" class="plugin-anchor" href="#jdbcpassword"><i class="fa fa-link" aria-hidden="true"></i></a>jdbc_password</h5>
+<ul>
+<li>&#x503C;&#x7C7B;&#x578B;&#x662F; <a href="../06-Configuring-Logstash/Structure-of-a-Config-File.html#password">password</a></li>
+<li>&#x6B64;&#x8BBE;&#x7F6E;&#x6CA1;&#x6709;&#x9ED8;&#x8BA4;&#x503C;&#x3002;</li>
+</ul>
+<p>JDBC&#x5BC6;&#x7801;&#x3002;</p>
+<h5 id="jdbcuser"><a name="jdbcuser" class="anchor-navigation-ex-anchor" href="#jdbcuser"><i class="fa fa-link" aria-hidden="true"></i></a><a name="jdbcuser" class="plugin-anchor" href="#jdbcuser"><i class="fa fa-link" aria-hidden="true"></i></a>jdbc_user</h5>
+<ul>
+<li>&#x8FD9;&#x662F;&#x5FC5;&#x9700;&#x7684;&#x8BBE;&#x7F6E;&#x3002;</li>
+<li>&#x503C;&#x7C7B;&#x578B;&#x662F; <a href="../06-Configuring-Logstash/Structure-of-a-Config-File.html#string">string</a></li>
+<li>&#x6B64;&#x8BBE;&#x7F6E;&#x6CA1;&#x6709;&#x9ED8;&#x8BA4;&#x503C;&#x3002;</li>
+</ul>
+<p>JDBC&#x7528;&#x6237;&#x3002;</p>
+<h5 id="tagondefaultuse"><a name="tagondefaultuse" class="anchor-navigation-ex-anchor" href="#tagondefaultuse"><i class="fa fa-link" aria-hidden="true"></i></a><a name="tagondefaultuse" class="plugin-anchor" href="#tagondefaultuse"><i class="fa fa-link" aria-hidden="true"></i></a>tag_on_default_use</h5>
+<ul>
+<li>&#x503C;&#x7C7B;&#x578B;&#x662F; <a href="../06-Configuring-Logstash/Structure-of-a-Config-File.html#array">array</a></li>
+<li>&#x9ED8;&#x8BA4;&#x503C;&#x4E3A; <code>[&quot;_jdbcstaticdefaultsused&quot;]</code></li>
+</ul>
+<p>&#x5982;&#x679C;&#x672A;&#x627E;&#x5230;&#x8BB0;&#x5F55;&#x5E76;&#x4F7F;&#x7528;&#x9ED8;&#x8BA4;&#x503C;&#xFF0C;&#x5219;&#x5C06;&#x503C;&#x9644;&#x52A0;&#x5230; <code>tag</code> &#x5B57;&#x6BB5;&#x3002;</p>
+<h5 id="tagonfailure"><a name="tagonfailure" class="anchor-navigation-ex-anchor" href="#tagonfailure"><i class="fa fa-link" aria-hidden="true"></i></a><a name="tagonfailure" class="plugin-anchor" href="#tagonfailure"><i class="fa fa-link" aria-hidden="true"></i></a>tag_on_failure</h5>
+<ul>
+<li>&#x503C;&#x7C7B;&#x578B;&#x662F; <a href="../06-Configuring-Logstash/Structure-of-a-Config-File.html#array">array</a></li>
+<li>&#x9ED8;&#x8BA4;&#x503C;&#x4E3A; <code>[&quot;_jdbcstaticfailure&quot;]</code></li>
+</ul>
+<p>&#x5982;&#x679C;&#x53D1;&#x751F;SQL&#x9519;&#x8BEF;&#xFF0C;&#x5219;&#x5C06;&#x503C;&#x9644;&#x52A0;&#x5230; <code>tag</code> &#x5B57;&#x6BB5;&#x3002;</p>
+<h5 id="stagingdirectory"><a name="stagingdirectory" class="anchor-navigation-ex-anchor" href="#stagingdirectory"><i class="fa fa-link" aria-hidden="true"></i></a><a name="stagingdirectory" class="plugin-anchor" href="#stagingdirectory"><i class="fa fa-link" aria-hidden="true"></i></a>staging_directory</h5>
+<ul>
+<li>&#x503C;&#x7C7B;&#x578B;&#x662F; <a href="../06-Configuring-Logstash/Structure-of-a-Config-File.html#string">string</a></li>
+<li>&#x9ED8;&#x8BA4;&#x503C;&#x6D3E;&#x751F;&#x81EA; Ruby&#x4E34;&#x65F6;&#x76EE;&#x5F55;+ plugin_name +&quot;import_data&quot;</li>
+<li>&#x4F8B;&#x5982; <code>&quot;/tmp/logstash/jdbc_static/import_data&quot;</code></li>
+</ul>
+<p>&#x4F7F;&#x7528;&#x7684;&#x76EE;&#x5F55;&#x5C06;&#x6570;&#x636E;&#x5206;&#x6BB5;&#x7528;&#x4E8E;&#x6279;&#x91CF;&#x52A0;&#x8F7D;&#xFF0C;&#x5E94;&#x8BE5;&#x6709;&#x8DB3;&#x591F;&#x7684;&#x78C1;&#x76D8;&#x7A7A;&#x95F4;&#xFF0C;&#x6765;&#x5904;&#x7406;&#x60A8;&#x5E0C;&#x671B;&#x7528;&#x4E8E;&#x4E30;&#x5BCC;&#x4E8B;&#x4EF6;&#x7684;&#x6570;&#x636E;&#x3002;&#x7531;&#x4E8E;Apache Derby&#x4E2D;&#x7684;&#x5F00;&#x653E;&#x9519;&#x8BEF;&#xFF0C;&#x6B64;&#x63D2;&#x4EF6;&#x7684;&#x65E9;&#x671F;&#x7248;&#x672C;&#x65E0;&#x6CD5;&#x5F88;&#x597D;&#x5730;&#x5904;&#x7406;&#x8D85;&#x8FC7;&#x6570;&#x5343;&#x884C;&#x7684;&#x52A0;&#x8F7D;&#x6570;&#x636E;&#x96C6;&#x3002;&#x6B64;&#x8BBE;&#x7F6E;&#x5F15;&#x5165;&#x4E86;&#x52A0;&#x8F7D;&#x5927;&#x578B;&#x8BB0;&#x5F55;&#x96C6;&#x7684;&#x53E6;&#x4E00;&#x79CD;&#x65B9;&#x6CD5;&#x3002;&#x6536;&#x5230;&#x6BCF;&#x4E00;&#x884C;&#x540E;&#xFF0C;&#x5B83;&#x4F1A;&#x5047;&#x8131;&#x673A;&#x5230;&#x6587;&#x4EF6;&#xFF0C;&#x7136;&#x540E;&#x4F7F;&#x7528;&#x7CFB;&#x7EDF;&#x5BFC;&#x5165;&#x8868;&#x7CFB;&#x7EDF;&#x8C03;&#x7528;&#x5BFC;&#x5165;&#x8BE5;&#x6587;&#x4EF6;&#x3002;</p>
+<p>&#x5982;&#x679C;&#x53D1;&#x751F;SQL&#x9519;&#x8BEF;&#xFF0C;&#x5219;&#x5C06;&#x503C;&#x9644;&#x52A0;&#x5230;&#x6807;&#x8BB0;&#x5B57;&#x6BB5;&#x3002;</p>
+<h5 id="loaderschedule"><a name="loaderschedule" class="anchor-navigation-ex-anchor" href="#loaderschedule"><i class="fa fa-link" aria-hidden="true"></i></a><a name="loaderschedule" class="plugin-anchor" href="#loaderschedule"><i class="fa fa-link" aria-hidden="true"></i></a>loader_schedule</h5>
+<ul>
+<li>&#x503C;&#x7C7B;&#x578B;&#x662F; <a href="../06-Configuring-Logstash/Structure-of-a-Config-File.html#string">string</a></li>
+<li>&#x6B64;&#x8BBE;&#x7F6E;&#x6CA1;&#x6709;&#x9ED8;&#x8BA4;&#x503C;&#x3002;</li>
+</ul>
+<p>&#x60A8;&#x53EF;&#x4EE5;&#x6839;&#x636E;&#x7279;&#x5B9A;&#x8BA1;&#x5212;&#x5B9A;&#x671F;&#x8FD0;&#x884C;&#x8FDC;&#x7A0B;&#x52A0;&#x8F7D;&#x3002;&#x6B64;&#x8C03;&#x5EA6;&#x8BED;&#x6CD5;&#x7531; <a href="https://github.com/jmettraux/rufus-scheduler" target="_blank">rufus-scheduler</a> &#x63D0;&#x4F9B;&#x652F;&#x6301;&#x3002;&#x8BED;&#x6CD5;&#x7C7B;&#x4F3C;&#x4E8E;cron&#xFF0C;&#x5177;&#x6709;&#x7279;&#x5B9A;&#x4E8E;Rufus&#x7684;&#x4E00;&#x4E9B;&#x6269;&#x5C55;&#xFF08;&#x4F8B;&#x5982;&#xFF0C;&#x65F6;&#x533A;&#x652F;&#x6301;&#xFF09;&#x3002;&#x6709;&#x5173;&#x6B64;&#x8BED;&#x6CD5;&#x7684;&#x66F4;&#x591A;&#x4FE1;&#x606F;&#xFF0C;&#x8BF7;&#x53C2;&#x9605; <a href="#https://github.com/jmettraux/rufus-scheduler#parsing-cronlines-and-time-strings">&#x89E3;&#x6790;cronlines&#x548C;&#x65F6;&#x95F4;&#x5B57;&#x7B26;&#x4E32;</a>&#x3002;</p>
+<p>&#x4F8B;&#x5B50;&#xFF1A;</p>
+<table>
+<thead>
+<tr>
+<th>&#x8BED;&#x6CD5;</th>
+<th>&#x8BF4;&#x660E;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>*/30 * * * *</code></td>
+<td>&#x6BCF;&#x5E74;1-3&#x6708;&#x7684;&#x6BCF;&#x5929;&#x4E0A;&#x5348;5&#x70B9;&#xFF0C;&#x6BCF;&#x5206;&#x949F;&#x6267;&#x884C;&#x4E00;&#x6B21;</td>
+</tr>
+<tr>
+<td><code>* 5 * 1-3 *</code></td>
+<td>&#x6BCF;&#x5E74;1-3&#x6708;&#x7684;&#x6BCF;&#x5929;&#x4E0A;&#x5348;5&#x70B9;&#xFF0C;&#x6BCF;&#x5206;&#x949F;&#x6267;&#x884C;&#x4E00;&#x6B21;</td>
+</tr>
+<tr>
+<td><code>0 * * * *</code></td>
+<td>&#x6BCF;&#x5929;&#x6BCF;&#x5C0F;&#x65F6;&#x7684;&#x7B2C;0&#x5206;&#x949F;&#x6267;&#x884C;</td>
+</tr>
+<tr>
+<td><code>0 6 * * * America/Chicago</code></td>
+<td>UTC/GMT -5&#x65F6;&#x533A;&#xFF0C;&#x6BCF;&#x5929;&#x4E0A;&#x5348;6&#x70B9;&#x6267;&#x884C;</td>
+</tr>
+</tbody>
+</table>
+<p>&#x4F7F;&#x7528;&#x5982;&#x4E0B;Logstash&#x5185;&#x7F6E;shell&#x547D;&#x4EE4;&#x8C03;&#x8BD5;&#xFF1A;</p>
+<pre><code class="lang-shell">bin/logstash -i irb
+irb(main):001:0&gt; require &apos;rufus-scheduler&apos;
+=&gt; true
+irb(main):002:0&gt; Rufus::Scheduler.parse(&apos;*/10 * * * *&apos;)
+=&gt; #&lt;Rufus::Scheduler::CronLine:0x230f8709 @timezone=nil, @weekdays=nil, @days=nil, @seconds=[0], @minutes=[0, 10, 20, 30, 40, 50], @hours=nil, @months=nil, @monthdays=nil, @original=&quot;*/10 * * * *&quot;&gt;
+irb(main):003:0&gt; exit
+</code></pre>
+<p>&#x4E0A;&#x9762;&#x8C03;&#x7528;&#x8FD4;&#x56DE;&#x7684;&#x5BF9;&#x8C61;&#xFF0C;<code>Rufus::Scheduler::CronLine</code> &#x7684;&#x4E00;&#x4E2A;&#x5B9E;&#x4F8B;&#x663E;&#x793A;&#x4E86;&#x6267;&#x884C;&#x7684;&#x79D2;&#x6570;&#xFF0C;&#x5206;&#x949F;&#x6570;&#x7B49;&#x3002;</p>
+<h5 id="loaders"><a name="loaders" class="anchor-navigation-ex-anchor" href="#loaders"><i class="fa fa-link" aria-hidden="true"></i></a><a name="loaders" class="plugin-anchor" href="#loaders"><i class="fa fa-link" aria-hidden="true"></i></a>loaders</h5>
+<ul>
+<li>&#x503C;&#x7C7B;&#x578B;&#x662F; <a href="../06-Configuring-Logstash/Structure-of-a-Config-File.html#array">array</a></li>
+<li>&#x9ED8;&#x8BA4;&#x503C;&#x4E3A; <code>[]</code></li>
+</ul>
+<p>&#x8BE5;&#x6570;&#x7EC4;&#x5E94;&#x5305;&#x542B;&#x4E00;&#x4E2A;&#x6216;&#x591A;&#x4E2A;&#x54C8;&#x5E0C;&#x3002;&#x6BCF;&#x4E2A;&#x54C8;&#x5E0C;&#x90FD;&#x6839;&#x636E;&#x4E0B;&#x8868;&#x8FDB;&#x884C;&#x9A8C;&#x8BC1;&#x3002;</p>
+<table>
+<thead>
+<tr>
+<th>&#x8BBE;&#x7F6E;</th>
+<th>Input type</th>
+<th>Required</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>string</td>
+<td>No</td>
+</tr>
+<tr>
+<td>table</td>
+<td>string</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>query</td>
+<td>string</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>max_rows</td>
+<td>number</td>
+<td>No</td>
+</tr>
+<tr>
+<td>jdbc_connection_string</td>
+<td>string</td>
+<td>No</td>
+</tr>
+<tr>
+<td>jdbc_driver_class</td>
+<td>string</td>
+<td>No</td>
+</tr>
+<tr>
+<td>jdbc_driver_library</td>
+<td>a valid filesystem path</td>
+<td>No</td>
+</tr>
+<tr>
+<td>jdbc_password</td>
+<td>password</td>
+<td>No</td>
+</tr>
+<tr>
+<td>jdbc_user</td>
+<td>string</td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<p><strong>loaders&#x5B57;&#x6BB5;&#x63CF;&#x8FF0;&#xFF1A;</strong></p>
+<p>&#x200B;    <strong>id</strong></p>
+<p>&#x200B;    &#x53EF;&#x9009;&#x6807;&#x8BC6;&#x7B26;&#x3002;&#x8FD9;&#x7528;&#x4E8E;&#x6807;&#x8BC6;&#x751F;&#x6210;&#x9519;&#x8BEF;&#x6D88;&#x606F;&#x548C;&#x65E5;&#x5FD7;&#x884C;&#x7684;&#x52A0;&#x8F7D;&#x7A0B;&#x5E8F;&#x3002;</p>
+<p>&#x200B;    <strong>table</strong></p>
+<p>&#x200B;    Loader&#x5C06;&#x586B;&#x5145;&#x7684;&#x672C;&#x5730;&#x67E5;&#x627E;&#x6570;&#x636E;&#x5E93;&#x4E2D;&#x7684;&#x76EE;&#x6807;&#x8868;&#x3002;</p>
+<p>&#x200B;    <strong>query</strong></p>
+<p>&#x200B;    &#x4E3A;&#x83B7;&#x53D6;&#x8FDC;&#x7A0B;&#x8BB0;&#x5F55;&#x800C;&#x6267;&#x884C;&#x7684;SQL&#x8BED;&#x53E5;&#x3002;&#x4F7F;&#x7528;SQL&#x522B;&#x540D;&#x548C;&#x5F3A;&#x5236;&#x7C7B;&#x578B;&#x8F6C;&#x6362;&#xFF0C;&#x6765;&#x786E;&#x4FDD;&#x8BB0;&#x5F55;&#x7684;&#x5217;&#x548C;&#x6570;&#x636E;&#x7C7B;&#x578B;&#x4E0E; <code>local_db_objects</code> &#x4E2D;&#x5B9A;&#x4E49;&#x7684;&#x672C;&#x5730;&#x6570;&#x636E;&#x5E93;&#x4E2D;&#x7684;&#x8868;&#x7ED3;&#x6784;&#x76F8;&#x5339;&#x914D;&#x3002;</p>
+<p>&#x200B;    <strong>max_rows</strong></p>
+<p>&#x200B;    &#x6B64;&#x8BBE;&#x7F6E;&#x7684;&#x9ED8;&#x8BA4;&#x503C;&#x4E3A;100&#x4E07;&#x3002;&#x7531;&#x4E8E;&#x67E5;&#x627E;&#x6570;&#x636E;&#x5E93;&#x662F;&#x5185;&#x5B58;&#x4E2D;&#x7684;&#xFF0C;&#x56E0;&#x6B64;&#x5B83;&#x5C06;&#x5360;&#x7528;JVM&#x5806;&#x7A7A;&#x95F4;&#x3002;&#x5982;&#x679C;&#x67E5;&#x8BE2;&#x8FD4;&#x56DE;&#x6570;&#x767E;&#x4E07;&#x884C;&#xFF0C;&#x5219;&#x5E94;&#x589E;&#x52A0;&#x7ED9;&#x4E88;Logstash&#x7684;JVM&#x5185;&#x5B58;&#x6216;&#x9650;&#x5236;&#x8FD4;&#x56DE;&#x7684;&#x884C;&#x6570;&#xFF0C;&#x53EF;&#x80FD;&#x662F;&#x5BF9;&#x4E8B;&#x4EF6;&#x6570;&#x636E;&#x4E2D;&#x6700;&#x5E38;&#x89C1;&#x7684;&#x884C;&#x6570;&#x3002;</p>
+<p>&#x200B;    <strong>jdbc_connection_string</strong></p>
+<p>&#x200B;    &#x5982;&#x679C;&#x672A;&#x5728;&#x52A0;&#x8F7D;&#x7A0B;&#x5E8F;&#x4E2D;&#x8BBE;&#x7F6E;&#xFF0C;&#x5219;&#x6B64;&#x8BBE;&#x7F6E;&#x9ED8;&#x8BA4;&#x4E3A;&#x63D2;&#x4EF6;&#x7EA7;&#x522B; <code>jdbc_connection_string</code> &#x8BBE;&#x7F6E;&#x3002;</p>
+<p>&#x200B;    <strong>jdbc_driver_class</strong></p>
+<p>&#x200B;    &#x5982;&#x679C;&#x672A;&#x5728;&#x52A0;&#x8F7D;&#x7A0B;&#x5E8F;&#x4E2D;&#x8BBE;&#x7F6E;&#xFF0C;&#x5219;&#x6B64;&#x8BBE;&#x7F6E;&#x9ED8;&#x8BA4;&#x4E3A;&#x63D2;&#x4EF6;&#x7EA7; <code>jdbc_driver_class</code> &#x8BBE;&#x7F6E;&#x3002;</p>
+<p>&#x200B;    <strong>jdbc_driver_library</strong></p>
+<p>&#x200B;    &#x5982;&#x679C;&#x672A;&#x5728;&#x52A0;&#x8F7D;&#x7A0B;&#x5E8F;&#x4E2D;&#x8BBE;&#x7F6E;&#xFF0C;&#x5219;&#x6B64;&#x8BBE;&#x7F6E;&#x9ED8;&#x8BA4;&#x4E3A;&#x63D2;&#x4EF6;&#x7EA7;&#x522B; <code>jdbc_driver_library</code> &#x8BBE;&#x7F6E;&#x3002;</p>
+<p>&#x200B;    <strong>jdbc_password</strong></p>
+<p>&#x200B;    &#x5982;&#x679C;&#x672A;&#x5728;&#x52A0;&#x8F7D;&#x7A0B;&#x5E8F;&#x4E2D;&#x8BBE;&#x7F6E;&#xFF0C;&#x5219;&#x6B64;&#x8BBE;&#x7F6E;&#x9ED8;&#x8BA4;&#x4E3A;&#x63D2;&#x4EF6;&#x7EA7;&#x522B; <code>jdbc_password</code> &#x8BBE;&#x7F6E;&#x3002;</p>
+<p>&#x200B;    <strong>jdbc_user</strong></p>
+<p>&#x200B;    &#x5982;&#x679C;&#x672A;&#x5728;&#x52A0;&#x8F7D;&#x7A0B;&#x5E8F;&#x4E2D;&#x8BBE;&#x7F6E;&#xFF0C;&#x5219;&#x6B64;&#x8BBE;&#x7F6E;&#x9ED8;&#x8BA4;&#x4E3A;&#x63D2;&#x4EF6;&#x7EA7;&#x522B; <code>jdbc_user</code> &#x8BBE;&#x7F6E;&#x3002;</p>
+<h5 id="localdbobjects"><a name="localdbobjects" class="anchor-navigation-ex-anchor" href="#localdbobjects"><i class="fa fa-link" aria-hidden="true"></i></a><a name="localdbobjects" class="plugin-anchor" href="#localdbobjects"><i class="fa fa-link" aria-hidden="true"></i></a>local_db_objects</h5>
+<ul>
+<li>&#x503C;&#x7C7B;&#x578B;&#x662F; <a href="../06-Configuring-Logstash/Structure-of-a-Config-File.html#array">array</a></li>
+<li>&#x9ED8;&#x8BA4;&#x503C;&#x4E3A; <code>[]</code></li>
+</ul>
+<p>&#x8BE5;&#x6570;&#x7EC4;&#x5E94;&#x5305;&#x542B;&#x4E00;&#x4E2A;&#x6216;&#x591A;&#x4E2A;&#x54C8;&#x5E0C;&#x3002;&#x6BCF;&#x4E2A;Hash&#x4EE3;&#x8868;&#x672C;&#x5730;&#x67E5;&#x627E;&#x6570;&#x636E;&#x5E93;&#x7684;&#x8868;&#x6A21;&#x5F0F;&#x3002;&#x6BCF;&#x4E2A;&#x54C8;&#x5E0C;&#x90FD;&#x6839;&#x636E;&#x4E0B;&#x8868;&#x8FDB;&#x884C;&#x9A8C;&#x8BC1;&#x3002;</p>
+<table>
+<thead>
+<tr>
+<th>Setting</th>
+<th>Input type</th>
+<th>Required</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>name</td>
+<td>string</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>columns</td>
+<td>array</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>index_columns</td>
+<td>number</td>
+<td>No</td>
+</tr>
+<tr>
+<td>preserve_existing</td>
+<td>boolean</td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Local_db_objects&#x5B57;&#x6BB5;&#x63CF;&#x8FF0;&#xFF1A;</strong></p>
+<p>&#x200B;    <strong>name</strong></p>
+<p>&#x200B;    &#x8981;&#x5728;&#x6570;&#x636E;&#x5E93;&#x4E2D;&#x521B;&#x5EFA;&#x7684;&#x8868;&#x7684;&#x540D;&#x79F0;&#x3002;</p>
+<p>&#x200B;    <strong>columns</strong></p>
+<p>&#x200B;    &#x5217;&#x58F0;&#x660E;&#x6570;&#x7EC4;&#x3002;&#x6BCF;&#x4E2A;&#x5217;&#x58F0;&#x660E;&#x90FD;&#x662F;&#x4E24;&#x4E2A;&#x5143;&#x7D20;&#x7684;&#x6570;&#x7EC4;&#xFF0C;&#x4F8B;&#x5982; <code>[&quot;ip&quot;, &quot;varchar(15)&quot;]</code>&#x3002;&#x7B2C;&#x4E00;&#x4E2A;&#x5143;&#x7D20;&#x662F;&#x5217;&#x540D;&#x5B57;&#x7B26;&#x4E32;&#x3002;&#x7B2C;&#x4E8C;&#x4E2A;&#x5143;&#x7D20;&#x662F;&#x4E00;&#x4E2A; <a href="https://db.apache.org/derby/docs/10.14/ref/crefsqlj31068.html" target="_blank">Apache Derby SQL&#x7C7B;&#x578B;</a> &#x7684;&#x5B57;&#x7B26;&#x4E32;&#x3002;&#x5728;&#x6784;&#x5EFA;&#x672C;&#x5730;&#x67E5;&#x627E;&#x8868;&#x65F6;&#x68C0;&#x67E5;&#x5B57;&#x7B26;&#x4E32;&#x5185;&#x5BB9;&#xFF0C;&#x800C;&#x4E0D;&#x662F;&#x5728;&#x9A8C;&#x8BC1;&#x8BBE;&#x7F6E;&#x65F6;&#x68C0;&#x67E5;&#x3002;&#x56E0;&#x6B64;&#xFF0C;&#x4EFB;&#x4F55;&#x62FC;&#x5199;&#x9519;&#x8BEF;&#x7684;SQL&#x7C7B;&#x578B;&#x5B57;&#x7B26;&#x4E32;&#x90FD;&#x4F1A;&#x5BFC;&#x81F4;&#x9519;&#x8BEF;&#x3002;</p>
+<p>&#x200B;    <strong>index_columns</strong></p>
+<p>&#x200B;    &#x4E00;&#x4E32;&#x5B57;&#x7B26;&#x4E32;&#x3002;&#x5FC5;&#x987B;&#x5728;&#x5217;&#x8BBE;&#x7F6E;&#x4E2D;&#x5B9A;&#x4E49;&#x6BCF;&#x4E2A;&#x5B57;&#x7B26;&#x4E32;&#x3002;&#x7D22;&#x5F15;&#x540D;&#x79F0;&#x5C06;&#x5728;&#x5185;&#x90E8;&#x751F;&#x6210;&#x3002;&#x4E0D;&#x652F;&#x6301;&#x552F;&#x4E00;&#x6216;&#x6392;&#x5E8F;&#x7684;&#x7D22;&#x5F15;&#x3002;</p>
+<p>&#x200B;    <strong>preserve_existing</strong></p>
+<p>&#x200B;    &#x6B64;&#x8BBE;&#x7F6E;&#x4E3A; <code>true</code> &#x65F6;&#xFF0C;&#x68C0;&#x67E5;&#x8868;&#x662F;&#x5426;&#x5DF2;&#x5B58;&#x5728;&#x4E8E;&#x672C;&#x5730;&#x67E5;&#x627E;&#x6570;&#x636E;&#x5E93;&#x4E2D;&#x3002;&#x5982;&#x679C;&#x60A8;&#x5728;&#x540C;&#x4E00;&#x4E2A;Logstash&#x5B9E;&#x4F8B;&#x4E2D;&#x8FD0;&#x884C;&#x591A;&#x4E2A;&#x7BA1;&#x9053;&#xFF0C;&#x5E76;&#x4E14;&#x591A;&#x4E2A;&#x7BA1;&#x9053;&#x6B63;&#x5728;&#x4F7F;&#x7528;&#x6B64;&#x63D2;&#x4EF6;&#xFF0C;&#x90A3;&#x4E48;&#x60A8;&#x5FC5;&#x987B;&#x9605;&#x8BFB;&#x9875;&#x9762;&#x9876;&#x90E8;&#x7684;&#x91CD;&#x8981;&#x591A;&#x7BA1;&#x9053;&#x901A;&#x77E5;&#x3002;</p>
+<p><strong>local_lookups</strong></p>
+<ul>
+<li>&#x503C;&#x7C7B;&#x578B;&#x662F;&#x6570;&#x7EC4;</li>
+<li>&#x9ED8;&#x8BA4;&#x503C;&#x4E3A; <code>[]</code></li>
+</ul>
+<p>&#x8BE5;&#x6570;&#x7EC4;&#x5E94;&#x5305;&#x542B;&#x4E00;&#x4E2A;&#x6216;&#x591A;&#x4E2A;&#x54C8;&#x5E0C;&#x3002;&#x6BCF;&#x4E2A;Hash&#x4EE3;&#x8868;&#x4E00;&#x4E2A;&#x67E5;&#x627E;&#x4E30;&#x5BCC;&#x3002;&#x6BCF;&#x4E2A;&#x54C8;&#x5E0C;&#x90FD;&#x6839;&#x636E;&#x4E0B;&#x8868;&#x8FDB;&#x884C;&#x9A8C;&#x8BC1;&#x3002;</p>
+<table>
+<thead>
+<tr>
+<th>Setting</th>
+<th>Input type</th>
+<th>Required</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>string</td>
+<td>No</td>
+</tr>
+<tr>
+<td>query</td>
+<td>string</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>parameters</td>
+<td>hash</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>target</td>
+<td>string</td>
+<td>No</td>
+</tr>
+<tr>
+<td>default_hash</td>
+<td>hash</td>
+<td>No</td>
+</tr>
+<tr>
+<td>tag_on_failure</td>
+<td>string</td>
+<td>No</td>
+</tr>
+<tr>
+<td>tag_on_default_use</td>
+<td>string</td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Local_lookups&#x5B57;&#x6BB5;&#x63CF;&#x8FF0;&#xFF1A;</strong></p>
+<p>&#x200B;    <strong>id</strong></p>
+<p>&#x200B;    &#x53EF;&#x9009;&#x6807;&#x8BC6;&#x7B26;&#x3002;&#x8FD9;&#x7528;&#x4E8E;&#x6807;&#x8BC6;&#x751F;&#x6210;&#x9519;&#x8BEF;&#x6D88;&#x606F;&#x548C;&#x65E5;&#x5FD7;&#x884C;&#x7684;&#x67E5;&#x627E;&#x3002;&#x5982;&#x679C;&#x7701;&#x7565;&#x6B64;&#x8BBE;&#x7F6E;&#xFF0C;&#x5219;&#x4F7F;&#x7528;&#x9ED8;&#x8BA4;ID&#x3002;</p>
+<p>&#x200B;    <strong>query</strong></p>
+<p>&#x200B;    &#x6267;&#x884C;SQL SELECT&#x8BED;&#x53E5;&#x4EE5;&#x5B9E;&#x73B0;&#x67E5;&#x627E;&#x3002;&#x8981;&#x4F7F;&#x7528;&#x53C2;&#x6570;&#xFF0C;&#x8BF7;&#x4F7F;&#x7528;&#x547D;&#x540D;&#x53C2;&#x6570;&#x8BED;&#x6CD5;&#xFF0C;&#x4F8B;&#x5982; <code>&quot;SELECT * FROM MYTABLE WHERE ID = :id&quot;</code>&#x3002;</p>
+<p>&#x200B;    <strong>parameters</strong></p>
+<p>&#x200B;    &#x952E;/&#x503C;&#x54C8;&#x5E0C;&#x6216;&#x5B57;&#x5178;&#x3002;&#x952E;&#xFF08;LHS&#xFF09;&#x662F;&#x5728;SQL&#x8BED;&#x53E5; <code>SELECT * FROM sensors WHERE reference = :p1</code> &#x4E2D;&#x66FF;&#x6362;&#x7684;&#x6587;&#x672C;&#x3002;&#x503C;&#xFF08;RHS&#xFF09;&#x662F;&#x4E8B;&#x4EF6;&#x4E2D;&#x7684;&#x5B57;&#x6BB5;&#x540D;&#x79F0;&#x3002;&#x63D2;&#x4EF6;&#x4ECE;&#x4E8B;&#x4EF6;&#x4E2D;&#x8BFB;&#x53D6;&#x8BE5;&#x952E;&#x7684;&#x503C;&#xFF0C;&#x5E76;&#x5C06;&#x8BE5;&#x503C;&#x66FF;&#x6362;&#x4E3A;&#x8BED;&#x53E5;&#xFF0C;&#x4F8B;&#x5982;&#xFF0C; <code>parameters =&gt; { &quot;p1&quot; =&gt; &quot;ref&quot; }</code>&#x3002;&#x5F15;&#x7528;&#x662F;&#x81EA;&#x52A8;&#x7684;&#x2014;&#x2014;&#x60A8;&#x4E0D;&#x9700;&#x8981;&#x5728;&#x8BED;&#x53E5;&#x4E2D;&#x52A0;&#x5F15;&#x53F7;&#x3002;&#x5982;&#x679C;&#x9700;&#x8981;&#x6DFB;&#x52A0;&#x524D;&#x7F00;/&#x540E;&#x7F00;&#x6216;&#x5C06;&#x4E24;&#x4E2A;&#x4E8B;&#x4EF6;&#x5B57;&#x6BB5;&#x503C;&#x8FDE;&#x63A5;&#x5728;&#x4E00;&#x8D77;&#x4EE5;&#x6784;&#x5EFA;&#x66FF;&#x6362;&#x503C;&#xFF0C;&#x5219;&#x4EC5;&#x5728;RHS&#x4E0A;&#x4F7F;&#x7528;&#x5B57;&#x6BB5;&#x63D2;&#x503C;&#x8BED;&#x6CD5;&#x3002;&#x4F8B;&#x5982;&#xFF0C;&#x5047;&#x8BBE;&#x4E00;&#x6761;&#x5177;&#x6709;id&#x548C;&#x4F4D;&#x7F6E;&#x7684;IOT&#x6D88;&#x606F;&#xFF0C;&#x5E76;&#x4E14;&#x60A8;&#x6709;&#x4E00;&#x4E2A;&#x5177;&#x6709; <code>id-loc_id</code> &#x5217;&#x7684;&#x4F20;&#x611F;&#x5668;&#x8868;&#x3002;&#x5728;&#x8FD9;&#x79CD;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x60A8;&#x7684;&#x53C2;&#x6570;&#x54C8;&#x5E0C;&#x5C06;&#x5982;&#x4E0B;&#x6240;&#x793A;&#xFF1A; <code>parameters =&gt; { &quot;p1&quot; =&gt; &quot;%{[id]}-%{[loc_id]}&quot; }</code>&#x3002;</p>
+<p>&#x200B;    <strong>target</strong></p>
+<p>&#x200B;    &#x5C06;&#x63A5;&#x6536;&#x67E5;&#x627E;&#x6570;&#x636E;&#x7684;&#x5B57;&#x6BB5;&#x7684;&#x53EF;&#x9009;&#x540D;&#x79F0;&#x3002;&#x5982;&#x679C;&#x7701;&#x7565;&#x6B64;&#x8BBE;&#x7F6E;&#xFF0C;&#x5219;&#x4F7F;&#x7528;id&#x8BBE;&#x7F6E;&#xFF08;&#x6216;&#x9ED8;&#x8BA4;ID&#xFF09;&#x3002;&#x67E5;&#x627E;&#x7684;&#x6570;&#x636E;&#xFF08;&#x8F6C;&#x6362;&#x4E3A;Hashes&#x7684;&#x7ED3;&#x679C;&#x6570;&#x7EC4;&#xFF09;&#x6C38;&#x8FDC;&#x4E0D;&#x4F1A;&#x6DFB;&#x52A0;&#x5230;&#x4E8B;&#x4EF6;&#x7684;&#x6839;&#x76EE;&#x5F55;&#x4E2D;&#x3002;&#x5982;&#x679C;&#x8981;&#x6267;&#x884C;&#x6B64;&#x64CD;&#x4F5C;&#xFF0C;&#x5219;&#x5E94;&#x4F7F;&#x7528; <code>add_field</code> &#x8BBE;&#x7F6E;&#x3002;&#x8FD9;&#x610F;&#x5473;&#x7740;&#x60A8;&#x53EF;&#x4EE5;&#x5B8C;&#x5168;&#x63A7;&#x5236;&#x5B57;&#x6BB5;/&#x503C;&#x5982;&#x4F55;&#x653E;&#x5728;&#x4E8B;&#x4EF6;&#x7684;&#x6839;&#x76EE;&#x5F55;&#x4E2D;&#xFF0C;&#x4F8B;&#x5982;&#xFF0C;add_field =&gt; { user_firstname =&gt; &quot;%{[user][0][firstname]}&quot; } &#x2014;&#x2014; &#x5176;&#x4E2D; <code>[user]</code> &#x662F;&#x76EE;&#x6807;&#x5B57;&#x6BB5;&#xFF0C;<code>[0]</code> &#x662F;&#x6570;&#x7EC4;&#x4E2D;&#x7684;&#x7B2C;&#x4E00;&#x4E2A;&#x7ED3;&#x679C;&#xFF0C;<code>[firstname]</code> &#x662F;&#x7ED3;&#x679C;&#x54C8;&#x5E0C;&#x4E2D;&#x7684;&#x952E;&#x3002;</p>
+<p>&#x200B;    <strong>default_hash</strong></p>
+<p>&#x200B;    &#x5F53;&#x67E5;&#x627E;&#x672A;&#x8FD4;&#x56DE;&#x4EFB;&#x4F55;&#x7ED3;&#x679C;&#x65F6;&#xFF0C;&#x5C06;&#x653E;&#x5728;&#x76EE;&#x6807;&#x5B57;&#x6BB5;&#x6570;&#x7EC4;&#x4E2D;&#x7684;&#x53EF;&#x9009;&#x54C8;&#x5E0C;&#x3002;&#x5982;&#x679C;&#x60A8;&#x9700;&#x8981;&#x786E;&#x4FDD;&#x914D;&#x7F6E;&#x7684;&#x5176;&#x4ED6;&#x90E8;&#x5206;&#x4E2D;&#x7684;&#x540E;&#x7EED;&#x5F15;&#x7528;&#x5B9E;&#x9645;&#x5F15;&#x7528;&#x67D0;&#x4E9B;&#x5185;&#x5BB9;&#xFF0C;&#x8BF7;&#x4F7F;&#x7528;&#x6B64;&#x8BBE;&#x7F6E;&#x3002;</p>
+<p>&#x200B;    <strong>tag_on_failure</strong></p>
+<p>&#x200B;    &#x4E00;&#x4E2A;&#x53EF;&#x9009;&#x5B57;&#x7B26;&#x4E32;&#xFF0C;&#x5B83;&#x8986;&#x76D6;&#x63D2;&#x4EF6;&#x7EA7;&#x8BBE;&#x7F6E;&#x3002;&#x8FD9;&#x5728;&#x5B9A;&#x4E49;&#x591A;&#x4E2A;&#x67E5;&#x627E;&#x65F6;&#x5F88;&#x6709;&#x7528;&#x3002;</p>
+<p>&#x200B;    <strong>tag_on_default_use</strong></p>
+<p>&#x200B;    &#x4E00;&#x4E2A;&#x53EF;&#x9009;&#x5B57;&#x7B26;&#x4E32;&#xFF0C;&#x5B83;&#x8986;&#x76D6;&#x63D2;&#x4EF6;&#x7EA7;&#x8BBE;&#x7F6E;&#x3002;&#x8FD9;&#x5728;&#x5B9A;&#x4E49;&#x591A;&#x4E2A;&#x67E5;&#x627E;&#x65F6;&#x5F88;&#x6709;&#x7528;&#x3002;</p>
+<h3 id="&#x901A;&#x7528;&#x914D;&#x7F6E;&#x9879;"><a name="&#x901A;&#x7528;&#x914D;&#x7F6E;&#x9879;" class="anchor-navigation-ex-anchor" href="#&#x901A;&#x7528;&#x914D;&#x7F6E;&#x9879;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x901A;&#x7528;&#x914D;&#x7F6E;&#x9879;" class="plugin-anchor" href="#&#x901A;&#x7528;&#x914D;&#x7F6E;&#x9879;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x901A;&#x7528;&#x914D;&#x7F6E;&#x9879;</h3>
+<p>&#x6240;&#x6709;&#x8FC7;&#x6EE4;&#x5668;&#x63D2;&#x4EF6;&#x90FD;&#x652F;&#x6301;&#x4EE5;&#x4E0B;&#x914D;&#x7F6E;&#x9009;&#x9879;&#xFF1A;</p>
+<table>
+<thead>
+<tr>
+<th>&#x8BBE;&#x7F6E;</th>
+<th>&#x8F93;&#x5165;&#x7C7B;&#x578B;</th>
+<th>&#x5FC5;&#x987B;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#addfield"><code>add_field</code></a></td>
+<td><a href="../06-Configuring-Logstash/Structure-of-a-Config-File.html#hash">hash</a></td>
+<td>&#x5426;</td>
+</tr>
+<tr>
+<td><a href="#addtag"><code>add_tag</code></a></td>
+<td><a href="../06-Configuring-Logstash/Structure-of-a-Config-File.html#array">array</a></td>
+<td>&#x5426;</td>
+</tr>
+<tr>
+<td><a href="#enablemetric"><code>enable_metric</code></a></td>
+<td><a href="../06-Configuring-Logstash/Structure-of-a-Config-File.html#boolean">boolean</a></td>
+<td>&#x5426;</td>
+</tr>
+<tr>
+<td><a href="#id"><code>id</code></a></td>
+<td><a href="../06-Configuring-Logstash/Structure-of-a-Config-File.html#string">string</a></td>
+<td>&#x5426;</td>
+</tr>
+<tr>
+<td><a href="#periodicflush"><code>periodic_flush</code></a></td>
+<td><a href="../06-Configuring-Logstash/Structure-of-a-Config-File.html#boolean">boolean</a></td>
+<td>&#x5426;</td>
+</tr>
+<tr>
+<td><a href="#removefield"><code>remove_field</code></a></td>
+<td><a href="../06-Configuring-Logstash/Structure-of-a-Config-File.html#array">array</a></td>
+<td>&#x5426;</td>
+</tr>
+<tr>
+<td><a href="#removetag"><code>remove_tag</code></a></td>
+<td><a href="../06-Configuring-Logstash/Structure-of-a-Config-File.html#array">array</a></td>
+<td>&#x5426;</td>
+</tr>
+</tbody>
+</table>
+<h5 id="addfield"><a name="addfield" class="anchor-navigation-ex-anchor" href="#addfield"><i class="fa fa-link" aria-hidden="true"></i></a><a name="addfield" class="plugin-anchor" href="#addfield"><i class="fa fa-link" aria-hidden="true"></i></a>add_field</h5>
+<ul>
+<li>&#x503C;&#x7C7B;&#x578B;&#x662F; <a href="../06-Configuring-Logstash/Structure-of-a-Config-File.html#hash">hash</a></li>
+<li>&#x9ED8;&#x8BA4;&#x503C;&#x4E3A; <code>{}</code></li>
+</ul>
+<p>&#x5982;&#x679C;&#x6B64;&#x8FC7;&#x6EE4;&#x5668;&#x914D;&#x7F6E;&#x6210;&#x529F;&#xFF0C;&#x5219;&#x5411;&#x6B64;&#x4E8B;&#x4EF6;&#x6DFB;&#x52A0;&#x4EFB;&#x610F;&#x5B57;&#x6BB5;&#x3002;&#x5B57;&#x6BB5;&#x540D;&#x79F0;&#x53EF;&#x4EE5;&#x662F;&#x52A8;&#x6001;&#x7684;&#xFF0C;&#x5E76;&#x4F7F;&#x7528; <code>&#xFF05;{field}</code> &#x5305;&#x542B;&#x4E8B;&#x4EF6;&#x7684;&#x90E8;&#x5206;&#x5185;&#x5BB9;&#x3002;</p>
+<p>&#x4F8B;&#xFF1A;</p>
+<pre><code class="lang-sh">filter {
+  jdbc_static {
+    add_field =&gt; { <span class="hljs-string">&quot;foo_%{somefield}&quot;</span> =&gt; <span class="hljs-string">&quot;Hello world, from %{host}&quot;</span> }
+  }
+}
+</code></pre>
+<pre><code class="lang-sh"><span class="hljs-comment"># You can also add multiple fields at once:</span>
+filter {
+  jdbc_static {
+    add_field =&gt; {
+      <span class="hljs-string">&quot;foo_%{somefield}&quot;</span> =&gt; <span class="hljs-string">&quot;Hello world, from %{host}&quot;</span>
+      <span class="hljs-string">&quot;new_field&quot;</span> =&gt; <span class="hljs-string">&quot;new_static_value&quot;</span>
+    }
+  }
+}
+</code></pre>
+<p>&#x5982;&#x679C;&#x4E8B;&#x4EF6;&#x5177;&#x6709;&#x5B57;&#x6BB5; <code>&quot;somefield&quot; == &quot;hello&quot;</code> &#xFF0C;&#x5219;&#x6B64;&#x8FC7;&#x6EE4;&#x5668;&#x6210;&#x529F;&#x65F6;&#x5C06;&#x6DFB;&#x52A0;&#x5B57;&#x6BB5; <code>foo_hello</code> &#xFF08;&#x5982;&#x679C;&#x5B58;&#x5728;&#xFF09;&#xFF0C;&#x4E0A;&#x9762;&#x7684;&#x503C;&#x548C; <code>%{host}</code> &#x90E8;&#x5206;&#x66FF;&#x6362;&#x4E3A;&#x4E8B;&#x4EF6;&#x4E2D;&#x7684;&#x8BE5;&#x503C;&#x3002;&#x7B2C;&#x4E8C;&#x4E2A;&#x4F8B;&#x5B50;&#x8FD8;&#x4F1A;&#x6DFB;&#x52A0;&#x4E00;&#x4E2A;&#x786C;&#x7F16;&#x7801;&#x5B57;&#x6BB5;&#x3002;</p>
+<h5 id="addtag"><a name="addtag" class="anchor-navigation-ex-anchor" href="#addtag"><i class="fa fa-link" aria-hidden="true"></i></a><a name="addtag" class="plugin-anchor" href="#addtag"><i class="fa fa-link" aria-hidden="true"></i></a>add_tag</h5>
+<ul>
+<li>&#x503C;&#x7C7B;&#x578B;&#x662F; <a href="../06-Configuring-Logstash/Structure-of-a-Config-File.html#array">array</a></li>
+<li>&#x9ED8;&#x8BA4;&#x503C;&#x4E3A; <code>[]</code></li>
+</ul>
+<p>&#x5982;&#x679C;&#x6B64;&#x8FC7;&#x6EE4;&#x5668;&#x6210;&#x529F;&#xFF0C;&#x5219;&#x5411;&#x4E8B;&#x4EF6;&#x6DFB;&#x52A0;&#x4EFB;&#x610F;&#x6807;&#x8BB0;&#x3002;&#x6807;&#x7B7E;&#x53EF;&#x4EE5;&#x662F;&#x52A8;&#x6001;&#x7684;&#xFF0C;&#x5E76;&#x4F7F;&#x7528; <code>%{field}</code> &#x8BED;&#x6CD5;&#x5305;&#x542B;&#x4E8B;&#x4EF6;&#x7684;&#x4E00;&#x90E8;&#x5206;&#x3002;</p>
+<p>&#x4F8B;&#xFF1A;</p>
+<pre><code class="lang-sh">filter {
+  jdbc_static {
+    add_tag =&gt; [ <span class="hljs-string">&quot;foo_%{somefield}&quot;</span> ]
+  }
+}
+</code></pre>
+<pre><code class="lang-sh"><span class="hljs-comment"># You can also add multiple tags at once:</span>
+filter {
+  jdbc_static {
+    add_tag =&gt; [ <span class="hljs-string">&quot;foo_%{somefield}&quot;</span>, <span class="hljs-string">&quot;taggedy_tag&quot;</span>]
+  }
+}
+</code></pre>
+<p>&#x5982;&#x679C;&#x4E8B;&#x4EF6;&#x5177;&#x6709;&#x5B57;&#x6BB5; <code>&quot;somefield&quot; == &quot;hello&quot;</code> &#xFF0C;&#x5219;&#x6B64;&#x8FC7;&#x6EE4;&#x5668;&#x6210;&#x529F;&#x65F6;&#x5C06;&#x6DFB;&#x52A0;&#x6807;&#x8BB0; <code>foo_hello</code>&#xFF08;&#x7B2C;&#x4E8C;&#x4E2A;&#x793A;&#x4F8B;&#x5F53;&#x7136;&#x4F1A;&#x6DFB;&#x52A0; <code>taggedy_tag</code> &#x6807;&#x8BB0;&#xFF09;&#x3002;</p>
+<h5 id="enablemetric"><a name="enablemetric" class="anchor-navigation-ex-anchor" href="#enablemetric"><i class="fa fa-link" aria-hidden="true"></i></a><a name="enablemetric" class="plugin-anchor" href="#enablemetric"><i class="fa fa-link" aria-hidden="true"></i></a>enable_metric</h5>
+<ul>
+<li>&#x503C;&#x7C7B;&#x578B;&#x662F; <a href="../06-Configuring-Logstash/Structure-of-a-Config-File.html#boolean">boolean</a></li>
+<li>&#x9ED8;&#x8BA4;&#x503C;&#x4E3A; <code>true</code></li>
+</ul>
+<p>&#x9ED8;&#x8BA4;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x7981;&#x7528;&#x6216;&#x542F;&#x7528;&#x6B64;&#x63D2;&#x4EF6;&#x5B9E;&#x4F8B;&#x7684;&#x6307;&#x6807;&#x8BB0;&#x5F55;&#xFF0C;&#x6211;&#x4EEC;&#x4F1A;&#x8BB0;&#x5F55;&#x6240;&#x6709;&#x53EF;&#x7528;&#x7684;&#x5EA6;&#x91CF;&#x6807;&#x51C6;&#xFF0C;&#x4F46;&#x60A8;&#x53EF;&#x4EE5;&#x7981;&#x7528;&#x7279;&#x5B9A;&#x63D2;&#x4EF6;&#x7684;&#x6307;&#x6807;&#x6536;&#x96C6;&#x3002;</p>
+<h5 id="id"><a name="id" class="anchor-navigation-ex-anchor" href="#id"><i class="fa fa-link" aria-hidden="true"></i></a><a name="id" class="plugin-anchor" href="#id"><i class="fa fa-link" aria-hidden="true"></i></a>id</h5>
+<ul>
+<li>&#x503C;&#x7C7B;&#x578B;&#x662F; <a href="../06-Configuring-Logstash/Structure-of-a-Config-File.html#string">string</a></li>
+<li>&#x6B64;&#x8BBE;&#x7F6E;&#x6CA1;&#x6709;&#x9ED8;&#x8BA4;&#x503C;&#x3002;</li>
+</ul>
+<p>&#x4E3A;&#x63D2;&#x4EF6;&#x914D;&#x7F6E;&#x6DFB;&#x52A0;&#x552F;&#x4E00; <code>ID</code>&#x3002;&#x5982;&#x679C;&#x672A;&#x6307;&#x5B9A;ID&#xFF0C;Logstash&#x5C06;&#x751F;&#x6210;&#x4E00;&#x4E2A;ID&#x3002;&#x5F3A;&#x70C8;&#x5EFA;&#x8BAE;&#x5728;&#x914D;&#x7F6E;&#x4E2D;&#x8BBE;&#x7F6E;&#x6B64;ID&#x3002;&#x5F53;&#x60A8;&#x6709;&#x4E24;&#x4E2A;&#x6216;&#x66F4;&#x591A;&#x76F8;&#x540C;&#x7C7B;&#x578B;&#x7684;&#x63D2;&#x4EF6;&#x65F6;&#xFF0C;&#x8FD9;&#x5C24;&#x5176;&#x6709;&#x7528;&#xFF0C;&#x4F8B;&#x5982;&#xFF0C;&#x5982;&#x679C;&#x60A8;&#x6709;2&#x4E2A;http&#x8FC7;&#x6EE4;&#x5668;&#x3002;&#x5728;&#x8FD9;&#x79CD;&#x60C5;&#x51B5;&#x4E0B;&#x6DFB;&#x52A0;&#x547D;&#x540D;ID&#x5C06;&#x6709;&#x52A9;&#x4E8E;&#x5728;&#x4F7F;&#x7528;&#x76D1;&#x89C6;API&#x65F6;&#x76D1;&#x89C6;Logstash&#x3002;</p>
+<pre><code class="lang-sh">filter {
+  jdbc_static {
+    id =&gt; <span class="hljs-string">&quot;ABC&quot;</span>
+  }
+}
+</code></pre>
+<h5 id="periodicflush"><a name="periodicflush" class="anchor-navigation-ex-anchor" href="#periodicflush"><i class="fa fa-link" aria-hidden="true"></i></a><a name="periodicflush" class="plugin-anchor" href="#periodicflush"><i class="fa fa-link" aria-hidden="true"></i></a>periodic_flush</h5>
+<ul>
+<li>&#x503C;&#x7C7B;&#x578B;&#x662F; <a href="../06-Configuring-Logstash/Structure-of-a-Config-File.html#boolean">boolean</a></li>
+<li>&#x9ED8;&#x8BA4;&#x503C;&#x4E3A; <code>false</code></li>
+</ul>
+<p>&#x5B9A;&#x671F;&#x8C03;&#x7528;&#x8FC7;&#x6EE4;&#x5668;&#x5237;&#x65B0;&#x65B9;&#x6CD5;&#x3002;&#x53EF;&#x9009;&#x7684;&#x3002;</p>
+<h5 id="removefield"><a name="removefield" class="anchor-navigation-ex-anchor" href="#removefield"><i class="fa fa-link" aria-hidden="true"></i></a><a name="removefield" class="plugin-anchor" href="#removefield"><i class="fa fa-link" aria-hidden="true"></i></a>remove_field</h5>
+<ul>
+<li>&#x503C;&#x7C7B;&#x578B;&#x662F; <a href="../06-Configuring-Logstash/Structure-of-a-Config-File.html#array">array</a></li>
+<li>&#x9ED8;&#x8BA4;&#x503C;&#x4E3A; <code>[]</code></li>
+</ul>
+<p>&#x5982;&#x679C;&#x6B64;&#x8FC7;&#x6EE4;&#x5668;&#x6210;&#x529F;&#xFF0C;&#x8BF7;&#x4ECE;&#x6B64;&#x4E8B;&#x4EF6;&#x4E2D;&#x5220;&#x9664;&#x4EFB;&#x610F;&#x5B57;&#x6BB5;&#x3002;&#x4F8B;&#xFF1A;</p>
+<pre><code class="lang-sh">filter {
+  jdbc_static {
+    remove_field =&gt; [ <span class="hljs-string">&quot;foo_%{somefield}&quot;</span> ]
+  }
+}
+</code></pre>
+<pre><code class="lang-sh"><span class="hljs-comment"># You can also remove multiple fields at once:</span>
+filter {
+  jdbc_static {
+    remove_field =&gt; [ <span class="hljs-string">&quot;foo_%{somefield}&quot;</span>, <span class="hljs-string">&quot;my_extraneous_field&quot;</span> ]
+  }
+}
+</code></pre>
+<h5 id="removetag"><a name="removetag" class="anchor-navigation-ex-anchor" href="#removetag"><i class="fa fa-link" aria-hidden="true"></i></a><a name="removetag" class="plugin-anchor" href="#removetag"><i class="fa fa-link" aria-hidden="true"></i></a>remove_tag</h5>
+<ul>
+<li>&#x503C;&#x7C7B;&#x578B;&#x662F; <a href="../06-Configuring-Logstash/Structure-of-a-Config-File.html#array">array</a></li>
+<li>&#x9ED8;&#x8BA4;&#x503C;&#x4E3A; <code>[]</code></li>
+</ul>
+<p>&#x5982;&#x679C;&#x6B64;&#x8FC7;&#x6EE4;&#x5668;&#x914D;&#x7F6E;&#x6210;&#x529F;&#xFF0C;&#x5219;&#x4ECE;&#x4E8B;&#x4EF6;&#x4E2D;&#x5220;&#x9664;&#x4EFB;&#x610F;tag&#x3002;tag&#x4EE5;&#x662F;&#x52A8;&#x6001;&#x7684;&#xFF0C;&#x5E76;&#x4F7F;&#x7528; <code>%{field}</code> &#x8BED;&#x6CD5;&#x5305;&#x542B;&#x4E8B;&#x4EF6;&#x7684;&#x4E00;&#x90E8;&#x5206;&#x3002;</p>
+<p>&#x4F8B;&#xFF1A;</p>
+<pre><code class="lang-sh">filter {
+  jdbc_static {
+    remove_tag =&gt; [ <span class="hljs-string">&quot;foo_%{somefield}&quot;</span> ]
+  }
+}
+</code></pre>
+<pre><code class="lang-sh"><span class="hljs-comment"># You can also remove multiple tags at once:</span>
+filter {
+  jdbc_static {
+    remove_tag =&gt; [ <span class="hljs-string">&quot;foo_%{somefield}&quot;</span>, <span class="hljs-string">&quot;sad_unwanted_tag&quot;</span>]
+  }
+}
+</code></pre>
+<p>&#x5982;&#x679C;&#x4E8B;&#x4EF6;&#x5177;&#x6709;&#x5B57;&#x6BB5; <code>&quot;somefield&quot; == &quot;hello&quot;</code> &#xFF0C;&#x5219;&#x6B64;&#x8FC7;&#x6EE4;&#x5668;&#x6210;&#x529F;&#x65F6;&#x5C06;&#x5220;&#x9664;&#x6807;&#x8BB0; foo_hello&#xFF08;&#x5982;&#x679C;&#x5B58;&#x5728;&#xFF09;&#x3002;&#x7B2C;&#x4E8C;&#x4E2A;&#x4F8B;&#x5B50;&#x4E5F;&#x4F1A;&#x5220;&#x9664;&#x4E00;&#x4E2A;&#x4E0D;&#x9700;&#x8981;&#x7684;&#x6807;&#x7B7E;&#x3002;</p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="i18n.html" class="navigation navigation-prev " aria-label="Previous page: i18n">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="jdbc_streaming.html" class="navigation navigation-next " aria-label="Next page: jdbc_streaming">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"jdbc_static","level":"1.1.19.21","depth":3,"next":{"title":"jdbc_streaming","level":"1.1.19.22","depth":3,"path":"19-Filter-plugins/jdbc_streaming.md","ref":"19-Filter-plugins/jdbc_streaming.md","articles":[]},"previous":{"title":"i18n","level":"1.1.19.20","depth":3,"path":"19-Filter-plugins/i18n.md","ref":"19-Filter-plugins/i18n.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","splitter","expandable-chapters-small","anchors","github","github-buttons","sharing-plus","anchor-navigation-ex"],"styles":{"website":"./styles/website.css"},"pluginsConfig":{"github":{"url":"https://github.com/tyrival"},"splitter":{},"search":{},"sharing-plus":{"qq":false,"all":["facebook","google","twitter","instapaper","linkedin","pocket","stumbleupon"],"douban":false,"facebook":true,"weibo":false,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":true,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"anchor-navigation-ex":{"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"mode":"float","multipleH1":true,"pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"printLog":false,"showGoTop":true,"showLevel":false},"github-buttons":{"buttons":[{"user":"Tyrival","repo":"gitbook","type":"star","size":"small","count":false}]},"expandable-chapters-small":{},"sharing":{"qq":false,"all":["google","facebook","weibo","twitter","qq","qzone","linkedin","pocket"],"douban":false,"facebook":false,"weibo":false,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":false,"messenger":false,"line":false,"vk":false,"pocket":false,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","author":"Tyrival","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Logstash 6.7 用户指南中文版","language":"zh-hans","gitbook":"3.2.3","description":"Logstash 6.7 的用户指南中文版"},"file":{"path":"19-Filter-plugins/jdbc_static.md","mtime":"2019-04-28T07:36:23.566Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-04-30T09:08:08.887Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-splitter/splitter.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-github/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-github-buttons/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing-plus/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

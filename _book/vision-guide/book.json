@@ -1,0 +1,63 @@
+{
+  "title": "Vision 用户指南",
+  "author": "Tyrival",
+  "description": "Vision 6.7 的用户指南中文版",
+  "language": "zh-hans",
+  "gitbook": "3.2.3",
+  "styles": {
+    "website": "./styles/website.css"
+  },
+  "structure": {
+    "readme": "README.md"
+  },
+  "plugins": [
+    "-sharing",
+    "splitter",
+    "expandable-chapters-small",
+    "anchors",
+    "github",
+    "github-buttons",
+    "sharing-plus",
+    "anchor-navigation-ex"
+  ],
+  "pluginsConfig": {
+    "github": {
+      "url": "https://github.com/tyrival"
+    },
+    "github-buttons": {
+      "buttons": [{
+        "user": "Tyrival",
+        "repo": "gitbook",
+        "type": "star",
+        "size": "small",
+        "count": false
+      }]
+    },
+    "sharing": {
+      "douban": false,
+      "facebook": false,
+      "google": false,
+      "hatenaBookmark": false,
+      "instapaper": false,
+      "line": false,
+      "linkedin": false,
+      "messenger": false,
+      "pocket": false,
+      "qq": false,
+      "qzone": false,
+      "stumbleupon": false,
+      "twitter": false,
+      "viber": false,
+      "vk": false,
+      "weibo": false,
+      "whatsapp": false,
+      "all": [
+        "google", "facebook", "weibo", "twitter",
+        "qq", "qzone", "linkedin", "pocket"
+      ]
+    },
+    "anchor-navigation-ex": {
+      "showLevel": false
+    }
+  }
+}
