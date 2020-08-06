@@ -203,6 +203,16 @@ img[alt="lock-20"] {
     width: 60%;
 }
 
+/* ================ 04-Concurrent ================ */
+
+img[alt="jmm-model-02"] {
+    width: 60%;
+}
+
+img[alt="jmm-model-04"] {
+    width: 60%;
+}
+
 
 /* ================ 06-Distributed ================ */
 img[alt="redis-cmd-keys"] {

@@ -34,7 +34,7 @@ MySQL 慢查询的相关参数解释：
 
 ## 3. 配置
 
-### 3.1 slow_query_log
+### 1 slow_query_log
 
 默认情况下 `slow_query_log` 的值为 `OFF`，表示慢查询日志是禁用的，可以通过设置 `slow_query_log` 的值来开启，如下所示：
 
@@ -65,7 +65,7 @@ slow_query_log_file = /tmp/mysql_slow.log
 
 然后重启MySQL服务器。
 
-### 3.2 slow_query_log_file
+### 2 slow_query_log_file
 
 这个参数用于指定慢查询日志的存放路径，缺省情况是host_name-slow.log文件，
 
@@ -79,7 +79,7 @@ mysql> show variables like 'slow_query_log_file';
  1 row in set (0.00 sec)
 ```
 
-### 3.3 long_query_time
+### 3 long_query_time
 
 开启了慢查询日志后，什么样的SQL才会记录到慢查询日志里面呢？
 
@@ -122,7 +122,7 @@ mysql> show variables like 'long_query_time';
 
 也可以不用重新连接会话，而是用 `show global variables like 'long_query_time';`。
 
-### 3.4 log_output
+### 4 log_output
 
 `log_output` 参数指定日志的存储方式。
 
@@ -176,7 +176,7 @@ mysql> select * from mysql.slow_log;
  2 rows in set (0.00 sec)
 ```
 
-### 3.5 log-queries-not-using-indexes
+### 5 log-queries-not-using-indexes
 
 该系统变量指定未使用索引的查询也被记录到慢查询日志中（可选项）。
 
@@ -205,7 +205,7 @@ mysql> show variables like 'log_queries_not_using_indexes';
  1 row in set (0.00 sec)
 ```
 
-### 3.6 log_slow_admin_statements
+### 6 log_slow_admin_statements
 
 这个系统变量表示，是否将慢管理语句例如 `ANALYZE TABLE` 和 `ALTER TABLE` 等记入慢查询日志。
 

@@ -1,6 +1,6 @@
-# 1.7 GC调优（二）
+# 8. GC调优（二）
 
-## 1.7.1 Arthas
+## 7.1 Arthas
 
 [Arthas Github](https://github.com/alibaba/arthas)
 
@@ -150,7 +150,7 @@ public class Arthas {
 
 
 
-## 1.7.2 GC日志详解
+## 7.2 GC日志详解
 
 对于java应用，我们可以通过一些配置，把程序运行过程中的gc日志全部打印出来，然后分析gc日志得到关键性指标，分析GC原因，调优JVM参数。
 
@@ -294,7 +294,7 @@ public class HeapTest {
 
 
 
-## 1.7.3 常量池
+## 7.3 常量池
 
 ### Class常量池与运行时常量池
 

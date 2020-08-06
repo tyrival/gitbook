@@ -1,6 +1,6 @@
-# 1.1 类加载机制
+# 1. 类加载机制
 
-## 1.1.1 类加载器
+## 1.1 类加载器
 
 ### 类加载过程
 
@@ -311,7 +311,7 @@ public Launcher() {
 
 
 
-## 1.1.2 双亲委派机制
+## 1.2 双亲委派机制
 
 ![parents-delegate-process](../source/images/ch-01/parents-delegate-process.png)
 
@@ -417,7 +417,7 @@ public abstract class ClassLoader {
 
 
 
-## 1.1.3 自定义类加载器
+## 1.3 自定义类加载器
 
 自定义类加载器只需要继承 `java.lang.ClassLoader` 类。该类有两个核心方法，一个是 `loadClass(String, boolean)`，实现了双亲委派机制，另一个方法是 `findClass`，默认实现是空方法，所以我们自定义类加载器主要是重写 `findClass` 方法。
 
@@ -504,7 +504,7 @@ com.tyrival.jvm.lession01.MyClassLoader$MyClassLoader
 
 
 
-## 1.1.4 打破双亲委派机制
+## 1.4 打破双亲委派机制
 
 ### 沙箱安全机制
 

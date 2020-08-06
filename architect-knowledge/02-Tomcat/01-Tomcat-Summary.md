@@ -1,12 +1,12 @@
-# 2.1 Tomcat生产环境应用
+# 1. Tomcat生产环境应用
 
-## 2.1.1 Web容器
+## 1.1 Web容器
 
 Servlet可以理解为一种Java小程序，没有main方法，不能独立运行，必须部署到Servlet容器中，由容器实例化并调用。Tomcat就是一种Servlet容器，为了方便使用，Tomcat集成了HTTP服务器的功能，是一个“HTTP服务器 + Servlet容器”，即一个**Web容器**。
 
 
 
-## 2.1.2 HTTP
+## 1.2 HTTP
 
 HTTP 协议是浏览器与服务器之间的数据传送协议。作为应用层协议，HTTP是基于 TCP/IP 协议来传递数据的（HTML 文件、图片、查询结果等），HTTP协议不涉及数据包（Packet）传输，主要规定了客户端和服务器之间的通信格式。
 
@@ -31,7 +31,7 @@ HTTP 的响应也是由三部分组成，分别是**状态行**、**响应报头
 
 
 
-## 2.1.3 Cookie和Session
+## 1.3 Cookie和Session
 
 HTTP 协议是无状态的，请求与请求之间是没有关系。这样会出现一个问题：Web 应用不知道你是谁。因此 HTTP 协议需要一种技术让请求与请求之间建立起联系，并且服务器需要知道这个请求来自哪个用户，于是 Cookie 技术出现了。
 
@@ -45,7 +45,7 @@ HTTP 协议是无状态的，请求与请求之间是没有关系。这样会出
 
 
 
-## 2.1.4 Servlet规范
+## 1.4 Servlet规范
 
 Servlet容器一方面用来和HTTP服务器通信，接收请求，另一方面加载并实例化Servlet，调用这些Servlet的接口方法，将请求转发到具体的Servlet。
 
@@ -79,7 +79,7 @@ Servet 规范还提供了HttpServlet来继承GenericServlet，并且加入了HTT
 
 
 
-## 2.1.5 Servlet容器
+## 1.5 Servlet容器
 
 当客户请求某个资源时，HTTP服务器会用一个ServletRequest对象把客户的请求信息封装起来，然后调用Servlet容器的 `service` 方法，Servlet容器拿到请求后，根据请求的URL和Servlet的映射关系，找到相应的Servlet，如果Servlet还没有被加载，就用反射机制创建这个Servlet，并调用Servlet的 `init `方法来完成初始化，接着调用Servlet的 `service` 方法来处理请求，把ServletResponse对象返回给HTTP服务器，HTTP服务器会把响应发送给客户端。
 
@@ -87,7 +87,7 @@ Servet 规范还提供了HttpServlet来继承GenericServlet，并且加入了HTT
 
 
 
-## 2.1.6 Web应用
+## 1.6 Web应用
 
 Web应用程序目录下分别放置了Servlet的**类文件**、**配置文件**以及**静态资源**，Servlet容器通过读取配置文件，就能找到并加载Servlet。Web应用的目录结构基本如下：
 
@@ -103,7 +103,7 @@ Servlet规范里定义了 `ServletContext` 接口来对应一个Web应用。Web�
 
 
 
-## 2.1.7 扩展机制
+## 1.7 扩展机制
 
 Servlet规范提供了两种扩展机制：**Filter**和**Listener**。
 
@@ -121,7 +121,7 @@ Listener是监听器，这是另一种扩展机制。当Web应用在Servlet容�
 
 
 
-## 2.1.8 Tomcat目录结构
+## 1.8 Tomcat目录结构
 
 ```
 /bin：存放 Windows 或 Linux 平台上启动和关闭 Tomcat 的脚本文件。
@@ -156,7 +156,7 @@ Tomcat 的标准输出（stdout）和标准错误（stderr），这是在 Tomcat
 
 
 
-## 2.1.9 Tomcat组件
+## 1.9 Tomcat组件
 
 ### Tomcat架构
 
@@ -289,7 +289,7 @@ SHUTDOWN
 
 
 
-## 2.1.10 Tomcat自动部署脚本
+## 1.10 Tomcat自动部署脚本
 
 Tomcat启动参数如下
 
@@ -353,7 +353,7 @@ docker run ‐id ‐‐name=test_tomcat \
 
 
 
-## 2.1.11 Tomcat源码启动
+## 1.11 Tomcat源码启动
 
 1. 解压源码并使用IDE打开；
 2. 在apache-tomcat-8.5.57-src目录下添加pom.xml文件

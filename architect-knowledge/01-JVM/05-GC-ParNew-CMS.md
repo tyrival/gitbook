@@ -1,6 +1,6 @@
-# 1.5 垃圾收集器ParNew & CMS与底层三色标记算法详解
+# 5. 垃圾收集器ParNew & CMS与底层三色标记算法详解
 
-## 1.5.1 垃圾收集算法
+## 5.1 垃圾收集算法
 
 ![gc-algorithm](../source/images/ch-01/gc-algorithm.png)
 
@@ -41,7 +41,7 @@
 
 ​    
 
-## 1.5.2 垃圾收集器
+## 5.2 垃圾收集器
 
 ![gc-category](../source/images/ch-01/gc-category.png)
 
@@ -187,7 +187,7 @@ ParNew收集器其实**跟Parallel收集器很类似**，区别主要在于它�
 
 
 
-## 1.5.3 垃圾收集底层算法实现
+## 5.3 垃圾收集底层算法实现
 
 ### 三色标记
 

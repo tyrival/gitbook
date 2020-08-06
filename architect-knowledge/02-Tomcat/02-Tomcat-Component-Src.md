@@ -1,6 +1,6 @@
-# 2.2 Tomcat核心组件源码
+# 2. Tomcat核心组件源码
 
-## 2.2.1 整体架构
+## 2.1 整体架构
 
 Tomcat有两个功能：
 
@@ -32,7 +32,7 @@ Tomcat分为两大部分，一部分是连接器(Connnector)处理对外连接�
 
 
 
-## 2.2.2 Tomcat各组件对应的实现类
+## 2.2 Tomcat各组件对应的实现类
 
 ![tomcat-architect-detail](../source/images/ch-02/tomcat-architect-detail.jpg)
 
@@ -40,7 +40,7 @@ Tomcat分为两大部分，一部分是连接器(Connnector)处理对外连接�
 
 
 
-## 2.2.3 Tomcat启动流程
+## 2.3 Tomcat启动流程
 
 **蓝线部分**是各个组件的初始化，在Catalina对象中创建了server.xml的解析器，一步到位创建出大部分的组件
 

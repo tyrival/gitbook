@@ -1,18 +1,18 @@
-# 1.2 JVM整体结构
+# 2. JVM整体结构
 
-## 1.2.1 JDK体系结构
+## 2.1 JDK体系结构
 
 ![jdk-architecture](../source/images/ch-01/jdk-architecture.png)
 
 
 
-## 1.2.2 Java语言的跨平台特性
+## 2.2 Java语言的跨平台特性
 
 ![java-cross-platform](../source/images/ch-01/java-cross-platform.png)
 
 
 
-## 1.2.3 JVM整体结构及内存模型
+## 2.3 JVM整体结构及内存模型
 
 ![jvm-architecture](../source/images/ch-01/jvm-architecture.png)
 
@@ -56,7 +56,7 @@
 
 
 
-## 1.2.4 JVM内存参数设置
+## 2.4 JVM内存参数设置
 
 ![jvm-ram-param](../source/images/ch-01/jvm-ram-param.png)
 
