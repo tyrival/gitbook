@@ -213,8 +213,42 @@ img[alt="jmm-model-04"] {
     width: 60%;
 }
 
+img[alt="cpu-cache-process"] {
+    width: 80%;
+}
+
+img[alt="cpu-multi-level-cache"] {
+    width: 80%;
+}
+
+img[alt="mesi-state-switch"] {
+    width: 80%;
+}
+
+img[alt="multi-core-ops"] {
+    width: 60%;
+}
+
+img[alt="single-core-read"] {
+    width: 60%;
+}
+
+img[alt="double-core-read"] {
+    width: 60%;
+}
+
+img[alt="data-modify"] {
+    width: 60%;
+}
+
+img[alt="data-sync"] {
+    width: 60%;
+}
+
 
 /* ================ 06-Distributed ================ */
+
+/* ====== OLD start ====== */
 img[alt="redis-cmd-keys"] {
     width: 80%;
 }
@@ -271,3 +305,8 @@ img[alt="redisson-lock-process"] {
     width: 80%;
 }
 
+img[alt="nginx-ranking"] {
+    width: 80%;
+}
+
+/* ====== OLD end ====== */

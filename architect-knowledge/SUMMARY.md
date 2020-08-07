@@ -28,6 +28,7 @@
     * [第4章 并发编程](04-Concurrent/README.md)
         * [1 并发编程之JMM & JSR133规范解读](04-Concurrent/01-JMM-JSR133.md)
         * [2 并发编程之JMM三大特性详解](04-Concurrent/02-JMM-Features.md)
+        * [3 MESI缓存一致协议详解](04-Concurrent/03-MESI-Cache-Coherency-Protocol.md)
     * [第5章 源码框架](05-Source/README.md)
     * [第6章 分布式](06-Distributed/README.md)
     * [第7章 微服务](07-Microservice/README.md)
