@@ -1,6 +1,6 @@
-# 3.7 MVCC底层原理与Mysql日志详解
+# 7 MVCC底层原理与Mysql日志详解
 
-## 3.7.1 MVCC多版本并发控制机制
+## 7.1 MVCC多版本并发控制机制
 
 Mysql在可重复读隔离级别下如何保证事务较高的隔离性，我们上节课给大家演示过，同样的sql查询语句在一个事务里多次执行查询结果相同，就算其它事务对数据有修改也不会影响当前事务sql语句的查询结果。
 
@@ -8,7 +8,7 @@ Mysql在可重复读隔离级别下如何保证事务较高的隔离性，我们
 
 Mysql在读已提交和可重复读隔离级别下都实现了MVCC机制。
 
-# 3.7.2 undo日志版本链与read view机制详解
+# 7.2 undo日志版本链与read view机制详解
 
 undo日志版本链是指一行数据被多个事务依次修改过后，在每个事务修改完后，Mysql会保留修改前的数据undo回滚日志，并且用两个隐藏字段trx_id和roll_pointer把这些undo日志串联起来形成一个历史记录版本链(见下图，需参考视频里的例子理解)
 
@@ -34,7 +34,7 @@ undo日志版本链是指一行数据被多个事务依次修改过后，在每�
 
 MVCC机制的实现就是通过read-view机制与undo版本链比对机制，使得不同的事务会根据数据版本链对比规则读取同一条数据在版本链上的不同版本数据。
 
-# 3.7.2 Innodb引擎SQL执行的BufferPool缓存机制
+# 7.2 Innodb引擎SQL执行的BufferPool缓存机制
 
 ![innodb-buffpool](../source/images/ch-03/innodb-buffpool.png)
 

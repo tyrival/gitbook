@@ -1,4 +1,4 @@
-# 2. Explain详解与索引最佳实践
+# 2 Explain详解与索引最佳实践
 
 ## 2.1 Explain
 

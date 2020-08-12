@@ -1,4 +1,4 @@
-# 3. Tomcat线程模型HTTP请求处理与管道线模型
+# 3 Tomcat线程模型HTTP请求处理与管道线模型
 
 ## 3.1 Connector
 

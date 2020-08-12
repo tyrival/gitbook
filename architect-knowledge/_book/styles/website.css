@@ -202,3 +202,115 @@ img[alt="lock-19"] {
 img[alt="lock-20"] {
     width: 60%;
 }
+
+/* ================ 04-Concurrent ================ */
+
+img[alt="jmm-model-02"] {
+    width: 60%;
+}
+
+img[alt="jmm-model-04"] {
+    width: 60%;
+}
+
+img[alt="cpu-cache-process"] {
+    width: 80%;
+}
+
+img[alt="cpu-multi-level-cache"] {
+    width: 80%;
+}
+
+img[alt="mesi-state-switch"] {
+    width: 80%;
+}
+
+img[alt="multi-core-ops"] {
+    width: 60%;
+}
+
+img[alt="single-core-read"] {
+    width: 60%;
+}
+
+img[alt="double-core-read"] {
+    width: 60%;
+}
+
+img[alt="data-modify"] {
+    width: 60%;
+}
+
+img[alt="data-sync"] {
+    width: 60%;
+}
+
+img[alt="synchronized-monitor"] {
+    width: 60%;
+}
+
+
+/* ================ 06-Distributed ================ */
+
+/* ====== OLD start ====== */
+img[alt="redis-cmd-keys"] {
+    width: 80%;
+}
+
+img[alt="redis-cmd-scan"] {
+    width: 80%;
+}
+
+img[alt="redis-aof-use-rdb-preamble"] {
+    width: 60%;
+}
+
+img[alt="redis-master-slave"] {
+    width: 60%;
+}
+
+img[alt="redis-data-structure"] {
+    width: 60%;
+}
+
+img[alt="redis-object-cache.png"] {
+    width: 60%;
+}
+
+img[alt="redis-list.png"] {
+    width: 60%;
+}
+
+img[alt="redis-hash.png"] {
+    width: 60%;
+}
+
+img[alt="redis-set.png"] {
+    width: 60%;
+}
+
+img[alt="redis-zset.png"] {
+    width: 60%;
+}
+
+img[alt="redis-cluster-sample-01.png"] {
+    width: 60%;
+}
+
+img[alt="redis-cluster-sample-02.png"] {
+    width: 60%;
+}
+
+img[alt="redis-cluster-info.png"] {
+    width: 60%;
+}
+
+img[alt="redisson-lock-process"] {
+    width: 80%;
+}
+
+img[alt="nginx-ranking"] {
+    width: 80%;
+}
+
+/* ====== OLD end ====== */
