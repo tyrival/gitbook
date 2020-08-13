@@ -479,6 +479,38 @@ public static void main(String[] args) throws InterruptedException {
 
 轻量级锁失败后，虚拟机为了避免线程真实地在操作系统层面挂起，还会进行一项称为自旋锁的优化手段。这是基于在大多数情况下，线程持有锁的时间都不会太长，如果直接挂起操作系统层面的线程可能会得不偿失，毕竟操作系统实现线程之间的切换时需要从用户态转换到核心态，这个状态之间的转换需要相对比较长的时间，时间成本相对较高，因此自旋锁会假设在不久将来，当前的线程可以获得锁，因此虚拟机会让当前想要获取锁的线程做几个空循环(这也是称为自旋的原因)，一般不会太久，可能是50个循环或100循环，在经过若干次循环后，如果得到锁，就顺利进入临界区。如果还不能获得锁，那就会将线程在操作系统层面挂起，这就是自旋锁的优化方式，这种方式确实也是可以提升效率的。最后没办法也就只能升级为重量级锁了。
 
+#### 锁粗化
+
+当出现类似如下代码，出现加锁-释放-加锁-释放这样的代码：
+
+```java
+public static void main(String[] args) throws InterruptedException {
+    Object object = new Object();
+    synchronized (object) {
+        System.out.println("1");
+    }
+    synchronized (object) {
+        System.out.println("2");
+    }
+    synchronized (object) {
+        System.out.println("3");
+    }
+}
+```
+
+为了减少加锁和释放的开销，JVM会对代码进行类似如下优化：
+
+```java
+public static void main(String[] args) throws InterruptedException {
+    Object object = new Object();
+    synchronized (object) {
+        System.out.println("1");
+        System.out.println("2");
+        System.out.println("3");
+    }
+}
+```
+
 #### 锁消除
 
 消除锁是虚拟机另外一种锁的优化，这种优化更彻底，Java虚拟机在JIT编译时(可以简单理解为当某段代码即将第一次被执行时进行编译，又称即时编译)，通过对运行上下文的扫描，去除不可能存在共享资源竞争的锁，通过这种方式消除没有必要的锁，可以节省毫无意义的请求锁时间，如下StringBuffer的append是一个同步方法，但是在add方法中的StringBuffer属于一个局部变量，并且不会被其他线程所使用，因此StringBuffer不可能存在共享资源竞争的情景，JVM会自动将其锁消除。**锁消除的依据是逃逸分析的数据支持。**
@@ -488,6 +520,30 @@ public static void main(String[] args) throws InterruptedException {
 > `-XX:+DoEscapeAnalysis` 开启逃逸分析
 >
 > `-XX:+EliminateLocks` 表示开启锁消除。
+
+例如下面代码中，object变量声明在方法中，只在当前线程的线程栈中有用，而object引用的对象在堆中不可能被其他线程访问到，所以这里的锁没有意义。
+
+```java
+public class LockTest {
+    private void method1() {
+        Object object = new Object();
+        synchronized (object) {
+            System.out.println("");
+        }
+    }
+}
+```
+
+JVM会对代码做类似如下优化：
+
+```java
+public class LockTest {
+    private void method1() {
+        Object object = new Object();
+        System.out.println("");
+    }
+}
+```
 
 #### 逃逸分析
 
@@ -507,7 +563,7 @@ public static void main(String[] args) throws InterruptedException {
 >
 > 从jdk 1.7开始已经默认开启逃逸分析，如需关闭，需要指定 `-XX:-DoEscapeAnalysis`
 
-关于逃逸分析的案例论证见Git课程源码
+逃逸分析的案例
 
 ```java
 public class T0_ObjectStackAlloc {
@@ -538,14 +594,14 @@ public class T0_ObjectStackAlloc {
         }
     }
 
-    private static TulingStudent alloc() {
+    private static Student alloc() {
         //Jit对编译时会对代码进行 逃逸分析
         //并不是所有对象存放在堆区，有的一部分存在线程栈空间
-        TulingStudent student = new TulingStudent();
+        Student student = new Student();
         return student;
     }
 
-    static class TulingStudent {
+    static class Student {
         private String name;
         private int age;
     }
