@@ -1,0 +1,892 @@
+
+<!DOCTYPE HTML>
+<html lang="zh-hans" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>4.1 组件开发 · Vision 用户指南</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        <meta name="author" content="Tyrival">
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-splitter/splitter.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-anchors/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-anchor-navigation-ex/style/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+        <link rel="stylesheet" href="../styles/website.css">
+        
+    
+
+        
+    
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="Dynamic-Component.html" />
+    
+    
+    <link rel="prev" href="./" />
+    
+
+    <style>
+    @media only screen and (max-width: 640px) {
+        .book-header .hidden-mobile {
+            display: none;
+        }
+    }
+    </style>
+    <script>
+        window["gitbook-plugin-github-buttons"] = {"buttons":[{"user":"Tyrival","repo":"gitbook","type":"star","size":"small","count":false}]};
+    </script>
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="输入并搜索" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Vision 用户指南
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.1" data-path="../01-Introduction/">
+            
+                <a href="../01-Introduction/">
+            
+                    
+                    第1章 简介
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.2" data-path="../02-Architecture/">
+            
+                <a href="../02-Architecture/">
+            
+                    
+                    第2章 软件架构
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.3" data-path="../03-Function/">
+            
+                <a href="../03-Function/">
+            
+                    
+                    第3章 基本功能
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.3.1" data-path="../03-Function/Design.html">
+            
+                <a href="../03-Function/Design.html">
+            
+                    
+                    3.1 可视化定制
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.3.1.1" data-path="../03-Function/Section-Menu.html">
+            
+                <a href="../03-Function/Section-Menu.html">
+            
+                    
+                    3.1.1 菜单区
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.3.1.2" data-path="../03-Function/Section-Layer.html">
+            
+                <a href="../03-Function/Section-Layer.html">
+            
+                    
+                    3.1.2 图层区
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.3.1.3" data-path="../03-Function/Section-Paint.html">
+            
+                <a href="../03-Function/Section-Paint.html">
+            
+                    
+                    3.1.3 画布区
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.3.1.4" data-path="../03-Function/Section-Config.html">
+            
+                <a href="../03-Function/Section-Config.html">
+            
+                    
+                    3.1.4 配置区
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.3.1.5" data-path="../03-Function/Section-Tool.html">
+            
+                <a href="../03-Function/Section-Tool.html">
+            
+                    
+                    3.1.5 工具栏
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.3.2" data-path="../03-Function/Component-Config.html">
+            
+                <a href="../03-Function/Component-Config.html">
+            
+                    
+                    3.2 组件配置
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.3.2.1" data-path="../03-Function/Base-Panel.html">
+            
+                <a href="../03-Function/Base-Panel.html">
+            
+                    
+                    3.2.1 基础配置
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.3.2.2" data-path="../03-Function/Data-Panel.html">
+            
+                <a href="../03-Function/Data-Panel.html">
+            
+                    
+                    3.2.2 数据配置
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.3.2.3" data-path="../03-Function/Interaction-Panel.html">
+            
+                <a href="../03-Function/Interaction-Panel.html">
+            
+                    
+                    3.2.3 事件配置
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.3.3" data-path="../03-Function/Route-Panel.html">
+            
+                <a href="../03-Function/Route-Panel.html">
+            
+                    
+                    3.3 路由配置
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.4" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    第4章 开发指南
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter active" data-level="1.1.4.1" data-path="Component.html">
+            
+                <a href="Component.html">
+            
+                    
+                    4.1 组件开发
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.4.2" data-path="Dynamic-Component.html">
+            
+                <a href="Dynamic-Component.html">
+            
+                    
+                    4.2 自定义组件
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.5" data-path="../05-Version/">
+            
+                <a href="../05-Version/">
+            
+                    
+                    第5章 更新
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            本书使用 GitBook 发布
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >4.1 组件开发</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <div id="anchor-navigation-ex-navbar"><i class="fa fa-navicon"></i><ul><li><span class="title-icon "></span><a href="#&#x5E73;&#x53F0;&#x5F00;&#x53D1;"><b></b>&#x5E73;&#x53F0;&#x5F00;&#x53D1;</a></li><ul><li><span class="title-icon "></span><a href="#1-&#x7EC4;&#x4EF6;&#x5173;&#x7CFB;"><b></b>1. &#x7EC4;&#x4EF6;&#x5173;&#x7CFB;</a></li><li><span class="title-icon "></span><a href="#2-&#x7EC4;&#x4EF6;&#x914D;&#x7F6E;"><b></b>2. &#x7EC4;&#x4EF6;&#x914D;&#x7F6E;</a></li><ul><li><span class="title-icon "></span><a href="#21-&#x6837;&#x5F0F;"><b></b>2.1 &#x6837;&#x5F0F;</a></li><li><span class="title-icon "></span><a href="#22-&#x6570;&#x636E;&#x6D41;"><b></b>2.2 &#x6570;&#x636E;&#x6D41;</a></li><li><span class="title-icon "></span><a href="#23-&#x8054;&#x52A8;&#x673A;&#x5236;"><b></b>2.3 &#x8054;&#x52A8;&#x673A;&#x5236;</a></li></ul><li><span class="title-icon "></span><a href="#3-&#x7EC4;&#x4EF6;&#x5F00;&#x53D1;"><b></b>3. &#x7EC4;&#x4EF6;&#x5F00;&#x53D1;</a></li><ul><li><span class="title-icon "></span><a href="#31-layer"><b></b>3.1 layer</a></li><li><span class="title-icon "></span><a href="#32-config"><b></b>3.2 config</a></li><li><span class="title-icon "></span><a href="#33-&#x6CE8;&#x518C;&#x7EC4;&#x4EF6;"><b></b>3.3 &#x6CE8;&#x518C;&#x7EC4;&#x4EF6;</a></li></ul></ul></ul></div><a href="#&#x5E73;&#x53F0;&#x5F00;&#x53D1;" id="anchorNavigationExGoTop"><i class="fa fa-arrow-up"></i></a><h1 id="&#x5E73;&#x53F0;&#x5F00;&#x53D1;"><a name="&#x5E73;&#x53F0;&#x5F00;&#x53D1;" class="anchor-navigation-ex-anchor" href="#&#x5E73;&#x53F0;&#x5F00;&#x53D1;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x5E73;&#x53F0;&#x5F00;&#x53D1;" class="plugin-anchor" href="#&#x5E73;&#x53F0;&#x5F00;&#x53D1;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x5E73;&#x53F0;&#x5F00;&#x53D1;</h1>
+<h2 id="1-&#x7EC4;&#x4EF6;&#x5173;&#x7CFB;"><a name="1-&#x7EC4;&#x4EF6;&#x5173;&#x7CFB;" class="anchor-navigation-ex-anchor" href="#1-&#x7EC4;&#x4EF6;&#x5173;&#x7CFB;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="1-&#x7EC4;&#x4EF6;&#x5173;&#x7CFB;" class="plugin-anchor" href="#1-&#x7EC4;&#x4EF6;&#x5173;&#x7CFB;"><i class="fa fa-link" aria-hidden="true"></i></a>1. &#x7EC4;&#x4EF6;&#x5173;&#x7CFB;</h2>
+<p><img src="../source/images/ch-04/vision-components.png" alt="vision-components"></p>
+<h2 id="2-&#x7EC4;&#x4EF6;&#x914D;&#x7F6E;"><a name="2-&#x7EC4;&#x4EF6;&#x914D;&#x7F6E;" class="anchor-navigation-ex-anchor" href="#2-&#x7EC4;&#x4EF6;&#x914D;&#x7F6E;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="2-&#x7EC4;&#x4EF6;&#x914D;&#x7F6E;" class="plugin-anchor" href="#2-&#x7EC4;&#x4EF6;&#x914D;&#x7F6E;"><i class="fa fa-link" aria-hidden="true"></i></a>2. &#x7EC4;&#x4EF6;&#x914D;&#x7F6E;</h2>
+<p>&#x6240;&#x6709;&#x7EC4;&#x4EF6;&#x7684;&#x57FA;&#x672C;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x5982;&#x4E0B;</p>
+<pre><code class="lang-json">config: {
+    // &#x57FA;&#x672C;&#x6837;&#x5F0F;
+    style: {}, 
+    // &#x7EC4;&#x4EF6;&#x7684;&#x529F;&#x80FD;&#x914D;&#x7F6E;
+    option: {},
+    // &#x6570;&#x636E;&#x6E90;&#x914D;&#x7F6E;
+    proxy: {},
+    // &#x9ED8;&#x8BA4;&#x6570;&#x636E;
+    data: [],
+    // &#x6570;&#x636E;&#x6620;&#x5C04;&#x89C4;&#x5219;
+    transform: {},
+      // &#x6570;&#x636E;&#x8F6C;&#x6362;&#x903B;&#x8F91;
+      handler: function, 
+    // &#x4E8B;&#x4EF6;&#xFF0C;&#x5F53;&#x64CD;&#x4F5C;&#x7EC4;&#x4EF6;&#x65F6;&#xFF0C;&#x53EF;&#x5BF9;&#x5916;&#x4F20;&#x503C;
+    event: [],
+    // &#x89E6;&#x53D1;&#x5668;&#xFF0C;&#x5F53;&#x5916;&#x90E8;&#x53D8;&#x91CF;&#x6216;&#x5185;&#x90E8;&#x6570;&#x636E;&#x53D8;&#x66F4;&#x65F6;&#xFF0C;&#x89E6;&#x53D1;&#x5BF9;&#x81EA;&#x8EAB;&#x5C5E;&#x6027;&#x7684;&#x4FEE;&#x6539;
+    trigger: [],
+}
+</code></pre>
+<h3 id="21-&#x6837;&#x5F0F;"><a name="21-&#x6837;&#x5F0F;" class="anchor-navigation-ex-anchor" href="#21-&#x6837;&#x5F0F;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="21-&#x6837;&#x5F0F;" class="plugin-anchor" href="#21-&#x6837;&#x5F0F;"><i class="fa fa-link" aria-hidden="true"></i></a>2.1 &#x6837;&#x5F0F;</h3>
+<h5 id="style"><a name="style" class="anchor-navigation-ex-anchor" href="#style"><i class="fa fa-link" aria-hidden="true"></i></a><a name="style" class="plugin-anchor" href="#style"><i class="fa fa-link" aria-hidden="true"></i></a>style</h5>
+<p>&#x7EC4;&#x4EF6;&#x7684;&#x57FA;&#x672C;&#x6837;&#x5F0F;&#xFF0C;&#x901A;&#x5E38;&#x662F;&#x4E0E;&#x7EC4;&#x4EF6;&#x7684;css&#x76F8;&#x5173;&#x7684;&#x5185;&#x5BB9;&#x3002;</p>
+<h3 id="22-&#x6570;&#x636E;&#x6D41;"><a name="22-&#x6570;&#x636E;&#x6D41;" class="anchor-navigation-ex-anchor" href="#22-&#x6570;&#x636E;&#x6D41;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="22-&#x6570;&#x636E;&#x6D41;" class="plugin-anchor" href="#22-&#x6570;&#x636E;&#x6D41;"><i class="fa fa-link" aria-hidden="true"></i></a>2.2 &#x6570;&#x636E;&#x6D41;</h3>
+<p><img src="../source/images/ch-04/data-flow.png" alt="data-flow"></p>
+<h5 id="option"><a name="option" class="anchor-navigation-ex-anchor" href="#option"><i class="fa fa-link" aria-hidden="true"></i></a><a name="option" class="plugin-anchor" href="#option"><i class="fa fa-link" aria-hidden="true"></i></a>option</h5>
+<p>&#x7EC4;&#x4EF6;&#x672C;&#x8EAB;&#x529F;&#x80FD;&#x76F8;&#x5173;&#x7684;&#x914D;&#x7F6E;&#x9879;&#xFF0C;&#x4F8B;&#x5982;echarts&#x7684;option&#x914D;&#x7F6E;&#x3002;</p>
+<h5 id="proxy"><a name="proxy" class="anchor-navigation-ex-anchor" href="#proxy"><i class="fa fa-link" aria-hidden="true"></i></a><a name="proxy" class="plugin-anchor" href="#proxy"><i class="fa fa-link" aria-hidden="true"></i></a>proxy</h5>
+<p>&#x6570;&#x636E;&#x6E90;&#x914D;&#x7F6E;&#xFF0C;&#x652F;&#x6301;&#x9759;&#x6001;&#x6570;&#x636E;&#x3001;API&#x3001;&#x6570;&#x636E;&#x5E93;&#x3001;Excel&#xFF0C;&#x901A;&#x5E38;&#x914D;&#x7F6E; <code>type: 1</code> &#x4F5C;&#x4E3A;&#x9759;&#x6001;&#x6570;&#x636E;&#x6E90;&#x5373;&#x53EF;&#x3002;&#x5F53;&#x7528;&#x6237;&#x5728;&#x6570;&#x636E;&#x6E90;&#x914D;&#x7F6E;&#x9762;&#x677F;&#x4E0A;&#x8FDB;&#x884C;&#x4FEE;&#x6539;&#x540E;&#xFF0C;&#x6570;&#x636E;&#x4EE3;&#x7406;&#x4F1A;&#x81EA;&#x52A8;&#x6839;&#x636E;&#x6700;&#x65B0;&#x7684;&#x6570;&#x636E;&#x6E90;&#x914D;&#x7F6E;&#xFF0C;&#x91CD;&#x65B0;&#x83B7;&#x53D6;&#x6570;&#x636E;&#x3002;</p>
+<h5 id="data"><a name="data" class="anchor-navigation-ex-anchor" href="#data"><i class="fa fa-link" aria-hidden="true"></i></a><a name="data" class="plugin-anchor" href="#data"><i class="fa fa-link" aria-hidden="true"></i></a>data</h5>
+<p>&#x9ED8;&#x8BA4;&#x6570;&#x636E;&#x96C6;&#xFF0C;&#x7EC4;&#x4EF6;&#x521D;&#x59CB;&#x5316;&#x4F7F;&#x7528;&#x7684;&#x6570;&#x636E;&#x96C6;&#x3002;&#x6570;&#x636E;&#x4EE3;&#x7406;&#x6839;&#x636E;proxy&#x83B7;&#x53D6;&#x5230;&#x6570;&#x636E;&#x540E;&#xFF0C;&#x4E5F;&#x4F1A;&#x5B58;&#x50A8;&#x5728;data&#x4E2D;&#x3002;</p>
+<h5 id="transform"><a name="transform" class="anchor-navigation-ex-anchor" href="#transform"><i class="fa fa-link" aria-hidden="true"></i></a><a name="transform" class="plugin-anchor" href="#transform"><i class="fa fa-link" aria-hidden="true"></i></a>transform</h5>
+<p>&#x6570;&#x636E;&#x6620;&#x5C04;&#x89C4;&#x5219;&#x548C;&#x8F6C;&#x6362;&#x903B;&#x8F91;&#xFF0C;&#x7531;&#x4E8E;&#x7EC4;&#x4EF6;&#x662F;&#x6839;&#x636E;option&#x8FDB;&#x884C;&#x6E32;&#x67D3;&#x7684;&#xFF0C;&#x800C;data&#x4E2D;&#x83B7;&#x53D6;&#x7684;&#x6570;&#x636E;&#x662F;&#x65E0;&#x6CD5;&#x76F4;&#x63A5;&#x8F7D;&#x5165;option&#x4E2D;&#x7684;&#xFF0C;&#x6240;&#x4EE5;&#x8981;&#x901A;&#x8FC7;transform&#x58F0;&#x660E;&#x62BD;&#x53D6;data&#x4E2D;&#x7684;&#x54EA;&#x4E9B;&#x5C5E;&#x6027;&#xFF0C;&#x4F5C;&#x4E3A;&#x7EC4;&#x4EF6;&#x9700;&#x8981;&#x7684;&#x6570;&#x636E;&#x7EF4;&#x5EA6;&#x3002;</p>
+<h5 id="handler"><a name="handler" class="anchor-navigation-ex-anchor" href="#handler"><i class="fa fa-link" aria-hidden="true"></i></a><a name="handler" class="plugin-anchor" href="#handler"><i class="fa fa-link" aria-hidden="true"></i></a>handler</h5>
+<p>&#x6570;&#x636E;&#x8F6C;&#x6362;&#x903B;&#x8F91;&#xFF0C;&#x6839;&#x636E;transform&#x58F0;&#x660E;&#x7684;&#x6620;&#x5C04;&#x89C4;&#x5219;&#xFF0C;&#x5C06;&#x6570;&#x636E;&#x4ECE;data&#x63D0;&#x53D6;&#x51FA;&#x6765;&#xFF0C;&#x7136;&#x540E;&#x8F6C;&#x6362;&#x5E76;&#x8F7D;&#x5165;option&#x4E2D;&#x3002;</p>
+<blockquote>
+<p><strong>&#x6CE8;&#x610F;</strong></p>
+<p>&#x7531;&#x4E8E;handler&#x6267;&#x884C;&#x5B8C;&#x6BD5;&#x540E;&#xFF0C;&#x5F97;&#x5230;&#x7684;&#x5C31;&#x662F;&#x7EC4;&#x4EF6;&#x6E32;&#x67D3;&#x7684;&#x6700;&#x7EC8;option&#xFF0C;&#x6240;&#x4EE5;handler&#x53EF;&#x4EE5;&#x770B;&#x4F5C;&#x7EC4;&#x4EF6;&#x6E32;&#x67D3;&#x524D;&#x7684;&#x6700;&#x540E;&#x4E00;&#x6B65;&#x3002;&#x4E8E;&#x662F;&#xFF0C;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x5728;handler&#x91CC;&#x9762;&#x5BF9;option&#x8FDB;&#x884C;&#x4EFB;&#x610F;&#x7684;&#x4FEE;&#x6539;&#xFF0C;&#x4EE5;&#x6EE1;&#x8DB3;&#x4E00;&#x4E9B;&#x4E2A;&#x6027;&#x5316;&#x7684;&#x9700;&#x6C42;&#x3002;&#x4F8B;&#x5982;&#xFF1A;&#x6839;&#x636E;&#x6570;&#x636E;&#x7684;&#x503C;&#xFF0C;&#x8C03;&#x6574;&#x997C;&#x56FE;&#x5404;&#x6247;&#x5F62;&#x7684;&#x6E10;&#x53D8;&#x8272;&#x3002;</p>
+</blockquote>
+<h3 id="23-&#x8054;&#x52A8;&#x673A;&#x5236;"><a name="23-&#x8054;&#x52A8;&#x673A;&#x5236;" class="anchor-navigation-ex-anchor" href="#23-&#x8054;&#x52A8;&#x673A;&#x5236;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="23-&#x8054;&#x52A8;&#x673A;&#x5236;" class="plugin-anchor" href="#23-&#x8054;&#x52A8;&#x673A;&#x5236;"><i class="fa fa-link" aria-hidden="true"></i></a>2.3 &#x8054;&#x52A8;&#x673A;&#x5236;</h3>
+<p><img src="../source/images/ch-04/interaction.png" alt="interaction"></p>
+<h5 id="event"><a name="event" class="anchor-navigation-ex-anchor" href="#event"><i class="fa fa-link" aria-hidden="true"></i></a><a name="event" class="plugin-anchor" href="#event"><i class="fa fa-link" aria-hidden="true"></i></a>event</h5>
+<p>&#x4E8B;&#x4EF6;&#xFF0C;&#x7528;&#x6237;&#x5BF9;&#x7EC4;&#x4EF6;&#x64CD;&#x4F5C;&#x65F6;&#xFF0C;&#x5BF9;&#x5916;&#x4F20;&#x503C;&#x7684;&#x89C4;&#x5219;&#x3002;</p>
+<h5 id="trigger"><a name="trigger" class="anchor-navigation-ex-anchor" href="#trigger"><i class="fa fa-link" aria-hidden="true"></i></a><a name="trigger" class="plugin-anchor" href="#trigger"><i class="fa fa-link" aria-hidden="true"></i></a>trigger</h5>
+<p>&#x89E6;&#x53D1;&#x5668;&#xFF0C;&#x5F53;&#x5916;&#x90E8;&#x6216;&#x5185;&#x90E8;&#x53D8;&#x91CF;&#x53D1;&#x751F;&#x53D8;&#x5316;&#x65F6;&#xFF0C;&#x5BF9;&#x7EC4;&#x4EF6;&#x5185;&#x90E8;&#x7684;&#x5C5E;&#x6027;&#x8FDB;&#x884C;&#x4FEE;&#x6539;&#xFF0C;&#x4ECE;&#x800C;&#x5BF9;&#x7EC4;&#x4EF6;&#x7684;&#x6837;&#x5F0F;&#x3001;&#x914D;&#x7F6E;&#x7B49;&#x8FDB;&#x884C;&#x4FEE;&#x6539;&#x3002;&#x89E6;&#x53D1;&#x5668;&#x811A;&#x672C;&#x4E2D;&#x7684;&#x53D8;&#x91CF;&#x5305;&#x542B;<strong>&#x5185;&#x90E8;&#x53D8;&#x91CF;</strong>&#x548C;<strong>&#x5916;&#x90E8;&#x53D8;&#x91CF;</strong>&#x3002;</p>
+<ul>
+<li>&#x5185;&#x90E8;&#x53D8;&#x91CF;</li>
+</ul>
+<p>&#x5360;&#x4F4D;&#x7B26;&#x4E3A; <code>@{&#x53D8;&#x91CF;}</code>&#xFF0C;&#x8868;&#x793A;&#x4ECE;&#x7EC4;&#x4EF6;&#x7684;data&#x5C5E;&#x6027;&#x4E2D;&#x53D6;&#x503C;&#x7684;&#x89C4;&#x5219;&#x3002;&#x4F8B;&#x5982;&#xFF1A;</p>
+<pre><code class="lang-js">data: [
+        {name: <span class="hljs-string">&quot;Tom&quot;</span>, value: <span class="hljs-number">0</span>},
+        {name: <span class="hljs-string">&quot;Jerry&quot;</span>, value: <span class="hljs-number">1</span>}
+]
+<span class="hljs-comment">// &#x5360;&#x4F4D;&#x7B26;&#x4E3A; @{[0].name} &#x8868;&#x793A;&#x6307;&#x5411;data&#x4E2D;&#x7B2C;1&#x4E2A;&#x5143;&#x7D20;&#x7684;name&#x5C5E;&#x6027;&#xFF0C;&#x5373;&quot;Tom&quot;</span>
+
+data: {
+        success: <span class="hljs-literal">true</span>,
+        list: [
+                {name: <span class="hljs-string">&quot;Tom&quot;</span>, value: <span class="hljs-number">0</span>},
+                {name: <span class="hljs-string">&quot;Jerry&quot;</span>, value: <span class="hljs-number">1</span>}
+        ]
+}
+<span class="hljs-comment">// &#x5360;&#x4F4D;&#x7B26;&#x4E3A; @{list.[1].value} &#x8868;&#x793A;&#x6307;&#x5411;list&#x5C5E;&#x6027;&#x4E2D;&#xFF0C;&#x7B2C;2&#x4E2A;&#x5143;&#x7D20;&#x7684;value&#x5C5E;&#x6027;&#xFF0C;&#x5373;1</span>
+</code></pre>
+<ul>
+<li>&#x5916;&#x90E8;&#x53D8;&#x91CF;</li>
+</ul>
+<p>&#x5360;&#x4F4D;&#x7B26;&#x4E3A; <code>:{&#x53D8;&#x91CF;}</code>&#xFF0C;&#x8868;&#x793A;&#x4ECE;interaction&#x4E2D;&#x5BF9;&#x5E94;&#x7684;&#x5C5E;&#x6027;&#x53D6;&#x503C;&#x3002;&#x4ECE;&#x8054;&#x52A8;&#x7684;&#x6D41;&#x7A0B;&#x56FE;&#x4E2D;&#x53EF;&#x4EE5;&#x770B;&#x51FA;&#xFF0C;&#x5B9E;&#x9645;&#x4E0A;&#x503C;&#x662F;&#x7531;interaction&#x5411;&#x7EC4;&#x4EF6;&#x4E2D;&#x63A8;&#x9001;&#x7684;&#xFF0C;&#x800C;&#x4E0D;&#x662F;&#x7531;&#x7EC4;&#x4EF6;&#x5230;interaction&#x4E2D;&#x4E3B;&#x52A8;&#x6293;&#x53D6;&#x3002;</p>
+<blockquote>
+<p><strong>&#x6CE8;&#x610F;</strong></p>
+<p>trigger&#x4E2D;&#x58F0;&#x660E;&#x5916;&#x90E8;&#x53D8;&#x91CF;&#x540E;&#xFF0C;&#x4F1A;&#x88AB;&#x7EC4;&#x4EF6;&#x63D0;&#x53D6;&#x51FA;&#x6765;&#xFF0C;&#x4E00;&#x65B9;&#x9762;&#x6CE8;&#x518C;&#x5230;&#x516C;&#x5171;&#x53D8;&#x91CF;&#x6C60;interaction&#x4E2D;&#xFF0C;&#x53E6;&#x4E00;&#x65B9;&#x9762;&#x50A8;&#x5B58;&#x5230;&#x7EC4;&#x4EF6;&#x7684;&#x4E00;&#x4E2A;&#x5185;&#x7F6E;&#x5C5E;&#x6027; <code>store.trigger</code> &#x4E2D;&#x3002;&#x5F53;interaction&#x4E2D;&#x7684;&#x6B21;&#x53D8;&#x91CF;&#x53D1;&#x751F;&#x53D8;&#x66F4;&#x65F6;&#xFF0C;&#x4F1A;&#x5C06;&#x4FEE;&#x6539;&#x540E;&#x7684;&#x503C;&#x6CE8;&#x5165;&#x8BE5;&#x7EC4;&#x4EF6;&#x7684; <code>store.trigger.&#x53D8;&#x91CF;</code> &#x3002;</p>
+<p>&#x7EC4;&#x4EF6;&#x5185;&#x90E8;&#x6709;&#x4E00;&#x4E2A;&#x4E13;&#x95E8;&#x76D1;&#x542C; <code>store.trigger</code> &#x7684;watch&#xFF0C;&#x5F53; <code>store.trigger</code> &#x4E2D;&#x7684;&#x5C5E;&#x6027;&#x503C;&#x53D1;&#x751F;&#x53D8;&#x66F4;&#x65F6;&#xFF0C;&#x4F1A;&#x6839;&#x636E;&#x6700;&#x65B0;&#x7684;&#x503C;&#x6267;&#x884C;trigger&#x4E2D;&#x7684;&#x811A;&#x672C;&#xFF0C;&#x5E76;&#x5C06;&#x8FD4;&#x56DE;&#x503C;&#x6CE8;&#x5165;&#x7EC4;&#x4EF6;&#x7684;&#x76F8;&#x5E94;&#x5C5E;&#x6027;&#xFF0C;&#x4ECE;&#x800C;&#x5B9E;&#x73B0;&#x5BF9;&#x7EC4;&#x4EF6;&#x7684;&#x4FEE;&#x6539;&#x3002;</p>
+</blockquote>
+<h5 id="interaction"><a name="interaction" class="anchor-navigation-ex-anchor" href="#interaction"><i class="fa fa-link" aria-hidden="true"></i></a><a name="interaction" class="plugin-anchor" href="#interaction"><i class="fa fa-link" aria-hidden="true"></i></a>interaction</h5>
+<p>&#x516C;&#x5171;&#x53D8;&#x91CF;&#x6C60;&#xFF0C;&#x50A8;&#x5B58;&#x5728; <code>Vuex.state.screen.design.interaction</code> &#x4E2D;&#xFF0C;&#x57FA;&#x672C;&#x6570;&#x636E;&#x7ED3;&#x6784;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code class="lang-json">interaction: {
+        &#x53D8;&#x91CF;A: {
+                value: &#x53D8;&#x91CF;&#x503C;
+                observer: [{
+                        cmp: &#x7EC4;&#x4EF6;&#x5BF9;&#x8C61;,
+                        prop: &#x7EC4;&#x4EF6;&#x7684;&#x5C5E;&#x6027;&#x8DEF;&#x5F84;
+                }]
+        },
+        &#x53D8;&#x91CF;B: { ... }
+}
+</code></pre>
+<h4 id="&#x793A;&#x4F8B;"><a name="&#x793A;&#x4F8B;" class="anchor-navigation-ex-anchor" href="#&#x793A;&#x4F8B;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x793A;&#x4F8B;" class="plugin-anchor" href="#&#x793A;&#x4F8B;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x793A;&#x4F8B;</h4>
+<ol>
+<li>&#x5F53;&#x7528;&#x6237;&#x5728;&#x7EC4;&#x4EF6;&#x7684;&#x4E8B;&#x4EF6;&#xFF08;event&#xFF09;&#x9762;&#x677F;&#x4E2D;&#x58F0;&#x660E;&#x53D8;&#x91CF;&#x65F6;&#xFF0C;&#x7EC4;&#x4EF6;&#x4F1A;&#x81EA;&#x52A8;&#x5C06;&#x6B64;&#x53D8;&#x91CF;&#x6CE8;&#x518C;&#x5230;interaction&#x4E2D;&#x3002;&#x4F8B;&#x5982;&#xFF0C;&#x7EC4;&#x4EF6;Radio&#x7684;&#x70B9;&#x51FB;&#x4E8B;&#x4EF6;&#x4E2D;&#x58F0;&#x660E;&#x4E86;&#x53D8;&#x91CF; <code>abc</code>&#xFF0C;&#x8868;&#x793A;&#x5F53;&#x6309;&#x94AE;&#x88AB;&#x70B9;&#x51FB;&#x65F6;&#xFF0C;&#x4F1A;&#x5BF9;&#x5916;&#x4F20;&#x9012;&#x8BE5;&#x6309;&#x94AE;&#x5BF9;&#x5E94;&#x6570;&#x636E;&#x7684;value&#x5C5E;&#x6027;&#x7684;&#x503C;&#x3002;</li>
+</ol>
+<p><img src="../source/images/ch-04/interaction-sample-01.png" alt="interaction-sample-01"></p>
+<p>&#x53D8;&#x91CF;&#x5C31;&#x4F1A;&#x88AB;&#x6DFB;&#x52A0;&#x5230;interaction&#x4E2D;&#xFF0C;&#x6570;&#x636E;&#x7ED3;&#x6784;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code class="lang-json">interaction: {
+        abc: {
+                value: <span class="hljs-literal">null</span>,
+                observer: []
+        }
+}
+</code></pre>
+<blockquote>
+<p><strong>Vue Devtools</strong></p>
+<p>Chrome&#x5B89;&#x88C5;Vue Devtools&#x4E4B;&#x540E;&#xFF0C;&#x53EF;&#x4EE5;&#x67E5;&#x770B;&#x76F8;&#x5173;&#x7684;&#x6570;&#x636E;&#x7ED3;&#x6784;&#x3002;</p>
+</blockquote>
+<p><img src="../source/images/ch-04/interaction-sample-02.png" alt="interaction-sample-02"></p>
+<ol>
+<li>&#x5F53;&#x7528;&#x6237;&#x5728;&#x7EC4;&#x4EF6;&#x7684;&#x89E6;&#x53D1;&#x5668;&#xFF08;trigger&#xFF09;&#x9762;&#x677F;&#x4E2D;&#x58F0;&#x660E;&#x89E6;&#x53D1;&#x89C4;&#x5219;&#x540E;&#xFF0C;&#x7EC4;&#x4EF6;&#x4F1A;&#x5C06;&#x89C4;&#x5219;&#x811A;&#x672C;&#x4E2D;&#x7684;&#x53D8;&#x91CF;&#x89E3;&#x6790;&#x51FA;&#x6765;&#xFF0C;&#x5C06;&#x5176;&#x4E2D;&#x7684;<strong>&#x5916;&#x90E8;&#x53D8;&#x91CF;</strong>&#x6CE8;&#x518C;&#x5230;interaction&#x4E2D;&#x3002;&#x4F8B;&#x5982;&#xFF0C;&#x7EC4;&#x4EF6;BaseBar&#x7684;&#x53EF;&#x89C1;&#x6027;&#x89E6;&#x53D1;&#x5668;&#x7684;&#x89C4;&#x5219;&#x811A;&#x672C;&#x5982;&#x4E0B;&#xFF1A;</li>
+</ol>
+<pre><code class="lang-js">:{abc} == <span class="hljs-number">0</span>
+</code></pre>
+<p><img src="../source/images/ch-04/interaction-sample-03.png" alt="interaction-sample-03"></p>
+<p>&#x6B64;&#x65F6; <code>abc</code> &#x5C5E;&#x6027;&#x4F1A;&#x88AB;&#x6CE8;&#x518C;&#x5230;interaction&#xFF0C;&#x5982;&#x679C;interaction&#x4E2D;&#x6CA1;&#x6709; <code>abc</code> &#x5C5E;&#x6027;&#xFF08;&#x5373;&#x6CA1;&#x6709;&#x4EFB;&#x4F55;&#x7EC4;&#x4EF6;&#x7684;event&#x4E2D;&#x58F0;&#x660E;&#x4E86; <code>abc</code> &#x5C5E;&#x6027;&#xFF09;&#xFF0C;&#x4E5F;&#x4F1A;&#x6CE8;&#x518C;&#x4E3A;&#x5982;&#x4E0B;&#x7ED3;&#x6784;&#xFF1A;</p>
+<pre><code class="lang-json">interaction: {
+        abc: {
+                value: <span class="hljs-literal">null</span>
+                observer: [{
+                        comp: <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">Chart</span>&gt;</span>,
+                        prop: &quot;config.store.trigger.abc&quot;
+                }]
+        }
+}
+</span></code></pre>
+<p><img src="../source/images/ch-04/interaction-sample-04.png" alt="interaction-sample-04"></p>
+<p>&#x53EF;&#x4EE5;&#x770B;&#x5230;&#xFF0C;observer&#x6570;&#x7EC4;&#x4E2D;&#x591A;&#x4E86;&#x4E00;&#x4E2A;&#x5143;&#x7D20;&#xFF0C;&#x8868;&#x793A;BaseBar&#x8FD9;&#x4E2A;&#x7EC4;&#x4EF6;&#x8BA2;&#x9605;&#x4E86; <code>abc</code> &#x8FD9;&#x4E2A;&#x53D8;&#x91CF;&#xFF0C;&#x5E76;&#x4E14;&#x662F;BaseBar&#x7684; <code>config.store.trigger.abc</code> &#x8FD9;&#x4E2A;&#x5C5E;&#x6027;&#x8FDB;&#x884C;&#x4E86;&#x8BA2;&#x9605;&#x3002;</p>
+<ol>
+<li>&#x81F3;&#x6B64;&#xFF0C;&#x6574;&#x4E2A;&#x8054;&#x52A8;&#x89C4;&#x5219;&#x914D;&#x7F6E;&#x5B8C;&#x6BD5;&#x3002;&#x5F53;Radio&#x4E2D;&#x7684;&#x9009;&#x9879;&#x88AB;&#x70B9;&#x51FB;&#x65F6;&#xFF0C;&#x76F8;&#x5E94;&#x7684;&#x503C;&#xFF08;&#x5047;&#x8BBE;&#x503C;&#x4E3A;2&#xFF09;&#x4F1A;&#x4F20;&#x9012;&#x7ED9; <code>interaction.abc.value</code>&#xFF0C;&#x53EF;&#x4EE5;&#x770B;&#x5230; <code>abc.value</code> &#x503C;&#x88AB;&#x4FEE;&#x6539;&#x4E3A;2&#x3002;</li>
+</ol>
+<p><img src="../source/images/ch-04/interaction-sample-05.png" alt="interaction-sample-05"></p>
+<p>&#x540C;&#x65F6;&#xFF0C;&#x53EF;&#x4EE5;&#x770B;&#x5230;Vuex&#x4E2D;&#x589E;&#x52A0;&#x4E86;&#x4E00;&#x6761;MODIFY&#x8BB0;&#x5F55;&#xFF0C;MODIFY&#x4E2D;&#xFF0C;&#x9664;&#x4E86;&#x5BF9;value&#x8FDB;&#x884C;&#x8D4B;&#x503C;&#xFF0C;&#x8FD8;&#x4F1A;&#x5BF9; <code>abc.observer</code> &#x8FDB;&#x884C;&#x904D;&#x5386;&#xFF0C;&#x5C06;&#x503C;&#x6CE8;&#x5165;BaseBar&#x7684; <code>config.store.trigger.abc</code> &#x5C5E;&#x6027;&#x4E2D;&#x3002;</p>
+<p><img src="../source/images/ch-04/interaction-sample-06.png" alt="interaction-sample-06"></p>
+<ol>
+<li>&#x6700;&#x540E;&#xFF0C;BaseBar&#x4E2D;&#x76D1;&#x542C; <code>config.store</code> &#x7684;watch&#x4F1A;&#x91CD;&#x65B0;&#x8BA1;&#x7B97;&#xFF1A;</li>
+</ol>
+<pre><code class="lang-js"><span class="hljs-comment">// &#x5C06;&#x4E0A;&#x9762;&#x811A;&#x672C;&#x4E2D;&#x7684; :{abc} &#x66FF;&#x6362;&#x4E3A;2&#x540E;&#xFF0C;&#x811A;&#x672C;&#x5982;&#x4E0B;&#x3002;</span>
+<span class="hljs-number">2</span> == <span class="hljs-number">0</span>
+</code></pre>
+<p>&#x811A;&#x672C;&#x6267;&#x884C;&#x540E;&#x8FD4;&#x56DE;&#x7684;&#x7ED3;&#x679C;&#x4E3A; <code>false</code>&#xFF0C;&#x4F1A;&#x88AB;&#x8D4B;&#x503C;&#x7ED9;BaseBar&#x7684;&#x5BF9;&#x5E94;&#x5C5E;&#x6027;&#x3002;</p>
+<h2 id="3-&#x7EC4;&#x4EF6;&#x5F00;&#x53D1;"><a name="3-&#x7EC4;&#x4EF6;&#x5F00;&#x53D1;" class="anchor-navigation-ex-anchor" href="#3-&#x7EC4;&#x4EF6;&#x5F00;&#x53D1;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="3-&#x7EC4;&#x4EF6;&#x5F00;&#x53D1;" class="plugin-anchor" href="#3-&#x7EC4;&#x4EF6;&#x5F00;&#x53D1;"><i class="fa fa-link" aria-hidden="true"></i></a>3. &#x7EC4;&#x4EF6;&#x5F00;&#x53D1;</h2>
+<p>&#x4EE5;&#x57FA;&#x672C;&#x67F1;&#x72B6;&#x56FE;BaseBar&#x4E3A;&#x4F8B;&#xFF0C;&#x4ECB;&#x7ECD;&#x4E00;&#x822C;&#x7EC4;&#x4EF6;&#x7684;&#x5F00;&#x53D1;&#x89C4;&#x8303;&#x3002;&#x7EC4;&#x4EF6;&#x5F00;&#x53D1;&#x4E3B;&#x8981;&#x662F;&#x5728; <code>src/components/screen/</code> &#x4E0B;&#x7684; <code>config</code> &#x548C; <code>layer</code> &#x6587;&#x4EF6;&#x5939;&#xFF0C;layer&#x4E2D;&#x662F;&#x7EC4;&#x4EF6;&#x7684;&#x5728;&#x753B;&#x5E03;&#x4E0A;&#x7684;&#x6837;&#x5F0F;&#x548C;&#x529F;&#x80FD;&#xFF0C;config&#x4E2D;&#x662F;&#x7EC4;&#x4EF6;&#x5728;&#x53EF;&#x89C6;&#x5316;&#x5B9A;&#x5236;&#x9875;&#x9762;&#x53F3;&#x4FA7;&#x7684;&#x914D;&#x7F6E;&#x9762;&#x677F;&#x3002;</p>
+<h3 id="31-layer"><a name="31-layer" class="anchor-navigation-ex-anchor" href="#31-layer"><i class="fa fa-link" aria-hidden="true"></i></a><a name="31-layer" class="plugin-anchor" href="#31-layer"><i class="fa fa-link" aria-hidden="true"></i></a>3.1 layer</h3>
+<p><code>src/components/screen/layer/chart/BaseBar.vue</code> &#x6587;&#x4EF6;&#x7684;&#x4E3B;&#x8981;&#x7ED3;&#x6784;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code class="lang-vue">&lt;template&gt;
+    &lt;Chart :config=&quot;config&quot; :base=&quot;base&quot;&gt;&lt;/Chart&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+    import Chart from &apos;@/components/screen/layer/base/Chart&apos;
+    import _ from &apos;lodash&apos;
+
+    export default {
+        name: &apos;BaseBar&apos;,
+        props: [&apos;config&apos;, &apos;base&apos;],
+        data() {
+            return {}
+        },
+        methods: {
+              /**
+             * &#x7528;&#x4E8E;&#x50A8;&#x5B58;&#x7EC4;&#x4EF6;&#x7684;&#x914D;&#x7F6E;&#x9879;&#xFF0C;&#x6240;&#x6709;&#x9700;&#x8981;&#x7ED1;&#x5B9A;&#x7684;&#x5C5E;&#x6027;&#x90FD;&#x9700;&#x8981;&#x663E;&#x5F0F;&#x58F0;&#x660E;&#xFF0C;&#x5426;&#x5219;&#x4F1A;&#x9020;&#x6210;config&#x4E2D;&#x7684;&#x914D;&#x7F6E;&#x9762;&#x677F;&#x7EC4;&#x4EF6;&#x52A0;
+             * &#x8F7D;&#x62A5;&#x9519;&#x3002;
+             */
+            initOption() {
+                let defaultOption = {
+                  ......
+                }
+                this.config.option = _.assignIn(defaultOption, this.config.option)
+            },
+              /**
+             * &#x7EC4;&#x4EF6;&#x521D;&#x59CB;&#x5316;&#x65F6;&#x7684;&#x9ED8;&#x8BA4;&#x6570;&#x636E;data&#x914D;&#x7F6E;
+             */
+            initData() {
+                this.config.data = this.config.data || [
+                    {name: &apos;&#x5468;&#x4E00;&apos;, series0: 80, series1: 60},
+                    {name: &apos;&#x5468;&#x4E8C;&apos;, series0: 87, series1: 80}
+                ]
+            },
+              /**
+             * &#x4E8B;&#x4EF6;&#x914D;&#x7F6E;&#xFF0C;&#x4F1A;&#x88AB;&#x81EA;&#x52A8;&#x8F6C;&#x6362;&#x4E3A;&#x4E8B;&#x4EF6;&#x9762;&#x677F;&#x4E0A;&#x7684;&#x914D;&#x7F6E;&#x9879;&#x3002;
+             * &#x5176;&#x4E2D;&#x6BCF;&#x4E2A;&#x5143;&#x7D20;&#x8868;&#x793A;&#x4E00;&#x4E2A;&#x4E8B;&#x4EF6;&#xFF0C;&#x5F53;&#x4E8B;&#x4EF6;&#x89E6;&#x53D1;&#x65F6;&#xFF0C;&#x7EC4;&#x4EF6;&#x4F1A;&#x6839;&#x636E;&#x914D;&#x7F6E;&#xFF0C;&#x5C06;&#x7EC4;&#x4EF6;&#x7684;&#x5185;&#x90E8;&#x5C5E;&#x6027;&#x503C;&#x5411;&#x5916;&#x4F20;&#x9012;&#x7ED9;&#x6307;&#x5B9A;&#x7684;&#x5168;
+             * &#x5C40;&#x53D8;&#x91CF;&#xFF0C;&#x5F53;&#x5176;&#x4ED6;&#x7EC4;&#x4EF6;&#x4E0E;&#x8BE5;&#x5168;&#x5C40;&#x53D8;&#x91CF;&#x8FDB;&#x884C;&#x4E86;&#x7ED1;&#x5B9A;&#xFF0C;&#x5219;&#x4F1A;&#x89E6;&#x53D1;&#x8FD9;&#x4E9B;&#x7EC4;&#x4EF6;&#x7684;&#x53D8;&#x5316;&#xFF0C;&#x4F8B;&#x5982;&#xFF1A;&#x7EC4;&#x4EF6;&#x7684;&#x663E;&#x793A;&#x4E0E;&#x9690;&#x85CF;&#xFF0C;&#x7EC4;
+             * &#x4EF6;&#x4ECE;&#x8FDC;&#x7AEF;&#x63A5;&#x53E3;&#x91CD;&#x65B0;&#x83B7;&#x53D6;&#x6570;&#x636E;&#x3002;
+             * &#x5176;&#x4E2D;&#x5404;&#x5C5E;&#x6027;&#x7684;&#x542B;&#x4E49;&#x5982;&#x4E0B;&#xFF1A;
+             * - name: Echarts&#x7684;&#x7EC4;&#x4EF6;&#x4E8B;&#x4EF6;&#xFF0C;
+             *   &#x8BE6;&#x7EC6;&#x53C2;&#x8003;&#xFF1A;https://echarts.apache.org/zh/api.html#events
+             * - comment: &#x4E8B;&#x4EF6;&#x4E2D;&#x6587;&#x8BF4;&#x660E;&#xFF0C;&#x4F1A;&#x51FA;&#x73B0;&#x5728;&#x4E8B;&#x4EF6;&#x914D;&#x7F6E;&#x9762;&#x677F;&#x4E0A;
+             * - binders: &#x4E8B;&#x4EF6;&#x89E6;&#x53D1;&#x65F6;&#xFF0C;&#x5411;&#x5916;&#x4F20;&#x9012;&#x6570;&#x636E;&#x7684;&#x89C4;&#x5219;&#xFF0C;&#x5176;&#x4E2D;&#x5404;&#x5C5E;&#x6027;&#x542B;&#x4E49;&#x5982;&#x4E0B;&#xFF1A;
+             *     - name: &#x5F53;&#x672A;&#x58F0;&#x660E; prop &#x5C5E;&#x6027;&#x65F6;&#x751F;&#x6548;&#xFF0C;&#x8868;&#x793A;&#x5BF9;&#x5916;&#x4F20;&#x9012;&#x6570;&#x636E;&#x5BF9;&#x8C61;&#x7684;&#x5C5E;&#x6027;&#x540D;&#xFF0C;
+             *       &#x4F8B;&#x5982;&#x4E0B;&#x9762;&#x7684;&#x7B2C;2&#x6761;&#x7ED1;&#x5B9A;&#x89C4;&#x5219;,
+             *       {name: &apos;series&apos;, comment: &apos;&#x6570;&#x636E;&#x540D;&apos;, state: null},
+             *       &#x8868;&#x793A;&#x67F1;&#x56FE;&#x4E2D;&#x67D0;&#x4E2A;&#x67F1;&#x5B50;&#xFF0C;&#x6216;&#x8005;&#x997C;&#x56FE;&#x4E2D;&#x67D0;&#x4E2A;&#x6247;&#x5F62;&#x88AB;&#x70B9;&#x51FB;&#xFF0C;&#x5047;&#x8BBE;&#x70B9;&#x51FB;&#x7684;&#x662F;data&#x4E2D;&#x7684;&#x7B2C;1&#x4E2A;&#x6570;&#x636E;&#x5BF9;&#x8C61;&#xFF0C;&#x5373;
+             *              {name: &apos;&#x5468;&#x4E8C;&apos;, series: 87}&#xFF0C;&#x6B64;&#x65F6;&#x5BF9;&#x5916;&#x4F20;&#x9012;&#x7684;&#x503C;&#x4E3A;series&#x5C5E;&#x6027;&#x5BF9;&#x5E94;&#x7684;87
+             *     - comment: &#x5BF9;&#x5916;&#x4F20;&#x503C;&#x7684;&#x4E2D;&#x6587;&#x8BF4;&#x660E;&#xFF0C;&#x4F1A;&#x663E;&#x793A;&#x5728;&#x4E8B;&#x4EF6;&#x914D;&#x7F6E;&#x9762;&#x677F;&#x4E0A;
+             *     - prop: &#x5F53; prop &#x58F0;&#x660E;&#x65F6;&#xFF0C;&#x5219;&#x4E8B;&#x4EF6;&#x5BF9;&#x5916;&#x4F20;&#x503C;&#x65F6;&#xFF0C;&#x4E0D;&#x518D;&#x4ECE; data &#x7684;&#x6570;&#x636E;&#x5BF9;&#x8C61;&#x4E2D;&#x53D6;&#x503C;&#xFF0C;&#x5E76;&#x5BF9;&#x5916;&#x4F20;&#x9012;&#xFF0C;
+             *             &#x800C;&#x662F;&#x4ECE;Echarts&#x7684;&#x4E8B;&#x4EF6;&#x51FD;&#x6570;&#x7684;&#x53C2;&#x6570;params&#x4E2D;&#x53D6;&#x503C;&#xFF0C;&#x4F8B;&#x5982;&#x4E0B;&#x9762;&#x7684;&#x7B2C; 3 &#x6761;&#x7ED1;&#x5B9A;&#x89C4;&#x5219;&#xFF0C;
+             *       {name: &apos;data&apos;, comment: &apos;&#x53C2;&#x6570;&#x5BF9;&#x8C61;&apos;, prop: &apos;data&apos;, state: null}
+             *       &#x8868;&#x793A;&#x5BF9;&#x5916;&#x4F20;&#x9012;&#x5C5E;&#x6027;params.data&#x7684;&#x503C;&#xFF0C;params&#x7684;&#x5177;&#x4F53;&#x8BF4;&#x660E;&#x53C2;&#x8003;&#x4E0A;&#x9762;Echarts&#x9F20;&#x6807;&#x4E8B;&#x4EF6;&#x5728;&#x7EBF;&#x6587;&#x6863;
+             *     - state: &#x5F53;&#x4E8B;&#x4EF6;&#x89E6;&#x53D1;&#x65F6;&#xFF0C;&#x7528;&#x6765;&#x63A5;&#x6536;&#x5BF9;&#x5916;&#x4F20;&#x503C;&#x7684;&#x5168;&#x5C40;&#x53D8;&#x91CF;&#x5C5E;&#x6027;&#x540D;&#xFF0C;&#x8FD9;&#x4E2A;&#x5168;&#x5C40;&#x53D8;&#x91CF;&#x540D;&#x7531;
+             *       &#x7528;&#x6237;&#x8FDB;&#x884C;&#x914D;&#x7F6E;&#xFF0C;&#x6240;&#x4EE5;state&#x7684;&#x7684;&#x503C;&#x56FA;&#x5B9A;&#x4E3A; null
+             */
+            initEvent() {
+                this.config.event = this.config.event || [{
+                    name: &apos;click&apos;,
+                    comment: &apos;&#x70B9;&#x51FB;&#x4E8B;&#x4EF6;&apos;,
+                    binders: [
+                            {name: &apos;name&apos;, comment: &apos;&#x6570;&#x636E;&#x540D;&apos;, prop: &apos;name&apos;, state: null},
+                            {name: &apos;data&apos;, comment: &apos;&#x6570;&#x636E;&#x503C;&apos;, prop: &apos;data&apos;, state: null},
+                    ]
+                }]
+            },
+              /**
+             * &#x6570;&#x636E;&#x4EE3;&#x7406;&#xFF0C;&#x53EF;&#x4EE5;&#x58F0;&#x660E; type: 1&#xFF0C;&#x8868;&#x793A;&#x9ED8;&#x8BA4;&#x6570;&#x636E;&#x6E90;&#x4E3A;&#x672C;&#x5730;&#x9759;&#x6001;&#x6570;&#x636E;&#xFF0C;
+             */
+            initProxy() {
+                this.config.proxy = this.config.proxy || {
+                    type: 1,
+                }
+            },
+              /**
+             * &#x6570;&#x636E;&#x6620;&#x5C04;&#x89C4;&#x5219;&#xFF0C;&#x8FD9;&#x4E2A;&#x89C4;&#x5219;&#x4F1A;&#x5728;&#x6570;&#x636E;&#x914D;&#x7F6E;&#x9762;&#x677F;&#x4E0A;&#x81EA;&#x52A8;&#x8F6C;&#x6362;&#x4E3A;&#x914D;&#x7F6E;&#x754C;&#x9762;&#xFF0C;
+             * &#x901A;&#x5E38;&#x4E0E;data&#x4E2D;&#x7684;&#x6570;&#x636E;&#x5C5E;&#x6027;&#x4FDD;&#x6301;&#x4E00;&#x81F4;&#x3002;
+             */
+            initTransform() {
+                this.config.transform = this.config.transform || {
+                    mapper: {
+                        name: null,
+                        series0: null
+                    }
+                }
+            },
+              /**
+             * &#x89E6;&#x53D1;&#x5668;&#xFF0C;&#x6B64;&#x5904;&#x7684;&#x914D;&#x7F6E;&#x4F1A;&#x81EA;&#x52A8;&#x8F6C;&#x5316;&#x4E3A;&#x4E8B;&#x4EF6;&#x9762;&#x677F;&#x4E0A;&#x7684;&#x89E6;&#x53D1;&#x5668;&#x914D;&#x7F6E;&#x754C;&#x9762;&#xFF0C;&#x5176;&#x4E2D;&#x5404;&#x5C5E;&#x6027;&#x7684;&#x542B;&#x4E49;&#x5982;&#x4E0B;&#xFF1A;
+             * - show: &#x8868;&#x793A;&#x6B64;&#x89E6;&#x53D1;&#x5668;&#x662F;&#x5426;&#x5728;&#x89E6;&#x53D1;&#x5668;&#x914D;&#x7F6E;&#x754C;&#x9762;&#x663E;&#x793A;&#xFF0C;&#x901A;&#x5E38;&#x8BBE;&#x7F6E;&#x4E3A;true&#x5373;&#x53EF;&#x3002;
+             * - name: &#x663E;&#x793A;&#x5728;&#x89E6;&#x53D1;&#x5668;&#x914D;&#x7F6E;&#x754C;&#x9762;&#x7684;&#x8BF4;&#x660E;&#x3002;
+             * - binder: &#x6B64;&#x5904;&#x662F;&#x7531;&#x7528;&#x6237;&#x8FDB;&#x884C;&#x8BBE;&#x7F6E;&#x7684;&#x89E6;&#x53D1;&#x5668;&#x7ED1;&#x5B9A;&#x89C4;&#x5219;&#xFF0C;&#x9ED8;&#x8BA4;&#x4E3A;null&#x5373;&#x53EF;&#x3002;
+             * - prop: &#x5F53;&#x89E6;&#x53D1;&#x5668;&#x76F8;&#x5173;&#x7684;&#x5185;/&#x5916;&#x90E8;&#x5C5E;&#x6027;&#x53D1;&#x751F;&#x53D8;&#x66F4;&#x65F6;&#xFF0C;&#x89E6;&#x53D1;&#x7EC4;&#x4EF6;&#x7684;&#x54EA;&#x4E2A;&#x5C5E;&#x6027;&#x53D1;&#x751F;&#x53D8;&#x66F4;&#x3002;
+             * - defaultValue: &#x5F53;&#x7528;&#x6237;&#x672A;&#x5BF9;&#x8BE5;&#x89E6;&#x53D1;&#x5668;&#x8FDB;&#x884C;&#x8BBE;&#x7F6E;&#x65F6;&#xFF0C;&#x9ED8;&#x8BA4;&#x9009;&#x62E9;mapper&#x4E2D;&#x54EA;&#x4E2A;&#x9009;&#x9879;&#x7684;key&#x3002;
+             * - isScript: &#x8868;&#x793A;binder&#x4E2D;&#x7684;&#x914D;&#x7F6E;&#x662F;&#x4F5C;&#x4E3A;javascript&#x811A;&#x672C;&#xFF0C;&#x8FD8;&#x662F;&#x4F5C;&#x4E3A;&#x5B57;&#x7B26;&#x4E32;&#x3002;
+             *         =&gt; true: &#x8868;&#x793A;binder&#x7684;&#x5185;&#x5BB9;&#x4F1A;&#x4F5C;&#x4E3A;&#x811A;&#x672C;&#x8FDB;&#x884C;&#x6267;&#x884C;&#xFF0C;&#x6267;&#x884C;&#x7ED3;&#x679C;&#x8D4B;&#x4E88;&#x8BE5;&#x7EC4;&#x4EF6;&#x7684;&#x76F8;&#x5E94;&#x5C5E;&#x6027;&#xFF1B;
+             *          =&gt; false: &#x8868;&#x793A;binder&#x7684;&#x5185;&#x5BB9;&#x4F1A;&#x4F5C;&#x4E3A;&#x5B57;&#x7B26;&#x4E32;&#x76F4;&#x63A5;&#x8D4B;&#x4E88;&#x8BE5;&#x7EC4;&#x4EF6;&#x7684;&#x76F8;&#x5E94;&#x5C5E;&#x6027;&#xFF1B;
+             *          &#x4F8B;&#x5982;Iframe&#x7EC4;&#x4EF6;&#x7684;URL&#x5C5E;&#x6027;&#x5C31;&#x662F;&#x914D;&#x7F6E;&#x4E3A;false&#x540E;&#xFF0C;&#x5229;&#x7528;&#x6B64;&#x673A;&#x5236;&#x8FDB;&#x884C;&#x5B9E;&#x73B0;&#x3002;
+             * - mapper: &#x8868;&#x793A;binder&#x8BA1;&#x7B97;&#x5F97;&#x5230;&#x7684;&#x7ED3;&#x679C;&#x5206;&#x522B;&#x5BF9;&#x5E94;&#x4EC0;&#x4E48;&#x503C;&#xFF0C;&#x8BE5;&#x503C;&#x624D;&#x662F;&#x6700;&#x7EC8;&#x88AB;&#x8D4B;&#x4E88;&#x7EC4;&#x4EF6;&#x7684;&#x76F8;&#x5E94;&#x5C5E;&#x6027;&#x7684;&#x503C;&#xFF0C;
+             *   &#x6B64;&#x5C5E;&#x6027;&#x4E3B;&#x8981;&#x7528;&#x4E8E;&#x89C4;&#x8303;&#x503C;&#x7684;&#x8303;&#x56F4;&#xFF0C;&#x907F;&#x514D;&#x7528;&#x6237;&#x5728; binder &#x4E2D;&#x58F0;&#x660E;&#x8FC7;&#x4E8E;&#x590D;&#x6742;&#x7684;&#x7ED3;&#x679C;&#xFF0C;&#x6216;&#x56E0;&#x62FC;&#x5199;&#x9519;&#x8BEF;&#x5BFC;&#x81F4;&#x811A;&#x672C;
+             *     &#x6267;&#x884C;&#x5931;&#x8D25;&#x3002;&#x5176;&#x4E2D;&#x5404;&#x5C5E;&#x6027;&#x7684;&#x542B;&#x4E49;&#x5982;&#x4E0B;&#xFF1A;
+             *      - key: binder&#x8BA1;&#x7B97;&#x51FA;&#x7684;&#x7ED3;&#x679C;&#xFF1B;
+             *      - value: binder&#x8BA1;&#x7B97;&#x7ED3;&#x679C;&#x5BF9;&#x5E94;&#x7684;&#x503C;&#xFF0C;&#x6700;&#x7EC8;&#x8D4B;&#x4E88;&#x7EC4;&#x4EF6;&#x7684;&#x76F8;&#x5E94;&#x5C5E;&#x6027;&#xFF1B;
+             *      - comment: &#x89E6;&#x53D1;&#x5668;&#x9762;&#x677F;&#x4E0A;&#x7684;&#x8BF4;&#x660E;&#x6587;&#x5B57;&#x3002;
+             */
+              initTrigger() {
+                this.config.trigger = this.config.trigger || [{
+                    show: true,
+                    name: &apos;&#x53EF;&#x89C1;&#x6027;&apos;,
+                    binder: null,
+                    prop: &quot;config.style.visibility&quot;,
+                    defaultValue: true,
+                    isScript: true,
+                    mapper: [
+                        {key: true, value: &apos;visible&apos;, comment: &apos;&#x8FD4;&#x56DE; true &#x65F6;&#x663E;&#x793A;&apos;},
+                        {key: false, value: &apos;hidden&apos;, comment: &apos;&#x8FD4;&#x56DE; false &#x65F6;&#x9690;&#x85CF;&apos;},
+                    ]
+                }]
+            },
+            /**
+             * handler&#x51FD;&#x6570;&#x7684;&#x5B9A;&#x4E49;
+             */
+            handler() {
+                let dimensions = []
+                for (let key in this.config.transform.mapper) {
+                    let dim = this.config.transform.mapper[key] || key
+                    let data = this.config.data
+                    if (!data || !data.length || !data[0].hasOwnProperty(dim)) {
+                        dim = null
+                    }
+                    dimensions.push(dim)
+                }
+                this.config.option.dataset = {
+                    dimensions: dimensions,
+                    source: this.config.data
+                }
+            }
+        },
+        components: {
+            &apos;Chart&apos;: Chart
+        },
+    }
+&lt;/script&gt;
+</code></pre>
+<h3 id="32-config"><a name="32-config" class="anchor-navigation-ex-anchor" href="#32-config"><i class="fa fa-link" aria-hidden="true"></i></a><a name="32-config" class="plugin-anchor" href="#32-config"><i class="fa fa-link" aria-hidden="true"></i></a>3.2 config</h3>
+<p><code>src/components/screen/config/chart/BaseBar.vue</code> &#x6587;&#x4EF6;&#x7684;&#x4E3B;&#x8981;&#x7ED3;&#x6784;&#x5982;&#x4E0B;&#xFF0C;&#x4E3B;&#x8981;&#x662F;&#x5C06;&#x7EC4;&#x4EF6;&#x7684;option&#x4E2D;&#x5404;&#x5C5E;&#x6027;&#x7ED1;&#x5B9A;&#x5230;&#x914D;&#x7F6E;&#x9762;&#x677F;&#x4E0A;&#xFF0C;&#x4F7F;&#x7528;&#x6237;&#x53EF;&#x4EE5;&#x5BF9;&#x7EC4;&#x4EF6;&#x8FDB;&#x884C;&#x5B9A;&#x5236;&#x3002;</p>
+<pre><code class="lang-vue">&lt;template&gt;
+    &lt;el-collapse value=&quot;0&quot; accordion&gt;
+        &lt;!-- &#x57FA;&#x7840;&#x5C5E;&#x6027; --&gt;
+        &lt;el-collapse-item title=&quot;&#x57FA;&#x7840;&#x5C5E;&#x6027;&quot; name=&quot;0&quot;&gt;
+            &lt;el-row&gt;
+                &lt;el-col :span=&quot;8&quot; class=&quot;tag&quot;&gt;&#x5C3A;&#x5BF8;&lt;/el-col&gt;
+                &lt;el-col :span=&quot;8&quot;&gt;
+                    &lt;el-input-number v-model=&quot;component.config.style.width&quot;
+                                     size=&quot;mini&quot;
+                                     controls-position=&quot;right&quot;
+                                     :min=&quot;0&quot;&gt;
+                    &lt;/el-input-number&gt;
+                    &lt;div class=&quot;description&quot;&gt;&#x5BBD;&#x5EA6;&lt;/div&gt;
+                &lt;/el-col&gt;
+                &lt;el-col :span=&quot;8&quot;&gt;
+                    &lt;el-input-number v-model=&quot;component.config.style.height&quot;
+                                     size=&quot;mini&quot;
+                                     controls-position=&quot;right&quot;
+                                     :min=&quot;0&quot;&gt;
+                    &lt;/el-input-number&gt;
+                    &lt;div class=&quot;description&quot;&gt;&#x9AD8;&#x5EA6;&lt;/div&gt;
+                &lt;/el-col&gt;
+            &lt;/el-row&gt;
+        &lt;/el-collapse-item&gt;
+          ......
+    &lt;/el-collapse&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+    export default {
+        name: &quot;BaseBar&quot;,
+        props: [&quot;component&quot;],
+    }
+&lt;/script&gt;
+</code></pre>
+<h3 id="33-&#x6CE8;&#x518C;&#x7EC4;&#x4EF6;"><a name="33-&#x6CE8;&#x518C;&#x7EC4;&#x4EF6;" class="anchor-navigation-ex-anchor" href="#33-&#x6CE8;&#x518C;&#x7EC4;&#x4EF6;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="33-&#x6CE8;&#x518C;&#x7EC4;&#x4EF6;" class="plugin-anchor" href="#33-&#x6CE8;&#x518C;&#x7EC4;&#x4EF6;"><i class="fa fa-link" aria-hidden="true"></i></a>3.3 &#x6CE8;&#x518C;&#x7EC4;&#x4EF6;</h3>
+<p>&#x7EC4;&#x4EF6;&#x5F00;&#x53D1;&#x5B8C;&#x6210;&#x540E;&#xFF0C;&#x9700;&#x8981;&#x6DFB;&#x52A0;&#x5230;&#x7EC4;&#x4EF6;&#x83DC;&#x5355; <code>category.js</code> &#x4E2D;&#xFF0C;&#x4F7F;&#x7528;&#x6237;&#x53EF;&#x4EE5;&#x9009;&#x62E9;&#xFF0C;&#x5E76;&#x4E14;&#x9700;&#x8981;&#x7ED9;&#x7EC4;&#x4EF6;&#x589E;&#x52A0;&#x7F29;&#x7565;&#x56FE;&#x3002;</p>
+<h5 id="categoryjs"><a name="categoryjs" class="anchor-navigation-ex-anchor" href="#categoryjs"><i class="fa fa-link" aria-hidden="true"></i></a><a name="categoryjs" class="plugin-anchor" href="#categoryjs"><i class="fa fa-link" aria-hidden="true"></i></a>category.js</h5>
+<p><code>src/config/category.js</code> &#x4E2D;&#xFF0C;&#x57FA;&#x672C;&#x7ED3;&#x6784;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> Category = [{
+    icon: <span class="hljs-string">&apos;chart&apos;</span>,
+    text: <span class="hljs-string">&apos;&#x56FE;&#x8868;&apos;</span>,
+    show: <span class="hljs-literal">false</span>,
+    categories: [{
+        text: <span class="hljs-string">&apos;2D&#x56FE;&#x8868;&apos;</span>,
+        icon: <span class="hljs-string">&apos;chart&apos;</span>,
+        items: [
+              <span class="hljs-comment">/**
+               * BaseBar&#x88AB;&#x6DFB;&#x52A0;&#x5230;&#x6B64;&#x5904;&#xFF0C;&#x5E73;&#x53F0;&#x4F1A;&#x6839;&#x636E;&#x6B64;&#x5904;&#x7684;&#x914D;&#x7F6E;&#xFF0C;&#x4ECE;src/components/screen/layer/&#x4E2D;&#x52A0;&#x8F7D;&#x7EC4;&#x4EF6;&#xFF0C;
+               * category&#x8868;&#x793A;&#x4ECE;chart&#x6587;&#x4EF6;&#x5939;&#x4E2D;&#x52A0;&#x8F7D;&#xFF0C;name&#x8868;&#x793A;&#x52A0;&#x8F7D;BaseBar.vue&#x7EC4;&#x4EF6;&#x3002;
+               */</span>
+            {text: <span class="hljs-string">&apos;&#x57FA;&#x672C;&#x67F1;&#x5F62;&#x56FE;&apos;</span>, category: <span class="hljs-string">&apos;chart&apos;</span>, name: <span class="hljs-string">&apos;BaseBar&apos;</span>},
+            {text: <span class="hljs-string">&apos;&#x5806;&#x53E0;&#x67F1;&#x56FE;&apos;</span>, category: <span class="hljs-string">&apos;chart&apos;</span>, name: <span class="hljs-string">&apos;StackBar&apos;</span>},
+            ...
+        ]
+    }, ...]
+}, {
+    icon: <span class="hljs-string">&apos;map&apos;</span>,
+    text: <span class="hljs-string">&apos;&#x5730;&#x56FE;&apos;</span>,
+    show: <span class="hljs-literal">false</span>,
+    categories: [{
+        text: <span class="hljs-string">&apos;&#x5730;&#x56FE;&apos;</span>,
+        icon: <span class="hljs-string">&apos;map&apos;</span>,
+        items: [
+            ...
+        ]
+    }]
+}, ...]
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> Category
+</code></pre>
+<h5 id="&#x7F29;&#x7565;&#x56FE;"><a name="&#x7F29;&#x7565;&#x56FE;" class="anchor-navigation-ex-anchor" href="#&#x7F29;&#x7565;&#x56FE;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x7F29;&#x7565;&#x56FE;" class="plugin-anchor" href="#&#x7F29;&#x7565;&#x56FE;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x7F29;&#x7565;&#x56FE;</h5>
+<p>&#x7F29;&#x7565;&#x56FE;&#x50A8;&#x5B58;&#x5728; <code>public/img/components/chart/BaseBar.png</code> &#x4E2D;&#xFF0C;<code>chart</code> &#x548C; <code>BaseBar</code> &#x8FD9;&#x4E24;&#x4E2A;&#x8DEF;&#x5F84;&#x9700;&#x8981;&#x4E0E;category.js&#x4E2D;&#x6CE8;&#x518C;&#x7684; <code>category</code> &#x548C; <code>name</code> &#x5C5E;&#x6027;&#x4FDD;&#x6301;&#x4E00;&#x81F4;&#x3002;</p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="./" class="navigation navigation-prev " aria-label="Previous page: 第4章 开发指南">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="Dynamic-Component.html" class="navigation navigation-next " aria-label="Next page: 4.2 自定义组件">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"4.1 组件开发","level":"1.1.4.1","depth":3,"next":{"title":"4.2 自定义组件","level":"1.1.4.2","depth":3,"path":"04-Development/Dynamic-Component.md","ref":"04-Development/Dynamic-Component.md","articles":[]},"previous":{"title":"第4章 开发指南","level":"1.1.4","depth":2,"path":"04-Development/README.md","ref":"04-Development/README.md","articles":[{"title":"4.1 组件开发","level":"1.1.4.1","depth":3,"path":"04-Development/Component.md","ref":"04-Development/Component.md","articles":[]},{"title":"4.2 自定义组件","level":"1.1.4.2","depth":3,"path":"04-Development/Dynamic-Component.md","ref":"04-Development/Dynamic-Component.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["-sharing","splitter","expandable-chapters-small","anchors","github","github-buttons","sharing-plus","anchor-navigation-ex"],"styles":{"website":"./styles/website.css"},"pluginsConfig":{"github":{"url":"https://github.com/tyrival"},"splitter":{},"search":{},"sharing-plus":{"qq":false,"all":["facebook","google","twitter","instapaper","linkedin","pocket","stumbleupon"],"douban":false,"facebook":true,"weibo":false,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":true,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"anchor-navigation-ex":{"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"mode":"float","multipleH1":true,"pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"printLog":false,"showGoTop":true,"showLevel":false},"github-buttons":{"buttons":[{"user":"Tyrival","repo":"gitbook","type":"star","size":"small","count":false}]},"expandable-chapters-small":{},"sharing":{"qq":false,"all":["google","facebook","weibo","twitter","qq","qzone","linkedin","pocket"],"douban":false,"facebook":false,"weibo":false,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":false,"messenger":false,"line":false,"vk":false,"pocket":false,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","author":"Tyrival","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Vision 用户指南","language":"zh-hans","gitbook":"3.2.3","description":"Vision 6.7 的用户指南中文版"},"file":{"path":"04-Development/Component.md","mtime":"2020-08-12T08:59:12.847Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-08-13T00:21:34.488Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-splitter/splitter.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-github/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-github-buttons/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing-plus/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
