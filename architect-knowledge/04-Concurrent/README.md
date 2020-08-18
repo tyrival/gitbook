@@ -9,3 +9,5 @@
 [4 并发编程之synchronized详解](./04-Synchronized.md)
 
 [5 抽象队列同步器AQS应用Lock详解](./05-AQS-Lock.md)
+
+[6 抽象队列同步器AQS应用之BlockingQueue详解](./06-AQS-Blocking-Queue.md)

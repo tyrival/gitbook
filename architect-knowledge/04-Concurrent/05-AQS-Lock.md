@@ -1,4 +1,4 @@
-# 抽象队列同步器AQS应用Lock详解
+# 抽象队列同步器AQS应用之Lock详解
 
 ## 1. ReentrantLock
 
@@ -25,7 +25,7 @@ while(true) {
   	// ③ 在此处等待的线程会占用CPU，所以需要让出CPU
   	// 如果使用Thread.yeild()，可能会因为所有线程都在此处共同出让CPU，导致无线程接手CPU；
   	// 如果使用Thread.sleep(n)，又会由于后续业务逻辑执行时间的不确定性，n的值难以选择；
-		// 所以最终选择在此处阻塞，不占用资源，并且停留在此处。
+		// 所以在此处阻塞，不占用资源，并且停留在此处。
   	LockSupport.park();
   	Thread current = Thread.currentThread();
   	// ④
@@ -37,17 +37,18 @@ LockSupport.unpack(t);
 
 ##### 四个核心原理
 
-- ① 自旋
+- ① **自旋**
 
-- ② CAS
+- ② **CAS**：比较与交换（compare and swap），保证加锁的互斥，每次只有一个线程可以拿到锁。
 
-  比较与交换（compare and swap），保证加锁的互斥，每次只有一个线程可以拿到锁。
+- ③ **LockSupport**：阻塞
 
-- ③ LockSupport
+- ④ **队列**：需要使用hashmap、set、array等存储线程，以方便后续的唤醒，但因为需要实现公平锁，使先来的线程先拿到锁，所以最终采用队列的FIFO特性。
 
-- ④ 队列
 
-  需要使用hashmap、set、array等存储线程，以方便后续的唤醒，但因为需要实现公平锁，使先来的线程先拿到锁，所以最终采用队列的FIFO特性。
+![reentrancelock-queue](../source/images/ch-04/reentrancelock-queue.png)
+
+
 
 **ReentrantLock如何实现synchronized不具备的公平与非公平性呢？**
 
@@ -70,7 +71,7 @@ LockSupport.unpack(t);
 - 可重入
 - 允许中断
 
-除了Lock外，Java.util.concurrent当中同步器的实现如Latch，Barrier，BlockingQueue等，都是基于AQS框架实现
+除了Lock外，`java.util.concurrent` 当中同步器的实现如Latch，Barrier，BlockingQueue等，都是基于AQS框架实现
 
 - 一般通过定义内部类Sync继承AQS
 - 将同步器所有调用都映射到Sync对应的方法
@@ -101,15 +102,15 @@ AQS定义两种队列
 
 ### 2.1 同步等待队列
 
-AQS当中的同步等待队列也称CLH队列，CLH队列是Craig、Landin、Hagersten三人发明的一种基于双向链表数据结构的队列，是FIFO先入先出线程等待队列，Java中的CLH队列是原CLH队列的一个变种,线程由原自旋机制改为阻塞机制。
+AQS当中的同步等待队列也称CLH队列，CLH队列是Craig、Landin、Hagersten三人发明的一种基于双向链表数据结构的队列，是FIFO先入先出线程等待队列，Java中的CLH队列是原CLH队列的一个变种，线程由原自旋机制改为阻塞机制。
 
-![aqs-clh-queue](../source/images/ch-04/aqs-clh-queue.png)
+![aqs-condition-queue](../source/images/ch-04/aqs-condition-queue.png)
 
 ### 2.2 条件等待队列
 
-Condition是一个多线程间协调通信的工具类，使得某个，或者某些线程一起等待某个条件（Condition）,只有当该条件具备时，这些等待线程才会被唤醒，从而重新争夺锁
+Condition是一个多线程间协调通信的工具类，使得某个或者某些线程一起等待某个条件（Condition），只有当该条件具备时，这些等待线程才会被唤醒，从而重新争夺锁。
 
-![aqs-condition-queue](../source/images/ch-04/aqs-condition-queue.png)
+![aqs-clh-queue](../source/images/ch-04/aqs-clh-queue.png)
 
 
 
@@ -140,7 +141,7 @@ public abstract class AbstractQueuedSynchronizer
     static final class Node {
         /**
          * 标记节点未共享模式
-         * */
+         */
         static final Node SHARED = new Node();
         /**
          *  标记节点为独占模式
@@ -148,8 +149,8 @@ public abstract class AbstractQueuedSynchronizer
         static final Node EXCLUSIVE = null;
 
         /**
-         * 在同步队列中等待的线程等待超时或者被中断，需要从同步队列中取消等待
-         * */
+         * 在同步队列中等待的线程等待超时或者被中断（或编码不严谨），需要从同步队列中取消等待
+         */
         static final int CANCELLED =  1;
         /**
          *  后继节点的线程处于等待状态，而当前的节点如果释放了同步状态或者被取消，
@@ -516,7 +517,7 @@ public abstract class AbstractQueuedSynchronizer
     /**
      * 已经在队列当中的Thread节点，准备阻塞等待获取锁
      */
-    final boolean acquireQueued(final Node node, int arg) {
+    final boolean  acquireQueued(final Node node, int arg) {
         boolean failed = true;
         try {
             boolean interrupted = false;
@@ -761,6 +762,7 @@ public abstract class AbstractQueuedSynchronizer
         //尝试获取锁
         if (!tryAcquire(arg) &&
                 acquireQueued(addWaiter(Node.EXCLUSIVE), arg))//独占模式
+          	// 外围的自定义代码也要能够识别中断信号，并对该信号进行处理
             selfInterrupt();
     }
 
