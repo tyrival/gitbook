@@ -32,6 +32,7 @@
         * [4 并发编程之synchronized详解](04-Concurrent/04-Synchronized.md)
         * [5 抽象队列同步器AQS应用Lock详解](04-Concurrent/05-AQS-Lock.md)
         * [6 抽象队列同步器AQS应用之BlockingQueue详解](04-Concurrent/06-AQS-Blocking-Queue.md)
+        * [7 并发编程之Tools&CountDownLatch&Semaphore原理与应用](04-Concurrent/07-Tools-CountDownLatch-Semaphore.md)
     * [第5章 源码框架](05-Source/README.md)
     * [第6章 分布式](06-Distributed/README.md)
     * [第7章 微服务](07-Microservice/README.md)

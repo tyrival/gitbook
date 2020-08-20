@@ -103,11 +103,11 @@ BlockingQueue 接口的所有方法可以分为两大类：负责向队列添加
 
 ### 多线程生产者-消费者示例
 
-接下来我们创建一个由两部分组成的程序 - 生产者（Producer）和消费者（Consumer）。
+接下来我们创建一个由两部分组成的程序——生产者（Producer）和消费者（Consumer）。
 
 生产者将生成一个 0 到 100 的随机数（十全大补丸的编号），并将该数字放在BlockingQueue 中。我们将创建 16 个线程（潘金莲）用于生成随机数并使用 `put()` 方法阻塞，直到队列中有可用空间。
 
-需要记住的重要一点是，我们需要阻止我们的消费者线程无限期地等待元素出现在队列中。
+需要记住的重要一点是，我们需要阻止消费者线程无限期地等待元素出现在队列中。
 
 从生产者（潘金莲）向消费者（武大郎）发出信号的好方法是，不需要处理消息，而是发送称为毒（poison）丸（pill）的特殊消息。 我们需要发送尽可能多的毒（poison）丸（pill），因为我们有消费者（武大郎）。然后当消费者从队列中获取特殊的毒（poison）丸（pill）消息时，它将优雅地完成执行。
 
@@ -141,13 +141,13 @@ public class NumbersProducer implements Runnable {
     private void generateNumbers() throws InterruptedException {
         for (int i = 0; i < 100; i++) {
         		numbersQueue.put(ThreadLocalRandom.current().nextInt(100));
-        		log.info("潘金莲‐{}号,给武大郎的泡药！",
-                     Thread.currentThread().getId());
+        		log.info("潘金莲‐{}号,给武大郎的泡药！", Thread.currentThread().getId());
         }
         for (int j = 0; j < poisonPillPerProducer; j++) {
         		numbersQueue.put(poisonPill);
-        		log.info("潘金莲‐{}号,往武大郎的药里放入第{}颗毒丸！",
-                     Thread.currentThread().getId(), j + 1);
+        		log.info("潘金莲‐{}号,往武大郎的药里放入第{}颗毒丸！", 
+                     Thread.currentThread().getId(), 
+                     j + 1);
         }
     }
 }
@@ -176,8 +176,7 @@ public class NumbersConsumer implements Runnable {
                 if (number.equals(poisonPill)) {
                     return;
                 }
-                log.info("武大郎‐{}号,喝药‐编号: {}",
-                         Thread.currentThread().getId(), number);
+                log.info("武大郎‐{}号,喝药‐编号: {}", Thread.currentThread().getId(), number);
         		}
         } catch (InterruptedException e) {
         		Thread.currentThread().interrupt();
@@ -186,7 +185,7 @@ public class NumbersConsumer implements Runnable {
 }
 ```
 
-需要注意的重要事项是队列的使用。与生成器构造函数中的相同，队列作为参数传递。我们可以这样做，是因为 BlockingQueue 可以在线程之间共享而无需任何显式同步。既然我们有生产者和消费者，我们就可以开始我们的计划。我们需要定义队列的容量，并将其设置为 10个元素。
+需要注意的是队列的使用。与生成器构造函数中的相同，队列作为参数传递。我们可以这样做，是因为 BlockingQueue 可以在线程之间共享而无需任何显式同步。既然我们有生产者和消费者，我们就可以开始我们的计划。我们需要定义队列的容量，并将其设置为 10个元素。
 
 我们创建4个生产者线程，并且创建等于可用处理器数量的消费者线程：
 
@@ -213,7 +212,7 @@ public class Main {
         		new Thread(new NumbersConsumer(queue, poisonPill)).start();
         }
         //潘金莲开始投毒，武大郎喝完毒药GG
-        new Thread(new NumbersProducer(queue, poisonPill, poisonPillPe rProducer + mod))
+        new Thread(new NumbersProducer(queue, poisonPill, poisonPillPerProducer + mod))
           						.start();
     }
 }

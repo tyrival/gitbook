@@ -2,7 +2,7 @@
 
 ## 1. MongoDB的聚合操作
 
-#### pipeline 与mapRedurce 比较
+#### pipeline 与 mapRedurce 比较
 
 pipeline 速度快，但只能运行在单机上，适合数据量小的实时聚合操作。
 
@@ -54,16 +54,13 @@ db.emp.aggregate({$match:{"job":"讲师"}})
 // 返回指定例,_id 自动带上
 db.emp.aggregate(
   	{$match:{"job":"讲师"}},
-  	{
-      	$project:{"job":1,"salary":1}
-    }
+  	{$project:{"job":1,"salary":1}}
 )
+
 // 返回指定列，并修改列名
 db.emp.aggregate(
   	{$match:{"job":"讲师"}},
-  	{
-    		$project:{"工作":"$job","薪水":"$salary"}
-    }
+  	{$project:{"工作":"$job","薪水":"$salary"}}
 )
 ```
 
@@ -72,30 +69,32 @@ db.emp.aggregate(
 ```js
 // 基于工作分组，并求出薪水总和
 db.emp.aggregate({
-  	$group:{
-      	_id:"$job",total:{$sum:"$salary"}
-    }
+  	$group:{_id:"$job",total:{$sum:"$salary"}}
 })
+
 // 求出薪水最大值
 db.emp.aggregate({
-  	$group:{
-      	_id:"$job",
-      	total:{$max:"$salary"}
-    }
+  	$group:{_id:"$job",total:{$max:"$salary"}}
 })
+
 // 将所有薪水添加列表
 db.emp.aggregate({
-  	$group:{
-      	_id:"$job",
-      	total:{$push:"$salary"}
-    }
+  	$group:{_id:"$job",total:{$push:"$salary"}}
 })
-// 将所有薪水添加列表 并去重
+
+// 将所有薪水添加列表，并去重
 db.emp.aggregate({
-  	$group:{
-      	_id:"$job",
-      	total:{$addToSet:"$salary"}
-    }
+  	$group:{_id:"$job",total:{$addToSet:"$salary"}}
+})
+
+// 取第一个值
+db.emp.aggregate({
+  	$group:{_id:"$job",first:{$first:"$salary"}}
+})
+
+// 取最后一个值
+db.emp.aggregate({
+  	$group:{_id:"$job",last:{$last:"$salary"}}
 })
 ```
 
@@ -114,12 +113,7 @@ db.emp.aggregate(
 
 ```js
 db.emp.aggregate(
-  	{
-      	$group:{
-          	_id:"$job",
-          	total:{$push:"$salary"}
-        }
-    },
+  	{$group:{_id:"$job",total:{$push:"$salary"}}},
   	{$limit:4},
   	{$skip:2}
 )
@@ -129,12 +123,8 @@ db.emp.aggregate(
 
 ```js
 db.emp.aggregate(
-  	{
-      	$project:{"工作":"$job","salary":1}
-    },
-  	{
-      	$sort:{"salary":1,"工作":1}
-    }
+  	{$project:{"工作":"$job","salary":1}},
+  	{$sort:{"salary":1,"工作":1}}
 )
 ```
 
@@ -142,29 +132,24 @@ db.emp.aggregate(
 
 ```js
 db.emp.aggregate(
-  	{
-      	$group:{
-          	_id:"$job",
-          	total:{$push:"$salary"}
-        }
-    },
+  	{$group:{_id:"$job",total:{$push:"$salary"}}},
   	{$unwind:"$total"}
 )
 ```
 
 ### 1.2 mapRedurce 聚合
 
-mapRedurce  非常适合实现非常复杂 并且数量大的聚合计算，其可运行在多台节点上实行分布式计算。
+mapRedurce 非常适合实现非常复杂 并且数量大的聚合计算，其可运行在多台节点上实行分布式计算。
 
 #### mapRedurce 概念
 
-MapReduce 现大量运用于hadoop大数据计算当中，其最早来自于 google 的一遍论，解决大PageRank搜索结果排序的问题。其大至原理如下：
+MapReduce 现大量运用于hadoop大数据计算当中，其最早来自于 google 的一遍论文，解决大PageRank搜索结果排序的问题。其大至原理如下：
 
 #### mongodb中mapRedurce的使用流程
 
-1. 创建Map函数，
-2. 创建Redurce函数
-3. 将map、Redurce 函数添加至集合中，并返回新的结果集
+1. 创建map函数，
+2. 创建redurce函数
+3. 将map、redurce 函数添加至集合中，并返回新的结果集
 4. 查询新的结果集
 
 #### 示列
@@ -194,7 +179,7 @@ db.result.find()
 var map2 = function (){
 		emit({"job": this.job, "dep": this.dep},{"name": this.name, "dep": this.dep});
 }
-var reduce2=function(key, values){
+var reduce2 = function(key, values){
 		return values.length;
 }
  
@@ -205,7 +190,7 @@ db.emp.mapReduce(map2, reduce2, {out: "result2"}).find()
 
 ```js
 var emit = function(key, value){
-		print(key+":"+value);
+		print(key + ":" + value);
 }
 ```
 
