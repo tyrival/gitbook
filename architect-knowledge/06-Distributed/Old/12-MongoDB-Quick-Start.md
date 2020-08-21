@@ -55,7 +55,31 @@ NoSQL数据库在以下的这几种情况下比较适用：
 | primary  key（指定1至N个列做主键） | primary  key（指定_id field做为主键） |
 | aggreation（groupy）               | aggreation（pipeline mapReduce）      |
 
- 
+配置⽂件示例
+
+```bash
+vim ./conf/mongo.conf
+```
+
+内容
+
+```bash
+dbpath=data/mongo/
+port=27017
+bind_ip=0.0.0.0
+fork=true
+logpath=logs/mongodb.log
+logappend=true
+auth=false
+```
+
+以配置⽂件⽅式启动
+
+```bash
+./bin/mongod -f conf/mongo.conf 
+```
+
+
 
 ## 2. MongoDB安装配置与基础命令
 
@@ -97,17 +121,17 @@ mkdir -p /data/mongo
 #### 配置文件示例
 
 ```bash
-vim mongo.conf
+vim ./conf/mongo.conf
 ```
 
 内容：
 
-```
-dbpath=/data/mongo/
+```bash
+dbpath=data/
 port=27017
 bind_ip=0.0.0.0
 fork=true
-logpath=/data/mongo/mongodb.log
+logpath=data/mongodb.log
 logappend=true
 auth=false
 ```
@@ -115,7 +139,7 @@ auth=false
 以配置文件方式启动
 
 ```bash
-./bin/mongod -f mongo.conf 
+./bin/mongod -f conf/mongo.conf 
 ```
 
 ### 2.3 客户端Shell 的使用及参数说明

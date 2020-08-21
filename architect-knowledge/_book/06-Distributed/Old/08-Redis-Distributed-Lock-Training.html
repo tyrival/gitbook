@@ -1,0 +1,1141 @@
+
+<!DOCTYPE HTML>
+<html lang="zh-hans" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>8 Redis高并发分布式锁实战 · 架构师学习笔记</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        <meta name="author" content="Tyrival">
+        
+        
+    
+    <link rel="stylesheet" href="../../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-splitter/splitter.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-anchors/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-anchor-navigation-ex/style/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+        <link rel="stylesheet" href="../../styles/website.css">
+        
+    
+
+        
+    
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="09-Redis-Design-Optimize.html" />
+    
+    
+    <link rel="prev" href="07-Redis-Cluster-Mode.html" />
+    
+
+    <style>
+    @media only screen and (max-width: 640px) {
+        .book-header .hidden-mobile {
+            display: none;
+        }
+    }
+    </style>
+    <script>
+        window["gitbook-plugin-github-buttons"] = {"buttons":[{"user":"Tyrival","repo":"gitbook","type":"star","size":"small","count":false}]};
+    </script>
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="输入并搜索" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../../">
+            
+                <a href="../../">
+            
+                    
+                    架构师学习笔记
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.1" data-path="../../01-JVM/">
+            
+                <a href="../../01-JVM/">
+            
+                    
+                    第1章 JVM
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.1.1" data-path="../../01-JVM/01-ClassLoader.html">
+            
+                <a href="../../01-JVM/01-ClassLoader.html">
+            
+                    
+                    1 类加载机制
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.2" data-path="../../01-JVM/02-JVM-Structure-Resolve.html">
+            
+                <a href="../../01-JVM/02-JVM-Structure-Resolve.html">
+            
+                    
+                    2 JVM整体结构
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.3" data-path="../../01-JVM/03-Memory-Allocation-Mechanism.html">
+            
+                <a href="../../01-JVM/03-Memory-Allocation-Mechanism.html">
+            
+                    
+                    3 JVM内存分配机制
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.4" data-path="../../01-JVM/04-JVM-Bytecode-File-Structure.html">
+            
+                <a href="../../01-JVM/04-JVM-Bytecode-File-Structure.html">
+            
+                    
+                    4 JVM字节码文件结构
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.5" data-path="../../01-JVM/05-GC-ParNew-CMS.html">
+            
+                <a href="../../01-JVM/05-GC-ParNew-CMS.html">
+            
+                    
+                    5 垃圾收集器ParNew和CMS
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.6" data-path="../../01-JVM/06-GC-G1-ZGC.html">
+            
+                <a href="../../01-JVM/06-GC-G1-ZGC.html">
+            
+                    
+                    6 垃圾收集器G1和ZGC
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.7" data-path="../../01-JVM/07-GC-Optimize-01.html">
+            
+                <a href="../../01-JVM/07-GC-Optimize-01.html">
+            
+                    
+                    7 GC调优（一）
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.8" data-path="../../01-JVM/08-GC-Optimize-02.html">
+            
+                <a href="../../01-JVM/08-GC-Optimize-02.html">
+            
+                    
+                    8 GC调优（二）
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.9" data-path="../../01-JVM/JVM-Command.html">
+            
+                <a href="../../01-JVM/JVM-Command.html">
+            
+                    
+                    附1 JVM指令手册
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.2" data-path="../../02-Tomcat/">
+            
+                <a href="../../02-Tomcat/">
+            
+                    
+                    第2章 Tomcat
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.2.1" data-path="../../02-Tomcat/01-Tomcat-Summary.html">
+            
+                <a href="../../02-Tomcat/01-Tomcat-Summary.html">
+            
+                    
+                    1 Tomcat生产环境应用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.2.2" data-path="../../02-Tomcat/02-Tomcat-Component-Src.html">
+            
+                <a href="../../02-Tomcat/02-Tomcat-Component-Src.html">
+            
+                    
+                    2 Tomcat核心组件源码
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.2.3" data-path="../../02-Tomcat/03-Tomcat-Http-Process.html">
+            
+                <a href="../../02-Tomcat/03-Tomcat-Http-Process.html">
+            
+                    
+                    3 Tomcat线程模型HTTP请求处理与管道线模型
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.2.4" data-path="../../02-Tomcat/04-Tomcat-Hot-Deployment-Load.html">
+            
+                <a href="../../02-Tomcat/04-Tomcat-Hot-Deployment-Load.html">
+            
+                    
+                    4 Tomcat热部署和热加载
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.3" data-path="../../03-MySQL/">
+            
+                <a href="../../03-MySQL/">
+            
+                    
+                    第3章 MySQL
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.3.1" data-path="../../03-MySQL/01-Mysql-index-data-structure.html">
+            
+                <a href="../../03-MySQL/01-Mysql-index-data-structure.html">
+            
+                    
+                    1 Mysql索引数据结构
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.3.2" data-path="../../03-MySQL/02-Explain-Index-Actual.html">
+            
+                <a href="../../03-MySQL/02-Explain-Index-Actual.html">
+            
+                    
+                    2 Explain详解与索引最佳实践
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.3.3" data-path="../../03-MySQL/03-Sql-Execution-Fundamental.html">
+            
+                <a href="../../03-MySQL/03-Sql-Execution-Fundamental.html">
+            
+                    
+                    3 SQL底层执行原理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.3.4" data-path="../../03-MySQL/04-Sql-Optimize-01.html">
+            
+                <a href="../../03-MySQL/04-Sql-Optimize-01.html">
+            
+                    
+                    4 SQL优化实战（一）
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.3.5" data-path="../../03-MySQL/05-Sql-Optimize-02.html">
+            
+                <a href="../../03-MySQL/05-Sql-Optimize-02.html">
+            
+                    
+                    5 SQL优化实战（二）
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.3.6" data-path="../../03-MySQL/06-Mysql-Lock-Transaction-Isolation.html">
+            
+                <a href="../../03-MySQL/06-Mysql-Lock-Transaction-Isolation.html">
+            
+                    
+                    6 Mysql锁与事务隔离级别
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.3.7" data-path="../../03-MySQL/Slow-Sql-Query.html">
+            
+                <a href="../../03-MySQL/Slow-Sql-Query.html">
+            
+                    
+                    附1 慢SQL查询
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.3.8" data-path="../../03-MySQL/Ali-Java-Explain.html">
+            
+                <a href="../../03-MySQL/Ali-Java-Explain.html">
+            
+                    
+                    附2 阿里巴巴手册（泰山版）解读-MySQL数据库
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.4" data-path="../../04-Concurrent/">
+            
+                <a href="../../04-Concurrent/">
+            
+                    
+                    第4章 并发编程
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.4.1" data-path="../../04-Concurrent/01-JMM-JSR133.html">
+            
+                <a href="../../04-Concurrent/01-JMM-JSR133.html">
+            
+                    
+                    1 并发编程之JMM & JSR133规范解读
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.4.2" data-path="../../04-Concurrent/02-JMM-Features.html">
+            
+                <a href="../../04-Concurrent/02-JMM-Features.html">
+            
+                    
+                    2 并发编程之JMM三大特性详解
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.4.3" data-path="../../04-Concurrent/03-MESI-Cache-Coherency-Protocol.html">
+            
+                <a href="../../04-Concurrent/03-MESI-Cache-Coherency-Protocol.html">
+            
+                    
+                    3 MESI缓存一致协议详解
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.4.4" data-path="../../04-Concurrent/04-Synchronized.html">
+            
+                <a href="../../04-Concurrent/04-Synchronized.html">
+            
+                    
+                    4 并发编程之synchronized详解
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.4.5" data-path="../../04-Concurrent/05-AQS-Lock.html">
+            
+                <a href="../../04-Concurrent/05-AQS-Lock.html">
+            
+                    
+                    5 抽象队列同步器AQS应用Lock详解
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.4.6" data-path="../../04-Concurrent/06-AQS-Blocking-Queue.html">
+            
+                <a href="../../04-Concurrent/06-AQS-Blocking-Queue.html">
+            
+                    
+                    6 抽象队列同步器AQS应用之BlockingQueue详解
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.4.7" data-path="../../04-Concurrent/07-Tools-CountDownLatch-Semaphore.html">
+            
+                <a href="../../04-Concurrent/07-Tools-CountDownLatch-Semaphore.html">
+            
+                    
+                    7 并发编程之Tools&CountDownLatch&Semaphore原理与应用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.4.8" data-path="../../04-Concurrent/08-Atomic-Unsafe-Magic-Class.html">
+            
+                <a href="../../04-Concurrent/08-Atomic-Unsafe-Magic-Class.html">
+            
+                    
+                    8 并发编程之Atomic&Unsafe魔法类详解
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.5" data-path="../../05-Source/">
+            
+                <a href="../../05-Source/">
+            
+                    
+                    第5章 源码框架
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    第6章 分布式
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.6.1" data-path="01-Zookeeper-Node.html">
+            
+                <a href="01-Zookeeper-Node.html">
+            
+                    
+                    1 Zookeeper特性与节点说明
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6.2" data-path="05-Redis-Data-Structure.html">
+            
+                <a href="05-Redis-Data-Structure.html">
+            
+                    
+                    5 Redis核心数据结构与核心原理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6.3" data-path="06-Redis-Persistent-Distributed-Mode.html">
+            
+                <a href="06-Redis-Persistent-Distributed-Mode.html">
+            
+                    
+                    6 Redis持久化、主从与哨兵架构详解
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6.4" data-path="07-Redis-Cluster-Mode.html">
+            
+                <a href="07-Redis-Cluster-Mode.html">
+            
+                    
+                    7 Redis高可用集群
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.1.6.5" data-path="08-Redis-Distributed-Lock-Training.html">
+            
+                <a href="08-Redis-Distributed-Lock-Training.html">
+            
+                    
+                    8 Redis高并发分布式锁实战
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6.6" data-path="09-Redis-Design-Optimize.html">
+            
+                <a href="09-Redis-Design-Optimize.html">
+            
+                    
+                    9 Redis缓存设计与性能优化
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6.7" data-path="../../Old/10-Nginx-Core-Config.md">
+            
+                <span>
+            
+                    
+                    10 Nginx核心模块与配置实践
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6.8" data-path="11-Nginx-Optimize-Training.html">
+            
+                <a href="11-Nginx-Optimize-Training.html">
+            
+                    
+                    11 Nginx性能优化实践
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6.9" data-path="12-MongoDB-Quick-Start.html">
+            
+                <a href="12-MongoDB-Quick-Start.html">
+            
+                    
+                    12 MongoDB的逻辑组成
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6.10" data-path="13-MongoDB-Cluster-Advanced-Feature.html">
+            
+                <a href="13-MongoDB-Cluster-Advanced-Feature.html">
+            
+                    
+                    13 MongoDB集群架构与高级特性
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6.11" data-path="14-MongoDB-Training.html">
+            
+                <a href="14-MongoDB-Training.html">
+            
+                    
+                    14 MongoDB企业应用实战
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.7" data-path="../../07-Microservice/">
+            
+                <a href="../../07-Microservice/">
+            
+                    
+                    第7章 微服务
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.8" data-path="../../08-Sample/">
+            
+                <a href="../../08-Sample/">
+            
+                    
+                    第8章 案例
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            本书使用 GitBook 发布
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../.." >8 Redis高并发分布式锁实战</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <div id="anchor-navigation-ex-navbar"><i class="fa fa-navicon"></i><ul><li><span class="title-icon "></span><a href="#redis&#x9AD8;&#x5E76;&#x53D1;&#x5206;&#x5E03;&#x5F0F;&#x9501;&#x5B9E;&#x6218;"><b></b>Redis&#x9AD8;&#x5E76;&#x53D1;&#x5206;&#x5E03;&#x5F0F;&#x9501;&#x5B9E;&#x6218;</a></li><ul><li><span class="title-icon "></span><a href="#1-&#x5206;&#x5E03;&#x5F0F;&#x9501;&#x7684;&#x5B9E;&#x73B0;"><b></b>1. &#x5206;&#x5E03;&#x5F0F;&#x9501;&#x7684;&#x5B9E;&#x73B0;</a></li><li><span class="title-icon "></span><a href="#2-redisson"><b></b>2. Redisson</a></li><li><span class="title-icon "></span><a href="#3-&#x9AD8;&#x5E76;&#x53D1;&#x5206;&#x5E03;&#x5F0F;&#x9501;&#x7684;&#x5B9E;&#x73B0;"><b></b>3. &#x9AD8;&#x5E76;&#x53D1;&#x5206;&#x5E03;&#x5F0F;&#x9501;&#x7684;&#x5B9E;&#x73B0;</a></li></ul></ul></div><a href="#redis&#x9AD8;&#x5E76;&#x53D1;&#x5206;&#x5E03;&#x5F0F;&#x9501;&#x5B9E;&#x6218;" id="anchorNavigationExGoTop"><i class="fa fa-arrow-up"></i></a><h1 id="redis&#x9AD8;&#x5E76;&#x53D1;&#x5206;&#x5E03;&#x5F0F;&#x9501;&#x5B9E;&#x6218;"><a name="redis&#x9AD8;&#x5E76;&#x53D1;&#x5206;&#x5E03;&#x5F0F;&#x9501;&#x5B9E;&#x6218;" class="anchor-navigation-ex-anchor" href="#redis&#x9AD8;&#x5E76;&#x53D1;&#x5206;&#x5E03;&#x5F0F;&#x9501;&#x5B9E;&#x6218;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="redis&#x9AD8;&#x5E76;&#x53D1;&#x5206;&#x5E03;&#x5F0F;&#x9501;&#x5B9E;&#x6218;" class="plugin-anchor" href="#redis&#x9AD8;&#x5E76;&#x53D1;&#x5206;&#x5E03;&#x5F0F;&#x9501;&#x5B9E;&#x6218;"><i class="fa fa-link" aria-hidden="true"></i></a>Redis&#x9AD8;&#x5E76;&#x53D1;&#x5206;&#x5E03;&#x5F0F;&#x9501;&#x5B9E;&#x6218;</h1>
+<h2 id="1-&#x5206;&#x5E03;&#x5F0F;&#x9501;&#x7684;&#x5B9E;&#x73B0;"><a name="1-&#x5206;&#x5E03;&#x5F0F;&#x9501;&#x7684;&#x5B9E;&#x73B0;" class="anchor-navigation-ex-anchor" href="#1-&#x5206;&#x5E03;&#x5F0F;&#x9501;&#x7684;&#x5B9E;&#x73B0;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="1-&#x5206;&#x5E03;&#x5F0F;&#x9501;&#x7684;&#x5B9E;&#x73B0;" class="plugin-anchor" href="#1-&#x5206;&#x5E03;&#x5F0F;&#x9501;&#x7684;&#x5B9E;&#x73B0;"><i class="fa fa-link" aria-hidden="true"></i></a>1. &#x5206;&#x5E03;&#x5F0F;&#x9501;&#x7684;&#x5B9E;&#x73B0;</h2>
+<p>&#x5206;&#x5E03;&#x5F0F;&#x9501;&#x7ECF;&#x5E38;&#x88AB;&#x7528;&#x4E8E;&#x4E92;&#x8054;&#x7F51;&#x5546;&#x54C1;&#x62A2;&#x8D2D;&#x3001;&#x63A5;&#x53E3;&#x5E42;&#x7B49;&#x6027;&#x6821;&#x9A8C;&#x7B49;&#x573A;&#x666F;&#x3002;&#x4E0B;&#x9762;&#x4EE5;&#x5546;&#x54C1;&#x79D2;&#x6740;&#x6D3B;&#x52A8;&#x4E2D;&#xFF0C;&#x6263;&#x51CF;&#x5E93;&#x5B58;&#x7684;&#x63A5;&#x53E3;&#x5B9E;&#x73B0;&#x4E3A;&#x4F8B;&#xFF0C;&#x8BE6;&#x7EC6;&#x8BB2;&#x89E3;&#x5206;&#x5E03;&#x5F0F;&#x9501;&#x7684;&#x5B9E;&#x73B0;&#x65B9;&#x5F0F;&#x3002;</p>
+<h6 id="&#x793A;&#x4F8B;1"><a name="&#x793A;&#x4F8B;1" class="anchor-navigation-ex-anchor" href="#&#x793A;&#x4F8B;1"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x793A;&#x4F8B;1" class="plugin-anchor" href="#&#x793A;&#x4F8B;1"><i class="fa fa-link" aria-hidden="true"></i></a>&#x793A;&#x4F8B;1</h6>
+<p>&#x8FD9;&#x79CD;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x5BB9;&#x6613;&#x51FA;&#x73B0;&#x8D85;&#x5356;&#xFF0C;&#x56E0;&#x4E3A;&#x591A;&#x7EBF;&#x7A0B;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x53EF;&#x80FD;&#x6709;&#x591A;&#x4E2A;&#x7EBF;&#x7A0B;&#x540C;&#x65F6;&#x53D6;&#x5230;&#x540C;&#x4E00;&#x4E2A;&#x503C;&#xFF0C;&#x7136;&#x540E;&#x770B;&#x8D77;&#x6765;&#x5E93;&#x5B58;-1&#xFF0C;&#x5B9E;&#x9645;&#x751F;&#x6210;&#x4E86;&#x591A;&#x4E2A;&#x8BA2;&#x5355;&#x3002;</p>
+<pre><code class="lang-java"><span class="hljs-meta">@RequestMapping</span>(<span class="hljs-string">&quot;/deduct_stock_1&quot;</span>)
+<span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">deductStock1</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-keyword">int</span> stock = Integer.parseInt(stringRedisTemplate.opsForValue().get(<span class="hljs-string">&quot;stock&quot;</span>));
+    <span class="hljs-keyword">if</span> (stock &gt; <span class="hljs-number">0</span>) {
+            <span class="hljs-keyword">int</span> realStock = stock - <span class="hljs-number">1</span>;
+            stringRedisTemplate.opsForValue().set(<span class="hljs-string">&quot;stock&quot;</span>, realStock + <span class="hljs-string">&quot;&quot;</span>);
+            logger.info(<span class="hljs-string">&quot;&#x6263;&#x51CF;&#x6210;&#x529F;&#xFF0C;&#x5269;&#x4F59;&#x5E93;&#x5B58;&#xFF1A;&quot;</span> + realStock);
+    } <span class="hljs-keyword">else</span> {
+            logger.info(<span class="hljs-string">&quot;&#x6263;&#x51CF;&#x5931;&#x8D25;&#xFF0C;&#x5E93;&#x5B58;&#x4E0D;&#x8DB3;&#x3002;&quot;</span>);
+    }
+    <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;end&quot;</span>;
+}
+</code></pre>
+<h6 id="&#x793A;&#x4F8B;2"><a name="&#x793A;&#x4F8B;2" class="anchor-navigation-ex-anchor" href="#&#x793A;&#x4F8B;2"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x793A;&#x4F8B;2" class="plugin-anchor" href="#&#x793A;&#x4F8B;2"><i class="fa fa-link" aria-hidden="true"></i></a>&#x793A;&#x4F8B;2</h6>
+<p>&#x901A;&#x8FC7;synchronized&#x6765;&#x4E3A;IndexController&#x52A0;&#x9501;&#xFF0C;&#x5F53;&#x4EE3;&#x7801;&#x6267;&#x884C;&#x5230;synchronized&#x65F6;&#xFF0C;&#x6267;&#x884C;&#x4E32;&#x884C;&#x64CD;&#x4F5C;&#xFF0C;&#x6BCF;&#x6B21;&#x53EA;&#x6267;&#x884C;&#x4E00;&#x4E2A;&#x7EBF;&#x7A0B;&#x7684;&#x64CD;&#x4F5C;&#xFF0C;&#x4E00;&#x4E2A;&#x7EBF;&#x7A0B;&#x6267;&#x884C;&#x5B8C;&#x6210;&#x540E;&#xFF0C;&#x624D;&#x6267;&#x884C;&#x4E0B;&#x4E00;&#x4E2A;&#x7EBF;&#x7A0B;&#x3002;</p>
+<pre><code class="lang-java"><span class="hljs-meta">@RequestMapping</span>(<span class="hljs-string">&quot;/deduct_stock_2&quot;</span>)
+<span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">deductStock2</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-keyword">synchronized</span> (<span class="hljs-keyword">this</span>) {
+        <span class="hljs-keyword">int</span> stock = Integer.parseInt(stringRedisTemplate.opsForValue().get(<span class="hljs-string">&quot;stock&quot;</span>));
+        <span class="hljs-keyword">if</span> (stock &gt; <span class="hljs-number">0</span>) {
+        <span class="hljs-keyword">int</span> realStock = stock - <span class="hljs-number">1</span>;
+        stringRedisTemplate.opsForValue().set(<span class="hljs-string">&quot;stock&quot;</span>, realStock + <span class="hljs-string">&quot;&quot;</span>);
+        logger.info(<span class="hljs-string">&quot;&#x6263;&#x51CF;&#x6210;&#x529F;&#xFF0C;&#x5269;&#x4F59;&#x5E93;&#x5B58;&#xFF1A;&quot;</span> + realStock);
+    } <span class="hljs-keyword">else</span> {
+            logger.info(<span class="hljs-string">&quot;&#x6263;&#x51CF;&#x5931;&#x8D25;&#xFF0C;&#x5E93;&#x5B58;&#x4E0D;&#x8DB3;&#x3002;&quot;</span>);
+    }
+    <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;end&quot;</span>;
+    }
+}
+</code></pre>
+<blockquote>
+<p><strong>&#x95EE;&#x9898;</strong></p>
+<p>&#x8FD9;&#x79CD;&#x5199;&#x6CD5;&#x53EA;&#x9002;&#x5408;&#x5355;&#x673A;&#x67B6;&#x6784;&#xFF0C;&#x5728;&#x5206;&#x5E03;&#x5F0F;&#x67B6;&#x6784;&#x7684;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x65E0;&#x6CD5;&#x8DE8;&#x670D;&#x52A1;&#x5668;&#x5BF9;&#x6574;&#x4E2A;&#x96C6;&#x7FA4;&#x7684;&#x8BE5;&#x63A5;&#x53E3;&#x52A0;&#x9501;&#x3002;</p>
+</blockquote>
+<h6 id="&#x793A;&#x4F8B;3"><a name="&#x793A;&#x4F8B;3" class="anchor-navigation-ex-anchor" href="#&#x793A;&#x4F8B;3"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x793A;&#x4F8B;3" class="plugin-anchor" href="#&#x793A;&#x4F8B;3"><i class="fa fa-link" aria-hidden="true"></i></a>&#x793A;&#x4F8B;3</h6>
+<p>&#x901A;&#x8FC7;redis&#x7684;setnx&#x8FDB;&#x884C;&#x52A0;&#x9501;&#xFF0C;&#x5229;&#x7528;redis&#x7684;&#x5355;&#x7EBF;&#x7A0B;&#x673A;&#x5236;&#xFF0C;&#x5B9E;&#x73B0;&#x5206;&#x5E03;&#x5F0F;&#x67B6;&#x6784;&#x4E2D;&#x7684;&#x9501;&#x3002;</p>
+<ul>
+<li><p>&#x4E3A;&#x907F;&#x514D;&#x7A0B;&#x5E8F;&#x5728;&#x4E2D;&#x95F4;&#x73AF;&#x8282;&#x629B;&#x5F02;&#x5E38;&#xFF0C;&#x5728;finally&#x4E2D;&#x6267;&#x884C;&#x89E3;&#x9501;&#x64CD;&#x4F5C;&#xFF1B;</p>
+</li>
+<li><p>&#x4E3A;&#x907F;&#x514D;&#x7A0B;&#x5E8F;&#x5728;&#x4E2D;&#x95F4;&#x73AF;&#x8282;&#x6302;&#x6389;&#xFF0C;&#x5BFC;&#x81F4;&#x9501;&#x65E0;&#x6CD5;&#x91CA;&#x653E;&#xFF0C;&#x7ED9;&#x8FD9;&#x628A;&#x9501;&#x8BBE;&#x7F6E;&#x4E00;&#x4E2A;&#x8D85;&#x65F6;&#x65F6;&#x95F4;&#xFF1B;</p>
+</li>
+</ul>
+<pre><code class="lang-java"><span class="hljs-meta">@RequestMapping</span>(<span class="hljs-string">&quot;/deduct_stock_3&quot;</span>)
+<span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">deductStock3</span><span class="hljs-params">()</span> </span>{
+    String lockKey = <span class="hljs-string">&quot;product_001&quot;</span>;
+    <span class="hljs-keyword">try</span> {
+        Boolean result = stringRedisTemplate.opsForValue().setIfAbsent(lockKey, <span class="hljs-string">&quot;tyrival&quot;</span>, <span class="hljs-number">10</span>, TimeUnit.SECONDS);
+        <span class="hljs-keyword">if</span> (!result) {
+                <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;error&quot;</span>;
+        }
+        <span class="hljs-keyword">int</span> stock = Integer.parseInt(stringRedisTemplate.opsForValue().get(<span class="hljs-string">&quot;stock&quot;</span>));
+        <span class="hljs-keyword">if</span> (stock &gt; <span class="hljs-number">0</span>) {
+            <span class="hljs-keyword">int</span> realStock = stock - <span class="hljs-number">1</span>;
+            stringRedisTemplate.opsForValue().set(<span class="hljs-string">&quot;stock&quot;</span>, realStock + <span class="hljs-string">&quot;&quot;</span>);
+            logger.info(<span class="hljs-string">&quot;&#x6263;&#x51CF;&#x6210;&#x529F;&#xFF0C;&#x5269;&#x4F59;&#x5E93;&#x5B58;&#xFF1A;&quot;</span> + realStock);
+        } <span class="hljs-keyword">else</span> {
+                logger.info(<span class="hljs-string">&quot;&#x6263;&#x51CF;&#x5931;&#x8D25;&#xFF0C;&#x5E93;&#x5B58;&#x4E0D;&#x8DB3;&#x3002;&quot;</span>);
+        }
+    } <span class="hljs-keyword">finally</span> {
+            stringRedisTemplate.delete(lockKey);
+    }
+    <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;end&quot;</span>;
+}
+</code></pre>
+<blockquote>
+<p><strong>&#x95EE;&#x9898;</strong></p>
+<p>&#x9AD8;&#x5E76;&#x53D1;&#x573A;&#x666F;&#x4E0B;&#xFF0C;&#x53EF;&#x80FD;&#x51FA;&#x73B0;&#x9501;&#x5931;&#x6548;&#x7684;&#x95EE;&#x9898;&#x3002;</p>
+<p>&#x4F8B;&#x5982;&#xFF0C;&#x7EBF;&#x7A0B;A&#x6267;&#x884C;&#x65F6;&#x95F4;&#x8D85;&#x8FC7;&#x4E86;&#x8D85;&#x65F6;&#x65F6;&#x95F4;&#x7684;10s&#xFF0C;&#x5F53;&#x5230;&#x8FBE;&#x7B2C;10s&#x65F6;&#xFF0C;redis&#x4F7F;&#x9501;&#x5931;&#x6548;&#xFF0C;&#x6B64;&#x65F6;&#x6709;&#x53E6;&#x4E00;&#x4E2A;&#x7EBF;&#x7A0B;B&#x62A2;&#x5230;&#x8FD9;&#x628A;&#x9501;&#xFF0C;&#x800C;&#x6B64;&#x65F6;&#x7EBF;&#x7A0B;A&#x8FD8;&#x672A;&#x6267;&#x884C;&#x5B8C;&#xFF0C;&#x5047;&#x8BBE;&#x518D;&#x8FC7;&#x4E86;5s&#xFF0C;&#x7EBF;&#x7A0B;A&#x5B8C;&#x6210;&#x540E;&#xFF0C;&#x6267;&#x884C;finally&#x4EE3;&#x7801;&#x5757;&#xFF0C;&#x4F1A;&#x5BF9;&#x7EBF;&#x7A0B;B&#x7684;&#x9501;&#x8FDB;&#x884C;&#x5220;&#x9664;&#x64CD;&#x4F5C;&#x3002;&#x540C;&#x7406;&#x7EBF;&#x7A0B;B&#x53EF;&#x80FD;&#x5220;&#x9664;&#x7EBF;&#x7A0B;C&#x7684;&#x9501;&#xFF0C;&#x4E8E;&#x662F;&#x5728;&#x9AD8;&#x5E76;&#x53D1;&#x573A;&#x666F;&#x4E0B;&#xFF0C;&#x8FD9;&#x628A;&#x9501;&#x5C31;&#x4E00;&#x76F4;&#x5904;&#x4E8E;&#x5931;&#x6548;&#x7684;&#x72B6;&#x6001;&#x4E0B;&#xFF0C;&#x5E76;&#x6CA1;&#x6709;&#x8D77;&#x5230;&#x5E94;&#x6709;&#x7684;&#x4F5C;&#x7528;&#x3002;</p>
+</blockquote>
+<h6 id="&#x793A;&#x4F8B;4"><a name="&#x793A;&#x4F8B;4" class="anchor-navigation-ex-anchor" href="#&#x793A;&#x4F8B;4"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x793A;&#x4F8B;4" class="plugin-anchor" href="#&#x793A;&#x4F8B;4"><i class="fa fa-link" aria-hidden="true"></i></a>&#x793A;&#x4F8B;4</h6>
+<p>&#x589E;&#x52A0;&#x4E86;&#x552F;&#x4E00;&#x7684;clientId&#xFF0C;&#x907F;&#x514D;&#x51FA;&#x73B0;&#x9501;&#x88AB;&#x5176;&#x4ED6;&#x7EBF;&#x7A0B;&#x5220;&#x9664;&#x7684;&#x95EE;&#x9898;&#x3002;</p>
+<pre><code class="lang-java"><span class="hljs-meta">@RequestMapping</span>(<span class="hljs-string">&quot;/deduct_stock_4&quot;</span>)
+<span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">deductStock4</span><span class="hljs-params">()</span> </span>{
+    String lockKey = <span class="hljs-string">&quot;product_001&quot;</span>;
+    String clientId = UUID.randomUUID().toString();
+    <span class="hljs-keyword">try</span> {
+        Boolean result = stringRedisTemplate.opsForValue()
+                        .setIfAbsent(lockKey, clientId, <span class="hljs-number">30</span>, TimeUnit.SECONDS);
+        <span class="hljs-keyword">if</span> (!result) {
+            <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;error&quot;</span>;
+        }
+        <span class="hljs-keyword">int</span> stock = Integer.parseInt(stringRedisTemplate.opsForValue().get(<span class="hljs-string">&quot;stock&quot;</span>));
+        <span class="hljs-keyword">if</span> (stock &gt; <span class="hljs-number">0</span>) {
+            <span class="hljs-keyword">int</span> realStock = stock - <span class="hljs-number">1</span>;
+            stringRedisTemplate.opsForValue().set(<span class="hljs-string">&quot;stock&quot;</span>, realStock + <span class="hljs-string">&quot;&quot;</span>);
+            logger.info(<span class="hljs-string">&quot;&#x6263;&#x51CF;&#x6210;&#x529F;&#xFF0C;&#x5269;&#x4F59;&#x5E93;&#x5B58;&#xFF1A;&quot;</span> + realStock);
+        } <span class="hljs-keyword">else</span> {
+            logger.info(<span class="hljs-string">&quot;&#x6263;&#x51CF;&#x5931;&#x8D25;&#xFF0C;&#x5E93;&#x5B58;&#x4E0D;&#x8DB3;&#x3002;&quot;</span>);
+        }
+        } <span class="hljs-keyword">finally</span> {
+            <span class="hljs-keyword">if</span> (clientId.equals(stringRedisTemplate.opsForValue().get(lockKey))) {
+            stringRedisTemplate.delete(lockKey);
+        }
+    }
+    <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;end&quot;</span>;
+}
+</code></pre>
+<blockquote>
+<p><strong>&#x95EE;&#x9898;</strong></p>
+<p>&#x89E3;&#x51B3;&#x4E86;&#x9501;&#x88AB;&#x5176;&#x4ED6;&#x7EBF;&#x7A0B;&#x5220;&#x9664;&#x7684;&#x95EE;&#x9898;&#xFF0C;&#x4F46;&#x4ECD;&#x65E7;&#x6CA1;&#x6709;&#x89E3;&#x51B3;&#x5F53;&#x524D;&#x7EBF;&#x7A0B;&#x6267;&#x884C;&#x65F6;&#x95F4;&#x8D85;&#x957F;&#xFF0C;&#x5BFC;&#x81F4;&#x9501;&#x5931;&#x6548;&#x7684;&#x95EE;&#x9898;&#x3002;</p>
+</blockquote>
+<h2 id="2-redisson"><a name="2-redisson" class="anchor-navigation-ex-anchor" href="#2-redisson"><i class="fa fa-link" aria-hidden="true"></i></a><a name="2-redisson" class="plugin-anchor" href="#2-redisson"><i class="fa fa-link" aria-hidden="true"></i></a>2. Redisson</h2>
+<p>Redisson&#x9488;&#x5BF9;redis&#x5728;&#x5206;&#x5E03;&#x5F0F;&#x573A;&#x666F;&#x4E0B;&#x7684;&#x64CD;&#x4F5C;&#xFF0C;&#x8FDB;&#x884C;&#x4E86;&#x5927;&#x91CF;&#x7684;&#x5B9E;&#x73B0;&#xFF0C;&#x901A;&#x8FC7;&#x5F15;&#x5165;redisson&#xFF0C;&#x53EF;&#x4EE5;&#x5F88;&#x65B9;&#x4FBF;&#x7684;&#x5B9E;&#x73B0;&#x5206;&#x5E03;&#x5F0F;&#x9501;&#x3002;</p>
+<ul>
+<li>&#x5F15;&#x5165;redisson&#xFF0C;&#x5728;pom.xml&#x589E;&#x52A0;&#x4F9D;&#x8D56;</li>
+</ul>
+<pre><code class="lang-xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.redisson<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>redisson<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>3.6.5<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
+</code></pre>
+<ul>
+<li>&#x58F0;&#x660E;bean</li>
+</ul>
+<pre><code class="lang-java"><span class="hljs-meta">@Bean</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> Redisson <span class="hljs-title">redisson</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-comment">// &#x5355;&#x673A;&#x6A21;&#x5F0F;</span>
+        Config config = <span class="hljs-keyword">new</span> Config();
+        config.useSingleServer().setAddress(<span class="hljs-string">&quot;redis://localhost:6379&quot;</span>)
+                                                        .setDatabase(<span class="hljs-number">0</span>)
+                                                  .setPassword(<span class="hljs-string">&quot;123&quot;</span>);
+<span class="hljs-comment">//        config.useClusterServers()</span>
+<span class="hljs-comment">//                .addNodeAddress(&quot;redis://10.211.55.9:8001&quot;)</span>
+<span class="hljs-comment">//                .addNodeAddress(&quot;redis://10.211.55.10:8002&quot;)</span>
+<span class="hljs-comment">//                .addNodeAddress(&quot;redis://10.211.55.11:8003&quot;)</span>
+<span class="hljs-comment">//                .addNodeAddress(&quot;redis://10.211.55.9:8004&quot;)</span>
+<span class="hljs-comment">//                .addNodeAddress(&quot;redis://10.211.55.10:8005&quot;)</span>
+<span class="hljs-comment">//                .addNodeAddress(&quot;redis://10.211.55.11:8006&quot;)</span>
+<span class="hljs-comment">//                .setPassword(&quot;tyrival&quot;);</span>
+        <span class="hljs-keyword">return</span> (Redisson) Redisson.create(config);
+}
+</code></pre>
+<ul>
+<li>redisson&#x5B9E;&#x73B0;&#x5206;&#x5E03;&#x5F0F;&#x9501;&#xFF0C;&#x4EE5;&#x53CA;&#x9501;&#x7684;&#x7EED;&#x547D;&#x529F;&#x80FD;</li>
+</ul>
+<pre><code class="lang-java"><span class="hljs-meta">@Autowired</span>
+<span class="hljs-keyword">private</span> Redisson redisson;
+
+<span class="hljs-meta">@RequestMapping</span>(<span class="hljs-string">&quot;/deduct_stock&quot;</span>)
+<span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">deductStock</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> InterruptedException </span>{
+    String lockKey = <span class="hljs-string">&quot;product_001&quot;</span>;
+    RLock redissonLock = redisson.getLock(lockKey);
+    <span class="hljs-keyword">try</span> {
+        <span class="hljs-comment">// &#x52A0;&#x9501;&#xFF0C;&#x5E76;&#x5B9E;&#x73B0;&#x9501;&#x7EED;&#x547D;&#x529F;&#x80FD;&#xFF0C;&#x9ED8;&#x8BA4;30s&#x8D85;&#x65F6;&#x65F6;&#x95F4;&#xFF0C;&#x5E76;&#x4E14;10s&#x7EED;&#x547D;&#x4E00;&#x6B21;</span>
+        redissonLock.lock();
+        <span class="hljs-keyword">int</span> stock = Integer.parseInt(stringRedisTemplate.opsForValue().get(<span class="hljs-string">&quot;stock&quot;</span>));
+        <span class="hljs-keyword">if</span> (stock &gt; <span class="hljs-number">0</span>) {
+            <span class="hljs-keyword">int</span> realStock = stock - <span class="hljs-number">1</span>;
+            stringRedisTemplate.opsForValue().set(<span class="hljs-string">&quot;stock&quot;</span>, realStock + <span class="hljs-string">&quot;&quot;</span>);
+            System.out.println(<span class="hljs-string">&quot;&#x6263;&#x51CF;&#x6210;&#x529F;&#xFF0C;&#x5269;&#x4F59;&#x5E93;&#x5B58;:&quot;</span> + realStock + <span class="hljs-string">&quot;&quot;</span>);
+        } <span class="hljs-keyword">else</span> {
+            System.out.println(<span class="hljs-string">&quot;&#x6263;&#x51CF;&#x5931;&#x8D25;&#xFF0C;&#x5E93;&#x5B58;&#x4E0D;&#x8DB3;&quot;</span>);
+        }
+    } <span class="hljs-keyword">finally</span> {
+            redissonLock.unlock();
+    }
+    <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;end&quot;</span>;
+}
+</code></pre>
+<h5 id="redisson&#x67B6;&#x6784;&#x6D41;&#x7A0B;"><a name="redisson&#x67B6;&#x6784;&#x6D41;&#x7A0B;" class="anchor-navigation-ex-anchor" href="#redisson&#x67B6;&#x6784;&#x6D41;&#x7A0B;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="redisson&#x67B6;&#x6784;&#x6D41;&#x7A0B;" class="plugin-anchor" href="#redisson&#x67B6;&#x6784;&#x6D41;&#x7A0B;"><i class="fa fa-link" aria-hidden="true"></i></a>Redisson&#x67B6;&#x6784;&#x6D41;&#x7A0B;</h5>
+<p><img src="../../source/images/ch-06/old/redisson-lock-process.png" alt="redisson-lock-process"></p>
+<blockquote>
+<p><strong>&#x95EE;&#x9898;</strong></p>
+<p>&#x4F7F;&#x7528;Redis&#x96C6;&#x7FA4;&#x52A0;&#x9501;&#x65F6;&#xFF0C;&#x5982;&#x679C;&#x7EBF;&#x7A0B;1&#x521A;&#x521A;&#x52A0;&#x5B8C;&#x9501;&#xFF0C;Redis Master&#x8282;&#x70B9;&#x8FD8;&#x6CA1;&#x6765;&#x5F97;&#x53CA;&#x5C06;&#x9501;&#x540C;&#x6B65;&#x5230;Slave&#x8282;&#x70B9;&#xFF0C;Master&#x5C31;&#x6302;&#x4E86;&#xFF0C;&#x7136;&#x540E;Slave&#x8282;&#x70B9;&#x88AB;&#x9009;&#x4E3E;&#x4E3A;&#x65B0;&#x7684;Master&#xFF0C;&#x6B64;&#x65F6;&#x7EBF;&#x7A0B;1&#x8FD8;&#x672A;&#x6267;&#x884C;&#x5B8C;&#xFF0C;&#x4F46;&#x662F;&#x9501;&#x5931;&#x6548;&#x4E86;&#xFF0C;&#x7EBF;&#x7A0B;2&#x53D1;&#x73B0;&#x65B0;&#x7684;Master&#x6CA1;&#x6709;&#x9501;&#xFF0C;&#x5C31;&#x53EF;&#x4EE5;&#x987A;&#x5229;&#x52A0;&#x9501;&#xFF0C;&#x7136;&#x540E;&#x6267;&#x884C;&#x4E1A;&#x52A1;&#x4EE3;&#x7801;&#xFF0C;&#x8FD9;&#x4E2A;&#x95EE;&#x9898;&#x600E;&#x4E48;&#x89E3;&#x51B3;&#xFF1F;</p>
+<p>Redis&#x96C6;&#x7FA4;&#x7684;&#x9501;&#x662F;<strong>AP&#x9501;</strong>&#xFF0C;&#x4E00;&#x5B9A;&#x7A0B;&#x5EA6;&#x4E0A;&#x727A;&#x7272;&#x4E86;&#x4E00;&#x81F4;&#x6027;&#xFF0C;&#x800C;&#x8FFD;&#x6C42;&#x53EF;&#x7528;&#x6027;&#xFF1B;&#x5982;&#x679C;&#x9700;&#x8981;&#x8FFD;&#x6C42;&#x4E00;&#x81F4;&#x6027;&#xFF0C;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;Zookeeper&#x9501;&#xFF0C;Zookeeper&#x9501;&#x662F;<strong>CP&#x9501;</strong>&#xFF0C;&#x901A;&#x8FC7;&#x727A;&#x7272;&#x4E00;&#x5B9A;&#x53EF;&#x7528;&#x6027;&#x6362;&#x53D6;&#x4E00;&#x81F4;&#x6027;&#x3002;</p>
+</blockquote>
+<h4 id="redlock"><a name="redlock" class="anchor-navigation-ex-anchor" href="#redlock"><i class="fa fa-link" aria-hidden="true"></i></a><a name="redlock" class="plugin-anchor" href="#redlock"><i class="fa fa-link" aria-hidden="true"></i></a>Redlock</h4>
+<p>Redlock&#x4E00;&#x5B9A;&#x7A0B;&#x5EA6;&#x4E0A;&#x80FD;&#x89E3;&#x51B3;&#x4E00;&#x81F4;&#x6027;&#x7684;&#x95EE;&#x9898;&#xFF0C;&#x662F;<strong>CP&#x9501;</strong>&#xFF0C;&#x4E0E;Zookeeper&#x539F;&#x7406;&#x7C7B;&#x4F3C;&#xFF0C;&#x5F53;&#x52A0;&#x9501;&#x65F6;&#xFF0C;&#x9700;&#x8981;&#x5411;&#x96C6;&#x7FA4;&#x6240;&#x6709;&#x7684;&#x8282;&#x70B9;&#x53D1;&#x9001;&#x8BF7;&#x6C42;&#xFF0C;&#x5F53;&#x5F97;&#x5230;&#x534A;&#x6570;&#x4EE5;&#x4E0A;&#x7684;&#x8282;&#x70B9;&#x786E;&#x8BA4;&#x540E;&#xFF0C;&#x624D;&#x80FD;&#x52A0;&#x9501;&#x6210;&#x529F;&#x3002;&#x6240;&#x4EE5;&#xFF0C;Redlock&#x4E0E;Zookeeper&#x4E00;&#x6837;&#x662F;&#x727A;&#x7272;&#x4E86;&#x53EF;&#x7528;&#x6027;&#x7684;&#x3002;</p>
+<p>&#x793A;&#x4F8B;&#x4EE3;&#x7801;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code class="lang-java"><span class="hljs-meta">@RequestMapping</span>(<span class="hljs-string">&quot;/redlock&quot;</span>)
+<span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">redlock</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> InterruptedException </span>{
+
+    String lockKey = <span class="hljs-string">&quot;product_001&quot;</span>;
+
+    <span class="hljs-comment">// &#x8FD9;&#x91CC;&#x9700;&#x8981;&#x81EA;&#x5DF1;&#x5B9E;&#x4F8B;&#x5316;&#x4E0D;&#x540C;redis&#x5B9E;&#x4F8B;&#x7684;redisson&#x5BA2;&#x6237;&#x7AEF;&#x8FDE;&#x63A5;&#xFF0C;&#x8FD9;&#x91CC;&#x53EA;&#x662F;&#x4F2A;&#x4EE3;&#x7801;&#x7528;&#x4E00;&#x4E2A;redisson&#x5BA2;&#x6237;&#x7AEF;&#x7B80;&#x5316;&#x4E86;</span>
+    RLock lock1 = redisson.getLock(lockKey);
+    RLock lock2 = redisson.getLock(lockKey);
+    RLock lock3 = redisson.getLock(lockKey);
+
+    <span class="hljs-comment">// &#x6839;&#x636E;&#x591A;&#x4E2A; RLock &#x5BF9;&#x8C61;&#x6784;&#x5EFA; RedissonRedLock &#xFF08;&#x6700;&#x6838;&#x5FC3;&#x7684;&#x5DEE;&#x522B;&#x5C31;&#x5728;&#x8FD9;&#x91CC;&#xFF09;</span>
+    RedissonRedLock redLock = <span class="hljs-keyword">new</span> RedissonRedLock(lock1, lock2, lock3);
+    <span class="hljs-keyword">try</span> {
+        <span class="hljs-comment">/**
+         * &#x5C1D;&#x8BD5;&#x83B7;&#x53D6;&#x9501;
+         * waitTimeout &#x5C1D;&#x8BD5;&#x83B7;&#x53D6;&#x9501;&#x7684;&#x6700;&#x5927;&#x7B49;&#x5F85;&#x65F6;&#x95F4;&#xFF0C;&#x8D85;&#x8FC7;&#x8FD9;&#x4E2A;&#x503C;&#xFF0C;&#x5219;&#x8BA4;&#x4E3A;&#x83B7;&#x53D6;&#x9501;&#x5931;&#x8D25;
+         * leaseTime   &#x9501;&#x7684;&#x6301;&#x6709;&#x65F6;&#x95F4;,&#x8D85;&#x8FC7;&#x8FD9;&#x4E2A;&#x65F6;&#x95F4;&#x9501;&#x4F1A;&#x81EA;&#x52A8;&#x5931;&#x6548;&#xFF08;&#x503C;&#x5E94;&#x8BBE;&#x7F6E;&#x4E3A;&#x5927;&#x4E8E;&#x4E1A;&#x52A1;&#x5904;&#x7406;&#x7684;&#x65F6;&#x95F4;&#xFF0C;&#x786E;&#x4FDD;&#x5728;&#x9501;&#x6709;&#x6548;&#x671F;&#x5185;&#x4E1A;&#x52A1;&#x80FD;&#x5904;&#x7406;&#x5B8C;&#xFF09;
+         */</span>
+        <span class="hljs-keyword">boolean</span> res = redLock.tryLock(<span class="hljs-number">10</span>, <span class="hljs-number">30</span>, TimeUnit.SECONDS);
+        <span class="hljs-keyword">if</span> (res) {
+            <span class="hljs-comment">// &#x6210;&#x529F;&#x83B7;&#x5F97;&#x9501;&#xFF0C;&#x5728;&#x8FD9;&#x91CC;&#x5904;&#x7406;&#x4E1A;&#x52A1;</span>
+        }
+    } <span class="hljs-keyword">catch</span> (Exception e) {
+        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> RuntimeException(<span class="hljs-string">&quot;lock fail&quot;</span>);
+    } <span class="hljs-keyword">finally</span> {
+        <span class="hljs-comment">// &#x6700;&#x540E;&#x89E3;&#x9501;</span>
+        redLock.unlock();
+    }
+    <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;end&quot;</span>;
+}
+</code></pre>
+<blockquote>
+<p><strong>&#x6CE8;&#x610F;</strong></p>
+<p>Redlock&#x975E;&#x5E38;&#x4E0D;&#x5EFA;&#x8BAE;&#x4F7F;&#x7528;&#x3002;</p>
+</blockquote>
+<h2 id="3-&#x9AD8;&#x5E76;&#x53D1;&#x5206;&#x5E03;&#x5F0F;&#x9501;&#x7684;&#x5B9E;&#x73B0;"><a name="3-&#x9AD8;&#x5E76;&#x53D1;&#x5206;&#x5E03;&#x5F0F;&#x9501;&#x7684;&#x5B9E;&#x73B0;" class="anchor-navigation-ex-anchor" href="#3-&#x9AD8;&#x5E76;&#x53D1;&#x5206;&#x5E03;&#x5F0F;&#x9501;&#x7684;&#x5B9E;&#x73B0;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="3-&#x9AD8;&#x5E76;&#x53D1;&#x5206;&#x5E03;&#x5F0F;&#x9501;&#x7684;&#x5B9E;&#x73B0;" class="plugin-anchor" href="#3-&#x9AD8;&#x5E76;&#x53D1;&#x5206;&#x5E03;&#x5F0F;&#x9501;&#x7684;&#x5B9E;&#x73B0;"><i class="fa fa-link" aria-hidden="true"></i></a>3. &#x9AD8;&#x5E76;&#x53D1;&#x5206;&#x5E03;&#x5F0F;&#x9501;&#x7684;&#x5B9E;&#x73B0;</h2>
+<p>&#x9AD8;&#x5E76;&#x53D1;&#x573A;&#x666F;&#x4E0B;&#xFF0C;&#x4F8B;&#x5982;&#x51FA;&#x73B0;&#x62A2;&#x8D2D;&#x540C;&#x4E00;&#x4E2A;&#x5546;&#x54C1;&#x7684;&#x60C5;&#x51B5;&#xFF0C;&#x56E0;&#x4E3A;&#x540C;&#x4E00;&#x4E2A;&#x5546;&#x54C1;&#x7684;&#x9501;&#x6839;&#x636E;redis&#x96C6;&#x7FA4;&#x7684;slots&#x5206;&#x914D;&#x539F;&#x5219;&#xFF0C;&#x4E00;&#x5B9A;&#x662F;&#x4FDD;&#x5B58;&#x5728;&#x5355;&#x4E2A;master&#x8282;&#x70B9;&#x4E0A;&#xFF0C;&#x6B64;&#x65F6;&#x6240;&#x6709;&#x5E76;&#x53D1;&#x538B;&#x529B;&#x90FD;&#x5728;&#x8FD9;&#x4E2A;&#x8282;&#x70B9;&#xFF0C;&#x800C;&#x96C6;&#x7FA4;&#x7684;&#x5176;&#x4ED6;master&#x8282;&#x70B9;&#x65E0;&#x6CD5;&#x8D77;&#x4F5C;&#x7528;&#x3002;</p>
+<h4 id="&#x5206;&#x6BB5;&#x9501;"><a name="&#x5206;&#x6BB5;&#x9501;" class="anchor-navigation-ex-anchor" href="#&#x5206;&#x6BB5;&#x9501;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x5206;&#x6BB5;&#x9501;" class="plugin-anchor" href="#&#x5206;&#x6BB5;&#x9501;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x5206;&#x6BB5;&#x9501;</h4>
+<p>&#x53EF;&#x4EE5;&#x5C06;&#x8FD9;&#x79CD;&#x5546;&#x54C1;&#x7684;&#x5E93;&#x5B58;&#x5206;&#x6210;&#x591A;&#x4E2A;&#x6BB5;&#xFF0C;&#x5206;&#x522B;&#x5B58;&#x50A8;&#x5230;redis&#x96C6;&#x7FA4;&#x7684;&#x5404;&#x8282;&#x70B9;&#x3002;</p>
+<p>&#x4F8B;&#x5982;&#xFF1A;&#x6709;1000&#x4E2A;&#x5546;&#x54C1;&#xFF0C;&#x5206;&#x6210;10&#x6BB5;&#xFF0C;&#x5206;&#x522B;&#x4F7F;&#x7528; {&#x5546;&#x54C1;ID}_1 ... {&#x5546;&#x54C1;ID}_10&#xFF0C;&#x7136;&#x540E;&#x901A;&#x8FC7;&#x4E00;&#x5B9A;&#x7684;hash&#x624B;&#x6BB5;&#xFF0C;&#x4F7F;&#x9501;&#x5206;&#x5E03;&#x5230;redis&#x96C6;&#x7FA4;&#x7684;&#x5404;&#x8282;&#x70B9;&#x4E0A;&#x3002;</p>
+<p>&#x53C2;&#x8003;concurrent hashmap&#x7684;&#x5B9E;&#x73B0;&#x3002;</p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="07-Redis-Cluster-Mode.html" class="navigation navigation-prev " aria-label="Previous page: 7 Redis高可用集群">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="09-Redis-Design-Optimize.html" class="navigation navigation-next " aria-label="Next page: 9 Redis缓存设计与性能优化">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"8 Redis高并发分布式锁实战","level":"1.1.6.5","depth":3,"next":{"title":"9 Redis缓存设计与性能优化","level":"1.1.6.6","depth":3,"path":"06-Distributed/Old/09-Redis-Design-Optimize.md","ref":"06-Distributed/Old/09-Redis-Design-Optimize.md","articles":[]},"previous":{"title":"7 Redis高可用集群","level":"1.1.6.4","depth":3,"path":"06-Distributed/Old/07-Redis-Cluster-Mode.md","ref":"06-Distributed/Old/07-Redis-Cluster-Mode.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","splitter","expandable-chapters-small","anchors","github","github-buttons","sharing-plus","anchor-navigation-ex"],"styles":{"website":"./styles/website.css"},"pluginsConfig":{"github":{"url":"https://github.com/tyrival"},"splitter":{},"search":{},"sharing-plus":{"qq":false,"all":["facebook","google","twitter","instapaper","linkedin","pocket","stumbleupon"],"douban":false,"facebook":true,"weibo":false,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":true,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"anchor-navigation-ex":{"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"mode":"float","multipleH1":true,"pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"printLog":false,"showGoTop":true,"showLevel":false},"github-buttons":{"buttons":[{"user":"Tyrival","repo":"gitbook","type":"star","size":"small","count":false}]},"expandable-chapters-small":{},"sharing":{"qq":false,"all":["google","facebook","weibo","twitter","qq","qzone","linkedin","pocket"],"douban":false,"facebook":false,"weibo":false,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":false,"messenger":false,"line":false,"vk":false,"pocket":false,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","author":"Tyrival","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"架构师学习笔记","language":"zh-hans","gitbook":"3.2.3","description":"架构师学习笔记"},"file":{"path":"06-Distributed/Old/08-Redis-Distributed-Lock-Training.md","mtime":"2020-08-05T09:54:02.169Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-08-21T13:20:08.774Z"},"basePath":"../..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../../gitbook/gitbook.js"></script>
+    <script src="../../gitbook/theme.js"></script>
+    
+        
+        <script src="../../gitbook/gitbook-plugin-splitter/splitter.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-github/plugin.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-github-buttons/plugin.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-sharing-plus/buttons.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

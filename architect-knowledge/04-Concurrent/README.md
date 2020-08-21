@@ -13,3 +13,5 @@
 [6 抽象队列同步器AQS应用之BlockingQueue详解](./06-AQS-Blocking-Queue.md)
 
 [7 并发编程之Tools&CountDownLatch&Semaphore原理与应用](./07-Tools-CountDownLatch-Semaphore.md)
+
+[8 并发编程之Atomic&Unsafe魔法类详解](./08-Atomic-Unsafe-Magic-Class.md)

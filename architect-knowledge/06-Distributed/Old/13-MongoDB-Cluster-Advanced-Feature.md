@@ -1,4 +1,4 @@
-#  MongoDB 集群架构与高级特性
+#  MongoDB集群架构与高级特性
 
 ## 1. MongoDB的聚合操作
 
@@ -42,27 +42,45 @@ db.collection.aggregate(match,project,group,...)
 
 ##### 示例
 
+原始数据：
+
+![mongo-adv-00](../../source/images/ch-06/old/mongo-adv-00.png)
+
+
+
 ###### `$match` 条件过滤 
 
 ```js
 db.emp.aggregate({$match:{"job":"讲师"}})
 ```
 
+![mongo-adv-01](../../source/images/ch-06/old/mongo-adv-01.png)
+
+
+
 ###### `$project` 指定列返回
 
 ```js
-// 返回指定例,_id 自动带上
+// 返回指定例，_id 自动带上
 db.emp.aggregate(
   	{$match:{"job":"讲师"}},
   	{$project:{"job":1,"salary":1}}
 )
+```
 
+![mongo-adv-02](../../source/images/ch-06/old/mongo-adv-02.png)
+
+```js
 // 返回指定列，并修改列名
 db.emp.aggregate(
   	{$match:{"job":"讲师"}},
   	{$project:{"工作":"$job","薪水":"$salary"}}
 )
 ```
+
+![mongo-adv-03](../../source/images/ch-06/old/mongo-adv-03.png)
+
+
 
 ###### `$group` 操作 ( 必须指定_id 列)  
 
@@ -71,32 +89,56 @@ db.emp.aggregate(
 db.emp.aggregate({
   	$group:{_id:"$job",total:{$sum:"$salary"}}
 })
+```
 
+![mongo-adv-04](../../source/images/ch-06/old/mongo-adv-04.png)
+
+```js
 // 求出薪水最大值
 db.emp.aggregate({
   	$group:{_id:"$job",total:{$max:"$salary"}}
 })
+```
 
+![mongo-adv-05](../../source/images/ch-06/old/mongo-adv-05.png)
+
+```js
 // 将所有薪水添加列表
 db.emp.aggregate({
   	$group:{_id:"$job",total:{$push:"$salary"}}
 })
+```
 
+![mongo-adv-06](../../source/images/ch-06/old/mongo-adv-06.png)
+
+```js
 // 将所有薪水添加列表，并去重
 db.emp.aggregate({
   	$group:{_id:"$job",total:{$addToSet:"$salary"}}
 })
+```
 
+![mongo-adv-07](../../source/images/ch-06/old/mongo-adv-07.png)
+
+```js
 // 取第一个值
 db.emp.aggregate({
   	$group:{_id:"$job",first:{$first:"$salary"}}
 })
+```
 
+![mongo-adv-08](../../source/images/ch-06/old/mongo-adv-08.png)
+
+```js
 // 取最后一个值
 db.emp.aggregate({
   	$group:{_id:"$job",last:{$last:"$salary"}}
 })
 ```
+
+![mongo-adv-09](../../source/images/ch-06/old/mongo-adv-09.png)
+
+
 
 ###### 聚合操作可以任意个数和顺序的组合
 
@@ -109,6 +151,10 @@ db.emp.aggregate(
 )
 ```
 
+![mongo-adv-10](../../source/images/ch-06/old/mongo-adv-10.png)
+
+
+
 ###### `$skip` 与 `$limit` 跳转，并限制返回数量   
 
 ```js
@@ -119,6 +165,10 @@ db.emp.aggregate(
 )
 ```
 
+![mongo-adv-11](../../source/images/ch-06/old/mongo-adv-11.png)
+
+
+
 ###### `$sort` 排序 
 
 ```js
@@ -127,6 +177,10 @@ db.emp.aggregate(
   	{$sort:{"salary":1,"工作":1}}
 )
 ```
+
+![mongo-adv-12](../../source/images/ch-06/old/mongo-adv-12.png)
+
+
 
 ###### `unwind` 操作，将数组拆分成多条记录
 
@@ -137,17 +191,21 @@ db.emp.aggregate(
 )
 ```
 
-### 1.2 mapRedurce 聚合
+![mongo-adv-13](../../source/images/ch-06/old/mongo-adv-13.png)
+
+
+
+### 1.2 mapRedurce聚合
 
 mapRedurce 非常适合实现非常复杂 并且数量大的聚合计算，其可运行在多台节点上实行分布式计算。
 
-#### mapRedurce 概念
+#### mapRedurce概念
 
 MapReduce 现大量运用于hadoop大数据计算当中，其最早来自于 google 的一遍论文，解决大PageRank搜索结果排序的问题。其大至原理如下：
 
 #### mongodb中mapRedurce的使用流程
 
-1. 创建map函数，
+1. 创建map函数
 2. 创建redurce函数
 3. 将map、redurce 函数添加至集合中，并返回新的结果集
 4. 查询新的结果集
@@ -157,12 +215,12 @@ MapReduce 现大量运用于hadoop大数据计算当中，其最早来自于 goo
 基础示例
 
 ```js
-// 创建map对象 
+// 创建map对象
 var map1 = function (){
   	// 内置函数 key，value
 		emit(this.job, this.name); 
 }
-// 创建reduce对象 
+// 创建reduce对象 
 var reduce1 = function(job, count){
 		return Array.sum(count);
 }
@@ -172,7 +230,7 @@ db.emp.mapReduce(map1, reduce1, {out: "result"}).find()
 db.result.find()
 ```
 
- 使用复合对象作为key
+ 使用复合对象作为key
 
 ```js
 // 使用复合对象作为key
@@ -182,7 +240,7 @@ var map2 = function (){
 var reduce2 = function(key, values){
 		return values.length;
 }
- 
+ 
 db.emp.mapReduce(map2, reduce2, {out: "result2"}).find()
 ```
 
@@ -206,14 +264,38 @@ var emit = function(key, value){
 db.emp.find({"salary":{$gt:500}}).explain()
 ```
 
+> 结果如下，可以看到stage为COLLSCAN，表示全表扫描。
+>
+> ```json
+> "winningPlan": {
+>   "stage": "LIMIT",
+>   "limitAmount": 1,
+>   "inputStage": {
+>     "stage": "COLLSCAN",
+>     "filter": {
+>       "salary": {
+>       	"$gt": 500
+>       }
+>     },
+>     "direction": "forward"
+>   }
+> }
+> ```
+
 创建简单索引
 
 ```js
 // 创建索引
 db.emp.createIndex({salary:1})
+
 // 查看索引
 db.emp.getIndexes()
-// 查看执行计划
+```
+
+![mongo-adv-14](../../source/images/ch-06/old/mongo-adv-14.png)
+
+```js
+// 查看执行计划，可以看到 `"stage": "IXSCAN"`，表示使用索引查询。
 db.emp.find({"salary":{$gt:500}}).explain()
 ```
 
@@ -237,6 +319,16 @@ db.subject.createIndex({"grade.redis":1})
 db.subject.createIndex({"grade":1})
 ```
 
+查看索引
+
+```js
+db.subject.getIndexes()
+```
+
+![mongo-adv-15](../../source/images/ch-06/old/mongo-adv-15.png)
+
+
+
 ### 2.3 多键索引
 
 创建多键索引
@@ -244,6 +336,10 @@ db.subject.createIndex({"grade":1})
 ```js
 db.subject.createIndex({"subjects":1})
 ```
+
+![mongo-adv-16](../../source/images/ch-06/old/mongo-adv-16.png)
+
+
 
 ### 2.4 复合索引（组合索引）
 
@@ -253,64 +349,41 @@ db.subject.createIndex({"subjects":1})
 db.emp.createIndex({"job":1,"salary":-1})
 ```
 
-查看执行计划：
+查看执行计划，可以看到 `"stage": "IXSCAN"` 都使用了索引：
 
 ```js
+// "stage": "IXSCAN" 使用索引
 db.emp.find({"job":"讲师","salary":{$gt:500}}).explain()
-```
 
-```js
+// "stage": "IXSCAN" 使用索引
+db.emp.find({"salary":{$gt:5000},"job":"讲师"}).explain()
+
+// "stage": "IXSCAN" 使用索引
 db.emp.find({"job":"讲师"}).explain()
-```
 
-```js
+// "stage": "IXSCAN" 使用索引
 db.emp.find({"salary":{$gt:500}}).explain()
 ```
 
 复合索引在排序中的应用：
 
 ```js
-db.emp.find({}).sort({"job":1, "salary":-1}).explain()
-```
-
-```js
-db.emp.find({}).sort({"job":-1, "salary":1}).explain()
-```
-
-```js
-db.emp.find({}).sort({"job":-1, "salary":-1}).explain()
-```
-
-```js
-db.emp.find({}).sort({"job":1, "salary":1}).explain()
-```
-
-job_1_salary_-1
-
-```js
-// 走索引
-db.emp.find({"job":"讲师","salary":{$gt:5000}}).explain()
-// 走索引
-db.emp.find({"salary":{$gt:5000},"job":"讲师"}).explain()
-// 走索引
-db.emp.find({"job":"讲师"}).explain()
-db.emp.find({"salary":{$gt:5000}}).explain()
-```
-
-排序场景
-
-```js
-// 完全匹配 => 走索引
+// 完全匹配 => 走索引
 db.emp.find({}).sort({"job":1,"salary":-1}).explain()
+
 // 完全不匹配 => 走索引
 db.emp.find({}).sort({"job":-1,"salary":1}).explain()
+
 // 一半匹配 => 不走索引
 db.emp.find({}).sort({"job":1,"salary":1}).explain()
+
 // 一半匹配 => 不走索引
 db.emp.find({}).sort({"job":-1,"salary":-1}).explain()
-// => 走索引
+
+// => 走索引，最左匹配原则
 db.emp.find({}).sort({"job":-1}).explain()
-// => 不走索引
+
+// => 走索引，这是因为之前2.1章节建立了salary的索引
 db.emp.find({}).sort({"salary":-1}).explain()
 ```
 
@@ -321,6 +394,7 @@ db.emp.find({}).sort({"salary":-1}).explain()
 ```js
 // 插入数据
 db.log.insert({"title":"this is logger info","createTime":new Date()})
+
 // 创建过期索引
 db.log.createIndex({"createTime":1},{expireAfterSeconds:10})
 ```
@@ -339,11 +413,15 @@ db.project.createIndex({"name":"text","description":"text"})
 db.project.find({$text:{$search:"java dubbo"}})
 ```
 
+![mongo-adv-17](../../source/images/ch-06/old/mongo-adv-17.png)
+
 `-` 用于屏蔽关键字 
 
 ```js
 db.project.find({$text:{$search:"java -dubbo"}})
 ```
+
+![mongo-adv-18](../../source/images/ch-06/old/mongo-adv-18.png)
 
 短语查询,`\"` 包含即可
 
@@ -351,9 +429,12 @@ db.project.find({$text:{$search:"java -dubbo"}})
 db.project.find({$text:{$search:"\"Apache Dubbo\""}})
 ```
 
+![mongo-adv-19](../../source/images/ch-06/old/mongo-adv-19.png)
+
 中文查询
 
 ```js
 db.project.find({$text:{$search:"阿里 开源"}})
 ```
 
+![mongo-adv-20](../../source/images/ch-06/old/mongo-adv-20.png)
