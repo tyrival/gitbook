@@ -15,3 +15,5 @@
 [7 并发编程之Tools&CountDownLatch&Semaphore原理与应用](./07-Tools-CountDownLatch-Semaphore.md)
 
 [8 并发编程之Atomic&Unsafe魔法类详解](./08-Atomic-Unsafe-Magic-Class.md)
+
+[9 Collections之Map&List&Set详解](./09-Collections-Map-List-Set.md)
