@@ -23,3 +23,7 @@
 [14 MongoDB企业应用实战](./Old/14-MongoDB-Training.md)
 
 [15 Java BIO & NIO & AIO](./Old/15-Java-BIO-NIO-AIO.md)
+
+[16 Netty核心功能与线程模型](./Old/16-Netty-Core-Thread-Model.md)
+
+[17 Netty编解码，粘包拆包及零拷贝](./Old/17-Netty-Codec-Pack-Unpack-Zero-Copy.md)

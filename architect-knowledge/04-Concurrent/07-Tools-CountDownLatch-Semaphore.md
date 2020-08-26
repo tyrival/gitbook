@@ -176,7 +176,7 @@ public class QueueTask implements Runnable {
 }
 
 /**
- * 配媳妇去看病，轮到媳妇看大夫时
+ * 媳妇去看病，轮到媳妇看大夫时
  * 我就开始去排队准备交钱了。
  */
 public class CountDownLaunchRunner {
@@ -187,7 +187,7 @@ public class CountDownLaunchRunner {
 
         new Thread(new SeeDoctorTask(countDownLatch)).start();
         new Thread(new QueueTask(countDownLatch)).start();
-        //等待线程池中的2个任务执行完毕，否则一直
+        // 等待线程池中的2个任务执行完毕，否则一直
         countDownLatch.await();
         System.out.println("over，回家 cost:"+(System.currentTimeMillis() - now));
     }
@@ -235,7 +235,7 @@ public class CyclicBarrierRunner implements Runnable {
     }
 
     public static void main(String[] args) throws Exception {
-        CyclicBarrier cyclicBarrier = new CyclicBarrier(11, new Runnable() 					          {
+        CyclicBarrier cyclicBarrier = new CyclicBarrier(11, new Runnable()  {
             public void run() {
                 System.out.println("所有特工到达屏障，准备开始执行秘密任务");
             }
