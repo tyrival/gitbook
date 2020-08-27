@@ -415,6 +415,8 @@ if (U.compareAndSwapInt(this, SIZECTL, sc = sizeCtl, sc - 1)) {
 
 table扩容过程就是将table元素迁移到新的table上, 在元素迁移时, 可以并发完成, 加快了迁移速度, 同时不至于阻塞线程。所有元素迁移完成后, 旧的table直接丢失, 直接使用新的table。
 
+
+
 ## 3. CopyOnWrite机制
 
 核心思想：读写分离，空间换时间，避免为保证并发安全导致的激烈的锁竞争。
