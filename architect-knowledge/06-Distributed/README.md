@@ -29,3 +29,5 @@
 [17 Netty编解码，粘包拆包及零拷贝](./Old/17-Netty-Codec-Pack-Unpack-Zero-Copy.md)
 
 [18 Netty线程模型源码详解](./Old/18-Netty-Thread-Model-Source.md)
+
+[19 Netty在弹幕系统与Dubbo框架中的应用](./Old/19-Netty-Barrage-Dubbo.md)
