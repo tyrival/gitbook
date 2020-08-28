@@ -112,7 +112,7 @@ public class HeartBeatServer {
                             ChannelPipeline pipeline = ch.pipeline();
                             pipeline.addLast("decoder", new StringDecoder());
                             pipeline.addLast("encoder", new StringEncoder());
-                            //IdleStateHandler的readerIdleTime参数指定超过3秒还没收到客户端的连接，
+                            //IdleStateHandler的readerIdleTime参数指定超过3秒还没收到客户端的连接
                             //会触发IdleStateEvent事件并且交给下一个handler处理，下一个handler必须
                             //实现userEventTriggered方法处理对应事件
                             pipeline.addLast(new IdleStateHandler(3, 0, 0, TimeUnit.SECONDS));
