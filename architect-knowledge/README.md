@@ -8,6 +8,6 @@
 * [第5章 源码框架](05-Source/README.md)
 * [第6章 分布式](06-Distributed/README.md)
 * [第7章 微服务](07-Microservice/README.md)
-* [第8章 案例](08-Sample/README.md)
+* [第8章 实战案例](08-Training/README.md)
 
 * [附 源码Github](https://github.com/tyrival/architect-knowledge)

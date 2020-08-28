@@ -27,3 +27,5 @@
 [16 Netty核心功能与线程模型](./Old/16-Netty-Core-Thread-Model.md)
 
 [17 Netty编解码，粘包拆包及零拷贝](./Old/17-Netty-Codec-Pack-Unpack-Zero-Copy.md)
+
+[18 Netty线程模型源码详解](./Old/18-Netty-Thread-Model-Source.md)
