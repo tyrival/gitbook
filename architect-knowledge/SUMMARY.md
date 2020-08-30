@@ -36,6 +36,7 @@
         * [8 并发编程之Atomic&Unsafe魔法类详解](04-Concurrent/08-Atomic-Unsafe-Magic-Class.md)
         * [9 Collections之Map&List&Set详解](04-Concurrent/09-Collections-Map-List-Set.md)
         * [10 Executor线程池原理与源码](04-Concurrent/10-Executor-Thread-Pool.md)
+        * [11 并发编程之定时任务&定时线程池](04-Concurrent/11-Schedule-Task-Thread-Pool.md)
     * [第5章 源码框架](05-Source/README.md)
     * [第6章 分布式](06-Distributed/README.md)
         * [1 Zookeeper特性与节点说明](06-Distributed/Old/01-Zookeeper-Node.md)
