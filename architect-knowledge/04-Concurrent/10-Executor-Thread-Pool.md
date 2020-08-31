@@ -195,23 +195,23 @@ public Future<?> submit() //任务执行完成后有返回值
 
 ### 4.3 参数解释
 
-#### corePoolSize
+##### corePoolSize
 
 线程池中的核心线程数，当提交一个任务时，线程池创建一个新线程执行任务，直到当 前线程数等于corePoolSize；如果当前线程数为 corePoolSize，继续提交的任务被保存到 阻塞队列中，等待被执行；如果执行了线程池的 `prestartAllCoreThreads()` 方法，线程池会 提前创建并启动所有核心线程。
 
-#### maximumPoolSize
+##### maximumPoolSize
 
 线程池中允许的最大线程数。如果当前阻塞队列满了，且继续提交任务，则创建新的线 程执行任务，前提是当前线程数小于 maximumPoolSize；
 
-#### keepAliveTime
+##### keepAliveTime
 
 线程池维护线程所允许的空闲时间。当线程池中的线程数量大于 corePoolSize 的时候，如果这时没有新的任务提交，核心线程外的线程不会立即销毁，而是会等待，直到等待的时间超过了 keepAliveTime；
 
-#### unit
+##### unit
 
 keepAliveTime的单位；
 
-#### workQueue
+##### workQueue
 
 用来保存等待被执行的任务的阻塞队列，且任务必须实现Runable接口，在JDK中提供了如下阻塞队列：
 
@@ -220,11 +220,11 @@ keepAliveTime的单位；
 - SynchronousQuene：一个不存储元素的阻塞队列，每个插入操作必须等到另一个线程调用移除操作，否则插入操作一直处于阻塞状态，吞吐量通常要高于 LinkedBlockingQuene；
 - priorityBlockingQuene：具有优先级的无界阻塞队列；
 
-#### threadFactory
+##### threadFactory
 
 它是 ThreadFactory 类型的变量，用来创建新线程。默认使用 `Executors.defaultThreadFactory()`  来创建线程。使用默认的 ThreadFactory 来创建线程时，会使新创建的线程具有相同的 NORM_PRIORITY 优先级并且是非守护线程，同时也设置了线程的名称。
 
-#### handler
+##### handler
 
 线程池的饱和策略，当阻塞队列满了，且没有空闲的工作线程，如果继续提交任务，必 须采取一种策略处理该任务，线程池提供了4种策略
 
