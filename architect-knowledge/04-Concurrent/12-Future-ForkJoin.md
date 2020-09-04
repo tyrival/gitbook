@@ -4,29 +4,33 @@
 
 #### CPU密集型（CPU-bound）
 
-CPU密集型也叫计算密集型，指的是系统的硬盘、内存性能相对CPU要好很多，此时，系统运作大部分的状况是CPU Loading 100%，CPU要读/写I/O(硬盘/内存)，I/O在很短的时间就可以完成，而CPU还有许多运算要处理，CPU Loading很高。
+CPU 密集型也叫计算密集型，指的是系统的硬盘、内存性能相对CPU要好很多，此时，系统运作大部分的状况是CPU Loading 100%，CPU 要读/写 I/O（硬盘/内存），I/O 在很短的时间就可以完成，而 CPU 还有许多运算要处理，CPU Loading 很高。
 
-在多重程序系统中，大部份时间用来做计算、逻辑判断等CPU动作的程序称之CPU bound。例如一个计算圆周率至小数点一千位以下 的程序，在执行的过程当中绝大部份时间用在三角函数和开根号的计算，便是属于CPU bound的程序。
+在多重程序系统中，大部份时间用来做计算、逻辑判断等CPU动作的程序称之 CPU bound。例如一个计算圆周率至小数点一千位以下 的程序，在执行的过程当中绝大部份时间用在三角函数和开根号的计算，便是属于 CPU bound 的程序。
 
-CPU bound的程序一般而言CPU占用率相当高。这可能是因为任务本身不太需要访问I/O设备，也可能是因为程序是多线程实现因此 屏蔽掉了等待I/O的时间。 线程数一般设置为： 线程数 = CPU核数+1 (现代CPU支持超线程)
+CPU bound 的程序一般而言 CPU 占用率相当高。这可能是因为任务本身不太需要访问I/O设备，也可能是因为程序是多线程实现因此 屏蔽掉了等待 I/O 的时间。 线程数一般设置为：
+
+​		**线程数 = CPU核数 + 1 (现代CPU支持超线程)**
 
 #### IO密集型（I/O bound）
 
-IO密集型指的是系统的CPU性能相对硬盘、内存要好很多，此时，系统运作，大部分的状况是CPU在等I/O (硬盘/内存) 的读/写操 作，此时CPU Loading并不高。 
+IO 密集型指的是系统的 CPU 性能相对硬盘、内存要好很多，此时，系统运作，大部分的状况是 CPU 在等 I/O (硬盘/内存) 的读/写操 作，此时 CPU Loading 并不高。 
 
-I/O bound的程序一般在达到性能极限时，CPU占用率仍然较低。这可能是因为任务本身需要大量I/O操作，而pipeline做得不是很 好，没有充分利用处理器能力。 线程数一般设置为： 线程数 = （（线程等待时间+线程CPU时间）/线程CPU时间 ）* CPU数目
+I/O bound 的程序一般在达到性能极限时，CPU 占用率仍然较低。这可能是因为任务本身需要大量 I/O 操作，而pipeline 做得不是很 好，没有充分利用处理器能力。 线程数一般设置为： 
+
+​		**线程数 = ((线程等待时间 + 线程CPU时间) / 线程CPU时间) * CPU数目**
 
 #### CPU密集型 vs IO密集型
 
-我们可以把任务分为计算密集型和IO密集型。 
+我们可以把任务分为计算密集型和 IO 密集型。 
 
-计算密集型任务的特点是要进行大量的计算，消耗CPU资源，比如计算圆周率、对视频进行高清解码等等，全靠CPU的运算能力。这 种计算密集型任务虽然也可以用多任务完成，但是任务越多，花在任务切换的时间就越多，CPU执行任务的效率就越低，所以，要最高效 地利用CPU，计算密集型任务同时进行的数量应当等于CPU的核心数。
+计算密集型任务的特点是要进行大量的计算，消耗 CPU 资源，比如计算圆周率、对视频进行高清解码等等，全靠 CPU 的运算能力。这 种计算密集型任务虽然也可以用多任务完成，但是任务越多，花在任务切换的时间就越多， CPU 执行任务的效率就越低，所以，要最高效 地利用 CPU，计算密集型任务同时进行的数量应当等于 CPU 的核心数。
 
-计算密集型任务由于主要消耗CPU资源，因此，代码运行效率至关重要。Python这样的脚本语言运行效率很低，完全不适合计算密集 型任务。对于计算密集型任务，最好用C语言编写。
+计算密集型任务由于主要消耗 CPU 资源，因此，代码运行效率至关重要。Python 这样的脚本语言运行效率很低，完全不适合计算密集 型任务。对于计算密集型任务，最好用 C 语言编写。
 
-第二种任务的类型是IO密集型，涉及到网络、磁盘IO的任务都是IO密集型任务，这类任务的特点是CPU消耗很少，任务的大部分时间 都在等待IO操作完成（因为IO的速度远远低于CPU和内存的速度）。对于IO密集型任务，任务越多，CPU效率越高，但也有一个限度。常 见的大部分任务都是IO密集型任务，比如Web应用。
+第二种任务的类型是 IO 密集型，涉及到网络、磁盘 IO 的任务都是 IO 密集型任务，这类任务的特点是CPU消耗很少，任务的大部分时间 都在等待 IO 操作完成（因为 IO 的速度远远低于CPU和内存的速度）。对于IO密集型任务，任务越多，CPU 效率越高，但也有一个限度。常 见的大部分任务都是IO密集型任务，比如Web应用。
 
-IO密集型任务执行期间，99%的时间都花在IO上，花在CPU上的时间很少，因此，用运行速度极快的C语言替换用Python这样运行速 度极低的脚本语言，完全无法提升运行效率。对于IO密集型任务，最合适的语言就是开发效率最高（代码量最少）的语言，脚本语言是首 选，C语言最差。
+IO 密集型任务执行期间，99%的时间都花在IO上，花在 CPU 上的时间很少，因此，用运行速度极快的 C 语言替换用 Python 这样运行速 度极低的脚本语言，完全无法提升运行效率。对于IO密集型任务，最合适的语言就是开发效率最高（代码量最少）的语言，脚本语言是首选，C 语言最差。
 
 ## 2. Fork/Join 框架
 
@@ -58,11 +62,11 @@ Fork 就是把一个大任务切分为若干子任务并行的执行，Join 就�
 
 1. ForkJoinPool 的每个工作线程都维护着一个工作队列（WorkQueue），这是一个双端队列（Deque），里面存放的对象是任务（ForkJoinTask）。
 
-2. 每个工作线程在运行中产生新的任务（通常是因为调用了 fork()）时，会放入工作队列的队尾，并且工作线程在处理自己的工作队列时，使用的是 LIFO 方式，也就是说每次从队尾取出任务来执行。
+2. 每个工作线程在运行中产生新的任务（通常是因为调用了 `fork()`）时，会放入工作队列的队尾，并且工作线程在处理自己的工作队列时，使用的是 LIFO 方式，也就是说每次从队尾取出任务来执行。
 
 3. 每个工作线程在处理自己的工作队列同时，会尝试窃取一个任务（或是来自于刚刚提交到 pool 的任务，或是来自于其他工作线程的工作队列），窃取的任务位于其他线程的工作队列的队首，也就是说工作线程在窃取其他工作线程的任务时，使用的是 FIFO方式。
 
-4. 在遇到 join() 时，如果需要 join 的任务尚未完成，则会先处理其他任务，并等待其完成。
+4. 在遇到 `join()` 时，如果需要 join 的任务尚未完成，则会先处理其他任务，并等待其完成。
 
 5. 在既没有自己的任务，也没有可以窃取的任务时，进入休眠。
 
@@ -70,9 +74,9 @@ Fork 就是把一个大任务切分为若干子任务并行的执行，Join 就�
 
 ## 4. fork/join的使用
 
-ForkJoinTask：我们要使用 ForkJoin 框架，必须首先创建一个 ForkJoin 任务。它提供在任务中执行 fork() 和 join() 操作的机制，通常情况下我们不需要直接继承 ForkJoinTask 类，而只需要继承它的子类，Fork/Join 框架提供了以下两个子类：
+ForkJoinTask：我们要使用 ForkJoin 框架，必须首先创建一个 ForkJoin 任务。它提供在任务中执行 `fork()` 和 `join()` 操作的机制，通常情况下我们不需要直接继承 ForkJoinTask 类，而只需要继承它的子类，Fork/Join 框架提供了以下两个子类：
 
-- RecursiveAction：用于没有返回结果的任务。(比如写数据到磁盘，然后就退出了。 一个RecursiveAction可以把自己的工作分割成更小的几块， 这样它们可以由独立的线程或者CPU执行。 我们可以通过继承来实现一个RecursiveAction)
+- RecursiveAction：用于没有返回结果的任务。(比如写数据到磁盘，然后就退出了。 一个 RecursiveAction 可以把自己的工作分割成更小的几块， 这样它们可以由独立的线程或者CPU执行。 我们可以通过继承来实现一个 RecursiveAction)
 
 - RecursiveTask ：用于有返回结果的任务。(可以将自己的工作分割为若干更小任务，并将这些子任务的执行合并到一个集体结果。可以有几个水平的分割和合并)
 
@@ -84,11 +88,11 @@ ForkJoinTask：我们要使用 ForkJoin 框架，必须首先创建一个 ForkJo
 
 #### 使用场景示例：
 
-定义fork/join任务，如下示例，随机生成2000w条数据在数组当中，然后求和
+定义 fork/join 任务，如下示例，随机生成2000w条数据在数组当中，然后求和
 
 ```java
 /**
- * RecursiveTask 并行计算，同步有返回值
+ * RecursiveTask并行计算，同步有返回值
  * ForkJoin框架处理的任务基本都能使用递归处理，比如求斐波那契数列等，但递归算法的缺陷是：
  * 一只会只用单线程处理， 
  * 二是递归次数过多时会导致堆栈溢出；
@@ -99,10 +103,10 @@ ForkJoinTask：我们要使用 ForkJoin 框架，必须首先创建一个 ForkJo
  */
 class LongSum extends RecursiveTask<Long> {
 
-    //任务拆分的最小阀值
+    // 任务拆分的最小阀值
     static final int SEQUENTIAL_THRESHOLD = 1000;
     static final long NPS = (1000L * 1000 * 1000);
-    static final boolean extraWork = true; // change to add more than just a sum
+    static final boolean extraWork = true;	// change to add more than just a sum
     int low;
     int high;
     int[] array;
@@ -120,7 +124,7 @@ class LongSum extends RecursiveTask<Long> {
      * isCompletedAbnormally()方法：用于判断任务计算是否发生异常。
      */
     protected Long compute() {
-        //任务被拆分到足够小时，则开始求和
+        // 任务被拆分到足够小时，则开始求和
         if (high ‐ low <= SEQUENTIAL_THRESHOLD) {
             long sum = 0;
             for (int i = low; i < high; ++i) {
@@ -128,7 +132,7 @@ class LongSum extends RecursiveTask<Long> {
             }
             return sum;
 
-        } else {//如果任务任然过大，则继续拆分任务，本质就是递归拆分
+        } else {	// 如果任务任然过大，则继续拆分任务，本质就是递归拆分
             int mid = low + (high ‐ low) / 2;
             LongSum left = new LongSum(array, low, mid);
             LongSum right = new LongSum(array, mid, high);
@@ -143,7 +147,7 @@ class LongSum extends RecursiveTask<Long> {
 
 // 执行fork/join任务
 public class LongSumMain {
-    //获取逻辑处理器数量
+    // 获取逻辑处理器数量
     static final int NCPU = Runtime.getRuntime().availableProcessors();
 
     /** for time conversion */
@@ -154,13 +158,13 @@ public class LongSumMain {
     public static void main(String[] args) throws Exception {
         int[] array = Utils.buildRandomIntArray(20000000);
         System.out.println("cpu‐num:"+NCPU);
-        //单线程下计算数组数据总和
+        // 单线程下计算数组数据总和
         calcSum = seqSum(array);
         System.out.println("seq sum=" + calcSum);
 
-        //采用fork/join方式将数组求和任务进行拆分执行，最后合并结果
+        // 采用fork/join方式将数组求和任务进行拆分执行，最后合并结果
         LongSum ls = new LongSum(array, 0, array.length);
-        ForkJoinPool fjp = new ForkJoinPool(4); //使用的线程数
+        ForkJoinPool fjp = new ForkJoinPool(4);	// 使用的线程数
         ForkJoinTask<Long> result = fjp.submit(ls);
         System.out.println("forkjoin sum=" + result.get());
         fjp.shutdown();
@@ -212,15 +216,15 @@ private ForkJoinPool(int parallelism,
 
 重要参数解释
 
-- parallelism：并行度（the parallelism level），默认情况下跟我们机器的cpu个数保持一致，使用`Runtime.getRuntime().availableProcessors()` 可以得到我们机器运行时可用的CPU个数。
+- parallelism：并行度（the parallelism level），默认情况下跟我们机器的 CPU 个数保持一致，使用`Runtime.getRuntime().availableProcessors()` 可以得到我们机器运行时可用的 CPU 个数。
 
 - factory：创建新线程的工厂（the factory for creating new threads）。默认情况下使用`ForkJoinWorkerThreadFactory defaultForkJoinWorkerThreadFactory`。
 
 - handler：线程异常情况下的处理器（`Thread.UncaughtExceptionHandler handler`），该处理器在线程执行任务时由于某些无法预料到的错误而导致任务线程中断时进行一些处理，默认情况为null。
 
-- asyncMode：这个参数要注意，在ForkJoinPool中，每一个工作线程都有一个独立的任务队列，asyncMode表示工作线程内的任务队列是采用何种方式进行调度，可以是先进先出FIFO，也可以是后进先出LIFO。如果为true，则线程池中的工作线程则使用先进先出方式
+- asyncMode：这个参数要注意，在 ForkJoinPool 中，每一个工作线程都有一个独立的任务队列，asyncMode表示工作线程内的任务队列是采用何种方式进行调度，可以是先进先出 FIFO，也可以是后进先出 LIFO。如果为true，则线程池中的工作线程则使用先进先出方式
 
-进行任务调度，默认情况下是false。
+进行任务调度，默认情况下是 false。
 
 ### 5.3 ForkJoinTask fork 方法
 
@@ -241,13 +245,13 @@ public final ForkJoinTask<V> fork() {
 
 `join()` 的工作则复杂得多，也是 `join()` 可以使得线程免于被阻塞的原因——不像同名的 `Thread.join()`。
 
-1. 检查调用join()的线程是否是 ForkJoinThread 线程。如果不是（例如 main 线程），则阻塞当前线程，等待任务完成。如果是，则不阻塞。
+1. 检查调用 join() 的线程是否是 ForkJoinThread 线程。如果不是（例如 main 线程），则阻塞当前线程，等待任务完成。如果是，则不阻塞。
 
 2. 查看任务的完成状态，如果已经完成，直接返回结果。
 
 3. 如果任务尚未完成，但处于自己的工作队列内，则完成它。
 
-4. 如果任务已经被其他的工作线程偷走，则窃取这个小偷的工作队列内的任务（以FIFO方式），执行，以期帮助它早日完成欲join 的任务。
+4. 如果任务已经被其他的工作线程偷走，则窃取这个小偷的工作队列内的任务（以 FIFO 方式），执行，以期帮助它早日完成欲 join 的任务。
 
 5. 如果偷走任务的小偷也已经把自己的任务全部做完，正在等待需要 join 的任务时，则找到小偷的小偷，帮助它完成它的任务。
 
