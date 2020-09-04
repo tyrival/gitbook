@@ -38,6 +38,7 @@
         * [10 Executor线程池原理与源码](04-Concurrent/10-Executor-Thread-Pool.md)
         * [11 并发编程之定时任务&定时线程池](04-Concurrent/11-Schedule-Task-Thread-Pool.md)
         * [12 并发编程之Future&ForkJoin框架原理分析](04-Concurrent/12-Future-ForkJoin.md)
+        * [13 无锁并发框架Disruptor](04-Concurrent/13-Disruptor.md)
     * [第5章 源码框架](05-Source/README.md)
     * [第6章 分布式](06-Distributed/README.md)
         * [1 Zookeeper特性与节点说明](06-Distributed/Old/01-Zookeeper-Node.md)
