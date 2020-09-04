@@ -30,7 +30,7 @@ Disruptor 通过以下设计来解决队列速度慢的问题：
 
 ### 1.1 数据结构
 
-框架使用 RingBuffer 来作为队列的数据结构，RingBuffer就是一个可自定义大小的环形数组。除数组外还有一个序列号 (sequence)，用以指向下一个可用的元素，供生产者与消费者使用。原理图如下所示： 
+框架使用 RingBuffer 来作为队列的数据结构，RingBuffer 就是一个可自定义大小的环形数组。除数组外还有一个序列号 (sequence)，用以指向下一个可用的元素，供生产者与消费者使用。原理图如下所示： 
 
 ![disruptor-01](../source/images/ch-04/disruptor-01.png)
 
