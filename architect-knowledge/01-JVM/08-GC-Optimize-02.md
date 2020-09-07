@@ -18,7 +18,7 @@ wget https://arthas.gitee.io/arthas-boot.jar
 ![arthas-boot](../source/images/ch-01/arthas-boot.png)
 
 ```java
-package com.tyrival.jvm.lession08;
+package com.tyrival.jvm.lesson08;
 
 import java.util.HashSet;
 
@@ -339,7 +339,7 @@ int d = "abcdefg";
 - 字段的名称和描述符 
 - 方法的名称和描述符
 
-上面的a，b就是字段名称，就是一种符号引用，还有Math类常量池里的 `Lcom/tyrival/jvm/lession01/Math` 是类的全限定名，main和compute是方法名称，()是一种UTF8格式的描述符，这些都是符号引用。
+上面的a，b就是字段名称，就是一种符号引用，还有Math类常量池里的 `Lcom/tyrival/jvm/lesson01/Math` 是类的全限定名，main和compute是方法名称，()是一种UTF8格式的描述符，这些都是符号引用。
 
 这些常量池现在是静态信息，只有到运行时被加载到内存后，这些符号才有对应的内存地址信息，这些常量池一旦被装入内存就变成**运行时常量池**，对应的符号引用在程序加载或运行时会被转变为被加载到内存区域的代码的直接引用，也就是我们说的**动态链接了。例如，compute()这个符号引用在运行时就会被转变为compute()方法具体代码在内存中的地址，主要通过对象头里的类型指针去转换直接引用。**
 

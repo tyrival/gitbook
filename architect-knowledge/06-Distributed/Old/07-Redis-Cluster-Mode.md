@@ -153,7 +153,7 @@ cluster nodes
 Java编写访问redis集群的代码非常简单，如下所示：
 
 ```java
-package com.tyrival.distributed.old.lession07;
+package com.tyrival.distributed.old.lesson07;
 
 import redis.clients.jedis.HostAndPort;
 import redis.clients.jedis.JedisCluster;
@@ -241,9 +241,9 @@ spring:
 访问代码：
 
 ```java
-package com.tyrival.distributed.old.lession07;
+package com.tyrival.distributed.old.lesson07;
 
-import com.tyrival.distributed.old.lession05.RedisOpsController;
+import com.tyrival.distributed.old.lesson05.RedisOpsController;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

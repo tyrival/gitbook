@@ -130,7 +130,7 @@ MSET  user:1:name  tyrival   user:1:balance  1888
 MGET  user:1:name  user:1:balance
 ```
 
-> **性能测试** [源码](https://github.com/tyrival/architect-knowledge/blob/master/06-distributed/src/main/java/com/tyrival/distributed/old/lession05/RedisOpsController.java)
+> **性能测试** [源码](https://github.com/tyrival/architect-knowledge/blob/master/06-distributed/src/main/java/com/tyrival/distributed/old/lesson05/RedisOpsController.java)
 >
 > SET：方案A性能高于方案B，因为方案A只需要set一个key，而方案B需要根据属性的数量mset多个key；但是当方案B只需要修改一个属性值时候
 >
@@ -235,7 +235,7 @@ HMSET  user  1:name tyrival  1:balance 1888
 HMGET  user  1:name  1:balance  
 ```
 
-> **性能测试** [源码](https://github.com/tyrival/architect-knowledge/blob/master/06-distributed/src/main/java/com/tyrival/distributed/old/lession05/RedisOpsController.java)
+> **性能测试** [源码](https://github.com/tyrival/architect-knowledge/blob/master/06-distributed/src/main/java/com/tyrival/distributed/old/lesson05/RedisOpsController.java)
 >
 > ![redis-hash-cache](../../source/images/ch-06/old/redis-hash-cache.png)
 

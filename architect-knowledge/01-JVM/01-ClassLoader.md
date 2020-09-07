@@ -7,7 +7,7 @@
 示例代码：
 
 ```java
-package com.tyrival.jvm.lession01;
+package com.tyrival.jvm.lesson01;
 
 public class Math {
 
@@ -63,7 +63,7 @@ public class Math {
 示例中，通过运行结果可以看到，首先加载了类 `TestDynamicLoad` ，执行了静态代码块，然后加载类 `A` ，依次执行静态代码块和构造方法。类 `B` 由于未实例化，并未加载。
 
 ```java
-package com.tyrival.jvm.lession01;
+package com.tyrival.jvm.lesson01;
 
 public class TestDynamicLoad {
     static {
@@ -119,7 +119,7 @@ class B {
 #### 示例代码
 
 ```java
-package com.tyrival.jvm.lession01;
+package com.tyrival.jvm.lesson01;
 
 import sun.misc.Launcher;
 
@@ -422,7 +422,7 @@ public abstract class ClassLoader {
 自定义类加载器只需要继承 `java.lang.ClassLoader` 类。该类有两个核心方法，一个是 `loadClass(String, boolean)`，实现了双亲委派机制，另一个方法是 `findClass`，默认实现是空方法，所以我们自定义类加载器主要是重写 `findClass` 方法。
 
 ```java
-package com.tyrival.jvm.lession01;
+package com.tyrival.jvm.lesson01;
 
 import java.io.FileInputStream;
 import java.lang.reflect.Method;
@@ -466,7 +466,7 @@ public class MyClassLoaderTest {
 
     // 将User类的字节码文件User.class放入/Users/tyrival/
     // 用自定义类加载器加载User类
-    Class clazz = classLoader.loadClass("com.tyrival.jvm.lession01.User");
+    Class clazz = classLoader.loadClass("com.tyrival.jvm.lesson01.User");
     
     // 实例化User类
     Object obj = clazz.newInstance();
@@ -486,7 +486,7 @@ public class MyClassLoaderTest {
     // 当我们把User类复制一份为User1，将User1编译为User1.class，然后放到/Users/tyrival/下
     // 并将工程中的User1类删除，然后执行如下代码，打印出的加载器为MyClassLoader
     MyClassLoader classLoader = new MyClassLoader("/Users/tyrival/");
-    Class clazz = classLoader.loadClass("com.tyrival.jvm.lession01.User1");
+    Class clazz = classLoader.loadClass("com.tyrival.jvm.lesson01.User1");
     Object obj = clazz.newInstance();
     Method method = clazz.getDeclaredMethod("sout", null);
     method.invoke(obj, null);
@@ -499,7 +499,7 @@ public class MyClassLoaderTest {
 sun.misc.Launcher$AppClassLoader
 
 =======自己的加载器加载类调用方法=======
-com.tyrival.jvm.lession01.MyClassLoader$MyClassLoader
+com.tyrival.jvm.lesson01.MyClassLoader$MyClassLoader
 ```
 
 
@@ -604,7 +604,7 @@ protected Class<?> loadClass(String name, boolean resolve)
         if (c == null) {
         		long t1 = System.nanoTime();
           	// 非自定义的类还是走双亲委派加载
-            if (!name.startsWith("com.tyrival.jvm.lession01")){
+            if (!name.startsWith("com.tyrival.jvm.lesson01")){
               	c = this.getParent().loadClass(name);
             }else{
               	// 自定义类打破双亲委派，不再向上委托
@@ -725,7 +725,7 @@ public class MyClassLoaderTest {
                     long t1 = System.nanoTime();
 
                     // 非自定义的类还是走双亲委派加载
-                    if (!name.startsWith("com.tyrival.jvm.lession01")){
+                    if (!name.startsWith("com.tyrival.jvm.lesson01")){
                         c = this.getParent().loadClass(name);
                     }else{
                       	// 自定义类不向上委托
@@ -748,17 +748,17 @@ public class MyClassLoaderTest {
 
         //初始化自定义类加载器，会先初始化父类ClassLoader，其中会把自定义类加载器的父加载 器设置为应用程序类加载器AppClassLoader
         MyClassLoader classLoader = new MyClassLoader(
-                "/Users/tyrival/Workspace/architect-knowledge/01-jvm/target/classes/com/tyrival/jvm/lession01/");
+                "/Users/tyrival/Workspace/architect-knowledge/01-jvm/target/classes/com/tyrival/jvm/lesson01/");
         // 将User类的复制类User1.class丢入该目录
-        Class clazz = classLoader.loadClass("com.tyrival.jvm.lession01.User");
+        Class clazz = classLoader.loadClass("com.tyrival.jvm.lesson01.User");
         Object obj = clazz.newInstance();
         Method method = clazz.getDeclaredMethod("sout", null);
         method.invoke(obj, null);
         System.out.println(clazz.getClassLoader().getClass().getName());
 
         MyClassLoader classLoader1 = new MyClassLoader(
-                "/Users/tyrival/Workspace/architect-knowledge/01-jvm/target/classes/com/tyrival/jvm/lession01/test/");
-        Class clazz1 = classLoader1.loadClass("com.tyrival.jvm.lession01.User");
+                "/Users/tyrival/Workspace/architect-knowledge/01-jvm/target/classes/com/tyrival/jvm/lesson01/test/");
+        Class clazz1 = classLoader1.loadClass("com.tyrival.jvm.lesson01.User");
         Object obj1 = clazz1.newInstance();
         Method method1 = clazz1.getDeclaredMethod("sout", null);
         method1.invoke(obj1, null);
@@ -768,10 +768,10 @@ public class MyClassLoaderTest {
 
 运行结果：
 =======自己的加载器加载类调用方法=======
-com.tyrival.jvm.lession01.MyClassLoaderTest$MyClassLoader@266474c2
+com.tyrival.jvm.lesson01.MyClassLoaderTest$MyClassLoader@266474c2
 
 =======另外一个User1版本：自己的加载器加载类调用方法=======
-com.tyrival.jvm.lession01.MyClassLoaderTest$MyClassLoader@66d3c617
+com.tyrival.jvm.lesson01.MyClassLoaderTest$MyClassLoader@66d3c617
 ```
 
 > **注意**

@@ -102,7 +102,7 @@ new指令对应到语言层面上讲是，new关键词、对象克隆、对象�
 ```
 
 ```java
-package com.tyrival.jvm.lession02;
+package com.tyrival.jvm.lesson02;
 
 import org.openjdk.jol.info.ClassLayout;
 
@@ -158,7 +158,7 @@ Instance size: 16 bytes
 Space losses: 0 bytes internal + 0 bytes external = 0 bytes total
 
 
-com.tyrival.jvm.lession02.JOLSample$A object internals:
+com.tyrival.jvm.lesson02.JOLSample$A object internals:
  OFFSET  SIZE               TYPE DESCRIPTION                               VALUE
       0     4                    (object header)                           01 00 00 00 (00000001 00000000 00000000 00000000) (1)
       4     4                    (object header)                           00 00 00 00 (00000000 00000000 00000000 00000000) (0)

@@ -470,7 +470,7 @@ jstat -gc 12345 2000 10000
 
 2. 如果生成User对象的地方太多，无法定位具体代码，我们可以同时分析下占用cpu较高的线程，一般有大量对象不断产生，对应的方法代码肯定会被频繁调用，占用的cpu必然较高
 
-可以用上面说的jstack、JProfiler或jvisualvm来定位cpu使用较高的代码，可以看到其中 `byte[]` 对象所占内存空间高达516MB，并且发现 `com.tyrival.lession07.User` 实例多达5000个。
+可以用上面说的jstack、JProfiler或jvisualvm来定位cpu使用较高的代码，可以看到其中 `byte[]` 对象所占内存空间高达516MB，并且发现 `com.tyrival.lesson07.User` 实例多达5000个。
 
 ![jprofiler-sample-01](../source/images/ch-01/jprofiler-sample-01.png)
 

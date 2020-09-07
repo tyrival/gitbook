@@ -330,7 +330,7 @@ public static void main(String[] args) {
 >运行结果为：
 >
 >```
->22:18:06.052 [main] INFO com.tyrival.concurrent.lession04.T0_BasicLock - java.lang.Object object internals:
+>22:18:06.052 [main] INFO com.tyrival.concurrent.lesson04.T0_BasicLock - java.lang.Object object internals:
 > OFFSET  SIZE   TYPE DESCRIPTION  VALUE
 >      0     4   (object header)   05 00 00 00 (00000101 00000000 00000000 00000000) (5)
 >      4     4   (object header)   00 00 00 00 (00000000 00000000 00000000 00000000) (0)
@@ -339,7 +339,7 @@ public static void main(String[] args) {
 >Instance size: 16 bytes
 >Space losses: 0 bytes internal + 4 bytes external = 4 bytes total
 >
->22:18:06.060 [Thread-1] INFO com.tyrival.concurrent.lession04.T0_BasicLock - java.lang.Object object internals:
+>22:18:06.060 [Thread-1] INFO com.tyrival.concurrent.lesson04.T0_BasicLock - java.lang.Object object internals:
 > OFFSET  SIZE   TYPE DESCRIPTION  VALUE
 >      0     4   (object header)   05 f0 8f 08 (00000101 11110000 10001111 00001000) (143650821)
 >      4     4   (object header)   ee 7f 00 00 (11101110 01111111 00000000 00000000) (32750)
@@ -348,7 +348,7 @@ public static void main(String[] args) {
 >Instance size: 16 bytes
 >Space losses: 0 bytes internal + 4 bytes external = 4 bytes total
 >
->22:18:08.063 [main] INFO com.tyrival.concurrent.lession04.T0_BasicLock - java.lang.Object object internals:
+>22:18:08.063 [main] INFO com.tyrival.concurrent.lesson04.T0_BasicLock - java.lang.Object object internals:
 > OFFSET  SIZE   TYPE DESCRIPTION   VALUE
 >      0     4   (object header)    05 f0 8f 08 (00000101 11110000 10001111 00001000) (143650821)
 >      4     4   (object header)    ee 7f 00 00 (11101110 01111111 00000000 00000000) (32750)
@@ -357,7 +357,7 @@ public static void main(String[] args) {
 >Instance size: 16 bytes
 >Space losses: 0 bytes internal + 4 bytes external = 4 bytes total
 >
->22:18:08.066 [Thread-2] INFO com.tyrival.concurrent.lession04.T0_BasicLock - java.lang.Object object internals:
+>22:18:08.066 [Thread-2] INFO com.tyrival.concurrent.lesson04.T0_BasicLock - java.lang.Object object internals:
 > OFFSET  SIZE   TYPE DESCRIPTION  VALUE
 >      0     4   (object header)   08 f9 65 0d (00001000 11111001 01100101 00001101) (224786696)
 >      4     4   (object header)   00 70 00 00 (00000000 01110000 00000000 00000000) (28672)
