@@ -284,7 +284,7 @@ BRPOP  key  [key ...]  timeout
 
 ###### 常用数据结构
 
-- Stack(栈) = LPUSH + LPOP àFILO
+- Stack(栈) = LPUSH + LPOP => FILO
 
 - Queue(队列）= LPUSH + RPOP
 
