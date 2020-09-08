@@ -1,0 +1,1439 @@
+
+<!DOCTYPE HTML>
+<html lang="zh-hans" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>17 Netty编解码，粘包拆包及零拷贝 · 架构师学习笔记</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        <meta name="author" content="Tyrival">
+        
+        
+    
+    <link rel="stylesheet" href="../../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-splitter/splitter.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-anchors/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-anchor-navigation-ex/style/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+        <link rel="stylesheet" href="../../styles/website.css">
+        
+    
+
+        
+    
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="18-Netty-Thread-Model-Source.html" />
+    
+    
+    <link rel="prev" href="16-Netty-Core-Thread-Model.html" />
+    
+
+    <style>
+    @media only screen and (max-width: 640px) {
+        .book-header .hidden-mobile {
+            display: none;
+        }
+    }
+    </style>
+    <script>
+        window["gitbook-plugin-github-buttons"] = {"buttons":[{"user":"Tyrival","repo":"gitbook","type":"star","size":"small","count":false}]};
+    </script>
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="输入并搜索" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../../">
+            
+                <a href="../../">
+            
+                    
+                    架构师学习笔记
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.1" data-path="../../01-JVM/">
+            
+                <a href="../../01-JVM/">
+            
+                    
+                    第1章 JVM
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.1.1" data-path="../../01-JVM/01-ClassLoader.html">
+            
+                <a href="../../01-JVM/01-ClassLoader.html">
+            
+                    
+                    1 类加载机制
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.2" data-path="../../01-JVM/02-JVM-Structure-Resolve.html">
+            
+                <a href="../../01-JVM/02-JVM-Structure-Resolve.html">
+            
+                    
+                    2 JVM整体结构
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.3" data-path="../../01-JVM/03-Memory-Allocation-Mechanism.html">
+            
+                <a href="../../01-JVM/03-Memory-Allocation-Mechanism.html">
+            
+                    
+                    3 JVM内存分配机制
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.4" data-path="../../01-JVM/04-JVM-Bytecode-File-Structure.html">
+            
+                <a href="../../01-JVM/04-JVM-Bytecode-File-Structure.html">
+            
+                    
+                    4 JVM字节码文件结构
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.5" data-path="../../01-JVM/05-GC-ParNew-CMS.html">
+            
+                <a href="../../01-JVM/05-GC-ParNew-CMS.html">
+            
+                    
+                    5 垃圾收集器ParNew和CMS
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.6" data-path="../../01-JVM/06-GC-G1-ZGC.html">
+            
+                <a href="../../01-JVM/06-GC-G1-ZGC.html">
+            
+                    
+                    6 垃圾收集器G1和ZGC
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.7" data-path="../../01-JVM/07-GC-Optimize-01.html">
+            
+                <a href="../../01-JVM/07-GC-Optimize-01.html">
+            
+                    
+                    7 GC调优（一）
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.8" data-path="../../01-JVM/08-GC-Optimize-02.html">
+            
+                <a href="../../01-JVM/08-GC-Optimize-02.html">
+            
+                    
+                    8 GC调优（二）
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.9" data-path="../../01-JVM/JVM-Command.html">
+            
+                <a href="../../01-JVM/JVM-Command.html">
+            
+                    
+                    附1 JVM指令手册
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.2" data-path="../../02-Tomcat/">
+            
+                <a href="../../02-Tomcat/">
+            
+                    
+                    第2章 Tomcat
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.2.1" data-path="../../02-Tomcat/01-Tomcat-Summary.html">
+            
+                <a href="../../02-Tomcat/01-Tomcat-Summary.html">
+            
+                    
+                    1 Tomcat生产环境应用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.2.2" data-path="../../02-Tomcat/02-Tomcat-Component-Src.html">
+            
+                <a href="../../02-Tomcat/02-Tomcat-Component-Src.html">
+            
+                    
+                    2 Tomcat核心组件源码
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.2.3" data-path="../../02-Tomcat/03-Tomcat-Http-Process.html">
+            
+                <a href="../../02-Tomcat/03-Tomcat-Http-Process.html">
+            
+                    
+                    3 Tomcat线程模型HTTP请求处理与管道线模型
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.2.4" data-path="../../02-Tomcat/04-Tomcat-Hot-Deployment-Load.html">
+            
+                <a href="../../02-Tomcat/04-Tomcat-Hot-Deployment-Load.html">
+            
+                    
+                    4 Tomcat热部署和热加载
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.3" data-path="../../03-MySQL/">
+            
+                <a href="../../03-MySQL/">
+            
+                    
+                    第3章 MySQL
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.3.1" data-path="../../03-MySQL/01-Mysql-index-data-structure.html">
+            
+                <a href="../../03-MySQL/01-Mysql-index-data-structure.html">
+            
+                    
+                    1 Mysql索引数据结构
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.3.2" data-path="../../03-MySQL/02-Explain-Index-Actual.html">
+            
+                <a href="../../03-MySQL/02-Explain-Index-Actual.html">
+            
+                    
+                    2 Explain详解与索引最佳实践
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.3.3" data-path="../../03-MySQL/03-Sql-Execution-Fundamental.html">
+            
+                <a href="../../03-MySQL/03-Sql-Execution-Fundamental.html">
+            
+                    
+                    3 SQL底层执行原理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.3.4" data-path="../../03-MySQL/04-Sql-Optimize-01.html">
+            
+                <a href="../../03-MySQL/04-Sql-Optimize-01.html">
+            
+                    
+                    4 SQL优化实战（一）
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.3.5" data-path="../../03-MySQL/05-Sql-Optimize-02.html">
+            
+                <a href="../../03-MySQL/05-Sql-Optimize-02.html">
+            
+                    
+                    5 SQL优化实战（二）
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.3.6" data-path="../../03-MySQL/06-Mysql-Lock-Transaction-Isolation.html">
+            
+                <a href="../../03-MySQL/06-Mysql-Lock-Transaction-Isolation.html">
+            
+                    
+                    6 Mysql锁与事务隔离级别
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.3.7" data-path="../../03-MySQL/Slow-Sql-Query.html">
+            
+                <a href="../../03-MySQL/Slow-Sql-Query.html">
+            
+                    
+                    附1 慢SQL查询
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.3.8" data-path="../../03-MySQL/Ali-Java-Explain.html">
+            
+                <a href="../../03-MySQL/Ali-Java-Explain.html">
+            
+                    
+                    附2 阿里巴巴手册（泰山版）解读-MySQL数据库
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.4" data-path="../../04-Concurrent/">
+            
+                <a href="../../04-Concurrent/">
+            
+                    
+                    第4章 并发编程
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.4.1" data-path="../../04-Concurrent/01-JMM-JSR133.html">
+            
+                <a href="../../04-Concurrent/01-JMM-JSR133.html">
+            
+                    
+                    1 并发编程之JMM & JSR133规范解读
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.4.2" data-path="../../04-Concurrent/02-JMM-Features.html">
+            
+                <a href="../../04-Concurrent/02-JMM-Features.html">
+            
+                    
+                    2 并发编程之JMM三大特性详解
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.4.3" data-path="../../04-Concurrent/03-MESI-Cache-Coherency-Protocol.html">
+            
+                <a href="../../04-Concurrent/03-MESI-Cache-Coherency-Protocol.html">
+            
+                    
+                    3 MESI缓存一致协议详解
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.4.4" data-path="../../04-Concurrent/04-Synchronized.html">
+            
+                <a href="../../04-Concurrent/04-Synchronized.html">
+            
+                    
+                    4 并发编程之synchronized详解
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.4.5" data-path="../../04-Concurrent/05-AQS-Lock.html">
+            
+                <a href="../../04-Concurrent/05-AQS-Lock.html">
+            
+                    
+                    5 抽象队列同步器AQS应用Lock详解
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.4.6" data-path="../../04-Concurrent/06-AQS-Blocking-Queue.html">
+            
+                <a href="../../04-Concurrent/06-AQS-Blocking-Queue.html">
+            
+                    
+                    6 抽象队列同步器AQS应用之BlockingQueue详解
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.4.7" data-path="../../04-Concurrent/07-Tools-CountDownLatch-Semaphore.html">
+            
+                <a href="../../04-Concurrent/07-Tools-CountDownLatch-Semaphore.html">
+            
+                    
+                    7 并发编程之Tools&CountDownLatch&Semaphore原理与应用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.4.8" data-path="../../04-Concurrent/08-Atomic-Unsafe-Magic-Class.html">
+            
+                <a href="../../04-Concurrent/08-Atomic-Unsafe-Magic-Class.html">
+            
+                    
+                    8 并发编程之Atomic&Unsafe魔法类详解
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.4.9" data-path="../../04-Concurrent/09-Collections-Map-List-Set.html">
+            
+                <a href="../../04-Concurrent/09-Collections-Map-List-Set.html">
+            
+                    
+                    9 Collections之Map&List&Set详解
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.4.10" data-path="../../04-Concurrent/10-Executor-Thread-Pool.html">
+            
+                <a href="../../04-Concurrent/10-Executor-Thread-Pool.html">
+            
+                    
+                    10 Executor线程池原理与源码
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.4.11" data-path="../../04-Concurrent/11-Schedule-Task-Thread-Pool.html">
+            
+                <a href="../../04-Concurrent/11-Schedule-Task-Thread-Pool.html">
+            
+                    
+                    11 并发编程之定时任务&定时线程池
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.4.12" data-path="../../04-Concurrent/12-Future-ForkJoin.html">
+            
+                <a href="../../04-Concurrent/12-Future-ForkJoin.html">
+            
+                    
+                    12 并发编程之Future&ForkJoin框架原理分析
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.4.13" data-path="../../04-Concurrent/13-Disruptor.html">
+            
+                <a href="../../04-Concurrent/13-Disruptor.html">
+            
+                    
+                    13 无锁并发框架Disruptor
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.5" data-path="../../05-Source/">
+            
+                <a href="../../05-Source/">
+            
+                    
+                    第5章 源码框架
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    第6章 分布式
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.6.1" data-path="01-Zookeeper-Node.html">
+            
+                <a href="01-Zookeeper-Node.html">
+            
+                    
+                    1 Zookeeper特性与节点说明
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6.2" data-path="05-Redis-Data-Structure.html">
+            
+                <a href="05-Redis-Data-Structure.html">
+            
+                    
+                    5 Redis核心数据结构与核心原理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6.3" data-path="06-Redis-Persistent-Distributed-Mode.html">
+            
+                <a href="06-Redis-Persistent-Distributed-Mode.html">
+            
+                    
+                    6 Redis持久化、主从与哨兵架构详解
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6.4" data-path="07-Redis-Cluster-Mode.html">
+            
+                <a href="07-Redis-Cluster-Mode.html">
+            
+                    
+                    7 Redis高可用集群
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6.5" data-path="08-Redis-Distributed-Lock-Training.html">
+            
+                <a href="08-Redis-Distributed-Lock-Training.html">
+            
+                    
+                    8 Redis高并发分布式锁实战
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6.6" data-path="09-Redis-Design-Optimize.html">
+            
+                <a href="09-Redis-Design-Optimize.html">
+            
+                    
+                    9 Redis缓存设计与性能优化
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6.7" data-path="10-Nginx-Core-Config.html">
+            
+                <a href="10-Nginx-Core-Config.html">
+            
+                    
+                    10 Nginx核心模块与配置实践
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6.8" data-path="11-Nginx-Optimize-Training.html">
+            
+                <a href="11-Nginx-Optimize-Training.html">
+            
+                    
+                    11 Nginx性能优化实践
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6.9" data-path="12-MongoDB-Quick-Start.html">
+            
+                <a href="12-MongoDB-Quick-Start.html">
+            
+                    
+                    12 MongoDB的逻辑组成
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6.10" data-path="13-MongoDB-Cluster-Advanced-Feature.html">
+            
+                <a href="13-MongoDB-Cluster-Advanced-Feature.html">
+            
+                    
+                    13 MongoDB集群架构与高级特性
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6.11" data-path="14-MongoDB-Training.html">
+            
+                <a href="14-MongoDB-Training.html">
+            
+                    
+                    14 MongoDB企业应用实战
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6.12" data-path="15-Java-BIO-NIO-AIO.html">
+            
+                <a href="15-Java-BIO-NIO-AIO.html">
+            
+                    
+                    15 Java BIO & NIO & AIO
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6.13" data-path="16-Netty-Core-Thread-Model.html">
+            
+                <a href="16-Netty-Core-Thread-Model.html">
+            
+                    
+                    16 Netty核心功能与线程模型
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.1.6.14" data-path="17-Netty-Codec-Pack-Unpack-Zero-Copy.html">
+            
+                <a href="17-Netty-Codec-Pack-Unpack-Zero-Copy.html">
+            
+                    
+                    17 Netty编解码，粘包拆包及零拷贝
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6.15" data-path="18-Netty-Thread-Model-Source.html">
+            
+                <a href="18-Netty-Thread-Model-Source.html">
+            
+                    
+                    18 Netty线程模型源码详解
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6.16" data-path="19-Netty-Barrage-Dubbo.html">
+            
+                <a href="19-Netty-Barrage-Dubbo.html">
+            
+                    
+                    19 Netty在弹幕系统与Dubbo框架中的应用
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.7" data-path="../../07-Microservice/">
+            
+                <a href="../../07-Microservice/">
+            
+                    
+                    第7章 微服务
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.8" data-path="../../08-Training/">
+            
+                <a href="../../08-Training/">
+            
+                    
+                    第8章 实战案例
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            本书使用 GitBook 发布
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../.." >17 Netty编解码，粘包拆包及零拷贝</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <div id="anchor-navigation-ex-navbar"><i class="fa fa-navicon"></i><ul><ul><li><span class="title-icon "></span><a href="#1-netty&#x7F16;&#x89E3;&#x7801;"><b></b>1. Netty&#x7F16;&#x89E3;&#x7801;</a></li><ul><li><span class="title-icon "></span><a href="#11-&#x7F16;&#x7801;&#x89E3;&#x7801;&#x5668;"><b></b>1.1 &#x7F16;&#x7801;&#x89E3;&#x7801;&#x5668;</a></li></ul><li><span class="title-icon "></span><a href="#2-netty&#x7C98;&#x5305;&#x62C6;&#x5305;"><b></b>2. Netty&#x7C98;&#x5305;&#x62C6;&#x5305;</a></li><ul><li><span class="title-icon "></span><a href="#21-netty&#x5FC3;&#x8DF3;&#x68C0;&#x6D4B;&#x673A;&#x5236;"><b></b>2.1 Netty&#x5FC3;&#x8DF3;&#x68C0;&#x6D4B;&#x673A;&#x5236;</a></li></ul><li><span class="title-icon "></span><a href="#3-netty&#x96F6;&#x62F7;&#x8D1D;"><b></b>3. Netty&#x96F6;&#x62F7;&#x8D1D;</a></li><ul><li><span class="title-icon "></span><a href="#31-&#x76F4;&#x63A5;&#x5185;&#x5B58;"><b></b>3.1 &#x76F4;&#x63A5;&#x5185;&#x5B58;</a></li></ul></ul></ul></div><a href="#" id="anchorNavigationExGoTop"><i class="fa fa-arrow-up"></i></a><h2 id="1-netty&#x7F16;&#x89E3;&#x7801;"><a name="1-netty&#x7F16;&#x89E3;&#x7801;" class="anchor-navigation-ex-anchor" href="#1-netty&#x7F16;&#x89E3;&#x7801;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="1-netty&#x7F16;&#x89E3;&#x7801;" class="plugin-anchor" href="#1-netty&#x7F16;&#x89E3;&#x7801;"><i class="fa fa-link" aria-hidden="true"></i></a>1. Netty&#x7F16;&#x89E3;&#x7801;</h2>
+<p>Netty&#x6D89;&#x53CA;&#x5230;&#x7F16;&#x89E3;&#x7801;&#x7684;&#x7EC4;&#x4EF6;&#x6709;Channel&#x3001;ChannelHandler&#x3001;ChannelPipe&#x7B49;&#xFF0C;&#x5148;&#x5927;&#x6982;&#x4E86;&#x89E3;&#x4E0B;&#x8FD9;&#x51E0;&#x4E2A;&#x7EC4;&#x4EF6;&#x7684;&#x4F5C;&#x7528;&#x3002;</p>
+<h4 id="channelhandler"><a name="channelhandler" class="anchor-navigation-ex-anchor" href="#channelhandler"><i class="fa fa-link" aria-hidden="true"></i></a><a name="channelhandler" class="plugin-anchor" href="#channelhandler"><i class="fa fa-link" aria-hidden="true"></i></a>ChannelHandler</h4>
+<p>ChannelHandler&#x5145;&#x5F53;&#x4E86;&#x5904;&#x7406;&#x5165;&#x7AD9;&#x548C;&#x51FA;&#x7AD9;&#x6570;&#x636E;&#x7684;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x903B;&#x8F91;&#x5BB9;&#x5668;&#x3002;&#x4F8B;&#x5982;&#xFF0C;&#x5B9E;&#x73B0;ChannelInboundHandler&#x63A5;&#x53E3;&#xFF08;&#x6216;ChannelInboundHandlerAdapter&#xFF09;&#xFF0C;&#x4F60;&#x5C31;&#x53EF;&#x4EE5;&#x63A5;&#x6536;&#x5165;&#x7AD9;&#x4E8B;&#x4EF6;&#x548C;&#x6570;&#x636E;&#xFF0C;&#x8FD9;&#x4E9B;&#x6570;&#x636E;&#x968F;&#x540E;&#x4F1A;&#x88AB;&#x4F60;&#x7684;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x7684;&#x4E1A;&#x52A1;&#x903B;&#x8F91;&#x5904;&#x7406;&#x3002;&#x5F53;&#x4F60;&#x8981;&#x7ED9;&#x8FDE;&#x63A5;&#x7684;&#x5BA2;&#x6237;&#x7AEF;&#x53D1;&#x9001;&#x54CD;&#x5E94;&#x65F6;&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;&#x4ECE;ChannelInboundHandler&#x51B2;&#x5237;&#x6570;&#x636E;&#x3002;&#x4F60;&#x7684;&#x4E1A;&#x52A1;&#x903B;&#x8F91;&#x901A;&#x5E38;&#x5199;&#x5728;&#x4E00;&#x4E2A;&#x6216;&#x8005;&#x591A;&#x4E2A;ChannelInboundHandler&#x4E2D;&#x3002;ChannelOutboundHandler&#x539F;&#x7406;&#x4E00;&#x6837;&#xFF0C;&#x53EA;&#x4E0D;&#x8FC7;&#x5B83;&#x662F;&#x7528;&#x6765;&#x5904;&#x7406;&#x51FA;&#x7AD9;&#x6570;&#x636E;&#x7684;&#x3002;</p>
+<h4 id="channelpipeline"><a name="channelpipeline" class="anchor-navigation-ex-anchor" href="#channelpipeline"><i class="fa fa-link" aria-hidden="true"></i></a><a name="channelpipeline" class="plugin-anchor" href="#channelpipeline"><i class="fa fa-link" aria-hidden="true"></i></a>ChannelPipeline</h4>
+<p>ChannelPipeline&#x63D0;&#x4F9B;&#x4E86;ChannelHandler&#x94FE;&#x7684;&#x5BB9;&#x5668;&#x3002;<strong>&#x4EE5;&#x5BA2;&#x6237;&#x7AEF;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x4E3A;&#x4F8B;</strong>&#xFF0C;&#x5982;&#x679C;&#x4E8B;&#x4EF6;&#x7684;&#x8FD0;&#x52A8;&#x65B9;&#x5411;&#x662F;&#x4ECE;&#x5BA2;&#x6237;&#x7AEF;&#x5230;&#x670D;&#x52A1;&#x7AEF;&#x7684;&#xFF0C;&#x90A3;&#x4E48;&#x6211;&#x4EEC;&#x79F0;&#x8FD9;&#x4E9B;&#x4E8B;&#x4EF6;&#x4E3A;<strong>&#x51FA;&#x7AD9;&#x7684;</strong>&#xFF0C;&#x5373;&#x5BA2;&#x6237;&#x7AEF;&#x53D1;&#x9001;&#x7ED9;&#x670D;&#x52A1;&#x7AEF;&#x7684;&#x6570;&#x636E;&#x4F1A;&#x901A;&#x8FC7;pipeline&#x4E2D;&#x7684;&#x4E00;&#x7CFB;&#x5217;ChannelOutboundHandler&#xFF08;ChannelOutboundHandler&#x8C03;&#x7528;&#x662F;<strong>&#x4ECE;tail&#x5230;head&#x65B9;&#x5411;</strong>&#x9010;&#x4E2A;&#x8C03;&#x7528;&#x6BCF;&#x4E2A;handler&#x7684;&#x903B;&#x8F91;&#xFF09;&#xFF0C;&#x5E76;&#x88AB;&#x8FD9;&#x4E9B;Handler&#x5904;&#x7406;&#xFF0C;&#x53CD;&#x4E4B;&#x5219;&#x79F0;&#x4E3A;&#x5165;&#x7AD9;&#x7684;&#xFF0C;&#x5165;&#x7AD9;&#x53EA;&#x8C03;&#x7528;pipeline&#x91CC;&#x7684;ChannelInboundHandler&#x903B;&#x8F91;&#xFF08;ChannelInboundHandler&#x8C03;&#x7528;&#x662F;<strong>&#x4ECE;head&#x5230;tail&#x65B9;&#x5411;</strong>&#x9010;&#x4E2A;&#x8C03;&#x7528;&#x6BCF;&#x4E2A;handler&#x7684;&#x903B;&#x8F91;&#xFF09;&#x3002;</p>
+<h3 id="11-&#x7F16;&#x7801;&#x89E3;&#x7801;&#x5668;"><a name="11-&#x7F16;&#x7801;&#x89E3;&#x7801;&#x5668;" class="anchor-navigation-ex-anchor" href="#11-&#x7F16;&#x7801;&#x89E3;&#x7801;&#x5668;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="11-&#x7F16;&#x7801;&#x89E3;&#x7801;&#x5668;" class="plugin-anchor" href="#11-&#x7F16;&#x7801;&#x89E3;&#x7801;&#x5668;"><i class="fa fa-link" aria-hidden="true"></i></a>1.1 &#x7F16;&#x7801;&#x89E3;&#x7801;&#x5668;</h3>
+<p>&#x5F53;&#x4F60;&#x901A;&#x8FC7;Netty&#x53D1;&#x9001;&#x6216;&#x8005;&#x63A5;&#x53D7;&#x4E00;&#x4E2A;&#x6D88;&#x606F;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x5C31;&#x5C06;&#x4F1A;&#x53D1;&#x751F;&#x4E00;&#x6B21;&#x6570;&#x636E;&#x8F6C;&#x6362;&#x3002;&#x5165;&#x7AD9;&#x6D88;&#x606F;&#x4F1A;&#x88AB;<strong>&#x89E3;&#x7801;</strong>&#xFF1A;&#x4ECE;&#x5B57;&#x8282;&#x8F6C;&#x6362;&#x4E3A;&#x53E6;&#x4E00;&#x79CD;&#x683C;&#x5F0F;&#xFF08;&#x6BD4;&#x5982;java&#x5BF9;&#x8C61;&#xFF09;&#xFF1B;&#x5982;&#x679C;&#x662F;&#x51FA;&#x7AD9;&#x6D88;&#x606F;&#xFF0C;&#x5B83;&#x4F1A;&#x88AB;<strong>&#x7F16;&#x7801;&#x6210;&#x5B57;&#x8282;</strong>&#x3002;</p>
+<p>Netty&#x63D0;&#x4F9B;&#x4E86;&#x4E00;&#x7CFB;&#x5217;&#x5B9E;&#x7528;&#x7684;&#x7F16;&#x7801;&#x89E3;&#x7801;&#x5668;&#xFF0C;&#x4ED6;&#x4EEC;&#x90FD;&#x5B9E;&#x73B0;&#x4E86;ChannelInboundHadnler&#x6216;&#x8005;ChannelOutboundHandler&#x63A5;&#x53E3;&#x3002;&#x5728;&#x8FD9;&#x4E9B;&#x7C7B;&#x4E2D;&#xFF0C;channelRead&#x65B9;&#x6CD5;&#x5DF2;&#x7ECF;&#x88AB;&#x91CD;&#x5199;&#x4E86;&#x3002;&#x4EE5;&#x5165;&#x7AD9;&#x4E3A;&#x4F8B;&#xFF0C;&#x5BF9;&#x4E8E;&#x6BCF;&#x4E2A;&#x4ECE;&#x5165;&#x7AD9;Channel&#x8BFB;&#x53D6;&#x7684;&#x6D88;&#x606F;&#xFF0C;&#x8FD9;&#x4E2A;&#x65B9;&#x6CD5;&#x4F1A;&#x88AB;&#x8C03;&#x7528;&#x3002;&#x968F;&#x540E;&#xFF0C;&#x5B83;&#x5C06;&#x8C03;&#x7528;&#x7531;&#x5DF2;&#x77E5;&#x89E3;&#x7801;&#x5668;&#x6240;&#x63D0;&#x4F9B;&#x7684;decode()&#x65B9;&#x6CD5;&#x8FDB;&#x884C;&#x89E3;&#x7801;&#xFF0C;&#x5E76;&#x5C06;&#x5DF2;&#x7ECF;&#x89E3;&#x7801;&#x7684;&#x5B57;&#x8282;&#x8F6C;&#x53D1;&#x7ED9;ChannelPipeline&#x4E2D;&#x7684;&#x4E0B;&#x4E00;&#x4E2A;ChannelInboundHandler&#x3002;</p>
+<p>Netty&#x63D0;&#x4F9B;&#x4E86;&#x5F88;&#x591A;&#x7F16;&#x89E3;&#x7801;&#x5668;&#xFF0C;&#x6BD4;&#x5982;&#x7F16;&#x89E3;&#x7801;&#x5B57;&#x7B26;&#x4E32;&#x7684;StringEncoder&#x548C;StringDecoder&#xFF0C;&#x7F16;&#x89E3;&#x7801;&#x5BF9;&#x8C61;&#x7684;ObjectEncoder&#x548C;ObjectDecoder&#x7B49;&#x3002;</p>
+<p>&#x5F53;&#x7136;&#x4E5F;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x96C6;&#x6210;ByteToMessageDecoder&#x81EA;&#x5B9A;&#x4E49;&#x7F16;&#x89E3;&#x7801;&#x5668;&#x3002;</p>
+<h2 id="2-netty&#x7C98;&#x5305;&#x62C6;&#x5305;"><a name="2-netty&#x7C98;&#x5305;&#x62C6;&#x5305;" class="anchor-navigation-ex-anchor" href="#2-netty&#x7C98;&#x5305;&#x62C6;&#x5305;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="2-netty&#x7C98;&#x5305;&#x62C6;&#x5305;" class="plugin-anchor" href="#2-netty&#x7C98;&#x5305;&#x62C6;&#x5305;"><i class="fa fa-link" aria-hidden="true"></i></a>2. Netty&#x7C98;&#x5305;&#x62C6;&#x5305;</h2>
+<p>TCP&#x7C98;&#x5305;&#x62C6;&#x5305;&#x662F;&#x6307;&#x53D1;&#x9001;&#x65B9;&#x53D1;&#x9001;&#x7684;&#x82E5;&#x5E72;&#x5305;&#x6570;&#x636E;&#x5230;&#x63A5;&#x6536;&#x65B9;&#x63A5;&#x6536;&#x65F6;&#x7C98;&#x6210;&#x4E00;&#x5305;&#x6216;&#x67D0;&#x4E2A;&#x6570;&#x636E;&#x5305;&#x88AB;&#x62C6;&#x5F00;&#x63A5;&#x6536;&#x3002;&#x5982;&#x4E0B;&#x56FE;&#x6240;&#x793A;&#xFF0C;client&#x53D1;&#x4E86;&#x4E24;&#x4E2A;&#x6570;&#x636E;&#x5305;D1&#x548C;D2&#xFF0C;&#x4F46;&#x662F;server&#x7AEF;&#x53EF;&#x80FD;&#x4F1A;&#x6536;&#x5230;&#x5982;&#x4E0B;&#x51E0;&#x79CD;&#x60C5;&#x51B5;&#x7684;&#x6570;&#x636E;&#x3002;</p>
+<p><img src="../../source/images/ch-06/old/netty-pack-unpack.png" alt="netty-pack-unpack"></p>
+<h4 id="&#x4E3A;&#x4EC0;&#x4E48;&#x51FA;&#x73B0;&#x7C98;&#x5305;&#x73B0;&#x8C61;"><a name="&#x4E3A;&#x4EC0;&#x4E48;&#x51FA;&#x73B0;&#x7C98;&#x5305;&#x73B0;&#x8C61;" class="anchor-navigation-ex-anchor" href="#&#x4E3A;&#x4EC0;&#x4E48;&#x51FA;&#x73B0;&#x7C98;&#x5305;&#x73B0;&#x8C61;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x4E3A;&#x4EC0;&#x4E48;&#x51FA;&#x73B0;&#x7C98;&#x5305;&#x73B0;&#x8C61;" class="plugin-anchor" href="#&#x4E3A;&#x4EC0;&#x4E48;&#x51FA;&#x73B0;&#x7C98;&#x5305;&#x73B0;&#x8C61;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x4E3A;&#x4EC0;&#x4E48;&#x51FA;&#x73B0;&#x7C98;&#x5305;&#x73B0;&#x8C61;</h4>
+<p>TCP &#x662F;&#x9762;&#x5411;&#x8FDE;&#x63A5;&#x7684;&#xFF0C; &#x9762;&#x5411;&#x6D41;&#x7684;&#xFF0C; &#x63D0;&#x4F9B;&#x9AD8;&#x53EF;&#x9760;&#x6027;&#x670D;&#x52A1;&#x3002; &#x6536;&#x53D1;&#x4E24;&#x7AEF;&#xFF08;&#x5BA2;&#x6237;&#x7AEF;&#x548C;&#x670D;&#x52A1;&#x5668;&#x7AEF;&#xFF09; &#x90FD;&#x8981;&#x6709;&#x6210;&#x5BF9;&#x7684; socket&#xFF0C;&#x56E0;&#x6B64;&#xFF0C; &#x53D1;&#x9001;&#x7AEF;&#x4E3A;&#x4E86;&#x5C06;&#x591A;&#x4E2A;&#x53D1;&#x7ED9;&#x63A5;&#x6536;&#x7AEF;&#x7684;&#x5305;&#xFF0C; &#x66F4;&#x6709;&#x6548;&#x7684;&#x53D1;&#x7ED9;&#x5BF9;&#x65B9;&#xFF0C; &#x4F7F;&#x7528;&#x4E86;&#x4F18;&#x5316;&#x65B9;&#x6CD5;&#xFF08;Nagle &#x7B97;&#x6CD5;&#xFF09;&#xFF0C;&#x5C06;&#x591A;&#x6B21;&#x95F4;&#x9694;&#x8F83;&#x5C0F;&#x4E14;&#x6570;&#x636E;&#x91CF;&#x5C0F;&#x7684;&#x6570;&#x636E;&#xFF0C; &#x5408;&#x5E76;&#x6210;&#x4E00;&#x4E2A;&#x5927;&#x7684;&#x6570;&#x636E;&#x5757;&#xFF0C; &#x7136;&#x540E;&#x8FDB;&#x884C;&#x5C01;&#x5305;&#x3002; &#x8FD9;&#x6837;&#x505A;&#x867D;&#x7136;&#x63D0;&#x9AD8;&#x4E86;&#x6548;&#x7387;&#xFF0C; &#x4F46;&#x662F;&#x63A5;&#x6536;&#x7AEF;&#x5C31;&#x96BE;&#x4E8E;&#x5206;&#x8FA8;&#x51FA;&#x5B8C;&#x6574;&#x7684;&#x6570;&#x636E;&#x5305;&#x4E86;&#xFF0C; &#x56E0;&#x4E3A;&#x9762;&#x5411;&#x6D41;&#x7684;&#x901A;&#x4FE1;&#x662F;&#x65E0;&#x6D88;&#x606F;&#x4FDD;&#x62A4;&#x8FB9;&#x754C;&#x7684;&#x3002;</p>
+<h4 id="&#x89E3;&#x51B3;&#x65B9;&#x6848;"><a name="&#x89E3;&#x51B3;&#x65B9;&#x6848;" class="anchor-navigation-ex-anchor" href="#&#x89E3;&#x51B3;&#x65B9;&#x6848;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x89E3;&#x51B3;&#x65B9;&#x6848;" class="plugin-anchor" href="#&#x89E3;&#x51B3;&#x65B9;&#x6848;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x89E3;&#x51B3;&#x65B9;&#x6848;</h4>
+<ol>
+<li>&#x683C;&#x5F0F;&#x5316;&#x6570;&#x636E;&#xFF1A;&#x6BCF;&#x6761;&#x6570;&#x636E;&#x6709;&#x56FA;&#x5B9A;&#x7684;&#x683C;&#x5F0F;&#xFF08;&#x5F00;&#x59CB;&#x7B26;&#x3001;&#x7ED3;&#x675F;&#x7B26;&#xFF09;&#xFF0C;&#x8FD9;&#x79CD;&#x65B9;&#x6CD5;&#x7B80;&#x5355;&#x6613;&#x884C;&#xFF0C;&#x4F46;&#x9009;&#x62E9;&#x5F00;&#x59CB;&#x7B26;&#x548C;&#x7ED3;&#x675F;&#x7B26;&#x7684;&#x65F6;&#x5019;&#x4E00;&#x5B9A;&#x8981;&#x6CE8;&#x610F;&#x6BCF;&#x6761;&#x6570;&#x636E;&#x7684;&#x5185;&#x90E8;&#x4E00;&#x5B9A;&#x4E0D;&#x80FD;&#x51FA;&#x73B0;&#x5F00;&#x59CB;&#x7B26;&#x6216;&#x7ED3;&#x675F;&#x7B26;&#x3002;</li>
+<li>&#x53D1;&#x9001;&#x957F;&#x5EA6;&#xFF1A;&#x53D1;&#x9001;&#x6BCF;&#x6761;&#x6570;&#x636E;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x5C06;&#x6570;&#x636E;&#x7684;&#x957F;&#x5EA6;&#x4E00;&#x5E76;&#x53D1;&#x9001;&#xFF0C;&#x6BD4;&#x5982;&#x53EF;&#x4EE5;&#x9009;&#x62E9;&#x6BCF;&#x6761;&#x6570;&#x636E;&#x7684;&#x524D;4&#x4F4D;&#x662F;&#x6570;&#x636E;&#x7684;&#x957F;&#x5EA6;&#xFF0C;&#x5E94;&#x7528;&#x5C42;&#x5904;&#x7406;&#x65F6;&#x53EF;&#x4EE5;&#x6839;&#x636E;&#x957F;&#x5EA6;&#x6765;&#x5224;&#x65AD;&#x6BCF;&#x6761;&#x6570;&#x636E;&#x7684;&#x5F00;&#x59CB;&#x548C;&#x7ED3;&#x675F;&#x3002;</li>
+</ol>
+<h3 id="21-netty&#x5FC3;&#x8DF3;&#x68C0;&#x6D4B;&#x673A;&#x5236;"><a name="21-netty&#x5FC3;&#x8DF3;&#x68C0;&#x6D4B;&#x673A;&#x5236;" class="anchor-navigation-ex-anchor" href="#21-netty&#x5FC3;&#x8DF3;&#x68C0;&#x6D4B;&#x673A;&#x5236;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="21-netty&#x5FC3;&#x8DF3;&#x68C0;&#x6D4B;&#x673A;&#x5236;" class="plugin-anchor" href="#21-netty&#x5FC3;&#x8DF3;&#x68C0;&#x6D4B;&#x673A;&#x5236;"><i class="fa fa-link" aria-hidden="true"></i></a>2.1 Netty&#x5FC3;&#x8DF3;&#x68C0;&#x6D4B;&#x673A;&#x5236;</h3>
+<p>&#x6240;&#x8C13;&#x5FC3;&#x8DF3;, &#x5373;&#x5728; TCP &#x957F;&#x8FDE;&#x63A5;&#x4E2D;, &#x5BA2;&#x6237;&#x7AEF;&#x548C;&#x670D;&#x52A1;&#x5668;&#x4E4B;&#x95F4;&#x5B9A;&#x671F;&#x53D1;&#x9001;&#x7684;&#x4E00;&#x79CD;&#x7279;&#x6B8A;&#x7684;&#x6570;&#x636E;&#x5305;, &#x901A;&#x77E5;&#x5BF9;&#x65B9;&#x81EA;&#x5DF1;&#x8FD8;&#x5728;&#x7EBF;, &#x4EE5;&#x786E;&#x4FDD; TCP &#x8FDE;&#x63A5;&#x7684;&#x6709;&#x6548;&#x6027;.</p>
+<p>&#x5728; Netty &#x4E2D;, &#x5B9E;&#x73B0;&#x5FC3;&#x8DF3;&#x673A;&#x5236;&#x7684;&#x5173;&#x952E;&#x662F; IdleStateHandler, &#x770B;&#x4E0B;&#x5B83;&#x7684;&#x6784;&#x9020;&#x5668;&#xFF1A;</p>
+<pre><code class="lang-java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">IdleStateHandler</span><span class="hljs-params">(<span class="hljs-keyword">int</span> readerIdleTimeSeconds, <span class="hljs-keyword">int</span> writerIdleTimeSeconds, <span class="hljs-keyword">int</span> allIdleTimeSeconds)</span> </span>{
+    <span class="hljs-keyword">this</span>((<span class="hljs-keyword">long</span>)readerIdleTimeSeconds, (<span class="hljs-keyword">long</span>)writerIdleTimeSeconds, (<span class="hljs-keyword">long</span>)allIdleTimeSeconds, TimeUnit.SECONDS);
+}
+</code></pre>
+<p>&#x8FD9;&#x91CC;&#x89E3;&#x91CA;&#x4E0B;&#x4E09;&#x4E2A;&#x53C2;&#x6570;&#x7684;&#x542B;&#x4E49;&#xFF1A;</p>
+<ul>
+<li>readerIdleTimeSeconds: &#x8BFB;&#x8D85;&#x65F6;. &#x5373;&#x5F53;&#x5728;&#x6307;&#x5B9A;&#x7684;&#x65F6;&#x95F4;&#x95F4;&#x9694;&#x5185;&#x6CA1;&#x6709;&#x4ECE; Channel &#x8BFB;&#x53D6;&#x5230;&#x6570;&#x636E;&#x65F6;, &#x4F1A;&#x89E6;&#x53D1;&#x4E00;&#x4E2A; READER_IDLE &#x7684; IdleStateEvent &#x4E8B;&#x4EF6;.</li>
+<li>writerIdleTimeSeconds: &#x5199;&#x8D85;&#x65F6;. &#x5373;&#x5F53;&#x5728;&#x6307;&#x5B9A;&#x7684;&#x65F6;&#x95F4;&#x95F4;&#x9694;&#x5185;&#x6CA1;&#x6709;&#x6570;&#x636E;&#x5199;&#x5165;&#x5230; Channel &#x65F6;, &#x4F1A;&#x89E6;&#x53D1;&#x4E00;&#x4E2A; WRITER_IDLE &#x7684; IdleStateEvent &#x4E8B;&#x4EF6;.</li>
+<li>allIdleTimeSeconds: &#x8BFB;/&#x5199;&#x8D85;&#x65F6;. &#x5373;&#x5F53;&#x5728;&#x6307;&#x5B9A;&#x7684;&#x65F6;&#x95F4;&#x95F4;&#x9694;&#x5185;&#x6CA1;&#x6709;&#x8BFB;&#x6216;&#x5199;&#x64CD;&#x4F5C;&#x65F6;, &#x4F1A;&#x89E6;&#x53D1;&#x4E00;&#x4E2A; ALL_IDLE &#x7684; IdleStateEvent &#x4E8B;&#x4EF6;.</li>
+</ul>
+<p>&#x6CE8;&#xFF1A;&#x8FD9;&#x4E09;&#x4E2A;&#x53C2;&#x6570;&#x9ED8;&#x8BA4;&#x7684;&#x65F6;&#x95F4;&#x5355;&#x4F4D;&#x662F;&#x79D2;&#x3002;&#x82E5;&#x9700;&#x8981;&#x6307;&#x5B9A;&#x5176;&#x4ED6;&#x65F6;&#x95F4;&#x5355;&#x4F4D;&#xFF0C;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x53E6;&#x4E00;&#x4E2A;&#x6784;&#x9020;&#x65B9;&#x6CD5;&#xFF1A;</p>
+<pre><code class="lang-java">IdleStateHandler(<span class="hljs-keyword">boolean</span> observeOutput, <span class="hljs-keyword">long</span> readerIdleTime, <span class="hljs-keyword">long</span> writerIdleTime, <span class="hljs-keyword">long</span> allIdleTime, TimeUnit unit)
+</code></pre>
+<p>&#x8981;&#x5B9E;&#x73B0;Netty&#x670D;&#x52A1;&#x7AEF;&#x5FC3;&#x8DF3;&#x68C0;&#x6D4B;&#x673A;&#x5236;&#x9700;&#x8981;&#x5728;&#x670D;&#x52A1;&#x5668;&#x7AEF;&#x7684;ChannelInitializer&#x4E2D;&#x52A0;&#x5165;&#x5982;&#x4E0B;&#x7684;&#x4EE3;&#x7801;&#xFF1A;</p>
+<pre><code class="lang-java">pipeline.addLast(<span class="hljs-keyword">new</span> IdleStateHandler(<span class="hljs-number">3</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, TimeUnit.SECONDS));
+</code></pre>
+<p>&#x521D;&#x6B65;&#x5730;&#x770B;&#x4E0B;IdleStateHandler&#x6E90;&#x7801;&#xFF0C;&#x5148;&#x770B;&#x4E0B;IdleStateHandler&#x4E2D;&#x7684;channelRead&#x65B9;&#x6CD5;&#xFF1A;</p>
+<p><img src="../../source/images/ch-06/old/netty-sample-01.png" alt="netty-sample-01"></p>
+<p>&#x7EA2;&#x6846;&#x4EE3;&#x7801;&#x5176;&#x5B9E;&#x8868;&#x793A;&#x8BE5;&#x65B9;&#x6CD5;&#x53EA;&#x662F;&#x8FDB;&#x884C;&#x4E86;&#x900F;&#x4F20;&#xFF0C;&#x4E0D;&#x505A;&#x4EFB;&#x4F55;&#x4E1A;&#x52A1;&#x903B;&#x8F91;&#x5904;&#x7406;&#xFF0C;&#x8BA9;channelPipe&#x4E2D;&#x7684;&#x4E0B;&#x4E00;&#x4E2A;handler&#x5904;&#x7406;channelRead&#x65B9;&#x6CD5;</p>
+<p>&#x6211;&#x4EEC;&#x518D;&#x770B;&#x770B;channelActive&#x65B9;&#x6CD5;&#xFF1A;</p>
+<p><img src="../../source/images/ch-06/old/netty-sample-02.png" alt="netty-sample-02"></p>
+<p>&#x8FD9;&#x91CC;&#x6709;&#x4E2A;initialize&#x7684;&#x65B9;&#x6CD5;&#xFF0C;&#x8FD9;&#x662F;IdleStateHandler&#x7684;&#x7CBE;&#x9AD3;&#xFF0C;&#x63A5;&#x7740;&#x63A2;&#x7A76;&#xFF1A;</p>
+<p><img src="../../source/images/ch-06/old/netty-sample-03.png" alt="netty-sample-03"></p>
+<p>&#x8FD9;&#x8FB9;&#x4F1A;&#x89E6;&#x53D1;&#x4E00;&#x4E2A;Task&#xFF0C;ReaderIdleTimeoutTask&#xFF0C;&#x8FD9;&#x4E2A;task&#x91CC;&#x7684;run&#x65B9;&#x6CD5;&#x6E90;&#x7801;&#x662F;&#x8FD9;&#x6837;&#x7684;&#xFF1A;</p>
+<p><img src="../../source/images/ch-06/old/netty-sample-04.png" alt="netty-sample-04"></p>
+<p>&#x7B2C;&#x4E00;&#x4E2A;&#x7EA2;&#x6846;&#x4EE3;&#x7801;&#x662F;&#x7528;&#x5F53;&#x524D;&#x65F6;&#x95F4;&#x51CF;&#x53BB;&#x6700;&#x540E;&#x4E00;&#x6B21;channelRead&#x65B9;&#x6CD5;&#x8C03;&#x7528;&#x7684;&#x65F6;&#x95F4;&#xFF0C;&#x5047;&#x5982;&#x8FD9;&#x4E2A;&#x7ED3;&#x679C;&#x662F;6s&#xFF0C;&#x8BF4;&#x660E;&#x6700;&#x540E;&#x4E00;&#x6B21;&#x8C03;&#x7528;channelRead&#x5DF2;&#x7ECF;&#x662F;6s&#x4E4B;&#x524D;&#x7684;&#x4E8B;&#x60C5;&#x4E86;&#xFF0C;&#x4F60;&#x8BBE;&#x7F6E;&#x7684;&#x662F;5s&#xFF0C;&#x90A3;&#x4E48;nextDelay&#x5219;&#x4E3A;-1&#xFF0C;&#x8BF4;&#x660E;&#x8D85;&#x65F6;&#x4E86;&#xFF0C;&#x90A3;&#x4E48;&#x7B2C;&#x4E8C;&#x4E2A;&#x7EA2;&#x6846;&#x4EE3;&#x7801;&#x5219;&#x4F1A;&#x89E6;&#x53D1;&#x4E0B;&#x4E00;&#x4E2A;handler&#x7684;userEventTriggered&#x65B9;&#x6CD5;&#xFF1A;</p>
+<p><img src="../../source/images/ch-06/old/netty-sample-05.png" alt="netty-sample-05"></p>
+<p>&#x5982;&#x679C;&#x6CA1;&#x6709;&#x8D85;&#x65F6;&#x5219;&#x4E0D;&#x89E6;&#x53D1;userEventTriggered&#x65B9;&#x6CD5;&#x3002;</p>
+<p>Netty&#x5FC3;&#x8DF3;&#x68C0;&#x6D4B;&#x4EE3;&#x7801;&#x793A;&#x4F8B;&#xFF1A;</p>
+<pre><code class="lang-java"><span class="hljs-comment">//&#x670D;&#x52A1;&#x7AEF;&#x4EE3;&#x7801;</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">HeartBeatServer</span> </span>{
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> Exception </span>{
+        EventLoopGroup boss = <span class="hljs-keyword">new</span> NioEventLoopGroup();
+        EventLoopGroup worker = <span class="hljs-keyword">new</span> NioEventLoopGroup();
+        <span class="hljs-keyword">try</span> {
+            ServerBootstrap bootstrap = <span class="hljs-keyword">new</span> ServerBootstrap();
+            bootstrap.group(boss, worker)
+                    .channel(NioServerSocketChannel.class)
+                    .childHandler(<span class="hljs-keyword">new</span> ChannelInitializer&lt;SocketChannel&gt;() {
+                        <span class="hljs-meta">@Override</span>
+                        <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">initChannel</span><span class="hljs-params">(SocketChannel ch)</span> <span class="hljs-keyword">throws</span> Exception </span>{
+                            ChannelPipeline pipeline = ch.pipeline();
+                            pipeline.addLast(<span class="hljs-string">&quot;decoder&quot;</span>, <span class="hljs-keyword">new</span> StringDecoder());
+                            pipeline.addLast(<span class="hljs-string">&quot;encoder&quot;</span>, <span class="hljs-keyword">new</span> StringEncoder());
+                            <span class="hljs-comment">//IdleStateHandler&#x7684;readerIdleTime&#x53C2;&#x6570;&#x6307;&#x5B9A;&#x8D85;&#x8FC7;3&#x79D2;&#x8FD8;&#x6CA1;&#x6536;&#x5230;&#x5BA2;&#x6237;&#x7AEF;&#x7684;&#x8FDE;&#x63A5;</span>
+                            <span class="hljs-comment">//&#x4F1A;&#x89E6;&#x53D1;IdleStateEvent&#x4E8B;&#x4EF6;&#x5E76;&#x4E14;&#x4EA4;&#x7ED9;&#x4E0B;&#x4E00;&#x4E2A;handler&#x5904;&#x7406;&#xFF0C;&#x4E0B;&#x4E00;&#x4E2A;handler&#x5FC5;&#x987B;</span>
+                            <span class="hljs-comment">//&#x5B9E;&#x73B0;userEventTriggered&#x65B9;&#x6CD5;&#x5904;&#x7406;&#x5BF9;&#x5E94;&#x4E8B;&#x4EF6;</span>
+                            pipeline.addLast(<span class="hljs-keyword">new</span> IdleStateHandler(<span class="hljs-number">3</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, TimeUnit.SECONDS));
+                            pipeline.addLast(<span class="hljs-keyword">new</span> HeartBeatHandler());
+                        }
+                    });
+            System.out.println(<span class="hljs-string">&quot;netty server start&#x3002;&#x3002;&quot;</span>);
+            ChannelFuture future = bootstrap.bind(<span class="hljs-number">9000</span>).sync();
+            future.channel().closeFuture().sync();
+        } <span class="hljs-keyword">catch</span> (Exception e) {
+            e.printStackTrace();
+        } <span class="hljs-keyword">finally</span> {
+            worker.shutdownGracefully();
+            boss.shutdownGracefully();
+        }
+    }
+}
+
+<span class="hljs-comment">//&#x670D;&#x52A1;&#x7AEF;&#x5904;&#x7406;handler</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">HeartBeatServerHandler</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">SimpleChannelInboundHandler</span>&lt;<span class="hljs-title">String</span>&gt; </span>{
+
+    <span class="hljs-keyword">int</span> readIdleTimes = <span class="hljs-number">0</span>;
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">channelRead0</span><span class="hljs-params">(ChannelHandlerContext ctx, String s)</span> <span class="hljs-keyword">throws</span> Exception </span>{
+        System.out.println(<span class="hljs-string">&quot; ====== &gt; [server] message received : &quot;</span> + s);
+        <span class="hljs-keyword">if</span> (<span class="hljs-string">&quot;Heartbeat Packet&quot;</span>.equals(s)) {
+            ctx.channel().writeAndFlush(<span class="hljs-string">&quot;ok&quot;</span>);
+        } <span class="hljs-keyword">else</span> {
+            System.out.println(<span class="hljs-string">&quot; &#x5176;&#x4ED6;&#x4FE1;&#x606F;&#x5904;&#x7406; ... &quot;</span>);
+        }
+    }
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">userEventTriggered</span><span class="hljs-params">(ChannelHandlerContext ctx, Object evt)</span> <span class="hljs-keyword">throws</span> Exception </span>{
+        IdleStateEvent event = (IdleStateEvent) evt;
+
+        String eventType = <span class="hljs-keyword">null</span>;
+        <span class="hljs-keyword">switch</span> (event.state()) {
+            <span class="hljs-keyword">case</span> READER_IDLE:
+                eventType = <span class="hljs-string">&quot;&#x8BFB;&#x7A7A;&#x95F2;&quot;</span>;
+                readIdleTimes++; <span class="hljs-comment">// &#x8BFB;&#x7A7A;&#x95F2;&#x7684;&#x8BA1;&#x6570;&#x52A0;1</span>
+                <span class="hljs-keyword">break</span>;
+            <span class="hljs-keyword">case</span> WRITER_IDLE:
+                eventType = <span class="hljs-string">&quot;&#x5199;&#x7A7A;&#x95F2;&quot;</span>;
+                <span class="hljs-comment">// &#x4E0D;&#x5904;&#x7406;</span>
+                <span class="hljs-keyword">break</span>;
+            <span class="hljs-keyword">case</span> ALL_IDLE:
+                eventType = <span class="hljs-string">&quot;&#x8BFB;&#x5199;&#x7A7A;&#x95F2;&quot;</span>;
+                <span class="hljs-comment">// &#x4E0D;&#x5904;&#x7406;</span>
+                <span class="hljs-keyword">break</span>;
+        }
+        System.out.println(ctx.channel().remoteAddress() + <span class="hljs-string">&quot;&#x8D85;&#x65F6;&#x4E8B;&#x4EF6;&#xFF1A;&quot;</span> + eventType);
+        <span class="hljs-keyword">if</span> (readIdleTimes &gt; <span class="hljs-number">3</span>) {
+            System.out.println(<span class="hljs-string">&quot; [server]&#x8BFB;&#x7A7A;&#x95F2;&#x8D85;&#x8FC7;3&#x6B21;&#xFF0C;&#x5173;&#x95ED;&#x8FDE;&#x63A5;&#xFF0C;&#x91CA;&#x653E;&#x66F4;&#x591A;&#x8D44;&#x6E90;&quot;</span>);
+            ctx.channel().writeAndFlush(<span class="hljs-string">&quot;idle close&quot;</span>);
+            ctx.channel().close();
+        }
+    }
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">channelActive</span><span class="hljs-params">(ChannelHandlerContext ctx)</span> <span class="hljs-keyword">throws</span> Exception </span>{
+        System.err.println(<span class="hljs-string">&quot;=== &quot;</span> + ctx.channel().remoteAddress() + <span class="hljs-string">&quot; is active ===&quot;</span>);
+    }
+}
+   <span class="hljs-comment">//&#x5BA2;&#x6237;&#x7AEF;&#x4EE3;&#x7801;</span>
+   <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">HeartBeatClient</span> </span>{
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> Exception </span>{
+        EventLoopGroup eventLoopGroup = <span class="hljs-keyword">new</span> NioEventLoopGroup();
+        <span class="hljs-keyword">try</span> {
+            Bootstrap bootstrap = <span class="hljs-keyword">new</span> Bootstrap();
+            bootstrap.group(eventLoopGroup).channel(NioSocketChannel.class)
+                    .handler(<span class="hljs-keyword">new</span> ChannelInitializer&lt;SocketChannel&gt;() {
+                        <span class="hljs-meta">@Override</span>
+                        <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">initChannel</span><span class="hljs-params">(SocketChannel ch)</span> <span class="hljs-keyword">throws</span> Exception </span>{
+                            ChannelPipeline pipeline = ch.pipeline();
+                            pipeline.addLast(<span class="hljs-string">&quot;decoder&quot;</span>, <span class="hljs-keyword">new</span> StringDecoder());
+                            pipeline.addLast(<span class="hljs-string">&quot;encoder&quot;</span>, <span class="hljs-keyword">new</span> StringEncoder());
+                            pipeline.addLast(<span class="hljs-keyword">new</span> HeartBeatClientHandler());
+                        }
+                    });
+
+            System.out.println(<span class="hljs-string">&quot;netty client start&#x3002;&#x3002;&quot;</span>);
+            Channel channel = bootstrap.connect(<span class="hljs-string">&quot;127.0.0.1&quot;</span>, <span class="hljs-number">9000</span>).sync().channel();
+            String text = <span class="hljs-string">&quot;Heartbeat Packet&quot;</span>;
+            Random random = <span class="hljs-keyword">new</span> Random();
+            <span class="hljs-keyword">while</span> (channel.isActive()) {
+                <span class="hljs-keyword">int</span> num = random.nextInt(<span class="hljs-number">10</span>);
+                Thread.sleep(num * <span class="hljs-number">1000</span>);
+                channel.writeAndFlush(text);
+            }
+        } <span class="hljs-keyword">catch</span> (Exception e) {
+            e.printStackTrace();
+        } <span class="hljs-keyword">finally</span> {
+            eventLoopGroup.shutdownGracefully();
+        }
+    }
+
+    <span class="hljs-keyword">static</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">HeartBeatClientHandler</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">SimpleChannelInboundHandler</span>&lt;<span class="hljs-title">String</span>&gt; </span>{
+
+        <span class="hljs-meta">@Override</span>
+        <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">channelRead0</span><span class="hljs-params">(ChannelHandlerContext ctx, String msg)</span> <span class="hljs-keyword">throws</span> Exception </span>{
+            System.out.println(<span class="hljs-string">&quot; client received :&quot;</span> + msg);
+            <span class="hljs-keyword">if</span> (msg != <span class="hljs-keyword">null</span> &amp;&amp; msg.equals(<span class="hljs-string">&quot;idle close&quot;</span>)) {
+                System.out.println(<span class="hljs-string">&quot; &#x670D;&#x52A1;&#x7AEF;&#x5173;&#x95ED;&#x8FDE;&#x63A5;&#xFF0C;&#x5BA2;&#x6237;&#x7AEF;&#x4E5F;&#x5173;&#x95ED;&quot;</span>);
+                ctx.channel().closeFuture();
+            }
+        }
+    }
+}
+</code></pre>
+<h2 id="3-netty&#x96F6;&#x62F7;&#x8D1D;"><a name="3-netty&#x96F6;&#x62F7;&#x8D1D;" class="anchor-navigation-ex-anchor" href="#3-netty&#x96F6;&#x62F7;&#x8D1D;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="3-netty&#x96F6;&#x62F7;&#x8D1D;" class="plugin-anchor" href="#3-netty&#x96F6;&#x62F7;&#x8D1D;"><i class="fa fa-link" aria-hidden="true"></i></a>3. Netty&#x96F6;&#x62F7;&#x8D1D;</h2>
+<p>Netty&#x7684;&#x63A5;&#x6536;&#x548C;&#x53D1;&#x9001;ByteBuffer&#x91C7;&#x7528;DIRECT BUFFERS&#xFF0C;&#x4F7F;&#x7528;&#x5806;&#x5916;<strong>&#x76F4;&#x63A5;&#x5185;&#x5B58;</strong>&#x8FDB;&#x884C;Socket&#x8BFB;&#x5199;&#xFF0C;&#x4E0D;&#x9700;&#x8981;&#x8FDB;&#x884C;&#x5B57;&#x8282;&#x7F13;&#x51B2;&#x533A;&#x7684;&#x4E8C;&#x6B21;&#x62F7;&#x8D1D;&#x3002;</p>
+<p>&#x5982;&#x679C;&#x4F7F;&#x7528;&#x4F20;&#x7EDF;&#x7684;JVM&#x5806;&#x5185;&#x5B58;&#xFF08;HEAP BUFFERS&#xFF09;&#x8FDB;&#x884C;Socket&#x8BFB;&#x5199;&#xFF0C;JVM&#x4F1A;&#x5C06;&#x5806;&#x5185;&#x5B58;Buffer&#x62F7;&#x8D1D;&#x4E00;&#x4EFD;&#x5230;&#x76F4;&#x63A5;&#x5185;&#x5B58;&#x4E2D;&#xFF0C;&#x7136;&#x540E;&#x624D;&#x80FD;&#x5199;&#x5165;Socket&#x4E2D;&#x3002;JVM&#x5806;&#x5185;&#x5B58;&#x7684;&#x6570;&#x636E;&#x662F;&#x4E0D;&#x80FD;&#x76F4;&#x63A5;&#x5199;&#x5165;Socket&#x4E2D;&#x7684;&#x3002;&#x76F8;&#x6BD4;&#x4E8E;&#x5806;&#x5916;&#x76F4;&#x63A5;&#x5185;&#x5B58;&#xFF0C;&#x6D88;&#x606F;&#x5728;&#x53D1;&#x9001;&#x8FC7;&#x7A0B;&#x4E2D;&#x591A;&#x4E86;&#x4E00;&#x6B21;&#x7F13;&#x51B2;&#x533A;&#x7684;&#x5185;&#x5B58;&#x62F7;&#x8D1D;&#x3002;</p>
+<p>&#x53EF;&#x4EE5;&#x770B;&#x4E0B;netty&#x7684;&#x8BFB;&#x5199;&#x6E90;&#x7801;&#xFF0C;&#x6BD4;&#x5982;read&#x6E90;&#x7801; <code>NioByteUnsafe.read()</code></p>
+<p><img src="../../source/images/ch-06/old/netty-sample-06.png" alt="netty-sample-06"></p>
+<p><img src="../../source/images/ch-06/old/netty-sample-07.png" alt="netty-sample-07"></p>
+<p><img src="../../source/images/ch-06/old/netty-sample-08.png" alt="netty-sample-08"></p>
+<h3 id="31-&#x76F4;&#x63A5;&#x5185;&#x5B58;"><a name="31-&#x76F4;&#x63A5;&#x5185;&#x5B58;" class="anchor-navigation-ex-anchor" href="#31-&#x76F4;&#x63A5;&#x5185;&#x5B58;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="31-&#x76F4;&#x63A5;&#x5185;&#x5B58;" class="plugin-anchor" href="#31-&#x76F4;&#x63A5;&#x5185;&#x5B58;"><i class="fa fa-link" aria-hidden="true"></i></a>3.1 &#x76F4;&#x63A5;&#x5185;&#x5B58;</h3>
+<p>&#x76F4;&#x63A5;&#x5185;&#x5B58;&#xFF08;Direct Memory&#xFF09;&#x5E76;&#x4E0D;&#x662F;&#x865A;&#x62DF;&#x673A;&#x8FD0;&#x884C;&#x65F6;&#x6570;&#x636E;&#x533A;&#x7684;&#x4E00;&#x90E8;&#x5206;&#xFF0C;&#x4E5F;&#x4E0D;&#x662F;Java&#x865A;&#x62DF;&#x673A;&#x89C4;&#x8303;&#x4E2D;&#x5B9A;&#x4E49;&#x7684;&#x5185;&#x5B58;&#x533A;&#x57DF;&#xFF0C;&#x67D0;&#x4E9B;&#x60C5;&#x51B5;&#x4E0B;&#x8FD9;&#x90E8;&#x5206;&#x5185;&#x5B58;&#x4E5F;&#x4F1A;&#x88AB;&#x9891;&#x7E41;&#x5730;&#x4F7F;&#x7528;&#xFF0C;&#x800C;&#x4E14;&#x4E5F;&#x53EF;&#x80FD;&#x5BFC;&#x81F4;OutOfMemoryError&#x5F02;&#x5E38;&#x51FA;&#x73B0;&#x3002;Java&#x91CC;&#x7528;DirectByteBuffer&#x53EF;&#x4EE5;&#x5206;&#x914D;&#x4E00;&#x5757;&#x76F4;&#x63A5;&#x5185;&#x5B58;(&#x5806;&#x5916;&#x5185;&#x5B58;)&#xFF0C;&#x5143;&#x7A7A;&#x95F4;&#x5BF9;&#x5E94;&#x7684;&#x5185;&#x5B58;&#x4E5F;&#x53EB;&#x4F5C;&#x76F4;&#x63A5;&#x5185;&#x5B58;&#xFF0C;&#x5B83;&#x4EEC;&#x5BF9;&#x5E94;&#x7684;&#x90FD;&#x662F;&#x673A;&#x5668;&#x7684;&#x7269;&#x7406;&#x5185;&#x5B58;&#x3002;</p>
+<p><img src="../../source/images/ch-06/old/netty-direct-memory.png" alt="netty-direct-memory"></p>
+<pre><code class="lang-java"><span class="hljs-comment">/**
+ * &#x76F4;&#x63A5;&#x5185;&#x5B58;&#x4E0E;&#x5806;&#x5185;&#x5B58;&#x7684;&#x533A;&#x522B;
+ */</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">DirectMemoryTest</span> </span>{
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">heapAccess</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-keyword">long</span> startTime = System.currentTimeMillis();
+        <span class="hljs-comment">//&#x5206;&#x914D;&#x5806;&#x5185;&#x5B58;</span>
+        ByteBuffer buffer = ByteBuffer.allocate(<span class="hljs-number">1000</span>);
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">100000</span>; i++) {
+            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> j = <span class="hljs-number">0</span>; j &lt; <span class="hljs-number">200</span>; j++) {
+                buffer.putInt(j);
+            }
+            buffer.flip();
+            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> j = <span class="hljs-number">0</span>; j &lt; <span class="hljs-number">200</span>; j++) {
+                buffer.getInt();
+            }
+            buffer.clear();
+        }
+        <span class="hljs-keyword">long</span> endTime = System.currentTimeMillis();
+        System.out.println(<span class="hljs-string">&quot;&#x5806;&#x5185;&#x5B58;&#x8BBF;&#x95EE;:&quot;</span> + (endTime - startTime) + <span class="hljs-string">&quot;ms&quot;</span>);
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">directAccess</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-keyword">long</span> startTime = System.currentTimeMillis();
+        <span class="hljs-comment">//&#x5206;&#x914D;&#x76F4;&#x63A5;&#x5185;&#x5B58;</span>
+        ByteBuffer buffer = ByteBuffer.allocateDirect(<span class="hljs-number">1000</span>);
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">100000</span>; i++) {
+            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> j = <span class="hljs-number">0</span>; j &lt; <span class="hljs-number">200</span>; j++) {
+                buffer.putInt(j);
+            }
+            buffer.flip();
+            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> j = <span class="hljs-number">0</span>; j &lt; <span class="hljs-number">200</span>; j++) {
+                buffer.getInt();
+            }
+            buffer.clear();
+        }
+        <span class="hljs-keyword">long</span> endTime = System.currentTimeMillis();
+        System.out.println(<span class="hljs-string">&quot;&#x76F4;&#x63A5;&#x5185;&#x5B58;&#x8BBF;&#x95EE;:&quot;</span> + (endTime - startTime) + <span class="hljs-string">&quot;ms&quot;</span>);
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">heapAllocate</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-keyword">long</span> startTime = System.currentTimeMillis();
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">100000</span>; i++) {
+            ByteBuffer.allocate(<span class="hljs-number">100</span>);
+        }
+        <span class="hljs-keyword">long</span> endTime = System.currentTimeMillis();
+        System.out.println(<span class="hljs-string">&quot;&#x5806;&#x5185;&#x5B58;&#x7533;&#x8BF7;:&quot;</span> + (endTime - startTime) + <span class="hljs-string">&quot;ms&quot;</span>);
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">directAllocate</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-keyword">long</span> startTime = System.currentTimeMillis();
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">100000</span>; i++) {
+            ByteBuffer.allocateDirect(<span class="hljs-number">100</span>);
+        }
+        <span class="hljs-keyword">long</span> endTime = System.currentTimeMillis();
+        System.out.println(<span class="hljs-string">&quot;&#x76F4;&#x63A5;&#x5185;&#x5B58;&#x7533;&#x8BF7;:&quot;</span> + (endTime - startTime) + <span class="hljs-string">&quot;ms&quot;</span>);
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String args[])</span> </span>{
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">10</span>; i++) {
+            heapAccess();
+            directAccess();
+        }
+
+        System.out.println();
+
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">10</span>; i++) {
+            heapAllocate();
+            directAllocate();
+        }
+    }
+}
+
+&#x8FD0;&#x884C;&#x7ED3;&#x679C;&#xFF1A;
+&#x5806;&#x5185;&#x5B58;&#x8BBF;&#x95EE;:<span class="hljs-number">44</span>ms
+&#x76F4;&#x63A5;&#x5185;&#x5B58;&#x8BBF;&#x95EE;:<span class="hljs-number">29</span>ms
+&#x5806;&#x5185;&#x5B58;&#x8BBF;&#x95EE;:<span class="hljs-number">33</span>ms
+&#x76F4;&#x63A5;&#x5185;&#x5B58;&#x8BBF;&#x95EE;:<span class="hljs-number">19</span>ms
+&#x5806;&#x5185;&#x5B58;&#x8BBF;&#x95EE;:<span class="hljs-number">55</span>ms
+&#x76F4;&#x63A5;&#x5185;&#x5B58;&#x8BBF;&#x95EE;:<span class="hljs-number">38</span>ms
+&#x5806;&#x5185;&#x5B58;&#x8BBF;&#x95EE;:<span class="hljs-number">39</span>ms
+&#x76F4;&#x63A5;&#x5185;&#x5B58;&#x8BBF;&#x95EE;:<span class="hljs-number">20</span>ms
+&#x5806;&#x5185;&#x5B58;&#x8BBF;&#x95EE;:<span class="hljs-number">38</span>ms
+&#x76F4;&#x63A5;&#x5185;&#x5B58;&#x8BBF;&#x95EE;:<span class="hljs-number">18</span>ms
+&#x5806;&#x5185;&#x5B58;&#x8BBF;&#x95EE;:<span class="hljs-number">36</span>ms
+&#x76F4;&#x63A5;&#x5185;&#x5B58;&#x8BBF;&#x95EE;:<span class="hljs-number">19</span>ms
+&#x5806;&#x5185;&#x5B58;&#x8BBF;&#x95EE;:<span class="hljs-number">34</span>ms
+&#x76F4;&#x63A5;&#x5185;&#x5B58;&#x8BBF;&#x95EE;:<span class="hljs-number">19</span>ms
+&#x5806;&#x5185;&#x5B58;&#x8BBF;&#x95EE;:<span class="hljs-number">40</span>ms
+&#x76F4;&#x63A5;&#x5185;&#x5B58;&#x8BBF;&#x95EE;:<span class="hljs-number">20</span>ms
+&#x5806;&#x5185;&#x5B58;&#x8BBF;&#x95EE;:<span class="hljs-number">37</span>ms
+&#x76F4;&#x63A5;&#x5185;&#x5B58;&#x8BBF;&#x95EE;:<span class="hljs-number">24</span>ms
+&#x5806;&#x5185;&#x5B58;&#x8BBF;&#x95EE;:<span class="hljs-number">59</span>ms
+&#x76F4;&#x63A5;&#x5185;&#x5B58;&#x8BBF;&#x95EE;:<span class="hljs-number">25</span>ms
+
+&#x5806;&#x5185;&#x5B58;&#x7533;&#x8BF7;:<span class="hljs-number">11</span>ms
+&#x76F4;&#x63A5;&#x5185;&#x5B58;&#x7533;&#x8BF7;:<span class="hljs-number">36</span>ms
+&#x5806;&#x5185;&#x5B58;&#x7533;&#x8BF7;:<span class="hljs-number">13</span>ms
+&#x76F4;&#x63A5;&#x5185;&#x5B58;&#x7533;&#x8BF7;:<span class="hljs-number">52</span>ms
+&#x5806;&#x5185;&#x5B58;&#x7533;&#x8BF7;:<span class="hljs-number">62</span>ms
+&#x76F4;&#x63A5;&#x5185;&#x5B58;&#x7533;&#x8BF7;:<span class="hljs-number">40</span>ms
+&#x5806;&#x5185;&#x5B58;&#x7533;&#x8BF7;:<span class="hljs-number">2</span>ms
+&#x76F4;&#x63A5;&#x5185;&#x5B58;&#x7533;&#x8BF7;:<span class="hljs-number">37</span>ms
+&#x5806;&#x5185;&#x5B58;&#x7533;&#x8BF7;:<span class="hljs-number">1</span>ms
+&#x76F4;&#x63A5;&#x5185;&#x5B58;&#x7533;&#x8BF7;:<span class="hljs-number">81</span>ms
+&#x5806;&#x5185;&#x5B58;&#x7533;&#x8BF7;:<span class="hljs-number">2</span>ms
+&#x76F4;&#x63A5;&#x5185;&#x5B58;&#x7533;&#x8BF7;:<span class="hljs-number">23</span>ms
+&#x5806;&#x5185;&#x5B58;&#x7533;&#x8BF7;:<span class="hljs-number">1</span>ms
+&#x76F4;&#x63A5;&#x5185;&#x5B58;&#x7533;&#x8BF7;:<span class="hljs-number">31</span>ms
+&#x5806;&#x5185;&#x5B58;&#x7533;&#x8BF7;:<span class="hljs-number">2</span>ms
+&#x76F4;&#x63A5;&#x5185;&#x5B58;&#x7533;&#x8BF7;:<span class="hljs-number">32</span>ms
+&#x5806;&#x5185;&#x5B58;&#x7533;&#x8BF7;:<span class="hljs-number">7</span>ms
+&#x76F4;&#x63A5;&#x5185;&#x5B58;&#x7533;&#x8BF7;:<span class="hljs-number">41</span>ms
+&#x5806;&#x5185;&#x5B58;&#x7533;&#x8BF7;:<span class="hljs-number">8</span>ms
+&#x76F4;&#x63A5;&#x5185;&#x5B58;&#x7533;&#x8BF7;:<span class="hljs-number">142</span>ms
+</code></pre>
+<p>&#x4ECE;&#x7A0B;&#x5E8F;&#x8FD0;&#x884C;&#x7ED3;&#x679C;&#x770B;&#x51FA;&#x76F4;&#x63A5;&#x5185;&#x5B58;&#x7533;&#x8BF7;&#x8F83;&#x6162;&#xFF0C;&#x4F46;&#x8BBF;&#x95EE;&#x6548;&#x7387;&#x9AD8;&#x3002;&#x5728;java&#x865A;&#x62DF;&#x673A;&#x5B9E;&#x73B0;&#x4E0A;&#xFF0C;&#x672C;&#x5730;IO&#x4E00;&#x822C;&#x4F1A;&#x76F4;&#x63A5;&#x64CD;&#x4F5C;&#x76F4;&#x63A5;&#x5185;&#x5B58;&#xFF08;&#x76F4;&#x63A5;&#x5185;&#x5B58;=&gt;&#x7CFB;&#x7EDF;&#x8C03;&#x7528;=&gt;&#x786C;&#x76D8;/&#x7F51;&#x5361;&#xFF09;&#xFF0C;&#x800C;&#x975E;&#x76F4;&#x63A5;&#x5185;&#x5B58;&#x5219;&#x9700;&#x8981;&#x4E8C;&#x6B21;&#x62F7;&#x8D1D;&#xFF08;&#x5806;&#x5185;&#x5B58;=&gt;&#x76F4;&#x63A5;&#x5185;&#x5B58;=&gt;&#x7CFB;&#x7EDF;&#x8C03;&#x7528;=&gt;&#x786C;&#x76D8;/&#x7F51;&#x5361;&#xFF09;&#x3002;</p>
+<h4 id="&#x76F4;&#x63A5;&#x5185;&#x5B58;&#x5206;&#x914D;&#x6E90;&#x7801;&#x5206;&#x6790;"><a name="&#x76F4;&#x63A5;&#x5185;&#x5B58;&#x5206;&#x914D;&#x6E90;&#x7801;&#x5206;&#x6790;" class="anchor-navigation-ex-anchor" href="#&#x76F4;&#x63A5;&#x5185;&#x5B58;&#x5206;&#x914D;&#x6E90;&#x7801;&#x5206;&#x6790;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x76F4;&#x63A5;&#x5185;&#x5B58;&#x5206;&#x914D;&#x6E90;&#x7801;&#x5206;&#x6790;" class="plugin-anchor" href="#&#x76F4;&#x63A5;&#x5185;&#x5B58;&#x5206;&#x914D;&#x6E90;&#x7801;&#x5206;&#x6790;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x76F4;&#x63A5;&#x5185;&#x5B58;&#x5206;&#x914D;&#x6E90;&#x7801;&#x5206;&#x6790;</h4>
+<pre><code class="lang-java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> ByteBuffer <span class="hljs-title">allocateDirect</span><span class="hljs-params">(<span class="hljs-keyword">int</span> capacity)</span> </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> DirectByteBuffer(capacity);
+}
+
+
+DirectByteBuffer(<span class="hljs-keyword">int</span> cap) {                   <span class="hljs-comment">// package-private</span>
+    <span class="hljs-keyword">super</span>(-<span class="hljs-number">1</span>, <span class="hljs-number">0</span>, cap, cap);
+    <span class="hljs-keyword">boolean</span> pa = VM.isDirectMemoryPageAligned();
+    <span class="hljs-keyword">int</span> ps = Bits.pageSize();
+    <span class="hljs-keyword">long</span> size = Math.max(<span class="hljs-number">1L</span>, (<span class="hljs-keyword">long</span>)cap + (pa ? ps : <span class="hljs-number">0</span>));
+    <span class="hljs-comment">//&#x5224;&#x65AD;&#x662F;&#x5426;&#x6709;&#x8DB3;&#x591F;&#x7684;&#x76F4;&#x63A5;&#x5185;&#x5B58;&#x7A7A;&#x95F4;&#x5206;&#x914D;&#xFF0C;&#x53EF;&#x901A;&#x8FC7;-XX:MaxDirectMemorySize=&lt;size&gt;&#x53C2;&#x6570;&#x6307;&#x5B9A;&#x76F4;&#x63A5;&#x5185;&#x5B58;&#x6700;&#x5927;&#x53EF;&#x5206;&#x914D;&#x7A7A;&#x95F4;&#xFF0C;&#x5982;&#x679C;&#x4E0D;&#x6307;&#x5B9A;&#x9ED8;&#x8BA4;&#x4E3A;&#x6700;&#x5927;&#x5806;&#x5185;&#x5B58;&#x5927;&#x5C0F;&#xFF0C;</span>
+    <span class="hljs-comment">//&#x5728;&#x5206;&#x914D;&#x76F4;&#x63A5;&#x5185;&#x5B58;&#x65F6;&#x5982;&#x679C;&#x53D1;&#x73B0;&#x7A7A;&#x95F4;&#x4E0D;&#x591F;&#x4F1A;&#x663E;&#x793A;&#x8C03;&#x7528;System.gc()&#x89E6;&#x53D1;&#x4E00;&#x6B21;full gc&#x56DE;&#x6536;&#x6389;&#x4E00;&#x90E8;&#x5206;&#x65E0;&#x7528;&#x7684;&#x76F4;&#x63A5;&#x5185;&#x5B58;&#x7684;&#x5F15;&#x7528;&#x5BF9;&#x8C61;&#xFF0C;&#x540C;&#x65F6;&#x76F4;&#x63A5;&#x5185;&#x5B58;&#x4E5F;&#x4F1A;&#x88AB;&#x91CA;&#x653E;&#x6389;</span>
+    <span class="hljs-comment">//&#x5982;&#x679C;&#x91CA;&#x653E;&#x5B8C;&#x5206;&#x914D;&#x7A7A;&#x95F4;&#x8FD8;&#x662F;&#x4E0D;&#x591F;&#x4F1A;&#x629B;&#x51FA;&#x5F02;&#x5E38;java.lang.OutOfMemoryError</span>
+   Bits.reserveMemory(size, cap);
+
+    <span class="hljs-keyword">long</span> base = <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">try</span> {
+        <span class="hljs-comment">// &#x8C03;&#x7528;unsafe&#x672C;&#x5730;&#x65B9;&#x6CD5;&#x5206;&#x914D;&#x76F4;&#x63A5;&#x5185;&#x5B58;</span>
+        base = unsafe.allocateMemory(size);
+    } <span class="hljs-keyword">catch</span> (OutOfMemoryError x) {
+        <span class="hljs-comment">// &#x5206;&#x914D;&#x5931;&#x8D25;&#xFF0C;&#x91CA;&#x653E;&#x5185;&#x5B58;</span>
+        Bits.unreserveMemory(size, cap);
+        <span class="hljs-keyword">throw</span> x;
+    }
+    unsafe.setMemory(base, size, (<span class="hljs-keyword">byte</span>) <span class="hljs-number">0</span>);
+    <span class="hljs-keyword">if</span> (pa &amp;&amp; (base % ps != <span class="hljs-number">0</span>)) {
+        <span class="hljs-comment">// Round up to page boundary</span>
+        address = base + ps - (base &amp; (ps - <span class="hljs-number">1</span>));
+    } <span class="hljs-keyword">else</span> {
+        address = base;
+    }
+
+    <span class="hljs-comment">// &#x4F7F;&#x7528;Cleaner&#x673A;&#x5236;&#x6CE8;&#x518C;&#x5185;&#x5B58;&#x56DE;&#x6536;&#x5904;&#x7406;&#x51FD;&#x6570;&#xFF0C;&#x5F53;&#x76F4;&#x63A5;&#x5185;&#x5B58;&#x5F15;&#x7528;&#x5BF9;&#x8C61;&#x88AB;GC&#x6E05;&#x7406;&#x6389;&#x65F6;&#xFF0C;</span>
+    <span class="hljs-comment">// &#x4F1A;&#x63D0;&#x524D;&#x8C03;&#x7528;&#x8FD9;&#x91CC;&#x6CE8;&#x518C;&#x7684;&#x91CA;&#x653E;&#x76F4;&#x63A5;&#x5185;&#x5B58;&#x7684;Deallocator&#x7EBF;&#x7A0B;&#x5BF9;&#x8C61;&#x7684;run&#x65B9;&#x6CD5;</span>
+    cleaner = Cleaner.create(<span class="hljs-keyword">this</span>, <span class="hljs-keyword">new</span> Deallocator(base, size, cap));
+    att = <span class="hljs-keyword">null</span>;
+}
+
+
+<span class="hljs-comment">// &#x7533;&#x8BF7;&#x4E00;&#x5757;&#x672C;&#x5730;&#x5185;&#x5B58;&#x3002;&#x5185;&#x5B58;&#x7A7A;&#x95F4;&#x662F;&#x672A;&#x521D;&#x59CB;&#x5316;&#x7684;&#xFF0C;&#x5176;&#x5185;&#x5BB9;&#x662F;&#x65E0;&#x6CD5;&#x9884;&#x671F;&#x7684;&#x3002;</span>
+<span class="hljs-comment">// &#x4F7F;&#x7528;freeMemory&#x91CA;&#x653E;&#x5185;&#x5B58;&#xFF0C;&#x4F7F;&#x7528;reallocateMemory&#x4FEE;&#x6539;&#x5185;&#x5B58;&#x5927;&#x5C0F;</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">native</span> <span class="hljs-keyword">long</span> <span class="hljs-title">allocateMemory</span><span class="hljs-params">(<span class="hljs-keyword">long</span> bytes)</span></span>;
+
+<span class="hljs-comment">// openjdk8/hotspot/src/share/vm/prims/unsafe.cpp</span>
+UNSAFE_ENTRY(jlong, Unsafe_AllocateMemory(JNIEnv *env, jobject unsafe, jlong size))
+  UnsafeWrapper(<span class="hljs-string">&quot;Unsafe_AllocateMemory&quot;</span>);
+  size_t sz = (size_t)size;
+  <span class="hljs-keyword">if</span> (sz != (julong)size || size &lt; <span class="hljs-number">0</span>) {
+    THROW_0(vmSymbols::java_lang_IllegalArgumentException());
+  }
+  <span class="hljs-keyword">if</span> (sz == <span class="hljs-number">0</span>) {
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+  }
+  sz = round_to(sz, HeapWordSize);
+  <span class="hljs-comment">// &#x8C03;&#x7528;os::malloc&#x7533;&#x8BF7;&#x5185;&#x5B58;&#xFF0C;&#x5185;&#x90E8;&#x4F7F;&#x7528;malloc&#x8FD9;&#x4E2A;C&#x6807;&#x51C6;&#x5E93;&#x7684;&#x51FD;&#x6570;&#x7533;&#x8BF7;&#x5185;&#x5B58;</span>
+  <span class="hljs-keyword">void</span>* x = os::malloc(sz, mtInternal);
+  <span class="hljs-keyword">if</span> (x == NULL) {
+    THROW_0(vmSymbols::java_lang_OutOfMemoryError());
+  }
+  <span class="hljs-comment">//Copy::fill_to_words((HeapWord*)x, sz / HeapWordSize);</span>
+      <span class="hljs-keyword">return</span> addr_to_java(x);
+UNSAFE_END
+</code></pre>
+<h4 id="&#x4F7F;&#x7528;&#x76F4;&#x63A5;&#x5185;&#x5B58;&#x7684;&#x4F18;&#x7F3A;&#x70B9;"><a name="&#x4F7F;&#x7528;&#x76F4;&#x63A5;&#x5185;&#x5B58;&#x7684;&#x4F18;&#x7F3A;&#x70B9;" class="anchor-navigation-ex-anchor" href="#&#x4F7F;&#x7528;&#x76F4;&#x63A5;&#x5185;&#x5B58;&#x7684;&#x4F18;&#x7F3A;&#x70B9;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x4F7F;&#x7528;&#x76F4;&#x63A5;&#x5185;&#x5B58;&#x7684;&#x4F18;&#x7F3A;&#x70B9;" class="plugin-anchor" href="#&#x4F7F;&#x7528;&#x76F4;&#x63A5;&#x5185;&#x5B58;&#x7684;&#x4F18;&#x7F3A;&#x70B9;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x4F7F;&#x7528;&#x76F4;&#x63A5;&#x5185;&#x5B58;&#x7684;&#x4F18;&#x7F3A;&#x70B9;</h4>
+<p>&#x4F18;&#x70B9;&#xFF1A;</p>
+<ul>
+<li>&#x4E0D;&#x5360;&#x7528;&#x5806;&#x5185;&#x5B58;&#x7A7A;&#x95F4;&#xFF0C;&#x51CF;&#x5C11;&#x4E86;&#x53D1;&#x751F;GC&#x7684;&#x53EF;&#x80FD;</li>
+<li>java&#x865A;&#x62DF;&#x673A;&#x5B9E;&#x73B0;&#x4E0A;&#xFF0C;&#x672C;&#x5730;IO&#x4F1A;&#x76F4;&#x63A5;&#x64CD;&#x4F5C;&#x76F4;&#x63A5;&#x5185;&#x5B58;&#xFF08;&#x76F4;&#x63A5;&#x5185;&#x5B58;=&gt;&#x7CFB;&#x7EDF;&#x8C03;&#x7528;=&gt;&#x786C;&#x76D8;/&#x7F51;&#x5361;&#xFF09;&#xFF0C;&#x800C;&#x975E;&#x76F4;&#x63A5;&#x5185;&#x5B58;&#x5219;&#x9700;&#x8981;&#x4E8C;&#x6B21;&#x62F7;&#x8D1D;&#xFF08;&#x5806;&#x5185;&#x5B58;=&gt;&#x76F4;&#x63A5;&#x5185;&#x5B58;=&gt;&#x7CFB;&#x7EDF;&#x8C03;&#x7528;=&gt;&#x786C;&#x76D8;/&#x7F51;&#x5361;&#xFF09;</li>
+</ul>
+<p>&#x7F3A;&#x70B9;&#xFF1A;</p>
+<ul>
+<li>&#x521D;&#x59CB;&#x5206;&#x914D;&#x8F83;&#x6162;</li>
+<li>&#x6CA1;&#x6709;JVM&#x76F4;&#x63A5;&#x5E2E;&#x52A9;&#x7BA1;&#x7406;&#x5185;&#x5B58;&#xFF0C;&#x5BB9;&#x6613;&#x53D1;&#x751F;&#x5185;&#x5B58;&#x6EA2;&#x51FA;&#x3002;&#x4E3A;&#x4E86;&#x907F;&#x514D;&#x4E00;&#x76F4;&#x6CA1;&#x6709;FULL GC&#xFF0C;&#x6700;&#x7EC8;&#x5BFC;&#x81F4;&#x76F4;&#x63A5;&#x5185;&#x5B58;&#x628A;&#x7269;&#x7406;&#x5185;&#x5B58;&#x88AB;&#x8017;&#x5B8C;&#x3002;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x6307;&#x5B9A;&#x76F4;&#x63A5;&#x5185;&#x5B58;&#x7684;&#x6700;&#x5927;&#x503C;&#xFF0C;&#x901A;&#x8FC7; <code>-XX:MaxDirectMemorySize</code> &#x6765;&#x6307;&#x5B9A;&#xFF0C;&#x5F53;&#x8FBE;&#x5230;&#x9608;&#x503C;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x8C03;&#x7528; <code>system.gc</code> &#x6765;&#x8FDB;&#x884C;&#x4E00;&#x6B21;FULL GC&#xFF0C;&#x95F4;&#x63A5;&#x628A;&#x90A3;&#x4E9B;&#x6CA1;&#x6709;&#x88AB;&#x4F7F;&#x7528;&#x7684;&#x76F4;&#x63A5;&#x5185;&#x5B58;&#x56DE;&#x6536;&#x6389;&#x3002;</li>
+</ul>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="16-Netty-Core-Thread-Model.html" class="navigation navigation-prev " aria-label="Previous page: 16 Netty核心功能与线程模型">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="18-Netty-Thread-Model-Source.html" class="navigation navigation-next " aria-label="Next page: 18 Netty线程模型源码详解">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"17 Netty编解码，粘包拆包及零拷贝","level":"1.1.6.14","depth":3,"next":{"title":"18 Netty线程模型源码详解","level":"1.1.6.15","depth":3,"path":"06-Distributed/Old/18-Netty-Thread-Model-Source.md","ref":"06-Distributed/Old/18-Netty-Thread-Model-Source.md","articles":[]},"previous":{"title":"16 Netty核心功能与线程模型","level":"1.1.6.13","depth":3,"path":"06-Distributed/Old/16-Netty-Core-Thread-Model.md","ref":"06-Distributed/Old/16-Netty-Core-Thread-Model.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","splitter","expandable-chapters-small","anchors","github","github-buttons","sharing-plus","anchor-navigation-ex"],"styles":{"website":"./styles/website.css"},"pluginsConfig":{"github":{"url":"https://github.com/tyrival"},"splitter":{},"search":{},"sharing-plus":{"qq":false,"all":["facebook","google","twitter","instapaper","linkedin","pocket","stumbleupon"],"douban":false,"facebook":true,"weibo":false,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":true,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"anchor-navigation-ex":{"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"mode":"float","multipleH1":true,"pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"printLog":false,"showGoTop":true,"showLevel":false},"github-buttons":{"buttons":[{"user":"Tyrival","repo":"gitbook","type":"star","size":"small","count":false}]},"expandable-chapters-small":{},"sharing":{"qq":false,"all":["google","facebook","weibo","twitter","qq","qzone","linkedin","pocket"],"douban":false,"facebook":false,"weibo":false,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":false,"messenger":false,"line":false,"vk":false,"pocket":false,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","author":"Tyrival","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"架构师学习笔记","language":"zh-hans","gitbook":"3.2.3","description":"架构师学习笔记"},"file":{"path":"06-Distributed/Old/17-Netty-Codec-Pack-Unpack-Zero-Copy.md","mtime":"2020-08-28T09:17:22.654Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-09-08T12:50:18.646Z"},"basePath":"../..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../../gitbook/gitbook.js"></script>
+    <script src="../../gitbook/theme.js"></script>
+    
+        
+        <script src="../../gitbook/gitbook-plugin-splitter/splitter.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-github/plugin.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-github-buttons/plugin.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-sharing-plus/buttons.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

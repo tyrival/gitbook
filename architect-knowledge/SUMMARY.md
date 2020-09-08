@@ -57,5 +57,8 @@
         * [17 Netty编解码，粘包拆包及零拷贝](06-Distributed/Old/17-Netty-Codec-Pack-Unpack-Zero-Copy.md)
         * [18 Netty线程模型源码详解](06-Distributed/Old/18-Netty-Thread-Model-Source.md)
         * [19 Netty在弹幕系统与Dubbo框架中的应用](06-Distributed/Old/19-Netty-Barrage-Dubbo.md)
+        * [20 Kafka集群搭建与使用](06-Distributed/Old/20-Kafka-Cluster.md)
+        * [21 Kafka设计原理详解](06-Distributed/Old/21-Kafka-Architecture.md)
+        * [22 Kafka性能优化实战](06-Distributed/Old/22-Kafka-Optimizer-Training.md)
     * [第7章 微服务](07-Microservice/README.md)
     * [第8章 实战案例](08-Training/README.md)

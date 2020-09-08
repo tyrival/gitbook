@@ -1,0 +1,1547 @@
+
+<!DOCTYPE HTML>
+<html lang="zh-hans" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>10 Nginx核心模块与配置实践 · 架构师学习笔记</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        <meta name="author" content="Tyrival">
+        
+        
+    
+    <link rel="stylesheet" href="../../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-splitter/splitter.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-anchors/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-anchor-navigation-ex/style/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+        <link rel="stylesheet" href="../../styles/website.css">
+        
+    
+
+        
+    
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="11-Nginx-Optimize-Training.html" />
+    
+    
+    <link rel="prev" href="09-Redis-Design-Optimize.html" />
+    
+
+    <style>
+    @media only screen and (max-width: 640px) {
+        .book-header .hidden-mobile {
+            display: none;
+        }
+    }
+    </style>
+    <script>
+        window["gitbook-plugin-github-buttons"] = {"buttons":[{"user":"Tyrival","repo":"gitbook","type":"star","size":"small","count":false}]};
+    </script>
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="输入并搜索" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../../">
+            
+                <a href="../../">
+            
+                    
+                    架构师学习笔记
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.1" data-path="../../01-JVM/">
+            
+                <a href="../../01-JVM/">
+            
+                    
+                    第1章 JVM
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.1.1" data-path="../../01-JVM/01-ClassLoader.html">
+            
+                <a href="../../01-JVM/01-ClassLoader.html">
+            
+                    
+                    1 类加载机制
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.2" data-path="../../01-JVM/02-JVM-Structure-Resolve.html">
+            
+                <a href="../../01-JVM/02-JVM-Structure-Resolve.html">
+            
+                    
+                    2 JVM整体结构
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.3" data-path="../../01-JVM/03-Memory-Allocation-Mechanism.html">
+            
+                <a href="../../01-JVM/03-Memory-Allocation-Mechanism.html">
+            
+                    
+                    3 JVM内存分配机制
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.4" data-path="../../01-JVM/04-JVM-Bytecode-File-Structure.html">
+            
+                <a href="../../01-JVM/04-JVM-Bytecode-File-Structure.html">
+            
+                    
+                    4 JVM字节码文件结构
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.5" data-path="../../01-JVM/05-GC-ParNew-CMS.html">
+            
+                <a href="../../01-JVM/05-GC-ParNew-CMS.html">
+            
+                    
+                    5 垃圾收集器ParNew和CMS
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.6" data-path="../../01-JVM/06-GC-G1-ZGC.html">
+            
+                <a href="../../01-JVM/06-GC-G1-ZGC.html">
+            
+                    
+                    6 垃圾收集器G1和ZGC
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.7" data-path="../../01-JVM/07-GC-Optimize-01.html">
+            
+                <a href="../../01-JVM/07-GC-Optimize-01.html">
+            
+                    
+                    7 GC调优（一）
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.8" data-path="../../01-JVM/08-GC-Optimize-02.html">
+            
+                <a href="../../01-JVM/08-GC-Optimize-02.html">
+            
+                    
+                    8 GC调优（二）
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.9" data-path="../../01-JVM/JVM-Command.html">
+            
+                <a href="../../01-JVM/JVM-Command.html">
+            
+                    
+                    附1 JVM指令手册
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.2" data-path="../../02-Tomcat/">
+            
+                <a href="../../02-Tomcat/">
+            
+                    
+                    第2章 Tomcat
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.2.1" data-path="../../02-Tomcat/01-Tomcat-Summary.html">
+            
+                <a href="../../02-Tomcat/01-Tomcat-Summary.html">
+            
+                    
+                    1 Tomcat生产环境应用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.2.2" data-path="../../02-Tomcat/02-Tomcat-Component-Src.html">
+            
+                <a href="../../02-Tomcat/02-Tomcat-Component-Src.html">
+            
+                    
+                    2 Tomcat核心组件源码
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.2.3" data-path="../../02-Tomcat/03-Tomcat-Http-Process.html">
+            
+                <a href="../../02-Tomcat/03-Tomcat-Http-Process.html">
+            
+                    
+                    3 Tomcat线程模型HTTP请求处理与管道线模型
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.2.4" data-path="../../02-Tomcat/04-Tomcat-Hot-Deployment-Load.html">
+            
+                <a href="../../02-Tomcat/04-Tomcat-Hot-Deployment-Load.html">
+            
+                    
+                    4 Tomcat热部署和热加载
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.3" data-path="../../03-MySQL/">
+            
+                <a href="../../03-MySQL/">
+            
+                    
+                    第3章 MySQL
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.3.1" data-path="../../03-MySQL/01-Mysql-index-data-structure.html">
+            
+                <a href="../../03-MySQL/01-Mysql-index-data-structure.html">
+            
+                    
+                    1 Mysql索引数据结构
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.3.2" data-path="../../03-MySQL/02-Explain-Index-Actual.html">
+            
+                <a href="../../03-MySQL/02-Explain-Index-Actual.html">
+            
+                    
+                    2 Explain详解与索引最佳实践
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.3.3" data-path="../../03-MySQL/03-Sql-Execution-Fundamental.html">
+            
+                <a href="../../03-MySQL/03-Sql-Execution-Fundamental.html">
+            
+                    
+                    3 SQL底层执行原理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.3.4" data-path="../../03-MySQL/04-Sql-Optimize-01.html">
+            
+                <a href="../../03-MySQL/04-Sql-Optimize-01.html">
+            
+                    
+                    4 SQL优化实战（一）
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.3.5" data-path="../../03-MySQL/05-Sql-Optimize-02.html">
+            
+                <a href="../../03-MySQL/05-Sql-Optimize-02.html">
+            
+                    
+                    5 SQL优化实战（二）
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.3.6" data-path="../../03-MySQL/06-Mysql-Lock-Transaction-Isolation.html">
+            
+                <a href="../../03-MySQL/06-Mysql-Lock-Transaction-Isolation.html">
+            
+                    
+                    6 Mysql锁与事务隔离级别
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.3.7" data-path="../../03-MySQL/Slow-Sql-Query.html">
+            
+                <a href="../../03-MySQL/Slow-Sql-Query.html">
+            
+                    
+                    附1 慢SQL查询
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.3.8" data-path="../../03-MySQL/Ali-Java-Explain.html">
+            
+                <a href="../../03-MySQL/Ali-Java-Explain.html">
+            
+                    
+                    附2 阿里巴巴手册（泰山版）解读-MySQL数据库
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.4" data-path="../../04-Concurrent/">
+            
+                <a href="../../04-Concurrent/">
+            
+                    
+                    第4章 并发编程
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.4.1" data-path="../../04-Concurrent/01-JMM-JSR133.html">
+            
+                <a href="../../04-Concurrent/01-JMM-JSR133.html">
+            
+                    
+                    1 并发编程之JMM & JSR133规范解读
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.4.2" data-path="../../04-Concurrent/02-JMM-Features.html">
+            
+                <a href="../../04-Concurrent/02-JMM-Features.html">
+            
+                    
+                    2 并发编程之JMM三大特性详解
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.4.3" data-path="../../04-Concurrent/03-MESI-Cache-Coherency-Protocol.html">
+            
+                <a href="../../04-Concurrent/03-MESI-Cache-Coherency-Protocol.html">
+            
+                    
+                    3 MESI缓存一致协议详解
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.4.4" data-path="../../04-Concurrent/04-Synchronized.html">
+            
+                <a href="../../04-Concurrent/04-Synchronized.html">
+            
+                    
+                    4 并发编程之synchronized详解
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.4.5" data-path="../../04-Concurrent/05-AQS-Lock.html">
+            
+                <a href="../../04-Concurrent/05-AQS-Lock.html">
+            
+                    
+                    5 抽象队列同步器AQS应用Lock详解
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.4.6" data-path="../../04-Concurrent/06-AQS-Blocking-Queue.html">
+            
+                <a href="../../04-Concurrent/06-AQS-Blocking-Queue.html">
+            
+                    
+                    6 抽象队列同步器AQS应用之BlockingQueue详解
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.4.7" data-path="../../04-Concurrent/07-Tools-CountDownLatch-Semaphore.html">
+            
+                <a href="../../04-Concurrent/07-Tools-CountDownLatch-Semaphore.html">
+            
+                    
+                    7 并发编程之Tools&CountDownLatch&Semaphore原理与应用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.4.8" data-path="../../04-Concurrent/08-Atomic-Unsafe-Magic-Class.html">
+            
+                <a href="../../04-Concurrent/08-Atomic-Unsafe-Magic-Class.html">
+            
+                    
+                    8 并发编程之Atomic&Unsafe魔法类详解
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.4.9" data-path="../../04-Concurrent/09-Collections-Map-List-Set.html">
+            
+                <a href="../../04-Concurrent/09-Collections-Map-List-Set.html">
+            
+                    
+                    9 Collections之Map&List&Set详解
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.4.10" data-path="../../04-Concurrent/10-Executor-Thread-Pool.html">
+            
+                <a href="../../04-Concurrent/10-Executor-Thread-Pool.html">
+            
+                    
+                    10 Executor线程池原理与源码
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.4.11" data-path="../../04-Concurrent/11-Schedule-Task-Thread-Pool.html">
+            
+                <a href="../../04-Concurrent/11-Schedule-Task-Thread-Pool.html">
+            
+                    
+                    11 并发编程之定时任务&定时线程池
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.4.12" data-path="../../04-Concurrent/12-Future-ForkJoin.html">
+            
+                <a href="../../04-Concurrent/12-Future-ForkJoin.html">
+            
+                    
+                    12 并发编程之Future&ForkJoin框架原理分析
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.4.13" data-path="../../04-Concurrent/13-Disruptor.html">
+            
+                <a href="../../04-Concurrent/13-Disruptor.html">
+            
+                    
+                    13 无锁并发框架Disruptor
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.5" data-path="../../05-Source/">
+            
+                <a href="../../05-Source/">
+            
+                    
+                    第5章 源码框架
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    第6章 分布式
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.6.1" data-path="01-Zookeeper-Node.html">
+            
+                <a href="01-Zookeeper-Node.html">
+            
+                    
+                    1 Zookeeper特性与节点说明
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6.2" data-path="05-Redis-Data-Structure.html">
+            
+                <a href="05-Redis-Data-Structure.html">
+            
+                    
+                    5 Redis核心数据结构与核心原理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6.3" data-path="06-Redis-Persistent-Distributed-Mode.html">
+            
+                <a href="06-Redis-Persistent-Distributed-Mode.html">
+            
+                    
+                    6 Redis持久化、主从与哨兵架构详解
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6.4" data-path="07-Redis-Cluster-Mode.html">
+            
+                <a href="07-Redis-Cluster-Mode.html">
+            
+                    
+                    7 Redis高可用集群
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6.5" data-path="08-Redis-Distributed-Lock-Training.html">
+            
+                <a href="08-Redis-Distributed-Lock-Training.html">
+            
+                    
+                    8 Redis高并发分布式锁实战
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6.6" data-path="09-Redis-Design-Optimize.html">
+            
+                <a href="09-Redis-Design-Optimize.html">
+            
+                    
+                    9 Redis缓存设计与性能优化
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.1.6.7" data-path="10-Nginx-Core-Config.html">
+            
+                <a href="10-Nginx-Core-Config.html">
+            
+                    
+                    10 Nginx核心模块与配置实践
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6.8" data-path="11-Nginx-Optimize-Training.html">
+            
+                <a href="11-Nginx-Optimize-Training.html">
+            
+                    
+                    11 Nginx性能优化实践
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6.9" data-path="12-MongoDB-Quick-Start.html">
+            
+                <a href="12-MongoDB-Quick-Start.html">
+            
+                    
+                    12 MongoDB的逻辑组成
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6.10" data-path="13-MongoDB-Cluster-Advanced-Feature.html">
+            
+                <a href="13-MongoDB-Cluster-Advanced-Feature.html">
+            
+                    
+                    13 MongoDB集群架构与高级特性
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6.11" data-path="14-MongoDB-Training.html">
+            
+                <a href="14-MongoDB-Training.html">
+            
+                    
+                    14 MongoDB企业应用实战
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6.12" data-path="15-Java-BIO-NIO-AIO.html">
+            
+                <a href="15-Java-BIO-NIO-AIO.html">
+            
+                    
+                    15 Java BIO & NIO & AIO
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6.13" data-path="16-Netty-Core-Thread-Model.html">
+            
+                <a href="16-Netty-Core-Thread-Model.html">
+            
+                    
+                    16 Netty核心功能与线程模型
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6.14" data-path="17-Netty-Codec-Pack-Unpack-Zero-Copy.html">
+            
+                <a href="17-Netty-Codec-Pack-Unpack-Zero-Copy.html">
+            
+                    
+                    17 Netty编解码，粘包拆包及零拷贝
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6.15" data-path="18-Netty-Thread-Model-Source.html">
+            
+                <a href="18-Netty-Thread-Model-Source.html">
+            
+                    
+                    18 Netty线程模型源码详解
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6.16" data-path="19-Netty-Barrage-Dubbo.html">
+            
+                <a href="19-Netty-Barrage-Dubbo.html">
+            
+                    
+                    19 Netty在弹幕系统与Dubbo框架中的应用
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.7" data-path="../../07-Microservice/">
+            
+                <a href="../../07-Microservice/">
+            
+                    
+                    第7章 微服务
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.8" data-path="../../08-Training/">
+            
+                <a href="../../08-Training/">
+            
+                    
+                    第8章 实战案例
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            本书使用 GitBook 发布
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../.." >10 Nginx核心模块与配置实践</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <div id="anchor-navigation-ex-navbar"><i class="fa fa-navicon"></i><ul><li><span class="title-icon "></span><a href="#nginx&#x6838;&#x5FC3;&#x6A21;&#x5757;&#x4E0E;&#x914D;&#x7F6E;&#x5B9E;&#x8DF5;"><b></b>Nginx&#x6838;&#x5FC3;&#x6A21;&#x5757;&#x4E0E;&#x914D;&#x7F6E;&#x5B9E;&#x8DF5;</a></li><ul><li><span class="title-icon "></span><a href="#1-nginx-&#x7B80;&#x4ECB;&#x4E0E;&#x5B89;&#x88C5;"><b></b>1. Nginx &#x7B80;&#x4ECB;&#x4E0E;&#x5B89;&#x88C5;</a></li><ul><li><span class="title-icon "></span><a href="#11-&#x77E5;&#x8BC6;&#x70B9;&#xFF1A;"><b></b>1.1 &#x77E5;&#x8BC6;&#x70B9;&#xFF1A;</a></li><li><span class="title-icon "></span><a href="#12-&#x7F16;&#x8BD1;&#x4E0E;&#x5B89;&#x88C5;"><b></b>1.2 &#x7F16;&#x8BD1;&#x4E0E;&#x5B89;&#x88C5;</a></li></ul><li><span class="title-icon "></span><a href="#2-nginx-&#x67B6;&#x6784;&#x8BF4;&#x660E;"><b></b>2. Nginx &#x67B6;&#x6784;&#x8BF4;&#x660E;</a></li><ul><li><span class="title-icon "></span><a href="#21-nginx-&#x67B6;&#x6784;&#x56FE;"><b></b>2.1 Nginx &#x67B6;&#x6784;&#x56FE;</a></li><li><span class="title-icon "></span><a href="#22-nginx-&#x6838;&#x5FC3;&#x6A21;&#x5757;"><b></b>2.2 Nginx &#x6838;&#x5FC3;&#x6A21;&#x5757;</a></li></ul><li><span class="title-icon "></span><a href="#3-nginx-&#x914D;&#x7F6E;&#x4E0E;&#x4F7F;&#x7528;"><b></b>3. Nginx &#x914D;&#x7F6E;&#x4E0E;&#x4F7F;&#x7528;</a></li><ul><li><span class="title-icon "></span><a href="#31-&#x77E5;&#x8BC6;&#x70B9;"><b></b>3.1 &#x77E5;&#x8BC6;&#x70B9;</a></li><li><span class="title-icon "></span><a href="#32-&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x7684;&#x8BED;&#x6CD5;&#x683C;&#x5F0F;"><b></b>3.2 &#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x7684;&#x8BED;&#x6CD5;&#x683C;&#x5F0F;</a></li><li><span class="title-icon "></span><a href="#33-&#x914D;&#x7F6E;&#x7B2C;&#x4E00;&#x4E2A;&#x9759;&#x6001;web&#x670D;&#x52A1;"><b></b>3.3 &#x914D;&#x7F6E;&#x7B2C;&#x4E00;&#x4E2A;&#x9759;&#x6001;WEB&#x670D;&#x52A1;</a></li><li><span class="title-icon "></span><a href="#34-&#x65E5;&#x5FD7;&#x914D;&#x7F6E;&#xFF1A;"><b></b>3.4 &#x65E5;&#x5FD7;&#x914D;&#x7F6E;&#xFF1A;</a></li></ul></ul></ul></div><a href="#nginx&#x6838;&#x5FC3;&#x6A21;&#x5757;&#x4E0E;&#x914D;&#x7F6E;&#x5B9E;&#x8DF5;" id="anchorNavigationExGoTop"><i class="fa fa-arrow-up"></i></a><h1 id="nginx&#x6838;&#x5FC3;&#x6A21;&#x5757;&#x4E0E;&#x914D;&#x7F6E;&#x5B9E;&#x8DF5;"><a name="nginx&#x6838;&#x5FC3;&#x6A21;&#x5757;&#x4E0E;&#x914D;&#x7F6E;&#x5B9E;&#x8DF5;" class="anchor-navigation-ex-anchor" href="#nginx&#x6838;&#x5FC3;&#x6A21;&#x5757;&#x4E0E;&#x914D;&#x7F6E;&#x5B9E;&#x8DF5;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="nginx&#x6838;&#x5FC3;&#x6A21;&#x5757;&#x4E0E;&#x914D;&#x7F6E;&#x5B9E;&#x8DF5;" class="plugin-anchor" href="#nginx&#x6838;&#x5FC3;&#x6A21;&#x5757;&#x4E0E;&#x914D;&#x7F6E;&#x5B9E;&#x8DF5;"><i class="fa fa-link" aria-hidden="true"></i></a>Nginx&#x6838;&#x5FC3;&#x6A21;&#x5757;&#x4E0E;&#x914D;&#x7F6E;&#x5B9E;&#x8DF5;</h1>
+<h2 id="1-nginx-&#x7B80;&#x4ECB;&#x4E0E;&#x5B89;&#x88C5;"><a name="1-nginx-&#x7B80;&#x4ECB;&#x4E0E;&#x5B89;&#x88C5;" class="anchor-navigation-ex-anchor" href="#1-nginx-&#x7B80;&#x4ECB;&#x4E0E;&#x5B89;&#x88C5;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="1-nginx-&#x7B80;&#x4ECB;&#x4E0E;&#x5B89;&#x88C5;" class="plugin-anchor" href="#1-nginx-&#x7B80;&#x4ECB;&#x4E0E;&#x5B89;&#x88C5;"><i class="fa fa-link" aria-hidden="true"></i></a>1. Nginx &#x7B80;&#x4ECB;&#x4E0E;&#x5B89;&#x88C5;</h2>
+<h3 id="11-&#x77E5;&#x8BC6;&#x70B9;&#xFF1A;"><a name="11-&#x77E5;&#x8BC6;&#x70B9;&#xFF1A;" class="anchor-navigation-ex-anchor" href="#11-&#x77E5;&#x8BC6;&#x70B9;&#xFF1A;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="11-&#x77E5;&#x8BC6;&#x70B9;&#xFF1A;" class="plugin-anchor" href="#11-&#x77E5;&#x8BC6;&#x70B9;&#xFF1A;"><i class="fa fa-link" aria-hidden="true"></i></a>1.1 &#x77E5;&#x8BC6;&#x70B9;&#xFF1A;</h3>
+<h5 id="nginx-&#x7B80;&#x4ECB;"><a name="nginx-&#x7B80;&#x4ECB;" class="anchor-navigation-ex-anchor" href="#nginx-&#x7B80;&#x4ECB;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="nginx-&#x7B80;&#x4ECB;" class="plugin-anchor" href="#nginx-&#x7B80;&#x4ECB;"><i class="fa fa-link" aria-hidden="true"></i></a>Nginx &#x7B80;&#x4ECB;</h5>
+<p>Nginx&#x662F;&#x4E00;&#x4E2A;&#x9AD8;&#x6027;&#x80FD;WEB&#x670D;&#x52A1;&#x5668;&#xFF0C;&#x9664;&#x5B83;&#x4E4B;&#x5916;Apache&#x3001;Tomcat&#x3001;Jetty&#x3001;IIS&#xFF0C;&#x5B83;&#x4EEC;&#x90FD;&#x662F;Web&#x670D;&#x52A1;&#x5668;&#xFF0C;&#x6216;&#x8005;&#x53EB;&#x505A;WWW&#xFF08;World Wide Web&#xFF09;&#x670D;&#x52A1;&#x5668;&#xFF0C;&#x76F8;&#x5E94;&#x5730;&#x4E5F;&#x90FD;&#x5177;&#x5907;Web&#x670D;&#x52A1;&#x5668;&#x7684;&#x57FA;&#x672C;&#x529F;&#x80FD;&#x3002;Nginx  &#x76F8;&#x5BF9;&#x57FA;&#x5B83;WEB&#x670D;&#x52A1;&#x6709;&#x4EC0;&#x4E48;&#x4F18;&#x52BF;&#x5462;&#xFF1F;</p>
+<ol>
+<li>Tomcat&#x3001;Jetty &#x9762;&#x5411;java&#x8BED;&#x8A00;&#xFF0C;&#x5148;&#x5929;&#x5C31;&#x662F;&#x91CD;&#x91CF;&#x7EA7;&#x7684;WEB&#x670D;&#x52A1;&#x5668;&#xFF0C;&#x5176;&#x6027;&#x80FD;&#x4E0E;Nginx&#x6CA1;&#x6709;&#x53EF;&#x6BD4;&#x6027;&#x3002;</li>
+<li>IIS&#x53EA;&#x80FD;&#x5728;Windows&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x4E0A;&#x8FD0;&#x884C;&#x3002;Windows&#x4F5C;&#x4E3A;&#x670D;&#x52A1;&#x5668;&#x5728;&#x7A33;&#x5B9A;&#x6027;&#x4E0E;&#x5176;&#x4ED6;&#x4E00;&#x4E9B;&#x6027;&#x80FD;&#x4E0A;&#x90FD;&#x4E0D;&#x5982;&#x7C7B;UNIX&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#xFF0C;&#x56E0;&#x6B64;&#xFF0C;&#x5728;&#x9700;&#x8981;&#x9AD8;&#x6027;&#x80FD;Web&#x670D;&#x52A1;&#x5668;&#x7684;&#x573A;&#x5408;&#x4E0B;IIS&#x5E76;&#x4E0D;&#x5360;&#x4F18;&#x3002;</li>
+<li>Apache&#x7684;&#x53D1;&#x5C55;&#x65F6;&#x671F;&#x5F88;&#x957F;&#xFF0C;&#x800C;&#x4E14;&#x662F;&#x76EE;&#x524D;&#x6BEB;&#x65E0;&#x4E89;&#x8BAE;&#x7684;&#x4E16;&#x754C;&#x7B2C;&#x4E00;&#x5927;Web&#x670D;&#x52A1;&#x5668;&#xFF0C;&#x5176;&#x6709;&#x8BB8;&#x591A;&#x4F18;&#x70B9;&#xFF0C;&#x5982;&#x7A33;&#x5B9A;&#x3001;&#x5F00;&#x6E90;&#x3001;&#x8DE8;&#x5E73;&#x53F0;&#x7B49;&#xFF0C;&#x4F46;&#x5B83;&#x51FA;&#x73B0;&#x7684;&#x65F6;&#x95F4;&#x592A;&#x957F;&#x4E86;&#xFF0C;&#x5728;&#x5B83;&#x5174;&#x8D77;&#x7684;&#x5E74;&#x4EE3;&#xFF0C;&#x4E92;&#x8054;&#x7F51;&#x7684;&#x4EA7;&#x4E1A;&#x89C4;&#x6A21;&#x8FDC;&#x8FDC;&#x6BD4;&#x4E0D;&#x4E0A;&#x4ECA;&#x5929;&#xFF0C;&#x6240;&#x4EE5;&#x5B83;&#x88AB;&#x8BBE;&#x8BA1;&#x6210;&#x4E86;&#x4E00;&#x4E2A;&#x91CD;&#x91CF;&#x7EA7;&#x7684;&#x3001;&#x4E0D;&#x652F;&#x6301;&#x9AD8;&#x5E76;&#x53D1;&#x7684;Web&#x670D;&#x52A1;&#x5668;&#x3002;&#x5728;Apache&#x670D;&#x52A1;&#x5668;&#x4E0A;&#xFF0C;&#x5982;&#x679C;&#x6709;&#x6570;&#x4EE5;&#x4E07;&#x8BA1;&#x7684;&#x5E76;&#x53D1;HTTP&#x8BF7;&#x6C42;&#x540C;&#x65F6;&#x8BBF;&#x95EE;&#xFF0C;&#x5C31;&#x4F1A;&#x5BFC;&#x81F4;&#x670D;&#x52A1;&#x5668;&#x4E0A;&#x6D88;&#x8017;&#x5927;&#x91CF;&#x5185;&#x5B58;&#xFF0C;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x5185;&#x6838;&#x5BF9;&#x6210;&#x767E;&#x4E0A;&#x5343;&#x7684;Apache&#x8FDB;&#x7A0B;&#x505A;&#x8FDB;&#x7A0B;&#x95F4;&#x5207;&#x6362;&#x4E5F;&#x4F1A;&#x6D88;&#x8017;&#x5927;&#x91CF;CPU&#x8D44;&#x6E90;&#xFF0C;&#x5E76;&#x5BFC;&#x81F4;HTTP&#x8BF7;&#x6C42;&#x7684;&#x5E73;&#x5747;&#x54CD;&#x5E94;&#x901F;&#x5EA6;&#x964D;&#x4F4E;&#xFF0C;&#x8FD9;&#x4E9B;&#x90FD;&#x51B3;&#x5B9A;&#x4E86;Apache&#x4E0D;&#x53EF;&#x80FD;&#x6210;&#x4E3A;&#x9AD8;&#x6027;&#x80FD;Web&#x670D;&#x52A1;&#x5668;&#xFF0C;&#x8FD9;&#x4E5F;&#x4FC3;&#x4F7F;&#x4E86;Lighttpd&#x548C;Nginx&#x7684;&#x51FA;&#x73B0;&#x3002; &#x4E0B;&#x56FE;&#x53EF;&#x4EE5;&#x770B;&#x51FA;07&#x5E74;&#x5230;17 &#x5E74;&#x5F3A;&#x52B2;&#x589E;&#x957F;&#x52BF;&#x5934;&#x3002;</li>
+</ol>
+<p><img src="../../source/images/ch-06/old/nginx-ranking.png" alt="nginx-ranking"></p>
+<h3 id="12-&#x7F16;&#x8BD1;&#x4E0E;&#x5B89;&#x88C5;"><a name="12-&#x7F16;&#x8BD1;&#x4E0E;&#x5B89;&#x88C5;" class="anchor-navigation-ex-anchor" href="#12-&#x7F16;&#x8BD1;&#x4E0E;&#x5B89;&#x88C5;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="12-&#x7F16;&#x8BD1;&#x4E0E;&#x5B89;&#x88C5;" class="plugin-anchor" href="#12-&#x7F16;&#x8BD1;&#x4E0E;&#x5B89;&#x88C5;"><i class="fa fa-link" aria-hidden="true"></i></a>1.2 &#x7F16;&#x8BD1;&#x4E0E;&#x5B89;&#x88C5;</h3>
+<h4 id="&#x5B89;&#x88C5;&#x73AF;&#x5883;&#x51C6;&#x5907;"><a name="&#x5B89;&#x88C5;&#x73AF;&#x5883;&#x51C6;&#x5907;" class="anchor-navigation-ex-anchor" href="#&#x5B89;&#x88C5;&#x73AF;&#x5883;&#x51C6;&#x5907;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x5B89;&#x88C5;&#x73AF;&#x5883;&#x51C6;&#x5907;" class="plugin-anchor" href="#&#x5B89;&#x88C5;&#x73AF;&#x5883;&#x51C6;&#x5907;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x5B89;&#x88C5;&#x73AF;&#x5883;&#x51C6;&#x5907;</h4>
+<h6 id="linux-&#x5185;&#x6838;26&#x53CA;&#x4EE5;&#x4E0A;&#x7248;&#x672C;"><a name="linux-&#x5185;&#x6838;26&#x53CA;&#x4EE5;&#x4E0A;&#x7248;&#x672C;" class="anchor-navigation-ex-anchor" href="#linux-&#x5185;&#x6838;26&#x53CA;&#x4EE5;&#x4E0A;&#x7248;&#x672C;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="linux-&#x5185;&#x6838;26&#x53CA;&#x4EE5;&#x4E0A;&#x7248;&#x672C;" class="plugin-anchor" href="#linux-&#x5185;&#x6838;26&#x53CA;&#x4EE5;&#x4E0A;&#x7248;&#x672C;"><i class="fa fa-link" aria-hidden="true"></i></a>linux &#x5185;&#x6838;2.6&#x53CA;&#x4EE5;&#x4E0A;&#x7248;&#x672C;</h6>
+<p>&#x53EA;&#x6709;2.6&#x4E4B;&#x540E;&#x624D;&#x652F;&#x6301;epool &#xFF0C;&#x5728;&#x6B64;&#x4E4B;&#x524D;&#x4F7F;&#x7528;select&#x6216;pool&#x591A;&#x8DEF;&#x590D;&#x7528;&#x7684;IO&#x6A21;&#x578B;&#xFF0C;&#x65E0;&#x6CD5;&#x89E3;&#x51B3;&#x9AD8;&#x5E76;&#x53D1;&#x538B;&#x529B;&#x7684;&#x95EE;&#x9898;&#x3002;&#x901A;&#x8FC7;&#x547D;&#x4EE4;uname -a &#x5373;&#x53EF;&#x67E5;&#x770B;&#x3002;</p>
+<pre><code class="lang-bash"><span class="hljs-comment"># &#x67E5;&#x770B;linux&#x5185;&#x6838;</span>
+uname <span class="hljs-_">-a</span>
+</code></pre>
+<h6 id="gcc&#x7F16;&#x8BD1;&#x5668;"><a name="gcc&#x7F16;&#x8BD1;&#x5668;" class="anchor-navigation-ex-anchor" href="#gcc&#x7F16;&#x8BD1;&#x5668;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="gcc&#x7F16;&#x8BD1;&#x5668;" class="plugin-anchor" href="#gcc&#x7F16;&#x8BD1;&#x5668;"><i class="fa fa-link" aria-hidden="true"></i></a>GCC&#x7F16;&#x8BD1;&#x5668;</h6>
+<p>GCC&#xFF08;GNU Compiler Collection&#xFF09;&#x53EF;&#x7528;&#x6765;&#x7F16;&#x8BD1;C&#x8BED;&#x8A00;&#x7A0B;&#x5E8F;&#x3002;Nginx&#x4E0D;&#x4F1A;&#x76F4;&#x63A5;&#x63D0;&#x4F9B;&#x4E8C;&#x8FDB;&#x5236;&#x53EF;&#x6267;&#x884C;&#x7A0B;&#x5E8F;,&#x53EA;&#x80FD;&#x4E0B;&#x8F7D;&#x6E90;&#x7801;&#x8FDB;&#x884C;&#x7F16;&#x8BD1;&#x3002;</p>
+<h6 id="pcre&#x5E93;"><a name="pcre&#x5E93;" class="anchor-navigation-ex-anchor" href="#pcre&#x5E93;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="pcre&#x5E93;" class="plugin-anchor" href="#pcre&#x5E93;"><i class="fa fa-link" aria-hidden="true"></i></a>PCRE&#x5E93;</h6>
+<p>PCRE&#xFF08;Perl Compatible Regular Expressions&#xFF0C;Perl&#x517C;&#x5BB9;&#x6B63;&#x5219;&#x8868;&#x8FBE;&#x5F0F;&#xFF09;&#x662F;&#x7531;Philip Hazel&#x5F00;&#x53D1;&#x7684;&#x51FD;&#x6570;&#x5E93;&#xFF0C;&#x76EE;&#x524D;&#x4E3A;&#x5F88;&#x591A;&#x8F6F;&#x4EF6;&#x6240;&#x4F7F;&#x7528;&#xFF0C;&#x8BE5;&#x5E93;&#x652F;&#x6301;&#x6B63;&#x5219;&#x8868;&#x8FBE;&#x5F0F;&#x3002;</p>
+<h6 id="zlib&#x5E93;"><a name="zlib&#x5E93;" class="anchor-navigation-ex-anchor" href="#zlib&#x5E93;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="zlib&#x5E93;" class="plugin-anchor" href="#zlib&#x5E93;"><i class="fa fa-link" aria-hidden="true"></i></a>zlib&#x5E93;</h6>
+<p>zlib&#x5E93;&#x7528;&#x4E8E;&#x5BF9;HTTP&#x5305;&#x7684;&#x5185;&#x5BB9;&#x505A;gzip&#x683C;&#x5F0F;&#x7684;&#x538B;&#x7F29;&#xFF0C;&#x5982;&#x679C;&#x6211;&#x4EEC;&#x5728;nginx.conf&#x91CC;&#x914D;&#x7F6E;&#x4E86;gzip on&#xFF0C;&#x5E76;&#x6307;&#x5B9A;&#x5BF9;&#x4E8E;&#x67D0;&#x4E9B;&#x7C7B;&#x578B;&#xFF08;content-type&#xFF09;&#x7684;HTTP&#x54CD;&#x5E94;&#x4F7F;&#x7528;gzip&#x6765;&#x8FDB;&#x884C;&#x538B;&#x7F29;&#x4EE5;&#x51CF;&#x5C11;&#x7F51;&#x7EDC;&#x4F20;&#x8F93;&#x91CF;&#x3002;</p>
+<h6 id="openssl&#x5F00;&#x53D1;&#x5E93;"><a name="openssl&#x5F00;&#x53D1;&#x5E93;" class="anchor-navigation-ex-anchor" href="#openssl&#x5F00;&#x53D1;&#x5E93;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="openssl&#x5F00;&#x53D1;&#x5E93;" class="plugin-anchor" href="#openssl&#x5F00;&#x53D1;&#x5E93;"><i class="fa fa-link" aria-hidden="true"></i></a>OpenSSL&#x5F00;&#x53D1;&#x5E93;</h6>
+<p>&#x5982;&#x679C;&#x6211;&#x4EEC;&#x7684;&#x670D;&#x52A1;&#x5668;&#x4E0D;&#x53EA;&#x662F;&#x8981;&#x652F;&#x6301;HTTP&#xFF0C;&#x8FD8;&#x9700;&#x8981;&#x5728;&#x66F4;&#x5B89;&#x5168;&#x7684;SSL&#x534F;&#x8BAE;&#x4E0A;&#x4F20;&#x8F93;HTTP&#xFF0C;&#x90A3;&#x4E48;&#x5C31;&#x9700;&#x8981;&#x62E5;&#x6709;OpenSSL&#x4E86;&#x3002;&#x53E6;&#x5916;&#xFF0C;&#x5982;&#x679C;&#x6211;&#x4EEC;&#x60F3;&#x4F7F;&#x7528;MD5&#x3001;SHA1&#x7B49;&#x6563;&#x5217;&#x51FD;&#x6570;&#xFF0C;&#x90A3;&#x4E48;&#x4E5F;&#x9700;&#x8981;&#x5B89;&#x88C5;&#x5B83;&#x3002;</p>
+<p>&#x4E0A;&#x9762;&#x51E0;&#x4E2A;&#x5E93;&#x90FD;&#x662F;Nginx &#x57FA;&#x7840;&#x529F;&#x80FD;&#x6240;&#x5FC5;&#x9700;&#x7684;&#xFF0C;&#x4E3A;&#x7B80;&#x5355;&#x8D77;&#x89C1;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;yum &#x547D;&#x4EE4;&#x7EDF;&#x4E00;&#x5B89;&#x88C5;&#x3002;</p>
+<pre><code class="lang-bash"><span class="hljs-comment"># yum &#x5B89;&#x88C5;nginx&#x73AF;&#x5883;</span>
+yum -y install make zlib zlib-devel gcc-c++ libtool openssl openssl-devel pcre pcre-devel
+</code></pre>
+<h4 id="&#x6E90;&#x7801;&#x83B7;&#x53D6;"><a name="&#x6E90;&#x7801;&#x83B7;&#x53D6;" class="anchor-navigation-ex-anchor" href="#&#x6E90;&#x7801;&#x83B7;&#x53D6;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x6E90;&#x7801;&#x83B7;&#x53D6;" class="plugin-anchor" href="#&#x6E90;&#x7801;&#x83B7;&#x53D6;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x6E90;&#x7801;&#x83B7;&#x53D6;</h4>
+<p>nginx &#x4E0B;&#x8F7D;&#x9875;&#xFF1A;<a href="http://nginx.org/en/download.html" target="_blank">http://nginx.org/en/download.html</a> &#x3002;</p>
+<pre><code class="lang-bash"><span class="hljs-comment"># &#x4E0B;&#x8F7D;nginx &#x6700;&#x65B0;&#x7A33;&#x5B9A;&#x7248;&#x672C;</span>
+wget http://nginx.org/download/nginx-1.14.0.tar.gz
+<span class="hljs-comment"># &#x89E3;&#x538B;</span>
+tar -zxvf nginx-1.14.0.tar.gz
+</code></pre>
+<h4 id="&#x5B89;&#x88C5;"><a name="&#x5B89;&#x88C5;" class="anchor-navigation-ex-anchor" href="#&#x5B89;&#x88C5;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x5B89;&#x88C5;" class="plugin-anchor" href="#&#x5B89;&#x88C5;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x5B89;&#x88C5;</h4>
+<pre><code class="lang-bash"><span class="hljs-comment"># &#x5168;&#x90E8;&#x91C7;&#x7528;&#x9ED8;&#x8BA4;&#x5B89;&#x88C5;</span>
+./configure &amp; make &amp; make install
+</code></pre>
+<p>&#x6267;&#x884C;&#x5B8C;&#x6210;&#x4E4B;&#x540E; nginx &#x8FD0;&#x884C;&#x6587;&#x4EF6; &#x5C31;&#x4F1A;&#x88AB;&#x5B89;&#x88C5;&#x5728; /usr/local/nginx &#x4E0B;&#x3002;</p>
+<h4 id="&#x6A21;&#x5757;&#x66F4;&#x65B0;"><a name="&#x6A21;&#x5757;&#x66F4;&#x65B0;" class="anchor-navigation-ex-anchor" href="#&#x6A21;&#x5757;&#x66F4;&#x65B0;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x6A21;&#x5757;&#x66F4;&#x65B0;" class="plugin-anchor" href="#&#x6A21;&#x5757;&#x66F4;&#x65B0;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x6A21;&#x5757;&#x66F4;&#x65B0;</h4>
+<pre><code class="lang-bash"><span class="hljs-comment"># &#x6DFB;&#x52A0;&#x72B6;&#x6001;&#x67E5;&#x67E5;&#x770B;&#x6A21;&#x5757;</span>
+./configure --with-http_stub_status_module 
+<span class="hljs-comment"># &#x91CD;&#x65B0;&#x521B;&#x5EFA;&#x4E3B;&#x6587;&#x4EF6;</span>
+make
+
+<span class="hljs-comment"># &#x5C06;&#x65B0;&#x751F;&#x6210;&#x7684;nginx&#x6587;&#x4EF6;&#x8986;&#x76D6;&#x65E7;&#x6587;&#x4EF6;&#x3002;</span>
+cp objs/nginx /usr/<span class="hljs-built_in">local</span>/nginx/sbin/
+<span class="hljs-comment"># &#x67E5;&#x770B;&#x662F;&#x5426;&#x66F4;&#x65B0;&#x6210;&#x529F; &#x663E;&#x793A;&#x4E86;configure&#x6784;&#x5EFA;&#x53C2;&#x6570;&#x8868;&#x793A;&#x6210;&#x529F;</span>
+/usr/<span class="hljs-built_in">local</span>/nginx/sbin/nginx -V
+
+<span class="hljs-comment"># &#x6216;&#x8005;&#x65E0;&#x9700;&#x62F7;&#x8D1D;&#xFF0C;&#x76F4;&#x63A5;&#x7528;make install&#x8FDB;&#x884C;&#x8986;&#x76D6;&#x5B89;&#x88C5;&#xFF0C;&#x5B89;&#x88C5;&#x671F;&#x95F4;&#xFF0C;&#x539F;nginx&#x6587;&#x4EF6;&#x5939;&#x4F1A;&#x88AB;&#x91CD;&#x547D;&#x540D;&#x4E3A;nginx.olds</span>
+make install
+</code></pre>
+<h4 id="&#x63A7;&#x5236;&#x547D;&#x4EE4;"><a name="&#x63A7;&#x5236;&#x547D;&#x4EE4;" class="anchor-navigation-ex-anchor" href="#&#x63A7;&#x5236;&#x547D;&#x4EE4;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x63A7;&#x5236;&#x547D;&#x4EE4;" class="plugin-anchor" href="#&#x63A7;&#x5236;&#x547D;&#x4EE4;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x63A7;&#x5236;&#x547D;&#x4EE4;</h4>
+<pre><code class="lang-bash"><span class="hljs-comment"># &#x67E5;&#x770B;&#x547D;&#x4EE4;&#x5E2E;&#x52A9;</span>
+./sbin/nginx -?
+<span class="hljs-comment"># &#x9ED8;&#x8BA4;&#x65B9;&#x5F0F;&#x542F;&#x52A8;&#xFF1A;</span>
+./sbin/nginx 
+<span class="hljs-comment"># &#x6307;&#x5B9A;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x542F;&#x52A8; </span>
+./sbing/nginx -c /tmp/nginx.conf 
+<span class="hljs-comment"># &#x6307;&#x5B9A;nginx&#x7A0B;&#x5E8F;&#x76EE;&#x5F55;&#x542F;&#x52A8;</span>
+./sbin/nginx -p /usr/<span class="hljs-built_in">local</span>/nginx/
+
+<span class="hljs-comment"># &#x5FEB;&#x901F;&#x505C;&#x6B62;</span>
+./sbin/nginx <span class="hljs-_">-s</span> stop
+<span class="hljs-comment"># &#x4F18;&#x96C5;&#x505C;&#x6B62;</span>
+./sbin/nginx <span class="hljs-_">-s</span> quit
+
+<span class="hljs-comment"># &#x70ED;&#x88C5;&#x8F7D;&#x914D;&#x7F6E;&#x6587;&#x4EF6; </span>
+./sbin/nginx <span class="hljs-_">-s</span> reload
+
+<span class="hljs-comment"># &#x91CD;&#x65B0;&#x6253;&#x5F00;&#x65E5;&#x5FD7;&#x6587;&#x4EF6;</span>
+<span class="hljs-comment"># &#x5F53;&#x65E5;&#x5FD7;&#x6587;&#x4EF6;&#x9700;&#x8981;&#x8FC1;&#x79FB;&#x65F6;&#xFF0C;&#x5C06;&#x539F;&#x65E5;&#x5FD7;&#x6587;&#x4EF6;&#x6539;&#x540D;&#x6216;&#x79FB;&#x8D70;&#xFF0C;&#x7136;&#x540E;&#x521B;&#x5EFA;&#x540C;&#x540D;&#x7684;&#x65B0;&#x65E5;&#x5FD7;&#x6587;&#x4EF6;&#x540E;&#xFF0C;&#x9700;&#x8981;&#x91CD;&#x65B0;&#x8F7D;&#x5165;</span>
+<span class="hljs-comment"># &#x5426;&#x5219;&#x65E5;&#x5FD7;&#x5185;&#x5BB9;&#x4ECD;&#x65E7;&#x4F1A;&#x88AB;&#x5B58;&#x5230;&#x539F;&#x6765;&#x7684;&#x65E5;&#x5FD7;&#x6587;&#x4EF6;&#x4E2D;</span>
+./sbin/nginx <span class="hljs-_">-s</span> reopen
+
+<span class="hljs-comment"># &#x8BBE;&#x7F6E;&#x5168;&#x5C40;&#x547D;&#x4EE4;&#xFF0C;&#x5982;&#x4E0B;&#x8868;&#x793A;&#x8BBE;&#x7F6E;&#x542F;&#x52A8;&#x7528;&#x6237;&#x4E3A;root</span>
+./sbin/nginx -g <span class="hljs-string">&quot;user root;&quot;</span>
+<span class="hljs-comment"># &#x53EF;&#x4EE5;&#x770B;&#x5230;nginx&#x7684;&#x542F;&#x52A8;&#x7528;&#x6237;&#x4E3A;root&#xFF0C;&#x4E0D;&#x6307;&#x5B9A;&#x65F6;&#x4E3A;nobody</span>
+ps -ef|grep nginx
+</code></pre>
+<h2 id="2-nginx-&#x67B6;&#x6784;&#x8BF4;&#x660E;"><a name="2-nginx-&#x67B6;&#x6784;&#x8BF4;&#x660E;" class="anchor-navigation-ex-anchor" href="#2-nginx-&#x67B6;&#x6784;&#x8BF4;&#x660E;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="2-nginx-&#x67B6;&#x6784;&#x8BF4;&#x660E;" class="plugin-anchor" href="#2-nginx-&#x67B6;&#x6784;&#x8BF4;&#x660E;"><i class="fa fa-link" aria-hidden="true"></i></a>2. Nginx &#x67B6;&#x6784;&#x8BF4;&#x660E;</h2>
+<h3 id="21-nginx-&#x67B6;&#x6784;&#x56FE;"><a name="21-nginx-&#x67B6;&#x6784;&#x56FE;" class="anchor-navigation-ex-anchor" href="#21-nginx-&#x67B6;&#x6784;&#x56FE;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="21-nginx-&#x67B6;&#x6784;&#x56FE;" class="plugin-anchor" href="#21-nginx-&#x67B6;&#x6784;&#x56FE;"><i class="fa fa-link" aria-hidden="true"></i></a>2.1 Nginx &#x67B6;&#x6784;&#x56FE;</h3>
+<p><img src="../../source/images/ch-06/old/nginx_structure.png" alt="nginx_structure"></p>
+<h5 id="&#x67B6;&#x6784;&#x8BF4;&#x660E;"><a name="&#x67B6;&#x6784;&#x8BF4;&#x660E;" class="anchor-navigation-ex-anchor" href="#&#x67B6;&#x6784;&#x8BF4;&#x660E;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x67B6;&#x6784;&#x8BF4;&#x660E;" class="plugin-anchor" href="#&#x67B6;&#x6784;&#x8BF4;&#x660E;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x67B6;&#x6784;&#x8BF4;&#x660E;</h5>
+<ol>
+<li>nginx&#x542F;&#x52A8;&#x65F6;&#xFF0C;&#x4F1A;&#x751F;  &#x4E0D;&#x5904;&#x7406;&#x7F51;&#x7EDC;&#x8BF7;&#x6C42;&#xFF0C;&#x4E3B;&#x8981;&#x8D1F;&#x8D23;&#x8C03;&#x5EA6;&#x5DE5;&#x4F5C;&#x8FDB;&#x7A0B;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x56FE;&#x793A;&#x7684;&#x4E09;&#x9879;&#xFF1A;&#x52A0;&#x8F7D;&#x914D;&#x7F6E;&#x3001;&#x542F;&#x52A8;&#x5DE5;&#x4F5C;&#x8FDB;&#x7A0B;&#x53CA;&#x975E;&#x505C;&#x5347;&#x7EA7;&#x3002;&#x6240;&#x4EE5;&#xFF0C;nginx&#x542F;&#x52A8;&#x4EE5;&#x540E;&#xFF0C;&#x67E5;&#x770B;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x7684;&#x8FDB;&#x7A0B;&#x5217;&#x8868;&#xFF0C;&#x6211;&#x4EEC;&#x5C31;&#x80FD;&#x770B;&#x5230;&#x81F3;&#x5C11;&#x6709;&#x4E24;&#x4E2A;nginx&#x8FDB;&#x7A0B;&#x3002;</li>
+<li>&#x670D;&#x52A1;&#x5668;&#x5B9E;&#x9645;&#x5904;&#x7406;&#x7F51;&#x7EDC;&#x8BF7;&#x6C42;&#x53CA;&#x54CD;&#x5E94;&#x7684;&#x662F;&#x5DE5;&#x4F5C;&#x8FDB;&#x7A0B;&#xFF08;worker&#xFF09;&#xFF0C;&#x5728;&#x7C7B;unix&#x7CFB;&#x7EDF;&#x4E0A;&#xFF0C;nginx&#x53EF;&#x4EE5;&#x914D;&#x7F6E;&#x591A;&#x4E2A;worker&#xFF0C;&#x800C;&#x6BCF;&#x4E2A;worker&#x8FDB;&#x7A0B;&#x90FD;&#x53EF;&#x4EE5;&#x540C;&#x65F6;&#x5904;&#x7406;&#x6570;&#x4EE5;&#x5343;&#x8BA1;&#x7684;&#x7F51;&#x7EDC;&#x8BF7;&#x6C42;&#x3002;</li>
+<li>&#x6A21;&#x5757;&#x5316;&#x8BBE;&#x8BA1;&#x3002;nginx&#x7684;worker&#xFF0C;&#x5305;&#x62EC;&#x6838;&#x5FC3;&#x548C;&#x529F;&#x80FD;&#x6027;&#x6A21;&#x5757;&#xFF0C;&#x6838;&#x5FC3;&#x6A21;&#x5757;&#x8D1F;&#x8D23;&#x7EF4;&#x6301;&#x4E00;&#x4E2A;&#x8FD0;&#x884C;&#x5FAA;&#x73AF;&#xFF08;run-loop&#xFF09;&#xFF0C;&#x6267;&#x884C;&#x7F51;&#x7EDC;&#x8BF7;&#x6C42;&#x5904;&#x7406;&#x7684;&#x4E0D;&#x540C;&#x9636;&#x6BB5;&#x7684;&#x6A21;&#x5757;&#x529F;&#x80FD;&#xFF0C;&#x5982;&#x7F51;&#x7EDC;&#x8BFB;&#x5199;&#x3001;&#x5B58;&#x50A8;&#x8BFB;&#x5199;&#x3001;&#x5185;&#x5BB9;&#x4F20;&#x8F93;&#x3001;&#x5916;&#x51FA;&#x8FC7;&#x6EE4;&#xFF0C;&#x4EE5;&#x53CA;&#x5C06;&#x8BF7;&#x6C42;&#x53D1;&#x5F80;&#x4E0A;&#x6E38;&#x670D;&#x52A1;&#x5668;&#x7B49;&#x3002;&#x800C;&#x5176;&#x4EE3;&#x7801;&#x7684;&#x6A21;&#x5757;&#x5316;&#x8BBE;&#x8BA1;&#xFF0C;&#x4E5F;&#x4F7F;&#x5F97;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x6839;&#x636E;&#x9700;&#x8981;&#x5BF9;&#x529F;&#x80FD;&#x6A21;&#x5757;&#x8FDB;&#x884C;&#x9002;&#x5F53;&#x7684;&#x9009;&#x62E9;&#x548C;&#x4FEE;&#x6539;&#xFF0C;&#x7F16;&#x8BD1;&#x6210;&#x5177;&#x6709;&#x7279;&#x5B9A;&#x529F;&#x80FD;&#x7684;&#x670D;&#x52A1;&#x5668;&#x3002;</li>
+<li>&#x4E8B;&#x4EF6;&#x9A71;&#x52A8;&#x3001;&#x5F02;&#x6B65;&#x53CA;&#x975E;&#x963B;&#x585E;&#xFF0C;&#x53EF;&#x4EE5;&#x8BF4;&#x662F;nginx&#x5F97;&#x4EE5;&#x83B7;&#x5F97;&#x9AD8;&#x5E76;&#x53D1;&#x3001;&#x9AD8;&#x6027;&#x80FD;&#x7684;&#x5173;&#x952E;&#x56E0;&#x7D20;&#xFF0C;&#x540C;&#x65F6;&#x4E5F;&#x5F97;&#x76CA;&#x4E8E;&#x5BF9;Linux&#x3001;Solaris&#x53CA;&#x7C7B;BSD&#x7B49;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x5185;&#x6838;&#x4E2D;&#x4E8B;&#x4EF6;&#x901A;&#x77E5;&#x53CA;I/O&#x6027;&#x80FD;&#x589E;&#x5F3A;&#x529F;&#x80FD;&#x7684;&#x91C7;&#x7528;&#xFF0C;&#x5982;kqueue&#x3001;epoll&#x53CA;event ports&#x3002;</li>
+</ol>
+<h3 id="22-nginx-&#x6838;&#x5FC3;&#x6A21;&#x5757;"><a name="22-nginx-&#x6838;&#x5FC3;&#x6A21;&#x5757;" class="anchor-navigation-ex-anchor" href="#22-nginx-&#x6838;&#x5FC3;&#x6A21;&#x5757;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="22-nginx-&#x6838;&#x5FC3;&#x6A21;&#x5757;" class="plugin-anchor" href="#22-nginx-&#x6838;&#x5FC3;&#x6A21;&#x5757;"><i class="fa fa-link" aria-hidden="true"></i></a>2.2 Nginx &#x6838;&#x5FC3;&#x6A21;&#x5757;</h3>
+<p><img src="../../source/images/ch-06/old/nginx-core-module.png" alt="nginx-core-module"></p>
+<h2 id="3-nginx-&#x914D;&#x7F6E;&#x4E0E;&#x4F7F;&#x7528;"><a name="3-nginx-&#x914D;&#x7F6E;&#x4E0E;&#x4F7F;&#x7528;" class="anchor-navigation-ex-anchor" href="#3-nginx-&#x914D;&#x7F6E;&#x4E0E;&#x4F7F;&#x7528;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="3-nginx-&#x914D;&#x7F6E;&#x4E0E;&#x4F7F;&#x7528;" class="plugin-anchor" href="#3-nginx-&#x914D;&#x7F6E;&#x4E0E;&#x4F7F;&#x7528;"><i class="fa fa-link" aria-hidden="true"></i></a>3. Nginx &#x914D;&#x7F6E;&#x4E0E;&#x4F7F;&#x7528;</h2>
+<h3 id="31-&#x77E5;&#x8BC6;&#x70B9;"><a name="31-&#x77E5;&#x8BC6;&#x70B9;" class="anchor-navigation-ex-anchor" href="#31-&#x77E5;&#x8BC6;&#x70B9;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="31-&#x77E5;&#x8BC6;&#x70B9;" class="plugin-anchor" href="#31-&#x77E5;&#x8BC6;&#x70B9;"><i class="fa fa-link" aria-hidden="true"></i></a>3.1 &#x77E5;&#x8BC6;&#x70B9;</h3>
+<ol>
+<li>&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x8BED;&#x6CD5;&#x683C;&#x5F0F;</li>
+<li>&#x914D;&#x7F6E;&#x7B2C;&#x4E00;&#x4E2A;&#x9759;&#x6001;WEB&#x670D;&#x52A1;</li>
+<li>&#x914D;&#x7F6E;&#x6848;&#x4F8B;<ol>
+<li>&#x52A8;&#x9759;&#x5206;&#x79BB;&#x5B9E;&#x73B0;</li>
+<li>&#x9632;&#x76D7;&#x94FE;</li>
+<li>&#x591A;&#x57DF;&#x540D;&#x7AD9;&#x70B9;</li>
+<li>&#x4E0B;&#x8F7D;&#x9650;&#x901F;</li>
+<li>IP &#x9ED1;&#x540D;&#x5355;</li>
+<li>&#x57FA;&#x4E8E;user-agent&#x5206;&#x6D41;</li>
+</ol>
+</li>
+<li>&#x65E5;&#x5FD7;&#x914D;&#x7F6E;</li>
+</ol>
+<h3 id="32-&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x7684;&#x8BED;&#x6CD5;&#x683C;&#x5F0F;"><a name="32-&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x7684;&#x8BED;&#x6CD5;&#x683C;&#x5F0F;" class="anchor-navigation-ex-anchor" href="#32-&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x7684;&#x8BED;&#x6CD5;&#x683C;&#x5F0F;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="32-&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x7684;&#x8BED;&#x6CD5;&#x683C;&#x5F0F;" class="plugin-anchor" href="#32-&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x7684;&#x8BED;&#x6CD5;&#x683C;&#x5F0F;"><i class="fa fa-link" aria-hidden="true"></i></a>3.2 &#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x7684;&#x8BED;&#x6CD5;&#x683C;&#x5F0F;</h3>
+<p>&#x5148;&#x6765;&#x770B;&#x4E00;&#x4E2A;&#x7B80;&#x5355;&#x7684;nginx &#x914D;&#x7F6E;</p>
+<pre><code class="lang-bash">worker_processes  1;
+events {
+    worker_connections  1024;
+}
+http {
+        <span class="hljs-comment"># &#x5C06;mime.types&#x4E2D;&#x7684;&#x5185;&#x5BB9;&#x6DFB;&#x52A0;&#x5230;&#x6B64;&#x5904;</span>
+    include       mime.types;
+
+    default_<span class="hljs-built_in">type</span>  application/octet-stream;
+    sendfile        on;
+
+    <span class="hljs-comment"># &#x957F;&#x94FE;&#x63A5;&#x7684;&#x6700;&#x5927;&#x8D85;&#x65F6;&#x65F6;&#x95F4;</span>
+    keepalive_timeout  65;
+
+    <span class="hljs-comment"># &#x914D;&#x7F6E;&#x4E00;&#x4E2A;&#x5177;&#x4F53;&#x7684;&#x7AD9;&#x70B9;&#xFF0C;&#x53EF;&#x4EE5;&#x914D;&#x7F6E;&#x591A;&#x4E2A;server</span>
+    server {
+            <span class="hljs-comment"># &#x76D1;&#x542C;&#x7684;&#x7AEF;&#x53E3;</span>
+        listen       80;
+        <span class="hljs-comment"># &#x7AD9;&#x70B9;&#x57DF;&#x540D;</span>
+        server_name  localsss
+
+        <span class="hljs-comment"># &#x5BF9;&#x6587;&#x4EF6;&#x76EE;&#x5F55;&#x8FDB;&#x884C;&#x5212;&#x5206;</span>
+        location / {
+                <span class="hljs-comment"># &#x53EF;&#x4EE5;&#x5728;location&#x4E2D;&#x914D;&#x7F6E;&#xFF0C;&#x8868;&#x793A;&#x6B64;location&#x72EC;&#x4EAB;&#xFF0C;</span>
+                <span class="hljs-comment"># &#x4E5F;&#x53EF;&#x4EE5;&#x5728;server&#x914D;&#x7F6E;&#xFF0C;&#x591A;&#x4E2A;location&#x5171;&#x4EAB;&#xFF0C;</span>
+                <span class="hljs-comment"># location&#x4E2D;&#x7684;&#x914D;&#x7F6E;&#x4F18;&#x5148;&#x7EA7;&#x9AD8;&#x4E8E;server&#xFF0C;</span>
+                <span class="hljs-comment"># &#x6CE8;&#x610F;&#xFF1A;&#x7ED3;&#x5C3E;&#x9700;&#x8981;&#x52A0;&#x5206;&#x53F7;</span>
+            root   /www/tyrival/;
+            index  index.html index.htm;
+        }
+
+        location /nginx_status {
+                  stub_status on;
+                   access_<span class="hljs-built_in">log</span>   off;
+          }
+    }
+
+    <span class="hljs-comment"># &#x540C;&#x6837;&#x8BBF;&#x95EE;80&#x7AEF;&#x53E3;&#xFF0C;&#x57FA;&#x4E8E;IP&#x8BBF;&#x95EE;&#x5C31;&#x8FDB;&#x5165;&#x4E0A;&#x9762;server&#xFF0C;&#x57FA;&#x4E8E;&#x57DF;&#x540D;&#x8BBF;&#x95EE;&#x5C31;&#x8FDB;&#x5165;&#x4E0B;&#x9762;&#x7684;server</span>
+    server {
+            listener        80;
+            service_name www.tyrival.com  *.droopy.com  www.tom.*
+    }
+}
+</code></pre>
+<p>&#x4E0A;&#x8FF0;&#x914D;&#x7F6E;&#x4E2D;&#x7684;events&#x3001;http&#x3001;server&#x3001;location&#x3001;upstream&#x7B49;&#x5C5E;&#x4E8E;<strong>&#x914D;&#x7F6E;&#x9879;&#x5757;</strong>&#x3002;&#x800C;worker_processes &#x3001;worker_connections&#x3001;include&#x3001;listen&#x5C5E;&#x4E8E;&#x914D;&#x7F6E;&#x9879;&#x5757;&#x4E2D;&#x7684;<strong>&#x5C5E;&#x6027;</strong>&#x3002;<code>/nginx_status</code> &#x5C5E;&#x4E8E;&#x914D;&#x7F6E;&#x5757;&#x7684;&#x7279;&#x5B9A;<strong>&#x53C2;&#x6570;</strong>&#x3002;&#x5176;&#x4E2D;server&#x5757;&#x5D4C;&#x5957;&#x4E8E;http&#x5757;&#xFF0C;&#x5176;&#x53EF;&#x4EE5;&#x76F4;&#x63A5;&#x7EE7;&#x627F;&#x8BBF;&#x95EE;Http&#x5757;&#x5F53;&#x4E2D;&#x7684;&#x53C2;&#x6570;&#x3002;</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">&#x914D;&#x7F6E;&#x5757;</th>
+<th style="text-align:left">&#x540D;&#x79F0;&#x5F00;&#x5934;&#x7528;&#x5927;&#x53E3;&#x53F7;&#x5305;&#x88F9;&#x5176;&#x5BF9;&#x5E94;&#x5C5E;&#x6027;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>&#x5C5E;&#x6027;</strong></td>
+<td style="text-align:left">&#x57FA;&#x4E8E;&#x7A7A;&#x683C;&#x5207;&#x5206;&#x5C5E;&#x6027;&#x540D;&#x4E0E;&#x5C5E;&#x6027;&#x503C;&#xFF0C;&#x5C5E;&#x6027;&#x503C;&#x53EF;&#x80FD;&#x6709;&#x591A;&#x4E2A;&#x9879; &#x90FD;&#x4EE5;&#x7A7A;&#x683C;&#x8FDB;&#x884C;&#x5207;&#x5206; &#x5982;&#xFF1A;<code>access_log  logs/host.access.log  main</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>&#x53C2;&#x6570;</strong></td>
+<td style="text-align:left">&#x5176;&#x914D;&#x7F6E;&#x5728; &#x5757;&#x540D;&#x79F0;&#x4E0E;&#x5927;&#x62EC;&#x53F7;&#x95F4;&#xFF0C;&#x5176;&#x503C;&#x5982;&#x679C;&#x6709;&#x591A;&#x4E2A;&#x4E5F;&#x662F;&#x901A;&#x8FC7;&#x7A7A;&#x683C;&#x8FDB;&#x884C;&#x62C6;</td>
+</tr>
+</tbody>
+</table>
+<p>&#x6CE8;&#x610F; &#x5982;&#x679C;&#x914D;&#x7F6E;&#x9879;&#x503C;&#x4E2D;&#x5305;&#x62EC;&#x8BED;&#x6CD5;&#x7B26;&#x53F7;&#xFF0C;&#x6BD4;&#x5982;&#x7A7A;&#x683C;&#x7B26;&#xFF0C;&#x90A3;&#x4E48;&#x9700;&#x8981;&#x4F7F;&#x7528;&#x5355;&#x5F15;&#x53F7;&#x6216;&#x53CC;&#x5F15;&#x53F7;&#x62EC;&#x4F4F;&#x914D;&#x7F6E;&#x9879;&#x503C;&#xFF0C;&#x5426;&#x5219;Nginx&#x4F1A;&#x62A5;&#x8BED;&#x6CD5;&#x9519;&#x8BEF;&#x3002;&#x4F8B;&#x5982;&#xFF1A;</p>
+<pre><code>log_format main &apos;$remote_addr - $remote_user [$time_local] &quot;$request&quot; &apos;
+                     &apos;$status $body_bytes_sent &quot;$http_referer&quot; &apos;
+                     &apos;&quot;$http_user_agent&quot; &quot;$http_x_forwarded_for&quot;&apos;;
+</code></pre><h3 id="33-&#x914D;&#x7F6E;&#x7B2C;&#x4E00;&#x4E2A;&#x9759;&#x6001;web&#x670D;&#x52A1;"><a name="33-&#x914D;&#x7F6E;&#x7B2C;&#x4E00;&#x4E2A;&#x9759;&#x6001;web&#x670D;&#x52A1;" class="anchor-navigation-ex-anchor" href="#33-&#x914D;&#x7F6E;&#x7B2C;&#x4E00;&#x4E2A;&#x9759;&#x6001;web&#x670D;&#x52A1;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="33-&#x914D;&#x7F6E;&#x7B2C;&#x4E00;&#x4E2A;&#x9759;&#x6001;web&#x670D;&#x52A1;" class="plugin-anchor" href="#33-&#x914D;&#x7F6E;&#x7B2C;&#x4E00;&#x4E2A;&#x9759;&#x6001;web&#x670D;&#x52A1;"><i class="fa fa-link" aria-hidden="true"></i></a>3.3 &#x914D;&#x7F6E;&#x7B2C;&#x4E00;&#x4E2A;&#x9759;&#x6001;WEB&#x670D;&#x52A1;</h3>
+<h4 id="&#x57FA;&#x7840;&#x7AD9;&#x70B9;&#x6F14;&#x793A;"><a name="&#x57FA;&#x7840;&#x7AD9;&#x70B9;&#x6F14;&#x793A;" class="anchor-navigation-ex-anchor" href="#&#x57FA;&#x7840;&#x7AD9;&#x70B9;&#x6F14;&#x793A;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x57FA;&#x7840;&#x7AD9;&#x70B9;&#x6F14;&#x793A;" class="plugin-anchor" href="#&#x57FA;&#x7840;&#x7AD9;&#x70B9;&#x6F14;&#x793A;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x57FA;&#x7840;&#x7AD9;&#x70B9;&#x6F14;&#x793A;</h4>
+<ul>
+<li><p>&#x521B;&#x5EFA;&#x7AD9;&#x70B9;&#x76EE;&#x5F55; <code>mkdir -p /usr/www/tyrival</code></p>
+</li>
+<li><p>&#x7F16;&#x5199;&#x9759;&#x6001;&#x6587;&#x4EF6;</p>
+</li>
+<li><p>&#x914D;&#x7F6E; nginx.conf</p>
+<ul>
+<li>&#x914D;&#x7F6E;server</li>
+<li>&#x914D;&#x7F6E;location</li>
+</ul>
+</li>
+</ul>
+<h5 id="&#x57FA;&#x672C;&#x914D;&#x7F6E;"><a name="&#x57FA;&#x672C;&#x914D;&#x7F6E;" class="anchor-navigation-ex-anchor" href="#&#x57FA;&#x672C;&#x914D;&#x7F6E;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x57FA;&#x672C;&#x914D;&#x7F6E;" class="plugin-anchor" href="#&#x57FA;&#x672C;&#x914D;&#x7F6E;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x57FA;&#x672C;&#x914D;&#x7F6E;</h5>
+<ol>
+<li><p>&#x76D1;&#x542C;&#x7AEF;&#x53E3;
+&#x8BED;&#x6CD5;&#xFF1A;<code>listen address</code>
+&#x9ED8;&#x8BA4;&#xFF1A;<code>listen 80</code>
+&#x914D;&#x7F6E;&#x5757;&#xFF1A;<code>server</code></p>
+</li>
+<li><p>&#x4E3B;&#x673A;&#x540D;&#x79F0;
+&#x8BED;&#x6CD5;&#xFF1A;<code>server_name name[&#x2026;&#x2026;]</code>
+&#x9ED8;&#x8BA4;&#xFF1A;<code>server_name &quot;&quot;</code>
+&#x914D;&#x7F6E;&#x5757;&#xFF1A;<code>server</code>
+server_name&#x540E;&#x53EF;&#x4EE5;&#x8DDF;&#x591A;&#x4E2A;&#x4E3B;&#x673A;&#x540D;&#x79F0;&#xFF0C;&#x5982;server_name www.testweb.com&#x3001;download.testweb.com;&#x3002; &#x652F;&#x6301;&#x901A;&#x914D;&#x7B26;&#x4E0E;&#x6B63;&#x5219;</p>
+</li>
+<li><p>location
+&#x8BED;&#x6CD5;&#xFF1A;<code>location[=|&#xFF5E;|&#xFF5E;*|^&#xFF5E;|@]/uri/{&#x2026;&#x2026;}</code>
+&#x914D;&#x7F6E;&#x5757;&#xFF1A;server</p>
+<ul>
+<li><code>=</code> &#x8868;&#x793A;&#x628A;URI&#x4F5C;&#x4E3A;&#x5B57;&#x7B26;&#x4E32;&#xFF0C;&#x4EE5;&#x4FBF;&#x4E0E;&#x53C2;&#x6570;&#x4E2D;&#x7684;uri&#x505A;&#x5B8C;&#x5168;&#x5339;&#x914D;&#x3002;</li>
+</ul>
+<pre><code class="lang-bash">location = /old/baidu {
+        proxy_pass https://www.baidu.com/;
+}
+</code></pre>
+<ul>
+<li><code>/</code> &#x57FA;&#x4E8E;uri&#x76EE;&#x5F55;&#x5339;&#x914D;</li>
+<li><code>~</code> &#x8868;&#x793A;&#x6B63;&#x5219;&#x5339;&#x914D;URI&#x65F6;&#xFF0C;&#x662F;&#x5B57;&#x6BCD;&#x5927;&#x5C0F;&#x5199;&#x654F;&#x611F;&#x7684;&#x3002;</li>
+</ul>
+<pre><code class="lang-bash">location ~ \.png|jpg|gif|css|js|avi|mp4 {
+        root /www/static/;
+}
+</code></pre>
+<ul>
+<li><code>~*</code> &#x8868;&#x793A;&#x6B63;&#x5219;&#x5339;&#x914D;URI&#x65F6;&#x5FFD;&#x7565;&#x5B57;&#x6BCD;&#x5927;&#x5C0F;&#x5199;&#x95EE;&#x9898;&#x3002;</li>
+<li><code>^~</code> &#x8868;&#x793A;&#x6B63;&#x5219;&#x5339;&#x914D;URI&#x65F6;&#x53EA;&#x9700;&#x8981;&#x5176;&#x524D;&#x534A;&#x90E8;&#x5206;&#x4E0E;uri&#x53C2;&#x6570;&#x5339;&#x914D;&#x5373;&#x53EF;&#x3002;</li>
+</ul>
+</li>
+</ol>
+<blockquote>
+<p><strong>&#x5339;&#x914D;&#x4F18;&#x5148;&#x89C4;&#x5219;&#xFF1A;</strong></p>
+<ol>
+<li><p>&#x7CBE;&#x786E;&#x5339;&#x914D;&#x4F18;&#x5148; <code>=</code></p>
+</li>
+<li><p>&#x6B63;&#x5219;&#x5339;&#x914D;&#x4F18;&#x5148; <code>^~</code></p>
+</li>
+<li><p>&#x524D;&#x7F00;&#x6700;&#x5927;&#x5339;&#x914D;&#x4F18;&#x5148;</p>
+</li>
+<li><p>&#x914D;&#x7F6E;&#x9760;&#x524D;&#x4F18;&#x5316;</p>
+</li>
+</ol>
+</blockquote>
+<ol>
+<li>root &#x6307;&#x5B9A;&#x7AD9;&#x70B9;&#x6839;&#x76EE;&#x5F55;
+&#x53EF;&#x914D;&#x7F6E;&#x5728; server&#x4E0E;location&#x4E2D;&#xFF0C;&#x57FA;&#x4E8E;ROOT&#x8DEF;&#x5F84;+URL&#x4E2D;&#x8DEF;&#x5F84;&#x53BB;&#x5BFB;&#x627E;&#x6307;&#x5B9A;&#x6587;&#x4EF6;&#x3002;</li>
+<li>alias &#x6307;&#x5B9A;&#x7AD9;&#x70B9;&#x522B;&#x540D;
+&#x53EA;&#x80FD;&#x914D;&#x7F6E;location &#x4E2D;&#x3002;&#x57FA;&#x4E8E;alias &#x8DEF;&#x5F84;+ URL&#x79FB;&#x9664;location  &#x524D;&#x7F00;&#x540E;&#x7684;&#x8DEF;&#x5F84;&#x6765;&#x5BFB;&#x627E;&#x6587;&#x4EF6;&#x3002;
+&#x793A;&#x4F8B;&#xFF1A;</li>
+</ol>
+<pre><code class="lang-bash">location /V1 {
+      <span class="hljs-built_in">alias</span>  /www/old_site;
+      index  index.html index.htm;
+}
+<span class="hljs-comment"># &#x8BBF;&#x95EE;&#x89C4;&#x5219;&#x5982;&#x4E0B;</span>
+URL&#xFF1A;http://xxx:xx/V1/a.html
+&#x6700;&#x7EC8;&#x5BFB;&#x5740;&#xFF1A;/www/old_site/a.thml
+</code></pre>
+<h4 id="&#x793A;&#x4F8B;"><a name="&#x793A;&#x4F8B;" class="anchor-navigation-ex-anchor" href="#&#x793A;&#x4F8B;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x793A;&#x4F8B;" class="plugin-anchor" href="#&#x793A;&#x4F8B;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x793A;&#x4F8B;</h4>
+<h5 id="&#x52A8;&#x9759;&#x5206;&#x79BB;&#x6F14;&#x793A;"><a name="&#x52A8;&#x9759;&#x5206;&#x79BB;&#x6F14;&#x793A;" class="anchor-navigation-ex-anchor" href="#&#x52A8;&#x9759;&#x5206;&#x79BB;&#x6F14;&#x793A;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x52A8;&#x9759;&#x5206;&#x79BB;&#x6F14;&#x793A;" class="plugin-anchor" href="#&#x52A8;&#x9759;&#x5206;&#x79BB;&#x6F14;&#x793A;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x52A8;&#x9759;&#x5206;&#x79BB;&#x6F14;&#x793A;</h5>
+<ul>
+<li>&#x521B;&#x5EFA;&#x9759;&#x6001;&#x7AD9;&#x70B9;</li>
+<li>&#x914D;&#x7F6E; location /static</li>
+<li>&#x914D;&#x7F6E; ~* .(gif|png|css|js)$ </li>
+</ul>
+<h6 id="&#x57FA;&#x4E8E;&#x76EE;&#x5F55;&#x52A8;&#x9759;&#x5206;&#x79BB;"><a name="&#x57FA;&#x4E8E;&#x76EE;&#x5F55;&#x52A8;&#x9759;&#x5206;&#x79BB;" class="anchor-navigation-ex-anchor" href="#&#x57FA;&#x4E8E;&#x76EE;&#x5F55;&#x52A8;&#x9759;&#x5206;&#x79BB;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x57FA;&#x4E8E;&#x76EE;&#x5F55;&#x52A8;&#x9759;&#x5206;&#x79BB;" class="plugin-anchor" href="#&#x57FA;&#x4E8E;&#x76EE;&#x5F55;&#x52A8;&#x9759;&#x5206;&#x79BB;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x57FA;&#x4E8E;&#x76EE;&#x5F55;&#x52A8;&#x9759;&#x5206;&#x79BB;</h6>
+<pre><code class="lang-bash">server {
+    listen 80;
+    server_name *.tyrival.com;
+    root /usr/www/tyrival;
+    location / {
+            index tyrival.html;
+    }
+    location /static {
+            <span class="hljs-built_in">alias</span> /usr/www/static;
+    }
+ }
+</code></pre>
+<h6 id="&#x57FA;&#x4E8E;&#x6B63;&#x5219;&#x52A8;&#x9759;&#x5206;&#x79BB;"><a name="&#x57FA;&#x4E8E;&#x6B63;&#x5219;&#x52A8;&#x9759;&#x5206;&#x79BB;" class="anchor-navigation-ex-anchor" href="#&#x57FA;&#x4E8E;&#x6B63;&#x5219;&#x52A8;&#x9759;&#x5206;&#x79BB;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x57FA;&#x4E8E;&#x6B63;&#x5219;&#x52A8;&#x9759;&#x5206;&#x79BB;" class="plugin-anchor" href="#&#x57FA;&#x4E8E;&#x6B63;&#x5219;&#x52A8;&#x9759;&#x5206;&#x79BB;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x57FA;&#x4E8E;&#x6B63;&#x5219;&#x52A8;&#x9759;&#x5206;&#x79BB;</h6>
+<pre><code class="lang-bash">location ~* \.(gif|jpg|png|css|js)$ {
+      root /usr/www/static;
+}
+</code></pre>
+<h5 id="&#x9632;&#x76D7;&#x94FE;&#x914D;&#x7F6E;&#x6F14;&#x793A;"><a name="&#x9632;&#x76D7;&#x94FE;&#x914D;&#x7F6E;&#x6F14;&#x793A;" class="anchor-navigation-ex-anchor" href="#&#x9632;&#x76D7;&#x94FE;&#x914D;&#x7F6E;&#x6F14;&#x793A;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x9632;&#x76D7;&#x94FE;&#x914D;&#x7F6E;&#x6F14;&#x793A;" class="plugin-anchor" href="#&#x9632;&#x76D7;&#x94FE;&#x914D;&#x7F6E;&#x6F14;&#x793A;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x9632;&#x76D7;&#x94FE;&#x914D;&#x7F6E;&#x6F14;&#x793A;</h5>
+<pre><code class="lang-bash"><span class="hljs-comment"># &#x52A0;&#x5165;&#x81F3;&#x6307;&#x5B9A;location &#x5373;&#x53EF;&#x5B9E;&#x73B0;</span>
+location / {
+        index index.html index.htm;
+        valid_referers none blocked *.tyrival.com;
+    <span class="hljs-keyword">if</span> (<span class="hljs-variable">$invalid_referer</span>) {
+            <span class="hljs-built_in">return</span> 403;
+    }
+}
+</code></pre>
+<h5 id="&#x4E0B;&#x8F7D;&#x9650;&#x901F;"><a name="&#x4E0B;&#x8F7D;&#x9650;&#x901F;" class="anchor-navigation-ex-anchor" href="#&#x4E0B;&#x8F7D;&#x9650;&#x901F;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x4E0B;&#x8F7D;&#x9650;&#x901F;" class="plugin-anchor" href="#&#x4E0B;&#x8F7D;&#x9650;&#x901F;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x4E0B;&#x8F7D;&#x9650;&#x901F;</h5>
+<pre><code class="lang-bash">location /download {
+    <span class="hljs-built_in">limit</span>_rate 1m; <span class="hljs-comment"># &#x9650;&#x5236;&#x6BCF;&#x79D2;&#x4E0B;&#x8F7D;&#x901F;&#x5EA6;</span>
+    <span class="hljs-built_in">limit</span>_rate_after 30m; <span class="hljs-comment"># &#x4E0B;&#x8F7D;&#x8D85;&#x8FC7;30m&#x4E4B;&#x540E;&#x9650;&#x901F;</span>
+}
+</code></pre>
+<h5 id="&#x521B;&#x5EFA;ip&#x9ED1;&#x540D;&#x5355;"><a name="&#x521B;&#x5EFA;ip&#x9ED1;&#x540D;&#x5355;" class="anchor-navigation-ex-anchor" href="#&#x521B;&#x5EFA;ip&#x9ED1;&#x540D;&#x5355;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x521B;&#x5EFA;ip&#x9ED1;&#x540D;&#x5355;" class="plugin-anchor" href="#&#x521B;&#x5EFA;ip&#x9ED1;&#x540D;&#x5355;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x521B;&#x5EFA;IP&#x9ED1;&#x540D;&#x5355;</h5>
+<pre><code class="lang-bash"><span class="hljs-comment"># &#x5C01;&#x7981;&#x6307;&#x5B9A;IP</span>
+deny 192.168.0.1;
+allow 192.168.0.1;
+<span class="hljs-comment"># &#x5F00;&#x653E;&#x6307;&#x5B9A;IP &#x6BB5;</span>
+allow 192.168.0.0/24;
+<span class="hljs-comment"># &#x5C01;&#x7981;&#x6240;&#x6709;</span>
+deny  all;
+<span class="hljs-comment"># &#x5F00;&#x653E;&#x6240;&#x6709;</span>
+allow  all;
+<span class="hljs-comment"># &#x521B;&#x5EFA;&#x9ED1;&#x540D;&#x5355;&#x6587;&#x4EF6;</span>
+<span class="hljs-built_in">echo</span> <span class="hljs-string">&apos;deny 192.168.0.132;&apos;</span> &gt;&gt; black.ip
+<span class="hljs-comment"># http&#x914D;&#x7F6E;&#x5757;&#x4E2D;&#x5F15;&#x5165;&#x9ED1;&#x540D;&#x5355;&#x6587;&#x4EF6;</span>
+include  black.ip;
+</code></pre>
+<h3 id="34-&#x65E5;&#x5FD7;&#x914D;&#x7F6E;&#xFF1A;"><a name="34-&#x65E5;&#x5FD7;&#x914D;&#x7F6E;&#xFF1A;" class="anchor-navigation-ex-anchor" href="#34-&#x65E5;&#x5FD7;&#x914D;&#x7F6E;&#xFF1A;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="34-&#x65E5;&#x5FD7;&#x914D;&#x7F6E;&#xFF1A;" class="plugin-anchor" href="#34-&#x65E5;&#x5FD7;&#x914D;&#x7F6E;&#xFF1A;"><i class="fa fa-link" aria-hidden="true"></i></a>3.4 &#x65E5;&#x5FD7;&#x914D;&#x7F6E;&#xFF1A;</h3>
+<h4 id="&#x65E5;&#x5FD7;&#x683C;&#x5F0F;"><a name="&#x65E5;&#x5FD7;&#x683C;&#x5F0F;" class="anchor-navigation-ex-anchor" href="#&#x65E5;&#x5FD7;&#x683C;&#x5F0F;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x65E5;&#x5FD7;&#x683C;&#x5F0F;" class="plugin-anchor" href="#&#x65E5;&#x5FD7;&#x683C;&#x5F0F;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x65E5;&#x5FD7;&#x683C;&#x5F0F;</h4>
+<pre><code class="lang-bash"><span class="hljs-built_in">log</span>_format  main  <span class="hljs-string">&apos;$remote_addr - $remote_user [$time_local]   &quot;$request&quot; &apos;</span>
+                  <span class="hljs-string">&apos;$status $body_bytes_sent &quot;$http_referer&quot; &apos;</span>
+                  <span class="hljs-string">&apos;&quot;$http_user_agent&quot; &quot;$http_x_forwarded_for&quot;&apos;</span>;
+access_<span class="hljs-built_in">log</span>  logs/access.log  main;
+<span class="hljs-comment">#&#x57FA;&#x4E8E;&#x57DF;&#x540D;&#x6253;&#x5370;&#x65E5;&#x5FD7;</span>
+access_<span class="hljs-built_in">log</span> logs/<span class="hljs-variable">$host</span>.access.log main;
+</code></pre>
+<h4 id="error&#x65E5;&#x5FD7;&#x7684;&#x8BBE;&#x7F6E;"><a name="error&#x65E5;&#x5FD7;&#x7684;&#x8BBE;&#x7F6E;" class="anchor-navigation-ex-anchor" href="#error&#x65E5;&#x5FD7;&#x7684;&#x8BBE;&#x7F6E;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="error&#x65E5;&#x5FD7;&#x7684;&#x8BBE;&#x7F6E;" class="plugin-anchor" href="#error&#x65E5;&#x5FD7;&#x7684;&#x8BBE;&#x7F6E;"><i class="fa fa-link" aria-hidden="true"></i></a>error&#x65E5;&#x5FD7;&#x7684;&#x8BBE;&#x7F6E;</h4>
+<p>&#x8BED;&#x6CD5;&#xFF1A;<code>error_log /path/file level;</code></p>
+<p>&#x9ED8;&#x8BA4;&#xFF1A;<code>error_log logs/error.log error;</code></p>
+<p>level&#x662F;&#x65E5;&#x5FD7;&#x7684;&#x8F93;&#x51FA;&#x7EA7;&#x522B;&#xFF0C;&#x53D6;&#x503C;&#x8303;&#x56F4;&#x662F;debug&#x3001;info&#x3001;notice&#x3001;warn&#x3001;error&#x3001;crit&#x3001;alert&#x3001;emerg&#xFF0C;</p>
+<h5 id="&#x9488;&#x5BF9;&#x6307;&#x5B9A;&#x7684;&#x5BA2;&#x6237;&#x7AEF;&#x8F93;&#x51FA;debug&#x7EA7;&#x522B;&#x7684;&#x65E5;&#x5FD7;"><a name="&#x9488;&#x5BF9;&#x6307;&#x5B9A;&#x7684;&#x5BA2;&#x6237;&#x7AEF;&#x8F93;&#x51FA;debug&#x7EA7;&#x522B;&#x7684;&#x65E5;&#x5FD7;" class="anchor-navigation-ex-anchor" href="#&#x9488;&#x5BF9;&#x6307;&#x5B9A;&#x7684;&#x5BA2;&#x6237;&#x7AEF;&#x8F93;&#x51FA;debug&#x7EA7;&#x522B;&#x7684;&#x65E5;&#x5FD7;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x9488;&#x5BF9;&#x6307;&#x5B9A;&#x7684;&#x5BA2;&#x6237;&#x7AEF;&#x8F93;&#x51FA;debug&#x7EA7;&#x522B;&#x7684;&#x65E5;&#x5FD7;" class="plugin-anchor" href="#&#x9488;&#x5BF9;&#x6307;&#x5B9A;&#x7684;&#x5BA2;&#x6237;&#x7AEF;&#x8F93;&#x51FA;debug&#x7EA7;&#x522B;&#x7684;&#x65E5;&#x5FD7;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x9488;&#x5BF9;&#x6307;&#x5B9A;&#x7684;&#x5BA2;&#x6237;&#x7AEF;&#x8F93;&#x51FA;debug&#x7EA7;&#x522B;&#x7684;&#x65E5;&#x5FD7;</h5>
+<p>&#x8BED;&#x6CD5;&#xFF1A;<code>debug_connection[IP|CIDR]</code></p>
+<pre><code class="lang-bash">events {
+        debug_connection 192.168.0.147; 
+        debug_connection 10.224.57.0/200;
+}
+</code></pre>
+<p>&#x6CE8;&#x610F;&#xFF1A;debug &#x65E5;&#x5FD7;&#x5F00;&#x542F; &#x5FC5;&#x987B;&#x5728;&#x5B89;&#x88C5;&#x65F6; &#x6DFB;&#x52A0;  <code>--with-debug</code> (&#x5141;&#x8BB8;debug)</p>
+<blockquote>
+<p><strong>nginx.conf &#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x793A;&#x4F8B;</strong></p>
+<pre><code class="lang-bash"><span class="hljs-comment">#user  nobody;</span>
+worker_processes  1;
+
+<span class="hljs-comment">#error_log  logs/error.log;</span>
+<span class="hljs-comment">#error_log  logs/error.log  notice;</span>
+error_<span class="hljs-built_in">log</span>  logs/error.log  debug;
+
+<span class="hljs-comment">#pid        logs/nginx.pid;</span>
+
+
+events {
+   debug_connection 192.168.0.147; 
+    worker_connections  1024;
+}
+
+
+http {
+    include       mime.types;
+    default_<span class="hljs-built_in">type</span>  application/octet-stream;
+
+    <span class="hljs-built_in">log</span>_format  main  <span class="hljs-string">&apos;$remote_addr - $remote_user [$time_local] &quot;$request&quot; &apos;</span>
+                      <span class="hljs-string">&apos;$status $body_bytes_sent &quot;$http_referer&quot; &apos;</span>
+                      <span class="hljs-string">&apos;&quot;$http_user_agent&quot; &quot;$http_x_forwarded_for&quot;&apos;</span>;
+
+    <span class="hljs-comment">#access_log  logs/access.log  main;</span>
+
+    sendfile        on;
+    <span class="hljs-comment">#tcp_nopush     on;</span>
+
+    <span class="hljs-comment">#keepalive_timeout  0;</span>
+    keepalive_timeout  65;
+
+    <span class="hljs-comment">#gzip  on;</span>
+
+    server {
+       listen       80;
+       server_name  www.luban.com;
+       root /www/luban/;
+       access_<span class="hljs-built_in">log</span>  logs/<span class="hljs-variable">$host</span>.access.log  main;
+    location / {
+          index  index.html index.htm;
+       valid_referers none blocked *.luban.com;
+        <span class="hljs-keyword">if</span> (<span class="hljs-variable">$invalid_referer</span>) {
+          <span class="hljs-built_in">return</span> 403;
+        } 
+    }
+       location /old/ {
+      <span class="hljs-built_in">alias</span> /www/old_luban/;
+          index  index.html index.htm;
+       }
+
+       location = /old/baidu {
+       proxy_pass http://www.baidu.com/;
+       }    
+
+      location ~ \.(png|jpg|gif|avi|mp4|css|js)$  {
+           root /www/static/;
+        valid_referers none blocked *.luban.com;
+        <span class="hljs-keyword">if</span> (<span class="hljs-variable">$invalid_referer</span>) {
+          <span class="hljs-built_in">return</span> 403;
+        }
+
+     }
+
+    }
+    server {
+        listen       80;
+        server_name  localhost;
+
+        <span class="hljs-comment">#charset koi8-r;</span>
+
+        <span class="hljs-comment">#access_log  logs/host.access.log  main;</span>
+
+        location / {
+            root   html;
+            index  index.html index.htm;
+        }
+
+    location = /basic_status {
+           stub_status;
+         }
+
+        <span class="hljs-comment">#error_page  404              /404.html;</span>
+
+        <span class="hljs-comment"># redirect server error pages to the static page /50x.html</span>
+        <span class="hljs-comment">#</span>
+        error_page   500 502 503 504  /50x.html;
+        location = /50x.html {
+            root   html;
+        }
+
+        <span class="hljs-comment"># proxy the PHP scripts to Apache listening on 127.0.0.1:80</span>
+        <span class="hljs-comment">#</span>
+        <span class="hljs-comment">#location ~ \.php$ {</span>
+        <span class="hljs-comment">#    proxy_pass   http://127.0.0.1;</span>
+        <span class="hljs-comment">#}</span>
+
+        <span class="hljs-comment"># pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000</span>
+        <span class="hljs-comment">#</span>
+        <span class="hljs-comment">#location ~ \.php$ {</span>
+        <span class="hljs-comment">#    root           html;</span>
+        <span class="hljs-comment">#    fastcgi_pass   127.0.0.1:9000;</span>
+        <span class="hljs-comment">#    fastcgi_index  index.php;</span>
+        <span class="hljs-comment">#    fastcgi_param  SCRIPT_FILENAME  /scripts$fastcgi_script_name;</span>
+        <span class="hljs-comment">#    include        fastcgi_params;</span>
+        <span class="hljs-comment">#}</span>
+
+        <span class="hljs-comment"># deny access to .htaccess files, if Apache&apos;s document root</span>
+        <span class="hljs-comment"># concurs with nginx&apos;s one</span>
+        <span class="hljs-comment">#</span>
+        <span class="hljs-comment">#location ~ /\.ht {</span>
+        <span class="hljs-comment">#    deny  all;</span>
+        <span class="hljs-comment">#}</span>
+    }
+
+
+    <span class="hljs-comment"># another virtual host using mix of IP-, name-, and port-based configuration</span>
+    <span class="hljs-comment">#</span>
+    <span class="hljs-comment">#server {</span>
+    <span class="hljs-comment">#    listen       8000;</span>
+    <span class="hljs-comment">#    listen       somename:8080;</span>
+    <span class="hljs-comment">#    server_name  somename  alias  another.alias;</span>
+
+    <span class="hljs-comment">#    location / {</span>
+    <span class="hljs-comment">#        root   html;</span>
+    <span class="hljs-comment">#        index  index.html index.htm;</span>
+    <span class="hljs-comment">#    }</span>
+    <span class="hljs-comment">#}</span>
+
+
+    <span class="hljs-comment"># HTTPS server</span>
+    <span class="hljs-comment">#</span>
+    <span class="hljs-comment">#server {</span>
+    <span class="hljs-comment">#    listen       443 ssl;</span>
+    <span class="hljs-comment">#    server_name  localhost;</span>
+
+    <span class="hljs-comment">#    ssl_certificate      cert.pem;</span>
+    <span class="hljs-comment">#    ssl_certificate_key  cert.key;</span>
+
+    <span class="hljs-comment">#    ssl_session_cache    shared:SSL:1m;</span>
+    <span class="hljs-comment">#    ssl_session_timeout  5m;</span>
+
+    <span class="hljs-comment">#    ssl_ciphers  HIGH:!aNULL:!MD5;</span>
+    <span class="hljs-comment">#    ssl_prefer_server_ciphers  on;</span>
+
+    <span class="hljs-comment">#    location / {</span>
+    <span class="hljs-comment">#        root   html;</span>
+    <span class="hljs-comment">#        index  index.html index.htm;</span>
+    <span class="hljs-comment">#    }</span>
+    <span class="hljs-comment">#}</span>
+}
+</code></pre>
+</blockquote>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="09-Redis-Design-Optimize.html" class="navigation navigation-prev " aria-label="Previous page: 9 Redis缓存设计与性能优化">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="11-Nginx-Optimize-Training.html" class="navigation navigation-next " aria-label="Next page: 11 Nginx性能优化实践">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"10 Nginx核心模块与配置实践","level":"1.1.6.7","depth":3,"next":{"title":"11 Nginx性能优化实践","level":"1.1.6.8","depth":3,"path":"06-Distributed/Old/11-Nginx-Optimize-Training.md","ref":"06-Distributed/Old/11-Nginx-Optimize-Training.md","articles":[]},"previous":{"title":"9 Redis缓存设计与性能优化","level":"1.1.6.6","depth":3,"path":"06-Distributed/Old/09-Redis-Design-Optimize.md","ref":"06-Distributed/Old/09-Redis-Design-Optimize.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","splitter","expandable-chapters-small","anchors","github","github-buttons","sharing-plus","anchor-navigation-ex"],"styles":{"website":"./styles/website.css"},"pluginsConfig":{"github":{"url":"https://github.com/tyrival"},"splitter":{},"search":{},"sharing-plus":{"qq":false,"all":["facebook","google","twitter","instapaper","linkedin","pocket","stumbleupon"],"douban":false,"facebook":true,"weibo":false,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":true,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"anchor-navigation-ex":{"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"mode":"float","multipleH1":true,"pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"printLog":false,"showGoTop":true,"showLevel":false},"github-buttons":{"buttons":[{"user":"Tyrival","repo":"gitbook","type":"star","size":"small","count":false}]},"expandable-chapters-small":{},"sharing":{"qq":false,"all":["google","facebook","weibo","twitter","qq","qzone","linkedin","pocket"],"douban":false,"facebook":false,"weibo":false,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":false,"messenger":false,"line":false,"vk":false,"pocket":false,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","author":"Tyrival","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"架构师学习笔记","language":"zh-hans","gitbook":"3.2.3","description":"架构师学习笔记"},"file":{"path":"06-Distributed/Old/10-Nginx-Core-Config.md","mtime":"2020-08-07T08:26:11.218Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-09-08T12:50:18.646Z"},"basePath":"../..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../../gitbook/gitbook.js"></script>
+    <script src="../../gitbook/theme.js"></script>
+    
+        
+        <script src="../../gitbook/gitbook-plugin-splitter/splitter.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-github/plugin.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-github-buttons/plugin.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-sharing-plus/buttons.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

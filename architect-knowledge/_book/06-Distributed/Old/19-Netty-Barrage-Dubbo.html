@@ -1,0 +1,1268 @@
+
+<!DOCTYPE HTML>
+<html lang="zh-hans" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>19 Netty在弹幕系统与Dubbo框架中的应用 · 架构师学习笔记</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        <meta name="author" content="Tyrival">
+        
+        
+    
+    <link rel="stylesheet" href="../../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-splitter/splitter.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-anchors/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-anchor-navigation-ex/style/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+        <link rel="stylesheet" href="../../styles/website.css">
+        
+    
+
+        
+    
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="../../07-Microservice/" />
+    
+    
+    <link rel="prev" href="18-Netty-Thread-Model-Source.html" />
+    
+
+    <style>
+    @media only screen and (max-width: 640px) {
+        .book-header .hidden-mobile {
+            display: none;
+        }
+    }
+    </style>
+    <script>
+        window["gitbook-plugin-github-buttons"] = {"buttons":[{"user":"Tyrival","repo":"gitbook","type":"star","size":"small","count":false}]};
+    </script>
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="输入并搜索" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../../">
+            
+                <a href="../../">
+            
+                    
+                    架构师学习笔记
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.1" data-path="../../01-JVM/">
+            
+                <a href="../../01-JVM/">
+            
+                    
+                    第1章 JVM
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.1.1" data-path="../../01-JVM/01-ClassLoader.html">
+            
+                <a href="../../01-JVM/01-ClassLoader.html">
+            
+                    
+                    1 类加载机制
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.2" data-path="../../01-JVM/02-JVM-Structure-Resolve.html">
+            
+                <a href="../../01-JVM/02-JVM-Structure-Resolve.html">
+            
+                    
+                    2 JVM整体结构
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.3" data-path="../../01-JVM/03-Memory-Allocation-Mechanism.html">
+            
+                <a href="../../01-JVM/03-Memory-Allocation-Mechanism.html">
+            
+                    
+                    3 JVM内存分配机制
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.4" data-path="../../01-JVM/04-JVM-Bytecode-File-Structure.html">
+            
+                <a href="../../01-JVM/04-JVM-Bytecode-File-Structure.html">
+            
+                    
+                    4 JVM字节码文件结构
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.5" data-path="../../01-JVM/05-GC-ParNew-CMS.html">
+            
+                <a href="../../01-JVM/05-GC-ParNew-CMS.html">
+            
+                    
+                    5 垃圾收集器ParNew和CMS
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.6" data-path="../../01-JVM/06-GC-G1-ZGC.html">
+            
+                <a href="../../01-JVM/06-GC-G1-ZGC.html">
+            
+                    
+                    6 垃圾收集器G1和ZGC
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.7" data-path="../../01-JVM/07-GC-Optimize-01.html">
+            
+                <a href="../../01-JVM/07-GC-Optimize-01.html">
+            
+                    
+                    7 GC调优（一）
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.8" data-path="../../01-JVM/08-GC-Optimize-02.html">
+            
+                <a href="../../01-JVM/08-GC-Optimize-02.html">
+            
+                    
+                    8 GC调优（二）
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.9" data-path="../../01-JVM/JVM-Command.html">
+            
+                <a href="../../01-JVM/JVM-Command.html">
+            
+                    
+                    附1 JVM指令手册
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.2" data-path="../../02-Tomcat/">
+            
+                <a href="../../02-Tomcat/">
+            
+                    
+                    第2章 Tomcat
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.2.1" data-path="../../02-Tomcat/01-Tomcat-Summary.html">
+            
+                <a href="../../02-Tomcat/01-Tomcat-Summary.html">
+            
+                    
+                    1 Tomcat生产环境应用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.2.2" data-path="../../02-Tomcat/02-Tomcat-Component-Src.html">
+            
+                <a href="../../02-Tomcat/02-Tomcat-Component-Src.html">
+            
+                    
+                    2 Tomcat核心组件源码
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.2.3" data-path="../../02-Tomcat/03-Tomcat-Http-Process.html">
+            
+                <a href="../../02-Tomcat/03-Tomcat-Http-Process.html">
+            
+                    
+                    3 Tomcat线程模型HTTP请求处理与管道线模型
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.2.4" data-path="../../02-Tomcat/04-Tomcat-Hot-Deployment-Load.html">
+            
+                <a href="../../02-Tomcat/04-Tomcat-Hot-Deployment-Load.html">
+            
+                    
+                    4 Tomcat热部署和热加载
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.3" data-path="../../03-MySQL/">
+            
+                <a href="../../03-MySQL/">
+            
+                    
+                    第3章 MySQL
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.3.1" data-path="../../03-MySQL/01-Mysql-index-data-structure.html">
+            
+                <a href="../../03-MySQL/01-Mysql-index-data-structure.html">
+            
+                    
+                    1 Mysql索引数据结构
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.3.2" data-path="../../03-MySQL/02-Explain-Index-Actual.html">
+            
+                <a href="../../03-MySQL/02-Explain-Index-Actual.html">
+            
+                    
+                    2 Explain详解与索引最佳实践
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.3.3" data-path="../../03-MySQL/03-Sql-Execution-Fundamental.html">
+            
+                <a href="../../03-MySQL/03-Sql-Execution-Fundamental.html">
+            
+                    
+                    3 SQL底层执行原理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.3.4" data-path="../../03-MySQL/04-Sql-Optimize-01.html">
+            
+                <a href="../../03-MySQL/04-Sql-Optimize-01.html">
+            
+                    
+                    4 SQL优化实战（一）
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.3.5" data-path="../../03-MySQL/05-Sql-Optimize-02.html">
+            
+                <a href="../../03-MySQL/05-Sql-Optimize-02.html">
+            
+                    
+                    5 SQL优化实战（二）
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.3.6" data-path="../../03-MySQL/06-Mysql-Lock-Transaction-Isolation.html">
+            
+                <a href="../../03-MySQL/06-Mysql-Lock-Transaction-Isolation.html">
+            
+                    
+                    6 Mysql锁与事务隔离级别
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.3.7" data-path="../../03-MySQL/Slow-Sql-Query.html">
+            
+                <a href="../../03-MySQL/Slow-Sql-Query.html">
+            
+                    
+                    附1 慢SQL查询
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.3.8" data-path="../../03-MySQL/Ali-Java-Explain.html">
+            
+                <a href="../../03-MySQL/Ali-Java-Explain.html">
+            
+                    
+                    附2 阿里巴巴手册（泰山版）解读-MySQL数据库
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.4" data-path="../../04-Concurrent/">
+            
+                <a href="../../04-Concurrent/">
+            
+                    
+                    第4章 并发编程
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.4.1" data-path="../../04-Concurrent/01-JMM-JSR133.html">
+            
+                <a href="../../04-Concurrent/01-JMM-JSR133.html">
+            
+                    
+                    1 并发编程之JMM & JSR133规范解读
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.4.2" data-path="../../04-Concurrent/02-JMM-Features.html">
+            
+                <a href="../../04-Concurrent/02-JMM-Features.html">
+            
+                    
+                    2 并发编程之JMM三大特性详解
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.4.3" data-path="../../04-Concurrent/03-MESI-Cache-Coherency-Protocol.html">
+            
+                <a href="../../04-Concurrent/03-MESI-Cache-Coherency-Protocol.html">
+            
+                    
+                    3 MESI缓存一致协议详解
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.4.4" data-path="../../04-Concurrent/04-Synchronized.html">
+            
+                <a href="../../04-Concurrent/04-Synchronized.html">
+            
+                    
+                    4 并发编程之synchronized详解
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.4.5" data-path="../../04-Concurrent/05-AQS-Lock.html">
+            
+                <a href="../../04-Concurrent/05-AQS-Lock.html">
+            
+                    
+                    5 抽象队列同步器AQS应用Lock详解
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.4.6" data-path="../../04-Concurrent/06-AQS-Blocking-Queue.html">
+            
+                <a href="../../04-Concurrent/06-AQS-Blocking-Queue.html">
+            
+                    
+                    6 抽象队列同步器AQS应用之BlockingQueue详解
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.4.7" data-path="../../04-Concurrent/07-Tools-CountDownLatch-Semaphore.html">
+            
+                <a href="../../04-Concurrent/07-Tools-CountDownLatch-Semaphore.html">
+            
+                    
+                    7 并发编程之Tools&CountDownLatch&Semaphore原理与应用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.4.8" data-path="../../04-Concurrent/08-Atomic-Unsafe-Magic-Class.html">
+            
+                <a href="../../04-Concurrent/08-Atomic-Unsafe-Magic-Class.html">
+            
+                    
+                    8 并发编程之Atomic&Unsafe魔法类详解
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.4.9" data-path="../../04-Concurrent/09-Collections-Map-List-Set.html">
+            
+                <a href="../../04-Concurrent/09-Collections-Map-List-Set.html">
+            
+                    
+                    9 Collections之Map&List&Set详解
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.4.10" data-path="../../04-Concurrent/10-Executor-Thread-Pool.html">
+            
+                <a href="../../04-Concurrent/10-Executor-Thread-Pool.html">
+            
+                    
+                    10 Executor线程池原理与源码
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.4.11" data-path="../../04-Concurrent/11-Schedule-Task-Thread-Pool.html">
+            
+                <a href="../../04-Concurrent/11-Schedule-Task-Thread-Pool.html">
+            
+                    
+                    11 并发编程之定时任务&定时线程池
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.4.12" data-path="../../04-Concurrent/12-Future-ForkJoin.html">
+            
+                <a href="../../04-Concurrent/12-Future-ForkJoin.html">
+            
+                    
+                    12 并发编程之Future&ForkJoin框架原理分析
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.4.13" data-path="../../04-Concurrent/13-Disruptor.html">
+            
+                <a href="../../04-Concurrent/13-Disruptor.html">
+            
+                    
+                    13 无锁并发框架Disruptor
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.5" data-path="../../05-Source/">
+            
+                <a href="../../05-Source/">
+            
+                    
+                    第5章 源码框架
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    第6章 分布式
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.6.1" data-path="01-Zookeeper-Node.html">
+            
+                <a href="01-Zookeeper-Node.html">
+            
+                    
+                    1 Zookeeper特性与节点说明
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6.2" data-path="05-Redis-Data-Structure.html">
+            
+                <a href="05-Redis-Data-Structure.html">
+            
+                    
+                    5 Redis核心数据结构与核心原理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6.3" data-path="06-Redis-Persistent-Distributed-Mode.html">
+            
+                <a href="06-Redis-Persistent-Distributed-Mode.html">
+            
+                    
+                    6 Redis持久化、主从与哨兵架构详解
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6.4" data-path="07-Redis-Cluster-Mode.html">
+            
+                <a href="07-Redis-Cluster-Mode.html">
+            
+                    
+                    7 Redis高可用集群
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6.5" data-path="08-Redis-Distributed-Lock-Training.html">
+            
+                <a href="08-Redis-Distributed-Lock-Training.html">
+            
+                    
+                    8 Redis高并发分布式锁实战
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6.6" data-path="09-Redis-Design-Optimize.html">
+            
+                <a href="09-Redis-Design-Optimize.html">
+            
+                    
+                    9 Redis缓存设计与性能优化
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6.7" data-path="10-Nginx-Core-Config.html">
+            
+                <a href="10-Nginx-Core-Config.html">
+            
+                    
+                    10 Nginx核心模块与配置实践
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6.8" data-path="11-Nginx-Optimize-Training.html">
+            
+                <a href="11-Nginx-Optimize-Training.html">
+            
+                    
+                    11 Nginx性能优化实践
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6.9" data-path="12-MongoDB-Quick-Start.html">
+            
+                <a href="12-MongoDB-Quick-Start.html">
+            
+                    
+                    12 MongoDB的逻辑组成
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6.10" data-path="13-MongoDB-Cluster-Advanced-Feature.html">
+            
+                <a href="13-MongoDB-Cluster-Advanced-Feature.html">
+            
+                    
+                    13 MongoDB集群架构与高级特性
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6.11" data-path="14-MongoDB-Training.html">
+            
+                <a href="14-MongoDB-Training.html">
+            
+                    
+                    14 MongoDB企业应用实战
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6.12" data-path="15-Java-BIO-NIO-AIO.html">
+            
+                <a href="15-Java-BIO-NIO-AIO.html">
+            
+                    
+                    15 Java BIO & NIO & AIO
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6.13" data-path="16-Netty-Core-Thread-Model.html">
+            
+                <a href="16-Netty-Core-Thread-Model.html">
+            
+                    
+                    16 Netty核心功能与线程模型
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6.14" data-path="17-Netty-Codec-Pack-Unpack-Zero-Copy.html">
+            
+                <a href="17-Netty-Codec-Pack-Unpack-Zero-Copy.html">
+            
+                    
+                    17 Netty编解码，粘包拆包及零拷贝
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6.15" data-path="18-Netty-Thread-Model-Source.html">
+            
+                <a href="18-Netty-Thread-Model-Source.html">
+            
+                    
+                    18 Netty线程模型源码详解
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.1.6.16" data-path="19-Netty-Barrage-Dubbo.html">
+            
+                <a href="19-Netty-Barrage-Dubbo.html">
+            
+                    
+                    19 Netty在弹幕系统与Dubbo框架中的应用
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.7" data-path="../../07-Microservice/">
+            
+                <a href="../../07-Microservice/">
+            
+                    
+                    第7章 微服务
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.8" data-path="../../08-Training/">
+            
+                <a href="../../08-Training/">
+            
+                    
+                    第8章 实战案例
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            本书使用 GitBook 发布
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../.." >19 Netty在弹幕系统与Dubbo框架中的应用</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <div id="anchor-navigation-ex-navbar"><i class="fa fa-navicon"></i><ul><li><span class="title-icon "></span><a href="#netty&#x5728;&#x5F39;&#x5E55;&#x7CFB;&#x7EDF;&#x4E0E;dubbo&#x6846;&#x67B6;&#x4E2D;&#x7684;&#x5E94;&#x7528;"><b></b>Netty&#x5728;&#x5F39;&#x5E55;&#x7CFB;&#x7EDF;&#x4E0E;Dubbo&#x6846;&#x67B6;&#x4E2D;&#x7684;&#x5E94;&#x7528;</a></li><ul><li><span class="title-icon "></span><a href="#1-&#x5F39;&#x5E55;&#x7CFB;&#x7EDF;&#x6982;&#x8981;&#x8BBE;&#x8BA1;"><b></b>1. &#x5F39;&#x5E55;&#x7CFB;&#x7EDF;&#x6982;&#x8981;&#x8BBE;&#x8BA1;</a></li><li><span class="title-icon "></span><a href="#2-&#x5F39;&#x5E55;&#x7CFB;&#x7EDF;&#x67B6;&#x6784;&#x8BBE;&#x8BA1;"><b></b>2. &#x5F39;&#x5E55;&#x7CFB;&#x7EDF;&#x67B6;&#x6784;&#x8BBE;&#x8BA1;</a></li><li><span class="title-icon "></span><a href="#3-webscoket&#x534F;&#x8BAE;&#x89E3;&#x6790;&#x5B9E;&#x73B0;"><b></b>3. WebScoket&#x534F;&#x8BAE;&#x89E3;&#x6790;&#x5B9E;&#x73B0;</a></li><ul><li><span class="title-icon "></span><a href="#31-websocket-&#x534F;&#x8BAE;&#x7B80;&#x4ECB;"><b></b>3.1 webSocket &#x534F;&#x8BAE;&#x7B80;&#x4ECB;</a></li><li><span class="title-icon "></span><a href="#32-websocket-&#x534F;&#x8BAE;&#x62A5;&#x6587;&#x683C;&#x5F0F;"><b></b>3.2 WebSocket &#x534F;&#x8BAE;&#x62A5;&#x6587;&#x683C;&#x5F0F;</a></li><li><span class="title-icon "></span><a href="#33-websocket-&#x5728;&#x6D4F;&#x89C8;&#x5F53;&#x4E2D;&#x7684;&#x4F7F;&#x7528;"><b></b>3.3 WebSocket &#x5728;&#x6D4F;&#x89C8;&#x5F53;&#x4E2D;&#x7684;&#x4F7F;&#x7528;</a></li></ul><li><span class="title-icon "></span><a href="#4-netty&#x5728;dubbo&#x4E2D;&#x5E94;&#x7528;&#x5206;&#x6790;"><b></b>4. Netty&#x5728;Dubbo&#x4E2D;&#x5E94;&#x7528;&#x5206;&#x6790;</a></li><ul><li><span class="title-icon "></span><a href="#41-&#x7F51;&#x7EDC;&#x4F20;&#x8F93;&#x7684;&#x5B9E;&#x73B0;&#x7EC4;&#x6210;"><b></b>4.1 &#x7F51;&#x7EDC;&#x4F20;&#x8F93;&#x7684;&#x5B9E;&#x73B0;&#x7EC4;&#x6210;</a></li><li><span class="title-icon "></span><a href="#42-dubbo&#x4F20;&#x8F93;uml&#x7C7B;&#x56FE;"><b></b>4.2 dubbo&#x4F20;&#x8F93;uml&#x7C7B;&#x56FE;</a></li><li><span class="title-icon "></span><a href="#43-dubbo-&#x4F20;&#x8F93;&#x534F;&#x4F5C;&#x7EBF;&#x7A0B;"><b></b>4.3 Dubbo &#x4F20;&#x8F93;&#x534F;&#x4F5C;&#x7EBF;&#x7A0B;</a></li></ul></ul></ul></div><a href="#netty&#x5728;&#x5F39;&#x5E55;&#x7CFB;&#x7EDF;&#x4E0E;dubbo&#x6846;&#x67B6;&#x4E2D;&#x7684;&#x5E94;&#x7528;" id="anchorNavigationExGoTop"><i class="fa fa-arrow-up"></i></a><h1 id="netty&#x5728;&#x5F39;&#x5E55;&#x7CFB;&#x7EDF;&#x4E0E;dubbo&#x6846;&#x67B6;&#x4E2D;&#x7684;&#x5E94;&#x7528;"><a name="netty&#x5728;&#x5F39;&#x5E55;&#x7CFB;&#x7EDF;&#x4E0E;dubbo&#x6846;&#x67B6;&#x4E2D;&#x7684;&#x5E94;&#x7528;" class="anchor-navigation-ex-anchor" href="#netty&#x5728;&#x5F39;&#x5E55;&#x7CFB;&#x7EDF;&#x4E0E;dubbo&#x6846;&#x67B6;&#x4E2D;&#x7684;&#x5E94;&#x7528;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="netty&#x5728;&#x5F39;&#x5E55;&#x7CFB;&#x7EDF;&#x4E0E;dubbo&#x6846;&#x67B6;&#x4E2D;&#x7684;&#x5E94;&#x7528;" class="plugin-anchor" href="#netty&#x5728;&#x5F39;&#x5E55;&#x7CFB;&#x7EDF;&#x4E0E;dubbo&#x6846;&#x67B6;&#x4E2D;&#x7684;&#x5E94;&#x7528;"><i class="fa fa-link" aria-hidden="true"></i></a>Netty&#x5728;&#x5F39;&#x5E55;&#x7CFB;&#x7EDF;&#x4E0E;Dubbo&#x6846;&#x67B6;&#x4E2D;&#x7684;&#x5E94;&#x7528;</h1>
+<h2 id="1-&#x5F39;&#x5E55;&#x7CFB;&#x7EDF;&#x6982;&#x8981;&#x8BBE;&#x8BA1;"><a name="1-&#x5F39;&#x5E55;&#x7CFB;&#x7EDF;&#x6982;&#x8981;&#x8BBE;&#x8BA1;" class="anchor-navigation-ex-anchor" href="#1-&#x5F39;&#x5E55;&#x7CFB;&#x7EDF;&#x6982;&#x8981;&#x8BBE;&#x8BA1;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="1-&#x5F39;&#x5E55;&#x7CFB;&#x7EDF;&#x6982;&#x8981;&#x8BBE;&#x8BA1;" class="plugin-anchor" href="#1-&#x5F39;&#x5E55;&#x7CFB;&#x7EDF;&#x6982;&#x8981;&#x8BBE;&#x8BA1;"><i class="fa fa-link" aria-hidden="true"></i></a>1. &#x5F39;&#x5E55;&#x7CFB;&#x7EDF;&#x6982;&#x8981;&#x8BBE;&#x8BA1;</h2>
+<h4 id="&#x4EC0;&#x4E48;&#x662F;&#x5F39;&#x5E55;&#x7CFB;&#x7EDF;&#xFF1F;"><a name="&#x4EC0;&#x4E48;&#x662F;&#x5F39;&#x5E55;&#x7CFB;&#x7EDF;&#xFF1F;" class="anchor-navigation-ex-anchor" href="#&#x4EC0;&#x4E48;&#x662F;&#x5F39;&#x5E55;&#x7CFB;&#x7EDF;&#xFF1F;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x4EC0;&#x4E48;&#x662F;&#x5F39;&#x5E55;&#x7CFB;&#x7EDF;&#xFF1F;" class="plugin-anchor" href="#&#x4EC0;&#x4E48;&#x662F;&#x5F39;&#x5E55;&#x7CFB;&#x7EDF;&#xFF1F;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x4EC0;&#x4E48;&#x662F;&#x5F39;&#x5E55;&#x7CFB;&#x7EDF;&#xFF1F;</h4>
+<p><img src="../../source/images/ch-06/old/netty-sample-16.png" alt="netty-sample-16"></p>
+<p>&#x5F39;&#x5E55;&#x7CFB;&#x7EDF;&#x7279;&#x70B9;&#xFF1A;</p>
+<ol>
+<li><strong>&#x5B9E;&#x65F6;&#x6027;&#x9AD8;</strong>&#xFF1A;&#x4F60;&#x53D1;&#x6211;&#x6536;&#xFF0C; &#x6BEB;&#x79D2;&#x4E4B;&#x5DEE;</li>
+<li><strong>&#x5E76;&#x53D1;&#x91CF;&#x5927;</strong>&#xFF1A;&#x4E00;&#x4EBA;&#x5410;&#x69FD;&#xFF0C;&#x4E07;&#x4EBA;&#x89C2;&#x770B;</li>
+<li>&#x5BF9;&#x6570;&#x636E;&#x4E00;&#x81F3;&#x6027;&#x8981;&#x6C42;&#x5E76;&#x4E0D;&#x9AD8;.</li>
+</ol>
+<h2 id="2-&#x5F39;&#x5E55;&#x7CFB;&#x7EDF;&#x67B6;&#x6784;&#x8BBE;&#x8BA1;"><a name="2-&#x5F39;&#x5E55;&#x7CFB;&#x7EDF;&#x67B6;&#x6784;&#x8BBE;&#x8BA1;" class="anchor-navigation-ex-anchor" href="#2-&#x5F39;&#x5E55;&#x7CFB;&#x7EDF;&#x67B6;&#x6784;&#x8BBE;&#x8BA1;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="2-&#x5F39;&#x5E55;&#x7CFB;&#x7EDF;&#x67B6;&#x6784;&#x8BBE;&#x8BA1;" class="plugin-anchor" href="#2-&#x5F39;&#x5E55;&#x7CFB;&#x7EDF;&#x67B6;&#x6784;&#x8BBE;&#x8BA1;"><i class="fa fa-link" aria-hidden="true"></i></a>2. &#x5F39;&#x5E55;&#x7CFB;&#x7EDF;&#x67B6;&#x6784;&#x8BBE;&#x8BA1;</h2>
+<h5 id="&#x4E1A;&#x52A1;&#x67B6;&#x6784;"><a name="&#x4E1A;&#x52A1;&#x67B6;&#x6784;" class="anchor-navigation-ex-anchor" href="#&#x4E1A;&#x52A1;&#x67B6;&#x6784;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x4E1A;&#x52A1;&#x67B6;&#x6784;" class="plugin-anchor" href="#&#x4E1A;&#x52A1;&#x67B6;&#x6784;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x4E1A;&#x52A1;&#x67B6;&#x6784;</h5>
+<p><img src="../../source/images/ch-06/old/netty-sample-17.png" alt="netty-sample-17"></p>
+<p>&#x200B;    </p>
+<h5 id="&#x5B9E;&#x73B0;&#x65B9;&#x6848;&#x4E00;"><a name="&#x5B9E;&#x73B0;&#x65B9;&#x6848;&#x4E00;" class="anchor-navigation-ex-anchor" href="#&#x5B9E;&#x73B0;&#x65B9;&#x6848;&#x4E00;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x5B9E;&#x73B0;&#x65B9;&#x6848;&#x4E00;" class="plugin-anchor" href="#&#x5B9E;&#x73B0;&#x65B9;&#x6848;&#x4E00;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x5B9E;&#x73B0;&#x65B9;&#x6848;&#x4E00;</h5>
+<p><img src="../../source/images/ch-06/old/netty-sample-18.png" alt="netty-sample-18"></p>
+<h5 id="&#x5B9E;&#x73B0;&#x65B9;&#x6848;&#x4E8C;"><a name="&#x5B9E;&#x73B0;&#x65B9;&#x6848;&#x4E8C;" class="anchor-navigation-ex-anchor" href="#&#x5B9E;&#x73B0;&#x65B9;&#x6848;&#x4E8C;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x5B9E;&#x73B0;&#x65B9;&#x6848;&#x4E8C;" class="plugin-anchor" href="#&#x5B9E;&#x73B0;&#x65B9;&#x6848;&#x4E8C;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x5B9E;&#x73B0;&#x65B9;&#x6848;&#x4E8C;</h5>
+<p><img src="../../source/images/ch-06/old/netty-sample-19.png" alt="netty-sample-19"></p>
+<h2 id="3-webscoket&#x534F;&#x8BAE;&#x89E3;&#x6790;&#x5B9E;&#x73B0;"><a name="3-webscoket&#x534F;&#x8BAE;&#x89E3;&#x6790;&#x5B9E;&#x73B0;" class="anchor-navigation-ex-anchor" href="#3-webscoket&#x534F;&#x8BAE;&#x89E3;&#x6790;&#x5B9E;&#x73B0;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="3-webscoket&#x534F;&#x8BAE;&#x89E3;&#x6790;&#x5B9E;&#x73B0;" class="plugin-anchor" href="#3-webscoket&#x534F;&#x8BAE;&#x89E3;&#x6790;&#x5B9E;&#x73B0;"><i class="fa fa-link" aria-hidden="true"></i></a>3. WebScoket&#x534F;&#x8BAE;&#x89E3;&#x6790;&#x5B9E;&#x73B0;</h2>
+<h3 id="31-websocket-&#x534F;&#x8BAE;&#x7B80;&#x4ECB;"><a name="31-websocket-&#x534F;&#x8BAE;&#x7B80;&#x4ECB;" class="anchor-navigation-ex-anchor" href="#31-websocket-&#x534F;&#x8BAE;&#x7B80;&#x4ECB;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="31-websocket-&#x534F;&#x8BAE;&#x7B80;&#x4ECB;" class="plugin-anchor" href="#31-websocket-&#x534F;&#x8BAE;&#x7B80;&#x4ECB;"><i class="fa fa-link" aria-hidden="true"></i></a>3.1 webSocket &#x534F;&#x8BAE;&#x7B80;&#x4ECB;</h3>
+<p>webSocket &#x662F;html5 &#x5F00;&#x59CB;&#x63D0;&#x4F9B;&#x7684;&#x4E00;&#x79CD;&#x6D4F;&#x89C8;&#x5668;&#x4E0E;&#x670D;&#x52A1;&#x5668;&#x95F4;&#x8FDB;&#x884C;&#x5168;&#x53CC;&#x5DE5;&#x4E8C;&#x8FDB;&#x5236;&#x901A;&#x4FE1;&#x534F;&#x8BAE;&#xFF0C;&#x5176;&#x57FA;&#x4E8E;TCP&#x53CC;&#x5411;&#x5168;&#x53CC;&#x5DE5;&#x4F5C;&#x8FDB;&#x884C;&#x6D88;&#x606F;&#x4F20;&#x9012;&#xFF0C;&#x540C;&#x4E00;&#x65F6;&#x523B;&#x5373;&#x53EF;&#x4EE5;&#x53D1;&#x53C8;&#x53EF;&#x4EE5;&#x63A5;&#x6536;&#x6D88;&#x606F;&#xFF0C;&#x76F8;&#x6BD4;Http&#x7684;&#x534A;&#x53CC;&#x5DE5;&#x534F;&#x8BAE;&#x6027;&#x80FD;&#x6709;&#x5F88;&#x5927;&#x7684;&#x63D0;&#x5347;</p>
+<h5 id="websocket&#x7279;&#x70B9;&#x5982;&#x4E0B;&#xFF1A;"><a name="websocket&#x7279;&#x70B9;&#x5982;&#x4E0B;&#xFF1A;" class="anchor-navigation-ex-anchor" href="#websocket&#x7279;&#x70B9;&#x5982;&#x4E0B;&#xFF1A;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="websocket&#x7279;&#x70B9;&#x5982;&#x4E0B;&#xFF1A;" class="plugin-anchor" href="#websocket&#x7279;&#x70B9;&#x5982;&#x4E0B;&#xFF1A;"><i class="fa fa-link" aria-hidden="true"></i></a>webSocket&#x7279;&#x70B9;&#x5982;&#x4E0B;&#xFF1A;</h5>
+<ol>
+<li>&#x5355;&#x4E00;TCP&#x957F;&#x8FDE;&#x63A5;&#xFF0C;&#x91C7;&#x7528;&#x5168;&#x53CC;&#x5DE5;&#x901A;&#x4FE1;&#x6A21;&#x5F0F;</li>
+<li>&#x5BF9;&#x4EE3;&#x7406;&#x3001;&#x9632;&#x706B;&#x5899;&#x900F;&#x660E;</li>
+<li>&#x65E0;&#x5934;&#x90E8;&#x4FE1;&#x606F;&#x3001;&#x6D88;&#x606F;&#x66F4;&#x7CBE;&#x7B80;</li>
+<li>&#x901A;&#x8FC7;ping/pong &#x6765;&#x4FDD;&#x6D3B;</li>
+<li>&#x670D;&#x52A1;&#x5668;&#x53EF;&#x4EE5;&#x4E3B;&#x52A8;&#x63A8;&#x9001;&#x6D88;&#x606F;&#x7ED9;&#x5BA2;&#x6237;&#x7AEF;&#xFF0C;&#x4E0D;&#x5728;&#x9700;&#x8981;&#x5BA2;&#x6237;&#x8F6E;&#x8BE2;</li>
+</ol>
+<h3 id="32-websocket-&#x534F;&#x8BAE;&#x62A5;&#x6587;&#x683C;&#x5F0F;"><a name="32-websocket-&#x534F;&#x8BAE;&#x62A5;&#x6587;&#x683C;&#x5F0F;" class="anchor-navigation-ex-anchor" href="#32-websocket-&#x534F;&#x8BAE;&#x62A5;&#x6587;&#x683C;&#x5F0F;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="32-websocket-&#x534F;&#x8BAE;&#x62A5;&#x6587;&#x683C;&#x5F0F;" class="plugin-anchor" href="#32-websocket-&#x534F;&#x8BAE;&#x62A5;&#x6587;&#x683C;&#x5F0F;"><i class="fa fa-link" aria-hidden="true"></i></a>3.2 WebSocket &#x534F;&#x8BAE;&#x62A5;&#x6587;&#x683C;&#x5F0F;</h3>
+<p>&#x6211;&#x4EEC;&#x77E5;&#x9053;&#xFF0C;&#x4EFB;&#x4F55;&#x5E94;&#x7528;&#x534F;&#x8BAE;&#x90FD;&#x6709;&#x5176;&#x7279;&#x6709;&#x7684;&#x62A5;&#x6587;&#x683C;&#x5F0F;&#xFF0C;&#x6BD4;&#x5982;Http&#x534F;&#x8BAE;&#x901A;&#x8FC7; &#x7A7A;&#x683C; &#x6362;&#x884C;&#x7EC4;&#x6210;&#x5176;&#x62A5;&#x6587;&#x3002;&#x5982;http &#x534F;&#x8BAE;&#x4E0D;&#x540C;&#x5728;&#x4E8E;WebSocket&#x5C5E;&#x4E8E;&#x4E8C;&#x8FDB;&#x5236;&#x534F;&#x8BAE;&#xFF0C;&#x901A;&#x8FC7;&#x89C4;&#x8303;&#x8FDB;&#x4E8C;&#x8FDB;&#x4F4D;&#x6765;&#x7EC4;&#x6210;&#x5176;&#x62A5;&#x6587;&#x3002;&#x5177;&#x4F53;&#x7EC4;&#x6210;&#x5982;&#x4E0B;&#x56FE;&#xFF1A;</p>
+<p><img src="../../source/images/ch-06/old/netty-sample-20.png" alt="netty-sample-20"></p>
+<h5 id="&#x62A5;&#x6587;&#x8BF4;&#x660E;&#xFF1A;"><a name="&#x62A5;&#x6587;&#x8BF4;&#x660E;&#xFF1A;" class="anchor-navigation-ex-anchor" href="#&#x62A5;&#x6587;&#x8BF4;&#x660E;&#xFF1A;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x62A5;&#x6587;&#x8BF4;&#x660E;&#xFF1A;" class="plugin-anchor" href="#&#x62A5;&#x6587;&#x8BF4;&#x660E;&#xFF1A;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x62A5;&#x6587;&#x8BF4;&#x660E;&#xFF1A;</h5>
+<p>FIN</p>
+<p>&#x6807;&#x8BC6;&#x662F;&#x5426;&#x4E3A;&#x6B64;&#x6D88;&#x606F;&#x7684;&#x6700;&#x540E;&#x4E00;&#x4E2A;&#x6570;&#x636E;&#x5305;&#xFF0C;&#x5360; 1 bit</p>
+<p>RSV1, RSV2, RSV3: &#x7528;&#x4E8E;&#x6269;&#x5C55;&#x534F;&#x8BAE;&#xFF0C;&#x4E00;&#x822C;&#x4E3A;0&#xFF0C;&#x5404;&#x5360;1bit</p>
+<p>Opcode</p>
+<p>&#x6570;&#x636E;&#x5305;&#x7C7B;&#x578B;&#xFF08;frame type&#xFF09;&#xFF0C;&#x5360;4bits</p>
+<p>0x0&#xFF1A;&#x6807;&#x8BC6;&#x4E00;&#x4E2A;&#x4E2D;&#x95F4;&#x6570;&#x636E;&#x5305;</p>
+<p>0x1&#xFF1A;&#x6807;&#x8BC6;&#x4E00;&#x4E2A;text&#x7C7B;&#x578B;&#x6570;&#x636E;&#x5305;</p>
+<p>0x2&#xFF1A;&#x6807;&#x8BC6;&#x4E00;&#x4E2A;binary&#x7C7B;&#x578B;&#x6570;&#x636E;&#x5305;</p>
+<p>0x3-7&#xFF1A;&#x4FDD;&#x7559;</p>
+<p>0x8&#xFF1A;&#x6807;&#x8BC6;&#x4E00;&#x4E2A;&#x65AD;&#x5F00;&#x8FDE;&#x63A5;&#x7C7B;&#x578B;&#x6570;&#x636E;&#x5305;</p>
+<p>0x9&#xFF1A;&#x6807;&#x8BC6;&#x4E00;&#x4E2A;ping&#x7C7B;&#x578B;&#x6570;&#x636E;&#x5305;</p>
+<p>0xA&#xFF1A;&#x8868;&#x793A;&#x4E00;&#x4E2A;pong&#x7C7B;&#x578B;&#x6570;&#x636E;&#x5305;</p>
+<p>0xB-F&#xFF1A;&#x4FDD;&#x7559;</p>
+<p>MASK&#xFF1A;&#x5360;1bits</p>
+<p>&#x7528;&#x4E8E;&#x6807;&#x8BC6;PayloadData&#x662F;&#x5426;&#x7ECF;&#x8FC7;&#x63A9;&#x7801;&#x5904;&#x7406;&#x3002;&#x5982;&#x679C;&#x662F;1&#xFF0C;Masking-key&#x57DF;&#x7684;&#x6570;&#x636E;&#x5373;&#x662F;&#x63A9;&#x7801;&#x5BC6;&#x94A5;&#xFF0C;&#x7528;&#x4E8E;&#x89E3;&#x7801;PayloadData&#x3002;&#x5BA2;&#x6237;&#x7AEF;&#x53D1;&#x51FA;&#x7684;&#x6570;&#x636E;&#x5E27;&#x9700;&#x8981;&#x8FDB;&#x884C;&#x63A9;&#x7801;&#x5904;&#x7406;&#xFF0C;&#x6240;&#x4EE5;&#x6B64;&#x4F4D;&#x662F;1&#x3002;</p>
+<p>Payload length</p>
+<p>Payload data&#x7684;&#x957F;&#x5EA6;&#xFF0C;&#x5360;7bits&#xFF0C;7+16bits&#xFF0C;7+64bits&#xFF1A;</p>
+<p>&#x5982;&#x679C;&#x5176;&#x503C;&#x5728;0-125&#xFF0C;&#x5219;&#x662F;payload&#x7684;&#x771F;&#x5B9E;&#x957F;&#x5EA6;&#x3002;</p>
+<p>&#x5982;&#x679C;&#x503C;&#x662F;126&#xFF0C;&#x5219;&#x540E;&#x9762;2&#x4E2A;&#x5B57;&#x8282;&#x5F62;&#x6210;&#x7684;16bits&#x65E0;&#x7B26;&#x53F7;&#x6574;&#x578B;&#x6570;&#x7684;&#x503C;&#x662F;payload&#x7684;&#x771F;&#x5B9E;&#x957F;&#x5EA6;&#x3002;&#x6CE8;&#x610F;&#xFF0C;&#x7F51;&#x7EDC;&#x5B57;&#x8282;&#x5E8F;&#xFF0C;&#x9700;&#x8981;&#x8F6C;&#x6362;&#x3002;</p>
+<p>&#x5982;&#x679C;&#x503C;&#x662F;127&#xFF0C;&#x5219;&#x540E;&#x9762;8&#x4E2A;&#x5B57;&#x8282;&#x5F62;&#x6210;&#x7684;64bits&#x65E0;&#x7B26;&#x53F7;&#x6574;&#x578B;&#x6570;&#x7684;&#x503C;&#x662F;payload&#x7684;&#x771F;&#x5B9E;&#x957F;&#x5EA6;&#x3002;&#x6CE8;&#x610F;&#xFF0C;&#x7F51;&#x7EDC;&#x5B57;&#x8282;&#x5E8F;&#xFF0C;&#x9700;&#x8981;&#x8F6C;&#x6362;&#x3002;</p>
+<p>Payload data</p>
+<p>&#x5E94;&#x7528;&#x5C42;&#x6570;&#x636E;</p>
+<h3 id="33-websocket-&#x5728;&#x6D4F;&#x89C8;&#x5F53;&#x4E2D;&#x7684;&#x4F7F;&#x7528;"><a name="33-websocket-&#x5728;&#x6D4F;&#x89C8;&#x5F53;&#x4E2D;&#x7684;&#x4F7F;&#x7528;" class="anchor-navigation-ex-anchor" href="#33-websocket-&#x5728;&#x6D4F;&#x89C8;&#x5F53;&#x4E2D;&#x7684;&#x4F7F;&#x7528;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="33-websocket-&#x5728;&#x6D4F;&#x89C8;&#x5F53;&#x4E2D;&#x7684;&#x4F7F;&#x7528;" class="plugin-anchor" href="#33-websocket-&#x5728;&#x6D4F;&#x89C8;&#x5F53;&#x4E2D;&#x7684;&#x4F7F;&#x7528;"><i class="fa fa-link" aria-hidden="true"></i></a>3.3 WebSocket &#x5728;&#x6D4F;&#x89C8;&#x5F53;&#x4E2D;&#x7684;&#x4F7F;&#x7528;</h3>
+<p>Http &#x8FDE;&#x63A5;&#x4E0E;webSocket &#x8FDE;&#x63A5;&#x5EFA;&#x7ACB;&#x793A;&#x610F;&#x56FE;&#xFF1A;</p>
+<p><img src="../../source/images/ch-06/old/netty-sample-21.png" alt="netty-sample-21"></p>
+<p>&#x901A;&#x8FC7;javaScript &#x4E2D;&#x7684;API&#x53EF;&#x4EE5;&#x76F4;&#x63A5;&#x64CD;&#x4F5C;WebSocket &#x5BF9;&#x8C61;&#xFF0C;&#x5176;&#x793A;&#x4F8B;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code class="lang-js"><span class="hljs-keyword">var</span> ws = <span class="hljs-keyword">new</span> WebSocket(&#x201C;ws:<span class="hljs-comment">//localhost:8080&#x201D;); </span>
+ws.onopen = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)// &#x5EFA;&#x7ACB;&#x6210;&#x529F;&#x4E4B;&#x540E;&#x89E6;&#x53D1;&#x7684;&#x4E8B;&#x4EF6; </span>{ 
+  <span class="hljs-built_in">console</span>.log(&#x201C;&#x6253;&#x5F00;&#x8FDE;&#x63A5;&#x201D;);   ws.send(<span class="hljs-string">&quot;ddd&quot;</span>); <span class="hljs-comment">// &#x53D1;&#x9001;&#x6D88;&#x606F; </span>
+  }; 
+  ws.onmessage = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">evt</span>)  </span>{ <span class="hljs-comment">// &#x63A5;&#x6536;&#x670D;&#x52A1;&#x5668;&#x6D88;&#x606F;</span>
+    <span class="hljs-built_in">console</span>.log(evt.data); 
+    }; 
+    ws.onclose   = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">evt</span>)  </span>{ 
+      <span class="hljs-built_in">console</span>.log(&#x201C;WebSocketClosed!&#x201D;); <span class="hljs-comment">// &#x5173;&#x95ED;&#x8FDE;&#x63A5;  };</span>
+      ws.onerror   = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">evt</span>)  </span>{ 
+      <span class="hljs-built_in">console</span>.log(&#x201C;WebSocketError!&#x201D;); <span class="hljs-comment">// &#x8FDE;&#x63A5;&#x5F02;&#x5E38; </span>
+ };
+</code></pre>
+<h5 id="&#x5F39;&#x5E55;&#x7CFB;&#x7EDF;&#x5B9E;&#x65F6;&#x6F14;&#x793A;"><a name="&#x5F39;&#x5E55;&#x7CFB;&#x7EDF;&#x5B9E;&#x65F6;&#x6F14;&#x793A;" class="anchor-navigation-ex-anchor" href="#&#x5F39;&#x5E55;&#x7CFB;&#x7EDF;&#x5B9E;&#x65F6;&#x6F14;&#x793A;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x5F39;&#x5E55;&#x7CFB;&#x7EDF;&#x5B9E;&#x65F6;&#x6F14;&#x793A;" class="plugin-anchor" href="#&#x5F39;&#x5E55;&#x7CFB;&#x7EDF;&#x5B9E;&#x65F6;&#x6F14;&#x793A;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x5F39;&#x5E55;&#x7CFB;&#x7EDF;&#x5B9E;&#x65F6;&#x6F14;&#x793A;</h5>
+<pre><code class="lang-bash"><span class="hljs-comment">#&#x542F;&#x52A8;&#x670D;&#x52A1;</span>
+<span class="hljs-comment">#&#x67E5;&#x770B;&#x5F53;&#x524D;&#x7AEF;&#x53E3;&#x8FDE;&#x63A5;&#x6570;</span>
+netstat -nat|grep -i <span class="hljs-string">&quot;8880&quot;</span>|wc <span class="hljs-_">-l</span>
+<span class="hljs-comment">#&#x67E5;&#x770B;&#x6307;&#x5B9A;&#x8FDB;&#x7A0B;&#x7EBF;&#x7A0B;&#x6570;</span>
+pstree -p 3000 | wc <span class="hljs-_">-l</span>
+</code></pre>
+<h2 id="4-netty&#x5728;dubbo&#x4E2D;&#x5E94;&#x7528;&#x5206;&#x6790;"><a name="4-netty&#x5728;dubbo&#x4E2D;&#x5E94;&#x7528;&#x5206;&#x6790;" class="anchor-navigation-ex-anchor" href="#4-netty&#x5728;dubbo&#x4E2D;&#x5E94;&#x7528;&#x5206;&#x6790;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="4-netty&#x5728;dubbo&#x4E2D;&#x5E94;&#x7528;&#x5206;&#x6790;" class="plugin-anchor" href="#4-netty&#x5728;dubbo&#x4E2D;&#x5E94;&#x7528;&#x5206;&#x6790;"><i class="fa fa-link" aria-hidden="true"></i></a>4. Netty&#x5728;Dubbo&#x4E2D;&#x5E94;&#x7528;&#x5206;&#x6790;</h2>
+<p>&#x8FDC;&#x7A0B;&#x8C03;&#x7528;  &#x6CE8;&#x518C;&#x4E2D;&#x5FC3;&#x3001;&#x8D1F;&#x8F7D;&#x5747;&#x8861;&#x3001;&#x5BB9;&#x9519;&#x3001;&#x900F;&#x660E;&#x5316; =&gt; &#x534F;&#x8BAE;&#x5B9E;&#x73B0;  Dubbo &#x534F;&#x8BAE;</p>
+<h3 id="41-&#x7F51;&#x7EDC;&#x4F20;&#x8F93;&#x7684;&#x5B9E;&#x73B0;&#x7EC4;&#x6210;"><a name="41-&#x7F51;&#x7EDC;&#x4F20;&#x8F93;&#x7684;&#x5B9E;&#x73B0;&#x7EC4;&#x6210;" class="anchor-navigation-ex-anchor" href="#41-&#x7F51;&#x7EDC;&#x4F20;&#x8F93;&#x7684;&#x5B9E;&#x73B0;&#x7EC4;&#x6210;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="41-&#x7F51;&#x7EDC;&#x4F20;&#x8F93;&#x7684;&#x5B9E;&#x73B0;&#x7EC4;&#x6210;" class="plugin-anchor" href="#41-&#x7F51;&#x7EDC;&#x4F20;&#x8F93;&#x7684;&#x5B9E;&#x73B0;&#x7EC4;&#x6210;"><i class="fa fa-link" aria-hidden="true"></i></a>4.1 &#x7F51;&#x7EDC;&#x4F20;&#x8F93;&#x7684;&#x5B9E;&#x73B0;&#x7EC4;&#x6210;</h3>
+<p><img src="../../source/images/ch-06/old/netty-sample-22.png" alt="netty-sample-22"></p>
+<ol>
+<li><strong>IO&#x6A21;&#x578B;&#xFF1A;</strong><ol>
+<li>BIO &#x540C;&#x6B65;&#x963B;&#x585E;</li>
+<li>NIO &#x540C;&#x6B65;&#x975E;&#x963B;&#x585E;</li>
+<li>AIO &#x5F02;&#x6B65;&#x975E;&#x963B;&#x585E; </li>
+</ol>
+</li>
+<li><strong>&#x8FDE;&#x63A5;&#x6A21;&#x578B;&#xFF1A;</strong><ol>
+<li>&#x957F;&#x8FDE;&#x63A5;</li>
+<li>&#x77ED;&#x8FDE;&#x63A5;</li>
+</ol>
+</li>
+<li><strong>&#x7EBF;&#x7A0B;&#x5206;&#x7C7B;&#xFF1A;</strong><ol>
+<li>IO&#x7EBF;&#x7A0B;</li>
+<li>&#x670D;&#x52A1;&#x7AEF;&#x4E1A;&#x52A1;&#x7EBF;&#x7A0B;</li>
+<li>&#x5BA2;&#x6237;&#x7AEF;&#x8C03;&#x5EA6;&#x7EBF;&#x7A0B;</li>
+<li>&#x5BA2;&#x6237;&#x7AEF;&#x7ED3;&#x679C;exchange&#x7EBF;&#x7A0B;&#x3002;</li>
+<li>&#x4FDD;&#x6D3B;&#x5FC3;&#x8DF3;&#x7EBF;&#x7A0B;</li>
+<li>&#x91CD;&#x8FDE;&#x7EBF;&#x7A0B;</li>
+</ol>
+</li>
+<li><strong>&#x7EBF;&#x7A0B;&#x6C60;&#x6A21;&#x578B;&#xFF1A;</strong><ol>
+<li>&#x56FA;&#x5B9A;&#x6570;&#x91CF;&#x7EBF;&#x7A0B;&#x6C60;</li>
+<li>&#x7F13;&#x5B58;&#x7EBF;&#x7A0B;&#x6C60;</li>
+<li>&#x6709;&#x9650;&#x7EBF;&#x7A0B;&#x6C60;</li>
+</ol>
+</li>
+</ol>
+<h3 id="42-dubbo&#x4F20;&#x8F93;uml&#x7C7B;&#x56FE;"><a name="42-dubbo&#x4F20;&#x8F93;uml&#x7C7B;&#x56FE;" class="anchor-navigation-ex-anchor" href="#42-dubbo&#x4F20;&#x8F93;uml&#x7C7B;&#x56FE;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="42-dubbo&#x4F20;&#x8F93;uml&#x7C7B;&#x56FE;" class="plugin-anchor" href="#42-dubbo&#x4F20;&#x8F93;uml&#x7C7B;&#x56FE;"><i class="fa fa-link" aria-hidden="true"></i></a>4.2 dubbo&#x4F20;&#x8F93;uml&#x7C7B;&#x56FE;</h3>
+<p><img src="../../source/images/ch-06/old/netty-sample-23.png" alt="netty-sample-23"></p>
+<h3 id="43-dubbo-&#x4F20;&#x8F93;&#x534F;&#x4F5C;&#x7EBF;&#x7A0B;"><a name="43-dubbo-&#x4F20;&#x8F93;&#x534F;&#x4F5C;&#x7EBF;&#x7A0B;" class="anchor-navigation-ex-anchor" href="#43-dubbo-&#x4F20;&#x8F93;&#x534F;&#x4F5C;&#x7EBF;&#x7A0B;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="43-dubbo-&#x4F20;&#x8F93;&#x534F;&#x4F5C;&#x7EBF;&#x7A0B;" class="plugin-anchor" href="#43-dubbo-&#x4F20;&#x8F93;&#x534F;&#x4F5C;&#x7EBF;&#x7A0B;"><i class="fa fa-link" aria-hidden="true"></i></a>4.3 Dubbo &#x4F20;&#x8F93;&#x534F;&#x4F5C;&#x7EBF;&#x7A0B;</h3>
+<ol>
+<li><strong>&#x5BA2;&#x6237;&#x7AEF;&#x8C03;&#x5EA6;&#x7EBF;&#x7A0B;</strong>&#xFF1A;&#x7528;&#x4E8E;&#x53D1;&#x8D77;&#x8FDC;&#x7A0B;&#x65B9;&#x6CD5;&#x8C03;&#x7528;&#x7684;&#x7EBF;&#x7A0B;&#x3002;</li>
+<li><strong>&#x5BA2;&#x6237;&#x7AEF;IO&#x7EBF;&#x7A0B;&#xFF1A;</strong>&#x7531;&#x4F20;&#x8F93;&#x6846;&#x67B6;&#x5B9E;&#x73B0;&#xFF0C;&#x7528;&#x4E8E;request &#x6D88;&#x606F;&#x6D41;&#x53D1;&#x9001;&#x3001;response &#x6D88;&#x606F;&#x6D41;&#x8BFB;&#x53D6;&#x4E0E;&#x89E3;&#x7801;&#x7B49;&#x64CD;&#x4F5C;&#x3002;</li>
+<li><strong>&#x670D;&#x52A1;&#x7AEF;IO&#x7EBF;&#x7A0B;</strong>&#xFF1A;&#x7531;&#x4F20;&#x8F93;&#x6846;&#x67B6;&#x5B9E;&#x73B0;&#xFF0C;&#x7528;&#x4E8E;request&#x6D88;&#x606F;&#x6D41;&#x8BFB;&#x53D6;&#x4E0E;&#x89E3;&#x7801; &#x4E0E;Response&#x53D1;&#x9001;&#x3002;</li>
+<li><strong>&#x4E1A;&#x52A1;&#x6267;&#x884C;&#x7EBF;&#x7A0B;&#xFF1A;</strong>&#x670D;&#x52A1;&#x7AEF;&#x5177;&#x4F53;&#x6267;&#x884C;&#x4E1A;&#x52A1;&#x65B9;&#x6CD5;&#x7684;&#x7EBF;&#x7A0B;</li>
+</ol>
+<h5 id="&#x5BA2;&#x6237;&#x7AEF;&#x7EBF;&#x7A0B;&#x534F;&#x4F5C;&#x6D41;&#x7A0B;"><a name="&#x5BA2;&#x6237;&#x7AEF;&#x7EBF;&#x7A0B;&#x534F;&#x4F5C;&#x6D41;&#x7A0B;" class="anchor-navigation-ex-anchor" href="#&#x5BA2;&#x6237;&#x7AEF;&#x7EBF;&#x7A0B;&#x534F;&#x4F5C;&#x6D41;&#x7A0B;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x5BA2;&#x6237;&#x7AEF;&#x7EBF;&#x7A0B;&#x534F;&#x4F5C;&#x6D41;&#x7A0B;" class="plugin-anchor" href="#&#x5BA2;&#x6237;&#x7AEF;&#x7EBF;&#x7A0B;&#x534F;&#x4F5C;&#x6D41;&#x7A0B;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x5BA2;&#x6237;&#x7AEF;&#x7EBF;&#x7A0B;&#x534F;&#x4F5C;&#x6D41;&#x7A0B;</h5>
+<p><img src="../../source/images/ch-06/old/netty-sample-24.png" alt="netty-sample-24"></p>
+<ol>
+<li><strong>&#x8C03;&#x5EA6;&#x7EBF;&#x7A0B;</strong><ol>
+<li>&#x8C03;&#x7528;&#x8FDC;&#x7A0B;&#x65B9;&#x6CD5;</li>
+<li>&#x5BF9;request &#x8FDB;&#x884C;&#x534F;&#x8BAE;&#x7F16;&#x7801;</li>
+<li>&#x53D1;&#x9001;request &#x6D88;&#x606F;&#x81F3;IO&#x7EBF;&#x7A0B;</li>
+<li>&#x7B49;&#x5F85;&#x7ED3;&#x679C;&#x7684;&#x83B7;&#x53D6;</li>
+</ol>
+</li>
+<li><strong>IO&#x7EBF;&#x7A0B;</strong><ol>
+<li>&#x8BFB;&#x53D6;response&#x6D41;</li>
+<li>response &#x89E3;&#x7801;</li>
+<li>&#x5C01;&#x8FD4;&#x56DE;&#x7ED3;&#x679C;</li>
+<li>&#x586B;&#x5145;&#x8FD4;&#x56DE;&#x7ED3;&#x679C;</li>
+</ol>
+</li>
+</ol>
+<h5 id="&#x8C03;&#x7528;&#x8C03;&#x8BD5;"><a name="&#x8C03;&#x7528;&#x8C03;&#x8BD5;" class="anchor-navigation-ex-anchor" href="#&#x8C03;&#x7528;&#x8C03;&#x8BD5;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x8C03;&#x7528;&#x8C03;&#x8BD5;" class="plugin-anchor" href="#&#x8C03;&#x7528;&#x8C03;&#x8BD5;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x8C03;&#x7528;&#x8C03;&#x8BD5;</h5>
+<p>&#x8BBE;&#x7F6E;&#x8D85;&#x65F6;&#x4EFB;&#x52A1;:</p>
+<blockquote>
+<p>newFuture:98, DefaultFuture (org.apache.dubbo.remoting.exchange.support)
+request:116, HeaderExchangeChannel (org.apache.dubbo.remoting.exchange.support.header)
+request:84, HeaderExchangeClient (org.apache.dubbo.remoting.exchange.support.header)
+request:80, ReferenceCountExchangeClient (org.apache.dubbo.rpc.protocol.dubbo)
+doInvoke:97, DubboInvoker (org.apache.dubbo.rpc.protocol.dubbo)
+invoke:155, AbstractInvoker (org.apache.dubbo.rpc.protocol)
+invoke:52, AsyncToSyncInvoker (org.apache.dubbo.rpc.protocol)
+invoke:92, MonitorFilter (org.apache.dubbo.monitor.support)
+invoke:82, ProtocolFilterWrapper$1 (org.apache.dubbo.rpc.protocol)
+invoke:54, FutureFilter (org.apache.dubbo.rpc.protocol.dubbo.filter)
+invoke:82, ProtocolFilterWrapper$1 (org.apache.dubbo.rpc.protocol)
+invoke:14, ProviderHelloFilter (com.tuling.dubbo)
+invoke:82, ProtocolFilterWrapper$1 (org.apache.dubbo.rpc.protocol)
+invoke:60, ConsumerContextFilter (org.apache.dubbo.rpc.filter)
+invoke:82, ProtocolFilterWrapper$1 (org.apache.dubbo.rpc.protocol)
+invoke:157, ProtocolFilterWrapper$CallbackRegistrationInvoker (org.apache.dubbo.rpc.protocol)
+invoke:78, ListenerInvokerWrapper (org.apache.dubbo.rpc.listener)
+invoke:56, InvokerWrapper (org.apache.dubbo.rpc.protocol)
+doInvoke:82, FailoverClusterInvoker (org.apache.dubbo.rpc.cluster.support)
+invoke:248, AbstractClusterInvoker (org.apache.dubbo.rpc.cluster.support)
+invoke:78, MockClusterInvoker (org.apache.dubbo.rpc.cluster.support.wrapper)
+invoke:55, InvokerInvocationHandler (org.apache.dubbo.rpc.proxy)
+getUser:-1, proxy0 (org.apache.dubbo.common.bytecode)
+main:43, DubboClient (com.tuling.dubbo)</p>
+</blockquote>
+<p>&#x53D1;&#x8D77;&#x7BA1;&#x9053;&#x8C03;&#x7528;&#xFF1A;</p>
+<blockquote>
+<p>writeAndFlush:1071, DefaultChannelPipeline (io.netty.channel)
+writeAndFlush:300, AbstractChannel (io.netty.channel)
+send:134, NettyChannel (org.apache.dubbo.remoting.transport.netty4)
+send:177, AbstractClient (org.apache.dubbo.remoting.transport)
+send:53, AbstractPeer (org.apache.dubbo.remoting.transport)
+request:118, HeaderExchangeChannel (org.apache.dubbo.remoting.exchange.support.header)
+request:84, HeaderExchangeClient (org.apache.dubbo.remoting.exchange.support.header)
+request:80, ReferenceCountExchangeClient (org.apache.dubbo.rpc.protocol.dubbo)
+doInvoke:97, DubboInvoker (org.apache.dubbo.rpc.protocol.dubbo)
+invoke:155, AbstractInvoker (org.apache.dubbo.rpc.protocol)
+invoke:52, AsyncToSyncInvoker (org.apache.dubbo.rpc.protocol)
+invoke:92, MonitorFilter (org.apache.dubbo.monitor.support)
+invoke:82, ProtocolFilterWrapper$1 (org.apache.dubbo.rpc.protocol)
+invoke:54, FutureFilter (org.apache.dubbo.rpc.protocol.dubbo.filter)
+invoke:82, ProtocolFilterWrapper$1 (org.apache.dubbo.rpc.protocol)
+invoke:14, ProviderHelloFilter (com.tuling.dubbo)
+invoke:82, ProtocolFilterWrapper$1 (org.apache.dubbo.rpc.protocol)
+invoke:60, ConsumerContextFilter (org.apache.dubbo.rpc.filter)
+invoke:82, ProtocolFilterWrapper$1 (org.apache.dubbo.rpc.protocol)
+invoke:157, ProtocolFilterWrapper$CallbackRegistrationInvoker (org.apache.dubbo.rpc.protocol)
+invoke:78, ListenerInvokerWrapper (org.apache.dubbo.rpc.listener)
+invoke:56, InvokerWrapper (org.apache.dubbo.rpc.protocol)
+doInvoke:82, FailoverClusterInvoker (org.apache.dubbo.rpc.cluster.support)
+invoke:248, AbstractClusterInvoker (org.apache.dubbo.rpc.cluster.support)
+invoke:78, MockClusterInvoker (org.apache.dubbo.rpc.cluster.support.wrapper)
+invoke:55, InvokerInvocationHandler (org.apache.dubbo.rpc.proxy)
+getUser:-1, proxy0 (org.apache.dubbo.common.bytecode)
+main:43, DubboClient (com.tuling.dubbo)</p>
+</blockquote>
+<h5 id="&#x670D;&#x52A1;&#x7AEF;&#x7EBF;&#x7A0B;&#x534F;&#x4F5C;"><a name="&#x670D;&#x52A1;&#x7AEF;&#x7EBF;&#x7A0B;&#x534F;&#x4F5C;" class="anchor-navigation-ex-anchor" href="#&#x670D;&#x52A1;&#x7AEF;&#x7EBF;&#x7A0B;&#x534F;&#x4F5C;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x670D;&#x52A1;&#x7AEF;&#x7EBF;&#x7A0B;&#x534F;&#x4F5C;" class="plugin-anchor" href="#&#x670D;&#x52A1;&#x7AEF;&#x7EBF;&#x7A0B;&#x534F;&#x4F5C;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x670D;&#x52A1;&#x7AEF;&#x7EBF;&#x7A0B;&#x534F;&#x4F5C;</h5>
+<p><img src="../../source/images/ch-06/old/netty-sample-25.png" alt="netty-sample-25"></p>
+<ol>
+<li><strong>IO&#x7EBF;&#x7A0B;&#xFF1A;</strong><ol>
+<li>request &#x6D41;&#x8BFB;&#x53D6;</li>
+<li>request &#x89E3;&#x7801;</li>
+<li>&#x63D0;&#x4EA4;&#x4E1A;&#x52A1;&#x5904;&#x7406;&#x4EFB;&#x52A1;</li>
+</ol>
+</li>
+<li><strong>&#x4E1A;&#x52A1;&#x7EBF;&#x7A0B;&#xFF1A;</strong><ol>
+<li>&#x4E1A;&#x52A1;&#x65B9;&#x6CD5;&#x6267;&#x884C;</li>
+<li>response &#x7F16;&#x7801;</li>
+<li>&#x56DE;&#x5199;&#x7ED3;&#x679C;&#x81F3;channel</li>
+</ol>
+</li>
+</ol>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="18-Netty-Thread-Model-Source.html" class="navigation navigation-prev " aria-label="Previous page: 18 Netty线程模型源码详解">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="../../07-Microservice/" class="navigation navigation-next " aria-label="Next page: 第7章 微服务">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"19 Netty在弹幕系统与Dubbo框架中的应用","level":"1.1.6.16","depth":3,"next":{"title":"第7章 微服务","level":"1.1.7","depth":2,"path":"07-Microservice/README.md","ref":"07-Microservice/README.md","articles":[]},"previous":{"title":"18 Netty线程模型源码详解","level":"1.1.6.15","depth":3,"path":"06-Distributed/Old/18-Netty-Thread-Model-Source.md","ref":"06-Distributed/Old/18-Netty-Thread-Model-Source.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","splitter","expandable-chapters-small","anchors","github","github-buttons","sharing-plus","anchor-navigation-ex"],"styles":{"website":"./styles/website.css"},"pluginsConfig":{"github":{"url":"https://github.com/tyrival"},"splitter":{},"search":{},"sharing-plus":{"qq":false,"all":["facebook","google","twitter","instapaper","linkedin","pocket","stumbleupon"],"douban":false,"facebook":true,"weibo":false,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":true,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"anchor-navigation-ex":{"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"mode":"float","multipleH1":true,"pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"printLog":false,"showGoTop":true,"showLevel":false},"github-buttons":{"buttons":[{"user":"Tyrival","repo":"gitbook","type":"star","size":"small","count":false}]},"expandable-chapters-small":{},"sharing":{"qq":false,"all":["google","facebook","weibo","twitter","qq","qzone","linkedin","pocket"],"douban":false,"facebook":false,"weibo":false,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":false,"messenger":false,"line":false,"vk":false,"pocket":false,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","author":"Tyrival","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"架构师学习笔记","language":"zh-hans","gitbook":"3.2.3","description":"架构师学习笔记"},"file":{"path":"06-Distributed/Old/19-Netty-Barrage-Dubbo.md","mtime":"2020-08-28T09:59:28.938Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-09-08T12:50:18.646Z"},"basePath":"../..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../../gitbook/gitbook.js"></script>
+    <script src="../../gitbook/theme.js"></script>
+    
+        
+        <script src="../../gitbook/gitbook-plugin-splitter/splitter.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-github/plugin.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-github-buttons/plugin.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-sharing-plus/buttons.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

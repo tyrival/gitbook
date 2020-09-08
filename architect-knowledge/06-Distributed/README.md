@@ -31,3 +31,11 @@
 [18 Netty线程模型源码详解](./Old/18-Netty-Thread-Model-Source.md)
 
 [19 Netty在弹幕系统与Dubbo框架中的应用](./Old/19-Netty-Barrage-Dubbo.md)
+
+[20 Kafka集群搭建与使用](./Old/20-Kafka-Cluster.md)
+
+[21 Kafka设计原理详解](./Old/21-Kafka-Architecture.md)
+
+[22 Kafka性能优化实战](./Old/22-Kafka-Optimizer-Training.md)
+
+[19 Netty在弹幕系统与Dubbo框架中的应用](./Old/19-Netty-Barrage-Dubbo.md)
