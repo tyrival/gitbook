@@ -529,3 +529,314 @@ db.createUser({"user":"dev","pwd":"123456","roles":["read"]})
 use luban;
 db.auth("dev","123456")
 ```
+
+
+
+## 4. Docker搭建集群
+
+### 4.1 `docker-compose.yml`
+
+```yml
+version: '3'
+services:
+  mongo_cs1:
+    image: mongo
+    container_name: mongo_cs1
+    networks:
+      mongo:
+        ipv4_address: 172.20.0.12
+    volumes:
+      - /etc/localtime:/etc/localtime
+      - ./data/config01/db:/data/db
+      - ./data/config01/configdb:/data/configdb
+      - ./data/config01/backup:/data/backup
+    ports:
+      - 27019:27019
+    command: --configsvr --replSet "rs_configsvr" --bind_ip_all
+    restart: always
+  mongo_cs2:
+    image: mongo
+    container_name: mongo_cs2
+    networks:
+      mongo:
+        ipv4_address: 172.20.0.13
+    volumes:
+      - /etc/localtime:/etc/localtime
+      - ./data/config02/db:/data/db
+      - ./data/config02/configdb:/data/configdb
+      - ./data/config02/backup:/data/backup
+    ports:
+      - 27029:27019
+    command: --configsvr --replSet "rs_configsvr" --bind_ip_all
+    restart: always
+  mongo_cs3:
+    image: mongo
+    container_name: mongo_cs3
+    networks:
+      mongo:
+        ipv4_address: 172.20.0.14
+    volumes:
+      - /etc/localtime:/etc/localtime
+      - ./data/config03/db:/data/db
+      - ./data/config03/configdb:/data/configdb
+      - ./data/config03/backup:/data/backup
+    ports:
+      - 27039:27019
+    command: --configsvr --replSet "rs_configsvr" --bind_ip_all
+    restart: always
+
+  mongo_sh01:
+    image: mongo
+    container_name: mongo_sh01
+    networks:
+      mongo:
+        ipv4_address: 172.20.0.15
+    ports:
+      - 27018:27018
+    volumes:
+      - /etc/localtime:/etc/localtime
+      - ./data/shard01/db:/data/db
+      - ./data/shard01/configdb:/data/configdb
+      - ./data/shard01/backup:/data/backup
+    command: --shardsvr --replSet "rs_shardsvr0" --bind_ip_all
+    restart: always
+    depends_on:
+      - mongo_cs1
+      - mongo_cs2
+      - mongo_cs3
+  mongo_sh02:
+    image: mongo
+    container_name: mongo_sh02
+    networks:
+      mongo:
+        ipv4_address: 172.20.0.16
+    ports:
+      - 27028:27018
+    volumes:
+      - /etc/localtime:/etc/localtime
+      - ./data/shard02/db:/data/db
+      - ./data/shard02/configdb:/data/configdb
+      - ./data/shard02/backup:/data/backup
+    command: --shardsvr --replSet "rs_shardsvr0" --bind_ip_all
+    restart: always
+    depends_on:
+      - mongo_cs1
+      - mongo_cs2
+      - mongo_cs3
+
+  mongo_sh11:
+    image: mongo
+    container_name: mongo_sh11
+    networks:
+      mongo:
+        ipv4_address: 172.20.0.17
+    ports:
+      - 27038:27018
+    volumes:
+      - /etc/localtime:/etc/localtime
+      - ./data/shard11/db:/data/db
+      - ./data/shard11/configdb:/data/configdb
+      - ./data/shard11/backup:/data/backup
+    command: --shardsvr --replSet "rs_shardsvr1" --bind_ip_all
+    restart: always
+    depends_on:
+      - mongo_cs1
+      - mongo_cs2
+      - mongo_cs3
+  mongo_sh12:
+    image: mongo
+    container_name: mongo_sh12
+    networks:
+      mongo:
+        ipv4_address: 172.20.0.18
+    ports:
+      - 27048:27018
+    volumes:
+      - /etc/localtime:/etc/localtime
+      - ./data/shard12/db:/data/db
+      - ./data/shard12/configdb:/data/configdb
+      - ./data/shard12/backup:/data/backup
+    command: --shardsvr --replSet "rs_shardsvr1" --bind_ip_all
+    restart: always
+    depends_on:
+      - mongo_cs1
+      - mongo_cs2
+      - mongo_cs3
+
+
+  mongos:
+    image: mongo
+    container_name: mongos
+    networks:
+      mongo:
+        ipv4_address: 172.20.0.11
+    ports:
+      - 27017:27017
+    volumes:
+      - /etc/localtime:/etc/localtime
+      - ./data/mongos/db:/data/db
+      - ./data/mongos/configdb:/data/configdb
+    entrypoint: mongos
+    command: --configdb rs_configsvr/172.20.0.12:27019,172.20.0.13:27019,172.20.0.14:27019 --bind_ip_all
+    restart: always
+    depends_on:
+        - mongo_sh01
+        - mongo_sh02
+        - mongo_sh11
+        - mongo_sh12
+
+networks:
+  mongo:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.10/24
+```
+
+### 4.2 配置
+
+#### 配置config集群
+
+进入任意config容器
+
+```bash
+docker exec -it mongo_cs1 /bin/bash
+```
+
+连接mongodb
+
+```bash
+mongo --host 172.20.0.12 --port 27019
+```
+
+初始化集群
+
+```js
+rs.initiate(
+  {
+    _id: "rs_configsvr",
+    configsvr: true,
+    members: [
+      { _id : 0, host : "172.20.0.12:27019" },
+      { _id : 1, host : "172.20.0.13:27019" },
+      { _id : 2, host : "172.20.0.14:27019" }
+    ]
+  }
+)
+```
+
+#### 配置分片集群
+
+进入任意分片容器
+
+```bash
+docker exec -it mongo_sh01 /bin/bash
+```
+
+连接mongodb
+
+```bash
+mongo --host 172.20.0.15 --port 27018
+```
+
+初始化集群
+
+```js
+rs.initiate(
+  {
+    _id : "rs_shardsvr0",
+    members: [
+      { _id : 0, host : "172.20.0.15:27018" },
+      { _id : 1, host : "172.20.0.16:27018" }
+    ]
+  }
+)
+```
+
+同样的方法配置分片集群2
+
+```js
+docker exec -it mongo_sh11 /bin/bash
+
+mongo --host 172.20.0.17 --port 27018
+
+rs.initiate(
+  {
+    _id : "rs_shardsvr1",
+    members: [
+      { _id : 0, host : "172.20.0.17:27018" },
+      { _id : 1, host : "172.20.0.18:27018" }
+    ]
+  }
+)
+```
+
+#### 配置路由节点
+
+进入路由节点容器
+
+```bash
+docker exec -it mongos /bin/bash
+```
+
+连接mongodb
+
+```bash
+mongo --host 172.20.0.11 --port 27017
+```
+
+将分片服务器添加到路由节点
+
+```js
+sh.addShard("rs_shardsvr0/172.20.0.15:27018,172.20.0.16:27018")
+sh.addShard("rs_shardsvr1/172.20.0.17:27018,172.20.0.18:27018")
+```
+
+### 4.3 验证
+
+连接到路由节点mongos
+
+```bash
+docker exec -it mongos /bin/bash
+mongo --host 172.20.0.11 --port 27017
+```
+
+配置一个数据库并启用分片，设置分片规则为hashed
+
+```js
+sh.enableSharding("tyrival")
+sh.shardCollection("tyrival.order", {"_id": "hashed" })
+```
+
+切换数据库，并添加数据
+
+```js
+use tyrival
+
+for (i = 1; i <= 1000; i=i+1){
+    db.order.insert({'price': 1})
+}
+```
+
+查看数据添加情况
+
+```js
+db.order.find().count()
+// 1000
+```
+
+进入任意分片节点，并连接数据库
+
+```bash
+docker exec -it mongo_sh01 bash
+mongo --host 172.20.0.15 --port 27018
+```
+
+查看分片中的数据量
+
+```JS
+use tyrival
+db.order.find().count()
+// 485
+```
+
