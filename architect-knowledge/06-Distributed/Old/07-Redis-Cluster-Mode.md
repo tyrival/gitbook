@@ -291,7 +291,7 @@ docker exec -it redis1 /bin/bash
 分配slots
 
 ```bash
-redis-cli --cluster create 172.20.0.11:7001 172.20.0.12:7002 172.20.0.13:7003 172.20.0.14:7004 172.20.0.15:7005 172.20.0.16:7006 --cluster-replicas 1
+redis-cli --cluster create 172.20.0.11:7001 172.20.0.12:7002 172.20.0.13:7003 172.20.0.14:7004 172.20.0.15:7005 172.20.0.16:7006 --cluster-replicas 1 -a 123456
 ```
 
 集群初始化完成后，可以使用 redis-cli 连接到任意节点，并执行 `cluster info`，`cluster nodes` 查看集群信息。
