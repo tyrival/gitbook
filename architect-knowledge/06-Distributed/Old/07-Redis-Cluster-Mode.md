@@ -18,6 +18,8 @@ redis集群是一个由多个主从节点群组成的分布式服务器群，它
 
 ## 2. Redis高可用集群搭建
 
+### 2.1 手动部署
+
 - **redis安装**
 
 下载地址：http://redis.io/download
@@ -135,6 +137,164 @@ cluster nodes
 # 关闭集群则需要逐个进行关闭，使用命令：
 /usr/redis-5.0.3/src/redis-cli -a tyrival -c -h 10.211.55.* -p 800* shutdown
 ```
+
+### 2.2 Docker部署
+
+#### 配置文件
+
+##### `docker-compose.yml`
+
+```yml
+version: "3"
+services:
+  redis1:
+    container_name: redis1
+    image: redis:5.0.7
+    networks:
+      redis-cluster-net:
+        ipv4_address: 172.20.0.11
+    ports:
+      - 7001:7001
+      - 17001:17001
+    volumes:
+      - /etc/localtime:/etc/localtime
+      - ./config/redis-7001.conf:/usr/local/etc/redis/redis.conf
+      - ./7001/logs:/usr/local/redis/logs
+      - ./7001/data:/data
+    command: ["redis-server", "/usr/local/etc/redis/redis.conf"]
+    restart: always
+
+  redis2:
+    container_name: redis2
+    image: redis:5.0.7
+    networks:
+      redis-cluster-net:
+        ipv4_address: 172.20.0.12
+    ports:
+      - 7002:7002
+      - 17002:17002
+    volumes:
+      - /etc/localtime:/etc/localtime
+      - ./config/redis-7002.conf:/usr/local/etc/redis/redis.conf
+      - ./7002/logs:/usr/local/redis/logs
+      - ./7002/data:/data
+    command: ["redis-server", "/usr/local/etc/redis/redis.conf"]
+    restart: always
+
+  redis3:
+    container_name: redis3
+    image: redis:5.0.7
+    networks:
+      redis-cluster-net:
+        ipv4_address: 172.20.0.13
+    ports:
+      - 7003:7003
+      - 17003:17003
+    volumes:
+      - /etc/localtime:/etc/localtime
+      - ./config/redis-7003.conf:/usr/local/etc/redis/redis.conf
+      - ./7003/logs:/usr/local/redis/logs
+      - ./7003/data:/data
+    command: ["redis-server", "/usr/local/etc/redis/redis.conf"]
+    restart: always
+
+  redis4:
+    container_name: redis4
+    image: redis:5.0.7
+    networks:
+      redis-cluster-net:
+        ipv4_address: 172.20.0.14
+    ports:
+      - 7004:7004
+      - 17004:17004
+    volumes:
+        - /etc/localtime:/etc/localtime
+        - ./config/redis-7004.conf:/usr/local/etc/redis/redis.conf
+        - ./7004/logs:/usr/local/redis/logs
+        - ./7004/data:/data
+    command: ["redis-server", "/usr/local/etc/redis/redis.conf"]
+    restart: always
+
+  redis5:
+    container_name: redis5
+    image: redis:5.0.7
+    networks:
+      redis-cluster-net:
+        ipv4_address: 172.20.0.15
+    ports:
+      - 7005:7005
+      - 17005:17005
+    volumes:
+      - /etc/localtime:/etc/localtime
+      - ./config/redis-7005.conf:/usr/local/etc/redis/redis.conf
+      - ./7005/logs:/usr/local/redis/logs
+      - ./7005/data:/data
+    command: ["redis-server", "/usr/local/etc/redis/redis.conf"]
+    restart: always
+
+  redis6:
+    container_name: redis6
+    image: redis:5.0.7
+    networks:
+      redis-cluster-net:
+        ipv4_address: 172.20.0.16
+    ports:
+      - 7006:7006
+      - 17006:17006
+    volumes:
+      - /etc/localtime:/etc/localtime
+      - ./config/redis-7006.conf:/usr/local/etc/redis/redis.conf
+      - ./7006/logs:/usr/local/redis/logs
+      - ./7006/data:/data
+    command: ["redis-server", "/usr/local/etc/redis/redis.conf"]
+    restart: always
+
+networks:
+  redis-cluster-net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.10/24
+```
+
+##### `redis.conf`
+
+创建6个文件——  `redis-7001.conf`，`redis-7002.conf`，`redis-7003.conf`，`redis-7004.conf`，`redis-7005.conf`，`redis-7006.conf`，以 `redis-7001.conf` 为例，内容如下
+
+```bash
+port 7001
+cluster-enabled yes
+cluster-config-file nodes.conf
+cluster-node-timeout 5000
+appendonly yes
+daemonize no
+protected-mode no
+pidfile /var/run/redis_7001.pid
+requirepass 123456
+masterauth 123456
+```
+
+#### 启动集群
+
+```bash
+docker-compose up -d
+```
+
+#### 初始化集群
+
+进入任意容器
+
+```bash
+docker exec -it redis1 /bin/bash
+```
+
+分配slots
+
+```bash
+redis-cli --cluster create 172.20.0.11:7001 172.20.0.12:7002 172.20.0.13:7003 172.20.0.14:7004 172.20.0.15:7005 172.20.0.16:7006 --cluster-replicas 1 -a 123456
+```
+
+集群初始化完成后，可以使用 redis-cli 连接到任意节点，并执行 `cluster info`，`cluster nodes` 查看集群信息。
 
 
 
