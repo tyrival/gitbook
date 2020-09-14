@@ -6,7 +6,7 @@
 
 ### 1.1 Core Container（核心容器）
 
-该模块主要包含 Core、Beans、Context 和 SpEL 模块。其中 Core 和 Beans 是整个框架最基础的部分，提供IOC和依赖注入特性。这里最重要的概念就是 BeanFactory，提供了以 Factory 模式的实现来消除对程序性
+该模块主要包含 Core、Beans、Context 和 SpEL 模块。其中 Core 和 Beans 是整个框架最基础的部分，提供IOC和依赖注入特性。这里最重要的概念就是 Bean Factory，提供了以 Factory 模式的实现来消除对程序性
 
 单例模式。
 

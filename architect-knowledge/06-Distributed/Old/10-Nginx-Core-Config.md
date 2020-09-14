@@ -95,7 +95,7 @@ make install
 # 默认方式启动：
 ./sbin/nginx 
 # 指定配置文件启动 
-./sbing/nginx -c /tmp/nginx.conf 
+./sbin/nginx -c /tmp/nginx.conf 
 # 指定nginx程序目录启动
 ./sbin/nginx -p /usr/local/nginx/
 
@@ -205,7 +205,7 @@ http {
 
 上述配置中的events、http、server、location、upstream等属于**配置项块**。而worker_processes 、worker_connections、include、listen属于配置项块中的**属性**。`/nginx_status` 属于配置块的特定**参数**。其中server块嵌套于http块，其可以直接继承访问Http块当中的参数。
 
-| 配置块   | 名称开头用大口号包裹其对应属性                               |
+| 配置块   | 名称开头用大括号包裹其对应属性                               |
 | :------- | :----------------------------------------------------------- |
 | **属性** | 基于空格切分属性名与属性值，属性值可能有多个项 都以空格进行切分 如：`access_log  logs/host.access.log  main` |
 | **参数** | 其配置在 块名称与大括号间，其值如果有多个也是通过空格进行拆  |
