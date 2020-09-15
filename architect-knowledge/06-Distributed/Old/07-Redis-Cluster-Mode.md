@@ -150,9 +150,6 @@ services:
   redis1:
     container_name: redis1
     image: redis:5.0.7
-    networks:
-      redis-cluster-net:
-        ipv4_address: 172.20.0.11
     ports:
       - 7001:7001
       - 17001:17001
@@ -161,15 +158,12 @@ services:
       - ./config/redis-7001.conf:/usr/local/etc/redis/redis.conf
       - ./7001/logs:/usr/local/redis/logs
       - ./7001/data:/data
-    command: ["redis-server", "/usr/local/etc/redis/redis.conf"]
+    command: ["redis-server", "/usr/local/etc/redis/redis.conf", --port,"7001", --cluster-announce-ip,"${ip}"]
     restart: always
 
   redis2:
     container_name: redis2
     image: redis:5.0.7
-    networks:
-      redis-cluster-net:
-        ipv4_address: 172.20.0.12
     ports:
       - 7002:7002
       - 17002:17002
@@ -178,15 +172,12 @@ services:
       - ./config/redis-7002.conf:/usr/local/etc/redis/redis.conf
       - ./7002/logs:/usr/local/redis/logs
       - ./7002/data:/data
-    command: ["redis-server", "/usr/local/etc/redis/redis.conf"]
+    command: ["redis-server", "/usr/local/etc/redis/redis.conf", --port,"7002", --cluster-announce-ip,"${ip}"]
     restart: always
 
   redis3:
     container_name: redis3
     image: redis:5.0.7
-    networks:
-      redis-cluster-net:
-        ipv4_address: 172.20.0.13
     ports:
       - 7003:7003
       - 17003:17003
@@ -195,32 +186,26 @@ services:
       - ./config/redis-7003.conf:/usr/local/etc/redis/redis.conf
       - ./7003/logs:/usr/local/redis/logs
       - ./7003/data:/data
-    command: ["redis-server", "/usr/local/etc/redis/redis.conf"]
+    command: ["redis-server", "/usr/local/etc/redis/redis.conf", --port,"7003", --cluster-announce-ip,"${ip}"]
     restart: always
 
   redis4:
     container_name: redis4
     image: redis:5.0.7
-    networks:
-      redis-cluster-net:
-        ipv4_address: 172.20.0.14
     ports:
       - 7004:7004
       - 17004:17004
     volumes:
-        - /etc/localtime:/etc/localtime
-        - ./config/redis-7004.conf:/usr/local/etc/redis/redis.conf
-        - ./7004/logs:/usr/local/redis/logs
-        - ./7004/data:/data
-    command: ["redis-server", "/usr/local/etc/redis/redis.conf"]
+      - /etc/localtime:/etc/localtime
+      - ./config/redis-7004.conf:/usr/local/etc/redis/redis.conf
+      - ./7004/logs:/usr/local/redis/logs
+      - ./7004/data:/data
+    command: ["redis-server", "/usr/local/etc/redis/redis.conf", --port,"7004", --cluster-announce-ip,"${ip}"]
     restart: always
 
   redis5:
     container_name: redis5
     image: redis:5.0.7
-    networks:
-      redis-cluster-net:
-        ipv4_address: 172.20.0.15
     ports:
       - 7005:7005
       - 17005:17005
@@ -229,15 +214,12 @@ services:
       - ./config/redis-7005.conf:/usr/local/etc/redis/redis.conf
       - ./7005/logs:/usr/local/redis/logs
       - ./7005/data:/data
-    command: ["redis-server", "/usr/local/etc/redis/redis.conf"]
+    command: ["redis-server", "/usr/local/etc/redis/redis.conf", --port,"7005", --cluster-announce-ip,"${ip}"]
     restart: always
 
   redis6:
     container_name: redis6
     image: redis:5.0.7
-    networks:
-      redis-cluster-net:
-        ipv4_address: 172.20.0.16
     ports:
       - 7006:7006
       - 17006:17006
@@ -246,15 +228,19 @@ services:
       - ./config/redis-7006.conf:/usr/local/etc/redis/redis.conf
       - ./7006/logs:/usr/local/redis/logs
       - ./7006/data:/data
-    command: ["redis-server", "/usr/local/etc/redis/redis.conf"]
+    command: ["redis-server", "/usr/local/etc/redis/redis.conf", --port,"7006", --cluster-announce-ip,"${ip}"]
     restart: always
 
-networks:
-  redis-cluster-net:
-    driver: bridge
-    ipam:
-      config:
-        - subnet: 172.20.0.10/24
+  redis-cluster-creator:
+    image: redis:5.0.7
+    entrypoint: [/bin/sh,-c,'echo "yes" | redis-cli -a 123456 --cluster create ${ip}:7001 ${ip}:7002 ${ip}:7003 ${ip}:7004 ${ip}:7005 ${ip}:7006 --cluster-replicas 1']
+    depends_on:
+      - redis1
+      - redis2
+      - redis3
+      - redis4
+      - redis5
+      - redis6
 ```
 
 ##### `redis.conf`
@@ -262,7 +248,7 @@ networks:
 创建6个文件——  `redis-7001.conf`，`redis-7002.conf`，`redis-7003.conf`，`redis-7004.conf`，`redis-7005.conf`，`redis-7006.conf`，以 `redis-7001.conf` 为例，内容如下
 
 ```bash
-port 7001
+bind 0.0.0.0
 cluster-enabled yes
 cluster-config-file nodes.conf
 cluster-node-timeout 5000
@@ -277,21 +263,7 @@ masterauth 123456
 #### 启动集群
 
 ```bash
-docker-compose up -d
-```
-
-#### 初始化集群
-
-进入任意容器
-
-```bash
-docker exec -it redis1 /bin/bash
-```
-
-分配slots
-
-```bash
-redis-cli --cluster create 172.20.0.11:7001 172.20.0.12:7002 172.20.0.13:7003 172.20.0.14:7004 172.20.0.15:7005 172.20.0.16:7006 --cluster-replicas 1 -a 123456
+ip=${ipconfig getifaddr en0} docker-compose up -d
 ```
 
 集群初始化完成后，可以使用 redis-cli 连接到任意节点，并执行 `cluster info`，`cluster nodes` 查看集群信息。
