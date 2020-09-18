@@ -2,7 +2,7 @@
 
 Spring 最重要的概念是 IOC 和 AOP，其中IOC又是Spring中的根基：
 
-​    ![ioc-01](../source/images/ch-05/ioc-01.png)
+![ioc-01](../source/images/ch-05/ioc-01.png)
 
 本文要说的 IOC 总体来说有两处地方最重要，一个是创建 Bean 容器，一个是初始化 Bean。为了保持文章的严谨性，如果同学们发现文章有误请一定不吝指出。
 
@@ -67,7 +67,7 @@ AnnotationConfigApplicationContext context =
 
 ###### AnnotationConfigApplicationContext的结构关系：
 
-​    ![ioc-02](../source/images/ch-05/ioc-02.png)
+![ioc-02](../source/images/ch-05/ioc-02.png)
 
 ###### 创建AnnotationConfigApplicationContext对象
 
@@ -154,7 +154,7 @@ public class GenericApplicationContext extends AbstractApplicationContext implem
 
 DefaultListableBeanFactory的关系图
 
-​    ![ioc-03](../source/images/ch-05/ioc-03.png)
+![ioc-03](../source/images/ch-05/ioc-03.png)
 
 DefaultListableBeanFactory是相当重要的，从字面意思就可以看出它是一个Bean的工厂，什么是Bean的工厂？当然就是用来生产和获得Bean的。
 
@@ -165,7 +165,7 @@ DefaultListableBeanFactory是相当重要的，从字面意思就可以看出它
 - 注册内置BeanPostProcessor
 - 注册相关的BeanDefinition
 
-​    ![ioc-04](../source/images/ch-05/ioc-04.png)
+![ioc-04](../source/images/ch-05/ioc-04.png)
 
 让我们把目光回到AnnotationConfigApplicationContext的无参构造方法，让我们看看Spring在初始化AnnotatedBeanDefinitionReader的时候做了什么：
 
@@ -273,7 +273,7 @@ this.beanDefinitionNames.add(beanName);
 
 **ConfigurationClassPostProcessor实现BeanDefinitionRegistryPostProcessor接口，BeanDefinitionRegistryPostProcessor接口又扩展了BeanFactoryPostProcessor接口，BeanFactoryPostProcessor是Spring的扩展点之一，ConfigurationClassPostProcessor是Spring极为重要的一个类，必须牢牢的记住上面所说的这个类和它的继承关系。**
 
-​    ![ioc-09](../source/images/ch-05/ioc-09.png)
+![ioc-09](../source/images/ch-05/ioc-09.png)
 
 除了注册了ConfigurationClassPostProcessor，还注册了其他Bean，其他Bean也都实现了其他接口，比如BeanPostProcessor等。
 
@@ -394,7 +394,7 @@ public static void registerBeanDefinition(
 
 这个registerBeanDefinition是不是又有一种似曾相似的感觉，没错，在上面注册Spring内置的Bean的时候，已经解析过这个方法了，这里就不重复了，此时，让我们再观察下beanDefinitionMap beanDefinitionNames两个变量，除了Spring内置的Bean，还有我们传进来的Bean，这里的Bean当然就是我们的配置类了：
 
-​    ![ioc-10](../source/images/ch-05/ioc-10.png)
+![ioc-10](../source/images/ch-05/ioc-10.png)
 
 ![ioc-11](../source/images/ch-05/ioc-11.png)
 
