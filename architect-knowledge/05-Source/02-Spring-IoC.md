@@ -1632,7 +1632,7 @@ instanceWrapper = createBeanInstance(beanName, mbd, args);	// 创建bean的实�
 其次是填充属性，位于：
 
 ```java
- populateBean(beanName, mbd, instanceWrapper);	// 填充属性，炒鸡重要
+populateBean(beanName, mbd, instanceWrapper);	// 填充属性，炒鸡重要
 ```
 
 在填充属性下面有一行代码：
