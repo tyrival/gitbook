@@ -7,3 +7,5 @@
 [3 Spring如何解决循环依赖](./03-Spring-Resolve-Circular-Dependencies.md)
 
 [4 Spring事件监听机制](./04-Spring-Event.md)
+
+[5 Spring AOP源码](./05-Spring-AOP.md)
