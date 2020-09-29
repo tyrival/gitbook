@@ -428,7 +428,7 @@ HASH_SLOT = CRC16(key) mod 16384
 
 当客户端向一个错误的节点发出了指令，该节点会发现指令的 key 所在的槽位并不归自己管理，这时它会向客户端发送一个特殊的跳转指令携带目标操作的节点地址，告诉客户端去连这个节点去获取数据。客户端收到指令后除了跳转到正确的节点上去操作，还会同步更新纠正本地的槽位映射表缓存，后续所有 key 将使用新的槽位映射表。
 
-![redis-cluster-sample-02](/Users/tyrival/Desktop/redis-cluster-sample-02.png)
+![redis-cluster-sample-02](../../source/images/ch-06/old/redis-cluster-sample-02.png)
 
 #### Redis集群节点间的通信机制
 
