@@ -9,7 +9,7 @@ Kafka是最初由Linkedin公司开发，是一个分布式、支持分区的（p
 - 用户活动跟踪：Kafka经常被用来记录web用户或者app用户的各种活动，如浏览网页、搜索、点击等活动，这些活动信息被各个服务器发布到kafka的topic中，然后订阅者通过订阅这些topic来做实时的监控分析，或者装载到hadoop、数据仓库中做离线分析和挖掘。
 - 运营指标：Kafka也经常用来记录运营监控数据。包括收集各种分布式应用的数据，生产各种操作的集中反馈，比如报警和报告。
 
-![kafka-cluster-01](../../source/images/ch-06/old/kafka-cluster-01.png)
+![rabbitmq-reliability-14](../../source/images/ch-06/old/rabbitmq-reliability-14.png)
 
 
 
