@@ -42,10 +42,8 @@
 
 [24 RocketMQ特性详解&场景介绍](./Old/24-RocketMQ-Feature.md)
 
-[25 RocketMQ核心源码剖析](./Old/25-RocketMQ-Source.md)
+[25 Kafka集群搭建与使用](./Old/25-Kafka-Cluster.md)
 
-[26 Kafka集群搭建与使用](./Old/26-Kafka-Cluster.md)
+[26 Kafka设计原理详解](./Old/26-Kafka-Architecture.md)
 
-[27 Kafka设计原理详解](./Old/27-Kafka-Architecture.md)
-
-[28 Kafka性能优化实战](./Old/28-Kafka-Optimizer-Training.md)
+[27 Kafka性能优化实战](./Old/27-Kafka-Optimizer-Training.md)
