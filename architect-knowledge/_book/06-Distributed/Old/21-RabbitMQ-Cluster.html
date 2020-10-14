@@ -1,0 +1,1852 @@
+
+<!DOCTYPE HTML>
+<html lang="zh-hans" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>21 RabbitMQ集群及高级特性 · 架构师学习笔记</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        <meta name="author" content="Tyrival">
+        
+        
+    
+    <link rel="stylesheet" href="../../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-splitter/splitter.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-anchors/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-anchor-navigation-ex/style/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+        <link rel="stylesheet" href="../../styles/website.css">
+        
+    
+
+        
+    
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="22-RabbitMQ-Reliability-Message.html" />
+    
+    
+    <link rel="prev" href="20-RabbitMQ-Start.html" />
+    
+
+    <style>
+    @media only screen and (max-width: 640px) {
+        .book-header .hidden-mobile {
+            display: none;
+        }
+    }
+    </style>
+    <script>
+        window["gitbook-plugin-github-buttons"] = {"buttons":[{"user":"Tyrival","repo":"gitbook","type":"star","size":"small","count":false}]};
+    </script>
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="输入并搜索" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../../">
+            
+                <a href="../../">
+            
+                    
+                    架构师学习笔记
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.1" data-path="../../01-JVM/">
+            
+                <a href="../../01-JVM/">
+            
+                    
+                    第1章 JVM
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.1.1" data-path="../../01-JVM/01-ClassLoader.html">
+            
+                <a href="../../01-JVM/01-ClassLoader.html">
+            
+                    
+                    1 类加载机制
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.2" data-path="../../01-JVM/02-JVM-Structure-Resolve.html">
+            
+                <a href="../../01-JVM/02-JVM-Structure-Resolve.html">
+            
+                    
+                    2 JVM整体结构
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.3" data-path="../../01-JVM/03-Memory-Allocation-Mechanism.html">
+            
+                <a href="../../01-JVM/03-Memory-Allocation-Mechanism.html">
+            
+                    
+                    3 JVM内存分配机制
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.4" data-path="../../01-JVM/04-JVM-Bytecode-File-Structure.html">
+            
+                <a href="../../01-JVM/04-JVM-Bytecode-File-Structure.html">
+            
+                    
+                    4 JVM字节码文件结构
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.5" data-path="../../01-JVM/05-GC-ParNew-CMS.html">
+            
+                <a href="../../01-JVM/05-GC-ParNew-CMS.html">
+            
+                    
+                    5 垃圾收集器ParNew和CMS
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.6" data-path="../../01-JVM/06-GC-G1-ZGC.html">
+            
+                <a href="../../01-JVM/06-GC-G1-ZGC.html">
+            
+                    
+                    6 垃圾收集器G1和ZGC
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.7" data-path="../../01-JVM/07-GC-Optimize-01.html">
+            
+                <a href="../../01-JVM/07-GC-Optimize-01.html">
+            
+                    
+                    7 GC调优（一）
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.8" data-path="../../01-JVM/08-GC-Optimize-02.html">
+            
+                <a href="../../01-JVM/08-GC-Optimize-02.html">
+            
+                    
+                    8 GC调优（二）
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.9" data-path="../../01-JVM/JVM-Command.html">
+            
+                <a href="../../01-JVM/JVM-Command.html">
+            
+                    
+                    附1 JVM指令手册
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.2" data-path="../../02-Tomcat/">
+            
+                <a href="../../02-Tomcat/">
+            
+                    
+                    第2章 Tomcat
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.2.1" data-path="../../02-Tomcat/01-Tomcat-Summary.html">
+            
+                <a href="../../02-Tomcat/01-Tomcat-Summary.html">
+            
+                    
+                    1 Tomcat生产环境应用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.2.2" data-path="../../02-Tomcat/02-Tomcat-Component-Src.html">
+            
+                <a href="../../02-Tomcat/02-Tomcat-Component-Src.html">
+            
+                    
+                    2 Tomcat核心组件源码
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.2.3" data-path="../../02-Tomcat/03-Tomcat-Http-Process.html">
+            
+                <a href="../../02-Tomcat/03-Tomcat-Http-Process.html">
+            
+                    
+                    3 Tomcat线程模型HTTP请求处理与管道线模型
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.2.4" data-path="../../02-Tomcat/04-Tomcat-Hot-Deployment-Load.html">
+            
+                <a href="../../02-Tomcat/04-Tomcat-Hot-Deployment-Load.html">
+            
+                    
+                    4 Tomcat热部署和热加载
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.3" data-path="../../03-MySQL/">
+            
+                <a href="../../03-MySQL/">
+            
+                    
+                    第3章 MySQL
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.3.1" data-path="../../03-MySQL/01-Mysql-index-data-structure.html">
+            
+                <a href="../../03-MySQL/01-Mysql-index-data-structure.html">
+            
+                    
+                    1 Mysql索引数据结构
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.3.2" data-path="../../03-MySQL/02-Explain-Index-Actual.html">
+            
+                <a href="../../03-MySQL/02-Explain-Index-Actual.html">
+            
+                    
+                    2 Explain详解与索引最佳实践
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.3.3" data-path="../../03-MySQL/03-Sql-Execution-Fundamental.html">
+            
+                <a href="../../03-MySQL/03-Sql-Execution-Fundamental.html">
+            
+                    
+                    3 SQL底层执行原理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.3.4" data-path="../../03-MySQL/04-Sql-Optimize-01.html">
+            
+                <a href="../../03-MySQL/04-Sql-Optimize-01.html">
+            
+                    
+                    4 SQL优化实战（一）
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.3.5" data-path="../../03-MySQL/05-Sql-Optimize-02.html">
+            
+                <a href="../../03-MySQL/05-Sql-Optimize-02.html">
+            
+                    
+                    5 SQL优化实战（二）
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.3.6" data-path="../../03-MySQL/06-Mysql-Lock-Transaction-Isolation.html">
+            
+                <a href="../../03-MySQL/06-Mysql-Lock-Transaction-Isolation.html">
+            
+                    
+                    6 Mysql锁与事务隔离级别
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.3.7" data-path="../../03-MySQL/Slow-Sql-Query.html">
+            
+                <a href="../../03-MySQL/Slow-Sql-Query.html">
+            
+                    
+                    附1 慢SQL查询
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.3.8" data-path="../../03-MySQL/Ali-Java-Explain.html">
+            
+                <a href="../../03-MySQL/Ali-Java-Explain.html">
+            
+                    
+                    附2 阿里巴巴手册（泰山版）解读-MySQL数据库
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.4" data-path="../../04-Concurrent/">
+            
+                <a href="../../04-Concurrent/">
+            
+                    
+                    第4章 并发编程
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.4.1" data-path="../../04-Concurrent/01-JMM-JSR133.html">
+            
+                <a href="../../04-Concurrent/01-JMM-JSR133.html">
+            
+                    
+                    1 并发编程之JMM & JSR133规范解读
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.4.2" data-path="../../04-Concurrent/02-JMM-Features.html">
+            
+                <a href="../../04-Concurrent/02-JMM-Features.html">
+            
+                    
+                    2 并发编程之JMM三大特性详解
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.4.3" data-path="../../04-Concurrent/03-MESI-Cache-Coherency-Protocol.html">
+            
+                <a href="../../04-Concurrent/03-MESI-Cache-Coherency-Protocol.html">
+            
+                    
+                    3 MESI缓存一致协议详解
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.4.4" data-path="../../04-Concurrent/04-Synchronized.html">
+            
+                <a href="../../04-Concurrent/04-Synchronized.html">
+            
+                    
+                    4 并发编程之synchronized详解
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.4.5" data-path="../../04-Concurrent/05-AQS-Lock.html">
+            
+                <a href="../../04-Concurrent/05-AQS-Lock.html">
+            
+                    
+                    5 抽象队列同步器AQS应用Lock详解
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.4.6" data-path="../../04-Concurrent/06-AQS-Blocking-Queue.html">
+            
+                <a href="../../04-Concurrent/06-AQS-Blocking-Queue.html">
+            
+                    
+                    6 抽象队列同步器AQS应用之BlockingQueue详解
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.4.7" data-path="../../04-Concurrent/07-Tools-CountDownLatch-Semaphore.html">
+            
+                <a href="../../04-Concurrent/07-Tools-CountDownLatch-Semaphore.html">
+            
+                    
+                    7 并发编程之Tools&CountDownLatch&Semaphore原理与应用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.4.8" data-path="../../04-Concurrent/08-Atomic-Unsafe-Magic-Class.html">
+            
+                <a href="../../04-Concurrent/08-Atomic-Unsafe-Magic-Class.html">
+            
+                    
+                    8 并发编程之Atomic&Unsafe魔法类详解
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.4.9" data-path="../../04-Concurrent/09-Collections-Map-List-Set.html">
+            
+                <a href="../../04-Concurrent/09-Collections-Map-List-Set.html">
+            
+                    
+                    9 Collections之Map&List&Set详解
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.4.10" data-path="../../04-Concurrent/10-Executor-Thread-Pool.html">
+            
+                <a href="../../04-Concurrent/10-Executor-Thread-Pool.html">
+            
+                    
+                    10 Executor线程池原理与源码
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.4.11" data-path="../../04-Concurrent/11-Schedule-Task-Thread-Pool.html">
+            
+                <a href="../../04-Concurrent/11-Schedule-Task-Thread-Pool.html">
+            
+                    
+                    11 并发编程之定时任务&定时线程池
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.4.12" data-path="../../04-Concurrent/12-Future-ForkJoin.html">
+            
+                <a href="../../04-Concurrent/12-Future-ForkJoin.html">
+            
+                    
+                    12 并发编程之Future&ForkJoin框架原理分析
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.4.13" data-path="../../04-Concurrent/13-Disruptor.html">
+            
+                <a href="../../04-Concurrent/13-Disruptor.html">
+            
+                    
+                    13 无锁并发框架Disruptor
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.5" data-path="../../05-Source/">
+            
+                <a href="../../05-Source/">
+            
+                    
+                    第5章 源码框架
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.5.1" data-path="../../05-Source/01-Spring-Code-Compile.html">
+            
+                <a href="../../05-Source/01-Spring-Code-Compile.html">
+            
+                    
+                    1 Spring源码介绍和编译
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.5.2" data-path="../../05-Source/02-Spring-IoC.html">
+            
+                <a href="../../05-Source/02-Spring-IoC.html">
+            
+                    
+                    2 Spring Ioc容器加载过程—Bean的生命周期源码深度剖析
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.5.3" data-path="../../05-Source/03-Spring-Resolve-Circular-Dependencies.html">
+            
+                <a href="../../05-Source/03-Spring-Resolve-Circular-Dependencies.html">
+            
+                    
+                    3 Spring如何解决循环依赖
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.5.4" data-path="../../05-Source/04-Spring-Event.html">
+            
+                <a href="../../05-Source/04-Spring-Event.html">
+            
+                    
+                    4 Spring事件监听机制
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.5.5" data-path="../../05-Source/05-Spring-AOP.html">
+            
+                <a href="../../05-Source/05-Spring-AOP.html">
+            
+                    
+                    5 Spring AOP源码
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    第6章 分布式
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.6.1" data-path="01-Zookeeper-Node.html">
+            
+                <a href="01-Zookeeper-Node.html">
+            
+                    
+                    1 Zookeeper特性与节点说明
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6.2" data-path="05-Redis-Data-Structure.html">
+            
+                <a href="05-Redis-Data-Structure.html">
+            
+                    
+                    5 Redis核心数据结构与核心原理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6.3" data-path="06-Redis-Persistent-Distributed-Mode.html">
+            
+                <a href="06-Redis-Persistent-Distributed-Mode.html">
+            
+                    
+                    6 Redis持久化、主从与哨兵架构详解
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6.4" data-path="07-Redis-Cluster-Mode.html">
+            
+                <a href="07-Redis-Cluster-Mode.html">
+            
+                    
+                    7 Redis高可用集群
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6.5" data-path="08-Redis-Distributed-Lock-Training.html">
+            
+                <a href="08-Redis-Distributed-Lock-Training.html">
+            
+                    
+                    8 Redis高并发分布式锁实战
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6.6" data-path="09-Redis-Design-Optimize.html">
+            
+                <a href="09-Redis-Design-Optimize.html">
+            
+                    
+                    9 Redis缓存设计与性能优化
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6.7" data-path="10-Nginx-Core-Config.html">
+            
+                <a href="10-Nginx-Core-Config.html">
+            
+                    
+                    10 Nginx核心模块与配置实践
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6.8" data-path="11-Nginx-Optimize-Training.html">
+            
+                <a href="11-Nginx-Optimize-Training.html">
+            
+                    
+                    11 Nginx性能优化实践
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6.9" data-path="12-MongoDB-Quick-Start.html">
+            
+                <a href="12-MongoDB-Quick-Start.html">
+            
+                    
+                    12 MongoDB的逻辑组成
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6.10" data-path="13-MongoDB-Cluster-Advanced-Feature.html">
+            
+                <a href="13-MongoDB-Cluster-Advanced-Feature.html">
+            
+                    
+                    13 MongoDB集群架构与高级特性
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6.11" data-path="14-MongoDB-Training.html">
+            
+                <a href="14-MongoDB-Training.html">
+            
+                    
+                    14 MongoDB企业应用实战
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6.12" data-path="15-Java-BIO-NIO-AIO.html">
+            
+                <a href="15-Java-BIO-NIO-AIO.html">
+            
+                    
+                    15 Java BIO & NIO & AIO
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6.13" data-path="16-Netty-Core-Thread-Model.html">
+            
+                <a href="16-Netty-Core-Thread-Model.html">
+            
+                    
+                    16 Netty核心功能与线程模型
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6.14" data-path="17-Netty-Codec-Pack-Unpack-Zero-Copy.html">
+            
+                <a href="17-Netty-Codec-Pack-Unpack-Zero-Copy.html">
+            
+                    
+                    17 Netty编解码，粘包拆包及零拷贝
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6.15" data-path="18-Netty-Thread-Model-Source.html">
+            
+                <a href="18-Netty-Thread-Model-Source.html">
+            
+                    
+                    18 Netty线程模型源码详解
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6.16" data-path="19-Netty-Barrage-Dubbo.html">
+            
+                <a href="19-Netty-Barrage-Dubbo.html">
+            
+                    
+                    19 Netty在弹幕系统与Dubbo框架中的应用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6.17" data-path="20-RabbitMQ-Start.html">
+            
+                <a href="20-RabbitMQ-Start.html">
+            
+                    
+                    20 RabbitMQ基本概念讲解
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.1.6.18" data-path="21-RabbitMQ-Cluster.html">
+            
+                <a href="21-RabbitMQ-Cluster.html">
+            
+                    
+                    21 RabbitMQ集群及高级特性
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6.19" data-path="22-RabbitMQ-Reliability-Message.html">
+            
+                <a href="22-RabbitMQ-Reliability-Message.html">
+            
+                    
+                    22 RabbitMQ如何作可靠性消息投递
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6.20" data-path="23-RocketMQ-Start.html">
+            
+                <a href="23-RocketMQ-Start.html">
+            
+                    
+                    23 RocketMQ整体部署与快速实战
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6.21" data-path="24-RocketMQ-Feature.html">
+            
+                <a href="24-RocketMQ-Feature.html">
+            
+                    
+                    24 RocketMQ特性详解&场景介绍
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6.22" data-path="25-Kafka-Cluster.html">
+            
+                <a href="25-Kafka-Cluster.html">
+            
+                    
+                    25 Kafka集群搭建与使用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6.23" data-path="26-Kafka-Architecture.html">
+            
+                <a href="26-Kafka-Architecture.html">
+            
+                    
+                    26 Kafka设计原理详解
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6.24" data-path="27-Kafka-Optimizer-Training.html">
+            
+                <a href="27-Kafka-Optimizer-Training.html">
+            
+                    
+                    27 Kafka性能优化实战
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.7" data-path="../../07-Microservice/">
+            
+                <a href="../../07-Microservice/">
+            
+                    
+                    第7章 微服务
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.8" data-path="../../08-Training/">
+            
+                <a href="../../08-Training/">
+            
+                    
+                    第8章 实战案例
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            本书使用 GitBook 发布
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../.." >21 RabbitMQ集群及高级特性</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <div id="anchor-navigation-ex-navbar"><i class="fa fa-navicon"></i><ul><li><span class="title-icon "></span><a href="#rabbitmq&#x96C6;&#x7FA4;&#x53CA;&#x9AD8;&#x7EA7;&#x7279;&#x6027;"><b></b>RabbitMQ&#x96C6;&#x7FA4;&#x53CA;&#x9AD8;&#x7EA7;&#x7279;&#x6027;</a></li><ul><li><span class="title-icon "></span><a href="#1-&#x6D88;&#x606F;&#x7684;&#x53EF;&#x9760;&#x6027;&#x6295;&#x9012;"><b></b>1. &#x6D88;&#x606F;&#x7684;&#x53EF;&#x9760;&#x6027;&#x6295;&#x9012;</a></li><ul><li><span class="title-icon "></span><a href="#11-&#x5982;&#x4F55;&#x4FDD;&#x969C;&#x6D88;&#x606F;&#x7684;&#x767E;&#x5206;&#x767E;&#x6295;&#x9012;&#x6210;&#x529F;"><b></b>1.1 &#x5982;&#x4F55;&#x4FDD;&#x969C;&#x6D88;&#x606F;&#x7684;&#x767E;&#x5206;&#x767E;&#x6295;&#x9012;&#x6210;&#x529F;</a></li></ul><li><span class="title-icon "></span><a href="#2-&#x5E42;&#x7B49;&#x6027;&#x4EE5;&#x53CA;&#x6D88;&#x606F;&#x7684;&#x5E42;&#x7B49;&#x6027;"><b></b>2. &#x5E42;&#x7B49;&#x6027;&#x4EE5;&#x53CA;&#x6D88;&#x606F;&#x7684;&#x5E42;&#x7B49;&#x6027;</a></li><ul><li><span class="title-icon "></span><a href="#21-&#x4EC0;&#x4E48;&#x662F;&#x63A5;&#x53E3;&#x7684;&#x5E42;&#x7B49;&#x6027;"><b></b>2.1 &#x4EC0;&#x4E48;&#x662F;&#x63A5;&#x53E3;&#x7684;&#x5E42;&#x7B49;&#x6027;?</a></li><li><span class="title-icon "></span><a href="#22-mq&#x5982;&#x4F55;&#x89E3;&#x51B3;&#x5E42;&#x7B49;&#x6027;"><b></b>2.2 MQ&#x5982;&#x4F55;&#x89E3;&#x51B3;&#x5E42;&#x7B49;&#x6027;</a></li></ul><li><span class="title-icon "></span><a href="#3-&#x6D88;&#x606F;&#x786E;&#x8BA4;confirm"><b></b>3. &#x6D88;&#x606F;&#x786E;&#x8BA4;Confirm</a></li><ul><li><span class="title-icon "></span><a href="#31-&#x7406;&#x89E3;confirm&#x6D88;&#x606F;&#x786E;&#x8BA4;&#x673A;&#x5236;"><b></b>3.1 &#x7406;&#x89E3;Confirm&#x6D88;&#x606F;&#x786E;&#x8BA4;&#x673A;&#x5236;</a></li><li><span class="title-icon "></span><a href="#32-mq&#x7684;confirm&#x673A;&#x5236;"><b></b>3.2 MQ&#x7684;confirm&#x673A;&#x5236;</a></li><li><span class="title-icon "></span><a href="#33-mq&#x7684;confirm&#x673A;&#x5236;&#x7684;&#x6838;&#x5FC3;&#x6D41;&#x7A0B;&#x56FE;"><b></b>3.3 MQ&#x7684;confirm&#x673A;&#x5236;&#x7684;&#x6838;&#x5FC3;&#x6D41;&#x7A0B;&#x56FE;</a></li><li><span class="title-icon "></span><a href="#34-confirm&#x673A;&#x5236;&#x7684;&#x73B0;&#x5B9E;&#x6B65;&#x9AA4;"><b></b>3.4 confirm&#x673A;&#x5236;&#x7684;&#x73B0;&#x5B9E;&#x6B65;&#x9AA4;</a></li></ul><li><span class="title-icon "></span><a href="#4-return-listener-&#x6D88;&#x606F;&#x5904;&#x7406;&#x673A;&#x5236;"><b></b>4. return listener &#x6D88;&#x606F;&#x5904;&#x7406;&#x673A;&#x5236;</a></li><ul><li><span class="title-icon "></span><a href="#41-return-listener&#x5904;&#x7406;&#x4E0D;&#x53EF;&#x8DEF;&#x7531;&#x7684;&#x6D88;&#x606F;"><b></b>4.1 Return Listener&#x5904;&#x7406;&#x4E0D;&#x53EF;&#x8DEF;&#x7531;&#x7684;&#x6D88;&#x606F;</a></li></ul><li><span class="title-icon "></span><a href="#5-&#x6D88;&#x8D39;&#x7AEF;&#x7684;&#x81EA;&#x5B9A;&#x4E49;&#x6D88;&#x8D39;&#x76D1;&#x542C;"><b></b>5. &#x6D88;&#x8D39;&#x7AEF;&#x7684;&#x81EA;&#x5B9A;&#x4E49;&#x6D88;&#x8D39;&#x76D1;&#x542C;</a></li><ul><li><span class="title-icon "></span><a href="#51-&#x672C;&#x7AE0;1-4&#x6D88;&#x8D39;&#x6D88;&#x606F;&#x7684;&#x65B9;&#x5F0F;&#x90FD;&#x662F;&#x901A;&#x8FC7;&#x5982;&#x4E0B;&#x65B9;&#x5F0F;&#x6D88;&#x8D39;&#x6D88;&#x606F;"><b></b>5.1 &#x672C;&#x7AE0;1-4&#x6D88;&#x8D39;&#x6D88;&#x606F;&#x7684;&#x65B9;&#x5F0F;&#x90FD;&#x662F;&#x901A;&#x8FC7;&#x5982;&#x4E0B;&#x65B9;&#x5F0F;&#x6D88;&#x8D39;&#x6D88;&#x606F;</a></li></ul><li><span class="title-icon "></span><a href="#6-&#x6D88;&#x8D39;&#x7AEF;&#x5982;&#x4F55;&#x505A;&#x9650;&#x6D41;&#x91CF;"><b></b>6. &#x6D88;&#x8D39;&#x7AEF;&#x5982;&#x4F55;&#x505A;&#x9650;&#x6D41;&#x91CF;</a></li><ul><li><span class="title-icon "></span><a href="#61-&#x6D88;&#x8D39;&#x7AEF;&#x9650;&#x6D41;"><b></b>6.1 &#x6D88;&#x8D39;&#x7AEF;&#x9650;&#x6D41;</a></li></ul><li><span class="title-icon "></span><a href="#7-&#x6D88;&#x8D39;&#x7AEF;&#x7684;ack"><b></b>7. &#x6D88;&#x8D39;&#x7AEF;&#x7684;ack</a></li><ul><li><span class="title-icon "></span><a href="#71-&#x6D88;&#x8D39;&#x7AEF;&#x7684;ack&#x6A21;&#x5F0F;"><b></b>7.1 &#x6D88;&#x8D39;&#x7AEF;&#x7684;ack&#x6A21;&#x5F0F;</a></li></ul><li><span class="title-icon "></span><a href="#8-&#x6B7B;&#x4FE1;&#x961F;&#x5217;&#xFF08;&#x6B7B;&#x4FE1;&#x4EA4;&#x6362;&#x673A;&#xFF09;"><b></b>8. &#x6B7B;&#x4FE1;&#x961F;&#x5217;&#xFF08;&#x6B7B;&#x4FE1;&#x4EA4;&#x6362;&#x673A;&#xFF09;</a></li><ul><li><span class="title-icon "></span><a href="#81-&#x6B7B;&#x4FE1;&#x961F;&#x5217;dlx&#xFF08;dead-leater-exchange&#xFF09;"><b></b>8.1 &#x6B7B;&#x4FE1;&#x961F;&#x5217;DLX&#xFF08;Dead-leater-exchange&#xFF09;</a></li></ul></ul></ul></div><a href="#rabbitmq&#x96C6;&#x7FA4;&#x53CA;&#x9AD8;&#x7EA7;&#x7279;&#x6027;" id="anchorNavigationExGoTop"><i class="fa fa-arrow-up"></i></a><h1 id="rabbitmq&#x96C6;&#x7FA4;&#x53CA;&#x9AD8;&#x7EA7;&#x7279;&#x6027;"><a name="rabbitmq&#x96C6;&#x7FA4;&#x53CA;&#x9AD8;&#x7EA7;&#x7279;&#x6027;" class="anchor-navigation-ex-anchor" href="#rabbitmq&#x96C6;&#x7FA4;&#x53CA;&#x9AD8;&#x7EA7;&#x7279;&#x6027;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="rabbitmq&#x96C6;&#x7FA4;&#x53CA;&#x9AD8;&#x7EA7;&#x7279;&#x6027;" class="plugin-anchor" href="#rabbitmq&#x96C6;&#x7FA4;&#x53CA;&#x9AD8;&#x7EA7;&#x7279;&#x6027;"><i class="fa fa-link" aria-hidden="true"></i></a>RabbitMQ&#x96C6;&#x7FA4;&#x53CA;&#x9AD8;&#x7EA7;&#x7279;&#x6027;</h1>
+<h2 id="1-&#x6D88;&#x606F;&#x7684;&#x53EF;&#x9760;&#x6027;&#x6295;&#x9012;"><a name="1-&#x6D88;&#x606F;&#x7684;&#x53EF;&#x9760;&#x6027;&#x6295;&#x9012;" class="anchor-navigation-ex-anchor" href="#1-&#x6D88;&#x606F;&#x7684;&#x53EF;&#x9760;&#x6027;&#x6295;&#x9012;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="1-&#x6D88;&#x606F;&#x7684;&#x53EF;&#x9760;&#x6027;&#x6295;&#x9012;" class="plugin-anchor" href="#1-&#x6D88;&#x606F;&#x7684;&#x53EF;&#x9760;&#x6027;&#x6295;&#x9012;"><i class="fa fa-link" aria-hidden="true"></i></a>1. &#x6D88;&#x606F;&#x7684;&#x53EF;&#x9760;&#x6027;&#x6295;&#x9012;</h2>
+<h3 id="11-&#x5982;&#x4F55;&#x4FDD;&#x969C;&#x6D88;&#x606F;&#x7684;&#x767E;&#x5206;&#x767E;&#x6295;&#x9012;&#x6210;&#x529F;"><a name="11-&#x5982;&#x4F55;&#x4FDD;&#x969C;&#x6D88;&#x606F;&#x7684;&#x767E;&#x5206;&#x767E;&#x6295;&#x9012;&#x6210;&#x529F;" class="anchor-navigation-ex-anchor" href="#11-&#x5982;&#x4F55;&#x4FDD;&#x969C;&#x6D88;&#x606F;&#x7684;&#x767E;&#x5206;&#x767E;&#x6295;&#x9012;&#x6210;&#x529F;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="11-&#x5982;&#x4F55;&#x4FDD;&#x969C;&#x6D88;&#x606F;&#x7684;&#x767E;&#x5206;&#x767E;&#x6295;&#x9012;&#x6210;&#x529F;" class="plugin-anchor" href="#11-&#x5982;&#x4F55;&#x4FDD;&#x969C;&#x6D88;&#x606F;&#x7684;&#x767E;&#x5206;&#x767E;&#x6295;&#x9012;&#x6210;&#x529F;"><i class="fa fa-link" aria-hidden="true"></i></a>1.1 &#x5982;&#x4F55;&#x4FDD;&#x969C;&#x6D88;&#x606F;&#x7684;&#x767E;&#x5206;&#x767E;&#x6295;&#x9012;&#x6210;&#x529F;</h3>
+<h5 id="&#x4EC0;&#x4E48;&#x662F;&#x751F;&#x4EA7;&#x7AEF;&#x7684;&#x53EF;&#x9760;&#x6027;&#x6295;&#x9012;"><a name="&#x4EC0;&#x4E48;&#x662F;&#x751F;&#x4EA7;&#x7AEF;&#x7684;&#x53EF;&#x9760;&#x6027;&#x6295;&#x9012;" class="anchor-navigation-ex-anchor" href="#&#x4EC0;&#x4E48;&#x662F;&#x751F;&#x4EA7;&#x7AEF;&#x7684;&#x53EF;&#x9760;&#x6027;&#x6295;&#x9012;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x4EC0;&#x4E48;&#x662F;&#x751F;&#x4EA7;&#x7AEF;&#x7684;&#x53EF;&#x9760;&#x6027;&#x6295;&#x9012;" class="plugin-anchor" href="#&#x4EC0;&#x4E48;&#x662F;&#x751F;&#x4EA7;&#x7AEF;&#x7684;&#x53EF;&#x9760;&#x6027;&#x6295;&#x9012;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x4EC0;&#x4E48;&#x662F;&#x751F;&#x4EA7;&#x7AEF;&#x7684;&#x53EF;&#x9760;&#x6027;&#x6295;&#x9012;</h5>
+<ul>
+<li>&#x4FDD;&#x969C;&#x6D88;&#x606F;&#x6210;&#x529F;&#x53D1;&#x9001;&#x51FA;&#x53BB;</li>
+<li>&#x4FDD;&#x969C;mq&#x8282;&#x70B9;&#x6210;&#x529F;&#x63A5;&#x6536;&#x6D88;&#x606F;</li>
+<li>&#x6D88;&#x606F;&#x53D1;&#x9001;&#x7AEF;&#x9700;&#x8981;&#x6536;&#x5230;mq&#x670D;&#x52A1;&#x7684;&#x786E;&#x8BA4;&#x5E94;&#x7B54;</li>
+<li>&#x5B8C;&#x5584;&#x7684;&#x6D88;&#x606F;&#x8865;&#x507F;&#x673A;&#x5236;&#xFF08;&#x767E;&#x5206;&#x767E;&#x6210;&#x529F;&#x6210;&#x529F;&#xFF0C;&#x9700;&#x8981;&#x8BE5;&#x6B65;&#x9AA4;&#xFF09;</li>
+</ul>
+<h5 id="&#x89E3;&#x51B3;&#x4FDD;&#x969C;&#x53EF;&#x9760;&#x6027;&#x6295;&#x9012;&#x7684;&#x65B9;&#x6848;&#xFF08;&#x6D88;&#x606F;&#x843D;&#x5E93;&#xFF09;"><a name="&#x89E3;&#x51B3;&#x4FDD;&#x969C;&#x53EF;&#x9760;&#x6027;&#x6295;&#x9012;&#x7684;&#x65B9;&#x6848;&#xFF08;&#x6D88;&#x606F;&#x843D;&#x5E93;&#xFF09;" class="anchor-navigation-ex-anchor" href="#&#x89E3;&#x51B3;&#x4FDD;&#x969C;&#x53EF;&#x9760;&#x6027;&#x6295;&#x9012;&#x7684;&#x65B9;&#x6848;&#xFF08;&#x6D88;&#x606F;&#x843D;&#x5E93;&#xFF09;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x89E3;&#x51B3;&#x4FDD;&#x969C;&#x53EF;&#x9760;&#x6027;&#x6295;&#x9012;&#x7684;&#x65B9;&#x6848;&#xFF08;&#x6D88;&#x606F;&#x843D;&#x5E93;&#xFF09;" class="plugin-anchor" href="#&#x89E3;&#x51B3;&#x4FDD;&#x969C;&#x53EF;&#x9760;&#x6027;&#x6295;&#x9012;&#x7684;&#x65B9;&#x6848;&#xFF08;&#x6D88;&#x606F;&#x843D;&#x5E93;&#xFF09;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x89E3;&#x51B3;&#x4FDD;&#x969C;&#x53EF;&#x9760;&#x6027;&#x6295;&#x9012;&#x7684;&#x65B9;&#x6848;&#xFF08;&#x6D88;&#x606F;&#x843D;&#x5E93;&#xFF09;</h5>
+<p><img src="../../source/images/ch-06/old/rabbitmq-cluster-01.png" alt="rabbitmq-cluster-01"></p>
+<p><img src="../../source/images/ch-06/old/rabbitmq-cluster-02.png" alt="rabbitmq-cluster-02"></p>
+<p>&#x6D88;&#x606F;&#x5165;&#x5E93;&#x6253;&#x6807;&#x89E3;&#x51B3;&#x601D;&#x8DEF;&#xFF08;Order_Serve &#x8C03;&#x7528;&#x7269;&#x6D41;&#x670D;&#x52A1;&#x4E3E;&#x5217;&#x5B50;&#xFF09;&#x5728;&#x6D88;&#x606F;&#x751F;&#x4EA7;&#x8005;&#x7AEF;&#xFF08;&#x4E5F;&#x5C31;&#x662F;&#x8BA2;&#x5355;&#x670D;&#x52A1;&#xFF09;</p>
+<h6 id="&#x6B63;&#x5E38;&#x94FE;&#x8DEF;&#x6D41;&#x7A0B;"><a name="&#x6B63;&#x5E38;&#x94FE;&#x8DEF;&#x6D41;&#x7A0B;" class="anchor-navigation-ex-anchor" href="#&#x6B63;&#x5E38;&#x94FE;&#x8DEF;&#x6D41;&#x7A0B;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x6B63;&#x5E38;&#x94FE;&#x8DEF;&#x6D41;&#x7A0B;" class="plugin-anchor" href="#&#x6B63;&#x5E38;&#x94FE;&#x8DEF;&#x6D41;&#x7A0B;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x6B63;&#x5E38;&#x94FE;&#x8DEF;&#x6D41;&#x7A0B;</h6>
+<ul>
+<li>&#x8BE5;&#x73AF;&#x8282;&#x8C03;&#x7528;&#x4E86;&#x64CD;&#x4F5C;&#x4E86;&#x4E8C;&#x6B21;&#x6570;&#x636E;&#x5E93;&#xFF0C;&#x5728;&#x521B;&#x5EFA;&#x8BA2;&#x5355;&#x7684;&#x64CD;&#x4F5C;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x628A;&#x6570;&#x636E;&#x63D2;&#x5165;&#x5230;&#x8BA2;&#x5355;&#x76F8;&#x5173;&#x7684;&#x8868;&#x4E2D;&#xFF0C;&#x5E76;&#x4E14;&#x6784;&#x9020;&#x8C03;&#x7528;&#x7269;&#x6D41;&#x6A21;&#x5757;&#x7684;&#x6570;&#x636E;&#x6D88;&#x606F;&#xFF0C;&#x628A;&#x6D88;&#x606F;&#x63D2;&#x5165;&#x5230;&#x6D88;&#x606F;&#x8868;&#x4E2D;&#xFF0C;&#x521D;&#x59CB;&#x72B6;&#x6001;&#x4E3A;0</li>
+<li>&#x628A;&#x7269;&#x6D41;&#x6D88;&#x606F;&#x6295;&#x9012;&#x5230;&#x6D88;&#x606F;&#x961F;&#x5217;&#x4E2D;</li>
+<li>&#x6D88;&#x606F;&#x961F;&#x5217;&#x8BBF;&#x95EE;&#x4E00;&#x4E2A;&#x786E;&#x8BA4;&#x6D88;&#x606F;&#xFF0C;&#x5E76;&#x4E14;&#x7531;&#x8BA2;&#x5355;&#x670D;&#x52A1;&#x6765;&#x76D1;&#x63A7;mq server&#x7684;&#x786E;&#x8BA4;&#x6D88;&#x606F;</li>
+<li>&#x6839;&#x636E;&#x6536;&#x5230;&#x7684;&#x786E;&#x8BA4;&#x6D88;&#x606F;&#x6765;&#x66F4;&#x65B0;&#x6570;&#x636E;&#x5E93;&#x4E2D;&#x7684;&#x6D88;&#x606F;&#x8BB0;&#x5F55;&#x7684;&#x72B6;&#x6001;</li>
+</ul>
+<h6 id="&#x5F02;&#x5E38;&#x94FE;&#x8DEF;&#x6D41;&#x7A0B;"><a name="&#x5F02;&#x5E38;&#x94FE;&#x8DEF;&#x6D41;&#x7A0B;" class="anchor-navigation-ex-anchor" href="#&#x5F02;&#x5E38;&#x94FE;&#x8DEF;&#x6D41;&#x7A0B;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x5F02;&#x5E38;&#x94FE;&#x8DEF;&#x6D41;&#x7A0B;" class="plugin-anchor" href="#&#x5F02;&#x5E38;&#x94FE;&#x8DEF;&#x6D41;&#x7A0B;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x5F02;&#x5E38;&#x94FE;&#x8DEF;&#x6D41;&#x7A0B;</h6>
+<ul>
+<li>&#x8BE5;&#x73AF;&#x8282;&#x8C03;&#x7528;&#x4E86;&#x64CD;&#x4F5C;&#x4E86;&#x4E8C;&#x6B21;&#x6570;&#x636E;&#x5E93;&#xFF0C;&#x5728;&#x521B;&#x5EFA;&#x8BA2;&#x5355;&#x7684;&#x64CD;&#x4F5C;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x628A;&#x6570;&#x636E;&#x63D2;&#x5165;&#x5230;&#x8BA2;&#x5355;&#x76F8;&#x5173;&#x7684;&#x8868;&#x4E2D;&#xFF0C;&#x5E76;&#x4E14;&#x6784;&#x9020;&#x8C03;&#x7528;&#x7269;&#x6D41;&#x6A21;&#x5757;&#x7684;&#x6570;&#x636E;&#x6D88;&#x606F;&#xFF0C;&#x628A;&#x6D88;&#x606F;&#x63D2;&#x5165;&#x5230;&#x6D88;&#x606F;&#x8868;&#x4E2D;&#xFF0C;&#x521D;&#x59CB;&#x72B6;&#x6001;&#x4E3A;0</li>
+<li>&#x628A;&#x7269;&#x6D41;&#x6D88;&#x606F;&#x6295;&#x9012;&#x5230;&#x6D88;&#x606F;&#x961F;&#x5217;&#x4E2D;</li>
+<li>&#x7531;&#x4E8E;&#x7F51;&#x7EDC;&#x95EA;&#x65AD;&#xFF0C;&#x5BFC;&#x81F4;&#x6D88;&#x8D39;&#x7AEF;&#x76D1;&#x63A7;mq&#x670D;&#x52A1;&#x8BBF;&#x95EE;&#x7684;&#x786E;&#x8BA4;&#x6D88;&#x606F;&#x6CA1;&#x6709;&#x6536;&#x5230;&#xFF0C;&#x90A3;&#x4E48;&#x5728;msg_db&#x4E2D;&#x7684;&#x90A3;&#x6761;&#x6D88;&#x606F;&#x7684;&#x72B6;&#x6001;&#x6C38;&#x8FDC;&#x5C31;&#x662F;0&#x72B6;&#x6001;&#x3002;&#x8FD9;&#x4E2A;&#x65F6;&#x5019;&#xFF0C;&#x6211;&#x4EEC;&#x9700;&#x8981;&#x5BF9;&#x8FD9;&#x79CD;&#x60C5;&#x51B5;&#x4E0B;&#x505A;&#x51FA;&#x8865;&#x507F;</li>
+</ul>
+<h6 id="&#x8865;&#x507F;&#x673A;&#x5236;"><a name="&#x8865;&#x507F;&#x673A;&#x5236;" class="anchor-navigation-ex-anchor" href="#&#x8865;&#x507F;&#x673A;&#x5236;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x8865;&#x507F;&#x673A;&#x5236;" class="plugin-anchor" href="#&#x8865;&#x507F;&#x673A;&#x5236;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x8865;&#x507F;&#x673A;&#x5236;</h6>
+<p>&#x542F;&#x52A8;&#x4E00;&#x4E2A;&#x5206;&#x5E03;&#x5F0F;&#x7684;&#x5B9A;&#x65F6;&#x4EFB;&#x52A1;&#xFF0C;&#x4E0D;&#x5B9A;&#x65F6;&#x7684;&#x53BB;&#x626B;&#x63CF;msg_db&#x7684;&#x8FD9;&#x4E2A;&#x8868;&#xFF0C;&#x72B6;&#x6001;&#x4E3A;0&#x7684;&#x6D88;&#x606F;&#x8BB0;&#x5F55;&#xFF0C;&#x5728;&#x8FD9;&#x91CC;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x6839;&#x636E;&#x4E1A;&#x52A1;&#x6765;&#x8BBE;&#x7F6E;&#x626B;&#x63CF;&#x91CD;&#x53D1;&#x89C4;&#x5219;</p>
+<ul>
+<li>&#x89C4;&#x5219;1&#xFF1A;&#x63D2;&#x5165;msg_db&#x8868;&#x4E2D;5Min&#x540E;&#x72B6;&#x6001;&#x8FD8;&#x662F;&#x4E3A;0&#x7684;&#x8BB0;&#x5F55;&#xFF0C;&#x8FDB;&#x884C;&#x6D88;&#x606F;&#x91CD;&#x8BD5;</li>
+<li>&#x89C4;&#x5219;2&#xFF1A;&#x82E5;&#x91CD;&#x8BD5;&#x7684;&#x6B21;&#x6570;&#x8D85;&#x8FC7;&#x4E94;&#x6B21;&#x72B6;&#x6001;&#x8FD8;&#x662F;&#x4E3A;0&#x7684;&#x8BDD;&#xFF0C;&#x6211;&#x4EEC;&#x5C31;&#x628A;&#x6D88;&#x606F;&#x72B6;&#x6001;&#x6539;&#x4E3A;2&#xFF0C;&#x6B64;&#x65F6;&#x6211;&#x4EEC;&#x9700;&#x8981;&#x4EBA;&#x5DE5;&#x7684;&#x53BB;&#x786E;&#x8BA4;&#x72B6;&#x6001;&#x4E3A;2&#x7684;&#x6D88;&#x606F;&#x662F;&#x4EC0;&#x4E48;&#x539F;&#x56E0;&#x5BFC;&#x81F4;&#x6CA1;&#x6709;&#x6210;&#x529F;&#x7684;</li>
+</ul>
+<h6 id="&#x6D88;&#x606F;&#x5165;&#x5E93;&#x6253;&#x6807;&#x7684;&#x7F3A;&#x70B9;"><a name="&#x6D88;&#x606F;&#x5165;&#x5E93;&#x6253;&#x6807;&#x7684;&#x7F3A;&#x70B9;" class="anchor-navigation-ex-anchor" href="#&#x6D88;&#x606F;&#x5165;&#x5E93;&#x6253;&#x6807;&#x7684;&#x7F3A;&#x70B9;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x6D88;&#x606F;&#x5165;&#x5E93;&#x6253;&#x6807;&#x7684;&#x7F3A;&#x70B9;" class="plugin-anchor" href="#&#x6D88;&#x606F;&#x5165;&#x5E93;&#x6253;&#x6807;&#x7684;&#x7F3A;&#x70B9;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x6D88;&#x606F;&#x5165;&#x5E93;&#x6253;&#x6807;&#x7684;&#x7F3A;&#x70B9;</h6>
+<p>&#x5728;&#x7B2C;&#x4E00;&#x6B65;&#x7684;&#x8FC7;&#x7A0B;&#x4E2D;&#xFF0C;&#x65E2;&#x63D2;&#x5165;&#x4E86;&#x4E1A;&#x52A1;&#x6570;&#x636E;&#x8868;&#xFF0C;&#x4E5F;&#x540C;&#x65F6;&#x63D2;&#x5165;&#x4E86;&#x6D88;&#x606F;&#x8BB0;&#x5F55;&#x8868;&#xFF0C;&#x8FDB;&#x884C;&#x4E86;&#x4E8C;&#x6B21;db&#x64CD;&#x4F5C;&#xFF0C;&#x5728;&#x9AD8;&#x5E76;&#x53D1;&#x7684;&#x73AF;&#x5883;&#x4E0B;&#xFF0C;&#x8FD9;&#x4E2A;&#x73AF;&#x5883;&#x5C31;&#x4F1A;&#x9020;&#x6210;&#x6027;&#x80FD;&#x74F6;&#x9888;</p>
+<h5 id="&#x5EF6;&#x65F6;&#x6295;&#x9012;&#xFF0C;&#x505A;&#x4E8C;&#x6B21;&#x786E;&#x8BA4;&#x68C0;&#x6D4B;&#xFF0C;&#x56DE;&#x8C03;&#x68C0;&#x6D4B;"><a name="&#x5EF6;&#x65F6;&#x6295;&#x9012;&#xFF0C;&#x505A;&#x4E8C;&#x6B21;&#x786E;&#x8BA4;&#x68C0;&#x6D4B;&#xFF0C;&#x56DE;&#x8C03;&#x68C0;&#x6D4B;" class="anchor-navigation-ex-anchor" href="#&#x5EF6;&#x65F6;&#x6295;&#x9012;&#xFF0C;&#x505A;&#x4E8C;&#x6B21;&#x786E;&#x8BA4;&#x68C0;&#x6D4B;&#xFF0C;&#x56DE;&#x8C03;&#x68C0;&#x6D4B;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x5EF6;&#x65F6;&#x6295;&#x9012;&#xFF0C;&#x505A;&#x4E8C;&#x6B21;&#x786E;&#x8BA4;&#x68C0;&#x6D4B;&#xFF0C;&#x56DE;&#x8C03;&#x68C0;&#x6D4B;" class="plugin-anchor" href="#&#x5EF6;&#x65F6;&#x6295;&#x9012;&#xFF0C;&#x505A;&#x4E8C;&#x6B21;&#x786E;&#x8BA4;&#x68C0;&#x6D4B;&#xFF0C;&#x56DE;&#x8C03;&#x68C0;&#x6D4B;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x5EF6;&#x65F6;&#x6295;&#x9012;&#xFF0C;&#x505A;&#x4E8C;&#x6B21;&#x786E;&#x8BA4;&#x68C0;&#x6D4B;&#xFF0C;&#x56DE;&#x8C03;&#x68C0;&#x6D4B;</h5>
+<p><img src="../../source/images/ch-06/old/rabbitmq-cluster-03.png" alt="rabbitmq-cluster-03"></p>
+<p><img src="../../source/images/ch-06/old/rabbitmq-cluster-04.png" alt="rabbitmq-cluster-04"></p>
+<p>&#x8FD8;&#x662F;&#x7531;order&#x670D;&#x52A1;&#xFF08;upstream service&#xFF09;&#x7269;&#x6D41;&#x670D;&#x52A1;&#xFF08;downstream servcie&#xFF09;&#x6765;&#x4E3E;&#x5217;&#x5B50;</p>
+<h2 id="2-&#x5E42;&#x7B49;&#x6027;&#x4EE5;&#x53CA;&#x6D88;&#x606F;&#x7684;&#x5E42;&#x7B49;&#x6027;"><a name="2-&#x5E42;&#x7B49;&#x6027;&#x4EE5;&#x53CA;&#x6D88;&#x606F;&#x7684;&#x5E42;&#x7B49;&#x6027;" class="anchor-navigation-ex-anchor" href="#2-&#x5E42;&#x7B49;&#x6027;&#x4EE5;&#x53CA;&#x6D88;&#x606F;&#x7684;&#x5E42;&#x7B49;&#x6027;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="2-&#x5E42;&#x7B49;&#x6027;&#x4EE5;&#x53CA;&#x6D88;&#x606F;&#x7684;&#x5E42;&#x7B49;&#x6027;" class="plugin-anchor" href="#2-&#x5E42;&#x7B49;&#x6027;&#x4EE5;&#x53CA;&#x6D88;&#x606F;&#x7684;&#x5E42;&#x7B49;&#x6027;"><i class="fa fa-link" aria-hidden="true"></i></a>2. &#x5E42;&#x7B49;&#x6027;&#x4EE5;&#x53CA;&#x6D88;&#x606F;&#x7684;&#x5E42;&#x7B49;&#x6027;</h2>
+<h3 id="21-&#x4EC0;&#x4E48;&#x662F;&#x63A5;&#x53E3;&#x7684;&#x5E42;&#x7B49;&#x6027;"><a name="21-&#x4EC0;&#x4E48;&#x662F;&#x63A5;&#x53E3;&#x7684;&#x5E42;&#x7B49;&#x6027;" class="anchor-navigation-ex-anchor" href="#21-&#x4EC0;&#x4E48;&#x662F;&#x63A5;&#x53E3;&#x7684;&#x5E42;&#x7B49;&#x6027;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="21-&#x4EC0;&#x4E48;&#x662F;&#x63A5;&#x53E3;&#x7684;&#x5E42;&#x7B49;&#x6027;" class="plugin-anchor" href="#21-&#x4EC0;&#x4E48;&#x662F;&#x63A5;&#x53E3;&#x7684;&#x5E42;&#x7B49;&#x6027;"><i class="fa fa-link" aria-hidden="true"></i></a>2.1 &#x4EC0;&#x4E48;&#x662F;&#x63A5;&#x53E3;&#x7684;&#x5E42;&#x7B49;&#x6027;?</h3>
+<p><strong>&#x63A5;&#x53E3;&#x7684;&#x5E42;&#x7B49;&#x6027;</strong>&#xFF0C;&#x7B80;&#x800C;&#x8A00;&#x4E4B;&#xFF0C;&#x5C31;&#x662F;&#x5BF9;&#x63A5;&#x53E3;&#x53D1;&#x8D77;&#x7684;&#x4E00;&#x6B21;&#x8C03;&#x7528;&#x548C;&#x591A;&#x6B21;&#x8C03;&#x7528;&#xFF0C;&#x9501;&#x751F;&#x4EA7;&#x7684;&#x7ED3;&#x679C;&#x90FD;&#x662F;&#x4E00;&#x81F4;&#x7684;&#x3002;</p>
+<p>&#x67D0;&#x4E9B;&#x63A5;&#x53E3;&#x5177;&#x6709;&#x5929;&#x7136;&#x7684;&#x5E42;&#x7B49;&#x6027;&#xFF1A;&#x6BD4;&#x5982;&#x957F;&#x67E5;&#x8BE2;&#x63A5;&#x53E3;&#xFF0C;&#x4E0D;&#x7BA1;&#x662F;&#x67E5;&#x8BE2;&#x4E00;&#x6B21;&#x8FD8;&#x662F;&#x591A;&#x6B21;&#xFF0C;&#x8FD4;&#x56DE;&#x7684;&#x7ED3;&#x679C;&#x90FD;&#x662F;&#x4E00;&#x81F4;&#x7684;</p>
+<h5 id="&#x82E5;&#x63A5;&#x53E3;&#x6CA1;&#x6709;&#x4FDD;&#x969C;&#x5E42;&#x7B49;&#x6027;&#xFF0C;&#x90A3;&#x4E48;&#x5C31;&#x51FA;&#x73B0;&#x95EE;&#x9898;"><a name="&#x82E5;&#x63A5;&#x53E3;&#x6CA1;&#x6709;&#x4FDD;&#x969C;&#x5E42;&#x7B49;&#x6027;&#xFF0C;&#x90A3;&#x4E48;&#x5C31;&#x51FA;&#x73B0;&#x95EE;&#x9898;" class="anchor-navigation-ex-anchor" href="#&#x82E5;&#x63A5;&#x53E3;&#x6CA1;&#x6709;&#x4FDD;&#x969C;&#x5E42;&#x7B49;&#x6027;&#xFF0C;&#x90A3;&#x4E48;&#x5C31;&#x51FA;&#x73B0;&#x95EE;&#x9898;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x82E5;&#x63A5;&#x53E3;&#x6CA1;&#x6709;&#x4FDD;&#x969C;&#x5E42;&#x7B49;&#x6027;&#xFF0C;&#x90A3;&#x4E48;&#x5C31;&#x51FA;&#x73B0;&#x95EE;&#x9898;" class="plugin-anchor" href="#&#x82E5;&#x63A5;&#x53E3;&#x6CA1;&#x6709;&#x4FDD;&#x969C;&#x5E42;&#x7B49;&#x6027;&#xFF0C;&#x90A3;&#x4E48;&#x5C31;&#x51FA;&#x73B0;&#x95EE;&#x9898;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x82E5;&#x63A5;&#x53E3;&#x6CA1;&#x6709;&#x4FDD;&#x969C;&#x5E42;&#x7B49;&#x6027;&#xFF0C;&#x90A3;&#x4E48;&#x5C31;&#x51FA;&#x73B0;&#x95EE;&#x9898;</h5>
+<h6 id="&#x6848;&#x4F8B;&#x4E00;"><a name="&#x6848;&#x4F8B;&#x4E00;" class="anchor-navigation-ex-anchor" href="#&#x6848;&#x4F8B;&#x4E00;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x6848;&#x4F8B;&#x4E00;" class="plugin-anchor" href="#&#x6848;&#x4F8B;&#x4E00;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x6848;&#x4F8B;&#x4E00;</h6>
+<p>&#x6BD4;&#x5982;&#x8BA2;&#x5355;&#x63D0;&#x4EA4;&#x7684;&#x8FC7;&#x7A0B;&#x4E2D;&#xFF0C;&#x7528;&#x6237;&#x70B9;&#x4E86;&#x4E00;&#x6B21;&#x63D0;&#x4EA4;&#xFF0C;&#x4F46;&#x662F;&#x7531;&#x4E8E;&#x7F51;&#x7EDC;&#x7B49;&#x539F;&#x56E0;&#xFF0C;&#x5BFC;&#x81F4;&#x540E;&#x7AEF;&#x5904;&#x7406;&#x5EF6;&#x65F6;&#xFF0C;&#x5BA2;&#x6237;&#x5C31;&#x8FDE;&#x7EED;&#x70B9;&#x51FB;&#x4E86;&#x591A;&#x6B21;&#xFF0C;&#x5728;&#x6CA1;&#x6709;&#x5E42;&#x7B49;&#x6027;&#x7684;&#x6761;&#x4EF6;&#x4E0B;&#xFF0C;&#x90A3;&#x4E48;&#x5C31;&#x4F1A;&#x9020;&#x6210;&#x8BA2;&#x5355;&#x7684;&#x91CD;&#x590D;&#x63D0;&#x4EA4;&#x3002;</p>
+<h6 id="&#x89E3;&#x51B3;&#x65B9;&#x6848;"><a name="&#x89E3;&#x51B3;&#x65B9;&#x6848;" class="anchor-navigation-ex-anchor" href="#&#x89E3;&#x51B3;&#x65B9;&#x6848;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x89E3;&#x51B3;&#x65B9;&#x6848;" class="plugin-anchor" href="#&#x89E3;&#x51B3;&#x65B9;&#x6848;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x89E3;&#x51B3;&#x65B9;&#x6848;</h6>
+<p>&#x5728;&#x4FDD;&#x5B58;&#x8BA2;&#x5355;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x6839;&#x636E;&#x751F;&#x6210;&#x7684;&#x7CFB;&#x7EDF;&#x5168;&#x5C40;&#x552F;&#x4E00; ID&#xFF08;&#x8FD9;&#x91CC;&#x8BA2;&#x5355;&#x53F7;+&#x4E1A;&#x52A1;&#x7C7B;&#x578B;&#xFF09;&#xFF0C;&#x5E76;&#x4E14;&#x628A;&#x8BE5;&#x552F;&#x4E00; ID &#x8C03;&#x7528; redis &#x7684; setnx &#x547D;&#x4EE4;&#x4FDD;&#x5B58;&#x8D77;&#x6765;&#xFF0C;&#x5728;&#x7B2C;&#x4E00;&#x6B21;&#x4FDD;&#x5B58;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x7531;&#x4E8E; redis &#x4E2D;&#x6CA1;&#x6709;&#x8BE5; key&#xFF0C;&#x90A3;&#x4E48;&#x5C31;&#x4F1A; &#x628A;&#x5168;&#x5C40;&#x552F;&#x4E00; ID &#x8FDB;&#x884C;&#x8BBE;&#x7F6E;&#x4E0A;&#xFF0C;&#x6B64;&#x65F6;&#x8BA2;&#x5355;&#x5C31;&#x4F1A;&#x4FDD;&#x5B58;&#x6210;&#x529F;&#x3002;&#x8FD9;&#x4E2A;&#x65F6;&#x5019;&#x82E5;&#x51FA;&#x73B0;&#x524D;&#x7AEF;&#x91CD;&#x590D;&#x70B9;&#x51FB;&#x6309;&#x94AE;&#xFF0C;&#x7531;&#x4E8E;&#x7B2C;&#x4E00;&#x6B65;&#x5DF2;&#x7ECF; setnx &#x4E0A;&#x4E86; &#x5C31;&#x4F1A;&#x963B;&#x6B62;&#x540E;&#x9762;&#x7684;&#x4FDD;&#x5B58;&#x3002;</p>
+<h3 id="22-mq&#x5982;&#x4F55;&#x89E3;&#x51B3;&#x5E42;&#x7B49;&#x6027;"><a name="22-mq&#x5982;&#x4F55;&#x89E3;&#x51B3;&#x5E42;&#x7B49;&#x6027;" class="anchor-navigation-ex-anchor" href="#22-mq&#x5982;&#x4F55;&#x89E3;&#x51B3;&#x5E42;&#x7B49;&#x6027;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="22-mq&#x5982;&#x4F55;&#x89E3;&#x51B3;&#x5E42;&#x7B49;&#x6027;" class="plugin-anchor" href="#22-mq&#x5982;&#x4F55;&#x89E3;&#x51B3;&#x5E42;&#x7B49;&#x6027;"><i class="fa fa-link" aria-hidden="true"></i></a>2.2 MQ&#x5982;&#x4F55;&#x89E3;&#x51B3;&#x5E42;&#x7B49;&#x6027;</h3>
+<h5 id="&#x53D1;&#x9001;&#x6D88;&#x606F;&#x7684;&#x6D41;&#x7A0B;"><a name="&#x53D1;&#x9001;&#x6D88;&#x606F;&#x7684;&#x6D41;&#x7A0B;" class="anchor-navigation-ex-anchor" href="#&#x53D1;&#x9001;&#x6D88;&#x606F;&#x7684;&#x6D41;&#x7A0B;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x53D1;&#x9001;&#x6D88;&#x606F;&#x7684;&#x6D41;&#x7A0B;" class="plugin-anchor" href="#&#x53D1;&#x9001;&#x6D88;&#x606F;&#x7684;&#x6D41;&#x7A0B;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x53D1;&#x9001;&#x6D88;&#x606F;&#x7684;&#x6D41;&#x7A0B;</h5>
+<p><img src="../../source/images/ch-06/old/rabbitmq-cluster-05.png" alt="rabbitmq-cluster-05"></p>
+<ul>
+<li>&#x6D88;&#x606F;&#x751F;&#x4EA7;&#x8005;&#x5411; mq &#x670D;&#x52A1;&#x7AEF;&#x53D1;&#x9001;&#x6D88;&#x606F;</li>
+<li>mq &#x670D;&#x52A1;&#x7AEF;&#x628A;&#x6D88;&#x606F;&#x8FDB;&#x884C;&#x843D;&#x5730;</li>
+<li>&#x6D88;&#x606F;&#x670D;&#x52A1;&#x7AEF;&#x5411;&#x6D88;&#x606F;&#x751F;&#x4EA7;&#x8005;&#x53D1;&#x9001; ack</li>
+<li>&#x6D88;&#x606F;&#x6D88;&#x8D39;&#x8005;&#x6D88;&#x8D39;&#x6D88;&#x606F;</li>
+<li>&#x6D88;&#x8D39;&#x8005;&#x53D1;&#x9001; ack</li>
+<li>mq &#x670D;&#x52A1;&#x5C06;&#x843D;&#x5730;&#x6D88;&#x606F;&#x5220;&#x9664;</li>
+</ul>
+<h5 id="&#x6D88;&#x606F;&#x91CD;&#x590D;&#x53D1;&#x9001;&#x7684;&#x539F;&#x56E0;"><a name="&#x6D88;&#x606F;&#x91CD;&#x590D;&#x53D1;&#x9001;&#x7684;&#x539F;&#x56E0;" class="anchor-navigation-ex-anchor" href="#&#x6D88;&#x606F;&#x91CD;&#x590D;&#x53D1;&#x9001;&#x7684;&#x539F;&#x56E0;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x6D88;&#x606F;&#x91CD;&#x590D;&#x53D1;&#x9001;&#x7684;&#x539F;&#x56E0;" class="plugin-anchor" href="#&#x6D88;&#x606F;&#x91CD;&#x590D;&#x53D1;&#x9001;&#x7684;&#x539F;&#x56E0;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x6D88;&#x606F;&#x91CD;&#x590D;&#x53D1;&#x9001;&#x7684;&#x539F;&#x56E0;</h5>
+<p>&#x4E3A;&#x4E86;&#x4FDD;&#x969C;&#x6D88;&#x606F;&#x7684;&#x767E;&#x5206;&#x4E4B;&#x767E;&#x7684;&#x6295;&#x9012;&#xFF0C;&#x6211;&#x4EEC;&#x4F7F;&#x7528;&#x4E86;&#x6D88;&#x606F;&#x91CD;&#x53D1;&#xFF0C;&#x786E;&#x8BA4;&#x673A;&#x5236;&#xFF0C;&#x4F7F;&#x5F97;&#x6D88;&#x606F;&#x53EF;&#x80FD;&#x88AB;&#x91CD;&#x590D;&#x53D1;&#x9001;&#xFF0C;&#x7531;&#x4E0A;&#x56FE;&#x53EF;&#x77E5; &#x9053;&#xFF0C;&#x7531;&#x4E8E;&#x7F51;&#x7EDC;&#x539F;&#x56E0;&#xFF0C;&#x7B2C;&#x4E09;&#x6B65;&#x7684;&#x4E0A;&#x534A;&#x573A; ack &#x4E22;&#x5931;&#x8FD8;&#x662F;&#x7B2C;&#x4E94;&#x6B65;&#x7684;&#x4E0B;&#x534A;&#x573A;ack&#x4E22;&#x5931;&#x90FD;&#x4F1A;&#x5BFC;&#x81F4;&#x6D88;&#x606F;&#x91CD;&#x590D;&#x53D1;&#x9001;</p>
+<h5 id="&#x6D88;&#x606F;&#x91CD;&#x590D;&#x53D1;&#x9001;&#x7684;&#x5BFC;&#x81F4;&#x540E;&#x679C;"><a name="&#x6D88;&#x606F;&#x91CD;&#x590D;&#x53D1;&#x9001;&#x7684;&#x5BFC;&#x81F4;&#x540E;&#x679C;" class="anchor-navigation-ex-anchor" href="#&#x6D88;&#x606F;&#x91CD;&#x590D;&#x53D1;&#x9001;&#x7684;&#x5BFC;&#x81F4;&#x540E;&#x679C;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x6D88;&#x606F;&#x91CD;&#x590D;&#x53D1;&#x9001;&#x7684;&#x5BFC;&#x81F4;&#x540E;&#x679C;" class="plugin-anchor" href="#&#x6D88;&#x606F;&#x91CD;&#x590D;&#x53D1;&#x9001;&#x7684;&#x5BFC;&#x81F4;&#x540E;&#x679C;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x6D88;&#x606F;&#x91CD;&#x590D;&#x53D1;&#x9001;&#x7684;&#x5BFC;&#x81F4;&#x540E;&#x679C;</h5>
+<p>&#x4E0A;&#x534A;&#x573A;&#x6D88;&#x606F;&#x751F;&#x4EA7;&#x8005;&#x662F;&#x7528;&#x6237;&#x652F;&#x4ED8;&#x6A21;&#x5757;&#xFF0C;&#x4E13;&#x95E8;&#x662F;&#x7528;&#x6765;&#x7ED9;&#x7528;&#x6237;&#x6263;&#x8D39;&#x7684;&#xFF0C;&#x800C;&#x4E0B;&#x534A;&#x573A;&#x7684;&#x6D88;&#x606F;&#x6D88;&#x8D39;&#x8005;&#x670D;&#x52A1;&#x662F;&#x4F1A;&#x5458;&#x5361;&#x670D;&#x52A1;&#xFF0C; &#x662F;&#x901A;&#x8FC7;&#x63A5;&#x53D7;&#x6263;&#x8D39;&#x670D;&#x52A1;&#x53D1;&#x9001;&#x7684;&#x6D88;&#x606F;&#x6765;&#x8FDB;&#x884C;&#x53D1;&#x5361;&#x7684;&#x3002;&#x7531;&#x4E8E;&#x7B2C;&#x4E09;&#x6B65;&#x6216;&#x8005;&#x662F;&#x7B2C;&#x4E94;&#x6B65; ack &#x4E22;&#x5931;&#xFF0C;&#x90A3;&#x4E48;&#x5C31;&#x4F1A;&#x5BFC;&#x81F4;&#x4E0A;&#x6E38;&#x670D;&#x52A1;&#x91CD;&#x590D;&#x53D1;&#x9001;&#x6D88;&#x606F;&#x5C31;&#x4F1A;&#x5BFC;&#x81F4;&#x6263;&#x4E00;&#x6B21;&#x6B3E;&#xFF0C;&#x53D1;&#x591A;&#x6B21;&#x5361;</p>
+<h5 id="mq&#x670D;&#x52A1;&#x7AEF;&#x662F;&#x5982;&#x4F55;&#x4FDD;&#x8BC1;&#x5E42;&#x7B49;&#x6027;"><a name="mq&#x670D;&#x52A1;&#x7AEF;&#x662F;&#x5982;&#x4F55;&#x4FDD;&#x8BC1;&#x5E42;&#x7B49;&#x6027;" class="anchor-navigation-ex-anchor" href="#mq&#x670D;&#x52A1;&#x7AEF;&#x662F;&#x5982;&#x4F55;&#x4FDD;&#x8BC1;&#x5E42;&#x7B49;&#x6027;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="mq&#x670D;&#x52A1;&#x7AEF;&#x662F;&#x5982;&#x4F55;&#x4FDD;&#x8BC1;&#x5E42;&#x7B49;&#x6027;" class="plugin-anchor" href="#mq&#x670D;&#x52A1;&#x7AEF;&#x662F;&#x5982;&#x4F55;&#x4FDD;&#x8BC1;&#x5E42;&#x7B49;&#x6027;"><i class="fa fa-link" aria-hidden="true"></i></a>mq&#x670D;&#x52A1;&#x7AEF;&#x662F;&#x5982;&#x4F55;&#x4FDD;&#x8BC1;&#x5E42;&#x7B49;&#x6027;</h5>
+<p>&#x6D88;&#x606F;&#x961F;&#x5217;&#x7684;&#x670D;&#x52A1;&#x4E2D;&#xFF0C;&#x5BF9;&#x6BCF;&#x4E00;&#x6761;&#x6D88;&#x606F;&#x90FD;&#x4F1A;&#x751F;&#x6210;&#x4E00;&#x4E2A;&#x5168;&#x5C40;&#x552F;&#x4E00;&#x7684;&#x4E0E;&#x4E1A;&#x52A1;&#x65E0;&#x5173;&#x7684; ID&#xFF08;inner_msg_id&#xFF09;&#xFF0C;&#x5F53; mq_server &#x63A5;&#x53D7;&#x5230;&#x6D88;&#x606F;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x5148;&#x6839;&#x636E; inner_msg_id &#x662F;&#x5426;&#x9700;&#x8981;&#x91CD;&#x590D;&#x53D1;&#x9001;&#xFF0C;&#x518D;&#x51B3;&#x5B9A;&#x6D88;&#x606F;&#x662F;&#x5426;&#x843D;DB&#xFF0C;&#x8FD9;&#x6837;&#x4FDD;&#x8BC1;&#x6BCF;&#x6761;&#x6D88;&#x606F;&#x90FD;&#x53EA;&#x4F1A;&#x843D;&#x4E00;&#x6B21; DB</p>
+<h5 id="&#x6D88;&#x8D39;&#x7AEF;&#x5982;&#x4F55;&#x6765;&#x505A;&#x5230;&#x5E42;&#x7B49;&#x6027;&#x7684;"><a name="&#x6D88;&#x8D39;&#x7AEF;&#x5982;&#x4F55;&#x6765;&#x505A;&#x5230;&#x5E42;&#x7B49;&#x6027;&#x7684;" class="anchor-navigation-ex-anchor" href="#&#x6D88;&#x8D39;&#x7AEF;&#x5982;&#x4F55;&#x6765;&#x505A;&#x5230;&#x5E42;&#x7B49;&#x6027;&#x7684;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x6D88;&#x8D39;&#x7AEF;&#x5982;&#x4F55;&#x6765;&#x505A;&#x5230;&#x5E42;&#x7B49;&#x6027;&#x7684;" class="plugin-anchor" href="#&#x6D88;&#x8D39;&#x7AEF;&#x5982;&#x4F55;&#x6765;&#x505A;&#x5230;&#x5E42;&#x7B49;&#x6027;&#x7684;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x6D88;&#x8D39;&#x7AEF;&#x5982;&#x4F55;&#x6765;&#x505A;&#x5230;&#x5E42;&#x7B49;&#x6027;&#x7684;</h5>
+<p>&#x8FD8;&#x662F;&#x628A;&#x5BF9;&#x6BCF;&#x6761;&#x6D88;&#x606F;&#x505A;&#x751F;&#x6210;&#x4E00;&#x4E2A;&#x552F;&#x4E00;&#x6027;&#x7684; ID &#x901A;&#x8FC7; redis &#x7684;&#x6765; setnx &#x547D;&#x4EE4;&#x6765;&#x4FDD;&#x8BC1;&#x5E42;&#x7B49;&#x6027;&#x3002;</p>
+<h2 id="3-&#x6D88;&#x606F;&#x786E;&#x8BA4;confirm"><a name="3-&#x6D88;&#x606F;&#x786E;&#x8BA4;confirm" class="anchor-navigation-ex-anchor" href="#3-&#x6D88;&#x606F;&#x786E;&#x8BA4;confirm"><i class="fa fa-link" aria-hidden="true"></i></a><a name="3-&#x6D88;&#x606F;&#x786E;&#x8BA4;confirm" class="plugin-anchor" href="#3-&#x6D88;&#x606F;&#x786E;&#x8BA4;confirm"><i class="fa fa-link" aria-hidden="true"></i></a>3. &#x6D88;&#x606F;&#x786E;&#x8BA4;Confirm</h2>
+<h3 id="31-&#x7406;&#x89E3;confirm&#x6D88;&#x606F;&#x786E;&#x8BA4;&#x673A;&#x5236;"><a name="31-&#x7406;&#x89E3;confirm&#x6D88;&#x606F;&#x786E;&#x8BA4;&#x673A;&#x5236;" class="anchor-navigation-ex-anchor" href="#31-&#x7406;&#x89E3;confirm&#x6D88;&#x606F;&#x786E;&#x8BA4;&#x673A;&#x5236;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="31-&#x7406;&#x89E3;confirm&#x6D88;&#x606F;&#x786E;&#x8BA4;&#x673A;&#x5236;" class="plugin-anchor" href="#31-&#x7406;&#x89E3;confirm&#x6D88;&#x606F;&#x786E;&#x8BA4;&#x673A;&#x5236;"><i class="fa fa-link" aria-hidden="true"></i></a>3.1 &#x7406;&#x89E3;Confirm&#x6D88;&#x606F;&#x786E;&#x8BA4;&#x673A;&#x5236;</h3>
+<ul>
+<li><p>&#x6D88;&#x606F;&#x7684;&#x786E;&#x8BA4;&#x662F;&#x6307;&#xFF0C;&#x751F;&#x4EA7;&#x7AEF;&#x6295;&#x9012;&#x6D88;&#x606F;&#x540E;&#xFF0C;&#x82E5;mq-server&#x63A5;&#x53D7;&#x5230;&#x6D88;&#x606F;&#xFF0C;&#x5C31;&#x4F1A;&#x7ED9;&#x751F;&#x4EA7;&#x8005;&#x4E00;&#x4E2A;&#x5E94;&#x7B54;</p>
+</li>
+<li><p>&#x751F;&#x4EA7;&#x7AEF;&#x6839;&#x636E;mq broker&#x8FD4;&#x56DE;&#x5E94;&#x7B54;&#x6765;&#x786E;&#x8BA4;&#x8BE5;&#x6761;&#x6D88;&#x606F;&#x662F;&#x5426;&#x6B63;&#x5E38;&#x53D1;&#x9001;&#x5230;&#x4E86;broker&#xFF0C;&#x8FD9;&#x79CD;&#x65B9;&#x5F0F;&#x662F;&#x6D88;&#x606F;&#x53EF;&#x9760;&#x6027;&#x6295;&#x9012;&#x7684;&#x6838;&#x5FC3;&#x4FDD;&#x969C;</p>
+</li>
+<li><p>&#x6D88;&#x606F;&#x786E;&#x8BA4;&#x673A;&#x5236;&#x7684;&#x6D41;&#x7A0B;&#x56FE;</p>
+</li>
+</ul>
+<p><img src="../../source/images/ch-06/old/rabbitmq-cluster-06.png" alt="rabbitmq-cluster-06"></p>
+<p><img src="../../source/images/ch-06/old/rabbitmq-cluster-07.png" alt="rabbitmq-cluster-07"></p>
+<ul>
+<li><p>&#x5982;&#x4F55;&#x6765;&#x505A;&#x6D88;&#x606F;&#x7684;confirm</p>
+<ul>
+<li>&#x5728;channel&#x4E0A;&#x5F00;&#x542F;&#x786E;&#x8BA4;&#x6A21;&#x5F0F; channel.confirmSelect(); </li>
+<li>&#x5728;channel&#x4E0A;&#x589E;&#x52A0;confirm&#x76D1;&#x542C;&#xFF0C;&#x6765;&#x76D1;&#x542C;&#x6210;&#x529F;&#x548C;&#x5F02;&#x5E38;&#x7684;confirm&#x7ED3;&#x679C;</li>
+</ul>
+</li>
+<li><p>&#x4EE3;&#x7801;&#x6F14;&#x793A;</p>
+<p>  &#x751F;&#x4EA7;&#x8005;</p>
+</li>
+</ul>
+<pre><code class="lang-java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> IOException, TimeoutException </span>{
+    ConnectionFactory connectionFactory = <span class="hljs-keyword">new</span> ConnectionFactory();
+    connectionFactory.setVirtualHost(<span class="hljs-string">&quot;cloudmall&quot;</span>);
+    connectionFactory.setHost(<span class="hljs-string">&quot;47.104.128.12&quot;</span>);
+    connectionFactory.setPort(<span class="hljs-number">5672</span>);
+    Connection connection = connectionFactory.newConnection();
+    Channel channel = connection.createChannel();
+    <span class="hljs-comment">// &#x5F00;&#x542F;confirm </span>
+    channel.confirmSelect();
+    channel.addConfirmListener(<span class="hljs-keyword">new</span> ConfirmListener() {
+        <span class="hljs-comment">/**
+         * &#x63A5;&#x53E3;&#x6210;&#x529F; 
+         * <span class="hljs-doctag">@param</span> deliveryTag deliveryTag &#x6D88;&#x606F;id 
+         * <span class="hljs-doctag">@param</span> multiple &#x662F;&#x5426;&#x6279;&#x91CF; 
+         * <span class="hljs-doctag">@throws</span> IOException
+         */</span>
+        <span class="hljs-meta">@Override</span>
+        <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">handleAck</span><span class="hljs-params">(<span class="hljs-keyword">long</span> deliveryTag, <span class="hljs-keyword">boolean</span> multiple)</span> <span class="hljs-keyword">throws</span> IOException </span>{
+            System.out.println(<span class="hljs-string">&quot;&#x6D88;&#x606F;id&quot;</span> + deliveryTag + <span class="hljs-string">&quot;............ack&quot;</span>);
+        }
+
+        <span class="hljs-meta">@Override</span>
+        <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">handleNack</span><span class="hljs-params">(<span class="hljs-keyword">long</span> deliveryTag, <span class="hljs-keyword">boolean</span> multiple)</span> <span class="hljs-keyword">throws</span> IOException </span>{
+            System.out.println(<span class="hljs-string">&quot;&#x6D88;&#x606F;id&quot;</span> + deliveryTag + <span class="hljs-string">&quot;............no ack&quot;</span>);
+        }
+    });
+    channel.basicPublish(<span class="hljs-string">&quot;test.confirm.exchange&quot;</span>, <span class="hljs-string">&quot;test.confirm.key&quot;</span>, <span class="hljs-keyword">null</span>, <span class="hljs-string">&quot;confirm&#x6D88;&#x606F;&quot;</span>.getBytes());
+}
+</code></pre>
+<p>&#x200B;        &#x6D88;&#x8D39;&#x8005;</p>
+<pre><code class="lang-java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> IOException, TimeoutException, InterruptedException </span>{
+    ConnectionFactory connectionFactory = <span class="hljs-keyword">new</span> ConnectionFactory();
+
+    connectionFactory.setVirtualHost(<span class="hljs-string">&quot;cloudmall&quot;</span>);
+    connectionFactory.setHost(<span class="hljs-string">&quot;47.104.128.12&quot;</span>);
+    connectionFactory.setPort(<span class="hljs-number">5672</span>);
+
+    Connection connection = connectionFactory.newConnection();
+    Channel channel = connection.createChannel();
+    channel.exchangeDeclare(<span class="hljs-string">&quot;test.confirm.exchange&quot;</span>, <span class="hljs-string">&quot;topic&quot;</span>, <span class="hljs-keyword">true</span>, <span class="hljs-keyword">false</span>, <span class="hljs-keyword">null</span>);
+    channel.queueDeclare(<span class="hljs-string">&quot;test.confirm.queue&quot;</span>, <span class="hljs-keyword">true</span>, <span class="hljs-keyword">false</span>, <span class="hljs-keyword">false</span>, <span class="hljs-keyword">null</span>);
+    channel.queueBind(<span class="hljs-string">&quot;test.confirm.queue&quot;</span>, <span class="hljs-string">&quot;test.confirm.exchange&quot;</span>, <span class="hljs-string">&quot;test.confirm.#&quot;</span>);
+    QueueingConsumer queueingConsumer = <span class="hljs-keyword">new</span> QueueingConsumer(channel);
+
+    channel.basicConsume(<span class="hljs-string">&quot;test.confirm.queue&quot;</span>, <span class="hljs-keyword">true</span>, queueingConsumer);
+    <span class="hljs-keyword">while</span> (<span class="hljs-keyword">true</span>) {
+        QueueingConsumer.Delivery delivery = queueingConsumer.nextDelivery();
+        System.out.println(<span class="hljs-keyword">new</span> String(delivery.getBody()));
+    }
+}
+</code></pre>
+<h3 id="32-mq&#x7684;confirm&#x673A;&#x5236;"><a name="32-mq&#x7684;confirm&#x673A;&#x5236;" class="anchor-navigation-ex-anchor" href="#32-mq&#x7684;confirm&#x673A;&#x5236;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="32-mq&#x7684;confirm&#x673A;&#x5236;" class="plugin-anchor" href="#32-mq&#x7684;confirm&#x673A;&#x5236;"><i class="fa fa-link" aria-hidden="true"></i></a>3.2 MQ&#x7684;confirm&#x673A;&#x5236;</h3>
+<ul>
+<li><p>&#x6D88;&#x606F;&#x7684;&#x786E;&#x8BA4;:&#x6307;&#x7684;&#x662F;&#x751F;&#x4EA7;&#x8005;&#x5C06;&#x6D88;&#x606F;&#x6295;&#x9012;&#x540E;&#xFF0C;&#x5982;&#x4F55;mq-server&#x63A5;&#x53D7;&#x5230;&#x6D88;&#x606F;&#xFF0C;&#x5C31;&#x4F1A;&#x7ED9;&#x751F;&#x4EA7;&#x8005;&#x4E00;&#x4E2A;&#x5E94;&#x7B54;.</p>
+</li>
+<li><p>&#x751F;&#x4EA7;&#x8005;&#x63A5;&#x53D7;&#x5230;&#x5E94;&#x7B54;&#xFF0C;&#x6765;&#x786E;&#x4FDD;&#x8BE5;&#x6761;&#x6D88;&#x606F;&#x662F;&#x5426;&#x6210;&#x529F;&#x53D1;&#x9001;&#x5230;&#x4E86;mq-server</p>
+</li>
+<li><p>confirm&#x673A;&#x5236;&#x662F;&#x6D88;&#x606F;&#x53EF;&#x9760;&#x6027;&#x6295;&#x9012;&#x7684;&#x6838;&#x5FC3;&#x4FDD;&#x969C;</p>
+</li>
+</ul>
+<h3 id="33-mq&#x7684;confirm&#x673A;&#x5236;&#x7684;&#x6838;&#x5FC3;&#x6D41;&#x7A0B;&#x56FE;"><a name="33-mq&#x7684;confirm&#x673A;&#x5236;&#x7684;&#x6838;&#x5FC3;&#x6D41;&#x7A0B;&#x56FE;" class="anchor-navigation-ex-anchor" href="#33-mq&#x7684;confirm&#x673A;&#x5236;&#x7684;&#x6838;&#x5FC3;&#x6D41;&#x7A0B;&#x56FE;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="33-mq&#x7684;confirm&#x673A;&#x5236;&#x7684;&#x6838;&#x5FC3;&#x6D41;&#x7A0B;&#x56FE;" class="plugin-anchor" href="#33-mq&#x7684;confirm&#x673A;&#x5236;&#x7684;&#x6838;&#x5FC3;&#x6D41;&#x7A0B;&#x56FE;"><i class="fa fa-link" aria-hidden="true"></i></a>3.3 MQ&#x7684;confirm&#x673A;&#x5236;&#x7684;&#x6838;&#x5FC3;&#x6D41;&#x7A0B;&#x56FE;</h3>
+<p><img src="../../source/images/ch-06/old/rabbitmq-cluster-08.png" alt="rabbitmq-cluster-08"></p>
+<h3 id="34-confirm&#x673A;&#x5236;&#x7684;&#x73B0;&#x5B9E;&#x6B65;&#x9AA4;"><a name="34-confirm&#x673A;&#x5236;&#x7684;&#x73B0;&#x5B9E;&#x6B65;&#x9AA4;" class="anchor-navigation-ex-anchor" href="#34-confirm&#x673A;&#x5236;&#x7684;&#x73B0;&#x5B9E;&#x6B65;&#x9AA4;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="34-confirm&#x673A;&#x5236;&#x7684;&#x73B0;&#x5B9E;&#x6B65;&#x9AA4;" class="plugin-anchor" href="#34-confirm&#x673A;&#x5236;&#x7684;&#x73B0;&#x5B9E;&#x6B65;&#x9AA4;"><i class="fa fa-link" aria-hidden="true"></i></a>3.4 confirm&#x673A;&#x5236;&#x7684;&#x73B0;&#x5B9E;&#x6B65;&#x9AA4;</h3>
+<ul>
+<li>&#x5728;channel &#x4E0A;&#x5F00;&#x542F;&#x786E;&#x8BA4;&#x6A21;&#x5F0F; <code>channel.confirmSelect();</code></li>
+<li>&#x5728;channel&#x4E0A;&#x6DFB;&#x52A0;&#x76D1;&#x542C;&#xFF0C;&#x7528;&#x6765;&#x76D1;&#x542C;mq-server&#x8FD4;&#x56DE;&#x7684;&#x5E94;&#x7B54;</li>
+</ul>
+<h4 id="&#x4EE3;&#x7801;&#x6F14;&#x793A;"><a name="&#x4EE3;&#x7801;&#x6F14;&#x793A;" class="anchor-navigation-ex-anchor" href="#&#x4EE3;&#x7801;&#x6F14;&#x793A;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x4EE3;&#x7801;&#x6F14;&#x793A;" class="plugin-anchor" href="#&#x4EE3;&#x7801;&#x6F14;&#x793A;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x4EE3;&#x7801;&#x6F14;&#x793A;</h4>
+<p>&#x751F;&#x4EA7;&#x8005;</p>
+<pre><code class="lang-java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> IOException, TimeoutException </span>{
+    ConnectionFactory connectionFactory = <span class="hljs-keyword">new</span> ConnectionFactory();
+    connectionFactory.setVirtualHost(<span class="hljs-string">&quot;/&quot;</span>);
+    connectionFactory.setHost(<span class="hljs-string">&quot;47.104.128.12&quot;</span>);
+    connectionFactory.setPort(<span class="hljs-number">5672</span>);
+    Connection connection = connectionFactory.newConnection();
+    Channel channel = connection.createChannel();
+    <span class="hljs-comment">// &#x5F00;&#x542F;confirm &#x786E;&#x8BA4;&#x673A;&#x5236; </span>
+    channel.confirmSelect();
+    <span class="hljs-comment">// &#x8BBE;&#x7F6E;confirm &#x76D1;&#x542C; </span>
+    channel.addConfirmListener(<span class="hljs-keyword">new</span> AngleConfirmListerner());
+    <span class="hljs-comment">// &#x751F;&#x4EA7;&#x6D88;&#x606F; </span>
+    channel.basicPublish(<span class="hljs-string">&quot;test.confirm.exchange&quot;</span>, <span class="hljs-string">&quot;test.confirm.key&quot;</span>, <span class="hljs-keyword">null</span>, <span class="hljs-string">&quot;&#x6D4B;&#x8BD5;confirm&#x6D88;&#x606F;&quot;</span>.getBytes());
+}
+</code></pre>
+<p>&#x6D88;&#x8D39;&#x8005;</p>
+<pre><code class="lang-java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> IOException, TimeoutException, InterruptedException </span>{
+    ConnectionFactory connectionFactory = <span class="hljs-keyword">new</span> ConnectionFactory();
+    connectionFactory.setVirtualHost(<span class="hljs-string">&quot;/&quot;</span>);
+    connectionFactory.setHost(<span class="hljs-string">&quot;47.104.128.12&quot;</span>);
+    connectionFactory.setPort(<span class="hljs-number">5672</span>);
+    Connection connection = connectionFactory.newConnection();
+    Channel channel = connection.createChannel();
+    <span class="hljs-comment">// &#x58F0;&#x660E;&#x4EA4;&#x6362;&#x673A;&#x961F;&#x5217;&#x4EE5;&#x53CA;&#x7ED1;&#x5B9A;&#x5173;&#x7CFB; </span>
+    channel.exchangeDeclare(<span class="hljs-string">&quot;test.confirm.exchange&quot;</span>, <span class="hljs-string">&quot;topic&quot;</span>, <span class="hljs-keyword">true</span>, <span class="hljs-keyword">true</span>, <span class="hljs-keyword">false</span>, <span class="hljs-keyword">null</span>);
+    channel.queueDeclare(<span class="hljs-string">&quot;test.confirm.queue&quot;</span>, <span class="hljs-keyword">true</span>, <span class="hljs-keyword">false</span>, <span class="hljs-keyword">true</span>, <span class="hljs-keyword">null</span>);
+    channel.queueBind(<span class="hljs-string">&quot;test.confirm.queue&quot;</span>, <span class="hljs-string">&quot;test.confirm.exchange&quot;</span>, <span class="hljs-string">&quot;test.confirm.key&quot;</span>);
+    QueueingConsumer queueingConsumer = <span class="hljs-keyword">new</span> QueueingConsumer(channel);
+    channel.basicConsume(<span class="hljs-string">&quot;test.confirm.queue&quot;</span>, <span class="hljs-keyword">true</span>, queueingConsumer);
+    <span class="hljs-keyword">while</span> (<span class="hljs-keyword">true</span>) {
+        QueueingConsumer.Delivery delivery = queueingConsumer.nextDelivery();
+        System.out.println(<span class="hljs-keyword">new</span> String(delivery.getBody()));
+    }
+}
+</code></pre>
+<p>confirm&#x6D88;&#x606F;&#x76D1;&#x542C;&#x5668;&#x4EE3;&#x7801;</p>
+<pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">AngleConfirmListerner</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">ConfirmListener</span> </span>{
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">handleAck</span><span class="hljs-params">(<span class="hljs-keyword">long</span> deliveryTag, <span class="hljs-keyword">boolean</span> multiple)</span> <span class="hljs-keyword">throws</span> IOException </span>{
+        System.out.println(<span class="hljs-string">&quot;&#x6D88;&#x606F;deliveryTag&quot;</span> + deliveryTag + <span class="hljs-string">&quot;&#x88AB;&#x6B63;&#x5E38;&#x7B7E;&#x6536;&quot;</span>);
+    }
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">handleNack</span><span class="hljs-params">(<span class="hljs-keyword">long</span> deliveryTag, <span class="hljs-keyword">boolean</span> multiple)</span> <span class="hljs-keyword">throws</span> IOException </span>{
+        System.out.println(<span class="hljs-string">&quot;&#x6D88;&#x606F;deliveryTag&quot;</span> + deliveryTag + <span class="hljs-string">&quot;&#x6CA1;&#x88AB;&#x7B7E;&#x6536;&quot;</span>);
+    }
+}
+</code></pre>
+<h2 id="4-return-listener-&#x6D88;&#x606F;&#x5904;&#x7406;&#x673A;&#x5236;"><a name="4-return-listener-&#x6D88;&#x606F;&#x5904;&#x7406;&#x673A;&#x5236;" class="anchor-navigation-ex-anchor" href="#4-return-listener-&#x6D88;&#x606F;&#x5904;&#x7406;&#x673A;&#x5236;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="4-return-listener-&#x6D88;&#x606F;&#x5904;&#x7406;&#x673A;&#x5236;" class="plugin-anchor" href="#4-return-listener-&#x6D88;&#x606F;&#x5904;&#x7406;&#x673A;&#x5236;"><i class="fa fa-link" aria-hidden="true"></i></a>4. return listener &#x6D88;&#x606F;&#x5904;&#x7406;&#x673A;&#x5236;</h2>
+<h3 id="41-return-listener&#x5904;&#x7406;&#x4E0D;&#x53EF;&#x8DEF;&#x7531;&#x7684;&#x6D88;&#x606F;"><a name="41-return-listener&#x5904;&#x7406;&#x4E0D;&#x53EF;&#x8DEF;&#x7531;&#x7684;&#x6D88;&#x606F;" class="anchor-navigation-ex-anchor" href="#41-return-listener&#x5904;&#x7406;&#x4E0D;&#x53EF;&#x8DEF;&#x7531;&#x7684;&#x6D88;&#x606F;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="41-return-listener&#x5904;&#x7406;&#x4E0D;&#x53EF;&#x8DEF;&#x7531;&#x7684;&#x6D88;&#x606F;" class="plugin-anchor" href="#41-return-listener&#x5904;&#x7406;&#x4E0D;&#x53EF;&#x8DEF;&#x7531;&#x7684;&#x6D88;&#x606F;"><i class="fa fa-link" aria-hidden="true"></i></a>4.1 Return Listener&#x5904;&#x7406;&#x4E0D;&#x53EF;&#x8DEF;&#x7531;&#x7684;&#x6D88;&#x606F;</h3>
+<p>&#x6D88;&#x606F;&#x751F;&#x4EA7;&#x8005;&#xFF0C;&#x901A;&#x8FC7;&#x628A;&#x6D88;&#x606F;&#x6295;&#x9012;&#x5230;exchange&#x4E0A;&#xFF0C;&#x7136;&#x540E;&#x901A;&#x8FC7;routingkey &#x628A;&#x6D88;&#x606F;&#x8DEF;&#x7531;&#x5230;&#x67D0;&#x4E00;&#x4E2A;&#x961F;&#x5217;&#x4E0A;&#xFF0C;&#x7136;&#x540E;&#x6211;&#x4EEC; &#x6D88;&#x8D39;&#x8005;&#x901A;&#x8FC7;&#x961F;&#x5217;&#x6D88;&#x606F;&#x4FA6;&#x542C;&#xFF0C;&#x7136;&#x540E;&#x8FDB;&#x884C;&#x6D88;&#x606F;&#x6D88;&#x8D39;&#x5904;&#x7406;.</p>
+<p>&#x4F1A;&#x51FA;&#x73B0;&#x7684;&#x60C5;&#x51B5;&#xFF1A;</p>
+<ul>
+<li>broker&#x4E2D;&#x6839;&#x672C;&#x6CA1;&#x6709;&#x5BF9;&#x5E94;&#x7684;exchange&#x4EA4;&#x6362;&#x673A;&#x6765;&#x63A5;&#x53D7;&#x8BE5;&#x6D88;&#x606F;</li>
+<li>&#x6D88;&#x606F;&#x80FD;&#x591F;&#x6295;&#x9012;&#x5230;broker&#x7684;&#x4EA4;&#x6362;&#x673A;&#x4E0A;&#xFF0C;&#x4F46;&#x662F;&#x4EA4;&#x6362;&#x673A;&#x6839;&#x636E;routingKey &#x8DEF;&#x7531;&#x4E0D;&#x5230;&#x67D0;&#x4E00;&#x4E2A;&#x961F;&#x5217;&#x4E0A;.</li>
+</ul>
+<p>&#x9488;&#x5BF9;&#x4E0A;&#x8FF0;&#x4E8C;&#x79CD;&#x60C5;&#x51B5;&#xFF0C;&#x9700;&#x8981;return listener&#x6765;&#x5904;&#x7406;&#x8FD9;&#x79CD;&#x4E0D;&#x53EF;&#x8FBE;&#x7684;&#x6D88;&#x606F;&#x3002;</p>
+<ul>
+<li>&#x82E5;&#x5728;&#x6D88;&#x606F;&#x751F;&#x4EA7;&#x7AEF; &#x7684;mandatory&#x8BBE;&#x7F6E;&#x4E3A;true &#x90A3;&#x4E48;&#x5C31;&#x4F1A;&#x8C03;&#x7528;&#x751F;&#x4EA7;&#x7AEF;ReturnListener &#x6765;&#x5904;&#x7406;</li>
+<li>&#x82E5;&#x6D88;&#x606F;&#x751F;&#x4EA7;&#x7AEF;&#x7684;mandatory&#x8BBE;&#x7F6E;&#x4E3A;false&#xFF08;&#x9ED8;&#x8BA4;&#x503C;&#x4E5F;&#x662F;false&#xFF09;&#xFF0C;&#x90A3;&#x4E48;mq-broker&#x5C31;&#x4F1A;&#x81EA;&#x52A8;&#x5220;&#x9664;&#x6D88;&#x606F;</li>
+</ul>
+<p><img src="../../source/images/ch-06/old/rabbitmq-cluster-09.png" alt="rabbitmq-cluster-09"></p>
+<h4 id="&#x4EE3;&#x7801;&#x6F14;&#x793A;_1"><a name="&#x4EE3;&#x7801;&#x6F14;&#x793A;_1" class="anchor-navigation-ex-anchor" href="#&#x4EE3;&#x7801;&#x6F14;&#x793A;_1"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x4EE3;&#x7801;&#x6F14;&#x793A;" class="plugin-anchor" href="#&#x4EE3;&#x7801;&#x6F14;&#x793A;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x4EE3;&#x7801;&#x6F14;&#x793A;</h4>
+<p>&#x751F;&#x4EA7;&#x7AEF;</p>
+<pre><code class="lang-java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> IOException, TimeoutException </span>{
+    ConnectionFactory connectionFactory = <span class="hljs-keyword">new</span> ConnectionFactory();
+    connectionFactory.setVirtualHost(<span class="hljs-string">&quot;/&quot;</span>);
+    connectionFactory.setHost(<span class="hljs-string">&quot;47.104.128.12&quot;</span>);
+    connectionFactory.setPort(<span class="hljs-number">5672</span>);
+    Connection connection = connectionFactory.newConnection();
+    Channel channel = connection.createChannel();
+    <span class="hljs-comment">// &#x8BBE;&#x7F6E;return listernr </span>
+    channel.addReturnListener(<span class="hljs-keyword">new</span> AngleReturnListener());
+    <span class="hljs-comment">// &#x53EF;&#x8FBE;&#x6D88;&#x606F; </span>
+    channel.basicPublish(<span class="hljs-string">&quot;test.return.exchange&quot;</span>, <span class="hljs-string">&quot;test.return.key&quot;</span>, <span class="hljs-keyword">false</span>, <span class="hljs-keyword">null</span>, <span class="hljs-string">&quot;return listener test&quot;</span>.getBytes());
+    <span class="hljs-comment">// &#x4E0D;&#x53EF;&#x8FBE;&#x6D88;&#x606F; &#x8C03;&#x7528;return listener </span>
+    channel.basicPublish(<span class="hljs-string">&quot;test.return.exchange&quot;</span>, <span class="hljs-string">&quot;test.return.key1&quot;</span>, <span class="hljs-keyword">true</span>, <span class="hljs-keyword">null</span>, <span class="hljs-string">&quot;return listener test2&quot;</span>.getBytes());
+    <span class="hljs-comment">// &#x4E0D;&#x53EF;&#x8FBE;&#x6D88;&#x606F;,mq-broker&#x81EA;&#x52A8;&#x5220;&#x9664;&#x6A21;&#x5F0F; </span>
+    channel.basicPublish(<span class="hljs-string">&quot;test.return.exchange&quot;</span>, <span class="hljs-string">&quot;test.return.key2&quot;</span>, <span class="hljs-keyword">false</span>, <span class="hljs-keyword">null</span>, <span class="hljs-string">&quot;return listener test3&quot;</span>.getBytes());
+}
+</code></pre>
+<p>&#x6D88;&#x8D39;&#x7AEF;</p>
+<pre><code class="lang-java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> 
+  <span class="hljs-keyword">throws</span> IOException, TimeoutException, InterruptedException </span>{
+    ConnectionFactory connectionFactory = <span class="hljs-keyword">new</span> ConnectionFactory();
+    connectionFactory.setVirtualHost(<span class="hljs-string">&quot;/&quot;</span>);
+    connectionFactory.setHost(<span class="hljs-string">&quot;47.104.128.12&quot;</span>);
+    connectionFactory.setPort(<span class="hljs-number">5672</span>);
+    Connection connection = connectionFactory.newConnection();
+    Channel channel = connection.createChannel();
+    channel.exchangeDeclare(<span class="hljs-string">&quot;test.return.exchange&quot;</span>, <span class="hljs-string">&quot;direct&quot;</span>, <span class="hljs-keyword">true</span>, <span class="hljs-keyword">true</span>, <span class="hljs-keyword">false</span>, <span class="hljs-keyword">null</span>);
+    channel.queueDeclare(<span class="hljs-string">&quot;test.return.queue&quot;</span>, <span class="hljs-keyword">true</span>, <span class="hljs-keyword">false</span>, <span class="hljs-keyword">true</span>, <span class="hljs-keyword">null</span>);
+    channel.queueBind(<span class="hljs-string">&quot;test.return.queue&quot;</span>, <span class="hljs-string">&quot;test.return.exchange&quot;</span>, <span class="hljs-string">&quot;test.return.key&quot;</span>);
+    QueueingConsumer queueingConsumer = <span class="hljs-keyword">new</span> QueueingConsumer(channel);
+    channel.basicConsume(<span class="hljs-string">&quot;test.return.queue&quot;</span>, <span class="hljs-keyword">true</span>, queueingConsumer);
+    <span class="hljs-keyword">while</span> (<span class="hljs-keyword">true</span>) {
+        QueueingConsumer.Delivery delivery = queueingConsumer.nextDelivery();
+        System.out.println(<span class="hljs-keyword">new</span> String(delivery.getBody()));
+    }
+}
+</code></pre>
+<p>return listener</p>
+<pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">AngleReturnListener</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">ReturnListener</span> </span>{
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">handleReturn</span><span class="hljs-params">(<span class="hljs-keyword">int</span> replyCode,
+                             String replyText,
+                             String exchange,
+                             String routingKey,
+                             AMQP.BasicProperties properties,
+                             <span class="hljs-keyword">byte</span>[] body)</span> <span class="hljs-keyword">throws</span> IOException </span>{
+        System.out.println(<span class="hljs-string">&quot;&#x8BB0;&#x5F55;&#x4E0D;&#x53EF;&#x8FBE;&#x6D88;&#x606F;........................&quot;</span>);
+        System.out.println(<span class="hljs-string">&quot;replaycode=&quot;</span> + replyCode);
+        System.out.println(<span class="hljs-string">&quot;replyText=&quot;</span> + replyText);
+        System.out.println(<span class="hljs-string">&quot;exchange=&quot;</span> + exchange);
+        System.out.println(<span class="hljs-string">&quot;routingKey=&quot;</span> + routingKey);
+        System.out.println(<span class="hljs-string">&quot;properties=&quot;</span> + properties);
+        System.out.println(<span class="hljs-string">&quot;body=&quot;</span> + newString(body));
+    }
+}
+</code></pre>
+<h2 id="5-&#x6D88;&#x8D39;&#x7AEF;&#x7684;&#x81EA;&#x5B9A;&#x4E49;&#x6D88;&#x8D39;&#x76D1;&#x542C;"><a name="5-&#x6D88;&#x8D39;&#x7AEF;&#x7684;&#x81EA;&#x5B9A;&#x4E49;&#x6D88;&#x8D39;&#x76D1;&#x542C;" class="anchor-navigation-ex-anchor" href="#5-&#x6D88;&#x8D39;&#x7AEF;&#x7684;&#x81EA;&#x5B9A;&#x4E49;&#x6D88;&#x8D39;&#x76D1;&#x542C;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="5-&#x6D88;&#x8D39;&#x7AEF;&#x7684;&#x81EA;&#x5B9A;&#x4E49;&#x6D88;&#x8D39;&#x76D1;&#x542C;" class="plugin-anchor" href="#5-&#x6D88;&#x8D39;&#x7AEF;&#x7684;&#x81EA;&#x5B9A;&#x4E49;&#x6D88;&#x8D39;&#x76D1;&#x542C;"><i class="fa fa-link" aria-hidden="true"></i></a>5. &#x6D88;&#x8D39;&#x7AEF;&#x7684;&#x81EA;&#x5B9A;&#x4E49;&#x6D88;&#x8D39;&#x76D1;&#x542C;</h2>
+<h3 id="51-&#x672C;&#x7AE0;1-4&#x6D88;&#x8D39;&#x6D88;&#x606F;&#x7684;&#x65B9;&#x5F0F;&#x90FD;&#x662F;&#x901A;&#x8FC7;&#x5982;&#x4E0B;&#x65B9;&#x5F0F;&#x6D88;&#x8D39;&#x6D88;&#x606F;"><a name="51-&#x672C;&#x7AE0;1-4&#x6D88;&#x8D39;&#x6D88;&#x606F;&#x7684;&#x65B9;&#x5F0F;&#x90FD;&#x662F;&#x901A;&#x8FC7;&#x5982;&#x4E0B;&#x65B9;&#x5F0F;&#x6D88;&#x8D39;&#x6D88;&#x606F;" class="anchor-navigation-ex-anchor" href="#51-&#x672C;&#x7AE0;1-4&#x6D88;&#x8D39;&#x6D88;&#x606F;&#x7684;&#x65B9;&#x5F0F;&#x90FD;&#x662F;&#x901A;&#x8FC7;&#x5982;&#x4E0B;&#x65B9;&#x5F0F;&#x6D88;&#x8D39;&#x6D88;&#x606F;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="51-&#x672C;&#x7AE0;1-4&#x6D88;&#x8D39;&#x6D88;&#x606F;&#x7684;&#x65B9;&#x5F0F;&#x90FD;&#x662F;&#x901A;&#x8FC7;&#x5982;&#x4E0B;&#x65B9;&#x5F0F;&#x6D88;&#x8D39;&#x6D88;&#x606F;" class="plugin-anchor" href="#51-&#x672C;&#x7AE0;1-4&#x6D88;&#x8D39;&#x6D88;&#x606F;&#x7684;&#x65B9;&#x5F0F;&#x90FD;&#x662F;&#x901A;&#x8FC7;&#x5982;&#x4E0B;&#x65B9;&#x5F0F;&#x6D88;&#x8D39;&#x6D88;&#x606F;"><i class="fa fa-link" aria-hidden="true"></i></a>5.1 &#x672C;&#x7AE0;1-4&#x6D88;&#x8D39;&#x6D88;&#x606F;&#x7684;&#x65B9;&#x5F0F;&#x90FD;&#x662F;&#x901A;&#x8FC7;&#x5982;&#x4E0B;&#x65B9;&#x5F0F;&#x6D88;&#x8D39;&#x6D88;&#x606F;</h3>
+<pre><code class="lang-java"><span class="hljs-keyword">while</span> (<span class="hljs-keyword">true</span>) {
+    QueueingConsumer.Delivery delivery = queueingConsumer.nextDelivery(); 
+  System.out.println(<span class="hljs-keyword">new</span> String(delivery.getBody())); 
+}
+</code></pre>
+<p>&#x6211;&#x4EEC;&#x9700;&#x8981;&#x4E00;&#x4E2A;&#x66F4;&#x52A0;&#x4F18;&#x96C5;&#x7684;&#x65B9;&#x5F0F;&#x6765;&#x6D88;&#x8D39;&#x6D88;&#x606F;,&#x901A;&#x8FC7;&#x7EE7;&#x627F;DefaultConsumer&#x7C7B;&#x6765;&#x5B9E;&#x73B0;&#x81EA;&#x5B9A;&#x4E49;&#x7684;&#x6D88;&#x606F;&#x7AEF;</p>
+<h4 id="&#x4EE3;&#x7801;&#x6F14;&#x793A;_2"><a name="&#x4EE3;&#x7801;&#x6F14;&#x793A;_2" class="anchor-navigation-ex-anchor" href="#&#x4EE3;&#x7801;&#x6F14;&#x793A;_2"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x4EE3;&#x7801;&#x6F14;&#x793A;" class="plugin-anchor" href="#&#x4EE3;&#x7801;&#x6F14;&#x793A;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x4EE3;&#x7801;&#x6F14;&#x793A;</h4>
+<p>&#x81EA;&#x5B9A;&#x4E49;&#x6D88;&#x8D39;&#x7AEF;</p>
+<pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">AngleCustomConsumer</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">DefaultConsumer</span> </span>{
+    <span class="hljs-comment">/**
+     * Constructs a new instance and records its association to the passed-in channel.
+     * <span class="hljs-doctag">@param</span> channel the channel to which this consumer is attached
+     */</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">AngleCustomConsumer</span><span class="hljs-params">(Channel channel)</span> </span>{
+        <span class="hljs-keyword">super</span>(channel);
+    }
+
+    <span class="hljs-comment">/**
+     * &#x5904;&#x7406;&#x6D88;&#x606F;
+     * <span class="hljs-doctag">@param</span> consumerTag
+     * <span class="hljs-doctag">@param</span> envelope
+     * <span class="hljs-doctag">@param</span> properties
+     * <span class="hljs-doctag">@param</span> body
+     * <span class="hljs-doctag">@throws</span> IOException
+     */</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">handleDelivery</span><span class="hljs-params">(String consumerTag,
+                               Envelope envelope,
+                               AMQP.BasicProperties properties,
+                               <span class="hljs-keyword">byte</span>[] body)</span> <span class="hljs-keyword">throws</span> IOException </span>{
+        System.out.println(<span class="hljs-string">&quot;&#x81EA;&#x5B9A;&#x4E49;&#x7684;&#x6D88;&#x606F;&#x6D88;&#x8D39;&#x7AEF;&quot;</span>);
+        System.out.println(<span class="hljs-string">&quot;consumerTag=&quot;</span> + consumerTag);
+        System.out.println(<span class="hljs-string">&quot;envelope=&quot;</span> + envelope);
+        System.out.println(<span class="hljs-string">&quot;properties=&quot;</span> + properties);
+        System.out.println(<span class="hljs-string">&quot;body=&quot;</span> + <span class="hljs-keyword">new</span> String(body));
+    }
+}
+</code></pre>
+<p>&#x6D88;&#x8D39;&#x8005;:</p>
+<pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Consumer</span> </span>{
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> IOException, TimeoutException </span>{
+        ConnectionFactory connectionFactory = <span class="hljs-keyword">new</span> ConnectionFactory();
+        connectionFactory.setVirtualHost(<span class="hljs-string">&quot;/&quot;</span>);
+        connectionFactory.setHost(<span class="hljs-string">&quot;47.104.128.12&quot;</span>);
+        connectionFactory.setPort(<span class="hljs-number">5672</span>);
+        Connection connection = connectionFactory.newConnection();
+        Channel channel = connection.createChannel();
+        channel.exchangeDeclare(<span class="hljs-string">&quot;test.customconsumer.exchange&quot;</span>, <span class="hljs-string">&quot;direct&quot;</span>, <span class="hljs-keyword">true</span>, <span class="hljs-keyword">true</span>, <span class="hljs-keyword">false</span>, <span class="hljs-keyword">null</span>);
+        channel.queueDeclare(<span class="hljs-string">&quot;test.customconsumer.queue&quot;</span>, <span class="hljs-keyword">true</span>, <span class="hljs-keyword">false</span>, <span class="hljs-keyword">true</span>, <span class="hljs-keyword">null</span>);
+        channel.queueBind(<span class="hljs-string">&quot;test.customconsumer.queue&quot;</span>, <span class="hljs-string">&quot;test.customconsumer.exchange&quot;</span>, <span class="hljs-string">&quot;test.customconsumer.key&quot;</span>);
+        <span class="hljs-comment">//&#x8BBE;&#x7F6E;&#x81EA;&#x5B9A;&#x4E49;&#x6D88;&#x8D39;&#x7AEF; </span>
+        channel.basicConsume(<span class="hljs-string">&quot;test.customconsumer.queue&quot;</span>, <span class="hljs-keyword">true</span>, <span class="hljs-keyword">new</span> AngleCustomConsumer(channel));
+    }
+}
+</code></pre>
+<p>&#x6D88;&#x606F;&#x751F;&#x4EA7;&#x8005;:</p>
+<pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">producter</span> </span>{
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> IOException, TimeoutException </span>{
+        ConnectionFactory connectionFactory = <span class="hljs-keyword">new</span> ConnectionFactory();
+        connectionFactory.setVirtualHost(<span class="hljs-string">&quot;/&quot;</span>);
+        connectionFactory.setHost(<span class="hljs-string">&quot;47.104.128.12&quot;</span>);
+        connectionFactory.setPort(<span class="hljs-number">5672</span>);
+        Connection connection = connectionFactory.newConnection();
+        Channel channel = connection.createChannel();
+        channel.basicPublish(<span class="hljs-string">&quot;test.customconsumer.exchange&quot;</span>,
+                <span class="hljs-string">&quot;test.customconsumer.key&quot;</span>, <span class="hljs-keyword">false</span>, <span class="hljs-keyword">null</span>, <span class="hljs-string">&quot;&#x81EA;&#x5B9A;&#x4E49;&#x6D88;&#x8D39;&#x7AEF;&#x6D88;&#x606F;&quot;</span>.getBytes());
+    }
+}
+</code></pre>
+<h2 id="6-&#x6D88;&#x8D39;&#x7AEF;&#x5982;&#x4F55;&#x505A;&#x9650;&#x6D41;&#x91CF;"><a name="6-&#x6D88;&#x8D39;&#x7AEF;&#x5982;&#x4F55;&#x505A;&#x9650;&#x6D41;&#x91CF;" class="anchor-navigation-ex-anchor" href="#6-&#x6D88;&#x8D39;&#x7AEF;&#x5982;&#x4F55;&#x505A;&#x9650;&#x6D41;&#x91CF;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="6-&#x6D88;&#x8D39;&#x7AEF;&#x5982;&#x4F55;&#x505A;&#x9650;&#x6D41;&#x91CF;" class="plugin-anchor" href="#6-&#x6D88;&#x8D39;&#x7AEF;&#x5982;&#x4F55;&#x505A;&#x9650;&#x6D41;&#x91CF;"><i class="fa fa-link" aria-hidden="true"></i></a>6. &#x6D88;&#x8D39;&#x7AEF;&#x5982;&#x4F55;&#x505A;&#x9650;&#x6D41;&#x91CF;</h2>
+<h3 id="61-&#x6D88;&#x8D39;&#x7AEF;&#x9650;&#x6D41;"><a name="61-&#x6D88;&#x8D39;&#x7AEF;&#x9650;&#x6D41;" class="anchor-navigation-ex-anchor" href="#61-&#x6D88;&#x8D39;&#x7AEF;&#x9650;&#x6D41;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="61-&#x6D88;&#x8D39;&#x7AEF;&#x9650;&#x6D41;" class="plugin-anchor" href="#61-&#x6D88;&#x8D39;&#x7AEF;&#x9650;&#x6D41;"><i class="fa fa-link" aria-hidden="true"></i></a>6.1 &#x6D88;&#x8D39;&#x7AEF;&#x9650;&#x6D41;</h3>
+<h4 id="&#x573A;&#x666F;"><a name="&#x573A;&#x666F;" class="anchor-navigation-ex-anchor" href="#&#x573A;&#x666F;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x573A;&#x666F;" class="plugin-anchor" href="#&#x573A;&#x666F;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x573A;&#x666F;</h4>
+<p>&#x8BA2;&#x5355;&#x7684;&#x9AD8;&#x5CF0;&#x671F;&#xFF0C;&#x5728;mq&#x7684;broker&#x4E0A;&#x5806;&#x79EF;&#x4E86;&#x6210;&#x5343;&#x4E0A;&#x4E07;&#x6761;&#x6D88;&#x606F;&#x6CA1;&#x6709;&#x5904;&#x7406;&#xFF0C;&#x8FD9;&#x4E2A;&#x65F6;&#x5019;&#x968F;&#x4FBF;&#x6253;&#x5F00;&#x4E86;&#x6D88;&#x8D39;&#x8005;&#xFF0C;&#x5C31;&#x4F1A;&#x51FA;&#x73B0;&#x5982;&#x6B64;&#x591A;&#x7684;&#x6D88;&#x606F;&#x77AC;&#x95F4;&#x63A8;&#x9001;&#x7ED9;&#x6D88;&#x8D39;&#x8005;&#xFF0C;&#x6D88;&#x8D39;&#x8005;&#x4E0D;&#x80FD;&#x5904;&#x7406;&#x8FD9;&#x4E48;&#x591A;&#x6D88;&#x606F;&#xFF0C;&#x5C31;&#x4F1A;&#x5BFC;&#x81F4;&#x6D88;&#x8D39;&#x8005;&#x51FA;&#x73B0;&#x5DE8;&#x5927;&#x538B;&#x529B;&#xFF0C;&#x751A;&#x81F3;&#x670D;&#x52A1;&#x5668;&#x5D29;&#x6E83;</p>
+<h5 id="&#x89E3;&#x51B3;&#x65B9;&#x6848;_1"><a name="&#x89E3;&#x51B3;&#x65B9;&#x6848;_1" class="anchor-navigation-ex-anchor" href="#&#x89E3;&#x51B3;&#x65B9;&#x6848;_1"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x89E3;&#x51B3;&#x65B9;&#x6848;" class="plugin-anchor" href="#&#x89E3;&#x51B3;&#x65B9;&#x6848;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x89E3;&#x51B3;&#x65B9;&#x6848;</h5>
+<p>rabbitmq &#x63D0;&#x4F9B;&#x4E00;&#x4E2A;&#x949F;qos&#xFF08;&#x670D;&#x52A1;&#x8D28;&#x91CF;&#x4FDD;&#x8BC1;&#xFF09;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x5728;&#x5173;&#x95ED;&#x4E86;&#x6D88;&#x8D39;&#x7AEF;&#x7684;&#x81EA;&#x52A8;ack&#x7684;&#x524D;&#x63D0;&#x4E0B;&#xFF0C;&#x53EF;&#x4EE5;&#x8BBE;&#x7F6E;&#x9608;&#x503C;&#xFF08;&#x51FA;&#x961F;&#xFF09;&#x7684;&#x6D88;&#x606F;&#x6570;&#x6CA1;&#x6709;&#x88AB;&#x786E;&#x8BA4;&#xFF08;&#x624B;&#x52A8;&#x786E;&#x8BA4;&#xFF09;&#xFF0C;&#x90A3;&#x4E48;&#x5C31;&#x4E0D;&#x4F1A;&#x63A8;&#x9001;&#x6D88;&#x606F;&#x8FC7;&#x6765;.</p>
+<h4 id="&#x9650;&#x6D41;&#x7684;&#x7EA7;&#x522B;&#xFF08;consumer&#x7EA7;&#x522B;&#x6216;&#x8005;&#x662F;channel&#x7EA7;&#x522B;&#xFF09;"><a name="&#x9650;&#x6D41;&#x7684;&#x7EA7;&#x522B;&#xFF08;consumer&#x7EA7;&#x522B;&#x6216;&#x8005;&#x662F;channel&#x7EA7;&#x522B;&#xFF09;" class="anchor-navigation-ex-anchor" href="#&#x9650;&#x6D41;&#x7684;&#x7EA7;&#x522B;&#xFF08;consumer&#x7EA7;&#x522B;&#x6216;&#x8005;&#x662F;channel&#x7EA7;&#x522B;&#xFF09;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x9650;&#x6D41;&#x7684;&#x7EA7;&#x522B;&#xFF08;consumer&#x7EA7;&#x522B;&#x6216;&#x8005;&#x662F;channel&#x7EA7;&#x522B;&#xFF09;" class="plugin-anchor" href="#&#x9650;&#x6D41;&#x7684;&#x7EA7;&#x522B;&#xFF08;consumer&#x7EA7;&#x522B;&#x6216;&#x8005;&#x662F;channel&#x7EA7;&#x522B;&#xFF09;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x9650;&#x6D41;&#x7684;&#x7EA7;&#x522B;&#xFF08;consumer&#x7EA7;&#x522B;&#x6216;&#x8005;&#x662F;channel&#x7EA7;&#x522B;&#xFF09;</h4>
+<p>&#x5B9E;&#x73B0;&#x7684;&#x65B9;&#x5F0F; </p>
+<pre><code class="lang-java"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">BasicQos</span><span class="hljs-params">(uint prefetchSize, ushort prefetchCount, bool global)</span>
+</span></code></pre>
+<ul>
+<li>uint prefetchSize&#xFF1A;&#x6307;&#x5B9A;&#x7684;&#x662F;&#x8BBE;&#x5B9A;&#x6D88;&#x606F;&#x7684;&#x5927;&#x5C0F;(rabbitmq&#x8FD8;&#x6CA1;&#x6709;&#x8BE5;&#x529F;&#x80FD;&#xFF0C;&#x6240;&#x4EE5;&#x4E00;&#x822C;&#x662F;&#x586B;&#x5199;0&#x8868;&#x793A;&#x4E0D;&#x9650;&#x5236;&#xFF09;</li>
+<li>ushort perfetchCount&#xFF1A;&#x8868;&#x793A;&#x8BBE;&#x7F6E;&#x6D88;&#x606F;&#x7684;&#x9608;&#x503C;&#xFF0C;&#x6BCF;&#x6B21;&#x8FC7;&#x6765;&#x51E0;&#x6761;&#x6D88;&#x606F;&#xFF08;&#x4E00;&#x822C;&#x662F;&#x586B;&#x5199;1&#xFF0C;&#x9010;&#x6761;&#x5904;&#x7406;&#x6D88;&#x606F;&#xFF09;</li>
+<li>bool global&#xFF1A;&#x8868;&#x793A;&#x662F;channel&#x7EA7;&#x522B;&#x7684;&#x8FD8;&#x662F; consumer&#x7684;&#x9650;&#x5236;&#xFF08;channel&#x7684;&#x9650;&#x5236;rabbitmq &#x8FD8;&#x6CA1;&#x6709;&#x8BE5;&#x529F;&#x80FD;&#xFF09;</li>
+</ul>
+<h4 id="&#x4EE3;&#x7801;&#x6F14;&#x793A;_3"><a name="&#x4EE3;&#x7801;&#x6F14;&#x793A;_3" class="anchor-navigation-ex-anchor" href="#&#x4EE3;&#x7801;&#x6F14;&#x793A;_3"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x4EE3;&#x7801;&#x6F14;&#x793A;" class="plugin-anchor" href="#&#x4EE3;&#x7801;&#x6F14;&#x793A;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x4EE3;&#x7801;&#x6F14;&#x793A;</h4>
+<p>&#x751F;&#x4EA7;&#x8005;</p>
+<pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">producter</span> </span>{
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> IOException, TimeoutException </span>{
+        ConnectionFactory connectionFactory = <span class="hljs-keyword">new</span> ConnectionFactory();
+        connectionFactory.setVirtualHost(<span class="hljs-string">&quot;/&quot;</span>);
+        connectionFactory.setHost(<span class="hljs-string">&quot;47.104.128.12&quot;</span>);
+        connectionFactory.setPort(<span class="hljs-number">5672</span>);
+        Connection connection = connectionFactory.newConnection();
+        Channel channel = connection.createChannel();
+        <span class="hljs-comment">// &#x53D1;&#x9001;&#x4E94;&#x6761;&#x6D88;&#x606F; </span>
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">5</span>; i++) {
+            channel.basicPublish(<span class="hljs-string">&quot;test.limit.exchange&quot;</span>, <span class="hljs-string">&quot;test.limit.key&quot;</span>, <span class="hljs-keyword">false</span>, <span class="hljs-keyword">null</span>, <span class="hljs-string">&quot;&#x81EA;&#x5B9A;&#x4E49;&#x6D88;&#x8D39;&#x7AEF;&#x6D88;&#x606F;&quot;</span>.getBytes());
+        }
+    }
+}
+</code></pre>
+<p>&#x6D88;&#x8D39;&#x8005;:</p>
+<pre><code class="lang-java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> IOException, TimeoutException </span>{
+    ConnectionFactory connectionFactory = <span class="hljs-keyword">new</span> ConnectionFactory();
+    connectionFactory.setVirtualHost(<span class="hljs-string">&quot;/&quot;</span>);
+    connectionFactory.setHost(<span class="hljs-string">&quot;47.104.128.12&quot;</span>);
+    connectionFactory.setPort(<span class="hljs-number">5672</span>);
+    Connection connection = connectionFactory.newConnection();
+    Channel channel = connection.createChannel();
+    channel.exchangeDeclare(<span class="hljs-string">&quot;test.limit.exchange&quot;</span>, <span class="hljs-string">&quot;direct&quot;</span>, <span class="hljs-keyword">true</span>, <span class="hljs-keyword">true</span>, <span class="hljs-keyword">false</span>, <span class="hljs-keyword">null</span>);
+    channel.queueDeclare(<span class="hljs-string">&quot;test.limit.queue&quot;</span>, <span class="hljs-keyword">true</span>, <span class="hljs-keyword">false</span>, <span class="hljs-keyword">true</span>, <span class="hljs-keyword">null</span>);
+    channel.queueBind(<span class="hljs-string">&quot;test.limit.queue&quot;</span>, <span class="hljs-string">&quot;test.limit.exchange&quot;</span>, <span class="hljs-string">&quot;test.limit.key&quot;</span>);
+    <span class="hljs-comment">// gloabl&#x8BBE;&#x7F6E;&#x4E3A;ture &#x90A3;&#x4E48;&#x5C31;&#x662F;channel&#x7EA7;&#x522B;&#x7684;&#x9650;&#x6D41;&#xFF0C;&#x82E5;&#x4E3A;false &#x5C31;&#x662F;consumer&#x7EA7;&#x522B;&#x7684;&#x9650;&#x5236;&#x6D41;&#x91CF;</span>
+    channel.basicQos(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-keyword">false</span>);
+    <span class="hljs-comment">// &#x5173;&#x95ED;&#x81EA;&#x52A8;&#x7B7E;&#x6536;</span>
+    channel.basicConsume(<span class="hljs-string">&quot;test.limit.queue&quot;</span>, <span class="hljs-keyword">false</span>, <span class="hljs-keyword">new</span> AngleCustomConsumer(channel));
+}
+
+<span class="hljs-comment">// &#x81EA;&#x5B9A;&#x4E49;&#x6D88;&#x8D39;&#x8005;&#x76D1;&#x542C;</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">AngleCustomConsumer</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">DefaultConsumer</span> </span>{
+    <span class="hljs-keyword">private</span> Channel channel;
+
+    <span class="hljs-comment">/**
+     * Constructs a new instance and records its association to the passed-in channel.
+     *
+     * <span class="hljs-doctag">@param</span> channel the channel to which this consumer is attached
+     */</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">AngleCustomConsumer</span><span class="hljs-params">(Channel channel)</span> </span>{
+        <span class="hljs-keyword">super</span>(channel);
+        <span class="hljs-keyword">this</span>.channel = channel;
+    }
+
+    <span class="hljs-comment">/**
+     * &#x5904;&#x7406;&#x6D88;&#x606F;
+     *
+     * <span class="hljs-doctag">@param</span> consumerTag
+     * <span class="hljs-doctag">@param</span> envelope
+     * <span class="hljs-doctag">@param</span> properties
+     * <span class="hljs-doctag">@param</span> body
+     * <span class="hljs-doctag">@throws</span> IOException
+     */</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">handleDelivery</span><span class="hljs-params">(String consumerTag,
+                               Envelope envelope,
+                               AMQP.BasicProperties properties,
+                               <span class="hljs-keyword">byte</span>[] body)</span> <span class="hljs-keyword">throws</span> IOException </span>{
+        System.out.println(<span class="hljs-string">&quot;&#x81EA;&#x5B9A;&#x4E49;&#x7684;&#x6D88;&#x606F;&#x6D88;&#x8D39;&#x7AEF;&quot;</span>);
+        System.out.println(<span class="hljs-string">&quot;consumerTag=&quot;</span> + consumerTag);
+        System.out.println(<span class="hljs-string">&quot;envelope=&quot;</span> + envelope);
+        System.out.println(<span class="hljs-string">&quot;properties=&quot;</span> + properties);
+        System.out.println(<span class="hljs-string">&quot;body=&quot;</span> + <span class="hljs-keyword">new</span> String(body));
+        <span class="hljs-comment">// &#x6D88;&#x8D39;&#x7AEF;&#x7684;&#x624B;&#x52A8;&#x7B7E;&#x6536;,&#x5047;&#x5982;&#x5173;&#x95ED;&#x624B;&#x52A8;&#x7B7E;&#x6536;&#xFF0C;&#x4E5F;&#x5173;&#x95ED;&#x81EA;&#x52A8;&#x7B7E;&#x6536;&#xFF0C;&#x90A3;&#x4E48;&#x6D88;&#x8D39;&#x7AEF;&#x53EA;&#x4F1A;&#x63A5;&#x6536;&#x5230;&#x4E00;&#x6761;&#x6D88;&#x606F;</span>
+        channel.basicAck(envelope.getDeliveryTag(), <span class="hljs-keyword">false</span>);
+    }
+}
+</code></pre>
+<p>&#x8FD0;&#x884C;&#x7ED3;&#x679C;</p>
+<p><img src="../../source/images/ch-06/old/rabbitmq-cluster-10.png" alt="rabbitmq-cluster-10"></p>
+<h2 id="7-&#x6D88;&#x8D39;&#x7AEF;&#x7684;ack"><a name="7-&#x6D88;&#x8D39;&#x7AEF;&#x7684;ack" class="anchor-navigation-ex-anchor" href="#7-&#x6D88;&#x8D39;&#x7AEF;&#x7684;ack"><i class="fa fa-link" aria-hidden="true"></i></a><a name="7-&#x6D88;&#x8D39;&#x7AEF;&#x7684;ack" class="plugin-anchor" href="#7-&#x6D88;&#x8D39;&#x7AEF;&#x7684;ack"><i class="fa fa-link" aria-hidden="true"></i></a>7. &#x6D88;&#x8D39;&#x7AEF;&#x7684;ack</h2>
+<h3 id="71-&#x6D88;&#x8D39;&#x7AEF;&#x7684;ack&#x6A21;&#x5F0F;"><a name="71-&#x6D88;&#x8D39;&#x7AEF;&#x7684;ack&#x6A21;&#x5F0F;" class="anchor-navigation-ex-anchor" href="#71-&#x6D88;&#x8D39;&#x7AEF;&#x7684;ack&#x6A21;&#x5F0F;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="71-&#x6D88;&#x8D39;&#x7AEF;&#x7684;ack&#x6A21;&#x5F0F;" class="plugin-anchor" href="#71-&#x6D88;&#x8D39;&#x7AEF;&#x7684;ack&#x6A21;&#x5F0F;"><i class="fa fa-link" aria-hidden="true"></i></a>7.1 &#x6D88;&#x8D39;&#x7AEF;&#x7684;ack&#x6A21;&#x5F0F;</h3>
+<p>&#x6D88;&#x8D39;&#x7AEF;&#x7684;ack&#x7C7B;&#x578B;&#xFF1A;<strong>&#x81EA;&#x52A8;ack&#x548C;&#x624B;&#x52A8;ack</strong></p>
+<p>&#x505A;&#x6D88;&#x606F;&#x9650;&#x6D41;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x6211;&#x4EEC;&#x9700;&#x8981;&#x5173;&#x95ED;&#x81EA;&#x52A8;ack &#x7136;&#x540E;&#x8FDB;&#x884C;&#x624B;&#x52A8;ack&#x7684;&#x786E;&#x8BA4;,&#x82E5;&#x6211;&#x4EEC;&#x4E1A;&#x52A1;&#x51FA;&#x73B0;&#x4E86;&#x95EE;&#x9898;&#xFF0C;&#x6211;&#x4EEC;&#x5C31;&#x53EF;&#x4EE5;&#x8FDB;&#x884C;nack&#x91CD;&#x56DE;&#x961F;&#x5217;&#xFF0C;&#x5F53;&#x6D88;&#x8D39;&#x7AEF;&#x8FDB;&#x884C;&#x4E86;nack&#x7684;&#x64CD;&#x4F5C;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x8BBE;&#x7F6E;&#x6765;&#x8FDB;&#x884C;&#x5BF9;&#x6D88;&#x606F;&#x7684;&#x91CD;&#x56DE;&#x961F;&#x5217;&#x7684;&#x64CD;&#x4F5C;&#xFF08;&#x4F46;&#x662F;&#x4E00;&#x822C;&#x6211;&#x4EEC;&#x4E0D;&#x4F1A;&#x8BBE;&#x7F6E;&#x91CD;&#x56DE;&#x961F;&#x5217;&#x7684;&#x64CD;&#x4F5C;&#xFF09;</p>
+<h4 id="&#x4EE3;&#x7801;&#x6F14;&#x793A;_4"><a name="&#x4EE3;&#x7801;&#x6F14;&#x793A;_4" class="anchor-navigation-ex-anchor" href="#&#x4EE3;&#x7801;&#x6F14;&#x793A;_4"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x4EE3;&#x7801;&#x6F14;&#x793A;" class="plugin-anchor" href="#&#x4EE3;&#x7801;&#x6F14;&#x793A;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x4EE3;&#x7801;&#x6F14;&#x793A;</h4>
+<p>&#x624B;&#x52A8;ack&#x4EE5;&#x53CA;&#x91CD;&#x56DE;&#x961F;&#x5217;&#x64CD;&#x4F5C;</p>
+<pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">producter</span> </span>{
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> IOException, TimeoutException </span>{
+        ConnectionFactory connectionFactory = <span class="hljs-keyword">new</span> ConnectionFactory();
+        connectionFactory.setVirtualHost(<span class="hljs-string">&quot;/&quot;</span>);
+        connectionFactory.setHost(<span class="hljs-string">&quot;47.104.128.12&quot;</span>);
+        connectionFactory.setPort(<span class="hljs-number">5672</span>);
+        Connection connection = connectionFactory.newConnection();
+        Channel channel = connection.createChannel();
+
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">5</span>; i++) {
+            Map&lt;String, Object&gt; header = <span class="hljs-keyword">new</span> HashMap&lt;&gt;();
+            header.put(<span class="hljs-string">&quot;num&quot;</span>, i + <span class="hljs-number">1</span>);
+            <span class="hljs-comment">// &#x8BBE;&#x7F6E;&#x6D88;&#x606F;&#x5C5E;&#x6027; </span>
+            AMQP.BasicProperties basicProperties = <span class="hljs-keyword">new</span> AMQP.BasicProperties()
+                    .builder()
+                    .contentEncoding(<span class="hljs-string">&quot;utf-8&quot;</span>)
+                    .contentType(<span class="hljs-string">&quot;application/json&quot;</span>)
+                    .deliveryMode(<span class="hljs-number">2</span>)
+                    .headers(header)
+                    .build();
+            channel.basicPublish(<span class="hljs-string">&quot;test.ack.exchange&quot;</span>, <span class="hljs-string">&quot;test.ack.key&quot;</span>, <span class="hljs-keyword">false</span>, basicProperties, (<span class="hljs-string">&quot;&#x81EA;&#x5B9A;ack&#x6D88;&#x606F;&quot;</span> + (i + <span class="hljs-number">1</span>)).getBytes());
+        }
+    }
+}
+</code></pre>
+<p>&#x6D88;&#x8D39;&#x7AEF;&#x4EE3;&#x7801;</p>
+<pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Consumer</span> </span>{
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> IOException, TimeoutException </span>{
+        ConnectionFactory connectionFactory = <span class="hljs-keyword">new</span> ConnectionFactory();
+        connectionFactory.setVirtualHost(<span class="hljs-string">&quot;/&quot;</span>);
+        connectionFactory.setHost(<span class="hljs-string">&quot;47.104.128.12&quot;</span>);
+        connectionFactory.setPort(<span class="hljs-number">5672</span>);
+
+        Connection connection = connectionFactory.newConnection();
+
+        Channel channel = connection.createChannel();
+
+        channel.exchangeDeclare(<span class="hljs-string">&quot;test.ack.exchange&quot;</span>, <span class="hljs-string">&quot;direct&quot;</span>, <span class="hljs-keyword">true</span>, <span class="hljs-keyword">true</span>, <span class="hljs-keyword">false</span>, <span class="hljs-keyword">null</span>);
+        channel.queueDeclare(<span class="hljs-string">&quot;test.ack.queue&quot;</span>, <span class="hljs-keyword">true</span>, <span class="hljs-keyword">false</span>, <span class="hljs-keyword">true</span>, <span class="hljs-keyword">null</span>);
+        channel.queueBind(<span class="hljs-string">&quot;test.ack.queue&quot;</span>, <span class="hljs-string">&quot;test.ack.exchange&quot;</span>, <span class="hljs-string">&quot;test.ack.key&quot;</span>);
+        <span class="hljs-comment">//gloabl&#x8BBE;&#x7F6E;&#x4E3A;ture &#x90A3;&#x4E48;&#x5C31;&#x662F;channel&#x7EA7;&#x522B;&#x7684;&#x9650;&#x6D41;&#xFF0C;&#x82E5;&#x4E3A;false &#x5C31;&#x662F;consumer&#x7EA7;&#x522B;&#x7684;&#x9650;&#x5236;&#x6D41;&#x91CF; </span>
+        <span class="hljs-comment">// channel.basicQos(0,1,false);</span>
+        <span class="hljs-comment">// &#x5173;&#x95ED;&#x81EA;&#x52A8;&#x7B7E;&#x6536;</span>
+        channel.basicConsume(<span class="hljs-string">&quot;test.ack.queue&quot;</span>,<span class="hljs-keyword">false</span>,<span class="hljs-keyword">new</span> AngleCustomConsumer(channel));
+    }
+}
+</code></pre>
+<p>&#x81EA;&#x5B9A;&#x4E49;&#x6D88;&#x8D39;&#x8005;</p>
+<pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">AngleCustomConsumer</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">DefaultConsumer</span> </span>{
+
+    <span class="hljs-keyword">private</span> Channel channel;
+
+    <span class="hljs-comment">/**
+     * Constructs a new instance and records its association to the passed-in channel. 
+     * <span class="hljs-doctag">@param</span> channel the channel to which this consumer is attached
+     */</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">AngleCustomConsumer</span><span class="hljs-params">(Channel channel)</span> </span>{
+        <span class="hljs-keyword">super</span>(channel);
+        <span class="hljs-keyword">this</span>.channel = channel;
+    }
+
+    <span class="hljs-comment">/**
+     * &#x5904;&#x7406;&#x6D88;&#x606F; 
+     * <span class="hljs-doctag">@param</span> consumerTag 
+     * <span class="hljs-doctag">@param</span> envelope 
+     * <span class="hljs-doctag">@param</span> properties 
+     * <span class="hljs-doctag">@param</span> body 
+     * <span class="hljs-doctag">@throws</span> IOException
+     */</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">handleDelivery</span><span class="hljs-params">(String consumerTag, 
+                               Envelope envelope, 
+                               AMQP.BasicProperties properties, 
+                               <span class="hljs-keyword">byte</span>[] body)</span> <span class="hljs-keyword">throws</span> IOException </span>{
+
+        <span class="hljs-keyword">try</span> {
+            Thread.currentThread().sleep(<span class="hljs-number">1000</span>);
+        } <span class="hljs-keyword">catch</span> (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println(properties.getHeaders());
+        String num = properties.getHeaders().get(<span class="hljs-string">&quot;num&quot;</span>).toString();
+        <span class="hljs-keyword">if</span> (num.equals(<span class="hljs-string">&quot;1&quot;</span>)) {
+            System.out.println(<span class="hljs-string">&quot;&#x4E1A;&#x52A1;&#x7CFB;&#x7EDF;&#x5904;&#x7406;&#x6D88;&#x606F;&#x5F02;&#x5E38;&#x6D88;&#x606F;&#x91CD;&#x65B0;&#x56DE;&#x961F;&#x5217;&quot;</span> + <span class="hljs-keyword">new</span> String(body));
+            channel.basicNack(envelope.getDeliveryTag(), <span class="hljs-keyword">false</span>, <span class="hljs-keyword">true</span>);
+
+        } <span class="hljs-keyword">else</span> {
+            System.out.println(<span class="hljs-string">&quot;&#x81EA;&#x5B9A;&#x4E49;&#x7684;&#x6D88;&#x606F;&#x6D88;&#x8D39;&#x7AEF;&quot;</span>);
+            System.out.println(<span class="hljs-string">&quot;consumerTag=&quot;</span> + consumerTag);
+            System.out.println(<span class="hljs-string">&quot;envelope=&quot;</span> + envelope);
+            System.out.println(<span class="hljs-string">&quot;properties=&quot;</span> + properties);
+            System.out.println(<span class="hljs-string">&quot;body=&quot;</span> + <span class="hljs-keyword">new</span> String(body));
+            <span class="hljs-comment">//&#x6D88;&#x8D39;&#x7AEF;&#x7684;&#x624B;&#x52A8;&#x7B7E;&#x6536;,&#x52A0;&#x5165;&#x6211;&#x5173;&#x95ED;&#x624B;&#x52A8;&#x7B7E;&#x6536;&#xFF0C;&#x4E5F;&#x5173;&#x95ED;&#x81EA;&#x52A8;&#x7B7E;&#x6536;&#xFF0C;&#x90A3;&#x4E48;&#x6D88;&#x8D39;&#x7AEF;&#x53EA;&#x4F1A;&#x63A5;&#x6536;&#x5230;&#x4E00;&#x6761;&#x6D88;&#x606F;</span>
+            channel.basicAck(envelope.getDeliveryTag(), <span class="hljs-keyword">false</span>);
+        }
+    }
+}
+</code></pre>
+<h2 id="8-&#x6B7B;&#x4FE1;&#x961F;&#x5217;&#xFF08;&#x6B7B;&#x4FE1;&#x4EA4;&#x6362;&#x673A;&#xFF09;"><a name="8-&#x6B7B;&#x4FE1;&#x961F;&#x5217;&#xFF08;&#x6B7B;&#x4FE1;&#x4EA4;&#x6362;&#x673A;&#xFF09;" class="anchor-navigation-ex-anchor" href="#8-&#x6B7B;&#x4FE1;&#x961F;&#x5217;&#xFF08;&#x6B7B;&#x4FE1;&#x4EA4;&#x6362;&#x673A;&#xFF09;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="8-&#x6B7B;&#x4FE1;&#x961F;&#x5217;&#xFF08;&#x6B7B;&#x4FE1;&#x4EA4;&#x6362;&#x673A;&#xFF09;" class="plugin-anchor" href="#8-&#x6B7B;&#x4FE1;&#x961F;&#x5217;&#xFF08;&#x6B7B;&#x4FE1;&#x4EA4;&#x6362;&#x673A;&#xFF09;"><i class="fa fa-link" aria-hidden="true"></i></a>8. &#x6B7B;&#x4FE1;&#x961F;&#x5217;&#xFF08;&#x6B7B;&#x4FE1;&#x4EA4;&#x6362;&#x673A;&#xFF09;</h2>
+<h3 id="81-&#x6B7B;&#x4FE1;&#x961F;&#x5217;dlx&#xFF08;dead-leater-exchange&#xFF09;"><a name="81-&#x6B7B;&#x4FE1;&#x961F;&#x5217;dlx&#xFF08;dead-leater-exchange&#xFF09;" class="anchor-navigation-ex-anchor" href="#81-&#x6B7B;&#x4FE1;&#x961F;&#x5217;dlx&#xFF08;dead-leater-exchange&#xFF09;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="81-&#x6B7B;&#x4FE1;&#x961F;&#x5217;dlx&#xFF08;dead-leater-exchange&#xFF09;" class="plugin-anchor" href="#81-&#x6B7B;&#x4FE1;&#x961F;&#x5217;dlx&#xFF08;dead-leater-exchange&#xFF09;"><i class="fa fa-link" aria-hidden="true"></i></a>8.1 &#x6B7B;&#x4FE1;&#x961F;&#x5217;DLX&#xFF08;Dead-leater-exchange&#xFF09;</h3>
+<h4 id="&#x6B7B;&#x4FE1;"><a name="&#x6B7B;&#x4FE1;" class="anchor-navigation-ex-anchor" href="#&#x6B7B;&#x4FE1;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x6B7B;&#x4FE1;" class="plugin-anchor" href="#&#x6B7B;&#x4FE1;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x6B7B;&#x4FE1;</h4>
+<p>&#x5C31;&#x662F;&#x5728;&#x961F;&#x5217;&#x4E2D;&#x7684;&#x6D88;&#x606F;&#x5982;&#x679C;&#x6CA1;&#x6709;&#x6D88;&#x8D39;&#x8005;&#x6D88;&#x8D39;&#xFF0C;&#x90A3;&#x4E48;&#x8BE5;&#x6D88;&#x606F;&#x5C31;&#x6210;&#x4E3A;&#x4E00;&#x4E2A;&#x6B7B;&#x4FE1;&#xFF0C;&#x90A3;&#x8FD9;&#x4E2A;&#x6D88;&#x606F;&#x88AB;&#x91CD;&#x65B0;&#x53D1;&#x9001;&#x5230;&#x53E6;&#x5916;&#x4E00;&#x4E2A;exchange&#x4E0A;&#x7684;&#x8BDD;&#xFF0C; &#x90A3;&#x4E48;&#x540E;&#x9762;&#x8FD9;&#x4E2A;exhcange&#x5C31;&#x662F;&#x6B7B;&#x4FE1;&#x961F;&#x5217;</p>
+<h4 id="&#x6D88;&#x606F;&#x53D8;&#x6210;&#x6B7B;&#x4FE1;&#x7684;&#x51E0;&#x79CD;&#x60C5;&#x51B5;"><a name="&#x6D88;&#x606F;&#x53D8;&#x6210;&#x6B7B;&#x4FE1;&#x7684;&#x51E0;&#x79CD;&#x60C5;&#x51B5;" class="anchor-navigation-ex-anchor" href="#&#x6D88;&#x606F;&#x53D8;&#x6210;&#x6B7B;&#x4FE1;&#x7684;&#x51E0;&#x79CD;&#x60C5;&#x51B5;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x6D88;&#x606F;&#x53D8;&#x6210;&#x6B7B;&#x4FE1;&#x7684;&#x51E0;&#x79CD;&#x60C5;&#x51B5;" class="plugin-anchor" href="#&#x6D88;&#x606F;&#x53D8;&#x6210;&#x6B7B;&#x4FE1;&#x7684;&#x51E0;&#x79CD;&#x60C5;&#x51B5;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x6D88;&#x606F;&#x53D8;&#x6210;&#x6B7B;&#x4FE1;&#x7684;&#x51E0;&#x79CD;&#x60C5;&#x51B5;</h4>
+<ul>
+<li>&#x6D88;&#x606F;&#x88AB;&#x62D2;&#x7EDD;&#xFF08;basic.reject/basic.nack&#xFF09;&#x5E76;&#x4E14;requeue&#xFF08;&#x91CD;&#x56DE;&#x961F;&#x5217;&#xFF09;&#x7684;&#x5C5E;&#x6027;&#x8BBE;&#x7F6E;&#x4E3A; false &#x8868;&#x793A;&#x4E0D;&#x9700;&#x8981;&#x91CD;&#x56DE;&#x961F;&#x5217;&#xFF0C;&#x90A3;&#x4E48;&#x8BE5;&#x6D88;&#x606F;&#x5C31;&#x662F;&#x4E00;&#x4E2A;&#x6B7B;&#x4FE1;&#x6D88;&#x606F;&#xFF1B;</li>
+<li>&#x6D88;&#x606F;TTL&#x8FC7;&#x671F;&#x3002;&#x6D88;&#x606F;&#x672C;&#x8EAB;&#x8BBE;&#x7F6E;&#x4E86;&#x8FC7;&#x671F;&#x65F6;&#x95F4;&#xFF0C;&#x6216;&#x8005;&#x961F;&#x5217;&#x8BBE;&#x7F6E;&#x4E86;&#x6D88;&#x606F;&#x8FC7;&#x671F;&#x65F6;&#x95F4; x-message-ttl &#x961F;&#x5217;&#x8FBE;&#x5230;&#x6700;&#x5927;&#x957F;&#x5EA6;:&#x6BD4;&#x5982;&#x961F;&#x5217;&#x6700;&#x5927;&#x957F;&#x5EA6;&#x662F;3000&#xFF0C;&#x90A3;&#x4E48;3001&#x6D88;&#x606F;&#x5C31;&#x4F1A;&#x88AB;&#x9001;&#x5230;&#x6B7B;&#x4FE1;&#x961F;&#x5217;&#x4E0A;&#xFF1B;</li>
+<li>&#x6B7B;&#x4FE1;&#x961F;&#x5217;&#x4E5F;&#x662F;&#x4E00;&#x4E2A;&#x6B63;&#x5E38;&#x7684;exchange&#xFF0C;&#x4E5F;&#x4F1A;&#x901A;&#x8FC7;routingkey &#x7ED1;&#x5B9A;&#x5230;&#x5177;&#x4F53;&#x7684;&#x961F;&#x5217;&#x4E0A;&#x3002;</li>
+</ul>
+<h4 id="&#x4EE3;&#x7801;&#x6F14;&#x793A;_5"><a name="&#x4EE3;&#x7801;&#x6F14;&#x793A;_5" class="anchor-navigation-ex-anchor" href="#&#x4EE3;&#x7801;&#x6F14;&#x793A;_5"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x4EE3;&#x7801;&#x6F14;&#x793A;" class="plugin-anchor" href="#&#x4EE3;&#x7801;&#x6F14;&#x793A;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x4EE3;&#x7801;&#x6F14;&#x793A;</h4>
+<pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">DLX_CustomConsumer</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">DefaultConsumer</span> </span>{
+
+    <span class="hljs-keyword">private</span> Channel channel;
+
+    <span class="hljs-comment">/**
+     * Constructs a new instance and records its association to the passed-in channel. 
+     * <span class="hljs-doctag">@param</span> channel the channel to which this consumer is attached
+     */</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">DLX_CustomConsumer</span><span class="hljs-params">(Channel channel)</span> </span>{
+        <span class="hljs-keyword">super</span>(channel);
+        <span class="hljs-keyword">this</span>.channel = channel;
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">handleDelivery</span><span class="hljs-params">(String consumerTag, 
+                               Envelope envelope, 
+                               AMQP.BasicProperties properties, 
+                               <span class="hljs-keyword">byte</span>[] body)</span> <span class="hljs-keyword">throws</span> IOException </span>{
+        System.out.println(<span class="hljs-string">&quot;&#x4E3A;&#x4E86;&#x6D4B;&#x8BD5;&#x6B7B;&#x4FE1;&#x961F;&#x5217;,&#x6211;&#x4EEC;&#x8FDB;&#x884C;nack&quot;</span>);
+        <span class="hljs-comment">//&#x628A;&#x6D88;&#x606F;&#x53D8;&#x4E3A;&#x6B7B;&#x4FE1; &#x901A;&#x8FC7;nack &#x4E14;requeue&#x4E0D;&#x8FDB;&#x884C;&#x91CD;&#x65B0;&#x53D1;&#x9001; </span>
+        channel.basicNack(envelope.getDeliveryTag(), <span class="hljs-keyword">false</span>, <span class="hljs-keyword">false</span>);
+    }
+}
+</code></pre>
+<p>&#x6D88;&#x8D39;&#x8005;</p>
+<pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">DLX_consumer</span> </span>{
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> IOException, TimeoutException </span>{
+        ConnectionFactory connectionFactory = <span class="hljs-keyword">new</span> ConnectionFactory();
+        connectionFactory.setVirtualHost(<span class="hljs-string">&quot;/&quot;</span>);
+        connectionFactory.setHost(<span class="hljs-string">&quot;47.104.128.12&quot;</span>);
+        connectionFactory.setPort(<span class="hljs-number">5672</span>);
+
+        Connection connection = connectionFactory.newConnection();
+        Channel channel = connection.createChannel();
+        String normalExchangeName = <span class="hljs-string">&quot;test.normaldlx.exchange&quot;</span>;
+        String normalQueueName = <span class="hljs-string">&quot;test.normaldlx.queue&quot;</span>;
+        String dlxExchangeName = <span class="hljs-string">&quot;test.dlx.exchange&quot;</span>;
+        String dlxQueueName = <span class="hljs-string">&quot;test.dlx.queue&quot;</span>;
+        <span class="hljs-comment">// &#x58F0;&#x660E;&#x4E00;&#x4E2A;&#x6B63;&#x5E38;&#x7684;&#x4E1A;&#x52A1;&#x961F;&#x5217;</span>
+        channel.exchangeDeclare(normalExchangeName, <span class="hljs-string">&quot;topic&quot;</span>, <span class="hljs-keyword">true</span>, <span class="hljs-keyword">true</span>, <span class="hljs-keyword">false</span>, <span class="hljs-keyword">null</span>);
+        Map&lt;String, Object&gt; argurments = <span class="hljs-keyword">new</span> HashMap&lt;&gt;();
+        <span class="hljs-comment">// &#x8BBE;&#x7F6E;&#x6B63;&#x5E38;&#x961F;&#x5217;&#x4E2D;&#x7684;&#x6B7B;&#x4FE1;&#x53D1;&#x5F80;&#x54EA;&#x4E2A;&#x961F;&#x5217;</span>
+        argurments.put(<span class="hljs-string">&quot;x-dead-letter-exchange&quot;</span>, <span class="hljs-string">&quot;test.dlx.exchange&quot;</span>);
+        channel.queueDeclare(normalQueueName,<span class="hljs-keyword">true</span>,<span class="hljs-keyword">true</span>,<span class="hljs-keyword">true</span>,argurments);
+        channel.queueBind(normalQueueName,normalExchangeName,<span class="hljs-string">&quot;test.normaldlx.key&quot;</span>);
+        <span class="hljs-comment">// &#x58F0;&#x660E;&#x6B7B;&#x4FE1;&#x961F;&#x5217;</span>
+        channel.exchangeDeclare(dlxExchangeName,<span class="hljs-string">&quot;topic&quot;</span>,<span class="hljs-keyword">true</span>,<span class="hljs-keyword">true</span>,<span class="hljs-keyword">false</span>,<span class="hljs-keyword">null</span>);
+        channel.queueDeclare(dlxQueueName,<span class="hljs-keyword">true</span>,<span class="hljs-keyword">true</span>,<span class="hljs-keyword">true</span>,<span class="hljs-keyword">null</span>);
+        channel.queueBind(dlxQueueName,dlxExchangeName,<span class="hljs-string">&quot;#&quot;</span>);
+        channel.basicConsume(normalQueueName, <span class="hljs-keyword">false</span>, <span class="hljs-keyword">new</span> DLX_CustomConsumer(channel));
+    }
+}
+</code></pre>
+<p>&#x751F;&#x4EA7;&#x8005;</p>
+<pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">DLX_Producter</span> </span>{
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> IOException, TimeoutException </span>{
+        ConnectionFactory connectionFactory = <span class="hljs-keyword">new</span> ConnectionFactory();
+        connectionFactory.setVirtualHost(<span class="hljs-string">&quot;/&quot;</span>);
+        connectionFactory.setHost(<span class="hljs-string">&quot;47.104.128.12&quot;</span>);
+        connectionFactory.setPort(<span class="hljs-number">5672</span>);
+        Connection connection = connectionFactory.newConnection();
+        Channel channel = connection.createChannel();
+        <span class="hljs-comment">// &#x8BBE;&#x7F6E;&#x6D88;&#x606F;5S&#x949F;&#x8D85;&#x65F6; </span>
+        AMQP.BasicProperties basicProperties = <span class="hljs-keyword">new</span> AMQP.BasicProperties().builder().expiration(<span class="hljs-string">&quot;10000&quot;</span>).build();
+        channel.basicPublish(<span class="hljs-string">&quot;test.normaldlx.exchange&quot;</span>, <span class="hljs-string">&quot;test.normaldlx.key&quot;</span>, basicProperties, <span class="hljs-string">&quot;&#x6D4B;&#x8BD5;&#x6D88;&#x606F;&#x8F6C;&#x4E3A;&#x6B7B;&#x4FE1;&#x961F;&#x5217;&quot;</span>.getBytes());
+    }
+}
+</code></pre>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="20-RabbitMQ-Start.html" class="navigation navigation-prev " aria-label="Previous page: 20 RabbitMQ基本概念讲解">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="22-RabbitMQ-Reliability-Message.html" class="navigation navigation-next " aria-label="Next page: 22 RabbitMQ如何作可靠性消息投递">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"21 RabbitMQ集群及高级特性","level":"1.1.6.18","depth":3,"next":{"title":"22 RabbitMQ如何作可靠性消息投递","level":"1.1.6.19","depth":3,"path":"06-Distributed/Old/22-RabbitMQ-Reliability-Message.md","ref":"06-Distributed/Old/22-RabbitMQ-Reliability-Message.md","articles":[]},"previous":{"title":"20 RabbitMQ基本概念讲解","level":"1.1.6.17","depth":3,"path":"06-Distributed/Old/20-RabbitMQ-Start.md","ref":"06-Distributed/Old/20-RabbitMQ-Start.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","splitter","expandable-chapters-small","anchors","github","github-buttons","sharing-plus","anchor-navigation-ex"],"styles":{"website":"./styles/website.css"},"pluginsConfig":{"github":{"url":"https://github.com/tyrival"},"splitter":{},"search":{},"sharing-plus":{"qq":false,"all":["facebook","google","twitter","instapaper","linkedin","pocket","stumbleupon"],"douban":false,"facebook":true,"weibo":false,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":true,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"anchor-navigation-ex":{"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"mode":"float","multipleH1":true,"pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"printLog":false,"showGoTop":true,"showLevel":false},"github-buttons":{"buttons":[{"user":"Tyrival","repo":"gitbook","type":"star","size":"small","count":false}]},"expandable-chapters-small":{},"sharing":{"qq":false,"all":["google","facebook","weibo","twitter","qq","qzone","linkedin","pocket"],"douban":false,"facebook":false,"weibo":false,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":false,"messenger":false,"line":false,"vk":false,"pocket":false,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","author":"Tyrival","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"架构师学习笔记","language":"zh-hans","gitbook":"3.2.3","description":"架构师学习笔记"},"file":{"path":"06-Distributed/Old/21-RabbitMQ-Cluster.md","mtime":"2020-10-14T05:17:51.255Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-10-14T08:32:43.954Z"},"basePath":"../..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../../gitbook/gitbook.js"></script>
+    <script src="../../gitbook/theme.js"></script>
+    
+        
+        <script src="../../gitbook/gitbook-plugin-splitter/splitter.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-github/plugin.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-github-buttons/plugin.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-sharing-plus/buttons.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

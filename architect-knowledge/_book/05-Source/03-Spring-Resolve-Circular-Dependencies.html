@@ -1,0 +1,1586 @@
+
+<!DOCTYPE HTML>
+<html lang="zh-hans" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>3 Spring如何解决循环依赖 · 架构师学习笔记</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        <meta name="author" content="Tyrival">
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-splitter/splitter.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-anchors/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-anchor-navigation-ex/style/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+        <link rel="stylesheet" href="../styles/website.css">
+        
+    
+
+        
+    
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="04-Spring-Event.html" />
+    
+    
+    <link rel="prev" href="02-Spring-IoC.html" />
+    
+
+    <style>
+    @media only screen and (max-width: 640px) {
+        .book-header .hidden-mobile {
+            display: none;
+        }
+    }
+    </style>
+    <script>
+        window["gitbook-plugin-github-buttons"] = {"buttons":[{"user":"Tyrival","repo":"gitbook","type":"star","size":"small","count":false}]};
+    </script>
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="输入并搜索" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    架构师学习笔记
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.1" data-path="../01-JVM/">
+            
+                <a href="../01-JVM/">
+            
+                    
+                    第1章 JVM
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.1.1" data-path="../01-JVM/01-ClassLoader.html">
+            
+                <a href="../01-JVM/01-ClassLoader.html">
+            
+                    
+                    1 类加载机制
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.2" data-path="../01-JVM/02-JVM-Structure-Resolve.html">
+            
+                <a href="../01-JVM/02-JVM-Structure-Resolve.html">
+            
+                    
+                    2 JVM整体结构
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.3" data-path="../01-JVM/03-Memory-Allocation-Mechanism.html">
+            
+                <a href="../01-JVM/03-Memory-Allocation-Mechanism.html">
+            
+                    
+                    3 JVM内存分配机制
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.4" data-path="../01-JVM/04-JVM-Bytecode-File-Structure.html">
+            
+                <a href="../01-JVM/04-JVM-Bytecode-File-Structure.html">
+            
+                    
+                    4 JVM字节码文件结构
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.5" data-path="../01-JVM/05-GC-ParNew-CMS.html">
+            
+                <a href="../01-JVM/05-GC-ParNew-CMS.html">
+            
+                    
+                    5 垃圾收集器ParNew和CMS
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.6" data-path="../01-JVM/06-GC-G1-ZGC.html">
+            
+                <a href="../01-JVM/06-GC-G1-ZGC.html">
+            
+                    
+                    6 垃圾收集器G1和ZGC
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.7" data-path="../01-JVM/07-GC-Optimize-01.html">
+            
+                <a href="../01-JVM/07-GC-Optimize-01.html">
+            
+                    
+                    7 GC调优（一）
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.8" data-path="../01-JVM/08-GC-Optimize-02.html">
+            
+                <a href="../01-JVM/08-GC-Optimize-02.html">
+            
+                    
+                    8 GC调优（二）
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.9" data-path="../01-JVM/JVM-Command.html">
+            
+                <a href="../01-JVM/JVM-Command.html">
+            
+                    
+                    附1 JVM指令手册
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.2" data-path="../02-Tomcat/">
+            
+                <a href="../02-Tomcat/">
+            
+                    
+                    第2章 Tomcat
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.2.1" data-path="../02-Tomcat/01-Tomcat-Summary.html">
+            
+                <a href="../02-Tomcat/01-Tomcat-Summary.html">
+            
+                    
+                    1 Tomcat生产环境应用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.2.2" data-path="../02-Tomcat/02-Tomcat-Component-Src.html">
+            
+                <a href="../02-Tomcat/02-Tomcat-Component-Src.html">
+            
+                    
+                    2 Tomcat核心组件源码
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.2.3" data-path="../02-Tomcat/03-Tomcat-Http-Process.html">
+            
+                <a href="../02-Tomcat/03-Tomcat-Http-Process.html">
+            
+                    
+                    3 Tomcat线程模型HTTP请求处理与管道线模型
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.2.4" data-path="../02-Tomcat/04-Tomcat-Hot-Deployment-Load.html">
+            
+                <a href="../02-Tomcat/04-Tomcat-Hot-Deployment-Load.html">
+            
+                    
+                    4 Tomcat热部署和热加载
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.3" data-path="../03-MySQL/">
+            
+                <a href="../03-MySQL/">
+            
+                    
+                    第3章 MySQL
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.3.1" data-path="../03-MySQL/01-Mysql-index-data-structure.html">
+            
+                <a href="../03-MySQL/01-Mysql-index-data-structure.html">
+            
+                    
+                    1 Mysql索引数据结构
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.3.2" data-path="../03-MySQL/02-Explain-Index-Actual.html">
+            
+                <a href="../03-MySQL/02-Explain-Index-Actual.html">
+            
+                    
+                    2 Explain详解与索引最佳实践
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.3.3" data-path="../03-MySQL/03-Sql-Execution-Fundamental.html">
+            
+                <a href="../03-MySQL/03-Sql-Execution-Fundamental.html">
+            
+                    
+                    3 SQL底层执行原理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.3.4" data-path="../03-MySQL/04-Sql-Optimize-01.html">
+            
+                <a href="../03-MySQL/04-Sql-Optimize-01.html">
+            
+                    
+                    4 SQL优化实战（一）
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.3.5" data-path="../03-MySQL/05-Sql-Optimize-02.html">
+            
+                <a href="../03-MySQL/05-Sql-Optimize-02.html">
+            
+                    
+                    5 SQL优化实战（二）
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.3.6" data-path="../03-MySQL/06-Mysql-Lock-Transaction-Isolation.html">
+            
+                <a href="../03-MySQL/06-Mysql-Lock-Transaction-Isolation.html">
+            
+                    
+                    6 Mysql锁与事务隔离级别
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.3.7" data-path="../03-MySQL/Slow-Sql-Query.html">
+            
+                <a href="../03-MySQL/Slow-Sql-Query.html">
+            
+                    
+                    附1 慢SQL查询
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.3.8" data-path="../03-MySQL/Ali-Java-Explain.html">
+            
+                <a href="../03-MySQL/Ali-Java-Explain.html">
+            
+                    
+                    附2 阿里巴巴手册（泰山版）解读-MySQL数据库
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.4" data-path="../04-Concurrent/">
+            
+                <a href="../04-Concurrent/">
+            
+                    
+                    第4章 并发编程
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.4.1" data-path="../04-Concurrent/01-JMM-JSR133.html">
+            
+                <a href="../04-Concurrent/01-JMM-JSR133.html">
+            
+                    
+                    1 并发编程之JMM & JSR133规范解读
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.4.2" data-path="../04-Concurrent/02-JMM-Features.html">
+            
+                <a href="../04-Concurrent/02-JMM-Features.html">
+            
+                    
+                    2 并发编程之JMM三大特性详解
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.4.3" data-path="../04-Concurrent/03-MESI-Cache-Coherency-Protocol.html">
+            
+                <a href="../04-Concurrent/03-MESI-Cache-Coherency-Protocol.html">
+            
+                    
+                    3 MESI缓存一致协议详解
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.4.4" data-path="../04-Concurrent/04-Synchronized.html">
+            
+                <a href="../04-Concurrent/04-Synchronized.html">
+            
+                    
+                    4 并发编程之synchronized详解
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.4.5" data-path="../04-Concurrent/05-AQS-Lock.html">
+            
+                <a href="../04-Concurrent/05-AQS-Lock.html">
+            
+                    
+                    5 抽象队列同步器AQS应用Lock详解
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.4.6" data-path="../04-Concurrent/06-AQS-Blocking-Queue.html">
+            
+                <a href="../04-Concurrent/06-AQS-Blocking-Queue.html">
+            
+                    
+                    6 抽象队列同步器AQS应用之BlockingQueue详解
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.4.7" data-path="../04-Concurrent/07-Tools-CountDownLatch-Semaphore.html">
+            
+                <a href="../04-Concurrent/07-Tools-CountDownLatch-Semaphore.html">
+            
+                    
+                    7 并发编程之Tools&CountDownLatch&Semaphore原理与应用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.4.8" data-path="../04-Concurrent/08-Atomic-Unsafe-Magic-Class.html">
+            
+                <a href="../04-Concurrent/08-Atomic-Unsafe-Magic-Class.html">
+            
+                    
+                    8 并发编程之Atomic&Unsafe魔法类详解
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.4.9" data-path="../04-Concurrent/09-Collections-Map-List-Set.html">
+            
+                <a href="../04-Concurrent/09-Collections-Map-List-Set.html">
+            
+                    
+                    9 Collections之Map&List&Set详解
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.4.10" data-path="../04-Concurrent/10-Executor-Thread-Pool.html">
+            
+                <a href="../04-Concurrent/10-Executor-Thread-Pool.html">
+            
+                    
+                    10 Executor线程池原理与源码
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.4.11" data-path="../04-Concurrent/11-Schedule-Task-Thread-Pool.html">
+            
+                <a href="../04-Concurrent/11-Schedule-Task-Thread-Pool.html">
+            
+                    
+                    11 并发编程之定时任务&定时线程池
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.4.12" data-path="../04-Concurrent/12-Future-ForkJoin.html">
+            
+                <a href="../04-Concurrent/12-Future-ForkJoin.html">
+            
+                    
+                    12 并发编程之Future&ForkJoin框架原理分析
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.4.13" data-path="../04-Concurrent/13-Disruptor.html">
+            
+                <a href="../04-Concurrent/13-Disruptor.html">
+            
+                    
+                    13 无锁并发框架Disruptor
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.5" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    第5章 源码框架
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.5.1" data-path="01-Spring-Code-Compile.html">
+            
+                <a href="01-Spring-Code-Compile.html">
+            
+                    
+                    1 Spring源码介绍和编译
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.5.2" data-path="02-Spring-IoC.html">
+            
+                <a href="02-Spring-IoC.html">
+            
+                    
+                    2 Spring Ioc容器加载过程—Bean的生命周期源码深度剖析
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.1.5.3" data-path="03-Spring-Resolve-Circular-Dependencies.html">
+            
+                <a href="03-Spring-Resolve-Circular-Dependencies.html">
+            
+                    
+                    3 Spring如何解决循环依赖
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.5.4" data-path="04-Spring-Event.html">
+            
+                <a href="04-Spring-Event.html">
+            
+                    
+                    4 Spring事件监听机制
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.5.5" data-path="05-Spring-AOP.html">
+            
+                <a href="05-Spring-AOP.html">
+            
+                    
+                    5 Spring AOP源码
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6" data-path="../06-Distributed/">
+            
+                <a href="../06-Distributed/">
+            
+                    
+                    第6章 分布式
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.6.1" data-path="../06-Distributed/Old/01-Zookeeper-Node.html">
+            
+                <a href="../06-Distributed/Old/01-Zookeeper-Node.html">
+            
+                    
+                    1 Zookeeper特性与节点说明
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6.2" data-path="../06-Distributed/Old/05-Redis-Data-Structure.html">
+            
+                <a href="../06-Distributed/Old/05-Redis-Data-Structure.html">
+            
+                    
+                    5 Redis核心数据结构与核心原理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6.3" data-path="../06-Distributed/Old/06-Redis-Persistent-Distributed-Mode.html">
+            
+                <a href="../06-Distributed/Old/06-Redis-Persistent-Distributed-Mode.html">
+            
+                    
+                    6 Redis持久化、主从与哨兵架构详解
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6.4" data-path="../06-Distributed/Old/07-Redis-Cluster-Mode.html">
+            
+                <a href="../06-Distributed/Old/07-Redis-Cluster-Mode.html">
+            
+                    
+                    7 Redis高可用集群
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6.5" data-path="../06-Distributed/Old/08-Redis-Distributed-Lock-Training.html">
+            
+                <a href="../06-Distributed/Old/08-Redis-Distributed-Lock-Training.html">
+            
+                    
+                    8 Redis高并发分布式锁实战
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6.6" data-path="../06-Distributed/Old/09-Redis-Design-Optimize.html">
+            
+                <a href="../06-Distributed/Old/09-Redis-Design-Optimize.html">
+            
+                    
+                    9 Redis缓存设计与性能优化
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6.7" data-path="../06-Distributed/Old/10-Nginx-Core-Config.html">
+            
+                <a href="../06-Distributed/Old/10-Nginx-Core-Config.html">
+            
+                    
+                    10 Nginx核心模块与配置实践
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6.8" data-path="../06-Distributed/Old/11-Nginx-Optimize-Training.html">
+            
+                <a href="../06-Distributed/Old/11-Nginx-Optimize-Training.html">
+            
+                    
+                    11 Nginx性能优化实践
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6.9" data-path="../06-Distributed/Old/12-MongoDB-Quick-Start.html">
+            
+                <a href="../06-Distributed/Old/12-MongoDB-Quick-Start.html">
+            
+                    
+                    12 MongoDB的逻辑组成
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6.10" data-path="../06-Distributed/Old/13-MongoDB-Cluster-Advanced-Feature.html">
+            
+                <a href="../06-Distributed/Old/13-MongoDB-Cluster-Advanced-Feature.html">
+            
+                    
+                    13 MongoDB集群架构与高级特性
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6.11" data-path="../06-Distributed/Old/14-MongoDB-Training.html">
+            
+                <a href="../06-Distributed/Old/14-MongoDB-Training.html">
+            
+                    
+                    14 MongoDB企业应用实战
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6.12" data-path="../06-Distributed/Old/15-Java-BIO-NIO-AIO.html">
+            
+                <a href="../06-Distributed/Old/15-Java-BIO-NIO-AIO.html">
+            
+                    
+                    15 Java BIO & NIO & AIO
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6.13" data-path="../06-Distributed/Old/16-Netty-Core-Thread-Model.html">
+            
+                <a href="../06-Distributed/Old/16-Netty-Core-Thread-Model.html">
+            
+                    
+                    16 Netty核心功能与线程模型
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6.14" data-path="../06-Distributed/Old/17-Netty-Codec-Pack-Unpack-Zero-Copy.html">
+            
+                <a href="../06-Distributed/Old/17-Netty-Codec-Pack-Unpack-Zero-Copy.html">
+            
+                    
+                    17 Netty编解码，粘包拆包及零拷贝
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6.15" data-path="../06-Distributed/Old/18-Netty-Thread-Model-Source.html">
+            
+                <a href="../06-Distributed/Old/18-Netty-Thread-Model-Source.html">
+            
+                    
+                    18 Netty线程模型源码详解
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6.16" data-path="../06-Distributed/Old/19-Netty-Barrage-Dubbo.html">
+            
+                <a href="../06-Distributed/Old/19-Netty-Barrage-Dubbo.html">
+            
+                    
+                    19 Netty在弹幕系统与Dubbo框架中的应用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6.17" data-path="../06-Distributed/Old/20-RabbitMQ-Start.html">
+            
+                <a href="../06-Distributed/Old/20-RabbitMQ-Start.html">
+            
+                    
+                    20 RabbitMQ基本概念讲解
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6.18" data-path="../06-Distributed/Old/21-RabbitMQ-Cluster.html">
+            
+                <a href="../06-Distributed/Old/21-RabbitMQ-Cluster.html">
+            
+                    
+                    21 RabbitMQ集群及高级特性
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6.19" data-path="../06-Distributed/Old/22-RabbitMQ-Reliability-Message.html">
+            
+                <a href="../06-Distributed/Old/22-RabbitMQ-Reliability-Message.html">
+            
+                    
+                    22 RabbitMQ如何作可靠性消息投递
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6.20" data-path="../06-Distributed/Old/23-RocketMQ-Start.html">
+            
+                <a href="../06-Distributed/Old/23-RocketMQ-Start.html">
+            
+                    
+                    23 RocketMQ整体部署与快速实战
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6.21" data-path="../06-Distributed/Old/24-RocketMQ-Feature.html">
+            
+                <a href="../06-Distributed/Old/24-RocketMQ-Feature.html">
+            
+                    
+                    24 RocketMQ特性详解&场景介绍
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6.22" data-path="../06-Distributed/Old/25-Kafka-Cluster.html">
+            
+                <a href="../06-Distributed/Old/25-Kafka-Cluster.html">
+            
+                    
+                    25 Kafka集群搭建与使用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6.23" data-path="../06-Distributed/Old/26-Kafka-Architecture.html">
+            
+                <a href="../06-Distributed/Old/26-Kafka-Architecture.html">
+            
+                    
+                    26 Kafka设计原理详解
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6.24" data-path="../06-Distributed/Old/27-Kafka-Optimizer-Training.html">
+            
+                <a href="../06-Distributed/Old/27-Kafka-Optimizer-Training.html">
+            
+                    
+                    27 Kafka性能优化实战
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.7" data-path="../07-Microservice/">
+            
+                <a href="../07-Microservice/">
+            
+                    
+                    第7章 微服务
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.8" data-path="../08-Training/">
+            
+                <a href="../08-Training/">
+            
+                    
+                    第8章 实战案例
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            本书使用 GitBook 发布
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >3 Spring如何解决循环依赖</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <div id="anchor-navigation-ex-navbar"><i class="fa fa-navicon"></i><ul><li><span class="title-icon "></span><a href="#spring&#x5982;&#x4F55;&#x89E3;&#x51B3;&#x5FAA;&#x73AF;&#x4F9D;&#x8D56;"><b></b>Spring&#x5982;&#x4F55;&#x89E3;&#x51B3;&#x5FAA;&#x73AF;&#x4F9D;&#x8D56;</a></li><ul><li><span class="title-icon "></span><a href="#1-&#x4EC0;&#x4E48;&#x662F;&#x5FAA;&#x73AF;&#x4F9D;&#x8D56;"><b></b>1. &#x4EC0;&#x4E48;&#x662F;&#x5FAA;&#x73AF;&#x4F9D;&#x8D56;?</a></li><li><span class="title-icon "></span><a href="#2-&#x5982;&#x4F55;&#x89E3;&#x51B3;&#x5FAA;&#x73AF;&#x4F9D;&#x8D56;&#xFF1F;"><b></b>2. &#x5982;&#x4F55;&#x89E3;&#x51B3;&#x5FAA;&#x73AF;&#x4F9D;&#x8D56;&#xFF1F;</a></li><ul><li><span class="title-icon "></span><a href="#21-&#x521B;&#x5EFA;&#x539F;&#x59CB;-bean-&#x5BF9;&#x8C61;"><b></b>2.1 &#x521B;&#x5EFA;&#x539F;&#x59CB; bean &#x5BF9;&#x8C61;</a></li><li><span class="title-icon "></span><a href="#22-&#x66B4;&#x9732;&#x65E9;&#x671F;&#x5F15;&#x7528;"><b></b>2.2 &#x66B4;&#x9732;&#x65E9;&#x671F;&#x5F15;&#x7528;</a></li><li><span class="title-icon "></span><a href="#23-&#x89E3;&#x6790;&#x4F9D;&#x8D56;"><b></b>2.3 &#x89E3;&#x6790;&#x4F9D;&#x8D56;</a></li><li><span class="title-icon "></span><a href="#24-&#x83B7;&#x53D6;&#x65E9;&#x671F;&#x5F15;&#x7528;"><b></b>2.4 &#x83B7;&#x53D6;&#x65E9;&#x671F;&#x5F15;&#x7528;</a></li></ul><li><span class="title-icon "></span><a href="#3-&#x4E3A;&#x4F55;&#x9700;&#x8981;&#x4E09;&#x7EA7;&#x7F13;&#x5B58;&#x800C;&#x4E0D;&#x662F;&#x4E24;&#x7EA7;&#x7F13;&#x5B58;"><b></b>3. &#x4E3A;&#x4F55;&#x9700;&#x8981;&#x4E09;&#x7EA7;&#x7F13;&#x5B58;,&#x800C;&#x4E0D;&#x662F;&#x4E24;&#x7EA7;&#x7F13;&#x5B58;?</a></li><li><span class="title-icon "></span><a href="#4-&#x5982;&#x4F55;&#x8FDB;&#x884C;&#x62D3;&#x5C55;"><b></b>4. &#x5982;&#x4F55;&#x8FDB;&#x884C;&#x62D3;&#x5C55;</a></li><ul><li><span class="title-icon "></span><a href="#41-&#x4F55;&#x65F6;&#x8FDB;&#x884C;&#x62D3;&#x5C55;&#xFF1F;&#xFF08;&#x8FDB;&#x884C;bean&#x7684;&#x5B9E;&#x4F8B;&#x5316;&#x65F6;&#xFF09;"><b></b>4.1 &#x4F55;&#x65F6;&#x8FDB;&#x884C;&#x62D3;&#x5C55;&#xFF1F;&#xFF08;&#x8FDB;&#x884C;bean&#x7684;&#x5B9E;&#x4F8B;&#x5316;&#x65F6;&#xFF09;</a></li><li><span class="title-icon "></span><a href="#42-getearlybeanreference&#x65B9;&#x6CD5;"><b></b>4.2 getEarlyBeanReference&#x65B9;&#x6CD5;</a></li></ul></ul></ul></div><a href="#spring&#x5982;&#x4F55;&#x89E3;&#x51B3;&#x5FAA;&#x73AF;&#x4F9D;&#x8D56;" id="anchorNavigationExGoTop"><i class="fa fa-arrow-up"></i></a><h1 id="spring&#x5982;&#x4F55;&#x89E3;&#x51B3;&#x5FAA;&#x73AF;&#x4F9D;&#x8D56;"><a name="spring&#x5982;&#x4F55;&#x89E3;&#x51B3;&#x5FAA;&#x73AF;&#x4F9D;&#x8D56;" class="anchor-navigation-ex-anchor" href="#spring&#x5982;&#x4F55;&#x89E3;&#x51B3;&#x5FAA;&#x73AF;&#x4F9D;&#x8D56;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="spring&#x5982;&#x4F55;&#x89E3;&#x51B3;&#x5FAA;&#x73AF;&#x4F9D;&#x8D56;" class="plugin-anchor" href="#spring&#x5982;&#x4F55;&#x89E3;&#x51B3;&#x5FAA;&#x73AF;&#x4F9D;&#x8D56;"><i class="fa fa-link" aria-hidden="true"></i></a>Spring&#x5982;&#x4F55;&#x89E3;&#x51B3;&#x5FAA;&#x73AF;&#x4F9D;&#x8D56;</h1>
+<h2 id="1-&#x4EC0;&#x4E48;&#x662F;&#x5FAA;&#x73AF;&#x4F9D;&#x8D56;"><a name="1-&#x4EC0;&#x4E48;&#x662F;&#x5FAA;&#x73AF;&#x4F9D;&#x8D56;" class="anchor-navigation-ex-anchor" href="#1-&#x4EC0;&#x4E48;&#x662F;&#x5FAA;&#x73AF;&#x4F9D;&#x8D56;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="1-&#x4EC0;&#x4E48;&#x662F;&#x5FAA;&#x73AF;&#x4F9D;&#x8D56;" class="plugin-anchor" href="#1-&#x4EC0;&#x4E48;&#x662F;&#x5FAA;&#x73AF;&#x4F9D;&#x8D56;"><i class="fa fa-link" aria-hidden="true"></i></a>1. &#x4EC0;&#x4E48;&#x662F;&#x5FAA;&#x73AF;&#x4F9D;&#x8D56;?</h2>
+<p>&#x6240;&#x8C13;&#x7684;&#x5FAA;&#x73AF;&#x4F9D;&#x8D56;&#x662F;&#x6307;&#xFF0C;A &#x4F9D;&#x8D56; B&#xFF0C;B &#x53C8;&#x4F9D;&#x8D56; A&#xFF0C;&#x5B83;&#x4EEC;&#x4E4B;&#x95F4;&#x5F62;&#x6210;&#x4E86;&#x5FAA;&#x73AF;&#x4F9D;&#x8D56;&#x3002;&#x6216;&#x8005;&#x662F; A &#x4F9D;&#x8D56; B&#xFF0C;B &#x4F9D;&#x8D56; C&#xFF0C;C &#x53C8;&#x4F9D; &#x8D56; A&#x3002;&#x5B83;&#x4EEC;&#x4E4B;&#x95F4;&#x7684;&#x4F9D;&#x8D56;&#x5173;&#x7CFB;&#x5982;&#x4E0B;&#xFF1A;</p>
+<p><img src="../source/images/ch-05/circular-dependencies-01.png" alt="circular-dependencies-01"></p>
+<p>Demo:</p>
+<pre><code class="lang-java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> Exception </span>{
+
+  <span class="hljs-comment">// &#x5DF2;&#x7ECF;&#x52A0;&#x8F7D;&#x5FAA;&#x73AF;&#x4F9D;&#x8D56;</span>
+  String beanName=<span class="hljs-string">&quot;com.tuling.circulardependencies.InstanceA&quot;</span>;
+  getBean(beanName);
+
+  <span class="hljs-comment">//ApplicationContext &#x5DF2;&#x7ECF;&#x52A0;&#x8F7D;spring&#x5BB9;&#x5668;</span>
+  InstanceA a = (InstanceA) getBean(beanName);
+  a.say();
+
+}
+
+<span class="hljs-comment">// &#x4E00;&#x7EA7;&#x7F13;&#x5B58; &#x5355;&#x4F8B;&#x6C60; &#x6210;&#x719F;&#x6001;Bean</span>
+<span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> Map&lt;String, Object&gt; singletonObjects = <span class="hljs-keyword">new</span> ConcurrentHashMap&lt;&gt;(<span class="hljs-number">256</span>);
+
+<span class="hljs-comment">// &#x4E8C;&#x7EA7;&#x7F13;&#x5B58; &#x7EAF;&#x51C0;&#x6001;Bean (&#x5B58;&#x50A8;&#x4E0D;&#x5B8C;&#x6574;&#x7684;Bean&#x7528;&#x4E8E;&#x89E3;&#x51B3;&#x5FAA;&#x73AF;&#x4F9D;&#x8D56;&#x4E2D;&#x591A;&#x7EBF;&#x7A0B;&#x8BFB;&#x53D6;&#x4E00;&#x7EA7;&#x7F13;&#x5B58;&#x7684;&#x810F;&#x6570;&#x636E;)</span>
+<span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> Map&lt;String, Object&gt; earlySingletonObjects = <span class="hljs-keyword">new</span> ConcurrentHashMap&lt;&gt;(<span class="hljs-number">256</span>);
+
+<span class="hljs-comment">// &#x4E09;&#x7EA7;&#x7F13;&#x5B58;</span>
+<span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> Map&lt;String, ObjectFactory&gt; factoryEarlySingletonObjects = <span class="hljs-keyword">new</span> ConcurrentHashMap&lt;&gt; (<span class="hljs-number">256</span>);
+
+<span class="hljs-comment">// &#x6807;&#x8BC6;&#x5F53;&#x524D;&#x662F;&#x4E0D;&#x662F;&#x5FAA;&#x73AF;&#x4F9D;&#x8D56; &#x5982;&#x679C;&#x6B63;&#x5728;&#x521B;&#x5EFA;&#x5E76;&#x4E14;&#x4ECE;&#x4E00;&#x7EA7;&#x7F13;&#x5B58;&#x4E2D;&#x6CA1;&#x6709;&#x62FF;&#x5230;&#x662F;&#x4E0D;&#x662F;&#x8BF4;&#x660E;&#x662F;&#x4F9D;&#x8D56;</span>
+<span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> Set&lt;String&gt; singletonsCurrentlyInCreation = Collections.newSetFromMap(<span class="hljs-keyword">new</span> ConcurrentHashMap&lt;&gt;(<span class="hljs-number">16</span>));
+
+
+<span class="hljs-comment">/**
+ * &#x521B;&#x5EFA;Bean
+ * <span class="hljs-doctag">@param</span> beanName
+ * <span class="hljs-doctag">@return</span>
+ */</span>
+<span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> Object <span class="hljs-title">getBean</span><span class="hljs-params">(String beanName)</span> <span class="hljs-keyword">throws</span> Exception </span>{
+  Class&lt;?&gt; beanClass = Class.forName(beanName);
+  Object bean=getSingleton(beanName);
+  <span class="hljs-keyword">if</span>(bean!=<span class="hljs-keyword">null</span>){
+    <span class="hljs-keyword">return</span> bean;
+  }
+
+  <span class="hljs-comment">// &#x5F00;&#x59CB;&#x521B;&#x5EFA;Bean</span>
+  singletonsCurrentlyInCreation.add(beanName);
+
+  <span class="hljs-comment">// 1.&#x5B9E;&#x4F8B;&#x5316;</span>
+  Object beanInstanc = beanClass.newInstance();
+
+  ObjectFactory factory= () &#x2010;&gt; {
+    JdkProxyBeanPostProcessor beanPostProcessor=<span class="hljs-keyword">new</span> JdkProxyBeanPostProcessor();
+    <span class="hljs-keyword">return</span> beanPostProcessor.getEarlyBeanReference(bean,beanName);
+  };
+
+  factoryEarlySingletonObjects.put(beanName,factory);
+
+  <span class="hljs-comment">// &#x53EA;&#x662F;&#x5FAA;&#x73AF;&#x4F9D;&#x8D56;&#x624D;&#x521B;&#x5EFA;&#x52A8;&#x6001;&#x4EE3;&#x7406;&#xFF1F; //&#x521B;&#x5EFA;&#x52A8;&#x6001;&#x4EE3;&#x7406;</span>
+  <span class="hljs-comment">// Spring &#x4E3A;&#x4E86;&#x89E3;&#x51B3; aop&#x4E0B;&#x9762;&#x5FAA;&#x73AF;&#x4F9D;&#x8D56;&#x4F1A;&#x5728;&#x8FD9;&#x4E2A;&#x5730;&#x65B9;&#x521B;&#x5EFA;&#x52A8;&#x6001;&#x4EE3;&#x7406; Proxy.newProxyInstance</span>
+  <span class="hljs-comment">// Spring &#x662F;&#x4E0D;&#x4F1A;&#x5C06;aop&#x7684;&#x4EE3;&#x7801;&#x8DDF;ioc&#x5199;&#x5728;&#x4E00;&#x8D77;</span>
+  <span class="hljs-comment">// &#x4E0D;&#x80FD;&#x76F4;&#x63A5;&#x5C06;Proxy&#x5B58;&#x5165;&#x4E8C;&#x7EA7;&#x7F13;&#x5B58;&#x4E2D;</span>
+  <span class="hljs-comment">// &#x662F;&#x4E0D;&#x662F;&#x6240;&#x6709;&#x7684;Bean&#x90FD;&#x5B58;&#x5728;&#x5FAA;&#x73AF;&#x4F9D;&#x8D56; &#x5F53;&#x5B58;&#x5728;&#x5FAA;&#x73AF;&#x4F9D;&#x8D56;&#x624D;&#x53BB;&#x8C03;&#x7528;aop&#x7684;&#x540E;&#x7F6E;&#x5904;&#x7406;&#x5668;&#x521B;&#x5EFA;&#x52A8;&#x6001;&#x4EE3;&#x7406;</span>
+  <span class="hljs-comment">// &#x5B58;&#x5165;&#x4E8C;&#x7EA7;&#x7F13;&#x5B58;</span>
+  <span class="hljs-comment">// earlySingletonObjects.put(beanName,beanInstanc);</span>
+  <span class="hljs-comment">// 2.&#x5C5E;&#x6027;&#x8D4B;&#x503C; &#x89E3;&#x6790;Autowired</span>
+  <span class="hljs-comment">// &#x62FF;&#x5230;&#x6240;&#x6709;&#x7684;&#x5C5E;&#x6027;&#x540D;</span>
+  Field[] declaredFields = beanClass.getDeclaredFields(); <span class="hljs-number">72</span>
+
+  <span class="hljs-comment">// &#x5FAA;&#x73AF;&#x6240;&#x6709;&#x5C5E;&#x6027;</span>
+  <span class="hljs-keyword">for</span> (Field declaredField : declaredFields) {
+
+  <span class="hljs-comment">// &#x4ECE;&#x5C5E;&#x6027;&#x4E0A;&#x62FF;&#x5230;@Autowired</span>
+  Autowired annotation = declaredField.getAnnotation(Autowired.class);
+
+  <span class="hljs-comment">// &#x8BF4;&#x660E;&#x5C5E;&#x6027;&#x4E0A;&#x9762;&#x6709;@Autowired</span>
+  <span class="hljs-keyword">if</span>(annotation != <span class="hljs-keyword">null</span>){
+    Class&lt;?&gt; type = declaredField.getType();
+    <span class="hljs-comment">//com.tuling.circulardependencies.InstanceB</span>
+    getBean(type.getName());
+  }
+}
+
+<span class="hljs-comment">// 3.&#x521D;&#x59CB;&#x5316; (&#x7701;&#x7565;&#xFF09;</span>
+<span class="hljs-comment">// &#x521B;&#x5EFA;&#x52A8;&#x6001;&#x4EE3;&#x7406;</span>
+<span class="hljs-comment">// &#x5B58;&#x5165;&#x5230;&#x4E00;&#x7EA7;&#x7F13;&#x5B58;</span>
+singletonObjects.put(beanName,beanInstanc);
+  <span class="hljs-keyword">return</span> beanInstanc;
+}
+
+<span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> Object <span class="hljs-title">getSingleton</span><span class="hljs-params">(String beanName)</span></span>{
+
+  Object bean = singletonObjects.get(beanName);
+
+  <span class="hljs-comment">// &#x5982;&#x679C;&#x4E00;&#x7EA7;&#x7F13;&#x5B58;&#x6CA1;&#x6709;&#x62FF;&#x5230; &#x662F;&#x4E0D;&#x662F;&#x5C31;&#x8BF4;&#x660E;&#x5F53;&#x524D;&#x662F;&#x5FAA;&#x73AF;&#x4F9D;&#x8D56;&#x521B;&#x5EFA;</span>
+  <span class="hljs-keyword">if</span>(bean == <span class="hljs-keyword">null</span> &amp;&amp; singletonsCurrentlyInCreation.contains(beanName)){
+
+    <span class="hljs-comment">// &#x8C03;&#x7528;bean&#x7684;&#x540E;&#x7F6E;&#x5904;&#x7406;&#x5668;&#x521B;&#x5EFA;&#x52A8;&#x6001;&#x4EE3;&#x7406;</span>
+    bean = earlySingletonObjects.get(beanName);
+
+    <span class="hljs-keyword">if</span>(bean == <span class="hljs-keyword">null</span>){
+      ObjectFactory factory = factoryEarlySingletonObjects.get(beanName);
+      factory.getObject();
+    }
+  }
+
+  <span class="hljs-keyword">return</span> bean;
+}
+
+<span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> Object <span class="hljs-title">getEarlyBeanReference</span><span class="hljs-params">(String beanName, Object bean)</span></span>{
+  JdkProxyBeanPostProcessor beanPostProcessor=<span class="hljs-keyword">new</span> JdkProxyBeanPostProcessor();
+  <span class="hljs-keyword">return</span> beanPostProcessor.getEarlyBeanReference(bean,beanName);
+}
+</code></pre>
+<h2 id="2-&#x5982;&#x4F55;&#x89E3;&#x51B3;&#x5FAA;&#x73AF;&#x4F9D;&#x8D56;&#xFF1F;"><a name="2-&#x5982;&#x4F55;&#x89E3;&#x51B3;&#x5FAA;&#x73AF;&#x4F9D;&#x8D56;&#xFF1F;" class="anchor-navigation-ex-anchor" href="#2-&#x5982;&#x4F55;&#x89E3;&#x51B3;&#x5FAA;&#x73AF;&#x4F9D;&#x8D56;&#xFF1F;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="2-&#x5982;&#x4F55;&#x89E3;&#x51B3;&#x5FAA;&#x73AF;&#x4F9D;&#x8D56;&#xFF1F;" class="plugin-anchor" href="#2-&#x5982;&#x4F55;&#x89E3;&#x51B3;&#x5FAA;&#x73AF;&#x4F9D;&#x8D56;&#xFF1F;"><i class="fa fa-link" aria-hidden="true"></i></a>2. &#x5982;&#x4F55;&#x89E3;&#x51B3;&#x5FAA;&#x73AF;&#x4F9D;&#x8D56;&#xFF1F;</h2>
+<h5 id="&#x4E09;&#x7EA7;&#x7F13;&#x5B58;"><a name="&#x4E09;&#x7EA7;&#x7F13;&#x5B58;" class="anchor-navigation-ex-anchor" href="#&#x4E09;&#x7EA7;&#x7F13;&#x5B58;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x4E09;&#x7EA7;&#x7F13;&#x5B58;" class="plugin-anchor" href="#&#x4E09;&#x7EA7;&#x7F13;&#x5B58;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x4E09;&#x7EA7;&#x7F13;&#x5B58;</h5>
+<p>DefaultSingletonBeanRegistry&#x7C7B;&#x7684;&#x4E09;&#x4E2A;&#x6210;&#x5458;&#x53D8;&#x91CF;&#x547D;&#x540D;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code class="lang-java"><span class="hljs-comment">/** &#x4E00;&#x7EA7;&#x7F13;&#x5B58; &#x8FD9;&#x4E2A;&#x5C31;&#x662F;&#x6211;&#x4EEC;&#x5927;&#x540D;&#x9F0E;&#x9F0E;&#x7684;&#x5355;&#x4F8B;&#x7F13;&#x5B58;&#x6C60; &#x7528;&#x4E8E;&#x4FDD;&#x5B58;&#x6211;&#x4EEC;&#x6240;&#x6709;&#x7684;&#x5355;&#x5B9E;&#x4F8B;bean */</span>
+<span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> Map&lt;String, Object&gt; singletonObjects = <span class="hljs-keyword">new</span> ConcurrentHashMap&lt;&gt;(<span class="hljs-number">256</span>);
+
+<span class="hljs-comment">/** &#x4E09;&#x7EA7;&#x7F13;&#x5B58; &#x8BE5;map&#x7528;&#x6237;&#x7F13;&#x5B58; key&#x4E3A; beanName value &#x4E3A;ObjectFactory(&#x5305;&#x88C5;&#x4E3A;&#x65E9;&#x671F;&#x5BF9;&#x8C61;) */</span>
+<span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> Map&lt;String, ObjectFactory&lt;?&gt;&gt; singletonFactories = <span class="hljs-keyword">new</span> HashMap&lt;&gt;(<span class="hljs-number">16</span>);
+
+<span class="hljs-comment">/** &#x4E8C;&#x7EA7;&#x7F13;&#x5B58; &#xFF0C;&#x7528;&#x6237;&#x7F13;&#x5B58;&#x6211;&#x4EEC;&#x7684;key&#x4E3A;beanName value&#x662F;&#x6211;&#x4EEC;&#x7684;&#x65E9;&#x671F;&#x5BF9;&#x8C61;(&#x5BF9;&#x8C61;&#x5C5E;&#x6027;&#x8FD8;&#x6CA1;&#x6709;&#x6765;&#x5F97;&#x53CA;&#x8FDB;&#x884C;&#x8D4B;&#x503C;) */</span>
+<span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> Map&lt;String, Object&gt; earlySingletonObjects = <span class="hljs-keyword">new</span> HashMap&lt;&gt;(<span class="hljs-number">16</span>);
+</code></pre>
+<p>&#x4EE5; BeanA &#x548C; BeanB &#x4E24;&#x4E2A;&#x7C7B;&#x76F8;&#x4E92;&#x4F9D;&#x8D56;&#x4E3A;&#x4F8B;</p>
+<h3 id="21-&#x521B;&#x5EFA;&#x539F;&#x59CB;-bean-&#x5BF9;&#x8C61;"><a name="21-&#x521B;&#x5EFA;&#x539F;&#x59CB;-bean-&#x5BF9;&#x8C61;" class="anchor-navigation-ex-anchor" href="#21-&#x521B;&#x5EFA;&#x539F;&#x59CB;-bean-&#x5BF9;&#x8C61;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="21-&#x521B;&#x5EFA;&#x539F;&#x59CB;-bean-&#x5BF9;&#x8C61;" class="plugin-anchor" href="#21-&#x521B;&#x5EFA;&#x539F;&#x59CB;-bean-&#x5BF9;&#x8C61;"><i class="fa fa-link" aria-hidden="true"></i></a>2.1 &#x521B;&#x5EFA;&#x539F;&#x59CB; bean &#x5BF9;&#x8C61;</h3>
+<h5 id="&#x7EAF;&#x6D01;&#x6001;bean"><a name="&#x7EAF;&#x6D01;&#x6001;bean" class="anchor-navigation-ex-anchor" href="#&#x7EAF;&#x6D01;&#x6001;bean"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x7EAF;&#x6D01;&#x6001;bean" class="plugin-anchor" href="#&#x7EAF;&#x6D01;&#x6001;bean"><i class="fa fa-link" aria-hidden="true"></i></a>&#x7EAF;&#x6D01;&#x6001;Bean</h5>
+<pre><code class="lang-java">instanceWrapper = createBeanInstance(beanName, mbd, args);
+<span class="hljs-keyword">final</span> Object bean = (instanceWrapper != <span class="hljs-keyword">null</span> ? instanceWrapper.getWrappedInstance() : <span class="hljs-keyword">null</span>);
+</code></pre>
+<p>&#x5047;&#x8BBE; beanA &#x5148;&#x88AB;&#x521B;&#x5EFA;&#xFF0C;&#x521B;&#x5EFA;&#x540E;&#x7684;&#x539F;&#x59CB;&#x5BF9;&#x8C61;&#x4E3A;BeanA@1234&#xFF0C;&#x4E0A;&#x9762;&#x4EE3;&#x7801;&#x4E2D;&#x7684; bean &#x53D8;&#x91CF;&#x6307;&#x5411;&#x5C31;&#x662F;&#x8FD9;&#x4E2A;&#x5BF9;&#x8C61;&#x3002;</p>
+<h3 id="22-&#x66B4;&#x9732;&#x65E9;&#x671F;&#x5F15;&#x7528;"><a name="22-&#x66B4;&#x9732;&#x65E9;&#x671F;&#x5F15;&#x7528;" class="anchor-navigation-ex-anchor" href="#22-&#x66B4;&#x9732;&#x65E9;&#x671F;&#x5F15;&#x7528;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="22-&#x66B4;&#x9732;&#x65E9;&#x671F;&#x5F15;&#x7528;" class="plugin-anchor" href="#22-&#x66B4;&#x9732;&#x65E9;&#x671F;&#x5F15;&#x7528;"><i class="fa fa-link" aria-hidden="true"></i></a>2.2 &#x66B4;&#x9732;&#x65E9;&#x671F;&#x5F15;&#x7528;</h3>
+<p>&#x8BE5;&#x65B9;&#x6CD5;&#x7528;&#x4E8E;&#x628A;&#x65E9;&#x671F;&#x5BF9;&#x8C61;&#x5305;&#x88C5;&#x6210;&#x4E00;&#x4E2A;ObjectFactory &#x66B4;&#x9732;&#x5230;&#x4E09;&#x7EA7;&#x7F13;&#x5B58;&#x4E2D; &#x7528;&#x4E8E;&#x5C06;&#x89E3;&#x51B3;&#x5FAA;&#x73AF;&#x4F9D;&#x8D56;</p>
+<pre><code class="lang-java"><span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">addSingletonFactory</span><span class="hljs-params">(String beanName, ObjectFactory&lt;?&gt; singletonFactory)</span> </span>{
+    ...
+  <span class="hljs-comment">//&#x52A0;&#x5165;&#x5230;&#x4E09;&#x7EA7;&#x7F13;&#x5B58;&#x4E2D;&#xFF0C;&#xFF0C;&#xFF0C;&#xFF0C;&#xFF0C;&#x66B4;&#x9732;&#x65E9;&#x671F;&#x5BF9;&#x8C61;&#x7528;&#x4E8E;&#x89E3;&#x51B3;&#x5FAA;&#x73AF;&#x4F9D;&#x8D56;</span>
+  <span class="hljs-keyword">this</span>.singletonFactories.put(beanName, singletonFactory);
+    ...
+}
+</code></pre>
+<p>beanA &#x6307;&#x5411;&#x7684;&#x539F;&#x59CB;&#x5BF9;&#x8C61;&#x521B;&#x5EFA;&#x597D;&#x540E;&#xFF0C;&#x5C31;&#x5F00;&#x59CB;&#x628A;&#x6307;&#x5411;&#x539F;&#x59CB;&#x5BF9;&#x8C61;&#x7684;&#x5F15;&#x7528;&#x901A;&#x8FC7; ObjectFactory &#x66B4;&#x9732;&#x51FA;&#x53BB;&#x3002; getEarlyBeanReference &#x65B9;&#x6CD5;&#x7684;&#x7B2C;&#x4E09;&#x4E2A;&#x53C2;&#x6570; bean &#x6307;&#x5411;&#x7684;&#x6B63;&#x662F; createBeanInstance &#x65B9;&#x6CD5;&#x521B;&#x5EFA;&#x51FA;&#x539F;&#x59CB; bean &#x5BF9;&#x8C61; BeanA@1234&#x3002;</p>
+<h3 id="23-&#x89E3;&#x6790;&#x4F9D;&#x8D56;"><a name="23-&#x89E3;&#x6790;&#x4F9D;&#x8D56;" class="anchor-navigation-ex-anchor" href="#23-&#x89E3;&#x6790;&#x4F9D;&#x8D56;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="23-&#x89E3;&#x6790;&#x4F9D;&#x8D56;" class="plugin-anchor" href="#23-&#x89E3;&#x6790;&#x4F9D;&#x8D56;"><i class="fa fa-link" aria-hidden="true"></i></a>2.3 &#x89E3;&#x6790;&#x4F9D;&#x8D56;</h3>
+<pre><code class="lang-java">populateBean(beanName, mbd, instanceWrapper);
+</code></pre>
+<p>&#x8FD8;&#x6CA1;&#x6709;&#x8FDB;&#x884C;&#x5C5E;&#x6027;&#x88C5;&#x914D;&#xFF0C;&#x81EA;&#x52A8;&#x6CE8;&#x5165;&#x7684;&#x5C5E;&#x6027;&#x90FD;&#x662F;null</p>
+<p><img src="../source/images/ch-05/circular-dependencies-02.png" alt="circular-dependencies-02"></p>
+<p>&#x521D;&#x59CB;&#x5316;&#x597D;&#x7684;Bean</p>
+<p><img src="../source/images/ch-05/circular-dependencies-03.png" alt="circular-dependencies-03"></p>
+<p>populateBean &#x7528;&#x4E8E;&#x5411; beanA &#x8FD9;&#x4E2A;&#x539F;&#x59CB;&#x5BF9;&#x8C61;&#x4E2D;&#x586B;&#x5145;&#x5C5E;&#x6027;&#xFF0C;&#x5F53;&#x5B83;&#x68C0;&#x6D4B;&#x5230; beanA &#x4F9D;&#x8D56;&#x4E8E; beanB &#x65F6;&#xFF0C;&#x4F1A;&#x9996;&#x5148;&#x53BB;&#x5B9E;&#x4F8B;&#x5316; beanB&#x3002; beanB &#x5728;&#x6B64;&#x65B9;&#x6CD5;&#x5904;&#x4E5F;&#x4F1A;&#x89E3;&#x6790;&#x81EA;&#x5DF1;&#x7684;&#x4F9D;&#x8D56;&#xFF0C;&#x5F53;&#x5B83;&#x68C0;&#x6D4B;&#x5230; beanA &#x8FD9;&#x4E2A;&#x4F9D;&#x8D56;&#xFF0C;&#x4E8E;&#x662F;&#x8C03;&#x7528; <code>BeanFactroy.getBean(&quot;beanA&quot;)</code> &#x8FD9;&#x4E2A;&#x65B9;&#x6CD5;&#xFF0C;&#x4ECE;&#x5BB9; &#x5668;&#x4E2D;&#x83B7;&#x53D6; beanA&#x3002;</p>
+<h3 id="24-&#x83B7;&#x53D6;&#x65E9;&#x671F;&#x5F15;&#x7528;"><a name="24-&#x83B7;&#x53D6;&#x65E9;&#x671F;&#x5F15;&#x7528;" class="anchor-navigation-ex-anchor" href="#24-&#x83B7;&#x53D6;&#x65E9;&#x671F;&#x5F15;&#x7528;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="24-&#x83B7;&#x53D6;&#x65E9;&#x671F;&#x5F15;&#x7528;" class="plugin-anchor" href="#24-&#x83B7;&#x53D6;&#x65E9;&#x671F;&#x5F15;&#x7528;"><i class="fa fa-link" aria-hidden="true"></i></a>2.4 &#x83B7;&#x53D6;&#x65E9;&#x671F;&#x5F15;&#x7528;</h3>
+<pre><code class="lang-java"><span class="hljs-function"><span class="hljs-keyword">protected</span> Object <span class="hljs-title">getSingleton</span><span class="hljs-params">(String beanName, <span class="hljs-keyword">boolean</span> allowEarlyReference)</span> </span>{
+
+  <span class="hljs-comment">/**
+   * &#x7B2C;&#x4E00;&#x6B65;:&#x6211;&#x4EEC;&#x5C1D;&#x8BD5;&#x53BB;&#x4E00;&#x7EA7;&#x7F13;&#x5B58;(&#x5355;&#x4F8B;&#x7F13;&#x5B58;&#x6C60;&#x4E2D;&#x53BB;&#x83B7;&#x53D6;&#x5BF9;&#x8C61;,&#x4E00;&#x822C;&#x60C5;&#x51B5;&#x4ECE;&#x8BE5;map&#x4E2D;&#x83B7;&#x53D6;&#x7684;&#x5BF9;&#x8C61;&#x662F;&#x76F4;&#x63A5;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x7684;)
+   * IOC&#x5BB9;&#x5668;&#x521D;&#x59CB;&#x5316;&#x52A0;&#x8F7D;&#x5355;&#x5B9E;&#x4F8B;bean&#x7684;&#x65F6;&#x5019;&#x7B2C;&#x4E00;&#x6B21;&#x8FDB;&#x6765;&#x7684;&#x65F6;&#x5019; &#x8BE5;map&#x4E2D;&#x4E00;&#x822C;&#x8FD4;&#x56DE;&#x7A7A;
+   */</span>
+  Object singletonObject = <span class="hljs-keyword">this</span>.singletonObjects.get(beanName);
+
+  <span class="hljs-comment">/**
+   * &#x82E5;&#x5728;&#x7B2C;&#x4E00;&#x7EA7;&#x7F13;&#x5B58;&#x4E2D;&#x6CA1;&#x6709;&#x83B7;&#x53D6;&#x5230;&#x5BF9;&#x8C61;,&#x5E76;&#x4E14;singletonsCurrentlyInCreation&#x8FD9;&#x4E2A;list&#x5305;&#x542B;&#x8BE5;beanName
+   * IOC&#x5BB9;&#x5668;&#x521D;&#x59CB;&#x5316;&#x52A0;&#x8F7D;&#x5355;&#x5B9E;&#x4F8B;bean&#x7684;&#x65F6;&#x5019;&#x7B2C;&#x4E00;&#x6B21;&#x8FDB;&#x6765;&#x7684;&#x65F6;&#x5019; &#x8BE5;list&#x4E2D;&#x4E00;&#x822C;&#x8FD4;&#x56DE;&#x7A7A;,&#x4F46;&#x662F;&#x5FAA;&#x73AF;&#x4F9D;&#x8D56;&#x7684;&#x65F6;&#x5019;&#x53EF;&#x4EE5;&#x6EE1;&#x8DB3;&#x8BE5;&#x6761;&#x4EF6;
+   */</span>
+  <span class="hljs-keyword">if</span> (singletonObject == <span class="hljs-keyword">null</span> &amp;&amp; isSingletonCurrentlyInCreation(beanName)) {
+
+    <span class="hljs-keyword">synchronized</span> (<span class="hljs-keyword">this</span>.singletonObjects) {
+
+      <span class="hljs-comment">/**
+       * &#x5C1D;&#x8BD5;&#x53BB;&#x4E8C;&#x7EA7;&#x7F13;&#x5B58;&#x4E2D;&#x83B7;&#x53D6;&#x5BF9;&#x8C61;(&#x4E8C;&#x7EA7;&#x7F13;&#x5B58;&#x4E2D;&#x7684;&#x5BF9;&#x8C61;&#x662F;&#x4E00;&#x4E2A;&#x65E9;&#x671F;&#x5BF9;&#x8C61;)
+       * &#x4F55;&#x4E3A;&#x65E9;&#x671F;&#x5BF9;&#x8C61;:&#x5C31;&#x662F;bean&#x521A;&#x521A;&#x8C03;&#x7528;&#x4E86;&#x6784;&#x9020;&#x65B9;&#x6CD5;&#xFF0C;&#x8FD8;&#x6765;&#x4E0D;&#x53CA;&#x7ED9;bean&#x7684;&#x5C5E;&#x6027;&#x8FDB;&#x884C;&#x8D4B;&#x503C;&#x7684;&#x5BF9;&#x8C61;(&#x7EAF;&#x51C0;&#x6001;)
+       * &#x5C31;&#x662F;&#x65E9;&#x671F;&#x5BF9;&#x8C61;
+       */</span>
+      singletonObject = <span class="hljs-keyword">this</span>.earlySingletonObjects.get(beanName);
+
+      <span class="hljs-comment">/**
+       * &#x4E8C;&#x7EA7;&#x7F13;&#x5B58;&#x4E2D;&#x4E5F;&#x6CA1;&#x6709;&#x83B7;&#x53D6;&#x5230;&#x5BF9;&#x8C61;,allowEarlyReference&#x4E3A;true(&#x53C2;&#x6570;&#x662F;&#x6709;&#x4E0A;&#x4E00;&#x4E2A;&#x65B9;&#x6CD5;&#x4F20;&#x9012;&#x8FDB;&#x6765;&#x7684;true)
+       */</span>
+      <span class="hljs-keyword">if</span> (singletonObject == <span class="hljs-keyword">null</span> &amp;&amp; allowEarlyReference) {
+
+        <span class="hljs-comment">/**
+         * &#x76F4;&#x63A5;&#x4ECE;&#x4E09;&#x7EA7;&#x7F13;&#x5B58;&#x4E2D;&#x83B7;&#x53D6; ObjectFactory&#x5BF9;&#x8C61; &#x8FD9;&#x4E2A;&#x5BF9;&#x63A5;&#x5C31;&#x662F;&#x7528;&#x6765;&#x89E3;&#x51B3;&#x5FAA;&#x73AF;&#x4F9D;&#x8D56;&#x7684;&#x5173;&#x952E;&#x6240;&#x5728;
+         * &#x5728;ioc&#x540E;&#x671F;&#x7684;&#x8FC7;&#x7A0B;&#x4E2D;,&#x5F53;bean&#x8C03;&#x7528;&#x4E86;&#x6784;&#x9020;&#x65B9;&#x6CD5;&#x7684;&#x65F6;&#x5019;,&#x628A;&#x65E9;&#x671F;&#x5BF9;&#x8C61;&#x5305;&#x88F9;&#x6210;&#x4E00;&#x4E2A;ObjectFactory
+         * &#x66B4;&#x9732;&#x5230;&#x4E09;&#x7EA7;&#x7F13;&#x5B58;&#x4E2D;
+         */</span>
+        ObjectFactory&lt;?&gt; singletonFactory = <span class="hljs-keyword">this</span>.singletonFactories.get(beanName);
+
+        <span class="hljs-comment">//&#x4ECE;&#x4E09;&#x7EA7;&#x7F13;&#x5B58;&#x4E2D;&#x83B7;&#x53D6;&#x5230;&#x5BF9;&#x8C61;&#x4E0D;&#x4E3A;&#x7A7A;</span>
+        <span class="hljs-keyword">if</span> (singletonFactory != <span class="hljs-keyword">null</span>) {
+
+          <span class="hljs-comment">/**
+           * &#x5728;&#x8FD9;&#x91CC;&#x901A;&#x8FC7;&#x66B4;&#x9732;&#x7684;ObjectFactory &#x5305;&#x88C5;&#x5BF9;&#x8C61;&#x4E2D;,&#x901A;&#x8FC7;&#x8C03;&#x7528;&#x4ED6;&#x7684;getObject()&#x6765;&#x83B7;&#x53D6;&#x6211;&#x4EEC;&#x7684;&#x65E9;&#x671F;&#x5BF9;&#x8C61;
+           * &#x5728;&#x8FD9;&#x4E2A;&#x73AF;&#x8282;&#x4E2D;&#x4F1A;&#x8C03;&#x7528;&#x5230; getEarlyBeanReference()&#x6765;&#x8FDB;&#x884C;&#x540E;&#x7F6E;&#x5904;&#x7406;
+           */</span>
+          singletonObject = singletonFactory.getObject();
+
+          <span class="hljs-comment">// &#x628A;&#x65E9;&#x671F;&#x5BF9;&#x8C61;&#x653E;&#x7F6E;&#x5728;&#x4E8C;&#x7EA7;&#x7F13;&#x5B58;,</span>
+          <span class="hljs-keyword">this</span>.earlySingletonObjects.put(beanName, singletonObject);
+
+          <span class="hljs-comment">// ObjectFactory &#x5305;&#x88C5;&#x5BF9;&#x8C61;&#x4ECE;&#x4E09;&#x7EA7;&#x7F13;&#x5B58;&#x4E2D;&#x5220;&#x9664;&#x6389;</span>
+          <span class="hljs-keyword">this</span>.singletonFactories.remove(beanName);
+        }
+      }
+    }
+  }
+
+  <span class="hljs-keyword">return</span> singletonObject;
+}
+</code></pre>
+<p>&#x63A5;&#x7740;&#x4E0A;&#x9762;&#x7684;&#x6B65;&#x9AA4;&#x8BB2;:</p>
+<ul>
+<li>populateBean &#x8C03;&#x7528; BeanFactroy.getBean(&quot;beanA&quot;) &#x4EE5;&#x83B7;&#x53D6; beanB &#x7684;&#x4F9D;&#x8D56;&#x3002;</li>
+<li>getBean(&quot;beanB&quot;) &#x4F1A;&#x5148;&#x8C03;&#x7528; getSingleton(&quot;beanA&quot;)&#xFF0C;&#x5C1D;&#x8BD5;&#x4ECE;&#x7F13;&#x5B58;&#x4E2D;&#x83B7;&#x53D6; beanA&#x3002;&#x6B64;&#x65F6;&#x7531;&#x4E8E; beanA &#x8FD8;&#x6CA1;&#x5B8C;&#x5168;&#x5B9E;&#x4F8B;&#x5316;&#x597D;</li>
+<li>&#x4E8E;&#x662F; this.singletonObjects.get(&quot;beanA&quot;) &#x8FD4;&#x56DE; null&#x3002;</li>
+<li>&#x63A5;&#x7740; this.earlySingletonObjects.get(&quot;beanA&quot;) &#x4E5F;&#x8FD4;&#x56DE;&#x7A7A;&#xFF0C;&#x56E0;&#x4E3A; beanA &#x65E9;&#x671F;&#x5F15;&#x7528;&#x8FD8;&#x6CA1;&#x653E;&#x5165;&#x5230;&#x8FD9;&#x4E2A;&#x7F13;&#x5B58;&#x4E2D;&#x3002;</li>
+<li>&#x6700;&#x540E;&#x8C03;&#x7528; singletonFactory.getObject() &#x8FD4;&#x56DE; singletonObject&#xFF0C;&#x6B64;&#x65F6; singletonObject != null&#x3002;singletonObject &#x6307;&#x5411; BeanA@1234&#xFF0C;&#x4E5F;&#x5C31;&#x662F; createBeanInstance &#x521B;&#x5EFA;&#x7684;&#x539F;&#x59CB;&#x5BF9;&#x8C61;&#x3002;&#x6B64;&#x65F6; beanB &#x83B7;&#x53D6;&#x5230;&#x4E86;&#x8FD9;&#x4E2A;&#x539F;&#x59CB;&#x5BF9;&#x8C61;&#x7684;&#x5F15;&#x7528;&#xFF0C;beanB &#x5C31;&#x80FD;&#x987A;&#x5229;&#x5B8C;&#x6210;&#x5B9E;&#x4F8B; &#x5316;&#x3002;beanB &#x5B8C;&#x6210;&#x5B9E;&#x4F8B;&#x5316;&#x540E;&#xFF0C;beanA &#x5C31;&#x80FD;&#x83B7;&#x53D6;&#x5230; beanB &#x6240;&#x6307;&#x5411;&#x7684;&#x5B9E;&#x4F8B;&#xFF0C;beanA &#x968F;&#x4E4B;&#x4E5F;&#x5B8C;&#x6210;&#x4E86;&#x5B9E;&#x4F8B;&#x5316;&#x5DE5;&#x4F5C;&#x3002;&#x7531;&#x4E8E; beanB.beanA &#x548C; beanA &#x6307;&#x5411;&#x7684;&#x662F;&#x540C;&#x4E00;&#x4E2A;&#x5BF9;&#x8C61; BeanA@1234&#xFF0C;&#x6240;&#x4EE5; beanB &#x4E2D;&#x7684; beanA &#x6B64;&#x65F6;&#x4E5F;&#x5904;&#x4E8E;&#x53EF;&#x7528;&#x72B6;&#x6001;&#x4E86;&#x3002;</li>
+</ul>
+<p>&#x4EE5;&#x4E0A;&#x7684;&#x8FC7;&#x7A0B;&#x5BF9;&#x5E94;&#x4E0B;&#x9762;&#x7684;&#x6D41;&#x7A0B;&#x56FE;&#xFF1A;</p>
+<p><img src="../source/images/ch-05/circular-dependencies-04.png" alt="circular-dependencies-04"></p>
+<h2 id="3-&#x4E3A;&#x4F55;&#x9700;&#x8981;&#x4E09;&#x7EA7;&#x7F13;&#x5B58;&#x800C;&#x4E0D;&#x662F;&#x4E24;&#x7EA7;&#x7F13;&#x5B58;"><a name="3-&#x4E3A;&#x4F55;&#x9700;&#x8981;&#x4E09;&#x7EA7;&#x7F13;&#x5B58;&#x800C;&#x4E0D;&#x662F;&#x4E24;&#x7EA7;&#x7F13;&#x5B58;" class="anchor-navigation-ex-anchor" href="#3-&#x4E3A;&#x4F55;&#x9700;&#x8981;&#x4E09;&#x7EA7;&#x7F13;&#x5B58;&#x800C;&#x4E0D;&#x662F;&#x4E24;&#x7EA7;&#x7F13;&#x5B58;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="3-&#x4E3A;&#x4F55;&#x9700;&#x8981;&#x4E09;&#x7EA7;&#x7F13;&#x5B58;&#x800C;&#x4E0D;&#x662F;&#x4E24;&#x7EA7;&#x7F13;&#x5B58;" class="plugin-anchor" href="#3-&#x4E3A;&#x4F55;&#x9700;&#x8981;&#x4E09;&#x7EA7;&#x7F13;&#x5B58;&#x800C;&#x4E0D;&#x662F;&#x4E24;&#x7EA7;&#x7F13;&#x5B58;"><i class="fa fa-link" aria-hidden="true"></i></a>3. &#x4E3A;&#x4F55;&#x9700;&#x8981;&#x4E09;&#x7EA7;&#x7F13;&#x5B58;,&#x800C;&#x4E0D;&#x662F;&#x4E24;&#x7EA7;&#x7F13;&#x5B58;?</h2>
+<h5 id="&#x4E3A;&#x4EC0;&#x4E48;&#x9700;&#x8981;&#x4E8C;&#x7EA7;&#x7F13;&#x5B58;&#xFF1F;"><a name="&#x4E3A;&#x4EC0;&#x4E48;&#x9700;&#x8981;&#x4E8C;&#x7EA7;&#x7F13;&#x5B58;&#xFF1F;" class="anchor-navigation-ex-anchor" href="#&#x4E3A;&#x4EC0;&#x4E48;&#x9700;&#x8981;&#x4E8C;&#x7EA7;&#x7F13;&#x5B58;&#xFF1F;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x4E3A;&#x4EC0;&#x4E48;&#x9700;&#x8981;&#x4E8C;&#x7EA7;&#x7F13;&#x5B58;&#xFF1F;" class="plugin-anchor" href="#&#x4E3A;&#x4EC0;&#x4E48;&#x9700;&#x8981;&#x4E8C;&#x7EA7;&#x7F13;&#x5B58;&#xFF1F;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x4E3A;&#x4EC0;&#x4E48;&#x9700;&#x8981;&#x4E8C;&#x7EA7;&#x7F13;&#x5B58;&#xFF1F;</h5>
+<p>&#x4E8C;&#x7EA7;&#x7F13;&#x5B58;&#x53EA;&#x8981;&#x662F;&#x4E3A;&#x4E86;&#x5206;&#x79BB;&#x6210;&#x719F;Bean&#x548C;&#x7EAF;&#x51C0;Bean(&#x672A;&#x6CE8;&#x5165;&#x5C5E;&#x6027;)&#x7684;&#x5B58;&#x653E;&#xFF0C; &#x9632;&#x6B62;&#x591A;&#x7EBF;&#x7A0B;&#x4E2D;&#x5728;Bean&#x8FD8;&#x672A;&#x521B;&#x5EFA;&#x5B8C;&#x6210;&#x65F6;&#x8BFB;&#x53D6;&#x5230;&#x7684;Bean&#x65F6;&#x4E0D;&#x5B8C;&#x6574;&#x7684;&#x3002;&#x6240; &#x4EE5;&#x4E5F;&#x662F;&#x4E3A;&#x4E86;&#x4FDD;&#x8BC1;&#x6211;&#x4EEC;getBean&#x662F;&#x5B8C;&#x6574;&#x6700;&#x7EC8;&#x7684;Bean&#xFF0C;&#x4E0D;&#x4F1A;&#x51FA;&#x73B0;&#x4E0D;&#x5B8C;&#x6574;&#x7684;&#x60C5;&#x51B5;&#x3002;</p>
+<h5 id="&#x4E3A;&#x4EC0;&#x4E48;&#x9700;&#x8981;&#x4E09;&#x7EA7;&#x7F13;&#x5B58;&#xFF1F;"><a name="&#x4E3A;&#x4EC0;&#x4E48;&#x9700;&#x8981;&#x4E09;&#x7EA7;&#x7F13;&#x5B58;&#xFF1F;" class="anchor-navigation-ex-anchor" href="#&#x4E3A;&#x4EC0;&#x4E48;&#x9700;&#x8981;&#x4E09;&#x7EA7;&#x7F13;&#x5B58;&#xFF1F;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x4E3A;&#x4EC0;&#x4E48;&#x9700;&#x8981;&#x4E09;&#x7EA7;&#x7F13;&#x5B58;&#xFF1F;" class="plugin-anchor" href="#&#x4E3A;&#x4EC0;&#x4E48;&#x9700;&#x8981;&#x4E09;&#x7EA7;&#x7F13;&#x5B58;&#xFF1F;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x4E3A;&#x4EC0;&#x4E48;&#x9700;&#x8981;&#x4E09;&#x7EA7;&#x7F13;&#x5B58;&#xFF1F;</h5>
+<p>&#x6211;&#x4EEC;&#x90FD;&#x77E5;&#x9053;Bean&#x7684;aop&#x52A8;&#x6001;&#x4EE3;&#x7406;&#x521B;&#x5EFA;&#x65F6;&#x5728;&#x521D;&#x59CB;&#x5316;&#x4E4B;&#x540E;&#xFF0C;&#x4F46;&#x662F;&#x5FAA;&#x73AF;&#x4F9D;&#x8D56;&#x7684;Bean&#x5982;&#x679C;&#x4F7F;&#x7528;&#x4E86;AOP&#x3002; &#x90A3;&#x65E0;&#x6CD5;&#x7B49;&#x5230;&#x89E3;&#x51B3;&#x5B8C;&#x5FAA;&#x73AF;&#x4F9D;&#x8D56;&#x518D;&#x521B;&#x5EFA;&#x52A8;&#x6001;&#x4EE3; &#x7406;&#xFF0C; &#x56E0;&#x4E3A;&#x8FD9;&#x4E2A;&#x65F6;&#x5019;&#x5DF2;&#x7ECF;&#x6CE8;&#x5165;&#x5C5E;&#x6027;&#x3002; &#x6240;&#x4EE5;&#x5982;&#x679C;&#x5FAA;&#x73AF;&#x4F9D;&#x8D56;&#x7684;Bean&#x4F7F;&#x7528;&#x4E86;aop. &#x9700;&#x8981;&#x63D0;&#x524D;&#x521B;&#x5EFA;aop&#x3002; &#x4F46;&#x662F;&#x9700;&#x8981;&#x601D;&#x8003;&#x7684;&#x662F;&#x52A8;&#x6001;&#x4EE3;&#x7406;&#x5728;&#x54EA;&#x521B;&#x5EFA;&#xFF1F;&#xFF1F; &#x5728;&#x5B9E;&#x4F8B;&#x5316;&#x540E;&#x76F4;&#x63A5;&#x521B;&#x5EFA;&#xFF1F; &#x4F46;&#x662F;&#x6211;&#x4EEC;&#x6B63;&#x5E38;&#x7684;Bean&#x662F;&#x5728;&#x521D;&#x59CB;&#x5316;&#x521B;&#x5EFA;&#x554A;&#x3002; &#x6240;&#x4EE5;&#x53EF;&#x4EE5;&#x52A0;&#x4E2A;&#x5224;&#x65AD;&#x5982;&#x679C;&#x662F; &#x5FAA;&#x73AF;&#x4F9D;&#x8D56;&#x5C31;&#x5B9E;&#x4F8B;&#x5316;&#x540E;&#x8C03;&#x7528;&#xFF0C;&#x6CA1;&#x6709;&#x5FAA;&#x73AF;&#x4F9D;&#x8D56;&#x5C31;&#x6B63;&#x5E38;&#x5728;&#x521D;&#x59CB;&#x5316;&#x540E;&#x8C03;&#x7528;&#x3002; &#x600E;&#x4E48;&#x5224;&#x65AD;&#x5F53;&#x524D;&#x521B;&#x5EFA;&#x7684;bean&#x662F;&#x4E0D;&#x662F;&#x5FAA;&#x73AF;&#x4F9D;&#x8D56;&#xFF1F; &#x6839;&#x636E;&#x4E8C;&#x7EA7;&#x7F13;&#x5B58;&#x5224;&#x65AD;&#xFF1F;&#x6709;&#x5C31;&#x662F;&#x5FAA;&#x73AF;&#x4F9D;&#x8D56;&#xFF1F; &#x90A3;&#x8FD9;&#x4E2A;&#x5224;&#x65AD;&#x600E;&#x4E48;&#x52A0;&#xFF1F;&#x52A0;&#x8F7D;&#x5B9E;&#x4F8B;&#x5316;&#x540E;&#x9762;&#x884C;&#x5417;&#xFF1F;&#x5B9E;&#x4F8B;&#x5316;&#x540E;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code class="lang-java"><span class="hljs-keyword">if</span>(&#x4E8C;&#x7EA7;&#x7F13;&#x5B58;&#x6709;&#x8BF4;&#x660E;&#x662F;&#x5FAA;&#x73AF;&#x4F9D;&#x8D56;&#xFF1F;){
+    &#x4E8C;&#x7EA7;&#x7F13;&#x5B58;=&#x521B;&#x5EFA;&#x52A8;&#x6001;&#x4EE3;&#x7406;&#x8986;&#x76D6;&#xFF08;&#x5224;&#x65AD;&#x5F53;&#x524D;bean&#x662F;&#x5426;&#x88AB;&#x4E8C;&#x7EA7;&#x7F13;&#x5B58;&#x547D;&#x4E2D;&#xFF09;&#xFF1B;
+}
+</code></pre>
+<p>&#x8FD9;&#x6837;&#x5199;&#x53EF;&#x4EE5;&#x5417;&#xFF1F; &#x80AF;&#x5B9A;&#x4E0D;&#x884C;&#x554A;&#xFF0C; &#x56E0;&#x4E3A;&#x5B9E;&#x4F8B;&#x5316;&#x540E;&#x59CB;&#x7EC8;&#x4F1A;&#x653E;&#x5165;&#x4E8C;&#x7EA7;&#x7F13;&#x5B58;&#x4E2D;&#x3002;</p>
+<p>&#x6240;&#x4EE5;&#x8FD9;&#x6837;&#x5199;&#x4E0D;&#x7BA1;&#x662F;&#x4E0D;&#x662F;&#x5FAA;&#x73AF;&#x4F9D;&#x8D56;&#x90FD;&#x4F1A;&#x5728;&#x5B9E;&#x4F8B;&#x5316;&#x540E;&#x521B;&#x5EFA;&#x52A8;&#x6001;&#x4EE3;&#x7406;&#x3002;</p>
+<p>&#x521B;&#x5EFA;&#x672C;&#x8EAB;&#x7684;&#x65F6;&#x5019;&#x6CA1;&#x6CD5;&#x5224;&#x65AD;&#x81EA;&#x5DF1;&#x662F;&#x4E0D;&#x662F;&#x5FAA;&#x73AF;&#x4F9D;&#x8D56;&#xFF0C;&#xFF0C; &#x53EA;&#x6709;&#x5728;B &#x5F15;&#x7528;A &#xFF08;&#x4E0D;&#x540C;bean&#x7684;&#x5F15;&#x7528;&#x76F4;&#x63A5;&#xFF09;&#x4E0B;&#x624D;&#x80FD;&#x5224;&#x65AD;&#x662F;&#x4E0D;&#x662F;&#x5FAA;&#x73AF;&#x4F9D;&#x8D56;&#xFF08;&#x6BD4;&#x5982;B&#x5F15;&#x7528;A,A &#x6B63;&#x5728;&#x521B;&#x5EFA;&#xFF0C;&#x90A3;&#x8BF4;&#x660E;&#x662F;&#x5FAA;&#x73AF;&#x4F9D;&#x8D56;&#xFF09;&#xFF0C; &#x6240;&#x4EE5;&#x5224;&#x65AD;&#x8981;&#x5378;&#x8F7D;getSingleton&#x4E2D;&#x3002;</p>
+<pre><code class="lang-java">&#x5047;&#x5982;A&#x662F;proxy.
+
+A&#x521B;&#x5EFA;Bean &#x2010;&#x2010;&gt;&#x6CE8;&#x5165;&#x5C5E;&#x6027;B&#x2010;&#x2010;&gt;getBean(B)&#x2010;&#x2010;&gt;&#x521B;&#x5EFA;B&#x2010;&#x2010;&gt;&#x6CE8;&#x5165;&#x5C5E;&#x6027;A&#x2010;&#x2010;&#x2010;&#x2010;&gt;getSingleton(<span class="hljs-string">&quot;a&quot;</span>)&#x4E4B;&#x540E;&#x5199;&#x5982;&#x4E0B;&#x4EE3;&#x7801;
+
+<span class="hljs-keyword">if</span>(&#x4E8C;&#x7EA7;&#x7F13;&#x5B58;&#x6709;&#x8BF4;&#x660E;&#x662F;&#x5FAA;&#x73AF;&#x4F9D;&#x8D56;&#xFF1F;){
+    <span class="hljs-comment">// &#x5728;&#x8FD9;&#x91CC;&#x521B;&#x5EFA;AOP&#x4EE3;&#x7406;&#x5417;&#xFF1F;</span>
+    &#x4E8C;&#x7EA7;&#x7F13;&#x5B58;=&#x521B;&#x5EFA;&#x52A8;&#x6001;&#x4EE3;&#x7406;&#x8986;&#x76D6;&#xFF08;&#x5224;&#x65AD;&#x5F53;&#x524D;bean&#x662F;&#x5426;&#x88AB;&#x4E8C;&#x7EA7;&#x7F13;&#x5B58;&#x547D;&#x4E2D;&#xFF0C;&#x6CA1;&#x547D;&#x4E2D;&#x4F9D;&#x7136;&#x8FD4;&#x56DE;&#x4E8C;&#x7EA7;&#x7F13;&#x5B58;&#xFF09;&#xFF1B;
+}
+</code></pre>
+<p>&#x5728;&#x8FD9;&#x91CC;&#x521B;&#x5EFA;&#x884C;&#x5417;&#xFF1F;&#x884C;&#xFF01;&#x90A3;&#x8981;&#x4E09;&#x7EA7;&#x7F13;&#x5B58;&#x5E72;&#x5417;&#xFF1F;&#x5982;&#x679C;&#x662F;&#x8FD9;&#x6837;&#x7684;&#x4F9D;&#x8D56;&#x5462;&#xFF1F;</p>
+<p><img src="../source/images/ch-05/circular-dependencies-05.png" alt="circular-dependencies-05"></p>
+<p>A&#x88AB;&#x5FAA;&#x73AF;&#x4F9D;&#x8D56;&#x4E86;&#x4FE9;&#x6B21;&#x6216;N&#x6B21;&#xFF0C; &#x90A3;&#x8981;&#x521B;&#x5EFA;N&#x6B21;aop&#x5417;&#x7136;&#x540E;&#x5728;&#x91CC;&#x9762;&#x5224;&#x65AD;&#x6709;&#x6CA1;&#x6709;&#x547D;&#x4E2D;? &#x4EC0;&#x4E48;&#xFF1F; &#x4F60;&#x8BF4;&#x6839;&#x636E;&#x4E8C;&#x7EA7;&#x7F13;&#x5B58;&#x7684;&#x5BF9;&#x8C61;&#x5224;&#x65AD;&#xFF1F; &#x5982;&#x679C;&#x662F;&#x52A8;&#x6001;&#x4EE3; &#x7406;&#x5C31;&#x4E0D;&#x91CD;&#x590D;&#x521B;&#x5EFA;&#xFF1F;&#x903B;&#x8F91;&#x592A;&#x590D;&#x6742;&#x4E86;&#x3002;&#x6BEB;&#x65E0;&#x6269;&#x5C55;&#x6027;&#x4E5F;&#x592A;&#x8FC7;&#x4E8E;&#x8026;&#x5408;&#x3002;&#x3002;&#x5982;&#x679C;&#x5E0C;&#x671B;&#x5FAA;&#x73AF;&#x4F9D;&#x8D56;&#x7ED9;&#x7A0B;&#x5E8F;&#x5458;&#x6269;&#x5C55;&#x5462;&#xFF1F;&#x90A3;&#x7A0B;&#x5E8F;&#x5458;&#x4E0D;&#x4E00;&#x5B9A;&#x5C31;&#x8FD4;&#x56DE;proxy &#x3002;</p>
+<pre><code class="lang-java">&#x5047;&#x5982;A&#x662F;proxy. 
+
+A&#x521B;&#x5EFA;Bean &#x2010;&#x2010;&gt;&#x6CE8;&#x5165;&#x5C5E;&#x6027;B&#x2010;&#x2010;&gt;getBean(B)&#x2010;&#x2010;&gt;&#x521B;&#x5EFA;B&#x2010;&#x2010;&gt;&#x6CE8;&#x5165;&#x5C5E;&#x6027;A&#x2010;&#x2010;&#x2010;&#x2010;&gt;getSingleton(<span class="hljs-string">&quot;a&quot;</span>)&#x4E4B;&#x540E;&#x5199;&#x5982;&#x4E0B;&#x4EE3;&#x7801;
+
+<span class="hljs-keyword">if</span> (&#x4E8C;&#x7EA7;&#x7F13;&#x5B58;&#x6709;&#x8BF4;&#x660E;&#x662F;&#x5FAA;&#x73AF;&#x4F9D;&#x8D56;&#xFF1F;) {
+  <span class="hljs-keyword">if</span> (&#x4E8C;&#x7EA7;&#x7F13;&#x5B58;&#x662F;aop&#x5C31;) {
+    <span class="hljs-keyword">return</span> &#x4E8C;&#x7EA7;&#x7F13;&#x5B58;;
+  }
+
+  <span class="hljs-comment">// &#x5728;&#x8FD9;&#x91CC;&#x521B;&#x5EFA;AOP&#x4EE3;&#x7406;&#x5417;&#xFF1F;</span>
+  &#x4E8C;&#x7EA7;&#x7F13;&#x5B58;=&#x521B;&#x5EFA;&#x52A8;&#x6001;&#x4EE3;&#x7406;&#x8986;&#x76D6;&#xFF08;&#x5224;&#x65AD;&#x5F53;&#x524D;bean&#x662F;&#x5426;&#x88AB;&#x4E8C;&#x7EA7;&#x7F13;&#x5B58;&#x547D;&#x4E2D;&#xFF0C;&#x6CA1;&#x547D;&#x4E2D;&#x4F9D;&#x7136;&#x8FD4;&#x56DE;&#x4E8C;&#x7EA7;&#x7F13;&#x5B58;&#xFF09;&#xFF1B;
+}
+</code></pre>
+<p>&#x9664;&#x4E86;&#x8FD9;&#x6837;&#x6CA1;&#x6709;&#x66F4;&#x597D;&#x7684;&#x89E3;&#x51B3;&#x65B9;&#x6848;&#x5417;&#xFF1F; &#x80FD;&#x4E0D;&#x80FD;&#x8BA9;&#x4E8C;&#x7EA7;&#x7F13;&#x5B58;&#x5B58;&#x50A8;&#x7684;bean&#x65E0;&#x8111;&#x8FD4;&#x56DE;&#x5C31;&#x884C;&#x4E86;&#xFF08;&#x4E0D;&#x7BA1;&#x662F;&#x666E;&#x901A;&#x7684;&#x8FD8;&#x662F;&#x4EE3;&#x7406;&#x7684;&#xFF0C;&#x8BA9;&#x8FD9;&#x5757;&#x903B;&#x8F91;&#x5206;&#x79BB;&#xFF1F; &#x53EF; &#x4EE5;&#x3002; &#x589E;&#x52A0;&#x4E09;&#x7EA7;&#x7F13;&#x5B58;&#xFF0C;&#x4E8C;&#x7EA7;&#x7F13;&#x5B58;&#x5148;&#x5565;&#x4E5F;&#x4E0D;&#x5B58;&#x3002;</p>
+<p>&#x4E09;&#x7EA7;&#x7F13;&#x5B58; &#x5B58;&#x4E00;&#x4E2A;&#x51FD;&#x6570;&#x63A5;&#x53E3;&#xFF0C; &#x52A8;&#x6001;&#x4EE3;&#x7406;&#x8FD8;&#x662F;&#x666E;&#x901A;bean&#x7684;&#x903B;&#x8F91;&#x8C03;&#x7528;BeanPostProcessor &#x90FD;&#x653E;&#x5728;&#x8FD9;&#x91CC;&#x9762;&#x3002; &#x53EA;&#x8981;&#x8C03;&#x7528;&#x4E86;&#x5C31;&#x5B58;&#x5728;&#x4E8C;&#x7EA7;&#x7F13;&#x5B58;&#xFF0C;&#x65E0; &#x8111;&#x8FD4;&#x56DE;&#x5C31;&#x884C;&#x3002; &#x5927;&#x5927;&#x51CF;&#x5C11;&#x4E1A;&#x52A1;&#x903B;&#x8F91;&#x590D;&#x6742;&#x5EA6;</p>
+<h5 id="&#x4E3A;&#x4EC0;&#x4E48;spring&#x4E0D;&#x80FD;&#x89E3;&#x51B3;&#x6784;&#x9020;&#x5668;&#x7684;&#x5FAA;&#x73AF;&#x4F9D;&#x8D56;&#xFF1F;"><a name="&#x4E3A;&#x4EC0;&#x4E48;spring&#x4E0D;&#x80FD;&#x89E3;&#x51B3;&#x6784;&#x9020;&#x5668;&#x7684;&#x5FAA;&#x73AF;&#x4F9D;&#x8D56;&#xFF1F;" class="anchor-navigation-ex-anchor" href="#&#x4E3A;&#x4EC0;&#x4E48;spring&#x4E0D;&#x80FD;&#x89E3;&#x51B3;&#x6784;&#x9020;&#x5668;&#x7684;&#x5FAA;&#x73AF;&#x4F9D;&#x8D56;&#xFF1F;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x4E3A;&#x4EC0;&#x4E48;spring&#x4E0D;&#x80FD;&#x89E3;&#x51B3;&#x6784;&#x9020;&#x5668;&#x7684;&#x5FAA;&#x73AF;&#x4F9D;&#x8D56;&#xFF1F;" class="plugin-anchor" href="#&#x4E3A;&#x4EC0;&#x4E48;spring&#x4E0D;&#x80FD;&#x89E3;&#x51B3;&#x6784;&#x9020;&#x5668;&#x7684;&#x5FAA;&#x73AF;&#x4F9D;&#x8D56;&#xFF1F;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x4E3A;&#x4EC0;&#x4E48;Spring&#x4E0D;&#x80FD;&#x89E3;&#x51B3;&#x6784;&#x9020;&#x5668;&#x7684;&#x5FAA;&#x73AF;&#x4F9D;&#x8D56;&#xFF1F;</h5>
+<p>&#x4ECE;&#x6D41;&#x7A0B;&#x56FE;&#x5E94;&#x8BE5;&#x4E0D;&#x96BE;&#x770B;&#x51FA;&#x6765;&#xFF0C;&#x5728;Bean&#x8C03;&#x7528;&#x6784;&#x9020;&#x5668;&#x5B9E;&#x4F8B;&#x5316;&#x4E4B;&#x524D;&#xFF0C;&#x4E00;&#x4E8C;&#x4E09;&#x7EA7;&#x7F13;&#x5B58;&#x5E76;&#x6CA1;&#x6709;Bean&#x7684;&#x4EFB;&#x4F55;&#x76F8;&#x5173;&#x4FE1;&#x606F;&#xFF0C;&#x5728;</p>
+<p>&#x5B9E;&#x4F8B;&#x5316;&#x4E4B;&#x540E;&#x624D;&#x653E;&#x5165;&#x4E09;&#x7EA7;&#x7F13;&#x5B58;&#x4E2D;&#xFF0C;&#x56E0;&#x6B64;&#x5F53;getBean&#x7684;&#x65F6;&#x5019;&#x7F13;&#x5B58;&#x5E76;&#x6CA1;&#x6709;&#x547D;&#x4E2D;&#xFF0C;&#x8FD9;&#x6837;&#x5C31;&#x629B;&#x51FA;&#x4E86;&#x5FAA;&#x73AF;&#x4F9D;&#x8D56;&#x7684;&#x5F02;&#x5E38;&#x4E86;&#x3002;</p>
+<h5 id="&#x4E3A;&#x4EC0;&#x4E48;&#x591A;&#x4F8B;bean&#x4E0D;&#x80FD;&#x89E3;&#x51B3;&#x5FAA;&#x73AF;&#x4F9D;&#x8D56;&#xFF1F;"><a name="&#x4E3A;&#x4EC0;&#x4E48;&#x591A;&#x4F8B;bean&#x4E0D;&#x80FD;&#x89E3;&#x51B3;&#x5FAA;&#x73AF;&#x4F9D;&#x8D56;&#xFF1F;" class="anchor-navigation-ex-anchor" href="#&#x4E3A;&#x4EC0;&#x4E48;&#x591A;&#x4F8B;bean&#x4E0D;&#x80FD;&#x89E3;&#x51B3;&#x5FAA;&#x73AF;&#x4F9D;&#x8D56;&#xFF1F;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x4E3A;&#x4EC0;&#x4E48;&#x591A;&#x4F8B;bean&#x4E0D;&#x80FD;&#x89E3;&#x51B3;&#x5FAA;&#x73AF;&#x4F9D;&#x8D56;&#xFF1F;" class="plugin-anchor" href="#&#x4E3A;&#x4EC0;&#x4E48;&#x591A;&#x4F8B;bean&#x4E0D;&#x80FD;&#x89E3;&#x51B3;&#x5FAA;&#x73AF;&#x4F9D;&#x8D56;&#xFF1F;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x4E3A;&#x4EC0;&#x4E48;&#x591A;&#x4F8B;Bean&#x4E0D;&#x80FD;&#x89E3;&#x51B3;&#x5FAA;&#x73AF;&#x4F9D;&#x8D56;&#xFF1F;</h5>
+<p>&#x6211;&#x4EEC;&#x81EA;&#x5DF1;&#x624B;&#x5199;&#x4E86;&#x89E3;&#x51B3;&#x5FAA;&#x73AF;&#x4F9D;&#x8D56;&#x7684;&#x4EE3;&#x7801;&#xFF0C;&#x53EF;&#x4EE5;&#x770B;&#x5230;&#xFF0C;&#x6838;&#x5FC3;&#x662F;&#x5229;&#x7528;&#x4E00;&#x4E2A;map&#xFF0C;&#x6765;&#x89E3;&#x51B3;&#x8FD9;&#x4E2A;&#x95EE;&#x9898;&#x7684;&#xFF0C;&#x8FD9;&#x4E2A;map&#x5C31;&#x76F8;&#x5F53;&#x4E8E;&#x7F13;&#x5B58;&#x3002;</p>
+<p>&#x4E3A;&#x4EC0;&#x4E48;&#x53EF;&#x4EE5;&#x8FD9;&#x4E48;&#x505A;&#xFF0C;&#x56E0;&#x4E3A;&#x6211;&#x4EEC;&#x7684;bean&#x662F;&#x5355;&#x4F8B;&#x7684;&#xFF0C;&#x800C;&#x4E14;&#x662F;&#x5B57;&#x6BB5;&#x6CE8;&#x5165;&#xFF08;setter&#x6CE8;&#x5165;&#xFF09;&#x7684;&#xFF0C;&#x5355;&#x4F8B;&#x610F;&#x5473;&#x7740;&#x53EA;&#x9700;&#x8981;&#x521B;&#x5EFA;&#x4E00;&#x6B21;&#x5BF9;&#x8C61;&#xFF0C;&#x540E;&#x9762;&#x5C31;&#x53EF;&#x4EE5;&#x4ECE;&#x7F13;&#x5B58;&#x4E2D;&#x53D6;&#x51FA;&#x6765;&#xFF0C;&#x5B57;&#x6BB5;&#x6CE8;&#x5165;&#xFF0C;&#x610F;&#x5473;&#x7740;&#x6211;&#x4EEC;&#x65E0;&#x9700;&#x8C03;&#x7528;&#x6784;&#x9020;&#x65B9;&#x6CD5;&#x8FDB;&#x884C;&#x6CE8;&#x5165;&#x3002;</p>
+<ul>
+<li><p>&#x5982;&#x679C;&#x662F;&#x539F;&#x578B;bean&#xFF0C;&#x90A3;&#x4E48;&#x5C31;&#x610F;&#x5473;&#x7740;&#x6BCF;&#x6B21;&#x90FD;&#x8981;&#x53BB;&#x521B;&#x5EFA;&#x5BF9;&#x8C61;&#xFF0C;&#x65E0;&#x6CD5;&#x5229;&#x7528;&#x7F13;&#x5B58;&#xFF1B;</p>
+</li>
+<li><p>&#x5982;&#x679C;&#x662F;&#x6784;&#x9020;&#x65B9;&#x6CD5;&#x6CE8;&#x5165;&#xFF0C;&#x90A3;&#x4E48;&#x5C31;&#x610F;&#x5473;&#x7740;&#x9700;&#x8981;&#x8C03;&#x7528;&#x6784;&#x9020;&#x65B9;&#x6CD5;&#x6CE8;&#x5165;&#xFF0C;&#x4E5F;&#x65E0;&#x6CD5;&#x5229;&#x7528;&#x7F13;&#x5B58;&#x3002;</p>
+</li>
+</ul>
+<h5 id="&#x5FAA;&#x73AF;&#x4F9D;&#x8D56;&#x53EF;&#x4EE5;&#x5173;&#x95ED;&#x5417;"><a name="&#x5FAA;&#x73AF;&#x4F9D;&#x8D56;&#x53EF;&#x4EE5;&#x5173;&#x95ED;&#x5417;" class="anchor-navigation-ex-anchor" href="#&#x5FAA;&#x73AF;&#x4F9D;&#x8D56;&#x53EF;&#x4EE5;&#x5173;&#x95ED;&#x5417;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x5FAA;&#x73AF;&#x4F9D;&#x8D56;&#x53EF;&#x4EE5;&#x5173;&#x95ED;&#x5417;" class="plugin-anchor" href="#&#x5FAA;&#x73AF;&#x4F9D;&#x8D56;&#x53EF;&#x4EE5;&#x5173;&#x95ED;&#x5417;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x5FAA;&#x73AF;&#x4F9D;&#x8D56;&#x53EF;&#x4EE5;&#x5173;&#x95ED;&#x5417;</h5>
+<p>&#x53EF;&#x4EE5;&#xFF0C;Spring&#x63D0;&#x4F9B;&#x4E86;&#x8FD9;&#x4E2A;&#x529F;&#x80FD;&#xFF0C;&#x6211;&#x4EEC;&#x9700;&#x8981;&#x8FD9;&#x4E48;&#x5199;&#xFF1A;</p>
+<pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Main</span> </span>{
+
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>{
+  AnnotationConfigApplicationContext applicationContext = 
+            <span class="hljs-keyword">new</span> AnnotationConfigApplicationContext();
+  applicationContext.setAllowCircularReferences(<span class="hljs-keyword">false</span>);
+  applicationContext.register(AppConfig.class);
+  applicationContext.refresh();
+  }
+}
+</code></pre>
+<h2 id="4-&#x5982;&#x4F55;&#x8FDB;&#x884C;&#x62D3;&#x5C55;"><a name="4-&#x5982;&#x4F55;&#x8FDB;&#x884C;&#x62D3;&#x5C55;" class="anchor-navigation-ex-anchor" href="#4-&#x5982;&#x4F55;&#x8FDB;&#x884C;&#x62D3;&#x5C55;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="4-&#x5982;&#x4F55;&#x8FDB;&#x884C;&#x62D3;&#x5C55;" class="plugin-anchor" href="#4-&#x5982;&#x4F55;&#x8FDB;&#x884C;&#x62D3;&#x5C55;"><i class="fa fa-link" aria-hidden="true"></i></a>4. &#x5982;&#x4F55;&#x8FDB;&#x884C;&#x62D3;&#x5C55;</h2>
+<p>bean&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x5B9E;&#x73B0;SmartInstantiationAwareBeanPostProcessor&#x63A5;&#x53E3;&#xFF08;&#x4E00;&#x822C;&#x8FD9;&#x4E2A;&#x63A5;&#x53E3;&#x4F9B;spring&#x5185;&#x90E8;&#x4F7F;&#x7528;&#xFF09;&#x7684; getEarlyBeanReference&#x65B9;&#x6CD5;&#x8FDB;&#x884C;&#x62D3;&#x5C55;</p>
+<h3 id="41-&#x4F55;&#x65F6;&#x8FDB;&#x884C;&#x62D3;&#x5C55;&#xFF1F;&#xFF08;&#x8FDB;&#x884C;bean&#x7684;&#x5B9E;&#x4F8B;&#x5316;&#x65F6;&#xFF09;"><a name="41-&#x4F55;&#x65F6;&#x8FDB;&#x884C;&#x62D3;&#x5C55;&#xFF1F;&#xFF08;&#x8FDB;&#x884C;bean&#x7684;&#x5B9E;&#x4F8B;&#x5316;&#x65F6;&#xFF09;" class="anchor-navigation-ex-anchor" href="#41-&#x4F55;&#x65F6;&#x8FDB;&#x884C;&#x62D3;&#x5C55;&#xFF1F;&#xFF08;&#x8FDB;&#x884C;bean&#x7684;&#x5B9E;&#x4F8B;&#x5316;&#x65F6;&#xFF09;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="41-&#x4F55;&#x65F6;&#x8FDB;&#x884C;&#x62D3;&#x5C55;&#xFF1F;&#xFF08;&#x8FDB;&#x884C;bean&#x7684;&#x5B9E;&#x4F8B;&#x5316;&#x65F6;&#xFF09;" class="plugin-anchor" href="#41-&#x4F55;&#x65F6;&#x8FDB;&#x884C;&#x62D3;&#x5C55;&#xFF1F;&#xFF08;&#x8FDB;&#x884C;bean&#x7684;&#x5B9E;&#x4F8B;&#x5316;&#x65F6;&#xFF09;"><i class="fa fa-link" aria-hidden="true"></i></a>4.1 &#x4F55;&#x65F6;&#x8FDB;&#x884C;&#x62D3;&#x5C55;&#xFF1F;&#xFF08;&#x8FDB;&#x884C;bean&#x7684;&#x5B9E;&#x4F8B;&#x5316;&#x65F6;&#xFF09;</h3>
+<pre><code class="lang-java"><span class="hljs-function"><span class="hljs-keyword">protected</span> Object <span class="hljs-title">doCreateBean</span><span class="hljs-params">(<span class="hljs-keyword">final</span> String beanName, 
+                              <span class="hljs-keyword">final</span> RootBeanDefinition mbd, 
+                              <span class="hljs-keyword">final</span> Object[] args)</span> <span class="hljs-keyword">throws</span> BeanCreationException </span>{
+
+  <span class="hljs-comment">//&#x7701;&#x7565;&#x5176;&#x4ED6;&#x4EE3;&#x7801;&#xFF0C;&#x53EA;&#x4FDD;&#x7559;&#x4E86;&#x5173;&#x952E;&#x4EE3;&#x7801;</span>
+  <span class="hljs-comment">//...</span>
+
+  <span class="hljs-comment">// Eagerly cache singletons to be able to resolve circular references</span>
+  <span class="hljs-comment">// even when triggered by lifecycle interfaces like BeanFactoryAware.</span>
+  <span class="hljs-keyword">boolean</span> earlySingletonExposure = (mbd.isSingleton() &amp;&amp; 
+                                    <span class="hljs-keyword">this</span>.allowCircularReferences &amp;&amp; 
+                                    isSingletonCurrentlyInCreation(beanName));
+
+  <span class="hljs-keyword">if</span> (earlySingletonExposure) {
+    <span class="hljs-keyword">if</span> (logger.isDebugEnabled()) {
+      logger.debug(<span class="hljs-string">&quot;Eagerly caching bean &apos;&quot;</span> + beanName +
+                   <span class="hljs-string">&quot;&apos; to allow for resolving potential circular references&quot;</span>);
+    }
+
+    <span class="hljs-comment">//&#x5C06;&#x521A;&#x5B9E;&#x4F8B;&#x5316;&#x597D;&#x7684;bean&#x6DFB;&#x52A0;&#x5230;&#x4E00;&#x7EA7;&#x7F13;&#x5B58;&#x4E2D;</span>
+    addSingletonFactory(beanName, <span class="hljs-keyword">new</span> ObjectFactory
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> Object <span class="hljs-title">getObject</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> BeansException </span>{
+
+      <span class="hljs-comment">//&#x6267;&#x884C;&#x62D3;&#x5C55;&#x7684;&#x540E;&#x7F6E;&#x5904;&#x7406;&#x5668;</span>
+      <span class="hljs-keyword">return</span> getEarlyBeanReference(beanName, mbd, bean);
+    }
+  }
+}
+</code></pre>
+<h3 id="42-getearlybeanreference&#x65B9;&#x6CD5;"><a name="42-getearlybeanreference&#x65B9;&#x6CD5;" class="anchor-navigation-ex-anchor" href="#42-getearlybeanreference&#x65B9;&#x6CD5;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="42-getearlybeanreference&#x65B9;&#x6CD5;" class="plugin-anchor" href="#42-getearlybeanreference&#x65B9;&#x6CD5;"><i class="fa fa-link" aria-hidden="true"></i></a>4.2 getEarlyBeanReference&#x65B9;&#x6CD5;</h3>
+<pre><code class="lang-java"><span class="hljs-function"><span class="hljs-keyword">protected</span> Object <span class="hljs-title">getEarlyBeanReference</span><span class="hljs-params">(String beanName, 
+                                       RootBeanDefinition mbd, 
+                                       Object bean)</span> </span>{
+  Object exposedObject = bean;
+
+  <span class="hljs-comment">//&#x5224;&#x8BFB;&#x6211;&#x4EEC;&#x5BB9;&#x5668;&#x4E2D;&#x662F;&#x5426;&#x6709;InstantiationAwareBeanPostProcessors&#x7C7B;&#x578B;&#x7684;&#x540E;&#x7F6E;&#x5904;&#x7406;&#x5668;</span>
+  <span class="hljs-keyword">if</span> (!mbd.isSynthetic() &amp;&amp; hasInstantiationAwareBeanPostProcessors()) {
+
+    <span class="hljs-comment">//&#x83B7;&#x53D6;&#x6211;&#x4EEC;&#x6240;&#x6709;&#x7684;&#x540E;&#x7F6E;&#x5904;&#x7406;&#x5668;</span>
+    <span class="hljs-keyword">for</span> (BeanPostProcessor bp : getBeanPostProcessors()) {
+
+      <span class="hljs-comment">//&#x5224;&#x65AD;&#x6211;&#x4EEC;&#x7684;&#x540E;&#x7F6E;&#x5904;&#x7406;&#x5668;&#x662F;&#x4E0D;&#x662F;&#x5B9E;&#x73B0;&#x4E86;SmartInstantiationAwareBeanPostProcessor&#x63A5;&#x53E3;</span>
+      <span class="hljs-keyword">if</span> (bp <span class="hljs-keyword">instanceof</span> SmartInstantiationAwareBeanPostProcessor) {
+
+        <span class="hljs-comment">//&#x8FDB;&#x884C;&#x5F3A;&#x5236;&#x8F6C;&#x6362;</span>
+        SmartInstantiationAwareBeanPostProcessor ibp = 
+              (SmartInstantiationAwareBeanPostProcessor) bp;
+
+        <span class="hljs-comment">//&#x6328;&#x4E2A;&#x8C03;&#x7528;SmartInstantiationAwareBeanPostProcessor&#x7684;getEarlyBeanReference</span>
+        exposedObject = ibp.getEarlyBeanReference(exposedObject, beanName);
+      }
+    }
+  }
+  <span class="hljs-keyword">return</span> exposedObject;
+}
+</code></pre>
+<p>&#x6269;&#x5C55;&#x793A;&#x4F8B;&#xFF1A;</p>
+<pre><code class="lang-java"><span class="hljs-meta">@Component</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TulingBPP</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">SmartInstantiationAwareBeanPostProcessor</span> </span>{
+
+  <span class="hljs-function"><span class="hljs-keyword">public</span> Object <span class="hljs-title">getEarlyBeanReference</span><span class="hljs-params">(Object bean, String beanName)</span> <span class="hljs-keyword">throws</span> BeansException </span>{
+
+    <span class="hljs-keyword">if</span>(beanName.equals(<span class="hljs-string">&quot;instanceA&quot;</span>) || beanName.equals(<span class="hljs-string">&quot;instanceB&quot;</span>)) {
+      JdkDynimcProxy jdkDynimcProxy = <span class="hljs-keyword">new</span> JdkDynimcProxy(bean);
+      <span class="hljs-keyword">return</span> jdkDynimcProxy.getProxy();
+    }
+
+    <span class="hljs-keyword">return</span> bean;
+  }
+}
+</code></pre>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="02-Spring-IoC.html" class="navigation navigation-prev " aria-label="Previous page: 2 Spring Ioc容器加载过程—Bean的生命周期源码深度剖析">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="04-Spring-Event.html" class="navigation navigation-next " aria-label="Next page: 4 Spring事件监听机制">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"3 Spring如何解决循环依赖","level":"1.1.5.3","depth":3,"next":{"title":"4 Spring事件监听机制","level":"1.1.5.4","depth":3,"path":"05-Source/04-Spring-Event.md","ref":"05-Source/04-Spring-Event.md","articles":[]},"previous":{"title":"2 Spring Ioc容器加载过程—Bean的生命周期源码深度剖析","level":"1.1.5.2","depth":3,"path":"05-Source/02-Spring-IoC.md","ref":"05-Source/02-Spring-IoC.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","splitter","expandable-chapters-small","anchors","github","github-buttons","sharing-plus","anchor-navigation-ex"],"styles":{"website":"./styles/website.css"},"pluginsConfig":{"github":{"url":"https://github.com/tyrival"},"splitter":{},"search":{},"sharing-plus":{"qq":false,"all":["facebook","google","twitter","instapaper","linkedin","pocket","stumbleupon"],"douban":false,"facebook":true,"weibo":false,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":true,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"anchor-navigation-ex":{"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"mode":"float","multipleH1":true,"pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"printLog":false,"showGoTop":true,"showLevel":false},"github-buttons":{"buttons":[{"user":"Tyrival","repo":"gitbook","type":"star","size":"small","count":false}]},"expandable-chapters-small":{},"sharing":{"qq":false,"all":["google","facebook","weibo","twitter","qq","qzone","linkedin","pocket"],"douban":false,"facebook":false,"weibo":false,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":false,"messenger":false,"line":false,"vk":false,"pocket":false,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","author":"Tyrival","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"架构师学习笔记","language":"zh-hans","gitbook":"3.2.3","description":"架构师学习笔记"},"file":{"path":"05-Source/03-Spring-Resolve-Circular-Dependencies.md","mtime":"2020-09-20T11:25:06.223Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-10-14T08:32:43.954Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-splitter/splitter.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-github/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-github-buttons/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing-plus/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
