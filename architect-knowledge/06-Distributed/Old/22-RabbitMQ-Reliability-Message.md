@@ -144,7 +144,7 @@ rabbitmqctl cluster_status
 rabbitmqctl set_policy ha-all "^" '{"ha-mode":"all"}'
 ```
 
-将所有队列设置为镜像队列，即队列会被复制到各个节点，各个节点状态一致， RabbitMQ高可用集群就已经搭建好了,我们可以重启服务，查看其队列是否在从 节点同步
+将所有队列设置为镜像队列，即队列会被复制到各个节点，各个节点状态一致， RabbitMQ高可用集群就已经搭建好了，我们可以重启服务，查看其队列是否在从 节点同步
 
 - 剔除节点命令
 
@@ -160,7 +160,7 @@ rabbitmqctl forget_cluster_node rabbit@节点名称(比如tyrival87 tyrival88)
 
 HAProxy是一款提供高可用性、负载均衡以及基于TCP和HTTP应用的代理软件，HAProxy是完全免费的、借助HAProxy可以快速并且可靠的提供基于TCP和 HTTP应用的代理解决方案。
 
-HAProxy适用于那些负载较大的web站点，这些站点通常又需要会话保持或七层处理。 HAProxy可以支持数以万计的并发连接,并且HAProxy的运行模式使得它可以很
+HAProxy适用于那些负载较大的web站点，这些站点通常又需要会话保持或七层处理。 HAProxy可以支持数以万计的并发连接，并且HAProxy的运行模式使得它可以很
 
 简单安全的整合进架构中，同时可以保护web服务器不被暴露到网络上
 

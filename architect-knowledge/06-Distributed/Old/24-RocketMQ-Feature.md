@@ -2,11 +2,11 @@
 
 ## 1. 基本概念
 
-##### 消息模型
+### 1.1 消息模型
 
 RocketMQ 主要由 Producer、Broker、Consumer 三部分组成，其中 Producer 负责生产消息，Consumer 负责消费消息，Broker 负责存储消息。
 
-##### 消息生产者（producer）
+##### 消息生产者（Producer）
 
 负责生产消息，一般由业务系统负责生产消息。一个消息生产者会把业务应用系统里产生的消息发送到 broker 服务器。RocketMQ 提供多种发送方式，同步发送、异步发送、顺序发送、单向发送。同步和异步方式均需要Broker 返回确认信息，单向发送不需要。
 
@@ -24,7 +24,7 @@ RocketMQ 主要由 Producer、Broker、Consumer 三部分组成，其中 Produce
 
 ##### 名字服务（Name Server）
 
-名称服务充当路由消息的提供者。生产者或消费者能够通过名字服务查找各主题相应的 Broker IP 列表。多个 Namesrv 实例组成集群，但相互独立，没有信息交换。
+名称服务充当路由消息的提供者。生产者或消费者能够通过名字服务查找各主题相应的 Broker IP 列表。多个 NameServer 实例组成集群，但相互独立，没有信息交换。
 
 ##### 拉取式消费（Pull Consumer）
 
@@ -113,7 +113,7 @@ public enum CommunicationMode {
 
 **Sync**：同步的发送方式，会等待发送结果后才返回
 
-**Async**：异步的发送方式，发送完后，立刻返回。Client 在拿到 Broker 的响应结果后，会 回调指定的 callback. 这个 API 也可以指定 Timeout，不指定也是默认的 3000ms
+**Async**：异步的发送方式，发送完后，立刻返回。Client 在拿到 Broker 的响应结果后，会回调指定的 callback。这个 API 也可以指定 Timeout，不指定则默认 3000ms
 
 **Oneway**：比较简单，发出去后，什么都不管直接返回。
 
@@ -141,9 +141,9 @@ class：org.apache.rocketmq.client.producer.SendStatus
 
 #### 顺序消息
 
-消息有序指的是可以按照消息的发送顺序来消费(FIFO)。RocketMQ可以严格的保证消息有序，可以分为分区有序或者全局有序。
+消息有序指的是可以按照消息的发送顺序来消费（FIFO）。RocketMQ可以严格的保证消息有序，可以分为分区有序或者全局有序。
 
-顺序消费的原理解析，在默认的情况下消息发送会采取Round Robin轮询方式把消息发送到不同的queue(分区队列)；而消费消息的时候从多个queue上拉取消息，这种情况发送和消费是不能保证顺序。但是如果控制发送的顺序消息只依次发送到同一个queue中，消费的时候只从这个queue上依次拉取，则就保证了顺序。当发送和消费参与的queue只有一个，则是全局有序；如果多个queue参与，则为分区有序，即相对每个queue，消息都是有序的。
+顺序消费的原理解析，在默认的情况下，消息发送会采取Round Robin轮询方式，把消息发送到不同的queue（分区队列）；而消费消息的时候从多个queue上拉取消息，这种情况发送和消费是不能保证顺序。但是如果控制发送的顺序消息只依次发送到同一个queue中，消费的时候只从这个queue上依次拉取，则就保证了顺序。当发送和消费参与的queue只有一个，则是全局有序；如果多个queue参与，则为分区有序，即相对每个queue，消息都是有序的。
 
 下面用订单进行分区有序的示例。一个订单的顺序流程是：创建、付款、推送、完成。订单号相同的消息会被先后发送到同一个队列中，消费时，同一个OrderId获取到的肯定是同一个队列。
 
@@ -161,7 +161,7 @@ SUSPEND_CURRENT_QUEUE_A_MOMENT
 
 #### 延时消息
 
-定时消息是指消息发到 Broker 后，不能立刻被 Consumer 消费，要到特定的时间点 或者等待特定的时间后才能被消费。
+定时消息是指消息发到 Broker 后，不能立刻被 Consumer 消费，要到特定的时间点，或者等待特定的时间后才能被消费。
 
 **使用场景**：如电商里，提交了一个订单就可以发送一个延时消息，1h后去检查这个订单的状态，如果还是未付款就取消订单释放库存。
 
@@ -175,7 +175,6 @@ SUSPEND_CURRENT_QUEUE_A_MOMENT
  * 分别对应级别
  * 1 2 3....................
  */
-
 org.apache.rocketmq.store.config.MessageStoreConfig#messageDelayLevel
 
 private String messageDelayLevel = "1s 5s 10s 30s 1m 2m 3m 4m 5m 6m 7m 8m 9m 10m 20m 30m 1h 2h";

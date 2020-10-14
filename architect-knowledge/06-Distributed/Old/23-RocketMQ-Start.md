@@ -346,7 +346,7 @@ nohup sh bin/mqbroker ‐c conf/broker‐s.conf &
 
 - 配置192.168.241.199 Master和Slave
 
-    Master broker-m.conf 配置：
+Master broker-m.conf 配置：
 
 ```bash
 namesrvAddr = 192.168.241.198:9876;192.168.241.199:9876
@@ -363,7 +363,7 @@ listenPort=10911
 storePathRootDir=/root/rocketmq/store‐m
 ```
 
-​		slave broker-s.conf 配置：
+slave broker-s.conf 配置：
 
 ```bash
 namesrvAddr = 192.168.241.198:9876;192.168.241.199:9876
@@ -436,3 +436,202 @@ sh bin/tools.sh org.apache.rocketmq.example.quickstart.Consumer
 > 存储消息的根目录
 > ```
 
+
+
+## 3. Docker多机集群部署
+
+假设有2台服务器，IP分别为 10.211.55.9 和 10.211.55.10
+
+### 3.1 编译镜像
+
+- 下载源码，并将源码复制到2台服务器上
+
+    下载地址：https://github.com/apache/rocketmq-docker
+
+- 进入源码文件夹
+
+```bash
+cd /${PATH_TO_SOURCE}/image-build
+```
+
+- 编译镜像
+
+```bash
+# 此处选择的是RocketMQ版本号为4.5.0，并且基于centos镜像进行编译
+./build-image.sh 4.5.0 centos
+```
+
+> **注意**
+>
+> 查看Dockerfile-centos文件的第50行可以看到，默认是从apache主站进行下载，如果下载速度慢，可以将下载地址改为清华镜像：
+>
+> ```bash
+> https://mirrors.tuna.tsinghua.edu.cn/apache/rocketmq/${ROCKETMQ_VERSION}/rocketmq-all-${ROCKETMQ_VERSION}-bin-release.zip
+> ```
+
+- 查看镜像
+
+```bash
+docker image ls
+
+# 可以看到 apacherocketmq/rocketma:4.5.0 镜像
+```
+
+### 3.2 配置文件
+
+下面以 10.211.55.9 服务器的配置文件为例：
+
+- docker-compose.yml
+
+    其中的name server地址需要填写宿主机的IP，而不是docker容器的IP
+
+```yml
+version: '3.5'
+services:
+  rmq-ns:
+    image: apacherocketmq/rocketmq:4.5.0
+    container_name: rmq-ns
+    ports:
+      - 9876:9876
+    volumes:
+      - /etc/localtime:/etc/localtime
+      - /usr/local/tyrival/rocketmq/logs/nameserver:/opt/logs
+      - /usr/local/tyrival/rocketmq/store/nameserver:/opt/store
+    command: sh mqnamesrv
+    networks:
+        rmq:
+          aliases:
+            - rmq-ns
+
+  rmq-broker-m:
+    image: apacherocketmq/rocketmq:4.5.0
+    container_name: rmq-broker-m
+    ports:
+      - 10911:10911
+    volumes:
+      - /etc/localtime:/etc/localtime
+      - /usr/local/tyrival/rocketmq/logs/broker-1:/opt/logs
+      - /usr/local/tyrival/rocketmq/store/broker-1:/opt/store
+      - /usr/local/tyrival/rocketmq/conf/broker-1.conf:/opt/rocketmq-4.5.0/conf/broker.conf 
+    environment:
+        TZ: Asia/Shanghai
+        NAMESRV_ADDR: "10.211.55.9:9876;10.211.55.10:9876"
+        JAVA_OPTS: " -Duser.home=/opt"
+        JAVA_OPT_EXT: "-server -Xms256m -Xmx256m -Xmn256m"
+    command: sh mqbroker -c /opt/rocketmq-4.5.0/conf/broker.conf autoCreateTopicEnable=true &
+    links:
+      - rmq-ns:rmq-ns
+    networks:
+      rmq:
+        aliases:
+          - rmq-broker-m
+
+  rmq-broker-s:
+    image: apacherocketmq/rocketmq:4.5.0
+    container_name: rmq-broker-s
+    ports:
+      - 10909:10909
+    volumes:
+      - /etc/localtime:/etc/localtime
+      - /usr/local/tyrival/rocketmq/logs/broker-2:/opt/logs
+      - /usr/local/tyrival/rocketmq/store/broker-2:/opt/store
+      - /usr/local/tyrival/rocketmq/conf/broker-2.conf:/opt/rocketmq-4.5.0/conf/broker.conf 
+    environment:
+        TZ: Asia/Shanghai
+        NAMESRV_ADDR: "10.211.55.9:9876;10.211.55.10:9876"
+        JAVA_OPTS: " -Duser.home=/opt"
+        JAVA_OPT_EXT: "-server -Xms256m -Xmx256m -Xmn256m"
+    command: sh mqbroker -c /opt/rocketmq-4.5.0/conf/broker.conf autoCreateTopicEnable=true &
+    links:
+      - rmq-ns:rmq-ns
+    networks:
+      rmq:
+        aliases:
+          - rmq-broker-s
+
+  rmq-console:
+    image: styletang/rocketmq-console-ng
+    container_name: rmq-console
+    ports:
+      - 10900:8080
+    environment:
+        JAVA_OPTS: -Drocketmq.namesrv.addr=10.211.55.9:9876;10.211.55.10:9876 -Dcom.rocketmq.sendMessageWithVIPChannel=false
+    networks:
+      rmq:
+        aliases:
+          - rmq-console
+networks:
+  rmq:
+    name: rmq
+    driver: bridge
+```
+
+> **注意**
+>
+> 可以看到除了配置rocketmq容器外，还配置了基于镜像 `styletang/rocketmq-console-ng` 的 rmq-console 容器，这是一个rocketmq的集群管理应用。
+
+- broker-1.conf
+
+```bash
+# 集群名称
+brokerClusterName = rocketmq-cluster
+# broke名
+brokerName = broker-a-master
+# master用0，slave用其他
+brokerId = 0
+# 这里要写宿主机的IP，否则rocketmq会自动获取docker容器IP
+brokerIP1 = 10.211.55.9
+# 清理时机
+deleteWhen = 04
+# 文件保留48小时
+fileReservedTime = 48
+# 同步模式
+# -SYNC_MASTER 同步双写
+# -ASYNC_MASTER 异步复制
+# -SLAVE
+brokerRole = SYNC_MASTER
+# 刷盘模式
+# -SYNC_FLUSH 同步刷盘
+# -ASYNC_FLUSH 异步刷盘
+flushDiskType = SYNC_FLUSH
+# NamsServer地址
+namesrvAddr = 10.211.55.9:9876;10.211.55.10:9876
+# 允许自动创建topic
+autoCreateTopicEnable = true
+# broker对外服务的监听端口
+listenPort = 10911
+```
+
+- broker-2.conf
+
+```bash
+brokerClusterName = rocketmq-cluster
+brokerName = broker-b-slave
+brokerId = 1
+brokerIP1 = 10.211.55.9
+deleteWhen = 04
+fileReservedTime = 48
+brokerRole = SLAVE
+flushDiskType = SYNC_FLUSH
+namesrvAddr = 10.211.55.9:9876;10.211.55.10:9876
+autoCreateTopicEnable = true
+listenPort = 10909
+```
+
+> **注意**
+>
+> 10.211.55.10 服务器上，需要对2个broke.conf文件进行修改，将其中的 brokerIP1 修改为 0.211.55.10。
+
+### 3.3 启动集群
+
+- 启动集群
+
+    启动时会自动下载 `styletang/rocketmq-console-ng` 镜像。
+
+```bash
+docker-compose up -d
+```
+
+- 查看集群
+
+    浏览器访问：http://10.211.55.9:10900 ，可以看到 rmq-console 提供的集群管理页面，通过此站点可以监控集群状态。

@@ -37,31 +37,31 @@
 
 #### server
 
-又称为broker，接受客户端连接，实现amqp实体服务 
+又称为broker，接受客户端连接，实现amqp实体服务 。
 
 #### connection
 
-连接,应用程序与brokder建立网络连接
+连接，应用程序与brokder建立网络连接。
 
 #### channel
 
-网络通道，几乎所有的操作都是在channel中进行的，是进行消息对象的通道，客户端可以建立 多个通道，每一个channel表示一个会话任务
+网络通道，几乎所有的操作都是在channel中进行的，是进行消息对象的通道，客户端可以建立 多个通道，每一个channel表示一个会话任务。
 
 #### message
 
-服务器和应用程序之间传递数据的载体，有properties（消息属性,用来修饰消息,比如消息的优 先级,延时投递）和Body（消息体）
+服务器和应用程序之间传递数据的载体，有properties（消息属性，用来修饰消息，比如消息的优先级，延时投递）和body（消息体）。
 
 #### virtual host
 
-虚拟主机，是一个逻辑概念,最上层的消息路由，一个虚拟主机中可以包含多个exhange 和 queue 但是一个虚拟主机中不能有名称相同的exchange 和queue
+虚拟主机，是一个逻辑概念,最上层的消息路由，一个虚拟主机中可以包含多个exhange和queue，但是一个虚拟主机中不能有名称相同的exchange和queue。
 
 #### exchange
 
-交换机，消息直接投递到交换机上，然后交换机根据消息的路由key 来路由到对应绑定的队列上
+交换机，消息直接投递到交换机上，然后交换机根据消息的路由key来路由到对应绑定的队列上。
 
-#### baingding
+#### binding
 
-绑定 exchange 与queue的虚拟连接,bingding中可以包含route_key
+绑定exchange与queue的虚拟连接，binding中可以包含route_key。
 
 #### route_key
 
@@ -118,23 +118,42 @@ rpm -ivh rabbitmq-server-3.6.5-1.noarch.rpm
 
 ##### 修改集群用户与连接心跳检测
 
-注意修改vim /usr/lib/rabbitmq/lib/rabbitmq_server-3.6.5/ebin/rabbit.app文件
+注意修改rabbit.app文件
 
-修改：loopback_users 中的 <<"guest">>,只保留guest（不修改只能通过localhost访问）
+```bash
+vim /usr/lib/rabbitmq/lib/rabbitmq_server-3.6.5/ebin/rabbit.app
+```
+
+修改：loopback_users 中的 <<"guest">>，只保留guest（不修改只能通过localhost访问）
 
 ![rabbitmq-start-06](../../source/images/ch-06/old/rabbitmq-start-06.png)
 
 ##### 修改本机系统文件 
 
-- 修改 vim /etc/rabbitmq/rabbitmq-env.conf 添加: NODENAME=rabbit
+- 修改rabbitmq-env.conf
+
+```bash
+vim /etc/rabbitmq/rabbitmq-env.conf
+
+# 添加
+NODENAME=rabbit
+```
 
 ![rabbitmq-start-07](../../source/images/ch-06/old/rabbitmq-start-07.png)
 
-- 修改 vim /etc/hostname
+- 修改hostname
+
+```bash
+vim /etc/hostname
+```
 
 ![rabbitmq-start-08](../../source/images/ch-06/old/rabbitmq-start-08.png)
 
-- 修改本地 vim /etc/hosts文件
+- 修改本地hosts文件
+
+```bash
+ vim /etc/hosts
+```
 
 ![rabbitmq-start-09](../../source/images/ch-06/old/rabbitmq-start-09.png)
 
@@ -160,7 +179,7 @@ lsof -i:5672
 
 ![rabbitmq-start-11](../../source/images/ch-06/old/rabbitmq-start-11.png)
 
-通过
+查看进程
 
 ```bash
 ps -ef|grep rabbitmq
@@ -208,7 +227,7 @@ rabbitmq-plugus rabbitmq_management
 
 测试连接：http://ip:15672  
 
-用户名密码：guest/guest
+用户名密码：guest / guest
 
 ![rabbitmq-start-15](../../source/images/ch-06/old/rabbitmq-start-15.png)
 
@@ -443,7 +462,7 @@ public class RabbitmqConsumer {
 
 - Name：交换机的名称
 
-- Type：交换机的类型，direct, topic, fanout, headers
+- Type：交换机的类型，direct、topic、fanout、headers
 
 - Durability：是否需要持久化
 
@@ -457,11 +476,11 @@ public class RabbitmqConsumer {
 
 #### 直连交换机direct exchange
 
-所以发送的direct exhchange 的消息都会被投递到与routekey名称（与队列名称）相同的queue上
+所以发送的direct exhchange的消息都会被投递到与routekey名称（与队列名称）相同的queue上
 
-**:direct模式下，可以使用rabbitmq自定exchange----> default exchange
+direct模式下，可以使用rabbitmq自定 exchange----> default exchange
 
-所以不需要交换机和任何队列绑定, 消息将会投递到route_key名称和队列名称相同的队列上
+所以不需要交换机和任何队列绑定，消息将会投递到route_key名称和队列名称相同的队列上
 
  ![rabbitmq-start-23](../../source/images/ch-06/old/rabbitmq-start-23.png)
 
@@ -555,13 +574,11 @@ public class DirectExchangeConsumer {
 
 #### 主题交换机 TopicExchange
 
-就是在队列上绑到top 交换机上的路由key 可以是通过通配符来匹配的通配符的规则是 
+就是在队列上绑到top交换机上的路由key，可以是通过通配符来匹配的。通配符的规则是：
 
-比如: log.# ：可以匹配一个单词 也可以匹配多个单词 
+- `log.#` 可以匹配一个单词，也可以匹配多个单词。比如：`log.#` 可以匹配 `log.a`、`log.a.b`。
 
-比如 log.# 可以匹配log.a log.a.b log.* 可以匹配一个单词 
-
-比如 log.* 可以匹配log.a 但是不可以匹配log.a.b
+- `log.*`可以匹配一个单词。比如：`log.*` 可以匹配 `log.a`，但不可以匹配 `log.a.b`。
 
  ![rabbitmq-start-24](../../source/images/ch-06/old/rabbitmq-start-24.png)
 
@@ -620,9 +637,7 @@ public class Top4Consumer {
 
 #### 扇形交换机 fanout exchange
 
-就是消息通过从交换机到队列上不会通过路由key，所以该模式的速度是最快的，只要和交换机绑定的那么消息就会被分发到与之绑定的队列上
-
- ![rabbitmq-start-25](../../source/images/ch-06/old/rabbitmq-start-25.png)
+就是消息通过从交换机到队列上不会通过路由key，所以该模式的速度是最快的，只要和交换机绑定的那么消息就会被分发到与之绑定的队列上 ![rabbitmq-start-25](../../source/images/ch-06/old/rabbitmq-start-25.png)
 
 ##### 代码演示
 
@@ -672,13 +687,13 @@ public static void main(String[] args)
 
 ## 11. 队列，绑定虚拟主机，消息
 
-- 绑定：exchange 与之间的连接关系(通过路由规则) 
+- 绑定：exchange 与之间的连接关系（通过路由规则）
 
-- 队列：用来存储消息的实体
-    - 队列的属性：durability 消息是否被持久化
+- 队列：用来存储消息的实体，队列的属性：
+    - durability消息是否被持久化
     - AutoDelete：表示最后一个监听被移除那么该队列就会被删除
 - 消息：用来生产着和消费者之间传递数据的
-    - 消息属性：包括消息体body 和属性 properties
+    - 消息属性：包括消息体body和属性properties
     - 常用属性：
         - delivery mode
         - headers
@@ -686,7 +701,7 @@ public static void main(String[] args)
         - content_encoding（消息编码）
         - priporty（消息优先级）correntlation_id（最为消息唯一的id）
         - reply_to（消息失败做重回队列）
-        - expiretion（消息的过期时间)
+        - expiretion（消息的过期时间）
         - message_id（消息id）
         - timestamp
         - type
