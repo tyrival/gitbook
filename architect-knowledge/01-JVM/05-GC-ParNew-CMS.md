@@ -37,7 +37,7 @@
 
 根据老年代的特点特出的一种标记算法，标记过程仍然与“标记-清除”算法一样，但后续步骤不是直接对可回收对象回收，而是让所有存活的对象向一端移动，然后直接清理掉端边界以外的内存。
 
-![img](https://note.youdao.com/yws/public/resource/21b50d8595b245f7d7d01a6bbfefe6c4/xmlnote/9327E5C7D8A94F9086CDDB67A1EA57CC/94590)
+![mark-compact](../source/images/ch-01/mark-compact.png)
 
 ​    
 

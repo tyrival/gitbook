@@ -88,7 +88,7 @@ img[alt="string-pool-10"] {
 
 /* Tomcat */
 img[alt="tomcat-classloader"] {
-    width: 60%;
+    width: 40%;
 }
 
 img[alt="mark-copy"] {
@@ -303,6 +303,38 @@ img[alt="spring-aop-14"] {
     width: 40%;
 }
 
+img[alt="spring-transaction-07"] {
+    width: 60%;
+}
+
+img[alt="spring-transaction-09"] {
+    width: 60%;
+}
+
+img[alt="spring-transaction-14"] {
+    width: 80%;
+}
+
+img[alt="spring-transaction-17"] {
+    width: 60%;
+}
+
+img[alt="log-01"] {
+    width: 50%;
+}
+
+img[alt="log-10"] {
+    width: 50%;
+}
+
+img[alt="log-12"] {
+    width: 60%;
+}
+
+img[alt="log-13"] {
+    width: 60%;
+}
+
 
 /* ================ 06-Distributed ================ */
 
@@ -449,6 +481,10 @@ img[alt="mongo-cluster-architecture"] {
 
 img[alt="mongo-shard-architecture"] {
     width: 80%;
+}
+
+img[alt="netty-bytebuf"] {
+    width: 60%;
 }
 
 img[alt="netty-sample-20"] {

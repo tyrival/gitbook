@@ -409,7 +409,7 @@ loadClass 方法稍微复杂一点，主要有六个步骤：
 2. 假如两个 Web 应用都依赖同一个第三方的 JAR 包，比如 Spring，那 Spring 的 JAR 包被加载到内存后，Tomcat 要保证这两个 Web 应用能够共享，也就是说 Spring 的 JAR 包只被加载一次，否则随着依赖的第三方 JAR 包增多，JVM 的内存会膨胀。
 3. 跟 JVM 一样，我们需要隔离 Tomcat 本身的类和 Web 应用的类。
 
-![img](https://note.youdao.com/yws/public/resource/6c1a4fe250f949a9ced638b9fabd1235/xmlnote/3F431C2511E943B98544123C16726E7C/1387)
+![tomcat-classloader](../source/images/ch-02/tomcat-classloader.png)
 
 ### Session
 

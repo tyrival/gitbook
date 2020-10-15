@@ -61,7 +61,7 @@ Netty的NioEventLoop读取到消息之后，直接调用ChannelPipeline的fireCh
 
 随着JVM虚拟机和JIT即时编译技术的发展，对象的分配和回收是个非常轻量级的工作。但是对于缓冲区Buffer(相当于一个内存块)，情况却稍有不同，特别是对于堆外直接内存的分配和回收，是一件耗时的操作。为了尽量重用缓冲区，Netty提供了基于ByteBuf内存池的缓冲区重用机制。需要的时候直接从池子里获取ByteBuf使用即可，使用完毕之后就重新放回到池子里去。下面我们一起看下Netty ByteBuf的实现：
 
-![img](https://note.youdao.com/yws/public/resource/ab45dc97644411c44fbd27ee95d8244e/xmlnote/D9F1BF5FB75C492FA28D1362201520E3/85205)
+![netty-bytebuf](../../source/images/ch-06/old/netty-bytebuf.png)
 
  
 
@@ -105,7 +105,7 @@ Netty的NioEventLoop读取到消息之后，直接调用ChannelPipeline的fireCh
 
 Netty在启动辅助类ChannelOption中可以灵活的配置TCP参数，满足不同的用户场景。
 
-![img](https://note.youdao.com/yws/public/resource/ab45dc97644411c44fbd27ee95d8244e/xmlnote/A2FEED61AFD546A2A8647AE1CB8B690C/85175)
+![netty-sample-26](../../source/images/ch-06/old/netty-sample-26.png)
 
  
 
