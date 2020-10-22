@@ -170,12 +170,12 @@ Tomcat是一个基于JAVA的WEB容器，其实现了JAVA EE中的Servlet与jsp�
 * Connector连接器
   * HTTP 1.1
   * SSL  https
-  * AJP（ Apache JServ Protocol） apache私有协议，用于apache反向代理Tomcat
-* Container 
+  * AJP（ Apache JServ Protocol） apache私有协议，用于apache反向代理Tomcat
+* Container 
   * Engine    引擎 catalina
   * Host        虚拟机 基于域名 分发请求
   * Context  隔离各个WEB应用 每个Context的  ClassLoader都是独立
-* Component 
+* Component 
   * Manager （管理器）
   * logger （日志管理）
   * loader （载入器）
@@ -186,7 +186,7 @@ Tomcat是一个基于JAVA的WEB容器，其实现了JAVA EE中的Servlet与jsp�
 
 ### Tomcat server.xml
 
-#### server  
+#### server  
 
 root元素：server 的顶级配置。
 
@@ -226,7 +226,7 @@ SHUTDOWN
 *示例：*
 
 ```xml
- <Connector port="8860" protocol="org.apache.coyote.http11.Http11NioProtocol"
+ <Connector port="8860" protocol="org.apache.coyote.http11.Http11NioProtocol"
             connectionTimeout="20000"
             redirectPort="8862"
             URIEncoding="UTF-8"
@@ -255,9 +255,9 @@ SHUTDOWN
 *示例：*
 
 ```xml
-<Host name="www.luban.com"  appBase="/usr/www/luban" unpackWARs="true" autoDeploy="true">
+<Host name="www.luban.com"  appBase="/usr/www/luban" unpackWARs="true" autoDeploy="true">
 	<Valve className="org.apache.catalina.valves.AccessLogValve" 
-         directory="logs"               
+         directory="logs"               
          prefix="www.luban.com.access_log" 
          suffix=".txt" 
          pattern="%h %l %u %t &quot;%r&quot; %s %b" />
@@ -308,7 +308,7 @@ Tomcat启动参数如下
 - 更新启动脚本
 
 ```bash
-#!/bin/bash 
+#!/bin/bash 
 export JAVA_OPTS="-Xms100m -Xmx200m"
 export CATALINA_HOME=/root/svr/apache-tomcat
 export CATALINA_BASE="`pwd`"

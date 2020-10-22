@@ -53,14 +53,14 @@ public class BigEvent  extends ApplicationEvent {
 
 ```java
 @Component
-public class HelloEventListener implements ApplicationListener<OrderEvent> {
-  
-    @Override
-    public void onApplicationEvent(OrderEvent event) {
+public class HelloEventListener implements ApplicationListener<OrderEvent> {
+  
+    @Override
+    public void onApplicationEvent(OrderEvent event) {
         if(event.getName().equals("减库存")){
             System.out.println("减库存.......");
         }
-    }
+    }
 }         
 ```
 
@@ -85,7 +85,7 @@ public class OrderEventListener {
 事件发布方式很简单
 
 ```java
-applicationContext.publishEvent(new HelloEvent(this,"lgb"));
+applicationContext.publishEvent(new HelloEvent(this,"lgb"));
 ```
 
 然后调用方法就能看到

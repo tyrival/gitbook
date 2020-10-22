@@ -59,7 +59,7 @@ cp zoo_sample.cfg zoo.cfg
 tickTime=2000
 # 允许follower初始化连接到leader最大时长，它表示tickTime时间倍数 即:initLimit*tickTime
 initLimit=10
-# 允许follower与leader数据同步最大时长,它表示tickTime时间倍数 
+# 允许follower与leader数据同步最大时长,它表示tickTime时间倍数 
 syncLimit=5
 # zookeper 数据存储目录
 dataDir=/tmp/zookeeper
@@ -102,7 +102,7 @@ autopurge.purgeInterval=1
 ###### `history`
 查看执行的历史记录
 ###### `redo cmdno`
-重复 执行命令，history 中命令编号确定
+重复 执行命令，history 中命令编号确定
 ###### `removewatches path [-c|-d|-a] [-l]`
 删除指定监听
 ###### `set [-s] [-v version] path data`
@@ -280,7 +280,7 @@ getAcl /testAcl
 - 修改默认权限为 读写
 
 ```bash
-# 设置为rw权限 
+# 设置为rw权限 
 setAcl /testAcl world:anyone:rw
 # 可以正常读
 get /testAcl

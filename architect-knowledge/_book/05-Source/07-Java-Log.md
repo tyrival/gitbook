@@ -5,10 +5,10 @@
 早年的时候，java工程中使用log4j框架来输出日志，代码是这么写的：
 
 ```java
-import org.apache.log4j.Logger;
+import org.apache.log4j.Logger;
 
 // 省略
-Logger logger = Logger.getLogger(Test.class);
+Logger logger = Logger.getLogger(Test.class);
 logger.trace("trace");
 // 省略
 ```
@@ -18,10 +18,10 @@ logger.trace("trace");
 然后，当你的领导要你把日志框架改为JUL，这时候你只能一行行的将log4j的api改为JUL的api，如下所示：
 
 ```java
-import java.util.logging.Logger；
+import java.util.logging.Logger；
 
 // 省略
-Logger loggger = Logger.getLogger(Test.class.getName()); 
+Logger loggger = Logger.getLogger(Test.class.getName()); 
 logger.finest("finest");
 // 省略
 ```
@@ -39,11 +39,11 @@ JCL默认配置：如果能找到Log4j 则默认使用log4j 实现，如果没�
 于是，代码里变成这么写了：
 
 ```java
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 // 省略
-Log log = LogFactory.getLog(Test.class);
+Log log = LogFactory.getLog(Test.class);
 log.trace('trace');
 // 省略
 ```
@@ -59,12 +59,12 @@ log.trace('trace');
 我们在代码中需要写日志，变成下面这么写：
 
 ```java
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 // 省略
-Logger logger = LoggerFactory.getLogger(Test.class);
-// 省略
+Logger logger = LoggerFactory.getLogger(Test.class);
+// 省略
 logger.info("info");
 ```
 

@@ -163,7 +163,7 @@ SET product:10001 true  ex  10  nx
 例如统计一篇文章的阅读量，可以用redis进行实现。
 
 ```bash
-INCR article:readcount:{文章id}  	
+INCR article:readcount:{文章id}  	
 GET article:readcount:{文章id} 
 ```
 
@@ -204,7 +204,7 @@ HDEL  key  field  [field ...]
 # 返回哈希表key中field的数量
 HLEN  key
 # 返回哈希表key中所有的键值
-HGETALL  key
+HGETALL  key
 # 为哈希表key中field键的值加上增量increment
 HINCRBY  key  field  increment
 ```

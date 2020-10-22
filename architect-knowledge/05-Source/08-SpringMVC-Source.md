@@ -434,7 +434,7 @@ Bean 被创建两次 ？
 Spring 的 IOC 容器不应该扫描 SpringMVC 中的 bean，对应的SpringMVC 的 IOC 容器不应该扫描 Spring 中的 bean
 
 ```xml
-<context:component-scan base-package="com.baiqi.springmvc" use-default-filters="false">  
+<context:component-scan base-package="com.baiqi.springmvc" use-default-filters="false">  
  <context:include-filter 
    type="annotation" expression="org.springframework.stereotype.Controller"/>
  <context:include-filter 
@@ -443,12 +443,12 @@ Spring 的 IOC 容器不应该扫描 SpringMVC 中的 bean，对应的SpringMVC 
 ```
 
 ```xml
-<context:component-scan base-package="com.baiqi.springmvc">  
+<context:component-scan base-package="com.baiqi.springmvc">  
  <context:exclude-filter 
    type="annotation" expression="org.springframework.stereotype.Controller"/>
  <context:exclude-filter
    type="annotation" expression="org.springframework.web.bind.annotation.ControllerAdvice"/>
- </context:component-scan>
+ </context:component-scan>
 ```
 
 

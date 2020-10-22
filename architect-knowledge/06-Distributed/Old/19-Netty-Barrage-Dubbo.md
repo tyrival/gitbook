@@ -107,18 +107,18 @@ Http 连接与webSocket 连接建立示意图：
 通过javaScript 中的API可以直接操作WebSocket 对象，其示例如下：
 
 ```js
-var ws = new WebSocket(“ws://localhost:8080”); 
-ws.onopen = function()// 建立成功之后触发的事件 { 
-  console.log(“打开连接”);   ws.send("ddd"); // 发送消息 
-  }; 
-  ws.onmessage = function(evt)  { // 接收服务器消息
-    console.log(evt.data); 
-    }; 
-    ws.onclose   = function(evt)  { 
-      console.log(“WebSocketClosed!”); // 关闭连接  };
-      ws.onerror   = function(evt)  { 
-      console.log(“WebSocketError!”); // 连接异常 
- }; 
+var ws = new WebSocket(“ws://localhost:8080”); 
+ws.onopen = function()// 建立成功之后触发的事件 { 
+  console.log(“打开连接”);   ws.send("ddd"); // 发送消息 
+  }; 
+  ws.onmessage = function(evt)  { // 接收服务器消息
+    console.log(evt.data); 
+    }; 
+    ws.onclose   = function(evt)  { 
+      console.log(“WebSocketClosed!”); // 关闭连接  };
+      ws.onerror   = function(evt)  { 
+      console.log(“WebSocketError!”); // 连接异常 
+ }; 
 ```
 
 ##### 弹幕系统实时演示
@@ -144,7 +144,7 @@ pstree -p 3000 | wc -l
 1. **IO模型：**
   2. BIO 同步阻塞
   3. NIO 同步非阻塞
-  4. AIO 异步非阻塞 
+  4. AIO 异步非阻塞 
 5. **连接模型：**
   6. 长连接
   7. 短连接

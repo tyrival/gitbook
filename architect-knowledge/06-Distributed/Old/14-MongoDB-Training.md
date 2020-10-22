@@ -1,6 +1,6 @@
 # MongoDB企业应用实战
 
-## 1. MongoDB 复制集特性
+## 1. MongoDB 复制集特性
 
 ### 1.1 复制集群的架构
 
@@ -272,7 +272,7 @@ rs.isMaster()
 
 
 
-## 2. MongoDB 分片操作
+## 2. MongoDB 分片操作
 
 ### 2.1 分片的概念
 

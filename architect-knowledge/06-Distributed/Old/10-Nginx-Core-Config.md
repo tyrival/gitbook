@@ -65,7 +65,7 @@ tar -zxvf nginx-1.14.0.tar.gz
 
 ```bash
 # 全部采用默认安装
-./configure & make & make install  
+./configure & make & make install  
 ```
 
 执行完成之后 nginx 运行文件 就会被安装在 /usr/local/nginx 下。
@@ -104,7 +104,7 @@ make install
 # 优雅停止
 ./sbin/nginx -s quit
 
-# 热装载配置文件 
+# 热装载配置文件 
 ./sbin/nginx -s reload
 
 # 重新打开日志文件
@@ -160,38 +160,38 @@ ps -ef|grep nginx
 ```bash
 worker_processes  1;
 events {
-    worker_connections  1024;
+    worker_connections  1024;
 }
 http {
 		# 将mime.types中的内容添加到此处
-    include       mime.types;
-    
-    default_type  application/octet-stream;
-    sendfile        on;
-    
-    # 长链接的最大超时时间
-    keepalive_timeout  65;
-    
-    # 配置一个具体的站点，可以配置多个server
-    server {
-    		# 监听的端口
-        listen       80;
-        # 站点域名
-        server_name  localsss
-        
-        # 对文件目录进行划分
-        location / {
-        		# 可以在location中配置，表示此location独享，
-        		# 也可以在server配置，多个location共享，
-        		# location中的配置优先级高于server，
-        		# 注意：结尾需要加分号
-            root   /www/tyrival/;
-            index  index.html index.htm;
-        }
+    include       mime.types;
+    
+    default_type  application/octet-stream;
+    sendfile        on;
+    
+    # 长链接的最大超时时间
+    keepalive_timeout  65;
+    
+    # 配置一个具体的站点，可以配置多个server
+    server {
+    		# 监听的端口
+        listen       80;
+        # 站点域名
+        server_name  localsss
+        
+        # 对文件目录进行划分
+        location / {
+        		# 可以在location中配置，表示此location独享，
+        		# 也可以在server配置，多个location共享，
+        		# location中的配置优先级高于server，
+        		# 注意：结尾需要加分号
+            root   /www/tyrival/;
+            index  index.html index.htm;
+        }
         
         location /nginx_status {
-    	  		stub_status on;
-    	   		access_log   off;
+    	  		stub_status on;
+    	   		access_log   off;
   	    }
     }
     
@@ -207,15 +207,15 @@ http {
 
 | 配置块   | 名称开头用大括号包裹其对应属性                               |
 | :------- | :----------------------------------------------------------- |
-| **属性** | 基于空格切分属性名与属性值，属性值可能有多个项 都以空格进行切分 如：`access_log  logs/host.access.log  main` |
+| **属性** | 基于空格切分属性名与属性值，属性值可能有多个项 都以空格进行切分 如：`access_log  logs/host.access.log  main` |
 | **参数** | 其配置在 块名称与大括号间，其值如果有多个也是通过空格进行拆  |
 
 注意 如果配置项值中包括语法符号，比如空格符，那么需要使用单引号或双引号括住配置项值，否则Nginx会报语法错误。例如：
 
 ```
-log_format main '$remote_addr - $remote_user [$time_local] "$request" '
-                     '$status $body_bytes_sent "$http_referer" '
-                     '"$http_user_agent" "$http_x_forwarded_for"';
+log_format main '$remote_addr - $remote_user [$time_local] "$request" '
+                     '$status $body_bytes_sent "$http_referer" '
+                     '"$http_user_agent" "$http_x_forwarded_for"';
 ```
 
 
@@ -271,7 +271,7 @@ log_format main '$remote_addr - $remote_user [$time_local] "$request" '
 
 > **匹配优先规则：**
 >
-> 1.     精确匹配优先 `=`
+> 1.     精确匹配优先 `=`
 >
 > 2. 正则匹配优先 `^~`
 >
@@ -287,8 +287,8 @@ log_format main '$remote_addr - $remote_user [$time_local] "$request" '
 
 ```bash
 location /V1 {
-      alias  /www/old_site;
-      index  index.html index.htm;
+      alias  /www/old_site;
+      index  index.html index.htm;
 }
 # 访问规则如下
 URL：http://xxx:xx/V1/a.html
@@ -316,14 +316,14 @@ server {
     location /static {
     		alias /usr/www/static;
     }
- }
+ }
 ```
 
 ###### 基于正则动静分离
 
 ```bash
 location ~* \.(gif|jpg|png|css|js)$ {
-      root /usr/www/static;
+      root /usr/www/static;
 }
 ```
 
@@ -344,7 +344,7 @@ location / {
 
 ```bash
 location /download {
-    limit_rate 1m; # 限制每秒下载速度
+    limit_rate 1m; # 限制每秒下载速度
     limit_rate_after 30m; # 下载超过30m之后限速
 }
 ```
@@ -373,10 +373,10 @@ include  black.ip;
 #### 日志格式
 
 ```bash
-log_format  main  '$remote_addr - $remote_user [$time_local]   "$request" '
-                  '$status $body_bytes_sent "$http_referer" '
-                  '"$http_user_agent" "$http_x_forwarded_for"';
-access_log  logs/access.log  main;
+log_format  main  '$remote_addr - $remote_user [$time_local]   "$request" '
+                  '$status $body_bytes_sent "$http_referer" '
+                  '"$http_user_agent" "$http_x_forwarded_for"';
+access_log  logs/access.log  main;
 #基于域名打印日志
 access_log logs/$host.access.log main;
 ```
@@ -395,7 +395,7 @@ level是日志的输出级别，取值范围是debug、info、notice、warn、er
 
 ```bash
 events {
-		debug_connection 192.168.0.147; 
+		debug_connection 192.168.0.147; 
 		debug_connection 10.224.57.0/200;
 }
 ```

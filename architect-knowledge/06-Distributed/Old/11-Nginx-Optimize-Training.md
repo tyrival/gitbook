@@ -44,23 +44,23 @@ location = /baidu {
 ```bash
 # 反向代理至本机的8010服务
 location /tyrival {
-		proxy_pass http://127.0.0.1:8010/;  
+		proxy_pass http://127.0.0.1:8010/;  
 }
 ```
 
 ##### 代理相关参数
 
 ```bash
-proxy_pass           	# 代理服务
-proxy_redirect off;   # 是否允许重定向
+proxy_pass           	# 代理服务
+proxy_redirect off;   # 是否允许重定向
 proxy_set_header Host $host; 	# 传 header 参数至后端服务
 proxy_set_header X-Forwarded-For $remote_addr; 	# 设置request header 即客户端IP 地址
 proxy_connect_timeout 90; # 连接代理服务超时时间
 proxy_send_timeout 90; 		# 请求发送最大时间
-proxy_read_timeout 90;  	# 读取最大时间
-proxy_buffer_size 4k; 
+proxy_read_timeout 90;  	# 读取最大时间
+proxy_buffer_size 4k; 
 proxy_buffers 4 32k;
-proxy_busy_buffers_size 64k; 
+proxy_busy_buffers_size 64k; 
 proxy_temp_file_write_size 64k;
 ```
 
@@ -71,7 +71,7 @@ proxy_temp_file_write_size 64k;
 ##### 演示upstream 的实现
 
 ```bash
-upstream backend {     
+upstream backend {     
 		server 127.0.0.1:8010 weight=1;
 		server 127.0.0.1:8080 weight=2;
 }
@@ -92,11 +92,11 @@ location / {
 
 ### 1.3 upstream 负载均衡算法介绍
 
-* **ll+weight： **轮询加权重 (默认)
-* **ip_hash : **基于Hash 计算 ,用于保持session 一至性
-* **url_hash:** 静态资源缓存,节约存储，加快速度（第三方）
-* **least_conn **：最少链接（第三方）
-* **least_time  **：最小的响应时间,计算节点平均响应时间，然后取响应最快的那个，分配更高权重（第三方）
+* **ll+weight： **轮询加权重 (默认)
+* **ip_hash : **基于Hash 计算 ,用于保持session 一至性
+* **url_hash:** 静态资源缓存,节约存储，加快速度（第三方）
+* **least_conn **：最少链接（第三方）
+* **least_time  **：最小的响应时间,计算节点平均响应时间，然后取响应最快的那个，分配更高权重（第三方）
 
 
 
@@ -116,7 +116,7 @@ location / {
 
 ![图片](https://images-cdn.shimo.im/TZUrMwnBANsugooe/image.png!thumbnail)
 
-**对于商品详情页涉及了如下主要服务： **
+**对于商品详情页涉及了如下主要服务： **
 
 * 商品详情页HTML页面渲染
 * 价格服务
@@ -141,7 +141,7 @@ location / {
 
 **问题：**当达到500QPS 的时候很难继续压测上去。
 
-**分析原因**：一个详情页html  主体达平均150 kb  那么在500QPS 已接近千M局域网宽带极限。必须减少内网通信。
+**分析原因**：一个详情页html  主体达平均150 kb  那么在500QPS 已接近千M局域网宽带极限。必须减少内网通信。
 
 **基于Nginx 静态缓存的解决方案：**
 
@@ -153,7 +153,7 @@ location / {
 1. 在http元素下添加缓存区声明。
 
 ```bash
-#proxy_cache_path 缓存路径
+#proxy_cache_path 缓存路径
 #levels 缓存层级及目录位数
 #keys_zone 缓存区内存大小
 #inactive 有效期
@@ -161,12 +161,12 @@ location / {
 proxy_cache_path /data/nginx/cache_tyrival levels=1:2 keys_zone=cache_tyrival:500m inactive=20d max_size=1g;
 ```
 
-2. 为指定location 设定缓存策略。 
+2. 为指定location 设定缓存策略。 
 
 ```bash
 # 指定缓存区
 proxy_cache cache_tyrival;
-#以全路径md5值做做为Key 
+#以全路径md5值做做为Key 
 proxy_cache_key $host$uri$is_args$args;
 #对不同的HTTP状态码设置不同的缓存时间
 proxy_cache_valid 200 304 12h;
@@ -196,7 +196,7 @@ proxy_cache_valid 200 304 12h;
 
 该功能可以采用第三方模块 ngx_cache_purge 实现。
 
-**为nginx 添加 ngx_cache_purge  模块**
+**为nginx 添加 ngx_cache_purge  模块**
 
 ```bash
 # 下载ngx_cache_purge 模块包 ,这里nginx 版本为1.6.2 purge 对应2.0版
@@ -204,12 +204,12 @@ wget http://labs.frickle.com/files/ngx_cache_purge-2.3.tar.gz
 # 查看已安装模块
 ./sbin/nginx -V
 # 进入nginx安装包目录 重新安装 --add-module为模块解压的全路径
-./configure --prefix=/root/svr/nginx --with-http_stub_status_module --with-http_ssl_module  --add-module=/root/svr/packages/ngx_cache_purge-2.3
+./configure --prefix=/root/svr/nginx --with-http_stub_status_module --with-http_ssl_module  --add-module=/root/svr/packages/ngx_cache_purge-2.3
 # 重新编译
 make
 # 拷贝 安装目录/objs/nginx 文件用于替换原nginx 文件
 # 检测查看安装是否成功
-nginx -t 
+nginx -t 
 ```
 
 **清除配置：**
@@ -217,12 +217,12 @@ nginx -t 
 ```bash
 location ~ /clear(/.*) {
     # 允许访问的IP
-    allow           127.0.0.1;
-    allow           192.168.0.193;
+    allow           127.0.0.1;
+    allow           192.168.0.193;
     # 禁止访问的IP
-    deny            all;
+    deny            all;
     # 配置清除指定缓存区和路径(与proxy_cache_key一至)
-    proxy_cache_purge    cache_tyrival $host$1$is_args$args;
+    proxy_cache_purge    cache_tyrival $host$1$is_args$args;
 }                        
 ```
 
@@ -292,9 +292,9 @@ accept_mutex是Nginx的负载均衡锁，当某一个worker进程建立的连接
 
 #### 使用accept锁后到真正建立连接之间的延迟时间
 
-- **语法**：accept_mutex_delay Nms; 
+- **语法**：accept_mutex_delay Nms; 
 
-- **默认**：accept_mutex_delay 500ms; 
+- **默认**：accept_mutex_delay 500ms; 
 
 在使用accept锁后，同一时间只有一个worker进程能够取到accept锁。这个accept锁不是堵塞锁，如果取不到会立刻返回。如果只有一个worker进程试图取锁而没有取到，他至少要等待accept_mutex_delay定义的时间才能再次试图取锁。
 
