@@ -49,6 +49,7 @@
         * [7 Java日志体系](05-Source/07-Java-Log.md)
         * [8 SpringMVC源码](05-Source/08-SpringMVC-Source.md)
         * [9 Mybatis源码](05-Source/09-Mybatis-Source.md)
+        * [10 Spring整合Mybatis原理](05-Source/10-Spring-Mybatis-Principle.md)
     * [第6章 分布式](06-Distributed/README.md)
         * [1 Zookeeper特性与节点说明](06-Distributed/Old/01-Zookeeper-Node.md)
         * [5 Redis核心数据结构与核心原理](06-Distributed/Old/05-Redis-Data-Structure.md)

@@ -17,3 +17,5 @@
 [8 SpringMVC源码](./08-SpringMVC-Source.md)
 
 [9 Mybatis源码](./09-Mybatis-Source.md)
+
+[10 Spring整合Mybatis原理](./10-Spring-Mybatis-Principle.md)
